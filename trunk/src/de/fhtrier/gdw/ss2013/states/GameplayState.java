@@ -1,6 +1,7 @@
 package de.fhtrier.gdw.ss2013.states;
 
 import de.fhtrier.gdw.ss2013.MainGame;
+import de.fhtrier.gdw.ss2013.game.World;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -13,26 +14,28 @@ import org.newdawn.slick.state.StateBasedGame;
  */
 public class GameplayState extends BasicGameState {
 
-    GameContainer container;
-    StateBasedGame game;
+    private World world;
 
     @Override
     public void init(GameContainer container, StateBasedGame game)
             throws SlickException {
-        this.container = container;
-        this.game = game;
+        world = new World(container, game);
     }
 
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g)
             throws SlickException {
         g.setBackground(Color.black);
+        g.setColor(Color.white);
+
+        world.render(container, g);
     }
 
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta)
             throws SlickException {
         MainGame.checkFullscreenToggle();
+        world.update(container, delta);
     }
 
     @Override
