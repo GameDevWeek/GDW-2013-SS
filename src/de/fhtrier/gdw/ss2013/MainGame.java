@@ -69,9 +69,13 @@ public class MainGame extends StateBasedGame {
     }
 
     public static void changeState(int id) {
+        changeState(id, 500, 500);
+    }
+    
+    public static void changeState(int id, int fadeOutTime, int fadeInTime) {
         if (id != currentState) {
-            Transition transitionOut = new FadeOutTransition(Color.black, 1000);
-            Transition transitionIn = new FadeInTransition(Color.black, 1000);
+            Transition transitionOut = new FadeOutTransition(Color.black, fadeOutTime);
+            Transition transitionIn = new FadeInTransition(Color.black, fadeInTime);
             instance.enterState(id, transitionOut, transitionIn);
 
             currentState = id;
