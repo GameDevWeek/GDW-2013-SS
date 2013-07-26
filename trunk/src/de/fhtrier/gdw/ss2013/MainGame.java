@@ -20,19 +20,21 @@ import org.newdawn.slick.state.transition.Transition;
  */
 public class MainGame extends StateBasedGame {
 
-    private LoadGameState loadGameState;
-    private AppGameContainer container;
-    private Input input;
+    public static final String WINDOW_TITLE = "GameDevWeek SS2013";
+    public static final int WINDOW_WIDTH = 1024;
+    public static final int WINDOW_HEIGHT = 768;
     public static final int MAINMENUSTATE = 0;
     public static final int GAMEPLAY = 1;
     public static final int TEAMDEATHMATCH = 2;
     public static int currentState = -1;
-    public static final int WINDOW_WIDTH = 1024;
-    public static final int WINDOW_HEIGHT = 768;
     public static MainGame instance;
+    
+    private LoadGameState loadGameState;
+    private AppGameContainer container;
+    private Input input;
 
     public MainGame(String[] args) {
-        super("GameDevWeek SS2013");
+        super(WINDOW_TITLE);
     }
 
     @Override
