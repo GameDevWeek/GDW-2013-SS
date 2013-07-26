@@ -85,7 +85,7 @@ public class LoadGameState extends BasicGameState {
             nextResource = LoadingList.get().getNext();
         } else {
             container.setShowFPS(true);
-            game.enterState(0);
+            MainGame.changeState(MainGame.MAINMENUSTATE);
         }
     }
 

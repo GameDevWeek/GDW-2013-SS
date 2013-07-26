@@ -2,7 +2,9 @@ package de.fhtrier.gdw.ss2013.states;
 
 import de.fhtrier.gdw.ss2013.MainGame;
 import de.fhtrier.gdw.ss2013.game.World;
+import org.newdawn.slick.AngelCodeFont;
 import org.newdawn.slick.Color;
+import org.newdawn.slick.Font;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -15,11 +17,13 @@ import org.newdawn.slick.state.StateBasedGame;
 public class GameplayState extends BasicGameState {
 
     private World world;
+    private Font font;
 
     @Override
     public void init(GameContainer container, StateBasedGame game)
             throws SlickException {
         world = new World(container, game);
+        font = new AngelCodeFont("res/fonts/verdana_46.fnt", "res/fonts/verdana_46_0.tga");
     }
 
     @Override
@@ -29,6 +33,9 @@ public class GameplayState extends BasicGameState {
         g.setColor(Color.white);
 
         world.render(container, g);
+        
+        font.drawString(0, 0, "Gameplay");
+        font.drawString(0, container.getHeight() - font.getLineHeight(), "Use Arrowkeys to move");
     }
 
     @Override

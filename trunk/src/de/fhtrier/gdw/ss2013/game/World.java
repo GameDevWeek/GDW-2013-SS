@@ -3,6 +3,7 @@ package de.fhtrier.gdw.ss2013.game;
 import de.fhtrier.gdw.commons.tiled.LayerObject;
 import de.fhtrier.gdw.commons.tiled.TiledMap;
 import de.fhtrier.gdw.ss2013.renderer.MapRenderer;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -15,7 +16,7 @@ public class World {
     private TiledMap map;
     private MapRenderer mapRender;
     private final Camera camera;
-    private Vector2f player = new Vector2f();
+    private Vector2f player = new Vector2f(200, 200);
     private final Input input;
 
     public World(GameContainer container, StateBasedGame game) throws SlickException {
@@ -36,9 +37,15 @@ public class World {
                 -camera.getTileOverlapX(), -camera.getTileOverlapY(),
                 camera.getTileX(), camera.getTileY(),
                 camera.getNumTilesX(), camera.getNumTilesY());
+        
         g.pushTransform();
         g.translate(-camera.getOffsetX(), -camera.getOffsetY());
+        
+        // draw entities here
+        g.setColor(Color.green);
+        g.setLineWidth(2);
         g.drawRect(player.x - 5, player.y - 5, 10, 10);
+        
         g.popTransform();
     }
 
