@@ -184,8 +184,8 @@ public class MapRenderer {
 
                     int tileOffsetY = tileset.getTileHeight() - mapTileHeight;
 
-                    float px = x + (tx * mapTileWidth);
-                    float py = y + (ty * mapTileHeight) - tileOffsetY;
+                    int px = x + (tx * mapTileWidth);
+                    int py = y + (ty * mapTileHeight) - tileOffsetY;
 
                     image.drawTile(px, py, tileset.getTileWidth(), tileset.getTileHeight(), sheetX * tileset.getTileWidth(), sheetY * tileset.getTileHeight());
                 }
