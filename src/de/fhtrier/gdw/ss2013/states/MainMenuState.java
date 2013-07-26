@@ -7,6 +7,7 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import de.fhtrier.gdw.ss2013.MainGame;
+import org.newdawn.slick.Input;
 
 /**
  * Menu state
@@ -50,6 +51,9 @@ public class MainMenuState extends BasicGameState {
 
     @Override
     public void keyReleased(int key, char c) {
+        if (key == Input.KEY_ENTER) {
+            MainGame.changeState(MainGame.GAMEPLAY);
+        }
     }
 
     @Override

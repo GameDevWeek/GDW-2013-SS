@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="62" height="74" tilewidth="24" tileheight="24">
+ <tileset firstgid="1" source="iron_tileset.tsx"/>
+ <layer name="Kachelebene 1" width="62" height="74">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+2bvU4DMRCEXQJFQgE8AhIFNKFASsmfkIII8P7vEqcLznrXt/b61mSK6c47991Z54k3XoYQltAfPUZdD6pVBfdl1HPU22B6j1pUcn9EbQbTJ7jBDW4193fUT4W2RrWsufd1z6LOFbpIaras1YNbWzet2bIWuMHtpe7o3FdBl5tvCO5Wtay5X0Ndfn4xqoXcAm5wg1vLnWbqNCPXZu4ptefK51RGrsncUv6WvK25F8w1tb6cv+QN7nm4tRlMymOeuWszGJfHPHP3WqPm/F1CzUXLdUzytuRO5zE1F63WMcnbkpt6n9uGvjl/ybfHPD98n9ReoQW35Nvzu5a7Pytuzhfc4Ab3sXL9/dL10SN3LievkvH767X7dtT9Ub5PDOO64LmXcudy8oYYn47lJPlzvjnukudeys3JkjuXUwPDHTJjuDzUgrvEd8o8p3LqLcN9R1wv5aGpfeqQjH8gPKfkIY/ftdzvg3uF70jcWL/BDW4992EukfJFS27O15qbyiVcvmjlL/lac0u9Gst9ZM99Iut9ZK99IkvNvY/MeVvvI3vltu6HeuY+1b7gf+XmejXW/VCvfSLLdWzOPpF3gRvc4NZz43wJzpdoa7asBW5we6k7OjfOl+B8iReBG9zgLuP+Cu32Rnvpt5I793+AEVTS3z9F7QCCEhiGsEcAAA==
+  </data>
+ </layer>
+ <layer name="Invisible Layer" width="62" height="74">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BgQAAAADDoPlTH+ECVQEAAAAAAAAAAAAAAAAAAAAAAM8A1+mzGLBHAAA=
+  </data>
+ </layer>
+</map>
