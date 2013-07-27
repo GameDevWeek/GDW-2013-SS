@@ -23,4 +23,8 @@ public class CsvDataDecoder implements IDataDecoder {
         }
         return Integer.parseInt(values[index++].trim());
     }
+
+    @Override
+    public void close() throws IOException {
+    }
 }
