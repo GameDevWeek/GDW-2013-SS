@@ -19,15 +19,18 @@ public class Base64DataDecoder implements IDataDecoder {
 
     public Base64DataDecoder(String cdata, String compression) throws IOException, Exception {
         byte[] dec = DatatypeConverter.parseBase64Binary(cdata.trim());
-        ByteArrayInputStream bis = new ByteArrayInputStream(dec);
-        if (compression == null || compression.isEmpty()) {
-            stream = bis;
-        } else if (compression.equals("gzip")) {
-            stream = new GZIPInputStream(bis);
-        } else if (compression.equals("zlib")) {
-            stream = new InflaterInputStream(bis);
-        } else {
-            throw new IOException("Unsupport compression: " + compression + ". Currently only uncompressed maps and gzip and zlib compressed maps are supported.");
+        try(
+            ByteArrayInputStream bis = new ByteArrayInputStream(dec);
+        ) {
+            if (compression == null || compression.isEmpty()) {
+                stream = bis;
+            } else if (compression.equals("gzip")) {
+                stream = new GZIPInputStream(bis);
+            } else if (compression.equals("zlib")) {
+                stream = new InflaterInputStream(bis);
+            } else {
+                throw new IOException("Unsupport compression: " + compression + ". Currently only uncompressed maps and gzip and zlib compressed maps are supported.");
+            }
         }
     }
 
@@ -39,5 +42,10 @@ public class Base64DataDecoder implements IDataDecoder {
         id |= stream.read() << 16;
         id |= stream.read() << 24;
         return id;
+    }
+
+    @Override
+    public void close() throws IOException {
+        stream.close();
     }
 }

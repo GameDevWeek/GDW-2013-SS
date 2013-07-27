@@ -33,4 +33,8 @@ public class XmlDataDecoder implements IDataDecoder {
         }
         throw new Exception("No more ids in list");
     }
+
+    @Override
+    public void close() throws IOException {
+    }
 }

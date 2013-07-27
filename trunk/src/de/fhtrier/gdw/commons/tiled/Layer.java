@@ -119,6 +119,19 @@ public class Layer {
         return (String) content.get(0);
     }
 
+
+    private IDataDecoder createDecoder(String encoding, TmxData dataNode) throws Exception {
+        if (encoding == null || encoding.isEmpty() || encoding.equals("xml")) {
+            return new XmlDataDecoder(dataNode.getContent());
+        } else if (encoding.equals("csv")) {
+            return new CsvDataDecoder(getNodeValue(dataNode.getContent()));
+        } else if (encoding.equals("base64")) {
+            return new Base64DataDecoder(getNodeValue(dataNode.getContent()), dataNode.getCompression());
+        } else {
+            throw new Exception("Unsupport encoding: " + encoding + ". We currently support base64, csv and none(xml)");
+        }
+    }
+    
     /**
      * Load all tiles from the layer
      *
@@ -130,37 +143,29 @@ public class Layer {
     private TileInfo[][] loadTiles(TmxLayer element) throws IOException, Exception {
         TmxData dataNode = element.getData();
         String encoding = dataNode.getEncoding();
-
-        IDataDecoder decoder;
-        if (encoding == null || encoding.isEmpty() || encoding.equals("xml")) {
-            decoder = new XmlDataDecoder(dataNode.getContent());
-        } else if (encoding.equals("csv")) {
-            decoder = new CsvDataDecoder(getNodeValue(dataNode.getContent()));
-        } else if (encoding.equals("base64")) {
-            decoder = new Base64DataDecoder(getNodeValue(dataNode.getContent()), dataNode.getCompression());
-        } else {
-            throw new Exception("Unsupport encoding: " + encoding + ". We currently support base64, csv and none(xml)");
-        }
-
-        TileInfo[][] result = new TileInfo[width][height];
-        for (int y = 0; y < height; y++) {
-            for (int x = 0; x < width; x++) {
-                int tileId = decoder.getNextId();
-                if (tileId == 0) {
-                    result[x][y] = null;
-                } else {
-                    TileSet set = map.findTileSet(tileId);
-
-                    if (set != null) {
-                        result[x][y] = new TileInfo(set.getIndex(), tileId - set.getFirstGID(), tileId, set.getTileProperties(tileId));
+        try (
+            IDataDecoder decoder = createDecoder(encoding, dataNode);
+        ) {
+            TileInfo[][] result = new TileInfo[width][height];
+            for (int y = 0; y < height; y++) {
+                for (int x = 0; x < width; x++) {
+                    int tileId = decoder.getNextId();
+                    if (tileId == 0) {
+                        result[x][y] = null;
                     } else {
-                        result[x][y] = new TileInfo(0, 0, tileId, set.getTileProperties(tileId));
+                        TileSet set = map.findTileSet(tileId);
+
+                        if (set != null) {
+                            result[x][y] = new TileInfo(set.getIndex(), tileId - set.getFirstGID(), tileId, set.getTileProperties(tileId));
+                        } else {
+                            result[x][y] = new TileInfo(0, 0, tileId, null);
+                        }
                     }
                 }
             }
-        }
 
-        return result;
+            return result;
+        }
     }
 
     /**

@@ -11,6 +11,7 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import javax.xml.bind.JAXBContext;
@@ -314,14 +315,16 @@ public class TiledMap implements IResourceLocator {
      * @throws JAXBException
      * @throws FileNotFoundException
      */
-    final Object readFrom(String filename) throws JAXBException, FileNotFoundException {
+    final Object readFrom(String filename) throws JAXBException, FileNotFoundException, IOException {
         IResourceLocator locator = getResourceLocator();
-        InputStream in = locator.locateResource(filename);
-
-        JAXBContext jc = JAXBContext.newInstance("de.fhtrier.gdw.commons.tiled.tmx");
-        Unmarshaller u = jc.createUnmarshaller();
-        JAXBElement o = (JAXBElement) u.unmarshal(in);
-        return o.getValue();
+        try(
+            InputStream in = locator.locateResource(filename);
+        ) {
+            JAXBContext jc = JAXBContext.newInstance("de.fhtrier.gdw.commons.tiled.tmx");
+            Unmarshaller u = jc.createUnmarshaller();
+            JAXBElement o = (JAXBElement) u.unmarshal(in);
+            return o.getValue();
+        }
     }
 
     /**
