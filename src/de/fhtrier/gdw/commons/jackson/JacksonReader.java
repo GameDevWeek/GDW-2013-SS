@@ -39,7 +39,7 @@ public class JacksonReader {
             throw new AssertionError(parser.getCurrentToken().name());
         }
 
-        List<T> list = new ArrayList<T>();
+        List<T> list = new ArrayList<>();
         while (parser.nextToken() != JsonToken.END_ARRAY) {
             list.add(readObject(clazz, parser));
         }
