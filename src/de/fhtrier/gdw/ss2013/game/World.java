@@ -3,7 +3,8 @@ package de.fhtrier.gdw.ss2013.game;
 import de.fhtrier.gdw.commons.tiled.LayerObject;
 import de.fhtrier.gdw.commons.tiled.TiledMap;
 import de.fhtrier.gdw.ss2013.renderer.MapRenderer;
-import org.newdawn.slick.Color;
+import java.util.LinkedList;
+import java.util.List;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -13,11 +14,12 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class World {
 
-    private TiledMap map;
-    private MapRenderer mapRender;
+    private final TiledMap map;
+    private final MapRenderer mapRender;
     private final Camera camera;
-    private Vector2f player = new Vector2f(200, 200);
+    private final Player player;
     private final Input input;
+    private final List<Entity> entities = new LinkedList<>();
 
     public World(GameContainer container, StateBasedGame game) throws SlickException {
         input = container.getInput();
@@ -25,43 +27,53 @@ public class World {
             map = new TiledMap("res/maps/demo.tmx", LayerObject.PolyMode.ABSOLUTE);
             mapRender = new MapRenderer(map);
             camera = new Camera(map);
+            player = new Player(200, 200);
+            entities.add(player);
         } catch (Exception e) {
             throw new SlickException(e.toString());
         }
     }
 
     public void render(GameContainer container, Graphics g) throws SlickException {
-        camera.update(container.getWidth(), container.getHeight(), player.x, player.y);
+        Vector2f playerPos = player.getPosition();
+        camera.update(container.getWidth(), container.getHeight(), playerPos.x, playerPos.y);
 
         mapRender.renderTileLayers(g,
                 -camera.getTileOverlapX(), -camera.getTileOverlapY(),
                 camera.getTileX(), camera.getTileY(),
                 camera.getNumTilesX(), camera.getNumTilesY());
-        
+
         g.pushTransform();
         g.translate(-camera.getOffsetX(), -camera.getOffsetY());
-        
-        // draw entities here
-        g.setColor(Color.green);
-        g.setLineWidth(2);
-        g.drawRect(player.x - 5, player.y - 5, 10, 10);
-        
+
+        // draw entities
+        for (Entity e : entities) {
+            e.render(container, g);
+        }
+
         g.popTransform();
     }
 
     public void update(GameContainer container, int delta) throws SlickException {
+        // update entities
+        for (Entity e : entities) {
+            e.update(container, delta);
+        }
+
+        // This is just a placeholder, not for actual use.
+        Vector2f playerPos = player.getPosition();
         float speed = 6;
         if (input.isKeyDown(Input.KEY_UP)) {
-            player.y -= speed;
+            playerPos.y -= speed;
         }
         if (input.isKeyDown(Input.KEY_DOWN)) {
-            player.y += speed;
+            playerPos.y += speed;
         }
         if (input.isKeyDown(Input.KEY_LEFT)) {
-            player.x -= speed;
+            playerPos.x -= speed;
         }
         if (input.isKeyDown(Input.KEY_RIGHT)) {
-            player.x += speed;
+            playerPos.x += speed;
         }
     }
 }
