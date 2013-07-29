@@ -5,9 +5,6 @@ import java.util.HashMap;
 import org.lwjgl.input.Controllers;
 import org.newdawn.slick.GameContainer;
 
-import de.fhtrier.gdw.ss2013.interfaces.AlienControls;
-import de.fhtrier.gdw.ss2013.interfaces.AstronautControls;
-
 
 
 /*

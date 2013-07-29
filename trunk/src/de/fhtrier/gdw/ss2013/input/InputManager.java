@@ -9,8 +9,6 @@ import org.newdawn.slick.Input;
 
 import de.fhtrier.gdw.ss2013.MainGame;
 import de.fhtrier.gdw.ss2013.game.Player;
-import de.fhtrier.gdw.ss2013.interfaces.AlienControls;
-import de.fhtrier.gdw.ss2013.interfaces.AstronautControls;
 
 
 
