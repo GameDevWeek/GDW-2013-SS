@@ -12,8 +12,42 @@ import de.fhtrier.gdw.ss2013.game.Entity;
 public class RectanglePhysicsObject extends PhysicsObject {
 
     
+    public RectanglePhysicsObject(Entity owner)
+    {
+        this(owner, BodyType.STATIC);
+    }
     
-    protected RectanglePhysicsObject(boolean isSensor, float restitution,float density,float friction,Vec2 pos,Vec2 rec,BodyType bodyType, Entity owner) {
+    public RectanglePhysicsObject(Entity owner,BodyType bodyType)
+    {
+        this(owner, bodyType,  new Vec2(10,10));
+    }
+    
+    public RectanglePhysicsObject(Entity owner,BodyType bodyType, Vec2 rec)
+    {
+        this(owner, bodyType,  rec,  new Vec2());
+    }
+    
+    public RectanglePhysicsObject(Entity owner,BodyType bodyType, Vec2 rec, Vec2 pos)
+    {
+        this(owner, bodyType,  rec,  pos, 0);
+    }
+    
+    public RectanglePhysicsObject(Entity owner,BodyType bodyType, Vec2 rec, Vec2 pos, float restitution)
+    {
+        this(owner, bodyType,  rec,  pos,  restitution, 0);
+    }
+    
+    public RectanglePhysicsObject(Entity owner,BodyType bodyType, Vec2 rec, Vec2 pos, float restitution,float density)
+    {
+        this(owner, bodyType,  rec,  pos,  restitution, density, 0);
+    }
+    
+    public RectanglePhysicsObject(Entity owner,BodyType bodyType, Vec2 rec, Vec2 pos, float restitution,float density,float friction )
+    {
+        this(owner, bodyType,  rec,  pos,  restitution, density, friction,true);
+    }
+    
+    public RectanglePhysicsObject(Entity owner,BodyType bodyType, Vec2 rec, Vec2 pos, float restitution,float density,float friction,boolean isSensor ) {
         super(owner);
         EdgeShape myShape = new EdgeShape();
         myShape.set(pos,new Vec2(pos.x+rec.x, pos.y+rec.y));
