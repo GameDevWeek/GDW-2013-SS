@@ -17,7 +17,7 @@ import org.newdawn.slick.state.StateBasedGame;
 public class GameplayState extends BasicGameState {
 
     private World world;
-    private Font font;
+   // private Font font;
 
     @Override
     public void init(GameContainer container, StateBasedGame game)
