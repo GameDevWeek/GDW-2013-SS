@@ -11,6 +11,8 @@ import de.fhtrier.gdw.commons.tiled.LayerObject;
 import de.fhtrier.gdw.commons.tiled.TiledMap;
 import de.fhtrier.gdw.ss2013.renderer.MapRenderer;
 
+// Random comment.
+
 public class World {
 
     private final TiledMap map;
