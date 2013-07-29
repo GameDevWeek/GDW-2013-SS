@@ -19,9 +19,6 @@ public class InputManager {
 	public InputManager(GameContainer container) {
 		this.container = container;
 		devices.add(new Keyboard(container));
-
-		// input devices von slick
-
 	}
 
 	public void update(int delta) {
@@ -31,5 +28,9 @@ public class InputManager {
 
 	}
 
-	// setter fuer controls
+	/**
+	 * TODO
+	 * - Methode um alle verfügbaren InputDevices abzufragen
+	 * - Gamepadsupport implementieren
+	 */
 }

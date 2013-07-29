@@ -36,4 +36,10 @@ public abstract class InputDevice {
 		astronautListener = ac;
 	}
 
+	/**
+	 * TODO
+	 * - Keymapping für alle Actions je nach InputDevice aus Config datei lesen und speichern
+	 * - Keymapping dynamisch ändern können 
+	 * - Getter für Keymapping
+	 */
 }
