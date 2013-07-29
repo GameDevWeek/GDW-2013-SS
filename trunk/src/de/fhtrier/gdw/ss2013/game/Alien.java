@@ -7,11 +7,13 @@ public class Alien extends Player{
     private float mana;
     private float maxMana;
     
-    public Alien(float x, float y, float maxMana) {
-        super(new Vector2f (x,y));
-        this.maxMana= maxMana;
-        setMana(maxMana);
-        // TODO Auto-generated constructor stub
+    public Alien(Vector2f position) {
+        super(position);
+        
+        //Default 
+        maxMana = 0.0f;
+        mana = maxMana;
+        
     }
 
     public float getMana() {
@@ -26,6 +28,10 @@ public class Alien extends Player{
         return maxMana;
     }
 
+    public void setMaxMana (float maxMana)
+    {
+        this.maxMana = maxMana;
+    }
 
 
     

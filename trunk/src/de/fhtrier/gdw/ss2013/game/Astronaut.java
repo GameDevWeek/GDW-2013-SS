@@ -7,10 +7,12 @@ public class Astronaut extends Player{
     private float oxygen;
     private float maxOxygen;
     
-    public Astronaut(float x, float y, float maxOxygen) {
-        super(new Vector2f(x,y));
-        this.maxOxygen =  maxOxygen;
-        setOxygen(maxOxygen);
+    public Astronaut(Vector2f position) {
+        super(position);
+        
+        //Default
+        maxOxygen = 0.0f;
+        oxygen = maxOxygen;
 
     }
 
@@ -24,6 +26,11 @@ public class Astronaut extends Player{
 
     public float getMaxOxygen() {
         return maxOxygen;
+    }
+    
+    public void setMaxOxygen(float maxOxygen)
+    {
+        this.maxOxygen = maxOxygen;
     }
 
 
