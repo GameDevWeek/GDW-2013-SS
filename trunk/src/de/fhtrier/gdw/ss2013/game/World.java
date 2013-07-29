@@ -23,7 +23,7 @@ public class World {
     private final Camera camera;
     private final Player player;
     private final FlyingEnemy enemy;
-    private final Meteroid metro[] = new Meteroid[1];
+    private final Meteroid metro[] = new Meteroid[3];
     private final Input input;
     private final OxygenFlower oxyFlower;
 
