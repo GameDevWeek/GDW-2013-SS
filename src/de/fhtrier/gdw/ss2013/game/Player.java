@@ -11,7 +11,7 @@ import org.newdawn.slick.SlickException;
 public class Player extends Entity {
 
     public Player(float x, float y) {
-        position.set(x, y);
+        super.position.set(x, y);
     }
 
     @Override

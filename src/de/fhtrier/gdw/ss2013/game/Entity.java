@@ -10,17 +10,16 @@ import org.newdawn.slick.geom.Vector2f;
  */
 public class Entity {
 
-    protected Vector2f position = new Vector2f();
+    protected Vector2f position;
 
     final static float DEBUG_ENTITY_HALFEXTEND = 5;
 
     public Entity() {
-        
-        this(null);
+        this(new Vector2f());
     }
-    
+
     public Entity(Vector2f position) {
-        
+
         this.position = position;
     }
 

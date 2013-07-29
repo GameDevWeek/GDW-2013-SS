@@ -1,18 +1,39 @@
 package de.fhtrier.gdw.ss2013.game;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Queue;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
 public class EntityManager {
-
+    // static protected EntityManager managerInstance;
     protected ArrayList<Entity> entityList;
-    static protected EntityManager managerInstance;
+    protected HashMap<Class<? extends RecycleableEntity>, ArrayList<Entity>> recycleMap;
+    protected Queue<Entity> removalQueue;
 
     public EntityManager() {
         entityList = new ArrayList<>();
+        recycleMap = new HashMap<>();
+        removalQueue = new LinkedList<>();
+    }
+
+    protected void internalRemove() {
+        while (!removalQueue.isEmpty()) {
+            Entity e = removalQueue.poll();
+            if (e instanceof RecycleableEntity) {
+                ArrayList<Entity> recycleList = recycleMap.get(e.getClass());
+                if (recycleList == null) {
+                    recycleList = new ArrayList<>();
+                }
+                recycleList.add(e);
+            }
+            entityList.remove(removalQueue.poll());
+        }
+
     }
 
     /**
@@ -22,8 +43,10 @@ public class EntityManager {
      * @throws SlickException
      */
     public void update(GameContainer c, int delta) throws SlickException {
+        internalRemove();
         for (Entity e : entityList)
             e.update(c, delta);
+
     }
 
     public void render(GameContainer container, Graphics g)
@@ -41,6 +64,12 @@ public class EntityManager {
     }
 
     public void removeEntity(Entity e) {
-        // TODO: removelist for removal pre update
+        removalQueue.add(e);
+    }
+
+    public void createEntity(Class<?> entityClass) {
+        if (entityClass.isInstance(RecycleableEntity.class)) {
+
+        }
     }
 }
