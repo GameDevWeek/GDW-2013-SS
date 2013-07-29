@@ -13,7 +13,7 @@ import de.fhtrier.gdw.ss2013.game.Entity;
  * @author Sebastian, Arnold
  * 
  */
-public class DefaultPlayer implements ISoundPlayer {
+public class DefaultSoundPlayer implements SoundPlayer {
 
     // Emitter
     private HashMap<Entity, HashSet<Sound>> emitterSoundPlayingMap = new HashMap<>();

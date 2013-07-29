@@ -4,7 +4,7 @@ import org.newdawn.slick.Sound;
 
 import de.fhtrier.gdw.ss2013.game.Entity;
 
-public interface ISoundPlayer {
+public interface SoundPlayer {
 
     public void playSound(Sound sound);
 
