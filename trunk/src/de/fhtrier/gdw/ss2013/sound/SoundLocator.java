@@ -6,7 +6,7 @@ package de.fhtrier.gdw.ss2013.sound;
 
 import org.newdawn.slick.Sound;
 
-import de.fhtrier.gdw.ss2013.util.AssetLoader;
+import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 
 public class SoundLocator {
 
