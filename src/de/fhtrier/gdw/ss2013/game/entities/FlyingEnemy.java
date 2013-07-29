@@ -8,6 +8,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
+import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.Player;
 /**
  * Flying Enemy Class
@@ -17,13 +18,11 @@ import de.fhtrier.gdw.ss2013.game.Player;
 public class FlyingEnemy extends AbstractEnemy {
 
     private float health;
-    private ArrayList<Bullet> bullets;
     final static float DEBUG_ENTITY_HALFEXTEND = 5;
     
     public FlyingEnemy(Vector2f pos, Vector2f velo, float dmg, float hp) {
         super(pos.copy(), velo.copy(), dmg);
         health = hp;
-        bullets = new ArrayList<Bullet>();
     }
     
     public FlyingEnemy() {
@@ -42,8 +41,11 @@ public class FlyingEnemy extends AbstractEnemy {
     public void reduceHealth(float dmg) {  
         health -= dmg;
     }
-    public void shoot(Player player) {
-        bullets.add(new Bullet(this.position, new Vector2f(5 * calcPlayerDirection(player).x, 5 * calcPlayerDirection(player).y), this.getDamage()));
+    public void shoot(Player player, EntityManager m) {
+        Bullet b = (Bullet) m.createEntityAt(Bullet.class, this.position.copy());
+        b.getVelocity().x = 5 * calcPlayerDirection(player).x;
+        b.getVelocity().y = 5 * calcPlayerDirection(player).y;
+        b.setDamage(this.getDamage());
     }
     
     public void render(GameContainer container, Graphics g)
@@ -52,10 +54,6 @@ public class FlyingEnemy extends AbstractEnemy {
         g.drawRect(position.x - DEBUG_ENTITY_HALFEXTEND, position.y
                 - DEBUG_ENTITY_HALFEXTEND, DEBUG_ENTITY_HALFEXTEND * 2,
                 DEBUG_ENTITY_HALFEXTEND * 2);   
-
-        for(Bullet b : bullets) {
-            b.render(container, g);
-        }
         // g.drawString(this.hashCode(), position.x, position.y);
     }
     
@@ -63,9 +61,6 @@ public class FlyingEnemy extends AbstractEnemy {
             throws SlickException {
         float dt = delta / 1000.f;
         // TODO clamp dt if dt > 1/60.f ?
-        for(Bullet b : bullets) {
-            b.update(container, delta);
-        }
     }
     
     private Vector2f calcPlayerDirection(Player player) {

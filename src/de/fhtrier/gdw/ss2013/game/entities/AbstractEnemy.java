@@ -16,11 +16,11 @@ public abstract class AbstractEnemy extends Entity{
         this(new Vector2f(), new Vector2f(), 0);
     }
     public AbstractEnemy(Vector2f pos) {
-        this(pos, new Vector2f(), 0);
+        this(pos.copy(), new Vector2f(), 0);
     }
     public AbstractEnemy(Vector2f pos, Vector2f velo, float dmg) {
         super(pos.copy());
-        this.velocity = velo;
+        this.velocity = velo.copy();
         this.damage = dmg;
     }
     public abstract void onCollide();
@@ -30,5 +30,8 @@ public abstract class AbstractEnemy extends Entity{
     }
     public float getDamage() {
         return damage;
+    }
+    public void setDamage(float dmg) {
+        damage = dmg;
     }
 }
