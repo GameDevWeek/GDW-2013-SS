@@ -26,7 +26,8 @@ public class GameplayState extends BasicGameState {
     public void init(GameContainer container, StateBasedGame game)
             throws SlickException {
         world = new World(container, game);
-        font = new AngelCodeFont("res/fonts/verdana_46.fnt", "res/fonts/verdana_46_0.tga");
+        font = new AngelCodeFont("res/fonts/verdana_46.fnt",
+                "res/fonts/verdana_46_0.tga");
         hud = new HUD(container);
     }
 
@@ -37,12 +38,13 @@ public class GameplayState extends BasicGameState {
         g.setColor(Color.white);
 
         world.render(container, g);
-        
+
         font.drawString(0, 0, "Gameplay");
-        font.drawString(0, container.getHeight() - font.getLineHeight(), "Use Arrowkeys to move");
-        
+        font.drawString(0, container.getHeight() - font.getLineHeight(),
+                "Use Arrowkeys to move");
+
         hud.render(container, game, g);
-        
+
     }
 
     @Override
@@ -50,7 +52,7 @@ public class GameplayState extends BasicGameState {
             throws SlickException {
         MainGame.checkFullscreenToggle();
         world.update(container, delta);
-       
+
         hud.update(container, game, delta);
     }
 

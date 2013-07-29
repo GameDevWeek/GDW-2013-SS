@@ -4,9 +4,8 @@ import de.fhtrier.gdw.commons.tiled.TiledMap;
 
 /**
  * Helper class to calculate the best camera offset for rendering the map
- *
- * @author Santo Pfingsten
- * fixed by max
+ * 
+ * @author Santo Pfingsten fixed by max
  */
 public class Camera {
 
@@ -40,7 +39,8 @@ public class Camera {
         return (int) Math.floor(camX);
     }
 
-    public void update(int windowWidth, int windowHeight, float playerX, float playerY) {
+    public void update(int windowWidth, int windowHeight, float playerX,
+            float playerY) {
         numTilesX = windowWidth / mapTileWidth + 2;
         numTilesY = windowHeight / mapTileHeight + 2;
 

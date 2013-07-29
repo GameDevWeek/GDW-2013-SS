@@ -2,15 +2,15 @@ package de.fhtrier.gdw.ss2013.game;
 
 import org.newdawn.slick.geom.Vector2f;
 
-public class Astronaut extends Player{
+public class Astronaut extends Player {
 
     private float oxygen;
     private float maxOxygen;
-    
+
     public Astronaut(Vector2f position) {
         super(position);
-        
-        //Default
+
+        // Default
         maxOxygen = 0.0f;
         oxygen = maxOxygen;
 
@@ -27,9 +27,8 @@ public class Astronaut extends Player{
     public float getMaxOxygen() {
         return maxOxygen;
     }
-    
-    public void setMaxOxygen(float maxOxygen)
-    {
+
+    public void setMaxOxygen(float maxOxygen) {
         this.maxOxygen = maxOxygen;
     }
 

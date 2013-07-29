@@ -1,3 +1,7 @@
+/**
+ * @author Sebastian, Arnold
+ */
+
 package de.fhtrier.gdw.ss2013.game;
 
 import org.jbox2d.dynamics.Fixture;
@@ -22,7 +26,6 @@ public class Entity implements ICollidable {
     }
 
     public Entity(Vector2f position) {
-
         this.position = position.copy();
     }
 
@@ -37,10 +40,6 @@ public class Entity implements ICollidable {
 
     public void update(GameContainer container, int delta)
             throws SlickException {
-
-        float dt = delta / 1000.f;
-        // TODO clamp dt if dt > 1/60.f ?
-
     }
 
     public Vector2f getPosition() {
@@ -50,7 +49,7 @@ public class Entity implements ICollidable {
     @Override
     public void onCollision(Entity e) {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override

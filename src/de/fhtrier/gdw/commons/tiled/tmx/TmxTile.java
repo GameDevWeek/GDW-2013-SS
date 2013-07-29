@@ -5,7 +5,6 @@
 // Generated on: 2013.01.03 at 06:49:48 PM CET 
 //
 
-
 package de.fhtrier.gdw.commons.tiled.tmx;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -14,11 +13,13 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for tmxTile complex type.
+ * <p>
+ * Java class for tmxTile complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType name="tmxTile">
@@ -37,9 +38,7 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "tmxTile", propOrder = {
-    "properties"
-})
+@XmlType(name = "tmxTile", propOrder = { "properties" })
 public class TmxTile {
 
     @XmlElement(required = true)
@@ -52,10 +51,8 @@ public class TmxTile {
     /**
      * Gets the value of the properties property.
      * 
-     * @return
-     *     possible object is
-     *     {@link TmxProperties }
-     *     
+     * @return possible object is {@link TmxProperties }
+     * 
      */
     public TmxProperties getProperties() {
         return properties;
@@ -65,9 +62,8 @@ public class TmxTile {
      * Sets the value of the properties property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link TmxProperties }
-     *     
+     *            allowed object is {@link TmxProperties }
+     * 
      */
     public void setProperties(TmxProperties value) {
         this.properties = value;
@@ -76,10 +72,8 @@ public class TmxTile {
     /**
      * Gets the value of the id property.
      * 
-     * @return
-     *     possible object is
-     *     {@link Integer }
-     *     
+     * @return possible object is {@link Integer }
+     * 
      */
     public Integer getId() {
         return id;
@@ -89,9 +83,8 @@ public class TmxTile {
      * Sets the value of the id property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link Integer }
-     *     
+     *            allowed object is {@link Integer }
+     * 
      */
     public void setId(Integer value) {
         this.id = value;
@@ -100,10 +93,8 @@ public class TmxTile {
     /**
      * Gets the value of the gid property.
      * 
-     * @return
-     *     possible object is
-     *     {@link Integer }
-     *     
+     * @return possible object is {@link Integer }
+     * 
      */
     public Integer getGid() {
         return gid;
@@ -113,9 +104,8 @@ public class TmxTile {
      * Sets the value of the gid property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link Integer }
-     *     
+     *            allowed object is {@link Integer }
+     * 
      */
     public void setGid(Integer value) {
         this.gid = value;

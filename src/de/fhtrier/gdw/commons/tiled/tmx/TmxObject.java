@@ -5,7 +5,6 @@
 // Generated on: 2013.01.03 at 06:49:48 PM CET 
 //
 
-
 package de.fhtrier.gdw.commons.tiled.tmx;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -14,11 +13,13 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for tmxObject complex type.
+ * <p>
+ * Java class for tmxObject complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType name="tmxObject">
@@ -45,12 +46,8 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "tmxObject", propOrder = {
-    "properties",
-    "polyline",
-    "polygon",
-    "image"
-})
+@XmlType(name = "tmxObject", propOrder = { "properties", "polyline", "polygon",
+        "image" })
 public class TmxObject {
 
     @XmlElement(required = true)
@@ -79,10 +76,8 @@ public class TmxObject {
     /**
      * Gets the value of the properties property.
      * 
-     * @return
-     *     possible object is
-     *     {@link TmxProperties }
-     *     
+     * @return possible object is {@link TmxProperties }
+     * 
      */
     public TmxProperties getProperties() {
         return properties;
@@ -92,9 +87,8 @@ public class TmxObject {
      * Sets the value of the properties property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link TmxProperties }
-     *     
+     *            allowed object is {@link TmxProperties }
+     * 
      */
     public void setProperties(TmxProperties value) {
         this.properties = value;
@@ -103,10 +97,8 @@ public class TmxObject {
     /**
      * Gets the value of the polyline property.
      * 
-     * @return
-     *     possible object is
-     *     {@link TmxPointList }
-     *     
+     * @return possible object is {@link TmxPointList }
+     * 
      */
     public TmxPointList getPolyline() {
         return polyline;
@@ -116,9 +108,8 @@ public class TmxObject {
      * Sets the value of the polyline property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link TmxPointList }
-     *     
+     *            allowed object is {@link TmxPointList }
+     * 
      */
     public void setPolyline(TmxPointList value) {
         this.polyline = value;
@@ -127,10 +118,8 @@ public class TmxObject {
     /**
      * Gets the value of the polygon property.
      * 
-     * @return
-     *     possible object is
-     *     {@link TmxPointList }
-     *     
+     * @return possible object is {@link TmxPointList }
+     * 
      */
     public TmxPointList getPolygon() {
         return polygon;
@@ -140,9 +129,8 @@ public class TmxObject {
      * Sets the value of the polygon property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link TmxPointList }
-     *     
+     *            allowed object is {@link TmxPointList }
+     * 
      */
     public void setPolygon(TmxPointList value) {
         this.polygon = value;
@@ -151,10 +139,8 @@ public class TmxObject {
     /**
      * Gets the value of the image property.
      * 
-     * @return
-     *     possible object is
-     *     {@link TmxImage }
-     *     
+     * @return possible object is {@link TmxImage }
+     * 
      */
     public TmxImage getImage() {
         return image;
@@ -164,9 +150,8 @@ public class TmxObject {
      * Sets the value of the image property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link TmxImage }
-     *     
+     *            allowed object is {@link TmxImage }
+     * 
      */
     public void setImage(TmxImage value) {
         this.image = value;
@@ -175,10 +160,8 @@ public class TmxObject {
     /**
      * Gets the value of the name property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return possible object is {@link String }
+     * 
      */
     public String getName() {
         return name;
@@ -188,9 +171,8 @@ public class TmxObject {
      * Sets the value of the name property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *            allowed object is {@link String }
+     * 
      */
     public void setName(String value) {
         this.name = value;
@@ -199,10 +181,8 @@ public class TmxObject {
     /**
      * Gets the value of the type property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return possible object is {@link String }
+     * 
      */
     public String getType() {
         return type;
@@ -212,9 +192,8 @@ public class TmxObject {
      * Sets the value of the type property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *            allowed object is {@link String }
+     * 
      */
     public void setType(String value) {
         this.type = value;
@@ -223,10 +202,8 @@ public class TmxObject {
     /**
      * Gets the value of the gid property.
      * 
-     * @return
-     *     possible object is
-     *     {@link Integer }
-     *     
+     * @return possible object is {@link Integer }
+     * 
      */
     public Integer getGid() {
         return gid;
@@ -236,9 +213,8 @@ public class TmxObject {
      * Sets the value of the gid property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link Integer }
-     *     
+     *            allowed object is {@link Integer }
+     * 
      */
     public void setGid(Integer value) {
         this.gid = value;
@@ -279,10 +255,8 @@ public class TmxObject {
     /**
      * Gets the value of the width property.
      * 
-     * @return
-     *     possible object is
-     *     {@link Integer }
-     *     
+     * @return possible object is {@link Integer }
+     * 
      */
     public Integer getWidth() {
         return width;
@@ -292,9 +266,8 @@ public class TmxObject {
      * Sets the value of the width property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link Integer }
-     *     
+     *            allowed object is {@link Integer }
+     * 
      */
     public void setWidth(Integer value) {
         this.width = value;
@@ -303,10 +276,8 @@ public class TmxObject {
     /**
      * Gets the value of the height property.
      * 
-     * @return
-     *     possible object is
-     *     {@link Integer }
-     *     
+     * @return possible object is {@link Integer }
+     * 
      */
     public Integer getHeight() {
         return height;
@@ -316,9 +287,8 @@ public class TmxObject {
      * Sets the value of the height property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link Integer }
-     *     
+     *            allowed object is {@link Integer }
+     * 
      */
     public void setHeight(Integer value) {
         this.height = value;

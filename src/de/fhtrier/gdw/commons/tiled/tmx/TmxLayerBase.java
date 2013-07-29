@@ -5,7 +5,6 @@
 // Generated on: 2013.01.03 at 06:49:48 PM CET 
 //
 
-
 package de.fhtrier.gdw.commons.tiled.tmx;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -15,11 +14,13 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for tmxLayerBase complex type.
+ * <p>
+ * Java class for tmxLayerBase complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType name="tmxLayerBase">
@@ -41,13 +42,8 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "tmxLayerBase", propOrder = {
-    "properties"
-})
-@XmlSeeAlso({
-    TmxObjectGroup.class,
-    TmxLayer.class
-})
+@XmlType(name = "tmxLayerBase", propOrder = { "properties" })
+@XmlSeeAlso({ TmxObjectGroup.class, TmxLayer.class })
 public class TmxLayerBase {
 
     @XmlElement(required = true)
@@ -66,10 +62,8 @@ public class TmxLayerBase {
     /**
      * Gets the value of the properties property.
      * 
-     * @return
-     *     possible object is
-     *     {@link TmxProperties }
-     *     
+     * @return possible object is {@link TmxProperties }
+     * 
      */
     public TmxProperties getProperties() {
         return properties;
@@ -79,9 +73,8 @@ public class TmxLayerBase {
      * Sets the value of the properties property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link TmxProperties }
-     *     
+     *            allowed object is {@link TmxProperties }
+     * 
      */
     public void setProperties(TmxProperties value) {
         this.properties = value;
@@ -90,10 +83,8 @@ public class TmxLayerBase {
     /**
      * Gets the value of the name property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return possible object is {@link String }
+     * 
      */
     public String getName() {
         return name;
@@ -103,9 +94,8 @@ public class TmxLayerBase {
      * Sets the value of the name property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *            allowed object is {@link String }
+     * 
      */
     public void setName(String value) {
         this.name = value;
@@ -114,10 +104,8 @@ public class TmxLayerBase {
     /**
      * Gets the value of the opacity property.
      * 
-     * @return
-     *     possible object is
-     *     {@link Float }
-     *     
+     * @return possible object is {@link Float }
+     * 
      */
     public Float getOpacity() {
         return opacity;
@@ -127,9 +115,8 @@ public class TmxLayerBase {
      * Sets the value of the opacity property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link Float }
-     *     
+     *            allowed object is {@link Float }
+     * 
      */
     public void setOpacity(Float value) {
         this.opacity = value;
@@ -170,10 +157,8 @@ public class TmxLayerBase {
     /**
      * Gets the value of the visible property.
      * 
-     * @return
-     *     possible object is
-     *     {@link Integer }
-     *     
+     * @return possible object is {@link Integer }
+     * 
      */
     public Integer getVisible() {
         return visible;
@@ -183,9 +168,8 @@ public class TmxLayerBase {
      * Sets the value of the visible property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link Integer }
-     *     
+     *            allowed object is {@link Integer }
+     * 
      */
     public void setVisible(Integer value) {
         this.visible = value;

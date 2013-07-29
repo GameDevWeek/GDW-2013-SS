@@ -4,7 +4,7 @@ import de.fhtrier.gdw.commons.utils.SafeProperties;
 
 /**
  * Tile information
- *
+ * 
  * @author Santo Pfingsten
  */
 public class TileInfo {
@@ -14,7 +14,8 @@ public class TileInfo {
     public final int globalId;
     private final SafeProperties properties;
 
-    public TileInfo(int tileSetId, int localId, int globalId, SafeProperties properties) {
+    public TileInfo(int tileSetId, int localId, int globalId,
+            SafeProperties properties) {
         this.tileSetId = tileSetId;
         this.localId = localId;
         this.globalId = globalId;

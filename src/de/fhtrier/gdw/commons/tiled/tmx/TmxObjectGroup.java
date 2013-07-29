@@ -5,7 +5,6 @@
 // Generated on: 2013.01.03 at 06:49:48 PM CET 
 //
 
-
 package de.fhtrier.gdw.commons.tiled.tmx;
 
 import java.util.ArrayList;
@@ -15,11 +14,13 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for tmxObjectGroup complex type.
+ * <p>
+ * Java class for tmxObjectGroup complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType name="tmxObjectGroup">
@@ -36,12 +37,8 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "tmxObjectGroup", propOrder = {
-    "object"
-})
-public class TmxObjectGroup
-    extends TmxLayerBase
-{
+@XmlType(name = "tmxObjectGroup", propOrder = { "object" })
+public class TmxObjectGroup extends TmxLayerBase {
 
     @XmlElement(required = true)
     protected List<TmxObject> object;
@@ -50,15 +47,16 @@ public class TmxObjectGroup
      * Gets the value of the object property.
      * 
      * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the object property.
+     * This accessor method returns a reference to the live list, not a
+     * snapshot. Therefore any modification you make to the returned list will
+     * be present inside the JAXB object. This is why there is not a
+     * <CODE>set</CODE> method for the object property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
+     * 
      * <pre>
-     *    getObject().add(newItem);
+     * getObject().add(newItem);
      * </pre>
      * 
      * 

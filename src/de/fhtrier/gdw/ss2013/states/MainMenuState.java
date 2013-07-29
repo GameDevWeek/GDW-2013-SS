@@ -23,14 +23,16 @@ public class MainMenuState extends BasicGameState {
     @Override
     public void init(final GameContainer container, final StateBasedGame game)
             throws SlickException {
-        font = new AngelCodeFont("res/fonts/quartz_40.fnt", "res/fonts/quartz_40_0.tga");
+        font = new AngelCodeFont("res/fonts/quartz_40.fnt",
+                "res/fonts/quartz_40_0.tga");
     }
 
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g)
             throws SlickException {
         font.drawString(0, 0, "Main Menu");
-        font.drawString(container.getWidth()/2, container.getHeight()/2, "Press Enter");
+        font.drawString(container.getWidth() / 2, container.getHeight() / 2,
+                "Press Enter");
     }
 
     @Override

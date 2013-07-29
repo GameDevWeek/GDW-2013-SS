@@ -8,4 +8,5 @@ public class VectorUtil {
         Vector2f v = new Vector2f(v1);
         return v.sub(v2);
     }
+
 }

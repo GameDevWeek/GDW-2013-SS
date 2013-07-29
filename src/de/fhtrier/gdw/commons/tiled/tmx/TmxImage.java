@@ -5,7 +5,6 @@
 // Generated on: 2013.01.03 at 06:49:48 PM CET 
 //
 
-
 package de.fhtrier.gdw.commons.tiled.tmx;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -13,11 +12,13 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for tmxImage complex type.
+ * <p>
+ * Java class for tmxImage complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType name="tmxImage">
@@ -50,10 +51,8 @@ public class TmxImage {
     /**
      * Gets the value of the source property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return possible object is {@link String }
+     * 
      */
     public String getSource() {
         return source;
@@ -63,9 +62,8 @@ public class TmxImage {
      * Sets the value of the source property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *            allowed object is {@link String }
+     * 
      */
     public void setSource(String value) {
         this.source = value;
@@ -74,10 +72,8 @@ public class TmxImage {
     /**
      * Gets the value of the trans property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return possible object is {@link String }
+     * 
      */
     public String getTrans() {
         return trans;
@@ -87,9 +83,8 @@ public class TmxImage {
      * Sets the value of the trans property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *            allowed object is {@link String }
+     * 
      */
     public void setTrans(String value) {
         this.trans = value;
@@ -98,10 +93,8 @@ public class TmxImage {
     /**
      * Gets the value of the width property.
      * 
-     * @return
-     *     possible object is
-     *     {@link Integer }
-     *     
+     * @return possible object is {@link Integer }
+     * 
      */
     public Integer getWidth() {
         return width;
@@ -111,9 +104,8 @@ public class TmxImage {
      * Sets the value of the width property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link Integer }
-     *     
+     *            allowed object is {@link Integer }
+     * 
      */
     public void setWidth(Integer value) {
         this.width = value;
@@ -122,10 +114,8 @@ public class TmxImage {
     /**
      * Gets the value of the height property.
      * 
-     * @return
-     *     possible object is
-     *     {@link Integer }
-     *     
+     * @return possible object is {@link Integer }
+     * 
      */
     public Integer getHeight() {
         return height;
@@ -135,9 +125,8 @@ public class TmxImage {
      * Sets the value of the height property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link Integer }
-     *     
+     *            allowed object is {@link Integer }
+     * 
      */
     public void setHeight(Integer value) {
         this.height = value;

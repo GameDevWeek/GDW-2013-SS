@@ -17,7 +17,7 @@ import java.util.List;
 
 /**
  * A layer which can contain either tiles or objects
- *
+ * 
  * @author Santo Pfingsten
  */
 public class Layer {
@@ -76,19 +76,23 @@ public class Layer {
      */
     public enum Type {
 
-        TILE,
-        OBJECT
+        TILE, OBJECT
     }
 
     /**
      * Create a new layer based on the XML definition
-     *
-     * @param element The XML element describing the layer
-     * @param map The map this layer is part of
-     * @param index The index
-     * @throws SlickException Indicates a failure to parse the XML layer
+     * 
+     * @param element
+     *            The XML element describing the layer
+     * @param map
+     *            The map this layer is part of
+     * @param index
+     *            The index
+     * @throws SlickException
+     *             Indicates a failure to parse the XML layer
      */
-    Layer(TiledMap map, TmxLayerBase element, int index, LayerObject.PolyMode polyMode) throws Exception {
+    Layer(TiledMap map, TmxLayerBase element, int index,
+            LayerObject.PolyMode polyMode) throws Exception {
         this.index = index;
         this.map = map;
         name = element.getName();
@@ -119,33 +123,35 @@ public class Layer {
         return (String) content.get(0);
     }
 
-
-    private IDataDecoder createDecoder(String encoding, TmxData dataNode) throws Exception {
+    private IDataDecoder createDecoder(String encoding, TmxData dataNode)
+            throws Exception {
         if (encoding == null || encoding.isEmpty() || encoding.equals("xml")) {
             return new XmlDataDecoder(dataNode.getContent());
         } else if (encoding.equals("csv")) {
             return new CsvDataDecoder(getNodeValue(dataNode.getContent()));
         } else if (encoding.equals("base64")) {
-            return new Base64DataDecoder(getNodeValue(dataNode.getContent()), dataNode.getCompression());
+            return new Base64DataDecoder(getNodeValue(dataNode.getContent()),
+                    dataNode.getCompression());
         } else {
-            throw new Exception("Unsupport encoding: " + encoding + ". We currently support base64, csv and none(xml)");
+            throw new Exception("Unsupport encoding: " + encoding
+                    + ". We currently support base64, csv and none(xml)");
         }
     }
-    
+
     /**
      * Load all tiles from the layer
-     *
-     * @param element the layer element
+     * 
+     * @param element
+     *            the layer element
      * @return an array containing all tile information of this layer
      * @throws IOException
      * @throws Exception
      */
-    private TileInfo[][] loadTiles(TmxLayer element) throws IOException, Exception {
+    private TileInfo[][] loadTiles(TmxLayer element) throws IOException,
+            Exception {
         TmxData dataNode = element.getData();
         String encoding = dataNode.getEncoding();
-        try (
-            IDataDecoder decoder = createDecoder(encoding, dataNode);
-        ) {
+        try (IDataDecoder decoder = createDecoder(encoding, dataNode);) {
             TileInfo[][] result = new TileInfo[width][height];
             for (int y = 0; y < height; y++) {
                 for (int x = 0; x < width; x++) {
@@ -156,7 +162,9 @@ public class Layer {
                         TileSet set = map.findTileSet(tileId);
 
                         if (set != null) {
-                            result[x][y] = new TileInfo(set.getIndex(), tileId - set.getFirstGID(), tileId, set.getTileProperties(tileId));
+                            result[x][y] = new TileInfo(set.getIndex(), tileId
+                                    - set.getFirstGID(), tileId,
+                                    set.getTileProperties(tileId));
                         } else {
                             result[x][y] = new TileInfo(0, 0, tileId, null);
                         }
@@ -170,13 +178,16 @@ public class Layer {
 
     /**
      * Load all objects from the layer
-     *
-     * @param element the object group
-     * @param polyMode the PolyMode to use
+     * 
+     * @param element
+     *            the object group
+     * @param polyMode
+     *            the PolyMode to use
      * @return an ArrayList containing all objects
      * @throws Exception
      */
-    private ArrayList<LayerObject> loadObjects(TmxObjectGroup element, LayerObject.PolyMode polyMode) {
+    private ArrayList<LayerObject> loadObjects(TmxObjectGroup element,
+            LayerObject.PolyMode polyMode) {
         ArrayList<LayerObject> result = new ArrayList<>();
         for (TmxObject object : element.getObject()) {
             result.add(new LayerObject(map, object, polyMode));
@@ -248,7 +259,8 @@ public class Layer {
     }
 
     /**
-     * @param opacity the opacity for this layer
+     * @param opacity
+     *            the opacity for this layer
      */
     public void setOpacity(float opacity) {
         this.opacity = opacity;
@@ -315,8 +327,8 @@ public class Layer {
     }
 
     /**
-     * @param attachment an attachment for the game to store additional
-     * information
+     * @param attachment
+     *            an attachment for the game to store additional information
      */
     public void setAttachment(Object attachment) {
         this.attachment = attachment;

@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 /**
- *
+ * 
  * @author Santo Pfingsten
  */
 public interface IResourceLocator {

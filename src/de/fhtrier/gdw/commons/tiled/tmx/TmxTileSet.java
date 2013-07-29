@@ -5,7 +5,6 @@
 // Generated on: 2013.01.03 at 06:49:48 PM CET 
 //
 
-
 package de.fhtrier.gdw.commons.tiled.tmx;
 
 import java.util.ArrayList;
@@ -16,11 +15,13 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for tmxTileSet complex type.
+ * <p>
+ * Java class for tmxTileSet complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType name="tmxTileSet">
@@ -48,11 +49,7 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "tmxTileSet", propOrder = {
-    "properties",
-    "image",
-    "tile"
-})
+@XmlType(name = "tmxTileSet", propOrder = { "properties", "image", "tile" })
 public class TmxTileSet {
 
     @XmlElement(required = true)
@@ -83,10 +80,8 @@ public class TmxTileSet {
     /**
      * Gets the value of the properties property.
      * 
-     * @return
-     *     possible object is
-     *     {@link TmxProperties }
-     *     
+     * @return possible object is {@link TmxProperties }
+     * 
      */
     public TmxProperties getProperties() {
         return properties;
@@ -96,9 +91,8 @@ public class TmxTileSet {
      * Sets the value of the properties property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link TmxProperties }
-     *     
+     *            allowed object is {@link TmxProperties }
+     * 
      */
     public void setProperties(TmxProperties value) {
         this.properties = value;
@@ -107,10 +101,8 @@ public class TmxTileSet {
     /**
      * Gets the value of the image property.
      * 
-     * @return
-     *     possible object is
-     *     {@link TmxImage }
-     *     
+     * @return possible object is {@link TmxImage }
+     * 
      */
     public TmxImage getImage() {
         return image;
@@ -120,9 +112,8 @@ public class TmxTileSet {
      * Sets the value of the image property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link TmxImage }
-     *     
+     *            allowed object is {@link TmxImage }
+     * 
      */
     public void setImage(TmxImage value) {
         this.image = value;
@@ -132,21 +123,21 @@ public class TmxTileSet {
      * Gets the value of the tile property.
      * 
      * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the tile property.
+     * This accessor method returns a reference to the live list, not a
+     * snapshot. Therefore any modification you make to the returned list will
+     * be present inside the JAXB object. This is why there is not a
+     * <CODE>set</CODE> method for the tile property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
+     * 
      * <pre>
-     *    getTile().add(newItem);
+     * getTile().add(newItem);
      * </pre>
      * 
      * 
      * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link TmxTile }
+     * Objects of the following type(s) are allowed in the list {@link TmxTile }
      * 
      * 
      */
@@ -176,10 +167,8 @@ public class TmxTileSet {
     /**
      * Gets the value of the source property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return possible object is {@link String }
+     * 
      */
     public String getSource() {
         return source;
@@ -189,9 +178,8 @@ public class TmxTileSet {
      * Sets the value of the source property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *            allowed object is {@link String }
+     * 
      */
     public void setSource(String value) {
         this.source = value;
@@ -200,10 +188,8 @@ public class TmxTileSet {
     /**
      * Gets the value of the name property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return possible object is {@link String }
+     * 
      */
     public String getName() {
         return name;
@@ -213,9 +199,8 @@ public class TmxTileSet {
      * Sets the value of the name property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *            allowed object is {@link String }
+     * 
      */
     public void setName(String value) {
         this.name = value;
@@ -224,10 +209,8 @@ public class TmxTileSet {
     /**
      * Gets the value of the width property.
      * 
-     * @return
-     *     possible object is
-     *     {@link Integer }
-     *     
+     * @return possible object is {@link Integer }
+     * 
      */
     public Integer getWidth() {
         return width;
@@ -237,9 +220,8 @@ public class TmxTileSet {
      * Sets the value of the width property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link Integer }
-     *     
+     *            allowed object is {@link Integer }
+     * 
      */
     public void setWidth(Integer value) {
         this.width = value;
@@ -248,10 +230,8 @@ public class TmxTileSet {
     /**
      * Gets the value of the height property.
      * 
-     * @return
-     *     possible object is
-     *     {@link Integer }
-     *     
+     * @return possible object is {@link Integer }
+     * 
      */
     public Integer getHeight() {
         return height;
@@ -261,9 +241,8 @@ public class TmxTileSet {
      * Sets the value of the height property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link Integer }
-     *     
+     *            allowed object is {@link Integer }
+     * 
      */
     public void setHeight(Integer value) {
         this.height = value;
@@ -272,10 +251,8 @@ public class TmxTileSet {
     /**
      * Gets the value of the tilewidth property.
      * 
-     * @return
-     *     possible object is
-     *     {@link Integer }
-     *     
+     * @return possible object is {@link Integer }
+     * 
      */
     public Integer getTilewidth() {
         return tilewidth;
@@ -285,9 +262,8 @@ public class TmxTileSet {
      * Sets the value of the tilewidth property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link Integer }
-     *     
+     *            allowed object is {@link Integer }
+     * 
      */
     public void setTilewidth(Integer value) {
         this.tilewidth = value;
@@ -296,10 +272,8 @@ public class TmxTileSet {
     /**
      * Gets the value of the tileheight property.
      * 
-     * @return
-     *     possible object is
-     *     {@link Integer }
-     *     
+     * @return possible object is {@link Integer }
+     * 
      */
     public Integer getTileheight() {
         return tileheight;
@@ -309,9 +283,8 @@ public class TmxTileSet {
      * Sets the value of the tileheight property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link Integer }
-     *     
+     *            allowed object is {@link Integer }
+     * 
      */
     public void setTileheight(Integer value) {
         this.tileheight = value;
@@ -320,10 +293,8 @@ public class TmxTileSet {
     /**
      * Gets the value of the spacing property.
      * 
-     * @return
-     *     possible object is
-     *     {@link Integer }
-     *     
+     * @return possible object is {@link Integer }
+     * 
      */
     public Integer getSpacing() {
         return spacing;
@@ -333,9 +304,8 @@ public class TmxTileSet {
      * Sets the value of the spacing property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link Integer }
-     *     
+     *            allowed object is {@link Integer }
+     * 
      */
     public void setSpacing(Integer value) {
         this.spacing = value;
@@ -344,10 +314,8 @@ public class TmxTileSet {
     /**
      * Gets the value of the margin property.
      * 
-     * @return
-     *     possible object is
-     *     {@link Integer }
-     *     
+     * @return possible object is {@link Integer }
+     * 
      */
     public Integer getMargin() {
         return margin;
@@ -357,9 +325,8 @@ public class TmxTileSet {
      * Sets the value of the margin property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link Integer }
-     *     
+     *            allowed object is {@link Integer }
+     * 
      */
     public void setMargin(Integer value) {
         this.margin = value;

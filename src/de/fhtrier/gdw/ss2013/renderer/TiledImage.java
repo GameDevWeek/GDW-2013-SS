@@ -7,7 +7,7 @@ import org.newdawn.slick.SlickException;
 /**
  * Extending Slick Image to draw tiled images more memory efficient than the
  * Slick way (which creates a lot of sub-images).
- *
+ * 
  * @author Santo Pfingsten
  */
 public class TiledImage extends Image {

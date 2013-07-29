@@ -22,12 +22,12 @@ public abstract class PhysicsObject {
     private Body myBody;
     private Collection<ICollisionListener> collisionListeners;
     private BodyDef myBodyDef;
-    
-    protected PhysicsObject(BodyDef myBodyDef,Entity owner) {
+
+    protected PhysicsObject(BodyDef myBodyDef, Entity owner) {
         this.owner = owner;
         this.myBodyDef = myBodyDef;
         enableSimulation();
-        
+
         myBody.m_userData = this;
         collisionListeners = new ArrayList<ICollisionListener>();
     }
@@ -36,25 +36,22 @@ public abstract class PhysicsObject {
         this.myBody = myBody;
     }
 
-    public void enableSimulation()
-    {
+    public void enableSimulation() {
         this.myBody = PhysicsManager.getInstance().enableSimulation(this);
     }
-    
-    public void disableSimulation()
-    {
-       PhysicsManager.getInstance().disableSimulation(this);
+
+    public void disableSimulation() {
+        PhysicsManager.getInstance().disableSimulation(this);
     }
-    
+
     public Body getBody() {
         return myBody;
     }
-    
-    public BodyDef getBodyDef()
-    {
+
+    public BodyDef getBodyDef() {
         return myBodyDef;
     }
-    
+
     public void setOwner(Entity owner) {
         this.owner = owner;
     }
@@ -86,84 +83,71 @@ public abstract class PhysicsObject {
     public void setPosition(Vec2 pos) {
         myBody.setTransform(pos, myBody.getAngle());
     }
-    
+
     public void setPosition(float x, float y) {
-        setPosition(new Vec2(x,y));
+        setPosition(new Vec2(x, y));
     }
-    
-    public void simpelForceApply(Vec2 force)
-    {
+
+    public void simpelForceApply(Vec2 force) {
         myBody.applyForceToCenter(force);
     }
-    
-    public float getAngle()
-    {
+
+    public float getAngle() {
         return myBody.getAngle();
     }
-    
-    public Vec2 getLiniarVelocity()
-    {
+
+    public Vec2 getLiniarVelocity() {
         return myBody.getLinearVelocity();
     }
 
-    public void setLinearVelocity(Vec2 v)
-    {
+    public void setLinearVelocity(Vec2 v) {
         myBody.setLinearVelocity(v);
     }
-    
-    public boolean isAwake()
-    {
+
+    public boolean isAwake() {
         return myBody.isAwake();
     }
-    
-    public boolean isAsleep()
-    {
+
+    public boolean isAsleep() {
         return !myBody.isAwake();
     }
-    
-    public void setGravityScale(float gravityScale)
-    {
+
+    public void setGravityScale(float gravityScale) {
         myBody.setGravityScale(gravityScale);
     }
-    
-    public float getGravityScale()
-    {
+
+    public float getGravityScale() {
         return myBody.getGravityScale();
     }
-    
-    public void setMassData(MassData massData)
-    {
+
+    public void setMassData(MassData massData) {
         myBody.setMassData(massData);
     }
 
-    public void setMassData(float mass)
-    {
+    public void setMassData(float mass) {
         MassData massData = new MassData();
         massData.mass = mass;
         setMassData(massData);
     }
-    
-    public float getMass()
-    {
+
+    public float getMass() {
         return myBody.getMass();
     }
-    
+
     public boolean addCollisionListener(ICollisionListener listener) {
         return collisionListeners.add(listener);
     }
-    
+
     public boolean removeCollisionListener(ICollisionListener listener) {
         return collisionListeners.remove(listener);
     }
-    
-    public void onCollide(PhysicsObject po)
-    {
-        for(ICollisionListener listener: collisionListeners)
-        {
+
+    public void onCollide(PhysicsObject po) {
+        for (ICollisionListener listener : collisionListeners) {
             listener.onCollide(po);
         }
     }
-    
+
     /**
      * 
      * @param delta
@@ -171,7 +155,7 @@ public abstract class PhysicsObject {
      * @throws SlickException
      */
     public void update(GameContainer c, int delta) throws SlickException {
-        
+
     }
 
 }
