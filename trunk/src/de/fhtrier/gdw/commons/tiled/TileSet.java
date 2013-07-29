@@ -8,7 +8,7 @@ import java.util.HashMap;
 
 /**
  * A tile set
- *
+ * 
  * @author Santo Pfingsten
  */
 public class TileSet {
@@ -76,9 +76,11 @@ public class TileSet {
 
     /**
      * Create a tile set based on an XML definition
-     *
-     * @param element The XML describing the tileset
-     * @throws Exception Indicates a failure to parse the tileset
+     * 
+     * @param element
+     *            The XML describing the tileset
+     * @throws Exception
+     *             Indicates a failure to parse the tileset
      */
     TileSet(TiledMap map, TmxTileSet element, int index) throws Exception {
         this.index = index;
@@ -105,19 +107,24 @@ public class TileSet {
         tileMargin = margin != null ? margin.intValue() : 0;
 
         for (TmxTile tile : element.getTile()) {
-            tileProperties.put(firstGID + tile.getId(), TiledMap.readProperties(tile.getProperties()));
+            tileProperties.put(firstGID + tile.getId(),
+                    TiledMap.readProperties(tile.getProperties()));
         }
 
         image = element.getImage();
-        tilesAcross = Math.max(1, ((image.getWidth() - (tileMargin * 2) - tileWidth) / (tileWidth + tileSpacing)) + 1);
-        tilesDown = Math.max(1, ((image.getHeight() - (tileMargin * 2) - tileHeight) / (tileHeight + tileSpacing)) + 1);
+        tilesAcross = Math
+                .max(1,
+                        ((image.getWidth() - (tileMargin * 2) - tileWidth) / (tileWidth + tileSpacing)) + 1);
+        tilesDown = Math
+                .max(1,
+                        ((image.getHeight() - (tileMargin * 2) - tileHeight) / (tileHeight + tileSpacing)) + 1);
 
         lastGID = (tilesAcross * tilesDown) + firstGID - 1;
     }
 
     /**
      * Get the width of each tile in this set
-     *
+     * 
      * @return The width of each tile in this set
      */
     public int getTileWidth() {
@@ -126,7 +133,7 @@ public class TileSet {
 
     /**
      * Get the height of each tile in this set
-     *
+     * 
      * @return The height of each tile in this set
      */
     public int getTileHeight() {
@@ -135,7 +142,7 @@ public class TileSet {
 
     /**
      * Get the spacing between tiles in this set
-     *
+     * 
      * @return The spacing between tiles in this set
      */
     public int getTileSpacing() {
@@ -144,7 +151,7 @@ public class TileSet {
 
     /**
      * Get the margin around tiles in this set
-     *
+     * 
      * @return The maring around tiles in this set
      */
     public int getTileMargin() {
@@ -160,9 +167,11 @@ public class TileSet {
 
     /**
      * Get a map property
-     *
-     * @param key the key of the property
-     * @param def the default value to return if the property has not been set.
+     * 
+     * @param key
+     *            the key of the property
+     * @param def
+     *            the default value to return if the property has not been set.
      * @return the property value or def
      */
     public String getProperty(String key, String def) {
@@ -201,7 +210,8 @@ public class TileSet {
     }
 
     /**
-     * @param globalID the global tile id
+     * @param globalID
+     *            the global tile id
      * @return the properties for the specified tile
      */
     SafeProperties getTileProperties(int globalID) {
@@ -224,7 +234,8 @@ public class TileSet {
         return props.getInt(propertyName, def);
     }
 
-    public float getTileFloatProperty(int globalID, String propertyName, float def) {
+    public float getTileFloatProperty(int globalID, String propertyName,
+            float def) {
         SafeProperties props = tileProperties.get(globalID);
         if (props == null) {
             return def;
@@ -232,7 +243,8 @@ public class TileSet {
         return props.getFloat(propertyName, def);
     }
 
-    public double getTileDoubleProperty(int globalID, String propertyName, double def) {
+    public double getTileDoubleProperty(int globalID, String propertyName,
+            double def) {
         SafeProperties props = tileProperties.get(globalID);
         if (props == null) {
             return def;
@@ -240,7 +252,8 @@ public class TileSet {
         return props.getDouble(propertyName, def);
     }
 
-    public boolean getTileBooleanProperty(int globalID, String propertyName, boolean def) {
+    public boolean getTileBooleanProperty(int globalID, String propertyName,
+            boolean def) {
         SafeProperties props = tileProperties.get(globalID);
         if (props == null) {
             return def;
@@ -250,8 +263,9 @@ public class TileSet {
 
     /**
      * Get the x position of a tile on this sheet
-     *
-     * @param id The tileset specific ID (i.e. not the global one)
+     * 
+     * @param id
+     *            The tileset specific ID (i.e. not the global one)
      * @return The index of the tile on the x-axis
      */
     public int getTileX(int id) {
@@ -260,8 +274,9 @@ public class TileSet {
 
     /**
      * Get the y position of a tile on this sheet
-     *
-     * @param id The tileset specific ID (i.e. not the global one)
+     * 
+     * @param id
+     *            The tileset specific ID (i.e. not the global one)
      * @return The index of the tile on the y-axis
      */
     public int getTileY(int id) {
@@ -270,8 +285,9 @@ public class TileSet {
 
     /**
      * Set the limit of the tiles in this set
-     *
-     * @param limit The limit of the tiles in this set
+     * 
+     * @param limit
+     *            The limit of the tiles in this set
      */
     void setLimit(int limit) {
         lastGID = limit;
@@ -279,8 +295,9 @@ public class TileSet {
 
     /**
      * Check if this tileset contains a particular tile
-     *
-     * @param gid The global id to seach for
+     * 
+     * @param gid
+     *            The global id to seach for
      * @return True if the ID is contained in this tileset
      */
     public boolean contains(int gid) {
@@ -351,7 +368,8 @@ public class TileSet {
     }
 
     /**
-     * @param attachment the attachment to set
+     * @param attachment
+     *            the attachment to set
      */
     public void setAttachment(Object attachment) {
         this.attachment = attachment;

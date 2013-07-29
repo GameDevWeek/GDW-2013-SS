@@ -9,14 +9,15 @@ import javax.xml.bind.JAXBElement;
 
 /**
  * Read layer data that has been stored in XML format.
- *
+ * 
  * @author Santo Pfingsten
  */
 public class XmlDataDecoder implements IDataDecoder {
 
     private final Iterator<Serializable> iterator;
 
-    public XmlDataDecoder(List<Serializable> content) throws IOException, Exception {
+    public XmlDataDecoder(List<Serializable> content) throws IOException,
+            Exception {
         iterator = content.iterator();
     }
 

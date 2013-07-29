@@ -4,15 +4,16 @@ import java.io.IOException;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.loading.DeferredResource;
 import org.newdawn.slick.loading.LoadingList;
+import org.newdawn.slick.openal.SoundStore;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import de.fhtrier.gdw.ss2013.MainGame;
 import de.fhtrier.gdw.ss2013.debug.DebugModeStatus;
+import de.fhtrier.gdw.ss2013.sound.SoundLocator;
 import de.fhtrier.gdw.ss2013.util.AssetLoader;
 
 /**
@@ -24,6 +25,7 @@ public class LoadGameState extends BasicGameState {
     private MainMenuState mainMenuState;
     private GameplayState gameplayState;
     private DeferredResource nextResource;
+    private AssetLoader assetLoader;
 
     @Override
     public void init(GameContainer container, StateBasedGame game)
@@ -32,9 +34,12 @@ public class LoadGameState extends BasicGameState {
         LoadingList.setDeferredLoading(true);
 
         // Todo: initialize assets
-        new AssetLoader();
-//        Image img = new Image("res/animaions/team0.png");
-        
+
+        assetLoader = new AssetLoader();
+        SoundLocator.provideAssetLoader(assetLoader);
+
+        // Image img = new Image("res/animaions/team0.png");
+
         mainMenuState = new MainMenuState();
         mainMenuState.init(container, game);
         game.addState(mainMenuState);
@@ -88,7 +93,7 @@ public class LoadGameState extends BasicGameState {
             nextResource = LoadingList.get().getNext();
         } else {
             container.setShowFPS(true);
-
+            SoundStore.get().setDeferredLoading(false);
             if (DebugModeStatus.getStatus()) {
                 MainGame.changeState(MainGame.GAMEPLAY);
             } else {

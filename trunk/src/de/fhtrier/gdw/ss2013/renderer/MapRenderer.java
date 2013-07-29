@@ -15,7 +15,7 @@ import org.newdawn.slick.SlickException;
 
 /**
  * A simple map renderer which renders the TiledMap with Slick
- *
+ * 
  * @author Santo Pfingsten
  */
 public class MapRenderer {
@@ -34,16 +34,19 @@ public class MapRenderer {
             TmxImage img = tileset.getImage();
             String trans = img.getTrans();
             Color transColor = trans == null ? null : Color.decode(trans);
-            TiledImage image = new TiledImage(locator.combinePaths(tileset.getFilename(), img.getSource()), transColor);
+            TiledImage image = new TiledImage(locator.combinePaths(
+                    tileset.getFilename(), img.getSource()), transColor);
             tileset.setAttachment(image);
         }
     }
 
     /**
      * Render the whole tile map at a given location
-     *
-     * @param x The x location to render at
-     * @param y The y location to render at
+     * 
+     * @param x
+     *            The x location to render at
+     * @param y
+     *            The y location to render at
      */
     public void render(Graphics g, int x, int y) {
         render(g, x, y, 0, 0, map.getWidth(), map.getHeight());
@@ -51,10 +54,13 @@ public class MapRenderer {
 
     /**
      * Render a single layer from the map
-     *
-     * @param x The x location to render at
-     * @param y The y location to render at
-     * @param layer The layer to render
+     * 
+     * @param x
+     *            The x location to render at
+     * @param y
+     *            The y location to render at
+     * @param layer
+     *            The layer to render
      */
     public void render(Graphics g, int x, int y, Layer layer) {
         render(g, x, y, 0, 0, map.getWidth(), map.getHeight(), layer);
@@ -62,15 +68,22 @@ public class MapRenderer {
 
     /**
      * Render a section of the tile map
-     *
-     * @param x The x location to render at
-     * @param y The y location to render at
-     * @param sx The x tile location to start rendering
-     * @param sy The y tile location to start rendering
-     * @param width The width of the section to render (in tiles)
-     * @param height The height of the secton to render (in tiles)
+     * 
+     * @param x
+     *            The x location to render at
+     * @param y
+     *            The y location to render at
+     * @param sx
+     *            The x tile location to start rendering
+     * @param sy
+     *            The y tile location to start rendering
+     * @param width
+     *            The width of the section to render (in tiles)
+     * @param height
+     *            The height of the secton to render (in tiles)
      */
-    public void render(Graphics g, int x, int y, int sx, int sy, int width, int height) {
+    public void render(Graphics g, int x, int y, int sx, int sy, int width,
+            int height) {
         for (int ty = 0; ty < height; ty++) {
             for (Layer layer : map.getLayers()) {
                 renderLayerLine(g, layer, x, y, sx, sy, width, ty);
@@ -80,15 +93,22 @@ public class MapRenderer {
 
     /**
      * Render a section of the tile map, but only the tile layers
-     *
-     * @param x The x location to render at
-     * @param y The y location to render at
-     * @param sx The x tile location to start rendering
-     * @param sy The y tile location to start rendering
-     * @param width The width of the section to render (in tiles)
-     * @param height The height of the secton to render (in tiles)
+     * 
+     * @param x
+     *            The x location to render at
+     * @param y
+     *            The y location to render at
+     * @param sx
+     *            The x tile location to start rendering
+     * @param sy
+     *            The y tile location to start rendering
+     * @param width
+     *            The width of the section to render (in tiles)
+     * @param height
+     *            The height of the secton to render (in tiles)
      */
-    public void renderTileLayers(Graphics g, int x, int y, int sx, int sy, int width, int height) {
+    public void renderTileLayers(Graphics g, int x, int y, int sx, int sy,
+            int width, int height) {
         for (int ty = 0; ty < height; ty++) {
             for (Layer layer : map.getLayers()) {
                 if (layer.getType() == Layer.Type.TILE) {
@@ -100,16 +120,24 @@ public class MapRenderer {
 
     /**
      * Render a section of the specified layer
-     *
-     * @param x The x location to render at
-     * @param y The y location to render at
-     * @param sx The x tile location to start rendering
-     * @param sy The y tile location to start rendering
-     * @param width The width of the section to render (in tiles)
-     * @param height The height of the secton to render (in tiles)
-     * @param layer The layer to render
+     * 
+     * @param x
+     *            The x location to render at
+     * @param y
+     *            The y location to render at
+     * @param sx
+     *            The x tile location to start rendering
+     * @param sy
+     *            The y tile location to start rendering
+     * @param width
+     *            The width of the section to render (in tiles)
+     * @param height
+     *            The height of the secton to render (in tiles)
+     * @param layer
+     *            The layer to render
      */
-    public void render(Graphics g, int x, int y, int sx, int sy, int width, int height, Layer layer) {
+    public void render(Graphics g, int x, int y, int sx, int sy, int width,
+            int height, Layer layer) {
         for (int ty = 0; ty < height; ty++) {
             renderLayerLine(g, layer, x, y, sx, sy, width, ty);
         }
@@ -117,36 +145,50 @@ public class MapRenderer {
 
     /**
      * Render a section of this layer
-     *
-     * @param x The x location to render at
-     * @param y The y location to render at
-     * @param sx The x tile location to start rendering
-     * @param sy The y tile location to start rendering
-     * @param width The number of tiles across to render
-     * @param ty The line of tiles to render
+     * 
+     * @param x
+     *            The x location to render at
+     * @param y
+     *            The y location to render at
+     * @param sx
+     *            The x tile location to start rendering
+     * @param sy
+     *            The y tile location to start rendering
+     * @param width
+     *            The number of tiles across to render
+     * @param ty
+     *            The line of tiles to render
      */
-    private void renderLayerLine(Graphics g, Layer layer, int x, int y, int sx, int sy, int width, int ty) {
+    private void renderLayerLine(Graphics g, Layer layer, int x, int y, int sx,
+            int sy, int width, int ty) {
         switch (layer.getType()) {
-            case TILE:
-                renderTileLayerLine(g, layer, x, y, sx, sy, width, ty);
-                break;
-            case OBJECT:
-                renderObjectLayerLine(g, layer, x, y, sx, sy, width, ty);
-                break;
+        case TILE:
+            renderTileLayerLine(g, layer, x, y, sx, sy, width, ty);
+            break;
+        case OBJECT:
+            renderObjectLayerLine(g, layer, x, y, sx, sy, width, ty);
+            break;
         }
     }
 
     /**
      * Render a section of this tile layer
-     *
-     * @param x The x location to render at
-     * @param y The y location to render at
-     * @param sx The x tile location to start rendering
-     * @param sy The y tile location to start rendering
-     * @param width The number of tiles across to render
-     * @param ty The line of tiles to render
+     * 
+     * @param x
+     *            The x location to render at
+     * @param y
+     *            The y location to render at
+     * @param sx
+     *            The x tile location to start rendering
+     * @param sy
+     *            The y tile location to start rendering
+     * @param width
+     *            The number of tiles across to render
+     * @param ty
+     *            The line of tiles to render
      */
-    private void renderTileLayerLine(Graphics g, Layer layer, int x, int y, int sx, int sy, int width, int ty) {
+    private void renderTileLayerLine(Graphics g, Layer layer, int x, int y,
+            int sx, int sy, int width, int ty) {
         if (layer.getBooleanProperty("invisible", false)) {
             return;
         }
@@ -179,15 +221,20 @@ public class MapRenderer {
                         filter.bind();
                     }
 
-                    int sheetX = tileset.getTileX(tiles[sx + tx][sy + ty].localId);
-                    int sheetY = tileset.getTileY(tiles[sx + tx][sy + ty].localId);
+                    int sheetX = tileset
+                            .getTileX(tiles[sx + tx][sy + ty].localId);
+                    int sheetY = tileset
+                            .getTileY(tiles[sx + tx][sy + ty].localId);
 
                     int tileOffsetY = tileset.getTileHeight() - mapTileHeight;
 
                     int px = x + (tx * mapTileWidth);
                     int py = y + (ty * mapTileHeight) - tileOffsetY;
 
-                    image.drawTile(px, py, tileset.getTileWidth(), tileset.getTileHeight(), sheetX * tileset.getTileWidth(), sheetY * tileset.getTileHeight());
+                    image.drawTile(px, py, tileset.getTileWidth(),
+                            tileset.getTileHeight(),
+                            sheetX * tileset.getTileWidth(),
+                            sheetY * tileset.getTileHeight());
                 }
             }
 
@@ -199,15 +246,22 @@ public class MapRenderer {
 
     /**
      * Render a section of this object layer
-     *
-     * @param x The x location to render at
-     * @param y The y location to render at
-     * @param sx The x tile location to start rendering
-     * @param sy The y tile location to start rendering
-     * @param width The number of tiles across to render
-     * @param ty The line of tiles to render
+     * 
+     * @param x
+     *            The x location to render at
+     * @param y
+     *            The y location to render at
+     * @param sx
+     *            The x tile location to start rendering
+     * @param sy
+     *            The y tile location to start rendering
+     * @param width
+     *            The number of tiles across to render
+     * @param ty
+     *            The line of tiles to render
      */
-    private void renderObjectLayerLine(Graphics g, Layer layer, int x, int y, int sx, int sy, int width, int ty) {
+    private void renderObjectLayerLine(Graphics g, Layer layer, int x, int y,
+            int sx, int sy, int width, int ty) {
         g.setLineWidth(2.0f);
         g.setAntiAlias(true);
 
@@ -215,26 +269,27 @@ public class MapRenderer {
         int offsY = sy * mapTileHeight - y;
         g.translate(-offsX, -offsY);
 
-        //fixme: render only the objects actually within the limits
+        // fixme: render only the objects actually within the limits
         for (LayerObject object : layer.getObjects()) {
             switch (object.getPrimitive()) {
-                case POLYGON:
-                    drawPolyLine(g, object.getPoints(), true);
-                    break;
-                case POLYLINE:
-                    drawPolyLine(g, object.getPoints(), false);
-                    break;
-                case TILE:
-                    drawTile(object);
-                    break;
-                case RECT:
-                    g.drawRect(object.getX(), object.getY(), object.getWidth(), object.getHeight());
-                    break;
-                case POINT:
-                    g.drawRect(object.getX() - 1, object.getY() - 1, 2, 2);
-                    break;
-                default:
-                    throw new AssertionError(object.getPrimitive().name());
+            case POLYGON:
+                drawPolyLine(g, object.getPoints(), true);
+                break;
+            case POLYLINE:
+                drawPolyLine(g, object.getPoints(), false);
+                break;
+            case TILE:
+                drawTile(object);
+                break;
+            case RECT:
+                g.drawRect(object.getX(), object.getY(), object.getWidth(),
+                        object.getHeight());
+                break;
+            case POINT:
+                g.drawRect(object.getX() - 1, object.getY() - 1, 2, 2);
+                break;
+            default:
+                throw new AssertionError(object.getPrimitive().name());
             }
         }
         g.translate(offsX, offsY);
@@ -265,7 +320,10 @@ public class MapRenderer {
         int sheetY = tileset.getTileY(gid - tileset.getFirstGID());
 
         image.startUse();
-        image.drawTile(object.getLowestX(), object.getLowestY(), tileset.getTileWidth(), tileset.getTileHeight(), sheetX * tileset.getTileWidth(), sheetY * tileset.getTileHeight());
+        image.drawTile(object.getLowestX(), object.getLowestY(),
+                tileset.getTileWidth(), tileset.getTileHeight(), sheetX
+                        * tileset.getTileWidth(),
+                sheetY * tileset.getTileHeight());
         image.endUse();
     }
 }

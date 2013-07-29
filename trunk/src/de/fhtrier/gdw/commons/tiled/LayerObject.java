@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 /**
  * An object read from an object group layer
- *
+ * 
  * @author Santo Pfingsten
  */
 public class LayerObject {
@@ -43,24 +43,19 @@ public class LayerObject {
      */
     public enum Primitive {
 
-        POINT,
-        RECT,
-        TILE,
-        POLYGON,
-        POLYLINE,
+        POINT, RECT, TILE, POLYGON, POLYLINE,
     }
 
     public enum PolyMode {
 
-        RELATIVE_TO_FIRST,
-        RELATIVE_TO_TOPLEFT,
-        ABSOLUTE
+        RELATIVE_TO_FIRST, RELATIVE_TO_TOPLEFT, ABSOLUTE
     }
 
     /**
      * Create a new layer object
-     *
-     * @param node The xml node storing the information we need
+     * 
+     * @param node
+     *            The xml node storing the information we need
      */
     LayerObject(TiledMap map, TmxObject node, PolyMode polyMode) {
         this.node = node;
@@ -105,7 +100,8 @@ public class LayerObject {
                 }
             }
 
-            if (polyMode == PolyMode.RELATIVE_TO_TOPLEFT && (lowestX < 0 || lowestY < 0)) {
+            if (polyMode == PolyMode.RELATIVE_TO_TOPLEFT
+                    && (lowestX < 0 || lowestY < 0)) {
                 for (Point p : points) {
                     p.x += -lowestX;
                     p.y += -lowestY;
@@ -138,7 +134,8 @@ public class LayerObject {
                     if (properties == null) {
                         properties = new SafeProperties();
                     }
-                    properties.setDefaults(set.getTileProperties(node.getGid()));
+                    properties
+                            .setDefaults(set.getTileProperties(node.getGid()));
                     lowestY -= width;
                 }
             }
@@ -168,7 +165,7 @@ public class LayerObject {
 
     /**
      * @return the the number of pixels from top (not necessarily the topmost
-     * position)
+     *         position)
      */
     public int getY() {
         return y;
@@ -269,7 +266,8 @@ public class LayerObject {
     }
 
     /**
-     * @param attachment the attachment to set
+     * @param attachment
+     *            the attachment to set
      */
     public void setAttachment(Object attachment) {
         this.attachment = attachment;

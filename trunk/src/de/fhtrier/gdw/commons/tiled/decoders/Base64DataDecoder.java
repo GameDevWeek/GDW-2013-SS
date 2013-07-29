@@ -10,18 +10,17 @@ import javax.xml.bind.DatatypeConverter;
 /**
  * Read layer data that has been encoded with Base64 and possibly been
  * compressed with gzip or zlib.
- *
+ * 
  * @author Santo Pfingsten
  */
 public class Base64DataDecoder implements IDataDecoder {
 
     private final InputStream stream;
 
-    public Base64DataDecoder(String cdata, String compression) throws IOException, Exception {
+    public Base64DataDecoder(String cdata, String compression)
+            throws IOException, Exception {
         byte[] dec = DatatypeConverter.parseBase64Binary(cdata.trim());
-        try(
-            ByteArrayInputStream bis = new ByteArrayInputStream(dec);
-        ) {
+        try (ByteArrayInputStream bis = new ByteArrayInputStream(dec);) {
             if (compression == null || compression.isEmpty()) {
                 stream = bis;
             } else if (compression.equals("gzip")) {
@@ -29,7 +28,10 @@ public class Base64DataDecoder implements IDataDecoder {
             } else if (compression.equals("zlib")) {
                 stream = new InflaterInputStream(bis);
             } else {
-                throw new IOException("Unsupport compression: " + compression + ". Currently only uncompressed maps and gzip and zlib compressed maps are supported.");
+                throw new IOException(
+                        "Unsupport compression: "
+                                + compression
+                                + ". Currently only uncompressed maps and gzip and zlib compressed maps are supported.");
             }
         }
     }

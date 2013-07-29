@@ -29,7 +29,7 @@ public class EntityManager {
         removalQueue = new LinkedList<>();
     }
 
-    protected void internalRemove() {
+    private void internalRemove() {
         while (!removalQueue.isEmpty()) {
             Entity e = removalQueue.poll();
             if (e instanceof RecycleableEntity) {
@@ -82,17 +82,19 @@ public class EntityManager {
      * @param position
      * @param radius
      *            radius der überprüfung
-     * @return
+     * @return alle entities die in einem radius um einen Punkt liegen
      */
-    public Entity getClosestEntityAtPosition(Vector2f position, float radius) {
+    public ArrayList<Entity> getClosestEntitiesAtPosition(Vector2f position,
+            float radius) {
+        ArrayList<Entity> entities = new ArrayList<>();
         final float EPSILON = 0.001f;
         for (Entity e : entityList) {
             if (Math.abs(VectorUtil.subtract(position, e.position).length()
                     - radius) < EPSILON) {
-                return e;
+                entities.add(e);
             }
         }
-        return null;
+        return entities;
     }
 
     private void addEntity(Entity e) {

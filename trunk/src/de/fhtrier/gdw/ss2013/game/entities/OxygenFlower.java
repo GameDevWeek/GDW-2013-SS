@@ -22,7 +22,6 @@ public class OxygenFlower extends Entity {
 
     private int maxBubble;
 
-
     private ArrayList<OxygenBubble> bubbles = new ArrayList<OxygenBubble>();
 
     public OxygenFlower(Vector2f position) {
@@ -81,7 +80,5 @@ public class OxygenFlower extends Entity {
     public int getMaxBubble() {
         return maxBubble;
     }
-
-  
 
 }

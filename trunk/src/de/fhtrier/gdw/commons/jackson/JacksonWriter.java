@@ -16,7 +16,7 @@ import java.util.List;
 
 /**
  * Writing Json from objects
- *
+ * 
  * @author Santo Pfingsten
  */
 public class JacksonWriter {
@@ -28,9 +28,8 @@ public class JacksonWriter {
             NoSuchFieldException, IllegalArgumentException,
             IllegalAccessException, InstantiationException, ParseException {
 
-        try (
-                JsonGenerator generator = factory.createGenerator(new File(filename),
-                JsonEncoding.UTF8);) {
+        try (JsonGenerator generator = factory.createGenerator(new File(
+                filename), JsonEncoding.UTF8);) {
 
             generator.useDefaultPrettyPrinter();
             writeObject(object, generator);

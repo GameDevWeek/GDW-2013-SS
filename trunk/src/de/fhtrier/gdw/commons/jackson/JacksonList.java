@@ -7,7 +7,7 @@ import java.lang.annotation.Target;
 
 /**
  * Annotation to help parse Json lists
- *
+ * 
  * @author Santo Pfingsten
  */
 @Retention(RetentionPolicy.RUNTIME)

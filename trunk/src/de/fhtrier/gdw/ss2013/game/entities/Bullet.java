@@ -8,31 +8,37 @@ import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.game.Astronaut;
 import de.fhtrier.gdw.ss2013.game.Entity;
+
 /**
  * Bullet Class
+ * 
  * @author Kevin, Georg
- *
+ * 
  */
 public class Bullet extends AbstractEnemy {
 
     final static float DEBUG_ENTITY_HALFEXTEND = 5;
-    
+
     public Bullet(Vector2f pos, Vector2f velo, float dmg) {
         super(pos.copy(), velo.copy(), dmg);
     }
+
     public Bullet() {
         this(new Vector2f(), new Vector2f(), 0);
     }
+
     public Bullet(Vector2f pos) {
         this(pos.copy(), new Vector2f(), 0);
     }
+
     @Override
     public void onCollision(Entity e) {
-        if(e instanceof Astronaut) {
-            ((Astronaut)e).setOxygen(((Astronaut)e).getOxygen()-this.getDamage());
+        if (e instanceof Astronaut) {
+            ((Astronaut) e).setOxygen(((Astronaut) e).getOxygen()
+                    - this.getDamage());
         }
     }
-    
+
     public void render(GameContainer container, Graphics g)
             throws SlickException {
         g.setColor(Color.red);
@@ -42,7 +48,7 @@ public class Bullet extends AbstractEnemy {
 
         // g.drawString(this.hashCode(), position.x, position.y);
     }
-    
+
     public void update(GameContainer container, int delta)
             throws SlickException {
 

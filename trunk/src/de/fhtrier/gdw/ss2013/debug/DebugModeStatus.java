@@ -10,6 +10,5 @@ public class DebugModeStatus {
     static public void setStatus(boolean status) {
         testModeStatus = status;
     }
-    
-    
+
 }

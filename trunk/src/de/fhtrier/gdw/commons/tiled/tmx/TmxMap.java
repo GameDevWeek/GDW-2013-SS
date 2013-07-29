@@ -5,7 +5,6 @@
 // Generated on: 2013.01.03 at 06:49:48 PM CET 
 //
 
-
 package de.fhtrier.gdw.commons.tiled.tmx;
 
 import java.util.ArrayList;
@@ -17,11 +16,13 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElements;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for tmxMap complex type.
+ * <p>
+ * Java class for tmxMap complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType name="tmxMap">
@@ -49,21 +50,16 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "tmxMap", propOrder = {
-    "properties",
-    "tileset",
-    "layerOrObjectgroup"
-})
+@XmlType(name = "tmxMap", propOrder = { "properties", "tileset",
+        "layerOrObjectgroup" })
 public class TmxMap {
 
     @XmlElement(required = true)
     protected TmxProperties properties;
     @XmlElement(required = true)
     protected List<TmxTileSet> tileset;
-    @XmlElements({
-        @XmlElement(name = "layer", type = TmxLayer.class),
-        @XmlElement(name = "objectgroup", type = TmxObjectGroup.class)
-    })
+    @XmlElements({ @XmlElement(name = "layer", type = TmxLayer.class),
+            @XmlElement(name = "objectgroup", type = TmxObjectGroup.class) })
     protected List<TmxLayerBase> layerOrObjectgroup;
     @XmlAttribute(name = "version", required = true)
     protected String version;
@@ -81,10 +77,8 @@ public class TmxMap {
     /**
      * Gets the value of the properties property.
      * 
-     * @return
-     *     possible object is
-     *     {@link TmxProperties }
-     *     
+     * @return possible object is {@link TmxProperties }
+     * 
      */
     public TmxProperties getProperties() {
         return properties;
@@ -94,9 +88,8 @@ public class TmxMap {
      * Sets the value of the properties property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link TmxProperties }
-     *     
+     *            allowed object is {@link TmxProperties }
+     * 
      */
     public void setProperties(TmxProperties value) {
         this.properties = value;
@@ -106,15 +99,16 @@ public class TmxMap {
      * Gets the value of the tileset property.
      * 
      * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the tileset property.
+     * This accessor method returns a reference to the live list, not a
+     * snapshot. Therefore any modification you make to the returned list will
+     * be present inside the JAXB object. This is why there is not a
+     * <CODE>set</CODE> method for the tileset property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
+     * 
      * <pre>
-     *    getTileset().add(newItem);
+     * getTileset().add(newItem);
      * </pre>
      * 
      * 
@@ -135,21 +129,21 @@ public class TmxMap {
      * Gets the value of the layerOrObjectgroup property.
      * 
      * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the layerOrObjectgroup property.
+     * This accessor method returns a reference to the live list, not a
+     * snapshot. Therefore any modification you make to the returned list will
+     * be present inside the JAXB object. This is why there is not a
+     * <CODE>set</CODE> method for the layerOrObjectgroup property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
+     * 
      * <pre>
-     *    getLayerOrObjectgroup().add(newItem);
+     * getLayerOrObjectgroup().add(newItem);
      * </pre>
      * 
      * 
      * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link TmxLayer }
+     * Objects of the following type(s) are allowed in the list {@link TmxLayer }
      * {@link TmxObjectGroup }
      * 
      * 
@@ -164,10 +158,8 @@ public class TmxMap {
     /**
      * Gets the value of the version property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return possible object is {@link String }
+     * 
      */
     public String getVersion() {
         return version;
@@ -177,9 +169,8 @@ public class TmxMap {
      * Sets the value of the version property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *            allowed object is {@link String }
+     * 
      */
     public void setVersion(String value) {
         this.version = value;
@@ -188,10 +179,8 @@ public class TmxMap {
     /**
      * Gets the value of the orientation property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return possible object is {@link String }
+     * 
      */
     public String getOrientation() {
         return orientation;
@@ -201,9 +190,8 @@ public class TmxMap {
      * Sets the value of the orientation property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *            allowed object is {@link String }
+     * 
      */
     public void setOrientation(String value) {
         this.orientation = value;

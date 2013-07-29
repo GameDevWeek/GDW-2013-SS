@@ -19,9 +19,9 @@ public class OxygenBubble extends Entity {
 
     // Standard-Konstruktor
     public OxygenBubble(Vector2f position) {
-        super (position);
-        //Default
-        oxygenLevel = 0; 
+        super(position);
+        // Default
+        oxygenLevel = 0;
     }
 
     public OxygenBubble(Vector2f position, float oxygenLevel) {
@@ -39,7 +39,6 @@ public class OxygenBubble extends Entity {
 
     }
 
-    
     public float getOxygenLevel() {
         return oxygenLevel;
     }
@@ -48,5 +47,4 @@ public class OxygenBubble extends Entity {
         this.oxygenLevel = oxygenLevel;
     }
 
-    
 }

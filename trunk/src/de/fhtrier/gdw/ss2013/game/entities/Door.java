@@ -16,14 +16,14 @@ public class Door extends Entity {
 
     private boolean open;
 
-    public Door( Vector2f position) {
+    public Door(Vector2f position) {
         super(position);
         open = false;
     }
 
     public Door(Vector2f position, boolean open) {
         super(position);
-        this.open = open ;
+        this.open = open;
 
     }
 

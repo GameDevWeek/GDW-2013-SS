@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 /**
  * An example use of the Jackson reader/writer
- *
+ * 
  * @author Santo Pfingsten
  */
 public class JacksonExample {
@@ -41,7 +41,8 @@ public class JacksonExample {
 
     private static void testRead() {
         try {
-            JacksonObjectExample student = JacksonReader.read("test.json", JacksonObjectExample.class);
+            JacksonObjectExample student = JacksonReader.read("test.json",
+                    JacksonObjectExample.class);
             System.out.println(student.name);
             System.out.println(student.age);
             System.out.println(student.gender);
@@ -51,7 +52,8 @@ public class JacksonExample {
                 System.out.println("null courses");
             } else {
                 for (JacksonObjectExample.Course course : student.courses) {
-                    System.out.println("Course: " + course.name + " (" + course.tries + ")");
+                    System.out.println("Course: " + course.name + " ("
+                            + course.tries + ")");
                 }
             }
             if (student.tags == null) {

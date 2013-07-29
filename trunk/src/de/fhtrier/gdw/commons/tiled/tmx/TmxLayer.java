@@ -5,7 +5,6 @@
 // Generated on: 2013.01.03 at 06:49:48 PM CET 
 //
 
-
 package de.fhtrier.gdw.commons.tiled.tmx;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -13,11 +12,13 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for tmxLayer complex type.
+ * <p>
+ * Java class for tmxLayer complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType name="tmxLayer">
@@ -34,12 +35,8 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "tmxLayer", propOrder = {
-    "data"
-})
-public class TmxLayer
-    extends TmxLayerBase
-{
+@XmlType(name = "tmxLayer", propOrder = { "data" })
+public class TmxLayer extends TmxLayerBase {
 
     @XmlElement(required = true)
     protected TmxData data;
@@ -47,10 +44,8 @@ public class TmxLayer
     /**
      * Gets the value of the data property.
      * 
-     * @return
-     *     possible object is
-     *     {@link TmxData }
-     *     
+     * @return possible object is {@link TmxData }
+     * 
      */
     public TmxData getData() {
         return data;
@@ -60,9 +55,8 @@ public class TmxLayer
      * Sets the value of the data property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link TmxData }
-     *     
+     *            allowed object is {@link TmxData }
+     * 
      */
     public void setData(TmxData value) {
         this.data = value;

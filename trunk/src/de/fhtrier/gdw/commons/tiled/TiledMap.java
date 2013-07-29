@@ -21,7 +21,7 @@ import javax.xml.bind.Unmarshaller;
 
 /**
  * A TilED map loader
- *
+ * 
  * @author Santo Pfingsten
  */
 public class TiledMap implements IResourceLocator {
@@ -66,9 +66,11 @@ public class TiledMap implements IResourceLocator {
     /**
      * Load a map using a the default resource locator (file system) and the
      * default PolyMode (RELATIVE_TO_FIRST)
-     *
-     * @param filename the filename of the file to load
-     * @throws Exception when the map could not be loaded
+     * 
+     * @param filename
+     *            the filename of the file to load
+     * @throws Exception
+     *             when the map could not be loaded
      */
     public TiledMap(String filename) throws Exception {
         this(filename, LayerObject.PolyMode.RELATIVE_TO_FIRST, null);
@@ -76,24 +78,33 @@ public class TiledMap implements IResourceLocator {
 
     /**
      * Load a map using a the default resource locator (file system)
-     *
-     * @param filename the filename of the file to load
-     * @param polyMode The mode how polygon points should be converted
-     * @throws Exception when the map could not be loaded
+     * 
+     * @param filename
+     *            the filename of the file to load
+     * @param polyMode
+     *            The mode how polygon points should be converted
+     * @throws Exception
+     *             when the map could not be loaded
      */
-    public TiledMap(String filename, LayerObject.PolyMode polyMode) throws Exception {
+    public TiledMap(String filename, LayerObject.PolyMode polyMode)
+            throws Exception {
         this(filename, polyMode, null);
     }
 
     /**
      * Load a map using a custom resource locator
-     *
-     * @param filename the filename of the file to load
-     * @param polyMode The mode how polygon points should be converted
-     * @param resourceLocator the custom resource locator
-     * @throws Exception when the map could not be loaded
+     * 
+     * @param filename
+     *            the filename of the file to load
+     * @param polyMode
+     *            The mode how polygon points should be converted
+     * @param resourceLocator
+     *            the custom resource locator
+     * @throws Exception
+     *             when the map could not be loaded
      */
-    public TiledMap(String filename, LayerObject.PolyMode polyMode, IResourceLocator resourceLocator) throws Exception {
+    public TiledMap(String filename, LayerObject.PolyMode polyMode,
+            IResourceLocator resourceLocator) throws Exception {
         this.filename = filename;
         this.resourceLocator = resourceLocator;
 
@@ -101,7 +112,8 @@ public class TiledMap implements IResourceLocator {
             TmxMap map = (TmxMap) readFrom(filename);
             String orient = map.getOrientation();
             if (!orient.equals("orthogonal")) {
-                throw new Exception("Only orthogonal maps supported, found: " + orient);
+                throw new Exception("Only orthogonal maps supported, found: "
+                        + orient);
             }
 
             width = map.getWidth();
@@ -186,8 +198,9 @@ public class TiledMap implements IResourceLocator {
 
     /**
      * Find a layer by its name
-     *
-     * @param name The name of the layer
+     * 
+     * @param name
+     *            The name of the layer
      * @return The layer or null if not found
      */
     public Layer findLayer(String name) {
@@ -209,9 +222,11 @@ public class TiledMap implements IResourceLocator {
 
     /**
      * Get a map property
-     *
-     * @param key the key of the property
-     * @param def the default value to return if the property has not been set.
+     * 
+     * @param key
+     *            the key of the property
+     * @param def
+     *            the default value to return if the property has not been set.
      * @return the property value or def
      */
     public String getProperty(String key, String def) {
@@ -251,8 +266,9 @@ public class TiledMap implements IResourceLocator {
 
     /**
      * Find a TileSet by a global tile id
-     *
-     * @param gid the global tile id
+     * 
+     * @param gid
+     *            the global tile id
      * @return the TileSet matching the tile id or null if not found
      */
     public TileSet findTileSet(int gid) {
@@ -267,8 +283,9 @@ public class TiledMap implements IResourceLocator {
 
     /**
      * Find an object by its name
-     *
-     * @param name The name of the object
+     * 
+     * @param name
+     *            The name of the object
      * @return The layer or null if not found
      */
     public LayerObject findObject(String name) {
@@ -297,7 +314,8 @@ public class TiledMap implements IResourceLocator {
     }
 
     @Override
-    public InputStream locateResource(String filename) throws FileNotFoundException {
+    public InputStream locateResource(String filename)
+            throws FileNotFoundException {
         return new BufferedInputStream(new FileInputStream(new File(filename)));
     }
 
@@ -309,18 +327,19 @@ public class TiledMap implements IResourceLocator {
 
     /**
      * Read an xml file
-     *
-     * @param filename the file to read from
+     * 
+     * @param filename
+     *            the file to read from
      * @return a TmxTileSet object or a TmxMap object
      * @throws JAXBException
      * @throws FileNotFoundException
      */
-    final Object readFrom(String filename) throws JAXBException, FileNotFoundException, IOException {
+    final Object readFrom(String filename) throws JAXBException,
+            FileNotFoundException, IOException {
         IResourceLocator locator = getResourceLocator();
-        try(
-            InputStream in = locator.locateResource(filename);
-        ) {
-            JAXBContext jc = JAXBContext.newInstance("de.fhtrier.gdw.commons.tiled.tmx");
+        try (InputStream in = locator.locateResource(filename);) {
+            JAXBContext jc = JAXBContext
+                    .newInstance("de.fhtrier.gdw.commons.tiled.tmx");
             Unmarshaller u = jc.createUnmarshaller();
             JAXBElement o = (JAXBElement) u.unmarshal(in);
             return o.getValue();
@@ -329,8 +348,9 @@ public class TiledMap implements IResourceLocator {
 
     /**
      * Read properties from an xml element
-     *
-     * @param element the properties element
+     * 
+     * @param element
+     *            the properties element
      * @return a new SafeProperties object containing all key/value pairs
      */
     static SafeProperties readProperties(TmxProperties element) {

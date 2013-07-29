@@ -4,7 +4,7 @@ import java.io.IOException;
 
 /**
  * Read layer data that has been stored in CSV format.
- *
+ * 
  * @author Santo Pfingsten
  */
 public class CsvDataDecoder implements IDataDecoder {

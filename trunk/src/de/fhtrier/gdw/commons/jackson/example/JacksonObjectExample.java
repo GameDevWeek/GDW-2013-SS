@@ -6,7 +6,7 @@ import de.fhtrier.gdw.commons.jackson.JacksonList;
 
 /**
  * An example object for the Jackson reader/writer
- *
+ * 
  * @author Santo Pfingsten
  */
 public class JacksonObjectExample {
@@ -30,14 +30,14 @@ public class JacksonObjectExample {
             this.name = name;
             this.tries = tries;
         }
+
         public String name;
         public Integer tries;
     }
 
     public static enum Gender {
 
-        MALE,
-        FEMALE;
+        MALE, FEMALE;
 
         @Override
         public String toString() {
