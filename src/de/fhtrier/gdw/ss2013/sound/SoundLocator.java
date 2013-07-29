@@ -10,7 +10,7 @@ import de.fhtrier.gdw.ss2013.util.AssetLoader;
 
 public class SoundLocator {
 
-    static private ISoundPlayer _service = new DefaultPlayer();
+    static private SoundPlayer _service = new DefaultSoundPlayer();
 
     static private AssetLoader soundLoader;
 
@@ -18,11 +18,11 @@ public class SoundLocator {
         soundLoader = loader;
     }
 
-    static public void provide(ISoundPlayer service) {
+    static public void provide(SoundPlayer service) {
         _service = service;
     }
 
-    static public ISoundPlayer getPlayer() {
+    static public SoundPlayer getPlayer() {
         return _service;
     }
 
