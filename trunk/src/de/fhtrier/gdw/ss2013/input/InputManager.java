@@ -1,4 +1,4 @@
-package de.fhtrier.gdw.ss2013.util;
+package de.fhtrier.gdw.ss2013.input;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

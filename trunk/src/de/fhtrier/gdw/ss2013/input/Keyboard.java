@@ -1,4 +1,4 @@
-package de.fhtrier.gdw.ss2013.util;
+package de.fhtrier.gdw.ss2013.input;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;
