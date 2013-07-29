@@ -13,15 +13,20 @@ import de.fhtrier.gdw.ss2013.game.Entity;
 import org.jbox2d.collision.shapes.MassData;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
+import org.jbox2d.dynamics.BodyDef;
 
 public abstract class PhysicsObject {
 
     private Entity owner;
     private Body myBody;
     private Collection<ICollisionListener> collisionListeners;
-
-    protected PhysicsObject(Entity owner) {
+    private BodyDef myBodyDef;
+    
+    protected PhysicsObject(BodyDef myBodyDef,Entity owner) {
         this.owner = owner;
+        this.myBodyDef = myBodyDef;
+        enableSimulation();
+        
         myBody.m_userData = this;
         collisionListeners = new ArrayList<ICollisionListener>();
     }
@@ -30,10 +35,25 @@ public abstract class PhysicsObject {
         this.myBody = myBody;
     }
 
+    public void enableSimulation()
+    {
+        //this.myBody = PhysicsManager.;
+    }
+    
+    public void disableSimulation()
+    {
+        
+    }
+    
     public Body getBody() {
         return myBody;
     }
-
+    
+    public BodyDef getBodyDef()
+    {
+        return myBodyDef;
+    }
+    
     public void setOwner(Entity owner) {
         this.owner = owner;
     }
@@ -133,6 +153,14 @@ public abstract class PhysicsObject {
     
     public boolean removeCollisionListener(ICollisionListener listener) {
         return collisionListeners.remove(listener);
+    }
+    
+    public void onCollide(PhysicsObject po)
+    {
+        for(ICollisionListener listener: collisionListeners)
+        {
+            listener.onCollide(po);
+        }
     }
     
     /**
