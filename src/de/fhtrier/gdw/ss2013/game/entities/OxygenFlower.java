@@ -1,6 +1,7 @@
 /**
- * Justin Weinberg
- * Sandra Kemmerling
+ * 
+ * OxygenFlower class
+ * @author Justin, Sandra
  * 
  * Blume erzeugt Blasen und Blasenvorrat verringert sich
  */
