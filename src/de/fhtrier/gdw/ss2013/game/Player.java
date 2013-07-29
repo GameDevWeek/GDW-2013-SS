@@ -5,16 +5,12 @@
 package de.fhtrier.gdw.ss2013.game;
 
 import org.newdawn.slick.Animation;
-import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
-import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.geom.Vector2f;
 
-import de.fhtrier.gdw.ss2013.MainGame;
 import de.fhtrier.gdw.ss2013.input.AlienControls;
 import de.fhtrier.gdw.ss2013.input.AstronautControls;
 import de.fhtrier.gdw.ss2013.util.AssetLoader;

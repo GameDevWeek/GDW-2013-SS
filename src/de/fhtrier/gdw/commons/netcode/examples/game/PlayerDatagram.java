@@ -1,10 +1,11 @@
 package de.fhtrier.gdw.commons.netcode.examples.game;
 
+import java.awt.Point;
+
 import de.fhtrier.gdw.commons.netcode.datagram.INetDatagram;
 import de.fhtrier.gdw.commons.netcode.datagram.NetDatagram;
 import de.fhtrier.gdw.commons.netcode.message.INetMessageIn;
 import de.fhtrier.gdw.commons.netcode.message.INetMessageOut;
-import java.awt.Point;
 
 /**
  * 

@@ -1,11 +1,12 @@
 package de.fhtrier.gdw.commons.netcode.examples.game;
 
-import de.fhtrier.gdw.commons.netcode.NetConnection;
-import de.fhtrier.gdw.commons.netcode.NetReception;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
+import de.fhtrier.gdw.commons.netcode.NetConnection;
+import de.fhtrier.gdw.commons.netcode.NetReception;
 
 /**
  * 

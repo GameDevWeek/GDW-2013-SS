@@ -1,15 +1,15 @@
 package de.fhtrier.gdw.ss2013.states;
 
+import org.newdawn.slick.AngelCodeFont;
+import org.newdawn.slick.Font;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import de.fhtrier.gdw.ss2013.MainGame;
-import org.newdawn.slick.AngelCodeFont;
-import org.newdawn.slick.Font;
-import org.newdawn.slick.Input;
 
 /**
  * Menu state

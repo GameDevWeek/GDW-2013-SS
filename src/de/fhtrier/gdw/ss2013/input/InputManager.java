@@ -1,14 +1,8 @@
 package de.fhtrier.gdw.ss2013.input;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 
 import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Input;
-
-import de.fhtrier.gdw.ss2013.MainGame;
-import de.fhtrier.gdw.ss2013.game.Player;
 
 
 

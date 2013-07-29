@@ -1,10 +1,11 @@
 package de.fhtrier.gdw.commons.netcode.examples.game;
 
-import de.fhtrier.gdw.commons.netcode.NetConnection;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
+
+import de.fhtrier.gdw.commons.netcode.NetConnection;
 
 /**
  * 

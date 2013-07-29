@@ -5,17 +5,15 @@ package de.fhtrier.gdw.ss2013.physics;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.SlickException;
-
-import de.fhtrier.gdw.ss2013.game.Entity;
-import de.fhtrier.gdw.ss2013.game.World;
-
 import org.jbox2d.collision.shapes.MassData;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.FixtureDef;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.SlickException;
+
+import de.fhtrier.gdw.ss2013.game.Entity;
 
 public abstract class PhysicsObject {
 

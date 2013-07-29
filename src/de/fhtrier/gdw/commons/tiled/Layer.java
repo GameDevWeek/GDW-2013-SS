@@ -1,5 +1,12 @@
 package de.fhtrier.gdw.commons.tiled;
 
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.newdawn.slick.SlickException;
+
 import de.fhtrier.gdw.commons.tiled.decoders.Base64DataDecoder;
 import de.fhtrier.gdw.commons.tiled.decoders.CsvDataDecoder;
 import de.fhtrier.gdw.commons.tiled.decoders.IDataDecoder;
@@ -10,10 +17,6 @@ import de.fhtrier.gdw.commons.tiled.tmx.TmxLayerBase;
 import de.fhtrier.gdw.commons.tiled.tmx.TmxObject;
 import de.fhtrier.gdw.commons.tiled.tmx.TmxObjectGroup;
 import de.fhtrier.gdw.commons.utils.SafeProperties;
-import java.io.IOException;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A layer which can contain either tiles or objects

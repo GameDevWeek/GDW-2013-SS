@@ -1,14 +1,5 @@
 package de.fhtrier.gdw.commons.netcode;
 
-import de.fhtrier.gdw.commons.netcode.datagram.INetDatagram;
-import de.fhtrier.gdw.commons.netcode.datagram.INetDatagramFactory;
-import de.fhtrier.gdw.commons.netcode.datagram.NetDatagram;
-import de.fhtrier.gdw.commons.netcode.datagram.NetEventDatagram;
-import de.fhtrier.gdw.commons.netcode.message.INetMessageInternal;
-import de.fhtrier.gdw.commons.netcode.message.NetMessage;
-import de.fhtrier.gdw.commons.netcode.message.NetMessageAllocator;
-import de.fhtrier.gdw.commons.netcode.message.NetMessageCache;
-import de.fhtrier.gdw.commons.netcode.message.NetMessageDelta;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
@@ -22,6 +13,16 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.concurrent.ConcurrentLinkedQueue;
+
+import de.fhtrier.gdw.commons.netcode.datagram.INetDatagram;
+import de.fhtrier.gdw.commons.netcode.datagram.INetDatagramFactory;
+import de.fhtrier.gdw.commons.netcode.datagram.NetDatagram;
+import de.fhtrier.gdw.commons.netcode.datagram.NetEventDatagram;
+import de.fhtrier.gdw.commons.netcode.message.INetMessageInternal;
+import de.fhtrier.gdw.commons.netcode.message.NetMessage;
+import de.fhtrier.gdw.commons.netcode.message.NetMessageAllocator;
+import de.fhtrier.gdw.commons.netcode.message.NetMessageCache;
+import de.fhtrier.gdw.commons.netcode.message.NetMessageDelta;
 
 /**
  * A NetConnection represents a connection from server to client or vice versa.

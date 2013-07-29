@@ -1,5 +1,12 @@
 package de.fhtrier.gdw.ss2013.renderer;
 
+import java.awt.Point;
+import java.util.ArrayList;
+
+import org.newdawn.slick.Color;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.SlickException;
+
 import de.fhtrier.gdw.commons.interfaces.IResourceLocator;
 import de.fhtrier.gdw.commons.tiled.Layer;
 import de.fhtrier.gdw.commons.tiled.LayerObject;
@@ -7,11 +14,6 @@ import de.fhtrier.gdw.commons.tiled.TileInfo;
 import de.fhtrier.gdw.commons.tiled.TileSet;
 import de.fhtrier.gdw.commons.tiled.TiledMap;
 import de.fhtrier.gdw.commons.tiled.tmx.TmxImage;
-import java.awt.Point;
-import java.util.ArrayList;
-import org.newdawn.slick.Color;
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.SlickException;
 
 /**
  * A simple map renderer which renders the TiledMap with Slick

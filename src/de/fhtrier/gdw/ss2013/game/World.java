@@ -1,8 +1,5 @@
 package de.fhtrier.gdw.ss2013.game;
 
-import org.jbox2d.callbacks.DebugDraw;
-import org.jbox2d.collision.AABB;
-import org.jbox2d.common.Color3f;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
