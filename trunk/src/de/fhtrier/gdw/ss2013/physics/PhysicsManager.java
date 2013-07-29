@@ -37,7 +37,7 @@ public class PhysicsManager {
     }
     
     public Body enableSimulation(PhysicsObject object) {
-        return _physicsWorld.createBody(object.getBodDef());
+        return _physicsWorld.createBody(object.getBodyDef());
     }
 
     public void disableSimulation(PhysicsObject object) {
