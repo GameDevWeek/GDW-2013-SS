@@ -1,4 +1,4 @@
-package de.fhtrier.gdw.ss2013.game;
+package de.fhtrier.gdw.ss2013.game.world;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -10,9 +10,13 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import de.fhtrier.gdw.commons.tiled.LayerObject;
 import de.fhtrier.gdw.commons.tiled.TiledMap;
-import de.fhtrier.gdw.ss2013.game.entities.FlyingEnemy;
-import de.fhtrier.gdw.ss2013.game.entities.Meteroid;
-import de.fhtrier.gdw.ss2013.game.entities.OxygenFlower;
+import de.fhtrier.gdw.ss2013.game.Entity;
+import de.fhtrier.gdw.ss2013.game.EntityManager;
+import de.fhtrier.gdw.ss2013.game.camera.Camera;
+import de.fhtrier.gdw.ss2013.game.player.Player;
+import de.fhtrier.gdw.ss2013.game.world.enemies.FlyingEnemy;
+import de.fhtrier.gdw.ss2013.game.world.enemies.Meteroid;
+import de.fhtrier.gdw.ss2013.game.world.objects.OxygenFlower;
 import de.fhtrier.gdw.ss2013.physics.DebugDrawer;
 import de.fhtrier.gdw.ss2013.physics.PhysicsManager;
 import de.fhtrier.gdw.ss2013.renderer.MapRenderer;

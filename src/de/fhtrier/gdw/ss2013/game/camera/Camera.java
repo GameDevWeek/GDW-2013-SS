@@ -1,4 +1,4 @@
-package de.fhtrier.gdw.ss2013.game;
+package de.fhtrier.gdw.ss2013.game.camera;
 
 import de.fhtrier.gdw.commons.tiled.TiledMap;
 

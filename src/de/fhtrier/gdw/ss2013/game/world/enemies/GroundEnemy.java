@@ -1,9 +1,9 @@
-package de.fhtrier.gdw.ss2013.game.entities;
+package de.fhtrier.gdw.ss2013.game.world.enemies;
 
 import org.newdawn.slick.geom.Vector2f;
 
-import de.fhtrier.gdw.ss2013.game.Astronaut;
 import de.fhtrier.gdw.ss2013.game.Entity;
+import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 
 /**
  * Ground Enemy Class

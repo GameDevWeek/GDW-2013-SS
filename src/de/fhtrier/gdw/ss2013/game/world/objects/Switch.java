@@ -1,4 +1,4 @@
-package de.fhtrier.gdw.ss2013.game.entities;
+package de.fhtrier.gdw.ss2013.game.world.objects;
 
 import org.newdawn.slick.geom.Vector2f;
 

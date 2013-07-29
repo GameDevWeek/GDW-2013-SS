@@ -1,4 +1,4 @@
-package de.fhtrier.gdw.ss2013.game.entities;
+package de.fhtrier.gdw.ss2013.game.world.enemies;
 
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
