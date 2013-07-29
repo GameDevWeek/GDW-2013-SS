@@ -5,7 +5,7 @@
  * @author Janina, Benjamin
  */
 
-package de.fhtrier.gdw.ss2013.util;
+package de.fhtrier.gdw.ss2013.assetloader;
 
 import java.util.HashMap;
 import java.util.List;
@@ -17,9 +17,9 @@ import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.util.ResourceLoader;
 
 import de.fhtrier.gdw.commons.jackson.JacksonReader;
-import de.fhtrier.gdw.ss2013.util.assets.AnimationInfo;
-import de.fhtrier.gdw.ss2013.util.assets.ImageInfo;
-import de.fhtrier.gdw.ss2013.util.assets.SoundInfo;
+import de.fhtrier.gdw.ss2013.assetloader.infos.AnimationInfo;
+import de.fhtrier.gdw.ss2013.assetloader.infos.ImageInfo;
+import de.fhtrier.gdw.ss2013.assetloader.infos.SoundInfo;
 
 public class AssetLoader {
     HashMap<String, Image> imageMap = new HashMap<>();

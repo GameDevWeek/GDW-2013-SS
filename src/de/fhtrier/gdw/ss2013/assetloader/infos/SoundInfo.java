@@ -1,4 +1,4 @@
-package de.fhtrier.gdw.ss2013.util.assets;
+package de.fhtrier.gdw.ss2013.assetloader.infos;
 
 public class SoundInfo {
 
