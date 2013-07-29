@@ -7,7 +7,6 @@ import org.newdawn.slick.Sound;
 import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.game.Entity;
-import de.fhtrier.gdw.ss2013.util.VectorUtil;
 
 /**
  * 
@@ -54,9 +53,7 @@ public class DefaultPlayer implements ISoundPlayer {
     public void playSoundAt(Sound sound, Entity listener, Entity emitter) {
         if (!manageEntitySoundPlayMap(emitter, sound))
             return;
-        Vector2f dir = VectorUtil.subtract(listener.getPosition(),
-                emitter.getPosition());
-        float dSq = dir.lengthSquared();
+        float dSq = listener.getPosition().distanceSquared(emitter.getPosition());
         final float MidSound = 0.5f;
 
         sound.play();
