@@ -1,3 +1,6 @@
+/**
+ * Boris, David (UI-Team)
+ */
 package de.fhtrier.gdw.ss2013.renderer;
 
 public class Crosshair {
