@@ -1,0 +1,6 @@
+[{
+  "name" : "animtest",
+  "pfad" : "res/animations/team0.png",
+  "anzBilder" : 12,
+  "animSpeed" : 100
+}]
