@@ -9,6 +9,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import de.fhtrier.gdw.commons.tiled.LayerObject;
 import de.fhtrier.gdw.commons.tiled.TiledMap;
+import de.fhtrier.gdw.ss2013.game.entities.FlyingEnemy;
 import de.fhtrier.gdw.ss2013.renderer.MapRenderer;
 
 public class World {
@@ -17,6 +18,7 @@ public class World {
     private final MapRenderer mapRender;
     private final Camera camera;
     private final Player player;
+    private final FlyingEnemy enemy;
     private final Input input;
     // private final List<Entity> entities = new LinkedList<>();
     EntityManager entityManager;
@@ -33,7 +35,7 @@ public class World {
             entityManager = new EntityManager();
             player = (Player) entityManager.createEntityAt(Player.class,
                     new Vector2f(200, 200));
-
+            enemy = (FlyingEnemy) entityManager.createEntityAt(FlyingEnemy.class, new Vector2f(500,500));
         } catch (Exception e) {
             throw new SlickException(e.toString());
         }
@@ -79,6 +81,9 @@ public class World {
         }
         if (input.isKeyDown(Input.KEY_RIGHT)) {
             playerPos.x += speed;
+        }
+        if (input.isKeyPressed(Input.KEY_F)){
+            enemy.shoot(player, entityManager);
         }
     }
     
