@@ -1,5 +1,9 @@
 package de.fhtrier.gdw.ss2013.game.entities;
 
+import org.newdawn.slick.Animation;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.game.*;
@@ -9,9 +13,11 @@ import de.fhtrier.gdw.ss2013.game.*;
  *
  */
 public abstract class AbstractEnemy extends Entity{
+    
     private Vector2f velocity;
     private float damage;
-    
+    private Animation rechts_ani, links_ani, hoch_ani, still_ani,runter_ani;
+    private Animation current_ani;
     public AbstractEnemy() {
         this(new Vector2f(), new Vector2f(), 0);
     }
@@ -32,5 +38,20 @@ public abstract class AbstractEnemy extends Entity{
     }
     public void setDamage(float dmg) {
         damage = dmg;
+    }
+    @Override
+    public void render(GameContainer container, Graphics g)
+            throws SlickException {
+        // TODO Auto-generated method stub
+        if(velocity.x>0){
+            current_ani=rechts_ani;
+        }
+        if(velocity.x<0)
+        {
+           current_ani= links_ani;
+        }
+           current_ani.draw(this.getPosition().x, this.getPosition().y);
+        
+        
     }
 }
