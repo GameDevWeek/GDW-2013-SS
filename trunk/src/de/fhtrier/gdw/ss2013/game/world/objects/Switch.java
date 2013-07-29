@@ -12,25 +12,25 @@ import de.fhtrier.gdw.ss2013.game.Entity;
  */
 public class Switch extends Entity {
 
-    boolean activated = false;
+	boolean activated = false;
 
-    public Switch(Vector2f pos) {
-        super(pos.copy());
-    }
+	public Switch(Vector2f pos) {
+		super(pos.copy());
+	}
 
-    public Switch() {
-        this(new Vector2f());
-    }
+	public Switch() {
+		this(new Vector2f());
+	}
 
-    public boolean isActivated() {
-        return activated;
-    }
+	public boolean isActivated() {
+		return activated;
+	}
 
-    public void switchActivated() {
-        this.activated = !this.activated;
-    }
+	public void switchActivated() {
+		this.activated = !this.activated;
+	}
 
-    public void setActivated(boolean a) {
-        this.activated = a;
-    }
+	public void setActivated(boolean a) {
+		this.activated = a;
+	}
 }

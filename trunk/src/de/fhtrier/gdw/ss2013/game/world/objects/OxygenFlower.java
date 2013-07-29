@@ -20,65 +20,65 @@ import de.fhtrier.gdw.ss2013.game.EntityManager;
 
 public class OxygenFlower extends Entity {
 
-    private int maxBubble;
+	private int maxBubble;
 
-    private ArrayList<OxygenBubble> bubbles = new ArrayList<OxygenBubble>();
+	private ArrayList<OxygenBubble> bubbles = new ArrayList<OxygenBubble>();
 
-    public OxygenFlower(Vector2f position) {
-        super(position.copy());
+	public OxygenFlower(Vector2f position) {
+		super(position.copy());
 
-        // Default
-        maxBubble = 5;
+		// Default
+		maxBubble = 5;
 
-    }
+	}
 
-    public OxygenFlower(Vector2f position, int maxBubble) {
+	public OxygenFlower(Vector2f position, int maxBubble) {
 
-        super(position);
-        this.maxBubble = maxBubble;
-    }
+		super(position);
+		this.maxBubble = maxBubble;
+	}
 
-    public void shootBubbles(EntityManager manager) {
+	public void shootBubbles(EntityManager manager) {
 
-        int count = maxBubble;
-        float x = this.getPosition().getX() - 20;
-        float y = this.getPosition().getY() + 11;
+		int count = maxBubble;
+		float x = this.getPosition().getX() - 20;
+		float y = this.getPosition().getY() + 11;
 
-        for (int i = 0; i < count; i++) {
+		for (int i = 0; i < count; i++) {
 
-            Vector2f bubblePos = new Vector2f(x, y);
-            OxygenBubble bubble = new OxygenBubble(bubblePos.copy());
-            x += 10;
-            bubbles.add(bubble);
-            manager.createEntityAt(OxygenBubble.class, bubblePos.copy());
-            maxBubble--;
-        }
+			Vector2f bubblePos = new Vector2f(x, y);
+			OxygenBubble bubble = new OxygenBubble(bubblePos.copy());
+			x += 10;
+			bubbles.add(bubble);
+			manager.createEntityAt(OxygenBubble.class, bubblePos.copy());
+			maxBubble--;
+		}
 
-    }
+	}
 
-    public void render(GameContainer container, Graphics g)
-            throws SlickException {
+	public void render(GameContainer container, Graphics g)
+			throws SlickException {
 
-        g.setColor(Color.pink);
-        super.render(container, g);
+		g.setColor(Color.pink);
+		super.render(container, g);
 
-        // g.drawString(this.hashCode(), position.x, position.y);
-    }
+		// g.drawString(this.hashCode(), position.x, position.y);
+	}
 
-    public void setMaxBubble(int maxBubble) {
-        this.maxBubble = maxBubble;
-    }
+	public void setMaxBubble(int maxBubble) {
+		this.maxBubble = maxBubble;
+	}
 
-    public ArrayList<OxygenBubble> getBubbles() {
-        return bubbles;
-    }
+	public ArrayList<OxygenBubble> getBubbles() {
+		return bubbles;
+	}
 
-    public void setBubbles(ArrayList<OxygenBubble> bubbles) {
-        this.bubbles = bubbles;
-    }
+	public void setBubbles(ArrayList<OxygenBubble> bubbles) {
+		this.bubbles = bubbles;
+	}
 
-    public int getMaxBubble() {
-        return maxBubble;
-    }
+	public int getMaxBubble() {
+		return maxBubble;
+	}
 
 }

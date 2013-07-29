@@ -41,37 +41,37 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "tmxProperties", propOrder = { "property" })
 public class TmxProperties {
 
-    @XmlElement(required = true)
-    protected List<TmxProperty> property;
+	@XmlElement(required = true)
+	protected List<TmxProperty> property;
 
-    /**
-     * Gets the value of the property property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list, not a
-     * snapshot. Therefore any modification you make to the returned list will
-     * be present inside the JAXB object. This is why there is not a
-     * <CODE>set</CODE> method for the property property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * 
-     * <pre>
-     * getProperty().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link TmxProperty }
-     * 
-     * 
-     */
-    public List<TmxProperty> getProperty() {
-        if (property == null) {
-            property = new ArrayList<TmxProperty>();
-        }
-        return this.property;
-    }
+	/**
+	 * Gets the value of the property property.
+	 * 
+	 * <p>
+	 * This accessor method returns a reference to the live list, not a
+	 * snapshot. Therefore any modification you make to the returned list will
+	 * be present inside the JAXB object. This is why there is not a
+	 * <CODE>set</CODE> method for the property property.
+	 * 
+	 * <p>
+	 * For example, to add a new item, do as follows:
+	 * 
+	 * <pre>
+	 * getProperty().add(newItem);
+	 * </pre>
+	 * 
+	 * 
+	 * <p>
+	 * Objects of the following type(s) are allowed in the list
+	 * {@link TmxProperty }
+	 * 
+	 * 
+	 */
+	public List<TmxProperty> getProperty() {
+		if (property == null) {
+			property = new ArrayList<TmxProperty>();
+		}
+		return this.property;
+	}
 
 }

@@ -14,18 +14,18 @@ import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 
 public class DeadZone extends Entity {
 
-    public DeadZone(Vector2f position) {
-        super(position);
-    }
+	public DeadZone(Vector2f position) {
+		super(position);
+	}
 
-    public DeadZone() {
+	public DeadZone() {
 
-    }
+	}
 
-    public void touched(Astronaut astro) {
+	public void touched(Astronaut astro) {
 
-        astro.setOxygen(0);
+		astro.setOxygen(0);
 
-    }
+	}
 
 }

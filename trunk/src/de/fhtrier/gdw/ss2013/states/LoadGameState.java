@@ -21,89 +21,89 @@ import de.fhtrier.gdw.ss2013.sound.SoundLocator;
  */
 public class LoadGameState extends BasicGameState {
 
-    // private Image loadscreen;
-    private MainMenuState mainMenuState;
-    private GameplayState gameplayState;
-    private DeferredResource nextResource;
-    private AssetLoader assetLoader;
+	// private Image loadscreen;
+	private MainMenuState mainMenuState;
+	private GameplayState gameplayState;
+	private DeferredResource nextResource;
+	private AssetLoader assetLoader;
 
-    @Override
-    public void init(GameContainer container, StateBasedGame game)
-            throws SlickException {
-        // loadscreen = new Image("/res/LoadScreen/titlescreen.png");
-        LoadingList.setDeferredLoading(true);
+	@Override
+	public void init(GameContainer container, StateBasedGame game)
+			throws SlickException {
+		// loadscreen = new Image("/res/LoadScreen/titlescreen.png");
+		LoadingList.setDeferredLoading(true);
 
-        // Todo: initialize assets
+		// Todo: initialize assets
 
-        assetLoader = new AssetLoader();
-        SoundLocator.provideAssetLoader(assetLoader);
+		assetLoader = new AssetLoader();
+		SoundLocator.provideAssetLoader(assetLoader);
 
-        // Image img = new Image("res/animaions/team0.png");
+		// Image img = new Image("res/animaions/team0.png");
 
-        mainMenuState = new MainMenuState();
-        mainMenuState.init(container, game);
-        game.addState(mainMenuState);
+		mainMenuState = new MainMenuState();
+		mainMenuState.init(container, game);
+		game.addState(mainMenuState);
 
-        gameplayState = new GameplayState();
-        gameplayState.init(container, game);
-        game.addState(gameplayState);
+		gameplayState = new GameplayState();
+		gameplayState.init(container, game);
+		game.addState(gameplayState);
 
-        boolean fullscreen = false;
+		boolean fullscreen = false;
 
-        if (fullscreen != container.isFullscreen()) {
-            MainGame.toggleFullscreen();
-        }
-    }
+		if (fullscreen != container.isFullscreen()) {
+			MainGame.toggleFullscreen();
+		}
+	}
 
-    @Override
-    public void render(GameContainer container, StateBasedGame game, Graphics g)
-            throws SlickException {
-        container.setShowFPS(false);
+	@Override
+	public void render(GameContainer container, StateBasedGame game, Graphics g)
+			throws SlickException {
+		container.setShowFPS(false);
 
-        // int total = LoadingList.get().getTotalResources();
-        // int loaded = LoadingList.get().getTotalResources()
-        // - LoadingList.get().getRemainingResources();
-        // if (loaded == 0) {
-        // loaded = 1;
-        // }
-        // total = total / loaded;
-        //
-        // g.setColor(Color.red);
-        // g.fillRect(container.getWidth() / 2 - 245,
-        // container.getHeight() / 2 - 70, (int) (5.5f * (100 / total)),
-        // 100);
-        // loadscreen.draw((container.getWidth() - loadscreen.getWidth()) / 2,
-        // (container.getHeight() - loadscreen.getHeight()) / 2);
-    }
+		// int total = LoadingList.get().getTotalResources();
+		// int loaded = LoadingList.get().getTotalResources()
+		// - LoadingList.get().getRemainingResources();
+		// if (loaded == 0) {
+		// loaded = 1;
+		// }
+		// total = total / loaded;
+		//
+		// g.setColor(Color.red);
+		// g.fillRect(container.getWidth() / 2 - 245,
+		// container.getHeight() / 2 - 70, (int) (5.5f * (100 / total)),
+		// 100);
+		// loadscreen.draw((container.getWidth() - loadscreen.getWidth()) / 2,
+		// (container.getHeight() - loadscreen.getHeight()) / 2);
+	}
 
-    @Override
-    public void update(GameContainer container, StateBasedGame game, int delta)
-            throws SlickException {
-        if (nextResource != null) {
-            try {
-                nextResource.load();
-            } catch (IOException e) {
-                throw new SlickException("Failed to load: "
-                        + nextResource.getDescription(), e);
-            }
-            nextResource = null;
-        }
+	@Override
+	public void update(GameContainer container, StateBasedGame game, int delta)
+			throws SlickException {
+		if (nextResource != null) {
+			try {
+				nextResource.load();
+			} catch (IOException e) {
+				throw new SlickException("Failed to load: "
+						+ nextResource.getDescription(), e);
+			}
+			nextResource = null;
+		}
 
-        if (LoadingList.get().getRemainingResources() > 0) {
-            nextResource = LoadingList.get().getNext();
-        } else {
-            container.setShowFPS(true);
-            SoundStore.get().setDeferredLoading(false);
-            if (DebugModeStatus.getStatus()) {
-                MainGame.changeState(MainGame.GAMEPLAY);
-            } else {
-                MainGame.changeState(MainGame.MAINMENUSTATE);
-            }
-        }
-    }
+		if (LoadingList.get().getRemainingResources() > 0) {
+			nextResource = LoadingList.get().getNext();
+		} else {
+			container.setShowFPS(true);
+			SoundStore.get().setDeferredLoading(false);
+			if (DebugModeStatus.getStatus()) {
+				MainGame.changeState(MainGame.GAMEPLAY);
+			} else {
+				MainGame.changeState(MainGame.MAINMENUSTATE);
+			}
+		}
+	}
 
-    @Override
-    public int getID() {
-        return 2;
-    }
+	@Override
+	public int getID() {
+		return 2;
+	}
 }

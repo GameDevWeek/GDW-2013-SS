@@ -21,96 +21,96 @@ import com.fasterxml.jackson.core.JsonGenerator;
  */
 public class JacksonWriter {
 
-    static JsonFactory factory = new JsonFactory();
+	static JsonFactory factory = new JsonFactory();
 
-    public static void write(String filename, Object object)
-            throws IOException, UnsupportedEncodingException,
-            NoSuchFieldException, IllegalArgumentException,
-            IllegalAccessException, InstantiationException, ParseException {
+	public static void write(String filename, Object object)
+			throws IOException, UnsupportedEncodingException,
+			NoSuchFieldException, IllegalArgumentException,
+			IllegalAccessException, InstantiationException, ParseException {
 
-        try (JsonGenerator generator = factory.createGenerator(new File(
-                filename), JsonEncoding.UTF8);) {
+		try (JsonGenerator generator = factory.createGenerator(new File(
+				filename), JsonEncoding.UTF8);) {
 
-            generator.useDefaultPrettyPrinter();
-            writeObject(object, generator);
-        }
-    }
+			generator.useDefaultPrettyPrinter();
+			writeObject(object, generator);
+		}
+	}
 
-    private static void writeList(List<?> list, JsonGenerator generator)
-            throws InstantiationException, IllegalAccessException, IOException,
-            NoSuchFieldException, ParseException {
-        generator.writeStartArray();
-        for (Object item : list) {
-            if (item == null) {
-                generator.writeNull();
-            } else if (item instanceof String) {
-                generator.writeString((String) item);
-            } else if (item instanceof Integer) {
-                generator.writeNumber((Integer) item);
-            } else if (item instanceof Float) {
-                generator.writeNumber((Float) item);
-            } else if (item instanceof Boolean) {
-                generator.writeBoolean((Boolean) item);
-            } else if (item instanceof Enum) {
-                generator.writeString(item.toString());
-            } else if (item instanceof List) {
-                writeList((List<?>) item, generator);
-            } else {
-                writeObject(item, generator);
-            }
-        }
-        generator.writeEndArray();
-    }
+	private static void writeList(List<?> list, JsonGenerator generator)
+			throws InstantiationException, IllegalAccessException, IOException,
+			NoSuchFieldException, ParseException {
+		generator.writeStartArray();
+		for (Object item : list) {
+			if (item == null) {
+				generator.writeNull();
+			} else if (item instanceof String) {
+				generator.writeString((String) item);
+			} else if (item instanceof Integer) {
+				generator.writeNumber((Integer) item);
+			} else if (item instanceof Float) {
+				generator.writeNumber((Float) item);
+			} else if (item instanceof Boolean) {
+				generator.writeBoolean((Boolean) item);
+			} else if (item instanceof Enum) {
+				generator.writeString(item.toString());
+			} else if (item instanceof List) {
+				writeList((List<?>) item, generator);
+			} else {
+				writeObject(item, generator);
+			}
+		}
+		generator.writeEndArray();
+	}
 
-    private static void writeObject(Object object, JsonGenerator generator)
-            throws InstantiationException, IllegalAccessException, IOException,
-            NoSuchFieldException, ParseException {
-        generator.writeStartObject();
+	private static void writeObject(Object object, JsonGenerator generator)
+			throws InstantiationException, IllegalAccessException, IOException,
+			NoSuchFieldException, ParseException {
+		generator.writeStartObject();
 
-        Class<?> clazz = object.getClass();
+		Class<?> clazz = object.getClass();
 
-        // Check all declared, non-static fields
-        for (Field field : getAllFields(new LinkedList<Field>(), clazz)) {
-            if (!Modifier.isStatic(field.getModifiers())) {
-                field.setAccessible(true);
-                Object value = field.get(object);
-                if (value != null) {
+		// Check all declared, non-static fields
+		for (Field field : getAllFields(new LinkedList<Field>(), clazz)) {
+			if (!Modifier.isStatic(field.getModifiers())) {
+				field.setAccessible(true);
+				Object value = field.get(object);
+				if (value != null) {
 
-                    if (value instanceof String) {
-                        generator.writeStringField(field.getName(),
-                                (String) value);
-                    } else if (value instanceof Integer) {
-                        generator.writeNumberField(field.getName(),
-                                (Integer) value);
-                    } else if (value instanceof Float) {
-                        generator.writeNumberField(field.getName(),
-                                (Float) value);
-                    } else if (value instanceof Boolean) {
-                        generator.writeBooleanField(field.getName(),
-                                (Boolean) value);
-                    } else if (value instanceof Enum) {
-                        generator.writeStringField(field.getName(),
-                                value.toString());
-                    } else if (value instanceof List) {
-                        generator.writeFieldName(field.getName());
-                        writeList((List<?>) value, generator);
-                    } else {
-                        writeObject(value, generator);
-                    }
-                }
-            }
-        }
+					if (value instanceof String) {
+						generator.writeStringField(field.getName(),
+								(String) value);
+					} else if (value instanceof Integer) {
+						generator.writeNumberField(field.getName(),
+								(Integer) value);
+					} else if (value instanceof Float) {
+						generator.writeNumberField(field.getName(),
+								(Float) value);
+					} else if (value instanceof Boolean) {
+						generator.writeBooleanField(field.getName(),
+								(Boolean) value);
+					} else if (value instanceof Enum) {
+						generator.writeStringField(field.getName(),
+								value.toString());
+					} else if (value instanceof List) {
+						generator.writeFieldName(field.getName());
+						writeList((List<?>) value, generator);
+					} else {
+						writeObject(value, generator);
+					}
+				}
+			}
+		}
 
-        generator.writeEndObject();
-    }
+		generator.writeEndObject();
+	}
 
-    public static List<Field> getAllFields(List<Field> fields, Class<?> type) {
-        fields.addAll(Arrays.asList(type.getDeclaredFields()));
+	public static List<Field> getAllFields(List<Field> fields, Class<?> type) {
+		fields.addAll(Arrays.asList(type.getDeclaredFields()));
 
-        if (type.getSuperclass() != null) {
-            fields = getAllFields(fields, type.getSuperclass());
-        }
+		if (type.getSuperclass() != null) {
+			fields = getAllFields(fields, type.getSuperclass());
+		}
 
-        return fields;
-    }
+		return fields;
+	}
 }

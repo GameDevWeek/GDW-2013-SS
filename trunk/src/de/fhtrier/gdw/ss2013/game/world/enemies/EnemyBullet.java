@@ -19,47 +19,47 @@ import de.fhtrier.gdw.ss2013.physics.ICollidable;
  */
 public class EnemyBullet extends AbstractEnemy implements ICollidable {
 
-    final static float DEBUG_ENTITY_HALFEXTEND = 5;
+	final static float DEBUG_ENTITY_HALFEXTEND = 5;
 
-    public EnemyBullet(Vector2f pos, Vector2f velo, float dmg) {
-        super(pos.copy(), velo.copy(), dmg);
-    }
+	public EnemyBullet(Vector2f pos, Vector2f velo, float dmg) {
+		super(pos.copy(), velo.copy(), dmg);
+	}
 
-    public EnemyBullet() {
-        this(new Vector2f(), new Vector2f(), 0);
-    }
+	public EnemyBullet() {
+		this(new Vector2f(), new Vector2f(), 0);
+	}
 
-    public EnemyBullet(Vector2f pos) {
-        this(pos.copy(), new Vector2f(), 0);
-    }
+	public EnemyBullet(Vector2f pos) {
+		this(pos.copy(), new Vector2f(), 0);
+	}
 
-    @Override
-    public void onCollision(Entity e) {
-        if (e instanceof Astronaut) {
-            ((Astronaut) e).setOxygen(((Astronaut) e).getOxygen()
-                    - this.getDamage());
-        }
-    }
+	@Override
+	public void onCollision(Entity e) {
+		if (e instanceof Astronaut) {
+			((Astronaut) e).setOxygen(((Astronaut) e).getOxygen()
+					- this.getDamage());
+		}
+	}
 
-    public void render(GameContainer container, Graphics g)
-            throws SlickException {
-        g.setColor(Color.red);
-        g.drawRect(position.x - DEBUG_ENTITY_HALFEXTEND, position.y
-                - DEBUG_ENTITY_HALFEXTEND, DEBUG_ENTITY_HALFEXTEND * 2,
-                DEBUG_ENTITY_HALFEXTEND * 2);
+	public void render(GameContainer container, Graphics g)
+			throws SlickException {
+		g.setColor(Color.red);
+		g.drawRect(position.x - DEBUG_ENTITY_HALFEXTEND, position.y
+				- DEBUG_ENTITY_HALFEXTEND, DEBUG_ENTITY_HALFEXTEND * 2,
+				DEBUG_ENTITY_HALFEXTEND * 2);
 
-        // g.drawString(this.hashCode(), position.x, position.y);
-    }
+		// g.drawString(this.hashCode(), position.x, position.y);
+	}
 
-    public void update(GameContainer container, int delta)
-            throws SlickException {
+	public void update(GameContainer container, int delta)
+			throws SlickException {
 
-//        float dt = delta / 1000.f;
-        // TODO clamp dt if dt > 1/60.f ?
-        this.position.x += this.getVelocity().x;
-        this.position.y += this.getVelocity().y;
+		// float dt = delta / 1000.f;
+		// TODO clamp dt if dt > 1/60.f ?
+		this.position.x += this.getVelocity().x;
+		this.position.y += this.getVelocity().y;
 
-    }
+	}
 
 	@Override
 	public Fixture getFixture() {

@@ -47,251 +47,251 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "tmxObject", propOrder = { "properties", "polyline", "polygon",
-        "image" })
+		"image" })
 public class TmxObject {
 
-    @XmlElement(required = true)
-    protected TmxProperties properties;
-    @XmlElement(required = true)
-    protected TmxPointList polyline;
-    @XmlElement(required = true)
-    protected TmxPointList polygon;
-    @XmlElement(required = true)
-    protected TmxImage image;
-    @XmlAttribute(name = "name", required = true)
-    protected String name;
-    @XmlAttribute(name = "type", required = true)
-    protected String type;
-    @XmlAttribute(name = "gid")
-    protected Integer gid;
-    @XmlAttribute(name = "x", required = true)
-    protected int x;
-    @XmlAttribute(name = "y", required = true)
-    protected int y;
-    @XmlAttribute(name = "width")
-    protected Integer width;
-    @XmlAttribute(name = "height")
-    protected Integer height;
+	@XmlElement(required = true)
+	protected TmxProperties properties;
+	@XmlElement(required = true)
+	protected TmxPointList polyline;
+	@XmlElement(required = true)
+	protected TmxPointList polygon;
+	@XmlElement(required = true)
+	protected TmxImage image;
+	@XmlAttribute(name = "name", required = true)
+	protected String name;
+	@XmlAttribute(name = "type", required = true)
+	protected String type;
+	@XmlAttribute(name = "gid")
+	protected Integer gid;
+	@XmlAttribute(name = "x", required = true)
+	protected int x;
+	@XmlAttribute(name = "y", required = true)
+	protected int y;
+	@XmlAttribute(name = "width")
+	protected Integer width;
+	@XmlAttribute(name = "height")
+	protected Integer height;
 
-    /**
-     * Gets the value of the properties property.
-     * 
-     * @return possible object is {@link TmxProperties }
-     * 
-     */
-    public TmxProperties getProperties() {
-        return properties;
-    }
+	/**
+	 * Gets the value of the properties property.
+	 * 
+	 * @return possible object is {@link TmxProperties }
+	 * 
+	 */
+	public TmxProperties getProperties() {
+		return properties;
+	}
 
-    /**
-     * Sets the value of the properties property.
-     * 
-     * @param value
-     *            allowed object is {@link TmxProperties }
-     * 
-     */
-    public void setProperties(TmxProperties value) {
-        this.properties = value;
-    }
+	/**
+	 * Sets the value of the properties property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link TmxProperties }
+	 * 
+	 */
+	public void setProperties(TmxProperties value) {
+		this.properties = value;
+	}
 
-    /**
-     * Gets the value of the polyline property.
-     * 
-     * @return possible object is {@link TmxPointList }
-     * 
-     */
-    public TmxPointList getPolyline() {
-        return polyline;
-    }
+	/**
+	 * Gets the value of the polyline property.
+	 * 
+	 * @return possible object is {@link TmxPointList }
+	 * 
+	 */
+	public TmxPointList getPolyline() {
+		return polyline;
+	}
 
-    /**
-     * Sets the value of the polyline property.
-     * 
-     * @param value
-     *            allowed object is {@link TmxPointList }
-     * 
-     */
-    public void setPolyline(TmxPointList value) {
-        this.polyline = value;
-    }
+	/**
+	 * Sets the value of the polyline property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link TmxPointList }
+	 * 
+	 */
+	public void setPolyline(TmxPointList value) {
+		this.polyline = value;
+	}
 
-    /**
-     * Gets the value of the polygon property.
-     * 
-     * @return possible object is {@link TmxPointList }
-     * 
-     */
-    public TmxPointList getPolygon() {
-        return polygon;
-    }
+	/**
+	 * Gets the value of the polygon property.
+	 * 
+	 * @return possible object is {@link TmxPointList }
+	 * 
+	 */
+	public TmxPointList getPolygon() {
+		return polygon;
+	}
 
-    /**
-     * Sets the value of the polygon property.
-     * 
-     * @param value
-     *            allowed object is {@link TmxPointList }
-     * 
-     */
-    public void setPolygon(TmxPointList value) {
-        this.polygon = value;
-    }
+	/**
+	 * Sets the value of the polygon property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link TmxPointList }
+	 * 
+	 */
+	public void setPolygon(TmxPointList value) {
+		this.polygon = value;
+	}
 
-    /**
-     * Gets the value of the image property.
-     * 
-     * @return possible object is {@link TmxImage }
-     * 
-     */
-    public TmxImage getImage() {
-        return image;
-    }
+	/**
+	 * Gets the value of the image property.
+	 * 
+	 * @return possible object is {@link TmxImage }
+	 * 
+	 */
+	public TmxImage getImage() {
+		return image;
+	}
 
-    /**
-     * Sets the value of the image property.
-     * 
-     * @param value
-     *            allowed object is {@link TmxImage }
-     * 
-     */
-    public void setImage(TmxImage value) {
-        this.image = value;
-    }
+	/**
+	 * Sets the value of the image property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link TmxImage }
+	 * 
+	 */
+	public void setImage(TmxImage value) {
+		this.image = value;
+	}
 
-    /**
-     * Gets the value of the name property.
-     * 
-     * @return possible object is {@link String }
-     * 
-     */
-    public String getName() {
-        return name;
-    }
+	/**
+	 * Gets the value of the name property.
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
+	public String getName() {
+		return name;
+	}
 
-    /**
-     * Sets the value of the name property.
-     * 
-     * @param value
-     *            allowed object is {@link String }
-     * 
-     */
-    public void setName(String value) {
-        this.name = value;
-    }
+	/**
+	 * Sets the value of the name property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link String }
+	 * 
+	 */
+	public void setName(String value) {
+		this.name = value;
+	}
 
-    /**
-     * Gets the value of the type property.
-     * 
-     * @return possible object is {@link String }
-     * 
-     */
-    public String getType() {
-        return type;
-    }
+	/**
+	 * Gets the value of the type property.
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
+	public String getType() {
+		return type;
+	}
 
-    /**
-     * Sets the value of the type property.
-     * 
-     * @param value
-     *            allowed object is {@link String }
-     * 
-     */
-    public void setType(String value) {
-        this.type = value;
-    }
+	/**
+	 * Sets the value of the type property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link String }
+	 * 
+	 */
+	public void setType(String value) {
+		this.type = value;
+	}
 
-    /**
-     * Gets the value of the gid property.
-     * 
-     * @return possible object is {@link Integer }
-     * 
-     */
-    public Integer getGid() {
-        return gid;
-    }
+	/**
+	 * Gets the value of the gid property.
+	 * 
+	 * @return possible object is {@link Integer }
+	 * 
+	 */
+	public Integer getGid() {
+		return gid;
+	}
 
-    /**
-     * Sets the value of the gid property.
-     * 
-     * @param value
-     *            allowed object is {@link Integer }
-     * 
-     */
-    public void setGid(Integer value) {
-        this.gid = value;
-    }
+	/**
+	 * Sets the value of the gid property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link Integer }
+	 * 
+	 */
+	public void setGid(Integer value) {
+		this.gid = value;
+	}
 
-    /**
-     * Gets the value of the x property.
-     * 
-     */
-    public int getX() {
-        return x;
-    }
+	/**
+	 * Gets the value of the x property.
+	 * 
+	 */
+	public int getX() {
+		return x;
+	}
 
-    /**
-     * Sets the value of the x property.
-     * 
-     */
-    public void setX(int value) {
-        this.x = value;
-    }
+	/**
+	 * Sets the value of the x property.
+	 * 
+	 */
+	public void setX(int value) {
+		this.x = value;
+	}
 
-    /**
-     * Gets the value of the y property.
-     * 
-     */
-    public int getY() {
-        return y;
-    }
+	/**
+	 * Gets the value of the y property.
+	 * 
+	 */
+	public int getY() {
+		return y;
+	}
 
-    /**
-     * Sets the value of the y property.
-     * 
-     */
-    public void setY(int value) {
-        this.y = value;
-    }
+	/**
+	 * Sets the value of the y property.
+	 * 
+	 */
+	public void setY(int value) {
+		this.y = value;
+	}
 
-    /**
-     * Gets the value of the width property.
-     * 
-     * @return possible object is {@link Integer }
-     * 
-     */
-    public Integer getWidth() {
-        return width;
-    }
+	/**
+	 * Gets the value of the width property.
+	 * 
+	 * @return possible object is {@link Integer }
+	 * 
+	 */
+	public Integer getWidth() {
+		return width;
+	}
 
-    /**
-     * Sets the value of the width property.
-     * 
-     * @param value
-     *            allowed object is {@link Integer }
-     * 
-     */
-    public void setWidth(Integer value) {
-        this.width = value;
-    }
+	/**
+	 * Sets the value of the width property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link Integer }
+	 * 
+	 */
+	public void setWidth(Integer value) {
+		this.width = value;
+	}
 
-    /**
-     * Gets the value of the height property.
-     * 
-     * @return possible object is {@link Integer }
-     * 
-     */
-    public Integer getHeight() {
-        return height;
-    }
+	/**
+	 * Gets the value of the height property.
+	 * 
+	 * @return possible object is {@link Integer }
+	 * 
+	 */
+	public Integer getHeight() {
+		return height;
+	}
 
-    /**
-     * Sets the value of the height property.
-     * 
-     * @param value
-     *            allowed object is {@link Integer }
-     * 
-     */
-    public void setHeight(Integer value) {
-        this.height = value;
-    }
+	/**
+	 * Sets the value of the height property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link Integer }
+	 * 
+	 */
+	public void setHeight(Integer value) {
+		this.height = value;
+	}
 
 }

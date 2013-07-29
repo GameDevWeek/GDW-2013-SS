@@ -10,25 +10,25 @@ import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 
 public class SoundLocator {
 
-    static private SoundPlayer _service = new DefaultSoundPlayer();
+	static private SoundPlayer _service = new DefaultSoundPlayer();
 
-    static private AssetLoader soundLoader;
+	static private AssetLoader soundLoader;
 
-    static public void provideAssetLoader(AssetLoader loader) {
-        soundLoader = loader;
-    }
+	static public void provideAssetLoader(AssetLoader loader) {
+		soundLoader = loader;
+	}
 
-    static public void provide(SoundPlayer service) {
-        _service = service;
-    }
+	static public void provide(SoundPlayer service) {
+		_service = service;
+	}
 
-    static public SoundPlayer getPlayer() {
-        return _service;
-    }
+	static public SoundPlayer getPlayer() {
+		return _service;
+	}
 
-    static public Sound loadSound(String path) {
-        Sound s = soundLoader.getSound(path);
+	static public Sound loadSound(String path) {
+		Sound s = soundLoader.getSound(path);
 
-        return s;
-    }
+		return s;
+	}
 }

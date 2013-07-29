@@ -39,97 +39,97 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "tmxImage")
 public class TmxImage {
 
-    @XmlAttribute(name = "source", required = true)
-    protected String source;
-    @XmlAttribute(name = "trans")
-    protected String trans;
-    @XmlAttribute(name = "width")
-    protected Integer width;
-    @XmlAttribute(name = "height")
-    protected Integer height;
+	@XmlAttribute(name = "source", required = true)
+	protected String source;
+	@XmlAttribute(name = "trans")
+	protected String trans;
+	@XmlAttribute(name = "width")
+	protected Integer width;
+	@XmlAttribute(name = "height")
+	protected Integer height;
 
-    /**
-     * Gets the value of the source property.
-     * 
-     * @return possible object is {@link String }
-     * 
-     */
-    public String getSource() {
-        return source;
-    }
+	/**
+	 * Gets the value of the source property.
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
+	public String getSource() {
+		return source;
+	}
 
-    /**
-     * Sets the value of the source property.
-     * 
-     * @param value
-     *            allowed object is {@link String }
-     * 
-     */
-    public void setSource(String value) {
-        this.source = value;
-    }
+	/**
+	 * Sets the value of the source property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link String }
+	 * 
+	 */
+	public void setSource(String value) {
+		this.source = value;
+	}
 
-    /**
-     * Gets the value of the trans property.
-     * 
-     * @return possible object is {@link String }
-     * 
-     */
-    public String getTrans() {
-        return trans;
-    }
+	/**
+	 * Gets the value of the trans property.
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
+	public String getTrans() {
+		return trans;
+	}
 
-    /**
-     * Sets the value of the trans property.
-     * 
-     * @param value
-     *            allowed object is {@link String }
-     * 
-     */
-    public void setTrans(String value) {
-        this.trans = value;
-    }
+	/**
+	 * Sets the value of the trans property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link String }
+	 * 
+	 */
+	public void setTrans(String value) {
+		this.trans = value;
+	}
 
-    /**
-     * Gets the value of the width property.
-     * 
-     * @return possible object is {@link Integer }
-     * 
-     */
-    public Integer getWidth() {
-        return width;
-    }
+	/**
+	 * Gets the value of the width property.
+	 * 
+	 * @return possible object is {@link Integer }
+	 * 
+	 */
+	public Integer getWidth() {
+		return width;
+	}
 
-    /**
-     * Sets the value of the width property.
-     * 
-     * @param value
-     *            allowed object is {@link Integer }
-     * 
-     */
-    public void setWidth(Integer value) {
-        this.width = value;
-    }
+	/**
+	 * Sets the value of the width property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link Integer }
+	 * 
+	 */
+	public void setWidth(Integer value) {
+		this.width = value;
+	}
 
-    /**
-     * Gets the value of the height property.
-     * 
-     * @return possible object is {@link Integer }
-     * 
-     */
-    public Integer getHeight() {
-        return height;
-    }
+	/**
+	 * Gets the value of the height property.
+	 * 
+	 * @return possible object is {@link Integer }
+	 * 
+	 */
+	public Integer getHeight() {
+		return height;
+	}
 
-    /**
-     * Sets the value of the height property.
-     * 
-     * @param value
-     *            allowed object is {@link Integer }
-     * 
-     */
-    public void setHeight(Integer value) {
-        this.height = value;
-    }
+	/**
+	 * Sets the value of the height property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link Integer }
+	 * 
+	 */
+	public void setHeight(Integer value) {
+		this.height = value;
+	}
 
 }
