@@ -2,6 +2,9 @@
 
 package de.fhtrier.gdw.ss2013.physics;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 
@@ -15,10 +18,12 @@ public abstract class PhysicsObject {
 
     private Entity owner;
     private Body myBody;
+    private Collection<ICollisionListener> collisionListeners;
 
     protected PhysicsObject(Entity owner) {
         this.owner = owner;
         myBody.m_userData = this;
+        collisionListeners = new ArrayList<ICollisionListener>();
     }
 
     protected void setBody(Body myBody) {
@@ -122,6 +127,13 @@ public abstract class PhysicsObject {
         return myBody.getMass();
     }
     
+    public boolean addCollisionListener(ICollisionListener listener) {
+        return collisionListeners.add(listener);
+    }
+    
+    public boolean removeCollisionListener(ICollisionListener listener) {
+        return collisionListeners.remove(listener);
+    }
     
     /**
      * 
@@ -130,7 +142,7 @@ public abstract class PhysicsObject {
      * @throws SlickException
      */
     public void update(GameContainer c, int delta) throws SlickException {
-
+        
     }
 
 }
