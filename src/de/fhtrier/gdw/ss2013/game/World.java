@@ -9,6 +9,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import de.fhtrier.gdw.commons.tiled.LayerObject;
 import de.fhtrier.gdw.commons.tiled.TiledMap;
+import de.fhtrier.gdw.ss2013.game.entities.Meteroid;
 import de.fhtrier.gdw.ss2013.game.entities.OxygenFlower;
 import de.fhtrier.gdw.ss2013.game.entities.FlyingEnemy;
 import de.fhtrier.gdw.ss2013.renderer.MapRenderer;
@@ -20,6 +21,7 @@ public class World {
     private final Camera camera;
     private final Player player;
     private final FlyingEnemy enemy;
+    private final Meteroid metro[];
     private final Input input;
     private final OxygenFlower oxyFlower;;
     // private final List<Entity> entities = new LinkedList<>();
@@ -33,7 +35,7 @@ public class World {
                     LayerObject.PolyMode.ABSOLUTE);
             mapRender = new MapRenderer(map);
             camera = new Camera(map);
-            
+            metro = new Meteroid[3];
             entityManager = new EntityManager();
             player = (Player) entityManager.createEntityAt(Player.class,
                     new Vector2f(200, 200));
@@ -41,6 +43,9 @@ public class World {
             oxyFlower = (OxygenFlower) entityManager.createEntityAt(OxygenFlower.class, new Vector2f (300,300));
 
             enemy = (FlyingEnemy) entityManager.createEntityAt(FlyingEnemy.class, new Vector2f(500,500));
+            for (int i = 0; i < 3; i++) {
+                metro[i] = (Meteroid) entityManager.createEntityAt(Meteroid.class, new Vector2f(200+i*100,0));
+            }
         } catch (Exception e) {
             throw new SlickException(e.toString());
         }

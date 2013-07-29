@@ -1,7 +1,5 @@
 package de.fhtrier.gdw.ss2013.game.entities;
 
-import java.util.ArrayList;
-
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
