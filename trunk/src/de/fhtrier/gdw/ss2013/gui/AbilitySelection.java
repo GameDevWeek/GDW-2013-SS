@@ -1,7 +1,7 @@
 /**
  * Boris, David (UI-Team)
  */
-package de.fhtrier.gdw.ss2013.renderer;
+package de.fhtrier.gdw.ss2013.gui;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
