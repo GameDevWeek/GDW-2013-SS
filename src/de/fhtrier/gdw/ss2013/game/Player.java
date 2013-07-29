@@ -46,7 +46,7 @@ public class Player extends Entity implements AlienControls, AstronautControls{
     {
         if (key == forwardKey) 
         {
-            // Vorw�rtsbewegung
+            // Vorwärtsbewegung
         }
     }
     
@@ -54,7 +54,7 @@ public class Player extends Entity implements AlienControls, AstronautControls{
     {
         if (key == backwardKey) 
         {
-            // R�ckw�rtsbewegung
+            // Rückwärtsbewegung
         } 
     }
     
@@ -78,7 +78,7 @@ public class Player extends Entity implements AlienControls, AstronautControls{
     {
         if(button == shootButton)
         {
-            // Schie�en
+            // Schießen
         }
     }
     
@@ -86,7 +86,7 @@ public class Player extends Entity implements AlienControls, AstronautControls{
     {
         if(value == rotateWheel)
         {
-            // F�higkeiten ausw�hlen
+            // Fähigkeiten auswählen
         }
     }
     
@@ -94,7 +94,7 @@ public class Player extends Entity implements AlienControls, AstronautControls{
     {
         if(button == abilityButton)
         {
-          // F�higkeit benutzen   
+          // Fähigkeit benutzen   
         }
     }
 
