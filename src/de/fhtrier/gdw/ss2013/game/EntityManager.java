@@ -17,6 +17,7 @@ import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.util.VectorUtil;
 
+//TODO filter für getEntities
 public class EntityManager {
     // static protected EntityManager managerInstance;
     protected ArrayList<Entity> entityList;

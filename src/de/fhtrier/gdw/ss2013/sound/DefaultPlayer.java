@@ -24,22 +24,43 @@ public class DefaultPlayer implements ISoundPlayer {
 
     }
 
+    private boolean manageEntitySoundPlayMap(Entity emitter, Sound sound) {
+        if (!emitterSoundPlayingMap.containsKey(emitter)) {
+            emitterSoundPlayingMap.put(emitter, new HashSet<Sound>());
+        }
+        if (emitterSoundPlayingMap.containsKey(emitter)) {
+            if (emitterSoundPlayingMap.get(emitter).contains(sound)) {
+                if (!sound.playing()) {
+                    return true;
+                } else
+                    return false;
+            }
+
+        }
+        return true;
+    }
+
     @Override
     public void stopSound(Sound sound) {
-
+        for (Entity e : emitterSoundPlayingMap.keySet()) {
+            if (!sound.playing()) {
+                if (emitterSoundPlayingMap.containsKey(e))
+                    emitterSoundPlayingMap.get(e).remove(sound);
+            }
+        }
     }
 
     @Override
     public void playSoundAt(Sound sound, Entity listener, Entity emitter) {
-
+        if (!manageEntitySoundPlayMap(emitter, sound))
+            return;
         Vector2f dir = VectorUtil.subtract(listener.getPosition(),
                 emitter.getPosition());
         float dSq = dir.lengthSquared();
         final float MidSound = 0.5f;
 
-        // sound.playAt(1.0f, 1.0f, 1, 0, 0);
-        sound.playAt(1, 0, 0);
-
+        sound.play();
+        emitterSoundPlayingMap.get(emitter).add(sound);
     }
 
     @Override
