@@ -3,19 +3,19 @@ package de.fhtrier.gdw.ss2013.game.entities;
 import org.newdawn.slick.geom.Vector2f;
 import de.fhtrier.gdw.ss2013.game.*;
 /**
- * Lever Class
+ * Switch Class
  * @author Kevin, Georg
  *
  */
-public class Lever extends Entity {
+public class Switch extends Entity {
     
     boolean activated = false;
     
-    public Lever(Vector2f pos) {        
+    public Switch(Vector2f pos) {        
         super(pos);
     }
     
-    public Lever() {
+    public Switch() {
         this(new Vector2f());
     }
 

@@ -1,31 +1,29 @@
 package de.fhtrier.gdw.ss2013.game.entities;
 
 import org.newdawn.slick.geom.Vector2f;
+
 /**
- * Flying Enemy Class
+ * Meteroid class
  * @author Kevin, Georg
  *
  */
-public class FlyingEnemy extends AbstractEnemy {
+public class Meteroid extends AbstractEnemy {
 
     private float health;
     
-    public FlyingEnemy(Vector2f pos, Vector2f velo, float dmg, float hp) {
+    public Meteroid(Vector2f pos, Vector2f velo, float dmg, float hp) {
         super(pos, velo, dmg);
         health = hp;
     }
     
-    public FlyingEnemy() {
+    public Meteroid() {
         super();
         health = 0;
     }
-    
     @Override
     public void onCollide() {
-        // TODO collision handling  
+        // TODO Auto-generated method stub
+
     }
-    
-    public void reduceHealth(float dmg) {  
-        health -= dmg;
-    }
+
 }
