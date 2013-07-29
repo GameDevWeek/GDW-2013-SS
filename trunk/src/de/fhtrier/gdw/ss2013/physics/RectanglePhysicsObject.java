@@ -1,6 +1,5 @@
 package de.fhtrier.gdw.ss2013.physics;
 
-import org.jbox2d.collision.Collision;
 import org.jbox2d.collision.shapes.EdgeShape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.BodyDef;

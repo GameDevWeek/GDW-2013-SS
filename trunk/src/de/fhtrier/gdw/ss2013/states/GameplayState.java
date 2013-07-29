@@ -1,9 +1,5 @@
 package de.fhtrier.gdw.ss2013.states;
 
-import de.fhtrier.gdw.ss2013.MainGame;
-import de.fhtrier.gdw.ss2013.game.World;
-import de.fhtrier.gdw.ss2013.renderer.HUD;
-
 import org.newdawn.slick.AngelCodeFont;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Font;
@@ -12,6 +8,10 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+
+import de.fhtrier.gdw.ss2013.MainGame;
+import de.fhtrier.gdw.ss2013.game.World;
+import de.fhtrier.gdw.ss2013.renderer.HUD;
 
 /**
  * Gameplay state

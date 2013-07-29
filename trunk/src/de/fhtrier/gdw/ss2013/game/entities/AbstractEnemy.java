@@ -6,7 +6,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
-import de.fhtrier.gdw.ss2013.game.*;
+import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.util.AssetLoader;
 
 /**

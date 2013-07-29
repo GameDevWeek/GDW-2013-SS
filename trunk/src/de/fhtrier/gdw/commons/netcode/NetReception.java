@@ -1,12 +1,13 @@
 package de.fhtrier.gdw.commons.netcode;
 
-import de.fhtrier.gdw.commons.netcode.datagram.INetDatagramFactory;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.util.concurrent.ConcurrentLinkedQueue;
+
+import de.fhtrier.gdw.commons.netcode.datagram.INetDatagramFactory;
 
 /**
  * A reception waits for clients to connect

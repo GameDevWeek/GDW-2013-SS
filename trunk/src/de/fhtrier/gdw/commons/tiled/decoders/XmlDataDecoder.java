@@ -1,11 +1,13 @@
 package de.fhtrier.gdw.commons.tiled.decoders;
 
-import de.fhtrier.gdw.commons.tiled.tmx.TmxTile;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Iterator;
 import java.util.List;
+
 import javax.xml.bind.JAXBElement;
+
+import de.fhtrier.gdw.commons.tiled.tmx.TmxTile;
 
 /**
  * Read layer data that has been stored in XML format.

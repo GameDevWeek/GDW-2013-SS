@@ -1,8 +1,9 @@
 package de.fhtrier.gdw.commons.jackson.example;
 
+import java.util.ArrayList;
+
 import de.fhtrier.gdw.commons.jackson.JacksonReader;
 import de.fhtrier.gdw.commons.jackson.JacksonWriter;
-import java.util.ArrayList;
 
 /**
  * An example use of the Jackson reader/writer

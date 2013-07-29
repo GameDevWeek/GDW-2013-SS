@@ -1,10 +1,11 @@
 package de.fhtrier.gdw.commons.tiled;
 
+import java.util.HashMap;
+
 import de.fhtrier.gdw.commons.tiled.tmx.TmxImage;
 import de.fhtrier.gdw.commons.tiled.tmx.TmxTile;
 import de.fhtrier.gdw.commons.tiled.tmx.TmxTileSet;
 import de.fhtrier.gdw.commons.utils.SafeProperties;
-import java.util.HashMap;
 
 /**
  * A tile set

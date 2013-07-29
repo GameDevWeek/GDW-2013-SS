@@ -1,12 +1,5 @@
 package de.fhtrier.gdw.commons.tiled;
 
-import de.fhtrier.gdw.commons.interfaces.IResourceLocator;
-import de.fhtrier.gdw.commons.tiled.tmx.TmxLayerBase;
-import de.fhtrier.gdw.commons.tiled.tmx.TmxMap;
-import de.fhtrier.gdw.commons.tiled.tmx.TmxProperties;
-import de.fhtrier.gdw.commons.tiled.tmx.TmxProperty;
-import de.fhtrier.gdw.commons.tiled.tmx.TmxTileSet;
-import de.fhtrier.gdw.commons.utils.SafeProperties;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -14,10 +7,19 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
+
+import de.fhtrier.gdw.commons.interfaces.IResourceLocator;
+import de.fhtrier.gdw.commons.tiled.tmx.TmxLayerBase;
+import de.fhtrier.gdw.commons.tiled.tmx.TmxMap;
+import de.fhtrier.gdw.commons.tiled.tmx.TmxProperties;
+import de.fhtrier.gdw.commons.tiled.tmx.TmxProperty;
+import de.fhtrier.gdw.commons.tiled.tmx.TmxTileSet;
+import de.fhtrier.gdw.commons.utils.SafeProperties;
 
 /**
  * A TilED map loader

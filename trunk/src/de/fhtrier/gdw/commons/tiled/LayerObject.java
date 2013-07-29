@@ -1,11 +1,12 @@
 package de.fhtrier.gdw.commons.tiled;
 
+import java.awt.Point;
+import java.util.ArrayList;
+
 import de.fhtrier.gdw.commons.tiled.tmx.TmxImage;
 import de.fhtrier.gdw.commons.tiled.tmx.TmxObject;
 import de.fhtrier.gdw.commons.tiled.tmx.TmxPointList;
 import de.fhtrier.gdw.commons.utils.SafeProperties;
-import java.awt.Point;
-import java.util.ArrayList;
 
 /**
  * An object read from an object group layer

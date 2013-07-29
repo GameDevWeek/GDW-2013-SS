@@ -1,8 +1,13 @@
 package de.fhtrier.gdw.commons.netcode.examples.game;
 
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
+import java.awt.Dimension;
+import java.awt.Frame;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+import javax.swing.JApplet;
 
 /**
  * Ignore what's in here, it's just a quick hack to get the app running and
