@@ -43,7 +43,8 @@ public class World {
 		input = container.getInput();
 		map = null;
 		try {
-			map = new TiledMap("res/maps/demo.tmx", LayerObject.PolyMode.ABSOLUTE);
+			map = new TiledMap("res/maps/demo.tmx",
+					LayerObject.PolyMode.ABSOLUTE);
 
 			mapRender = new MapRenderer(map);
 		} catch (Exception e) {

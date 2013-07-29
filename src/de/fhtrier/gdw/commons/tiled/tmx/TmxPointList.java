@@ -36,28 +36,28 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "tmxPointList")
 public class TmxPointList {
 
-    @XmlAttribute(name = "points")
-    protected String points;
+	@XmlAttribute(name = "points")
+	protected String points;
 
-    /**
-     * Gets the value of the points property.
-     * 
-     * @return possible object is {@link String }
-     * 
-     */
-    public String getPoints() {
-        return points;
-    }
+	/**
+	 * Gets the value of the points property.
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
+	public String getPoints() {
+		return points;
+	}
 
-    /**
-     * Sets the value of the points property.
-     * 
-     * @param value
-     *            allowed object is {@link String }
-     * 
-     */
-    public void setPoints(String value) {
-        this.points = value;
-    }
+	/**
+	 * Sets the value of the points property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link String }
+	 * 
+	 */
+	public void setPoints(String value) {
+		this.points = value;
+	}
 
 }

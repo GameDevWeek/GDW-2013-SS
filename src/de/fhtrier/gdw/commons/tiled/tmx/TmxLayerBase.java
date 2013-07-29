@@ -46,133 +46,133 @@ import javax.xml.bind.annotation.XmlType;
 @XmlSeeAlso({ TmxObjectGroup.class, TmxLayer.class })
 public class TmxLayerBase {
 
-    @XmlElement(required = true)
-    protected TmxProperties properties;
-    @XmlAttribute(name = "name", required = true)
-    protected String name;
-    @XmlAttribute(name = "opacity")
-    protected Float opacity;
-    @XmlAttribute(name = "width", required = true)
-    protected int width;
-    @XmlAttribute(name = "height", required = true)
-    protected int height;
-    @XmlAttribute(name = "visible")
-    protected Integer visible;
+	@XmlElement(required = true)
+	protected TmxProperties properties;
+	@XmlAttribute(name = "name", required = true)
+	protected String name;
+	@XmlAttribute(name = "opacity")
+	protected Float opacity;
+	@XmlAttribute(name = "width", required = true)
+	protected int width;
+	@XmlAttribute(name = "height", required = true)
+	protected int height;
+	@XmlAttribute(name = "visible")
+	protected Integer visible;
 
-    /**
-     * Gets the value of the properties property.
-     * 
-     * @return possible object is {@link TmxProperties }
-     * 
-     */
-    public TmxProperties getProperties() {
-        return properties;
-    }
+	/**
+	 * Gets the value of the properties property.
+	 * 
+	 * @return possible object is {@link TmxProperties }
+	 * 
+	 */
+	public TmxProperties getProperties() {
+		return properties;
+	}
 
-    /**
-     * Sets the value of the properties property.
-     * 
-     * @param value
-     *            allowed object is {@link TmxProperties }
-     * 
-     */
-    public void setProperties(TmxProperties value) {
-        this.properties = value;
-    }
+	/**
+	 * Sets the value of the properties property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link TmxProperties }
+	 * 
+	 */
+	public void setProperties(TmxProperties value) {
+		this.properties = value;
+	}
 
-    /**
-     * Gets the value of the name property.
-     * 
-     * @return possible object is {@link String }
-     * 
-     */
-    public String getName() {
-        return name;
-    }
+	/**
+	 * Gets the value of the name property.
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
+	public String getName() {
+		return name;
+	}
 
-    /**
-     * Sets the value of the name property.
-     * 
-     * @param value
-     *            allowed object is {@link String }
-     * 
-     */
-    public void setName(String value) {
-        this.name = value;
-    }
+	/**
+	 * Sets the value of the name property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link String }
+	 * 
+	 */
+	public void setName(String value) {
+		this.name = value;
+	}
 
-    /**
-     * Gets the value of the opacity property.
-     * 
-     * @return possible object is {@link Float }
-     * 
-     */
-    public Float getOpacity() {
-        return opacity;
-    }
+	/**
+	 * Gets the value of the opacity property.
+	 * 
+	 * @return possible object is {@link Float }
+	 * 
+	 */
+	public Float getOpacity() {
+		return opacity;
+	}
 
-    /**
-     * Sets the value of the opacity property.
-     * 
-     * @param value
-     *            allowed object is {@link Float }
-     * 
-     */
-    public void setOpacity(Float value) {
-        this.opacity = value;
-    }
+	/**
+	 * Sets the value of the opacity property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link Float }
+	 * 
+	 */
+	public void setOpacity(Float value) {
+		this.opacity = value;
+	}
 
-    /**
-     * Gets the value of the width property.
-     * 
-     */
-    public int getWidth() {
-        return width;
-    }
+	/**
+	 * Gets the value of the width property.
+	 * 
+	 */
+	public int getWidth() {
+		return width;
+	}
 
-    /**
-     * Sets the value of the width property.
-     * 
-     */
-    public void setWidth(int value) {
-        this.width = value;
-    }
+	/**
+	 * Sets the value of the width property.
+	 * 
+	 */
+	public void setWidth(int value) {
+		this.width = value;
+	}
 
-    /**
-     * Gets the value of the height property.
-     * 
-     */
-    public int getHeight() {
-        return height;
-    }
+	/**
+	 * Gets the value of the height property.
+	 * 
+	 */
+	public int getHeight() {
+		return height;
+	}
 
-    /**
-     * Sets the value of the height property.
-     * 
-     */
-    public void setHeight(int value) {
-        this.height = value;
-    }
+	/**
+	 * Sets the value of the height property.
+	 * 
+	 */
+	public void setHeight(int value) {
+		this.height = value;
+	}
 
-    /**
-     * Gets the value of the visible property.
-     * 
-     * @return possible object is {@link Integer }
-     * 
-     */
-    public Integer getVisible() {
-        return visible;
-    }
+	/**
+	 * Gets the value of the visible property.
+	 * 
+	 * @return possible object is {@link Integer }
+	 * 
+	 */
+	public Integer getVisible() {
+		return visible;
+	}
 
-    /**
-     * Sets the value of the visible property.
-     * 
-     * @param value
-     *            allowed object is {@link Integer }
-     * 
-     */
-    public void setVisible(Integer value) {
-        this.visible = value;
-    }
+	/**
+	 * Sets the value of the visible property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link Integer }
+	 * 
+	 */
+	public void setVisible(Integer value) {
+		this.visible = value;
+	}
 
 }

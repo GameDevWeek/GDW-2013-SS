@@ -11,37 +11,37 @@ import de.fhtrier.gdw.commons.jackson.JacksonList;
  */
 public class JacksonObjectExample {
 
-    public String name;
-    public Integer age;
-    public Float progress;
-    public Boolean master;
-    public Gender gender;
-    @JacksonList(Course.class)
-    public List<Course> courses;
-    @JacksonList(String.class)
-    public List<String> tags;
+	public String name;
+	public Integer age;
+	public Float progress;
+	public Boolean master;
+	public Gender gender;
+	@JacksonList(Course.class)
+	public List<Course> courses;
+	@JacksonList(String.class)
+	public List<String> tags;
 
-    public static class Course {
+	public static class Course {
 
-        public Course() {
-        }
+		public Course() {
+		}
 
-        public Course(String name, int tries) {
-            this.name = name;
-            this.tries = tries;
-        }
+		public Course(String name, int tries) {
+			this.name = name;
+			this.tries = tries;
+		}
 
-        public String name;
-        public Integer tries;
-    }
+		public String name;
+		public Integer tries;
+	}
 
-    public static enum Gender {
+	public static enum Gender {
 
-        MALE, FEMALE;
+		MALE, FEMALE;
 
-        @Override
-        public String toString() {
-            return name().toLowerCase();
-        }
-    }
+		@Override
+		public String toString() {
+			return name().toLowerCase();
+		}
+	}
 }

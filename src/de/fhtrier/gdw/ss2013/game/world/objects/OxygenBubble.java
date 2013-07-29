@@ -15,36 +15,36 @@ import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 
 public class OxygenBubble extends Entity {
 
-    private float oxygenLevel;
+	private float oxygenLevel;
 
-    // Standard-Konstruktor
-    public OxygenBubble(Vector2f position) {
-        super(position);
-        // Default
-        oxygenLevel = 0;
-    }
+	// Standard-Konstruktor
+	public OxygenBubble(Vector2f position) {
+		super(position);
+		// Default
+		oxygenLevel = 0;
+	}
 
-    public OxygenBubble(Vector2f position, float oxygenLevel) {
-        super(position.copy());
-        this.oxygenLevel = oxygenLevel;
-    }
+	public OxygenBubble(Vector2f position, float oxygenLevel) {
+		super(position.copy());
+		this.oxygenLevel = oxygenLevel;
+	}
 
-    public void collected(Astronaut astro) {
-        float currentOxygen = astro.getOxygen();
-        if (currentOxygen + oxygenLevel < astro.getMaxOxygen()) {
-            astro.setOxygen(currentOxygen + oxygenLevel);
-        } else {
-            astro.setOxygen(astro.getMaxOxygen());
-        }
+	public void collected(Astronaut astro) {
+		float currentOxygen = astro.getOxygen();
+		if (currentOxygen + oxygenLevel < astro.getMaxOxygen()) {
+			astro.setOxygen(currentOxygen + oxygenLevel);
+		} else {
+			astro.setOxygen(astro.getMaxOxygen());
+		}
 
-    }
+	}
 
-    public float getOxygenLevel() {
-        return oxygenLevel;
-    }
+	public float getOxygenLevel() {
+		return oxygenLevel;
+	}
 
-    public void setOxygenLevel(float oxygenLevel) {
-        this.oxygenLevel = oxygenLevel;
-    }
+	public void setOxygenLevel(float oxygenLevel) {
+		this.oxygenLevel = oxygenLevel;
+	}
 
 }

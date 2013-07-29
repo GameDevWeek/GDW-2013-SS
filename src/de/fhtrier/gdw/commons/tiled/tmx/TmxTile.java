@@ -41,74 +41,74 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "tmxTile", propOrder = { "properties" })
 public class TmxTile {
 
-    @XmlElement(required = true)
-    protected TmxProperties properties;
-    @XmlAttribute(name = "id")
-    protected Integer id;
-    @XmlAttribute(name = "gid")
-    protected Integer gid;
+	@XmlElement(required = true)
+	protected TmxProperties properties;
+	@XmlAttribute(name = "id")
+	protected Integer id;
+	@XmlAttribute(name = "gid")
+	protected Integer gid;
 
-    /**
-     * Gets the value of the properties property.
-     * 
-     * @return possible object is {@link TmxProperties }
-     * 
-     */
-    public TmxProperties getProperties() {
-        return properties;
-    }
+	/**
+	 * Gets the value of the properties property.
+	 * 
+	 * @return possible object is {@link TmxProperties }
+	 * 
+	 */
+	public TmxProperties getProperties() {
+		return properties;
+	}
 
-    /**
-     * Sets the value of the properties property.
-     * 
-     * @param value
-     *            allowed object is {@link TmxProperties }
-     * 
-     */
-    public void setProperties(TmxProperties value) {
-        this.properties = value;
-    }
+	/**
+	 * Sets the value of the properties property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link TmxProperties }
+	 * 
+	 */
+	public void setProperties(TmxProperties value) {
+		this.properties = value;
+	}
 
-    /**
-     * Gets the value of the id property.
-     * 
-     * @return possible object is {@link Integer }
-     * 
-     */
-    public Integer getId() {
-        return id;
-    }
+	/**
+	 * Gets the value of the id property.
+	 * 
+	 * @return possible object is {@link Integer }
+	 * 
+	 */
+	public Integer getId() {
+		return id;
+	}
 
-    /**
-     * Sets the value of the id property.
-     * 
-     * @param value
-     *            allowed object is {@link Integer }
-     * 
-     */
-    public void setId(Integer value) {
-        this.id = value;
-    }
+	/**
+	 * Sets the value of the id property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link Integer }
+	 * 
+	 */
+	public void setId(Integer value) {
+		this.id = value;
+	}
 
-    /**
-     * Gets the value of the gid property.
-     * 
-     * @return possible object is {@link Integer }
-     * 
-     */
-    public Integer getGid() {
-        return gid;
-    }
+	/**
+	 * Gets the value of the gid property.
+	 * 
+	 * @return possible object is {@link Integer }
+	 * 
+	 */
+	public Integer getGid() {
+		return gid;
+	}
 
-    /**
-     * Sets the value of the gid property.
-     * 
-     * @param value
-     *            allowed object is {@link Integer }
-     * 
-     */
-    public void setGid(Integer value) {
-        this.gid = value;
-    }
+	/**
+	 * Sets the value of the gid property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link Integer }
+	 * 
+	 */
+	public void setGid(Integer value) {
+		this.gid = value;
+	}
 
 }

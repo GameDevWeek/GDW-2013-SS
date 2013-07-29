@@ -38,28 +38,28 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "tmxLayer", propOrder = { "data" })
 public class TmxLayer extends TmxLayerBase {
 
-    @XmlElement(required = true)
-    protected TmxData data;
+	@XmlElement(required = true)
+	protected TmxData data;
 
-    /**
-     * Gets the value of the data property.
-     * 
-     * @return possible object is {@link TmxData }
-     * 
-     */
-    public TmxData getData() {
-        return data;
-    }
+	/**
+	 * Gets the value of the data property.
+	 * 
+	 * @return possible object is {@link TmxData }
+	 * 
+	 */
+	public TmxData getData() {
+		return data;
+	}
 
-    /**
-     * Sets the value of the data property.
-     * 
-     * @param value
-     *            allowed object is {@link TmxData }
-     * 
-     */
-    public void setData(TmxData value) {
-        this.data = value;
-    }
+	/**
+	 * Sets the value of the data property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link TmxData }
+	 * 
+	 */
+	public void setData(TmxData value) {
+		this.data = value;
+	}
 
 }

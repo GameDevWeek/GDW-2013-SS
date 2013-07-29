@@ -26,142 +26,142 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _Tileset_QNAME = new QName("", "tileset");
-    private final static QName _Map_QNAME = new QName("", "map");
-    private final static QName _TmxDataTile_QNAME = new QName("", "tile");
+	private final static QName _Tileset_QNAME = new QName("", "tileset");
+	private final static QName _Map_QNAME = new QName("", "map");
+	private final static QName _TmxDataTile_QNAME = new QName("", "tile");
 
-    /**
-     * Create a new ObjectFactory that can be used to create new instances of
-     * schema derived classes for package: de.fhtrier.gdw.commons.tiled.tmx
-     * 
-     */
-    public ObjectFactory() {
-    }
+	/**
+	 * Create a new ObjectFactory that can be used to create new instances of
+	 * schema derived classes for package: de.fhtrier.gdw.commons.tiled.tmx
+	 * 
+	 */
+	public ObjectFactory() {
+	}
 
-    /**
-     * Create an instance of {@link TmxTileSet }
-     * 
-     */
-    public TmxTileSet createTmxTileSet() {
-        return new TmxTileSet();
-    }
+	/**
+	 * Create an instance of {@link TmxTileSet }
+	 * 
+	 */
+	public TmxTileSet createTmxTileSet() {
+		return new TmxTileSet();
+	}
 
-    /**
-     * Create an instance of {@link TmxMap }
-     * 
-     */
-    public TmxMap createTmxMap() {
-        return new TmxMap();
-    }
+	/**
+	 * Create an instance of {@link TmxMap }
+	 * 
+	 */
+	public TmxMap createTmxMap() {
+		return new TmxMap();
+	}
 
-    /**
-     * Create an instance of {@link TmxObject }
-     * 
-     */
-    public TmxObject createTmxObject() {
-        return new TmxObject();
-    }
+	/**
+	 * Create an instance of {@link TmxObject }
+	 * 
+	 */
+	public TmxObject createTmxObject() {
+		return new TmxObject();
+	}
 
-    /**
-     * Create an instance of {@link TmxData }
-     * 
-     */
-    public TmxData createTmxData() {
-        return new TmxData();
-    }
+	/**
+	 * Create an instance of {@link TmxData }
+	 * 
+	 */
+	public TmxData createTmxData() {
+		return new TmxData();
+	}
 
-    /**
-     * Create an instance of {@link TmxProperties }
-     * 
-     */
-    public TmxProperties createTmxProperties() {
-        return new TmxProperties();
-    }
+	/**
+	 * Create an instance of {@link TmxProperties }
+	 * 
+	 */
+	public TmxProperties createTmxProperties() {
+		return new TmxProperties();
+	}
 
-    /**
-     * Create an instance of {@link TmxPointList }
-     * 
-     */
-    public TmxPointList createTmxPointList() {
-        return new TmxPointList();
-    }
+	/**
+	 * Create an instance of {@link TmxPointList }
+	 * 
+	 */
+	public TmxPointList createTmxPointList() {
+		return new TmxPointList();
+	}
 
-    /**
-     * Create an instance of {@link TmxObjectGroup }
-     * 
-     */
-    public TmxObjectGroup createTmxObjectGroup() {
-        return new TmxObjectGroup();
-    }
+	/**
+	 * Create an instance of {@link TmxObjectGroup }
+	 * 
+	 */
+	public TmxObjectGroup createTmxObjectGroup() {
+		return new TmxObjectGroup();
+	}
 
-    /**
-     * Create an instance of {@link TmxLayer }
-     * 
-     */
-    public TmxLayer createTmxLayer() {
-        return new TmxLayer();
-    }
+	/**
+	 * Create an instance of {@link TmxLayer }
+	 * 
+	 */
+	public TmxLayer createTmxLayer() {
+		return new TmxLayer();
+	}
 
-    /**
-     * Create an instance of {@link TmxImage }
-     * 
-     */
-    public TmxImage createTmxImage() {
-        return new TmxImage();
-    }
+	/**
+	 * Create an instance of {@link TmxImage }
+	 * 
+	 */
+	public TmxImage createTmxImage() {
+		return new TmxImage();
+	}
 
-    /**
-     * Create an instance of {@link TmxTile }
-     * 
-     */
-    public TmxTile createTmxTile() {
-        return new TmxTile();
-    }
+	/**
+	 * Create an instance of {@link TmxTile }
+	 * 
+	 */
+	public TmxTile createTmxTile() {
+		return new TmxTile();
+	}
 
-    /**
-     * Create an instance of {@link TmxProperty }
-     * 
-     */
-    public TmxProperty createTmxProperty() {
-        return new TmxProperty();
-    }
+	/**
+	 * Create an instance of {@link TmxProperty }
+	 * 
+	 */
+	public TmxProperty createTmxProperty() {
+		return new TmxProperty();
+	}
 
-    /**
-     * Create an instance of {@link TmxLayerBase }
-     * 
-     */
-    public TmxLayerBase createTmxLayerBase() {
-        return new TmxLayerBase();
-    }
+	/**
+	 * Create an instance of {@link TmxLayerBase }
+	 * 
+	 */
+	public TmxLayerBase createTmxLayerBase() {
+		return new TmxLayerBase();
+	}
 
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link TmxTileSet }
-     * {@code >}
-     * 
-     */
-    @XmlElementDecl(namespace = "", name = "tileset")
-    public JAXBElement<TmxTileSet> createTileset(TmxTileSet value) {
-        return new JAXBElement<TmxTileSet>(_Tileset_QNAME, TmxTileSet.class,
-                null, value);
-    }
+	/**
+	 * Create an instance of {@link JAXBElement }{@code <}{@link TmxTileSet }
+	 * {@code >}
+	 * 
+	 */
+	@XmlElementDecl(namespace = "", name = "tileset")
+	public JAXBElement<TmxTileSet> createTileset(TmxTileSet value) {
+		return new JAXBElement<TmxTileSet>(_Tileset_QNAME, TmxTileSet.class,
+				null, value);
+	}
 
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link TmxMap }{@code >}
-     * 
-     */
-    @XmlElementDecl(namespace = "", name = "map")
-    public JAXBElement<TmxMap> createMap(TmxMap value) {
-        return new JAXBElement<TmxMap>(_Map_QNAME, TmxMap.class, null, value);
-    }
+	/**
+	 * Create an instance of {@link JAXBElement }{@code <}{@link TmxMap }{@code >}
+	 * 
+	 */
+	@XmlElementDecl(namespace = "", name = "map")
+	public JAXBElement<TmxMap> createMap(TmxMap value) {
+		return new JAXBElement<TmxMap>(_Map_QNAME, TmxMap.class, null, value);
+	}
 
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link TmxTile }{@code >}
-     * 
-     */
-    @XmlElementDecl(namespace = "", name = "tile", scope = TmxData.class)
-    public JAXBElement<TmxTile> createTmxDataTile(TmxTile value) {
-        return new JAXBElement<TmxTile>(_TmxDataTile_QNAME, TmxTile.class,
-                TmxData.class, value);
-    }
+	/**
+	 * Create an instance of {@link JAXBElement }{@code <}{@link TmxTile }{@code >}
+	 * 
+	 */
+	@XmlElementDecl(namespace = "", name = "tile", scope = TmxData.class)
+	public JAXBElement<TmxTile> createTmxDataTile(TmxTile value) {
+		return new JAXBElement<TmxTile>(_TmxDataTile_QNAME, TmxTile.class,
+				TmxData.class, value);
+	}
 
 }

@@ -9,7 +9,7 @@ import java.io.InputStream;
  */
 public interface IResourceLocator {
 
-    InputStream locateResource(String filename) throws FileNotFoundException;
+	InputStream locateResource(String filename) throws FileNotFoundException;
 
-    String combinePaths(String parent, String filename);
+	String combinePaths(String parent, String filename);
 }

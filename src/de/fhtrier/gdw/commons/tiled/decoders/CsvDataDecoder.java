@@ -9,22 +9,22 @@ import java.io.IOException;
  */
 public class CsvDataDecoder implements IDataDecoder {
 
-    private final String[] values;
-    private int index;
+	private final String[] values;
+	private int index;
 
-    public CsvDataDecoder(String cdata) throws IOException, Exception {
-        values = cdata.split(",");
-    }
+	public CsvDataDecoder(String cdata) throws IOException, Exception {
+		values = cdata.split(",");
+	}
 
-    @Override
-    public int getNextId() throws Exception {
-        if (index == values.length) {
-            throw new Exception("No more ids in list");
-        }
-        return Integer.parseInt(values[index++].trim());
-    }
+	@Override
+	public int getNextId() throws Exception {
+		if (index == values.length) {
+			throw new Exception("No more ids in list");
+		}
+		return Integer.parseInt(values[index++].trim());
+	}
 
-    @Override
-    public void close() throws IOException {
-    }
+	@Override
+	public void close() throws IOException {
+	}
 }

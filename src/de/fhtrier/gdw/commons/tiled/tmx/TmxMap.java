@@ -52,214 +52,214 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "tmxMap", propOrder = { "properties", "tileset",
-        "layerOrObjectgroup" })
+		"layerOrObjectgroup" })
 public class TmxMap {
 
-    @XmlElement(required = true)
-    protected TmxProperties properties;
-    @XmlElement(required = true)
-    protected List<TmxTileSet> tileset;
-    @XmlElements({ @XmlElement(name = "layer", type = TmxLayer.class),
-            @XmlElement(name = "objectgroup", type = TmxObjectGroup.class) })
-    protected List<TmxLayerBase> layerOrObjectgroup;
-    @XmlAttribute(name = "version", required = true)
-    protected String version;
-    @XmlAttribute(name = "orientation", required = true)
-    protected String orientation;
-    @XmlAttribute(name = "width", required = true)
-    protected int width;
-    @XmlAttribute(name = "height", required = true)
-    protected int height;
-    @XmlAttribute(name = "tilewidth", required = true)
-    protected int tilewidth;
-    @XmlAttribute(name = "tileheight", required = true)
-    protected int tileheight;
+	@XmlElement(required = true)
+	protected TmxProperties properties;
+	@XmlElement(required = true)
+	protected List<TmxTileSet> tileset;
+	@XmlElements({ @XmlElement(name = "layer", type = TmxLayer.class),
+			@XmlElement(name = "objectgroup", type = TmxObjectGroup.class) })
+	protected List<TmxLayerBase> layerOrObjectgroup;
+	@XmlAttribute(name = "version", required = true)
+	protected String version;
+	@XmlAttribute(name = "orientation", required = true)
+	protected String orientation;
+	@XmlAttribute(name = "width", required = true)
+	protected int width;
+	@XmlAttribute(name = "height", required = true)
+	protected int height;
+	@XmlAttribute(name = "tilewidth", required = true)
+	protected int tilewidth;
+	@XmlAttribute(name = "tileheight", required = true)
+	protected int tileheight;
 
-    /**
-     * Gets the value of the properties property.
-     * 
-     * @return possible object is {@link TmxProperties }
-     * 
-     */
-    public TmxProperties getProperties() {
-        return properties;
-    }
+	/**
+	 * Gets the value of the properties property.
+	 * 
+	 * @return possible object is {@link TmxProperties }
+	 * 
+	 */
+	public TmxProperties getProperties() {
+		return properties;
+	}
 
-    /**
-     * Sets the value of the properties property.
-     * 
-     * @param value
-     *            allowed object is {@link TmxProperties }
-     * 
-     */
-    public void setProperties(TmxProperties value) {
-        this.properties = value;
-    }
+	/**
+	 * Sets the value of the properties property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link TmxProperties }
+	 * 
+	 */
+	public void setProperties(TmxProperties value) {
+		this.properties = value;
+	}
 
-    /**
-     * Gets the value of the tileset property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list, not a
-     * snapshot. Therefore any modification you make to the returned list will
-     * be present inside the JAXB object. This is why there is not a
-     * <CODE>set</CODE> method for the tileset property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * 
-     * <pre>
-     * getTileset().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link TmxTileSet }
-     * 
-     * 
-     */
-    public List<TmxTileSet> getTileset() {
-        if (tileset == null) {
-            tileset = new ArrayList<TmxTileSet>();
-        }
-        return this.tileset;
-    }
+	/**
+	 * Gets the value of the tileset property.
+	 * 
+	 * <p>
+	 * This accessor method returns a reference to the live list, not a
+	 * snapshot. Therefore any modification you make to the returned list will
+	 * be present inside the JAXB object. This is why there is not a
+	 * <CODE>set</CODE> method for the tileset property.
+	 * 
+	 * <p>
+	 * For example, to add a new item, do as follows:
+	 * 
+	 * <pre>
+	 * getTileset().add(newItem);
+	 * </pre>
+	 * 
+	 * 
+	 * <p>
+	 * Objects of the following type(s) are allowed in the list
+	 * {@link TmxTileSet }
+	 * 
+	 * 
+	 */
+	public List<TmxTileSet> getTileset() {
+		if (tileset == null) {
+			tileset = new ArrayList<TmxTileSet>();
+		}
+		return this.tileset;
+	}
 
-    /**
-     * Gets the value of the layerOrObjectgroup property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list, not a
-     * snapshot. Therefore any modification you make to the returned list will
-     * be present inside the JAXB object. This is why there is not a
-     * <CODE>set</CODE> method for the layerOrObjectgroup property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * 
-     * <pre>
-     * getLayerOrObjectgroup().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list {@link TmxLayer }
-     * {@link TmxObjectGroup }
-     * 
-     * 
-     */
-    public List<TmxLayerBase> getLayerOrObjectgroup() {
-        if (layerOrObjectgroup == null) {
-            layerOrObjectgroup = new ArrayList<TmxLayerBase>();
-        }
-        return this.layerOrObjectgroup;
-    }
+	/**
+	 * Gets the value of the layerOrObjectgroup property.
+	 * 
+	 * <p>
+	 * This accessor method returns a reference to the live list, not a
+	 * snapshot. Therefore any modification you make to the returned list will
+	 * be present inside the JAXB object. This is why there is not a
+	 * <CODE>set</CODE> method for the layerOrObjectgroup property.
+	 * 
+	 * <p>
+	 * For example, to add a new item, do as follows:
+	 * 
+	 * <pre>
+	 * getLayerOrObjectgroup().add(newItem);
+	 * </pre>
+	 * 
+	 * 
+	 * <p>
+	 * Objects of the following type(s) are allowed in the list {@link TmxLayer }
+	 * {@link TmxObjectGroup }
+	 * 
+	 * 
+	 */
+	public List<TmxLayerBase> getLayerOrObjectgroup() {
+		if (layerOrObjectgroup == null) {
+			layerOrObjectgroup = new ArrayList<TmxLayerBase>();
+		}
+		return this.layerOrObjectgroup;
+	}
 
-    /**
-     * Gets the value of the version property.
-     * 
-     * @return possible object is {@link String }
-     * 
-     */
-    public String getVersion() {
-        return version;
-    }
+	/**
+	 * Gets the value of the version property.
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
+	public String getVersion() {
+		return version;
+	}
 
-    /**
-     * Sets the value of the version property.
-     * 
-     * @param value
-     *            allowed object is {@link String }
-     * 
-     */
-    public void setVersion(String value) {
-        this.version = value;
-    }
+	/**
+	 * Sets the value of the version property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link String }
+	 * 
+	 */
+	public void setVersion(String value) {
+		this.version = value;
+	}
 
-    /**
-     * Gets the value of the orientation property.
-     * 
-     * @return possible object is {@link String }
-     * 
-     */
-    public String getOrientation() {
-        return orientation;
-    }
+	/**
+	 * Gets the value of the orientation property.
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
+	public String getOrientation() {
+		return orientation;
+	}
 
-    /**
-     * Sets the value of the orientation property.
-     * 
-     * @param value
-     *            allowed object is {@link String }
-     * 
-     */
-    public void setOrientation(String value) {
-        this.orientation = value;
-    }
+	/**
+	 * Sets the value of the orientation property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link String }
+	 * 
+	 */
+	public void setOrientation(String value) {
+		this.orientation = value;
+	}
 
-    /**
-     * Gets the value of the width property.
-     * 
-     */
-    public int getWidth() {
-        return width;
-    }
+	/**
+	 * Gets the value of the width property.
+	 * 
+	 */
+	public int getWidth() {
+		return width;
+	}
 
-    /**
-     * Sets the value of the width property.
-     * 
-     */
-    public void setWidth(int value) {
-        this.width = value;
-    }
+	/**
+	 * Sets the value of the width property.
+	 * 
+	 */
+	public void setWidth(int value) {
+		this.width = value;
+	}
 
-    /**
-     * Gets the value of the height property.
-     * 
-     */
-    public int getHeight() {
-        return height;
-    }
+	/**
+	 * Gets the value of the height property.
+	 * 
+	 */
+	public int getHeight() {
+		return height;
+	}
 
-    /**
-     * Sets the value of the height property.
-     * 
-     */
-    public void setHeight(int value) {
-        this.height = value;
-    }
+	/**
+	 * Sets the value of the height property.
+	 * 
+	 */
+	public void setHeight(int value) {
+		this.height = value;
+	}
 
-    /**
-     * Gets the value of the tilewidth property.
-     * 
-     */
-    public int getTilewidth() {
-        return tilewidth;
-    }
+	/**
+	 * Gets the value of the tilewidth property.
+	 * 
+	 */
+	public int getTilewidth() {
+		return tilewidth;
+	}
 
-    /**
-     * Sets the value of the tilewidth property.
-     * 
-     */
-    public void setTilewidth(int value) {
-        this.tilewidth = value;
-    }
+	/**
+	 * Sets the value of the tilewidth property.
+	 * 
+	 */
+	public void setTilewidth(int value) {
+		this.tilewidth = value;
+	}
 
-    /**
-     * Gets the value of the tileheight property.
-     * 
-     */
-    public int getTileheight() {
-        return tileheight;
-    }
+	/**
+	 * Gets the value of the tileheight property.
+	 * 
+	 */
+	public int getTileheight() {
+		return tileheight;
+	}
 
-    /**
-     * Sets the value of the tileheight property.
-     * 
-     */
-    public void setTileheight(int value) {
-        this.tileheight = value;
-    }
+	/**
+	 * Sets the value of the tileheight property.
+	 * 
+	 */
+	public void setTileheight(int value) {
+		this.tileheight = value;
+	}
 
 }

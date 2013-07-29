@@ -14,5 +14,5 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 public @interface JacksonList {
 
-    Class<?> value();
+	Class<?> value();
 }

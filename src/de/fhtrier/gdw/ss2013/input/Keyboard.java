@@ -3,8 +3,6 @@ package de.fhtrier.gdw.ss2013.input;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;
 
-
-
 /*
  * Team Input
  * Dennis, Valentin
@@ -13,35 +11,29 @@ import org.newdawn.slick.Input;
 
 public class Keyboard extends InputDevice {
 
-    public Keyboard(GameContainer gc) {
-        super(gc);
-    }
-    
-    
-    @Override
-    public void update() {
-        
-        if(container.getInput().isKeyDown(Input.KEY_D))
-        {
-            //astronautListener.moveForward();
-        }
-        
-        else if (container.getInput().isKeyDown(Input.KEY_A))
-        {
-            //astronautListener.moveBackward();
-        }
-        
-        else if (container.getInput().isKeyPressed(Input.KEY_SPACE))
-        {
-            //astronautListener.jump();
-        }
-        
-        else if (container.getInput().isKeyPressed(Input.KEY_E))
-        {
-            //astronautListener.action();
-        }
-        
+	public Keyboard(GameContainer gc) {
+		super(gc);
+	}
 
-    }
+	@Override
+	public void update() {
+
+		if (container.getInput().isKeyDown(Input.KEY_D)) {
+			// astronautListener.moveForward();
+		}
+
+		else if (container.getInput().isKeyDown(Input.KEY_A)) {
+			// astronautListener.moveBackward();
+		}
+
+		else if (container.getInput().isKeyPressed(Input.KEY_SPACE)) {
+			// astronautListener.jump();
+		}
+
+		else if (container.getInput().isKeyPressed(Input.KEY_E)) {
+			// astronautListener.action();
+		}
+
+	}
 
 }

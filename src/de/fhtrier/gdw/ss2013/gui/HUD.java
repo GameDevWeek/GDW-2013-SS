@@ -12,80 +12,75 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class HUD {
 
-    private Progressbar healthbar;
-    private Crosshair crosshair;
-    private Annotation notation;
-    private AbilitySelection abilityWheel;
-    private Image test;
-    private Quickselect quickselect;
-   
+	private Progressbar healthbar;
+	private Crosshair crosshair;
+	private Annotation notation;
+	private AbilitySelection abilityWheel;
+	private Image test;
+	private Quickselect quickselect;
 
+	public HUD(GameContainer container) throws SlickException {
+		// Init healthbar
 
-    public HUD(GameContainer container) throws SlickException {
-        // Init healthbar
+		healthbar = new Progressbar();
 
-        healthbar = new Progressbar();
+		final Vector2f position = new Vector2f(10, 10);
+		final Vector2f size = new Vector2f(240, 40);
+		final int cornerradius = 5;
 
-        final Vector2f position = new Vector2f(10, 10);
-        final Vector2f size = new Vector2f(240, 40);
-        final int cornerradius = 5;
+		final String imagePath = "/res/Dummy_GUIs_Images/";
 
-        final String imagePath = "/res/Dummy_GUIs_Images/";
+		try {
+			final Image frame = new Image(imagePath + "frame.png");
+			final Image background = new Image(imagePath + "background.png");
+			final Image bar = new Image(imagePath + "bar.png");
+			healthbar
+					.init(position, size, cornerradius, frame, background, bar);
+		} catch (SlickException e) {
 
-        try {
-            final Image frame = new Image(imagePath + "frame.png");
-            final Image background = new Image(imagePath + "background.png");
-            final Image bar = new Image(imagePath + "bar.png");
-            healthbar
-                    .init(position, size, cornerradius, frame, background, bar);
-        } catch (SlickException e) {
+			e.printStackTrace();
+		}
 
-            e.printStackTrace();
-        }
+		// Init abilityWheel
 
-        // Init abilityWheel
+		abilityWheel = new AbilitySelection();
 
-        abilityWheel = new AbilitySelection();
+		position.set(20, 20);
 
-        position.set(20, 20);
+		try {
+			final Image ability1 = new Image(imagePath + "ability1.png");
+			final Image ability2 = new Image(imagePath + "ability2.png");
+			final Image ability3 = new Image(imagePath + "ability3.png");
+			abilityWheel.init(ability1, ability2, ability3, position);
+		} catch (SlickException e) {
+			e.printStackTrace();
+		}
+		final Image ability1 = new Image(imagePath + "ability1.png");
+		final Image ability2 = new Image(imagePath + "ability2.png");
+		final Image ability3 = new Image(imagePath + "ability3.png");
+		abilityWheel.init(ability1, ability2, ability3, position);
 
-        try {
-            final Image ability1 = new Image(imagePath + "ability1.png");
-            final Image ability2 = new Image(imagePath + "ability2.png");
-            final Image ability3 = new Image(imagePath + "ability3.png");
-            abilityWheel.init(ability1, ability2, ability3, position);
-        } catch (SlickException e) {
-            e.printStackTrace();
-        }
-        final Image ability1 = new Image(imagePath + "ability1.png");
-        final Image ability2 = new Image(imagePath + "ability2.png");
-        final Image ability3 = new Image(imagePath + "ability3.png");
-        abilityWheel.init(ability1, ability2, ability3, position);
+		// Init quickselect
+		quickselect = new Quickselect();
+		final int selected = 1;
+		final int countdown_start = 500;
+		quickselect.init(ability1, ability2, ability3, selected,
+				countdown_start);
 
-        
-        //Init quickselect
-        quickselect = new Quickselect();
-        final int selected = 1;
-        final int countdown_start = 500;
-        quickselect.init(ability1, ability2, ability3,selected,countdown_start);
+		// DEV
+		quickselect.setSelected(2);
 
-        
-        
-        //DEV
-        quickselect.setSelected(2);
-        
+	}
 
-    }
+	public void update(GameContainer container, StateBasedGame game, int delta) {
 
-    public void update(GameContainer container, StateBasedGame game, int delta) {
+		healthbar.update(container, game, delta);
+		quickselect.update(container, game, delta);
+	}
 
-        healthbar.update(container, game, delta);
-        quickselect.update(container, game, delta);
-    }
-
-    public void render(GameContainer container, StateBasedGame game, Graphics g) {
-        healthbar.render(container, game, g);
-        abilityWheel.render(container, game, g);
-        quickselect.render(container, game, g);
-    }
+	public void render(GameContainer container, StateBasedGame game, Graphics g) {
+		healthbar.render(container, game, g);
+		abilityWheel.render(container, game, g);
+		quickselect.render(container, game, g);
+	}
 }

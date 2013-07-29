@@ -47,84 +47,84 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "tmxData", propOrder = { "content" })
 public class TmxData {
 
-    @XmlElementRef(name = "tile", type = JAXBElement.class)
-    @XmlMixed
-    protected List<Serializable> content;
-    @XmlAttribute(name = "encoding")
-    protected String encoding;
-    @XmlAttribute(name = "compression")
-    protected String compression;
+	@XmlElementRef(name = "tile", type = JAXBElement.class)
+	@XmlMixed
+	protected List<Serializable> content;
+	@XmlAttribute(name = "encoding")
+	protected String encoding;
+	@XmlAttribute(name = "compression")
+	protected String compression;
 
-    /**
-     * Gets the value of the content property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list, not a
-     * snapshot. Therefore any modification you make to the returned list will
-     * be present inside the JAXB object. This is why there is not a
-     * <CODE>set</CODE> method for the content property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * 
-     * <pre>
-     * getContent().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link JAXBElement }{@code <}{@link TmxTile }{@code >} {@link String }
-     * 
-     * 
-     */
-    public List<Serializable> getContent() {
-        if (content == null) {
-            content = new ArrayList<Serializable>();
-        }
-        return this.content;
-    }
+	/**
+	 * Gets the value of the content property.
+	 * 
+	 * <p>
+	 * This accessor method returns a reference to the live list, not a
+	 * snapshot. Therefore any modification you make to the returned list will
+	 * be present inside the JAXB object. This is why there is not a
+	 * <CODE>set</CODE> method for the content property.
+	 * 
+	 * <p>
+	 * For example, to add a new item, do as follows:
+	 * 
+	 * <pre>
+	 * getContent().add(newItem);
+	 * </pre>
+	 * 
+	 * 
+	 * <p>
+	 * Objects of the following type(s) are allowed in the list
+	 * {@link JAXBElement }{@code <}{@link TmxTile }{@code >} {@link String }
+	 * 
+	 * 
+	 */
+	public List<Serializable> getContent() {
+		if (content == null) {
+			content = new ArrayList<Serializable>();
+		}
+		return this.content;
+	}
 
-    /**
-     * Gets the value of the encoding property.
-     * 
-     * @return possible object is {@link String }
-     * 
-     */
-    public String getEncoding() {
-        return encoding;
-    }
+	/**
+	 * Gets the value of the encoding property.
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
+	public String getEncoding() {
+		return encoding;
+	}
 
-    /**
-     * Sets the value of the encoding property.
-     * 
-     * @param value
-     *            allowed object is {@link String }
-     * 
-     */
-    public void setEncoding(String value) {
-        this.encoding = value;
-    }
+	/**
+	 * Sets the value of the encoding property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link String }
+	 * 
+	 */
+	public void setEncoding(String value) {
+		this.encoding = value;
+	}
 
-    /**
-     * Gets the value of the compression property.
-     * 
-     * @return possible object is {@link String }
-     * 
-     */
-    public String getCompression() {
-        return compression;
-    }
+	/**
+	 * Gets the value of the compression property.
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
+	public String getCompression() {
+		return compression;
+	}
 
-    /**
-     * Sets the value of the compression property.
-     * 
-     * @param value
-     *            allowed object is {@link String }
-     * 
-     */
-    public void setCompression(String value) {
-        this.compression = value;
-    }
+	/**
+	 * Sets the value of the compression property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link String }
+	 * 
+	 */
+	public void setCompression(String value) {
+		this.compression = value;
+	}
 
 }

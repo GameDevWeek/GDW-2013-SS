@@ -10,46 +10,46 @@ import java.nio.channels.SocketChannel;
  */
 public interface INetMessageInternal extends INetMessageIn, INetMessageOut {
 
-    /**
-     * Recycle this object, called right before it gets re-used
-     */
-    void recycle();
+	/**
+	 * Recycle this object, called right before it gets re-used
+	 */
+	void recycle();
 
-    /**
-     * Mark this object to be available for re-use
-     */
-    void free();
+	/**
+	 * Mark this object to be available for re-use
+	 */
+	void free();
 
-    /**
-     * Prepare the message for reading from a socket channel
-     * 
-     * @param messageSize
-     *            the size of the message buffer
-     * @param deltaSize
-     *            the size of the delta buffer
-     */
-    public void prepareReading(int messageSize, int deltaSize);
+	/**
+	 * Prepare the message for reading from a socket channel
+	 * 
+	 * @param messageSize
+	 *            the size of the message buffer
+	 * @param deltaSize
+	 *            the size of the delta buffer
+	 */
+	public void prepareReading(int messageSize, int deltaSize);
 
-    /**
-     * Prepare the message for writing to a socket channel
-     */
-    public void prepareWriting();
+	/**
+	 * Prepare the message for writing to a socket channel
+	 */
+	public void prepareWriting();
 
-    /**
-     * Read the message buffer (and optionally the delta buffer) from a channel
-     * 
-     * @param channel
-     *            the socket channel to read from
-     * @throws IOException
-     */
-    void readFromSocket(SocketChannel channel) throws IOException;
+	/**
+	 * Read the message buffer (and optionally the delta buffer) from a channel
+	 * 
+	 * @param channel
+	 *            the socket channel to read from
+	 * @throws IOException
+	 */
+	void readFromSocket(SocketChannel channel) throws IOException;
 
-    /**
-     * Write the message buffer (and optionally the delta buffer) to a channel
-     * 
-     * @param channel
-     *            the socket channel to write to
-     * @throws IOException
-     */
-    void writeToSocket(SocketChannel channel) throws IOException;
+	/**
+	 * Write the message buffer (and optionally the delta buffer) to a channel
+	 * 
+	 * @param channel
+	 *            the socket channel to write to
+	 * @throws IOException
+	 */
+	void writeToSocket(SocketChannel channel) throws IOException;
 }

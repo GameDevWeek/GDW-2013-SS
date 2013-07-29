@@ -9,5 +9,5 @@ import java.io.Closeable;
  */
 public interface IDataDecoder extends Closeable {
 
-    int getNextId() throws Exception;
+	int getNextId() throws Exception;
 }

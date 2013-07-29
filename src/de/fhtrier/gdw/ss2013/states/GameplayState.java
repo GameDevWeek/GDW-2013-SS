@@ -18,84 +18,84 @@ import de.fhtrier.gdw.ss2013.gui.HUD;
  */
 public class GameplayState extends BasicGameState {
 
-    private World world;
-    private Font font;
-    private HUD hud;
+	private World world;
+	private Font font;
+	private HUD hud;
 
-    @Override
-    public void init(GameContainer container, StateBasedGame game)
-            throws SlickException {
-        world = new World(container, game);
-        font = new AngelCodeFont("res/fonts/verdana_46.fnt",
-                "res/fonts/verdana_46_0.tga");
-        hud = new HUD(container);
-    }
+	@Override
+	public void init(GameContainer container, StateBasedGame game)
+			throws SlickException {
+		world = new World(container, game);
+		font = new AngelCodeFont("res/fonts/verdana_46.fnt",
+				"res/fonts/verdana_46_0.tga");
+		hud = new HUD(container);
+	}
 
-    @Override
-    public void render(GameContainer container, StateBasedGame game, Graphics g)
-            throws SlickException {
-        g.setBackground(Color.black);
-        g.setColor(Color.white);
+	@Override
+	public void render(GameContainer container, StateBasedGame game, Graphics g)
+			throws SlickException {
+		g.setBackground(Color.black);
+		g.setColor(Color.white);
 
-        world.render(container, g);
+		world.render(container, g);
 
-        font.drawString(0, 0, "Gameplay");
-        font.drawString(0, container.getHeight() - font.getLineHeight(),
-                "Use Arrowkeys to move");
+		font.drawString(0, 0, "Gameplay");
+		font.drawString(0, container.getHeight() - font.getLineHeight(),
+				"Use Arrowkeys to move");
 
-        hud.render(container, game, g);
+		hud.render(container, game, g);
 
-    }
+	}
 
-    @Override
-    public void update(GameContainer container, StateBasedGame game, int delta)
-            throws SlickException {
-        MainGame.checkFullscreenToggle();
-        world.update(container, delta);
+	@Override
+	public void update(GameContainer container, StateBasedGame game, int delta)
+			throws SlickException {
+		MainGame.checkFullscreenToggle();
+		world.update(container, delta);
 
-        hud.update(container, game, delta);
-    }
+		hud.update(container, game, delta);
+	}
 
-    @Override
-    public int getID() {
-        return MainGame.GAMEPLAY;
-    }
+	@Override
+	public int getID() {
+		return MainGame.GAMEPLAY;
+	}
 
-    @Override
-    public void keyReleased(int key, char c) {
-    }
+	@Override
+	public void keyReleased(int key, char c) {
+	}
 
-    @Override
-    public void keyPressed(int key, char c) {
-    }
+	@Override
+	public void keyPressed(int key, char c) {
+	}
 
-    @Override
-    public void mouseMoved(int oldx, int oldy, int newx, int newy) {
-    }
+	@Override
+	public void mouseMoved(int oldx, int oldy, int newx, int newy) {
+	}
 
-    @Override
-    public void mouseDragged(int oldx, int oldy, int newx, int newy) {
-    }
+	@Override
+	public void mouseDragged(int oldx, int oldy, int newx, int newy) {
+	}
 
-    @Override
-    public void mouseReleased(int button, int x, int y) {
-    }
+	@Override
+	public void mouseReleased(int button, int x, int y) {
+	}
 
-    @Override
-    public void mousePressed(int button, int x, int y) {
-    }
+	@Override
+	public void mousePressed(int button, int x, int y) {
+	}
 
-    @Override
-    public void mouseWheelMoved(int newValue) {
-    }
+	@Override
+	public void mouseWheelMoved(int newValue) {
+	}
 
-    @Override
-    public void enter(GameContainer container, StateBasedGame game)
-            throws SlickException {
-    }
+	@Override
+	public void enter(GameContainer container, StateBasedGame game)
+			throws SlickException {
+	}
 
-    @Override
-    public void leave(GameContainer container, StateBasedGame game)
-            throws SlickException {
-    }
+	@Override
+	public void leave(GameContainer container, StateBasedGame game)
+			throws SlickException {
+	}
 }
