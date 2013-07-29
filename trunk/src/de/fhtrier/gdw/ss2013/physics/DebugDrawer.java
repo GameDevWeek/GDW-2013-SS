@@ -13,9 +13,11 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.Polygon;
+import de.fhtrier.gdw.ss2013.game.*;
 
 public class DebugDrawer extends DebugDraw {
 	GameContainer gameContainer;
+	private Camera cam;
 	// Total render points for each circle
 	public static int CIRCLE_POINTS = 20;
 	private final Vec2Array vec2Array = new Vec2Array();
@@ -28,10 +30,10 @@ public class DebugDrawer extends DebugDraw {
 	private final static IntArray yIntsPool = new IntArray();
 	private final Vec2 temp2 = new Vec2();
 
-	public DebugDrawer(final GameContainer gameContainer) {
+	public DebugDrawer(final GameContainer gameContainer, Camera c) {
 		super(new OBBViewportTransform());
+		cam = c;
 		this.viewportTransform.setYFlip(false);
-		this.viewportTransform.setCenter(gameContainer.getWidth()/2, gameContainer.getHeight()/2);
 		this.viewportTransform.setExtents(gameContainer.getWidth() / 2,
 				gameContainer.getHeight() / 2);
 		this.gameContainer = gameContainer;
@@ -56,6 +58,10 @@ public class DebugDrawer extends DebugDraw {
 	@Override
 	public void drawPoint(final Vec2 argPoint, final float argRadiusOnScreen,
 			final Color3f argColor) {
+		this.viewportTransform.setCenter(
+				gameContainer.getWidth() / 2 - cam.getTileX(),
+				gameContainer.getHeight() / 2 - cam.getTileY());
+
 		Graphics g = this.gameContainer.getGraphics();
 		getWorldToScreenToOut(argPoint, sp1);
 		g.setColor(new Color(argColor.x, argColor.y, argColor.z));
@@ -73,6 +79,10 @@ public class DebugDrawer extends DebugDraw {
 	 */
 	@Override
 	public void drawSegment(final Vec2 p1, final Vec2 p2, final Color3f color) {
+		this.viewportTransform.setCenter(
+				gameContainer.getWidth() / 2 + cam.getOffsetX(),
+				gameContainer.getHeight() / 2 + cam.getOffsetY());
+
 		Graphics g = this.gameContainer.getGraphics();
 		getWorldToScreenToOut(p1, sp1);
 		getWorldToScreenToOut(p2, sp2);
@@ -116,6 +126,10 @@ public class DebugDrawer extends DebugDraw {
 	@Override
 	public void drawSolidPolygon(final Vec2[] vertices, final int vertexCount,
 			final Color3f color) {
+		this.viewportTransform.setCenter(
+				gameContainer.getWidth() / 2 + cam.getOffsetX(),
+				gameContainer.getHeight() / 2 + cam.getOffsetY());
+
 		Graphics g = this.gameContainer.getGraphics();
 		final int[] xInts = xIntsPool.get(vertexCount);
 		final int[] yInts = yIntsPool.get(vertexCount);
@@ -140,6 +154,10 @@ public class DebugDrawer extends DebugDraw {
 	@Override
 	public void drawString(final float x, final float y, final String s,
 			final Color3f color) {
+		this.viewportTransform.setCenter(
+				gameContainer.getWidth() / 2 + cam.getOffsetX(),
+				gameContainer.getHeight() / 2 + cam.getOffsetY());
+
 		Graphics g = this.gameContainer.getGraphics();
 		g.setColor(new Color(color.x, color.y, color.z));
 		g.drawString(s, x, y);
@@ -151,6 +169,10 @@ public class DebugDrawer extends DebugDraw {
 	 */
 	@Override
 	public void drawTransform(final Transform xf) {
+		this.viewportTransform.setCenter(
+				gameContainer.getWidth() / 2 + cam.getOffsetX(),
+				gameContainer.getHeight() / 2 + cam.getOffsetY());
+
 		Graphics g = this.gameContainer.getGraphics();
 		getWorldToScreenToOut(xf.p, temp);
 		temp2.setZero();
