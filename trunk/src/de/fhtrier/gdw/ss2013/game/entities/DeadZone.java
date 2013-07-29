@@ -6,6 +6,7 @@
  */
 
 package de.fhtrier.gdw.ss2013.game.entities;
+import de.fhtrier.gdw.ss2013.game.Astronaut;
 
 import org.newdawn.slick.geom.Vector2f;
 
@@ -23,7 +24,9 @@ public class DeadZone extends Entity{
         
     }
     
-    public void touched() {
+    public void touched(Astronaut astro) {
+        
+        astro.setOxygen(0);
         
     }
 
