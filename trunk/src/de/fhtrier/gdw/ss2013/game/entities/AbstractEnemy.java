@@ -3,7 +3,11 @@ package de.fhtrier.gdw.ss2013.game.entities;
 import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.game.*;
-
+/**
+ * Abstract Enemy Class for Enemys and Meteroids
+ * @author Kevin, Georg
+ *
+ */
 public abstract class AbstractEnemy extends Entity{
     private Vector2f velocity;
     private float damage;
@@ -16,5 +20,12 @@ public abstract class AbstractEnemy extends Entity{
         this.velocity = velo;
         this.damage = dmg;
     }
-    public abstract float onCollide();
+    public abstract void onCollide();
+    
+    public Vector2f getVelocity() {
+        return velocity;
+    }
+    public float getDamage() {
+        return damage;
+    }
 }
