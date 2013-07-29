@@ -20,8 +20,11 @@ import de.fhtrier.gdw.ss2013.interfaces.AstronautControls;
  */
 public class Player extends Entity implements AlienControls, AstronautControls{
 
+    private Vector2f velocity;
+    
     public Player(Vector2f position) {
         super(position);
+        velocity = new Vector2f();
     }
 
     @Override
@@ -43,7 +46,7 @@ public class Player extends Entity implements AlienControls, AstronautControls{
     {
         if (key == forwardKey) 
         {
-            // Vorwärtsbewegung
+            // Vorwï¿½rtsbewegung
         }
     }
     
@@ -51,7 +54,7 @@ public class Player extends Entity implements AlienControls, AstronautControls{
     {
         if (key == backwardKey) 
         {
-            // Rückwärtsbewegung
+            // Rï¿½ckwï¿½rtsbewegung
         } 
     }
     
@@ -75,7 +78,7 @@ public class Player extends Entity implements AlienControls, AstronautControls{
     {
         if(button == shootButton)
         {
-            // Schießen
+            // Schieï¿½en
         }
     }
     
@@ -83,7 +86,7 @@ public class Player extends Entity implements AlienControls, AstronautControls{
     {
         if(value == rotateWheel)
         {
-            // Fähigkeiten auswählen
+            // Fï¿½higkeiten auswï¿½hlen
         }
     }
     
@@ -91,8 +94,16 @@ public class Player extends Entity implements AlienControls, AstronautControls{
     {
         if(button == abilityButton)
         {
-          // Fähigkeit benutzen   
+          // Fï¿½higkeit benutzen   
         }
+    }
+
+    public Vector2f getVelocity() {
+        return velocity;
+    }
+
+    public void setVelocity(Vector2f velocity) {
+        this.velocity = velocity;
     }
    
 }

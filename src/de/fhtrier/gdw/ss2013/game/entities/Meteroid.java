@@ -6,6 +6,9 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
+import de.fhtrier.gdw.ss2013.game.Astronaut;
+import de.fhtrier.gdw.ss2013.game.Entity;
+
 /**
  * Meteroid class
  * @author Kevin, Georg
@@ -29,9 +32,10 @@ public class Meteroid extends AbstractEnemy {
         this(pos.copy(), new Vector2f((float)(Math.random()*2.5),5), 0, 0);
     }
     @Override
-    public void onCollide() {
-        // TODO Auto-generated method stub
-
+    public void onCollision(Entity e) {
+        if(e instanceof Astronaut) {
+            ((Astronaut)e).setOxygen(((Astronaut)e).getOxygen()-this.getDamage());
+        }
     }
     public void reduceHealth(float dmg) {  
         health -= dmg;

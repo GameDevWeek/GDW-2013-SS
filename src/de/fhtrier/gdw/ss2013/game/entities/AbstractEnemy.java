@@ -23,7 +23,6 @@ public abstract class AbstractEnemy extends Entity{
         this.velocity = velo.copy();
         this.damage = dmg;
     }
-    public abstract void onCollide();
     
     public Vector2f getVelocity() {
         return velocity;

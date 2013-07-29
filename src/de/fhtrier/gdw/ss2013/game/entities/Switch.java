@@ -23,8 +23,10 @@ public class Switch extends Entity {
         return activated;
     }
 
-    public void setActivated() {
+    public void switchActivated() {
         this.activated = !this.activated;
     }
-    
+    public void setActivated(boolean a) {
+        this.activated = a;
+    }
 }

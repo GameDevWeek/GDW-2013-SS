@@ -5,6 +5,9 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
+
+import de.fhtrier.gdw.ss2013.game.Astronaut;
+import de.fhtrier.gdw.ss2013.game.Entity;
 /**
  * Bullet Class
  * @author Kevin, Georg
@@ -24,9 +27,10 @@ public class Bullet extends AbstractEnemy {
         this(pos.copy(), new Vector2f(), 0);
     }
     @Override
-    public void onCollide() {
-        // TODO Auto-generated method stub
-
+    public void onCollision(Entity e) {
+        if(e instanceof Astronaut) {
+            ((Astronaut)e).setOxygen(((Astronaut)e).getOxygen()-this.getDamage());
+        }
     }
     
     public void render(GameContainer container, Graphics g)
