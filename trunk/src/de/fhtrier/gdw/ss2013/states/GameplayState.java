@@ -2,6 +2,8 @@ package de.fhtrier.gdw.ss2013.states;
 
 import de.fhtrier.gdw.ss2013.MainGame;
 import de.fhtrier.gdw.ss2013.game.World;
+import de.fhtrier.gdw.ss2013.renderer.HUD;
+
 import org.newdawn.slick.AngelCodeFont;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Font;
@@ -18,12 +20,14 @@ public class GameplayState extends BasicGameState {
 
     private World world;
     private Font font;
+    private HUD hud;
 
     @Override
     public void init(GameContainer container, StateBasedGame game)
             throws SlickException {
         world = new World(container, game);
         font = new AngelCodeFont("res/fonts/verdana_46.fnt", "res/fonts/verdana_46_0.tga");
+        hud = new HUD();
     }
 
     @Override
@@ -36,6 +40,9 @@ public class GameplayState extends BasicGameState {
         
         font.drawString(0, 0, "Gameplay");
         font.drawString(0, container.getHeight() - font.getLineHeight(), "Use Arrowkeys to move");
+        
+        hud.render(container, game, g);
+        
     }
 
     @Override
@@ -43,6 +50,8 @@ public class GameplayState extends BasicGameState {
             throws SlickException {
         MainGame.checkFullscreenToggle();
         world.update(container, delta);
+       
+        hud.update(container, game, delta);
     }
 
     @Override

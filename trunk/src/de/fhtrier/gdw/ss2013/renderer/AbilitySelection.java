@@ -3,16 +3,11 @@
  */
 package de.fhtrier.gdw.ss2013.renderer;
 
-import org.newdawn.slick.Font;
-
-public class Annotation {
+public class AbilitySelection {
     
-    private float xpos;
-    private float ypos;
     
-    private Font notation;
     
-    public Annotation(){
+    public AbilitySelection(){
         
     }
     
@@ -24,6 +19,5 @@ public class Annotation {
         
     }
     
-    
-    
+
 }
