@@ -3,6 +3,7 @@ package de.fhtrier.gdw.ss2013.game.entities;
 import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.game.Entity;
+import de.fhtrier.gdw.ss2013.game.Player;
 /**
  * Moving Platform class
  * @author Kevin, Georg
@@ -21,5 +22,12 @@ public class MovingPlatform extends Entity {
     public MovingPlatform(Vector2f pos) {
         this(pos.copy(), new Vector2f());
     }
-    public void onCollide() {}
+    public void onCollide(Player player) {
+        player.getPosition().x += velocity.x;
+        player.getPosition().y += velocity.y;
+    }
+    public void reachEnd() {
+        velocity.x = -velocity.x;
+        velocity.y = -velocity.y;
+    }
 }
