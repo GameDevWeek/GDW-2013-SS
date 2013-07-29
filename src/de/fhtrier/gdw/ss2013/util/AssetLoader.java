@@ -32,7 +32,7 @@ public class AssetLoader {
         setupSound("res/json/sounds.json");
     }
 
-    public void setupImages(String filename) {
+    private void setupImages(String filename) {
         try {
             List<ImageInfo> imageInfos = JacksonReader.readList(filename,
                     ImageInfo.class);
@@ -44,7 +44,7 @@ public class AssetLoader {
         }
     }
 
-    public void setupAnimation(String filename) {
+    private void setupAnimation(String filename) {
         try {
             List<AnimInfo> animInfos = JacksonReader.readList(filename,
                     AnimInfo.class);
@@ -56,14 +56,14 @@ public class AssetLoader {
                 for (int i = 0; i < animInfo.anzBilder; i += 1) {
                     anim.addFrame(sheet.getSprite(i, 0), animInfo.animSpeed);
                 }
-                animMap.put(animInfo.name, new Animation());
+                animMap.put(animInfo.name, anim);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void setupSound(String filename) {
+    private void setupSound(String filename) {
         try {
             List<SoundInfo> soundInfos = JacksonReader.readList(filename,
                     SoundInfo.class);
@@ -84,6 +84,10 @@ public class AssetLoader {
         return animMap.get(name);
     }
 
+    /**
+     * @param name Name out of the JSON file
+     * @return Instance of the sound
+     */
     public Sound getSound(String name) {
         return soundMap.get(name);
     }
