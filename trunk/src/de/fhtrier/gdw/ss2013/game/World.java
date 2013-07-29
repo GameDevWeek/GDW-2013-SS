@@ -1,5 +1,8 @@
 package de.fhtrier.gdw.ss2013.game;
 
+import org.jbox2d.callbacks.DebugDraw;
+import org.jbox2d.collision.AABB;
+import org.jbox2d.common.Color3f;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -13,6 +16,8 @@ import de.fhtrier.gdw.commons.tiled.TiledMap;
 import de.fhtrier.gdw.ss2013.game.entities.FlyingEnemy;
 import de.fhtrier.gdw.ss2013.game.entities.Meteroid;
 import de.fhtrier.gdw.ss2013.game.entities.OxygenFlower;
+import de.fhtrier.gdw.ss2013.physics.DebugDrawer;
+import de.fhtrier.gdw.ss2013.physics.PhysicsManager;
 import de.fhtrier.gdw.ss2013.renderer.MapRenderer;
 import de.fhtrier.gdw.ss2013.sound.SoundLocator;
 
@@ -26,6 +31,10 @@ public class World {
     private final Meteroid metro[] = new Meteroid[3];
     private final Input input;
     private final OxygenFlower oxyFlower;
+    
+    //physics debug
+    private DebugDrawer physicDebug;
+    public boolean debugDraw = true;
 
     EntityManager entityManager;
 
@@ -40,6 +49,13 @@ public class World {
             camera = new Camera(map);
 
             entityManager = new EntityManager();
+            
+            //physic debug stuff
+            if (debugDraw) {
+            	physicDebug = new DebugDrawer(container, camera);
+            	PhysicsManager.getInstance()._physicsWorld.setDebugDraw(physicDebug);
+            }
+            
             player = entityManager.createEntityAt(Player.class, new Vector2f(
                     200, 200));
 
@@ -75,7 +91,10 @@ public class World {
 
         // draw entities
         entityManager.render(container, g);
-
+        
+		if (debugDraw)
+        	PhysicsManager.getInstance()._physicsWorld.drawDebugData();
+        
         g.popTransform();
     }
 
@@ -83,6 +102,8 @@ public class World {
             throws SlickException {
         // update entities
         entityManager.update(container, delta);
+        
+        PhysicsManager.getInstance().update(container, delta);
 
         // This is just a placeholder, not for actual use.
         Vector2f playerPos = player.getPosition();
