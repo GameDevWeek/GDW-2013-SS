@@ -81,4 +81,9 @@ public class World {
             playerPos.x += speed;
         }
     }
+    
+    public Camera getCamera()
+    {
+    	return camera;
+    }
 }
