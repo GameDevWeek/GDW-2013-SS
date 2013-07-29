@@ -12,7 +12,7 @@ public class Switch extends Entity {
     boolean activated = false;
     
     public Switch(Vector2f pos) {        
-        super(pos);
+        super(pos.copy());
     }
     
     public Switch() {
