@@ -18,7 +18,8 @@ public class OxygenBubble extends Entity {
     private float oxygenLevel;
 
     // Standard-Konstruktor
-    public OxygenBubble() {
+    public OxygenBubble(Vector2f position) {
+        super (position);
 
     }
 
@@ -35,6 +36,15 @@ public class OxygenBubble extends Entity {
             astro.setOxygen(astro.getMaxOxygen());
         }
 
+    }
+
+    
+    public float getOxygenLevel() {
+        return oxygenLevel;
+    }
+
+    public void setOxygenLevel(float oxygenLevel) {
+        this.oxygenLevel = oxygenLevel;
     }
 
     public void sprite() {
