@@ -9,6 +9,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 
 import de.fhtrier.gdw.ss2013.game.Entity;
+import de.fhtrier.gdw.ss2013.game.World;
 
 import org.jbox2d.collision.shapes.MassData;
 import org.jbox2d.common.Vec2;
@@ -37,12 +38,12 @@ public abstract class PhysicsObject {
 
     public void enableSimulation()
     {
-        //this.myBody = PhysicsManager.;
+        this.myBody = PhysicsManager.getInstance().enableSimulation(this);
     }
     
     public void disableSimulation()
     {
-        
+       PhysicsManager.getInstance().disableSimulation(this);
     }
     
     public Body getBody() {

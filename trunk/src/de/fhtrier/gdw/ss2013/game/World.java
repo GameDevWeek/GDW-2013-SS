@@ -108,7 +108,4 @@ public class World {
     	return camera;
     }
     
-    public PhysicsManager getPhysicsManager() {
-        return physicsManager;
-    }
 }
