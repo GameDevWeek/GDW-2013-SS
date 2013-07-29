@@ -16,6 +16,8 @@ import org.lwjgl.LWJGLUtil;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Sound;
+import org.newdawn.slick.SpriteSheet;
+import org.newdawn.slick.opengl.Texture;
 
 import de.fhtrier.gdw.commons.jackson.JacksonReader;
 
@@ -26,8 +28,8 @@ public class AssetLoader {
     
     public AssetLoader() {
         setupImages("res/json/images.json");
-        setupAnimation("res/json/animation.json");
-        setupSound("res/json/sound.json");
+        setupAnimation("res/json/animations.json");
+        setupSound("res/json/sounds.json");
     }
     
     public void setupImages(String filename) {
@@ -45,7 +47,13 @@ public class AssetLoader {
         try {
             List<AnimInfo> animInfos = JacksonReader.readList(filename, AnimInfo.class);
             for (AnimInfo animInfo : animInfos) {
-                //animMap.put(animInfo.name, new Animation());
+                Image img = new Image(animInfo.pfad);
+                Animation anim = new Animation();
+                SpriteSheet sheet = new SpriteSheet(img, img.getWidth()/animInfo.anzBilder, img.getHeight());
+                for(int i = 0; i < animInfo.anzBilder; i += 1){
+                    anim.addFrame(sheet.getSprite(i, 0), animInfo.animSpeed);
+                }
+                animMap.put(animInfo.name, new Animation());
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -76,17 +84,5 @@ public class AssetLoader {
         return soundMap.get(name);
     }
     
-    public static void main(String args[]){
-        System.setProperty("org.lwjgl.librarypath",
-                new File(
-                        new File(System.getProperty("user.dir"), "native"),
-                        LWJGLUtil.getPlatformName()).getAbsolutePath());
-        System.setProperty("net.java.games.input.librarypath",
-                System.getProperty("org.lwjgl.librarypath"));
-        
-        AssetLoader loader = new AssetLoader();
-        System.out.println(loader.getImage("testbild"));
-        
-    }
     
 }

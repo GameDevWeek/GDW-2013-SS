@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.loading.DeferredResource;
 import org.newdawn.slick.loading.LoadingList;
@@ -12,6 +13,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import de.fhtrier.gdw.ss2013.MainGame;
 import de.fhtrier.gdw.ss2013.debug.DebugModeStatus;
+import de.fhtrier.gdw.ss2013.util.AssetLoader;
 
 /**
  * Loading state
@@ -30,7 +32,9 @@ public class LoadGameState extends BasicGameState {
         LoadingList.setDeferredLoading(true);
 
         // Todo: initialize assets
-
+        new AssetLoader();
+//        Image img = new Image("res/animaions/team0.png");
+        
         mainMenuState = new MainMenuState();
         mainMenuState.init(container, game);
         game.addState(mainMenuState);
