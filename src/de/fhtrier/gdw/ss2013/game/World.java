@@ -27,7 +27,6 @@ public class World {
     private final OxygenFlower oxyFlower;;
     // private final List<Entity> entities = new LinkedList<>();
     EntityManager entityManager;
-    PhysicsManager physicsManager;
 
     public World(GameContainer container, StateBasedGame game)
             throws SlickException {
@@ -39,7 +38,6 @@ public class World {
             camera = new Camera(map);
             metro = new Meteroid[3];
             entityManager = new EntityManager();
-            physicsManager = new PhysicsManager();
             player = (Player) entityManager.createEntityAt(Player.class,
                     new Vector2f(200, 200));
             
