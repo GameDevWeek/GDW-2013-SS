@@ -31,6 +31,8 @@ public class InputManager {
 	/**
 	 * TODO
 	 * - Methode um alle verfügbaren InputDevices abzufragen
+	 * - Maussupport implementieren
 	 * - Gamepadsupport implementieren
+	 * 
 	 */
 }

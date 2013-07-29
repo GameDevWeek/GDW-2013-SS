@@ -12,13 +12,13 @@ import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.Entity;
-import de.fhtrier.gdw.ss2013.input.AlienControls;
-import de.fhtrier.gdw.ss2013.input.AstronautControls;
+import de.fhtrier.gdw.ss2013.input.AlienController;
+import de.fhtrier.gdw.ss2013.input.AstronautController;
 
 /**
  * Player class
  */
-public class Player extends Entity implements AlienControls, AstronautControls {
+public class Player extends Entity implements AlienController, AstronautController {
 
 	Animation bewegungs_ani;
 	private Animation animation;

@@ -11,8 +11,8 @@ import org.newdawn.slick.GameContainer;
 public abstract class InputDevice {
 
 	protected GameContainer container;
-	protected AlienControls alienListener = null;
-	protected AstronautControls astronautListener = null;
+	protected AlienController alienController = null;
+	protected AstronautController astronautController = null;
 
 	// enum für actions
 	enum ACTIONS {
@@ -28,12 +28,12 @@ public abstract class InputDevice {
 
 	public abstract void update();
 
-	public void setAlienListener(AlienControls ac) {
-		alienListener = ac;
+	public void setAlienController(AlienController ac) {
+		alienController = ac;
 	}
 
-	public void setAstronautListener(AstronautControls ac) {
-		astronautListener = ac;
+	public void setAstronautController(AstronautController ac) {
+		astronautController = ac;
 	}
 
 	/**

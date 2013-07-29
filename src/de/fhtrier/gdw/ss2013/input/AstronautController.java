@@ -8,7 +8,7 @@ import org.newdawn.slick.Input;
  * 
  */
 
-public interface AstronautControls {
+public interface AstronautController {
 
 	public int forwardKey = Input.KEY_D;
 	public int backwardKey = Input.KEY_A;
