@@ -2,7 +2,11 @@ package de.fhtrier.gdw.ss2013.game.entities;
 
 import org.newdawn.slick.geom.Vector2f;
 import de.fhtrier.gdw.ss2013.game.*;
-
+/**
+ * Lever Class
+ * @author Kevin, Georg
+ *
+ */
 public class Lever extends Entity {
     
     boolean activated = false;
@@ -12,7 +16,7 @@ public class Lever extends Entity {
     }
     
     public Lever() {
-        this(null);
+        this(new Vector2f());
     }
 
     public boolean isActivated() {
