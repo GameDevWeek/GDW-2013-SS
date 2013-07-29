@@ -13,7 +13,7 @@ import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 import org.newdawn.slick.state.transition.Transition;
 
-import de.fhtrier.gdw.ss2013.debug.TestModeStatus;
+import de.fhtrier.gdw.ss2013.debug.DebugModeStatus;
 import de.fhtrier.gdw.ss2013.states.LoadGameState;
 
 //comment so commit works
@@ -98,7 +98,7 @@ public class MainGame extends StateBasedGame {
 
             for (String a : args) {
                 if (a.equals("-testmode"))
-                    TestModeStatus.setStatus(true);
+                    DebugModeStatus.setStatus(true);
             }
 
             instance = new MainGame(args);

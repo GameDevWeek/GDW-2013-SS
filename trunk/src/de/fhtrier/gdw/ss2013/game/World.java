@@ -11,8 +11,6 @@ import de.fhtrier.gdw.commons.tiled.LayerObject;
 import de.fhtrier.gdw.commons.tiled.TiledMap;
 import de.fhtrier.gdw.ss2013.renderer.MapRenderer;
 
-// Random comment.
-// Ich war hier. 
 public class World {
 
     private final TiledMap map;
@@ -31,11 +29,10 @@ public class World {
                     LayerObject.PolyMode.ABSOLUTE);
             mapRender = new MapRenderer(map);
             camera = new Camera(map);
-            player = new Player(200, 200);
-            entityManager = new EntityManager();
 
-            entityManager.addEntity(player);
-            
+            entityManager = new EntityManager();
+            player = (Player) entityManager.createEntityAt(Player.class,
+                    new Vector2f(200, 200));
 
         } catch (Exception e) {
             throw new SlickException(e.toString());
@@ -56,7 +53,7 @@ public class World {
 
         g.pushTransform();
         g.translate(-camera.getOffsetX(), -camera.getOffsetY());
-
+        
         // draw entities
         entityManager.render(container, g);
 

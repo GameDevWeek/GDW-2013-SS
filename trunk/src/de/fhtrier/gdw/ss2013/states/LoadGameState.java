@@ -11,7 +11,7 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import de.fhtrier.gdw.ss2013.MainGame;
-import de.fhtrier.gdw.ss2013.debug.TestModeStatus;
+import de.fhtrier.gdw.ss2013.debug.DebugModeStatus;
 
 /**
  * Loading state
@@ -85,7 +85,7 @@ public class LoadGameState extends BasicGameState {
         } else {
             container.setShowFPS(true);
 
-            if (TestModeStatus.getStatus()) {
+            if (DebugModeStatus.getStatus()) {
                 MainGame.changeState(MainGame.GAMEPLAY);
             } else {
                 MainGame.changeState(MainGame.MAINMENUSTATE);

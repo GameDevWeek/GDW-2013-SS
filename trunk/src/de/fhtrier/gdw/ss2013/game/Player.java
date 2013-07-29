@@ -1,3 +1,7 @@
+/**
+ * @author Sebastian, Arnold
+ */
+
 package de.fhtrier.gdw.ss2013.game;
 
 import org.newdawn.slick.Color;
@@ -5,6 +9,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.MainGame;
 
@@ -13,8 +18,8 @@ import de.fhtrier.gdw.ss2013.MainGame;
  */
 public class Player extends Entity {
 
-    public Player(float x, float y) {
-        super.position.set(x, y);
+    public Player(Vector2f position) {
+        super(position);
     }
 
     @Override
