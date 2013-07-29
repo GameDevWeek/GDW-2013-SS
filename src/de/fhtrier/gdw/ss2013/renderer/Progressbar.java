@@ -8,17 +8,23 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
 
 import de.fhtrier.gdw.ss2013.game.Entity;
 
 public class Progressbar {
     
-    //Werte für die Abmessungen der Progessbar
-    private float xpos = 10;
-    private float ypos = 10;
-    private float height = 40;
-    private float width = 243;
+    private String imagePath = "/res/Dummy_GUIs_Images/";
+    
+    private Vector2f position;
+    private Vector2f size;
+    
+    private Image frame;
+    private Image background;
+    private Image bar;
+    
     private int cornerradius = 5;
     
     //Werte für konkreten Balken   
@@ -29,21 +35,40 @@ public class Progressbar {
     
     private Image progress;
     
+    public void init(Vector2f position, Vector2f size, int cornerradius)  
+    {
+        this.position = position.copy();
+        this.size = size.copy();
+        this.cornerradius = cornerradius;
+        
+        try {
+            frame = new Image(imagePath + "frame.png");
+            background = new Image(imagePath + "background.png");
+            bar = new Image (imagePath + "bar.png");
+        } catch (SlickException e) {
+            e.printStackTrace();
+        }
+       
+    }
     
     public void update(GameContainer container, StateBasedGame game, int delta)
     {
         //currentValue auslesen.
         currentPercentValue = (currentValue / maxValue) * 100;
         
-        filled = width * (currentPercentValue / 100);
+        filled = size.x * (currentPercentValue / 100);
     
     }
     
     public void render(GameContainer container, StateBasedGame game, Graphics g)
     {
-        g.setColor(Color.blue);
-        g.fillRoundRect(xpos, ypos, filled, height, cornerradius);
         
+       // frame.draw(position.x, position.y);
+        background.draw(position.x, position.y);
+        bar.draw(position.x, position.y, position.x + filled, position.y + size.y, 0, 0, size.x - filled, size.y);
+        //g.setColor(Color.blue);
+        //g.fillRoundRect(position.x, position.y, filled, size.y, cornerradius);
     }    
 
+    
 }
