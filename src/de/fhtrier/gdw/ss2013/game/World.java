@@ -48,7 +48,7 @@ public class World {
 
             enemy = (FlyingEnemy) entityManager.createEntityAt(
                     FlyingEnemy.class, new Vector2f(500, 500));
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < metro.length; i++) {
                 metro[i] = (Meteroid) entityManager.createEntityAt(
                         Meteroid.class, new Vector2f(200 + i * 100, 0));
             }
