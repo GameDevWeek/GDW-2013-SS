@@ -103,8 +103,8 @@ public class World {
             enemy.shoot(player, entityManager);
         }
         Sound a = SoundLocator.loadSound("teamworld_testsound");
-        SoundLocator.getPlayer().playSoundAt(a, player,
-                new Entity(new Vector2f(100, 100)));
+        SoundLocator.getPlayer().playSoundAt(a,
+                new Entity(new Vector2f(100, 100)), player);
 
         if (input.isKeyPressed(Input.KEY_B)) {
             oxyFlower.shootBubbles(entityManager);
