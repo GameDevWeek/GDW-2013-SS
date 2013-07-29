@@ -6,8 +6,9 @@ import de.fhtrier.gdw.commons.tiled.TiledMap;
  * Helper class to calculate the best camera offset for rendering the map
  *
  * @author Santo Pfingsten
+ * fixed by max
  */
-class Camera {
+public class Camera {
 
     private final int mapPixelWidth;
     private final int mapPixelHeight;
