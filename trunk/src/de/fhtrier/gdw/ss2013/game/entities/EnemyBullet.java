@@ -16,19 +16,19 @@ import de.fhtrier.gdw.ss2013.game.world.enemies.AbstractEnemy;
  * @author Kevin, Georg
  * 
  */
-public class Bullet extends AbstractEnemy {
+public class EnemyBullet extends AbstractEnemy {
 
     final static float DEBUG_ENTITY_HALFEXTEND = 5;
 
-    public Bullet(Vector2f pos, Vector2f velo, float dmg) {
+    public EnemyBullet(Vector2f pos, Vector2f velo, float dmg) {
         super(pos.copy(), velo.copy(), dmg);
     }
 
-    public Bullet() {
+    public EnemyBullet() {
         this(new Vector2f(), new Vector2f(), 0);
     }
 
-    public Bullet(Vector2f pos) {
+    public EnemyBullet(Vector2f pos) {
         this(pos.copy(), new Vector2f(), 0);
     }
 
@@ -53,7 +53,7 @@ public class Bullet extends AbstractEnemy {
     public void update(GameContainer container, int delta)
             throws SlickException {
 
-        float dt = delta / 1000.f;
+//        float dt = delta / 1000.f;
         // TODO clamp dt if dt > 1/60.f ?
         this.position.x += this.getVelocity().x;
         this.position.y += this.getVelocity().y;
