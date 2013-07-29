@@ -5,7 +5,11 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
-
+/**
+ * Bullet Class
+ * @author Kevin, Georg
+ *
+ */
 public class Bullet extends AbstractEnemy {
 
     final static float DEBUG_ENTITY_HALFEXTEND = 5;
