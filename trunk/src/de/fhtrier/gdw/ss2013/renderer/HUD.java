@@ -3,6 +3,7 @@
  */
 package de.fhtrier.gdw.ss2013.renderer;
 
+import org.newdawn.slick.Color;
 import org.newdawn.slick.Font;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -17,10 +18,11 @@ public class HUD {
     private Crosshair crosshair;
     private Annotation notation; 
     private AbilitySelection abilityWheel;
+    private Image test;
    
     
     
-    public HUD(GameContainer container) 
+    public HUD(GameContainer container) throws SlickException 
     {
         //Init healthbar        
         healthbar = new Progressbar();
@@ -60,10 +62,9 @@ public class HUD {
         
         }
         
+       
       
-        
-        
-        
+  
         
         
     }
