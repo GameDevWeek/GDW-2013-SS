@@ -12,7 +12,7 @@ import de.fhtrier.gdw.commons.tiled.TiledMap;
 import de.fhtrier.gdw.ss2013.renderer.MapRenderer;
 
 // Random comment.
-
+// Ich war hier. 
 public class World {
 
     private final TiledMap map;
@@ -35,6 +35,7 @@ public class World {
             entityManager = new EntityManager();
 
             entityManager.addEntity(player);
+            
 
         } catch (Exception e) {
             throw new SlickException(e.toString());
