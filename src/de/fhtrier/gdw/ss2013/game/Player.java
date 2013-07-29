@@ -15,8 +15,8 @@ import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.MainGame;
-import de.fhtrier.gdw.ss2013.interfaces.AlienControls;
-import de.fhtrier.gdw.ss2013.interfaces.AstronautControls;
+import de.fhtrier.gdw.ss2013.input.AlienControls;
+import de.fhtrier.gdw.ss2013.input.AstronautControls;
 import de.fhtrier.gdw.ss2013.util.AssetLoader;
 
 /**
