@@ -9,6 +9,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import de.fhtrier.gdw.commons.tiled.LayerObject;
 import de.fhtrier.gdw.commons.tiled.TiledMap;
+import de.fhtrier.gdw.ss2013.game.entities.OxygenFlower;
 import de.fhtrier.gdw.ss2013.game.entities.FlyingEnemy;
 import de.fhtrier.gdw.ss2013.renderer.MapRenderer;
 
@@ -20,6 +21,7 @@ public class World {
     private final Player player;
     private final FlyingEnemy enemy;
     private final Input input;
+    private final OxygenFlower oxyFlower;;
     // private final List<Entity> entities = new LinkedList<>();
     EntityManager entityManager;
 
@@ -35,6 +37,9 @@ public class World {
             entityManager = new EntityManager();
             player = (Player) entityManager.createEntityAt(Player.class,
                     new Vector2f(200, 200));
+            
+            oxyFlower = (OxygenFlower) entityManager.createEntityAt(OxygenFlower.class, new Vector2f (300,300));
+
             enemy = (FlyingEnemy) entityManager.createEntityAt(FlyingEnemy.class, new Vector2f(500,500));
         } catch (Exception e) {
             throw new SlickException(e.toString());
@@ -84,6 +89,11 @@ public class World {
         }
         if (input.isKeyPressed(Input.KEY_F)){
             enemy.shoot(player, entityManager);
+        }
+        
+        if (input.isKeyPressed(Input.KEY_B))
+        {
+            oxyFlower.shootBubbles(entityManager);
         }
     }
     
