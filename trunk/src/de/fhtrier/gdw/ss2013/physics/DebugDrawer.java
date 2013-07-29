@@ -14,7 +14,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.Polygon;
 
-import de.fhtrier.gdw.ss2013.game.Camera;
+import de.fhtrier.gdw.ss2013.game.camera.Camera;
 
 public class DebugDrawer extends DebugDraw {
     GameContainer gameContainer;

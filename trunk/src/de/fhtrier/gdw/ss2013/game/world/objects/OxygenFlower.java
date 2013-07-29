@@ -5,7 +5,7 @@
  * 
  * Blume erzeugt Blasen und Blasenvorrat verringert sich
  */
-package de.fhtrier.gdw.ss2013.game.entities;
+package de.fhtrier.gdw.ss2013.game.world.objects;
 
 import java.util.ArrayList;
 

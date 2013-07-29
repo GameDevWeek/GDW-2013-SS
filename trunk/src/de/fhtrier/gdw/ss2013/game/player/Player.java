@@ -2,7 +2,7 @@
  * @author Sebastian, Arnold
  */
 
-package de.fhtrier.gdw.ss2013.game;
+package de.fhtrier.gdw.ss2013.game.player;
 
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
@@ -11,6 +11,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.geom.Vector2f;
 
+import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.input.AlienControls;
 import de.fhtrier.gdw.ss2013.input.AstronautControls;
 import de.fhtrier.gdw.ss2013.util.AssetLoader;
