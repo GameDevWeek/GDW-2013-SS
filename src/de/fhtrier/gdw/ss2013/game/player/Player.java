@@ -8,7 +8,6 @@ import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.game.Entity;
@@ -19,10 +18,9 @@ import de.fhtrier.gdw.ss2013.util.AssetLoader;
 /**
  * Player class
  */
-public class Player extends Entity implements AlienControls, AstronautControls{
+public abstract class Player extends Entity implements AlienControls, AstronautControls{
    
     Animation bewegungs_ani;
-    private SpriteSheet sheet;
     private Animation animation;
     private String zustand="animtest";
     private Vector2f velocity;
