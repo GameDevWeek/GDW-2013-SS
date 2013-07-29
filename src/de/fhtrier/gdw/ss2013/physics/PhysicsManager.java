@@ -16,7 +16,7 @@ public class PhysicsManager {
     }
 
     private PhysicsManager() {
-        _physicsWorld = new World(new Vec2(0.0f, -9.81f));
+        _physicsWorld = new World(new Vec2(0.0f, 0f));
     }
 
     public Vec2 getGravity() {
@@ -47,5 +47,6 @@ public class PhysicsManager {
     }
 
     private static PhysicsManager _physicsManagerSingleton = null;
-    private World _physicsWorld;
+//    private
+    public World _physicsWorld;
 }

@@ -172,6 +172,7 @@ public abstract class PhysicsObject {
     {
         for(ICollisionListener listener: collisionListeners)
         {
+        	System.out.println("Collision!!!!!!!!!!!!!!!!!!!");
             listener.onCollide(po);
         }
     }
