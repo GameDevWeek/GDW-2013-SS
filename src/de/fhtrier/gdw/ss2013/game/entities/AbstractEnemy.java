@@ -15,8 +15,11 @@ public abstract class AbstractEnemy extends Entity{
     public AbstractEnemy() {
         this(new Vector2f(), new Vector2f(), 0);
     }
+    public AbstractEnemy(Vector2f pos) {
+        this(pos, new Vector2f(), 0);
+    }
     public AbstractEnemy(Vector2f pos, Vector2f velo, float dmg) {
-        super(pos);
+        super(pos.copy());
         this.velocity = velo;
         this.damage = dmg;
     }

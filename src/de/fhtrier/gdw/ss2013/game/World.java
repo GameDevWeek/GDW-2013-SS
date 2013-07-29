@@ -29,7 +29,7 @@ public class World {
                     LayerObject.PolyMode.ABSOLUTE);
             mapRender = new MapRenderer(map);
             camera = new Camera(map);
-
+            
             entityManager = new EntityManager();
             player = (Player) entityManager.createEntityAt(Player.class,
                     new Vector2f(200, 200));

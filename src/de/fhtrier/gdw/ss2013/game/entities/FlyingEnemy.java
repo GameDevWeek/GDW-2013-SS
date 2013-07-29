@@ -1,6 +1,14 @@
 package de.fhtrier.gdw.ss2013.game.entities;
 
+import java.util.ArrayList;
+
+import org.newdawn.slick.Color;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
+
+import de.fhtrier.gdw.ss2013.game.Player;
 /**
  * Flying Enemy Class
  * @author Kevin, Georg
@@ -9,15 +17,21 @@ import org.newdawn.slick.geom.Vector2f;
 public class FlyingEnemy extends AbstractEnemy {
 
     private float health;
+    private ArrayList<Bullet> bullets;
+    final static float DEBUG_ENTITY_HALFEXTEND = 5;
     
     public FlyingEnemy(Vector2f pos, Vector2f velo, float dmg, float hp) {
-        super(pos, velo, dmg);
+        super(pos.copy(), velo.copy(), dmg);
         health = hp;
+        bullets = new ArrayList<Bullet>();
     }
     
     public FlyingEnemy() {
-        super();
-        health = 0;
+        this(new Vector2f(), new Vector2f(), 0, 0);
+    }
+    
+    public FlyingEnemy(Vector2f pos) {
+        this(pos.copy(), new Vector2f(), 0, 0);
     }
     
     @Override
@@ -27,5 +41,42 @@ public class FlyingEnemy extends AbstractEnemy {
     
     public void reduceHealth(float dmg) {  
         health -= dmg;
+    }
+    public void shoot(Player player) {
+        bullets.add(new Bullet(this.position, new Vector2f(5 * calcPlayerDirection(player).x, 5 * calcPlayerDirection(player).y), this.getDamage()));
+    }
+    
+    public void render(GameContainer container, Graphics g)
+            throws SlickException {
+        g.setColor(Color.blue);
+        g.drawRect(position.x - DEBUG_ENTITY_HALFEXTEND, position.y
+                - DEBUG_ENTITY_HALFEXTEND, DEBUG_ENTITY_HALFEXTEND * 2,
+                DEBUG_ENTITY_HALFEXTEND * 2);   
+
+        for(Bullet b : bullets) {
+            b.render(container, g);
+        }
+        // g.drawString(this.hashCode(), position.x, position.y);
+    }
+    
+    public void update(GameContainer container, int delta)
+            throws SlickException {
+        float dt = delta / 1000.f;
+        // TODO clamp dt if dt > 1/60.f ?
+        for(Bullet b : bullets) {
+            b.update(container, delta);
+        }
+    }
+    
+    private Vector2f calcPlayerDirection(Player player) {
+        
+        Vector2f direction = new Vector2f();
+        
+        direction.x = player.getPosition().x - this.position.x;
+        direction.y = player.getPosition().y - this.position.y;
+        
+        direction.normalise();
+        
+        return direction;
     }
 }
