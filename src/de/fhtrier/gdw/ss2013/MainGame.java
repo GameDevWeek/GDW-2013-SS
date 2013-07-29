@@ -8,12 +8,14 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 import org.newdawn.slick.state.transition.Transition;
 
 import de.fhtrier.gdw.ss2013.debug.DebugModeStatus;
+import de.fhtrier.gdw.ss2013.game.Player;
 import de.fhtrier.gdw.ss2013.states.LoadGameState;
 
 //comment so commit works
@@ -109,6 +111,10 @@ public class MainGame extends StateBasedGame {
             app.setVSync(true);
             app.setShowFPS(true);
             app.start();
+            
+            
+            
+            
         } catch (SlickException e) {
             e.printStackTrace();
         }
