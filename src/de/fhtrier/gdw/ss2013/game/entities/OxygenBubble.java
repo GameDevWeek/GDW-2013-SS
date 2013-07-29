@@ -26,10 +26,6 @@ public class OxygenBubble extends Entity {
         this.oxygenLevel = oxygenLevel;
     }
 
-    public void update() {
-
-    }
-
     public void collected() {
 
     }
