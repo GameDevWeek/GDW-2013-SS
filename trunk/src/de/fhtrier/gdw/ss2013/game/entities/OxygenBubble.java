@@ -1,6 +1,6 @@
 /**
- * Justin Weinberg
- * Sandra Kemmerling
+ * OxygenBubble class
+ * @author Justin, Sandra
  * 
  * erzeugt Sauerstoffblasen und soll Sauerstoffvorrat erhöhen
  * 

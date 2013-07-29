@@ -1,7 +1,8 @@
 /**
- * Justin Weinberg 
- * Sandra Kemmerling
  * 
+ * Door class
+ * @author Justin, andra
+ *
  * erzeugt Tür-Objekt mit Zustand I|O 
  */
 

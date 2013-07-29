@@ -1,5 +1,6 @@
 /**
- * Justin Weinberg 
+ * DeadZone class
+ * @author Justin, Sandra 
  * 
  * 
  */
