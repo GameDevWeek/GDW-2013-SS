@@ -17,6 +17,9 @@ import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.util.ResourceLoader;
 
 import de.fhtrier.gdw.commons.jackson.JacksonReader;
+import de.fhtrier.gdw.ss2013.util.assets.AnimInfo;
+import de.fhtrier.gdw.ss2013.util.assets.ImageInfo;
+import de.fhtrier.gdw.ss2013.util.assets.SoundInfo;
 
 public class AssetLoader {
     HashMap<String, Image> imageMap = new HashMap<>();
