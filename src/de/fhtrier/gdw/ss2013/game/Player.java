@@ -12,11 +12,13 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.MainGame;
+import de.fhtrier.gdw.ss2013.interfaces.AlienControls;
+import de.fhtrier.gdw.ss2013.interfaces.AstronautControls;
 
 /**
  * Player class
  */
-public class Player extends Entity {
+public class Player extends Entity implements AlienControls, AstronautControls{
 
     public Player(Vector2f position) {
         super(position);
@@ -36,5 +38,61 @@ public class Player extends Entity {
             throws SlickException {
     }
     
+    
+    public void moveForward(int key)
+    {
+        if (key == forwardKey) 
+        {
+            // Vorwärtsbewegung
+        }
+    }
+    
+    public void moveBackward(int key)
+    {
+        if (key == backwardKey) 
+        {
+            // Rückwärtsbewegung
+        } 
+    }
+    
+    public void jump(int key)
+    {
+        if(key == jumpKey)
+        {
+            // Springen
+        }
+    }
+    
+    public void action(int key)
+    {
+        if(key == actionKey)
+        {
+            // Aktion (Hebel)
+        }
+    }
+    
+    public void shoot(int button)
+    {
+        if(button == shootButton)
+        {
+            // Schießen
+        }
+    }
+    
+    public void rotateAbilities(int value)
+    {
+        if(value == rotateWheel)
+        {
+            // Fähigkeiten auswählen
+        }
+    }
+    
+    public void useAbility(int button)
+    {
+        if(button == abilityButton)
+        {
+          // Fähigkeit benutzen   
+        }
+    }
    
 }
