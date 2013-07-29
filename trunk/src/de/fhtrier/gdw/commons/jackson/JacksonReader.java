@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
+import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +35,20 @@ public class JacksonReader {
         }
     }
 
+    public static <LT> List<LT> readList(String filename, Class<LT> clazz) throws IOException, UnsupportedEncodingException, NoSuchFieldException, IllegalArgumentException, IllegalAccessException, InstantiationException, ParseException {
+        JsonFactory factory = new JsonFactory();
+
+        try (
+                FileInputStream fileIn = new FileInputStream(filename);
+                InputStreamReader inReader = new InputStreamReader(fileIn);
+                BufferedReader bufferedReader = new BufferedReader(inReader);
+                JsonParser parser = factory.createParser(bufferedReader);) {
+            parser.nextToken();
+            return readList(clazz, parser);
+        }
+    }
+    
+    
     private static <T> List<T> readList(Class<T> clazz, JsonParser parser) throws InstantiationException, IllegalAccessException, IOException, NoSuchFieldException, ParseException {
         if (clazz == null || parser.getCurrentToken() != JsonToken.START_ARRAY) {
             throw new AssertionError(parser.getCurrentToken().name());
