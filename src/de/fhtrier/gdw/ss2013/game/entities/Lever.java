@@ -5,19 +5,22 @@ import de.fhtrier.gdw.ss2013.game.*;
 
 public class Lever extends Entity {
     
-    boolean activated;
+    boolean activated = false;
     
-    public Lever(Vector2f pos) {
-        
+    public Lever(Vector2f pos) {        
         super(pos);
+    }
+    
+    public Lever() {
+        this(null);
     }
 
     public boolean isActivated() {
         return activated;
     }
 
-    public void setActivated(boolean activated) {
-        this.activated = activated;
+    public void setActivated() {
+        this.activated = !this.activated;
     }
     
 }
