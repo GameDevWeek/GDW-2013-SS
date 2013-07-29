@@ -6,8 +6,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
-import de.fhtrier.gdw.ss2013.game.EntityManager;
-import de.fhtrier.gdw.ss2013.game.Player;
+import de.fhtrier.gdw.ss2013.game.*;
 /**
  * Flying Enemy Class
  * @author Kevin, Georg
@@ -32,8 +31,10 @@ public class FlyingEnemy extends AbstractEnemy {
     }
     
     @Override
-    public void onCollide() {
-        // TODO collision handling  
+    public void onCollision(Entity e) {
+        if(e instanceof Astronaut) {
+            ((Astronaut)e).setOxygen(((Astronaut)e).getOxygen()-this.getDamage());
+        }
     }
     
     public void reduceHealth(float dmg) {  

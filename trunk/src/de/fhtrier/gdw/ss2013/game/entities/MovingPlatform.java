@@ -22,9 +22,11 @@ public class MovingPlatform extends Entity {
     public MovingPlatform(Vector2f pos) {
         this(pos.copy(), new Vector2f());
     }
-    public void onCollide(Player player) {
-        player.getPosition().x += velocity.x;
-        player.getPosition().y += velocity.y;
+    public void onCollision(Entity e) {
+        if(e instanceof Player || e instanceof Box) {
+            e.getPosition().x += velocity.x;
+            e.getPosition().y += velocity.y;
+        }
     }
     public void reachEnd() {
         velocity.x = -velocity.x;

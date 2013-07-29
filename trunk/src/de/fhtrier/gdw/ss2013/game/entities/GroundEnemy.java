@@ -1,6 +1,9 @@
 package de.fhtrier.gdw.ss2013.game.entities;
 
 import org.newdawn.slick.geom.Vector2f;
+
+import de.fhtrier.gdw.ss2013.game.Astronaut;
+import de.fhtrier.gdw.ss2013.game.Entity;
 /**
  * Ground Enemy Class
  * @author Kevin, Georg
@@ -19,8 +22,9 @@ public class GroundEnemy extends AbstractEnemy {
         this(pos.copy(), new Vector2f(), 0);
     }
     @Override
-    public void onCollide() {
-        // TODO collision handling
+    public void onCollision(Entity e) {
+        if(e instanceof Astronaut) {
+            ((Astronaut)e).setOxygen(((Astronaut)e).getOxygen()-this.getDamage());
+        }
     }
-
 }
