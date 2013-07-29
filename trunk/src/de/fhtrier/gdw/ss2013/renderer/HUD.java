@@ -19,9 +19,13 @@ public class HUD {
     private Annotation notation;
     private AbilitySelection abilityWheel;
     private Image test;
+    private Quickselect quickselect;
+   
+
 
     public HUD(GameContainer container) throws SlickException {
         // Init healthbar
+
         healthbar = new Progressbar();
 
         final Vector2f position = new Vector2f(10, 10);
@@ -53,20 +57,37 @@ public class HUD {
             final Image ability3 = new Image(imagePath + "ability3.png");
             abilityWheel.init(ability1, ability2, ability3, position);
         } catch (SlickException e) {
-
             e.printStackTrace();
-
         }
+        final Image ability1 = new Image(imagePath + "ability1.png");
+        final Image ability2 = new Image(imagePath + "ability2.png");
+        final Image ability3 = new Image(imagePath + "ability3.png");
+        abilityWheel.init(ability1, ability2, ability3, position);
+
+        
+        //Init quickselect
+        quickselect = new Quickselect();
+        final int selected = 1;
+        final int countdown_start = 500;
+        quickselect.init(ability1, ability2, ability3,selected,countdown_start);
+
+        
+        
+        //DEV
+        quickselect.setSelected(2);
+        
 
     }
 
     public void update(GameContainer container, StateBasedGame game, int delta) {
 
         healthbar.update(container, game, delta);
+        quickselect.update(container, game, delta);
     }
 
     public void render(GameContainer container, StateBasedGame game, Graphics g) {
         healthbar.render(container, game, g);
         abilityWheel.render(container, game, g);
+        quickselect.render(container, game, g);
     }
 }
