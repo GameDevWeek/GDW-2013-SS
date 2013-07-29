@@ -1,3 +1,10 @@
+/**
+ * Justin Weinberg 
+ * Sandra Kemmerling
+ * 
+ * erzeugt Tür-Objekt mit Zustand I|O 
+ */
+
 package de.fhtrier.gdw.ss2013.game.entities;
 
 import org.newdawn.slick.geom.Vector2f;
