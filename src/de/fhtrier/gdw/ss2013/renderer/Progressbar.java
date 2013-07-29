@@ -15,9 +15,6 @@ import org.newdawn.slick.state.StateBasedGame;
 import de.fhtrier.gdw.ss2013.game.Entity;
 
 public class Progressbar {
-    
-    private String imagePath = "/res/Dummy_GUIs_Images/";
-    
     private Vector2f position;
     private Vector2f size;
     
@@ -35,20 +32,15 @@ public class Progressbar {
     
     private Image progress;
     
-    public void init(Vector2f position, Vector2f size, int cornerradius)  
+    public void init(Vector2f position, Vector2f size, int cornerradius,Image frame,Image background,Image bar)  
     {
         this.position = position.copy();
         this.size = size.copy();
         this.cornerradius = cornerradius;
-        
-        try {
-            frame = new Image(imagePath + "frame.png");
-            background = new Image(imagePath + "background.png");
-            bar = new Image (imagePath + "bar.png");
-        } catch (SlickException e) {
-            e.printStackTrace();
-        }
-       
+    
+        this.frame = frame;
+        this.background = background;
+        this.bar = bar;       
     }
     
     public void update(GameContainer container, StateBasedGame game, int delta)
@@ -66,8 +58,7 @@ public class Progressbar {
        // frame.draw(position.x, position.y);
         background.draw(position.x, position.y);
         bar.draw(position.x, position.y, position.x + filled, position.y + size.y, 0, 0, size.x - filled, size.y);
-        //g.setColor(Color.blue);
-        //g.fillRoundRect(position.x, position.y, filled, size.y, cornerradius);
+        
     }    
 
     

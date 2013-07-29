@@ -7,6 +7,7 @@ import org.newdawn.slick.Font;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -19,15 +20,47 @@ public class HUD {
    
     
     
-    public HUD()
+    public HUD(GameContainer container) 
     {
         //Init healthbar        
         healthbar = new Progressbar();
         
+        
         final Vector2f position = new Vector2f(10, 10);
         final Vector2f size = new Vector2f(240, 40);
         final int cornerradius = 5;
-        healthbar.init(position, size, cornerradius);
+        
+        final String imagePath = "/res/Dummy_GUIs_Images/";
+        
+    
+        try {
+            final Image frame = new Image(imagePath + "frame.png");
+            final Image background = new Image(imagePath + "background.png");
+            final Image bar = new Image (imagePath + "bar.png");
+            healthbar.init(position, size, cornerradius,frame,background,bar);
+        } catch (SlickException e) {
+            
+            e.printStackTrace();
+        }
+        
+        //Init abilityWheel
+        
+        abilityWheel = new AbilitySelection();
+        
+        position.set(20, 20);
+        
+        try {
+            final Image ability1 = new Image(imagePath + "ability1.png");
+            final Image ability2 = new Image (imagePath + "ability2.png");
+            final Image ability3 = new Image(imagePath + "ability3.png");
+            abilityWheel.init(ability1, ability2, ability3, position);
+        } catch (SlickException e) {
+            
+            e.printStackTrace();
+        
+        }
+        
+      
         
         
         
@@ -37,11 +70,13 @@ public class HUD {
 
     public void update(GameContainer container, StateBasedGame game, int delta)
     {
+        
         healthbar.update(container, game, delta);
     }
     
     public void render (GameContainer container, StateBasedGame game, Graphics g)
     {
         healthbar.render(container, game, g);
+        abilityWheel.render(container, game, g);
     }
 }
