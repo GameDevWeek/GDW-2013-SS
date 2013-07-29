@@ -31,12 +31,21 @@ public class AssetLoader {
         setupAnimation("res/json/animations.json");
         setupSound("res/json/sounds.json");
     }
+    
+    private void checkForBackslashes(String filename) {
+        for (int i=0;i<filename.length();++i) {
+            if (filename.charAt(i) == '\\') {
+                throw new IllegalArgumentException("You shall not use backslashes for paths! Check the JSON-files!");
+            }
+        }
+    }
 
     private void setupImages(String filename) {
         try {
             List<ImageInfo> imageInfos = JacksonReader.readList(filename,
                     ImageInfo.class);
             for (ImageInfo imageInfo : imageInfos) {
+                checkForBackslashes(imageInfo.pfad);
                 imageMap.put(imageInfo.name, new Image(imageInfo.pfad));
             }
         } catch (Exception e) {
@@ -49,6 +58,7 @@ public class AssetLoader {
             List<AnimInfo> animInfos = JacksonReader.readList(filename,
                     AnimInfo.class);
             for (AnimInfo animInfo : animInfos) {
+                checkForBackslashes(animInfo.pfad);
                 Image img = new Image(animInfo.pfad);
                 Animation anim = new Animation();
                 SpriteSheet sheet = new SpriteSheet(img, img.getWidth()
@@ -68,6 +78,7 @@ public class AssetLoader {
             List<SoundInfo> soundInfos = JacksonReader.readList(filename,
                     SoundInfo.class);
             for (SoundInfo soundInfo : soundInfos) {
+                checkForBackslashes(soundInfo.pfad);
                 soundMap.put(soundInfo.name,
                         new Sound(ResourceLoader.getResource(soundInfo.pfad)));
             }
