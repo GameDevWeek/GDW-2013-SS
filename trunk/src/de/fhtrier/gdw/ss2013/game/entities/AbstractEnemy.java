@@ -7,6 +7,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.game.*;
+import de.fhtrier.gdw.ss2013.util.AssetLoader;
 
 /**
  * Abstract Enemy Class for Enemys and Meteroids
@@ -18,15 +19,17 @@ public abstract class AbstractEnemy extends Entity {
 
     private Vector2f velocity;
     private float damage;
-    private Animation rechts_ani, links_ani, hoch_ani, still_ani, runter_ani;
+    private Animation rechts_ani, links_ani;
     private Animation current_ani;
-
+    private AssetLoader asset=new AssetLoader();
     public AbstractEnemy() {
         this(new Vector2f(), new Vector2f(), 0);
     }
 
     public AbstractEnemy(Vector2f pos) {
         this(pos.copy(), new Vector2f(), 0);
+        rechts_ani=asset.getAnimation("animtes");
+        links_ani=asset.getAnimation("animtes");
     }
 
     public AbstractEnemy(Vector2f pos, Vector2f velo, float dmg) {
