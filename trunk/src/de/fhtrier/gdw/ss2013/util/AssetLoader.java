@@ -17,7 +17,7 @@ import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.util.ResourceLoader;
 
 import de.fhtrier.gdw.commons.jackson.JacksonReader;
-import de.fhtrier.gdw.ss2013.util.assets.AnimInfo;
+import de.fhtrier.gdw.ss2013.util.assets.AnimationInfo;
 import de.fhtrier.gdw.ss2013.util.assets.ImageInfo;
 import de.fhtrier.gdw.ss2013.util.assets.SoundInfo;
 
@@ -55,9 +55,9 @@ public class AssetLoader {
 
     private void setupAnimation(String filename) {
         try {
-            List<AnimInfo> animInfos = JacksonReader.readList(filename,
-                    AnimInfo.class);
-            for (AnimInfo animInfo : animInfos) {
+            List<AnimationInfo> animInfos = JacksonReader.readList(filename,
+                    AnimationInfo.class);
+            for (AnimationInfo animInfo : animInfos) {
                 checkForBackslashes(animInfo.pfad);
                 Image img = new Image(animInfo.pfad);
                 Animation anim = new Animation();

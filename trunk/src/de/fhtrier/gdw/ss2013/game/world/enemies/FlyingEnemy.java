@@ -1,5 +1,6 @@
 package de.fhtrier.gdw.ss2013.game.world.enemies;
 
+import org.jbox2d.dynamics.Fixture;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -10,12 +11,13 @@ import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.player.Player;
+import de.fhtrier.gdw.ss2013.physics.ICollidable;
 /**
  * Flying Enemy Class
  * @author Kevin, Georg
  *
  */
-public class FlyingEnemy extends AbstractEnemy {
+public class FlyingEnemy extends AbstractEnemy implements ICollidable {
 
     private float health, change;
     final static float DEBUG_ENTITY_HALFEXTEND = 5;
@@ -61,7 +63,7 @@ public class FlyingEnemy extends AbstractEnemy {
     
     public void update(GameContainer container, int delta)
             throws SlickException {
-        float dt = delta / 1000.f;
+//        float dt = delta / 1000.f;
         change += delta;
         // TODO clamp dt if dt > 1/60.f ?
         this.getPosition().x += this.getVelocity().x;
@@ -82,4 +84,10 @@ public class FlyingEnemy extends AbstractEnemy {
         
         return direction;
     }
+
+	@Override
+	public Fixture getFixture() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

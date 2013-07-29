@@ -1,11 +1,13 @@
 package de.fhtrier.gdw.ss2013.game.world.objects;
 
+import org.jbox2d.dynamics.Fixture;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
+import de.fhtrier.gdw.ss2013.physics.ICollidable;
 
 /**
  * Switch class
@@ -13,7 +15,7 @@ import de.fhtrier.gdw.ss2013.game.player.Astronaut;
  * @author Kevin, Georg
  * 
  */
-public class Button extends Switch {
+public class Button extends Switch implements ICollidable {
     private boolean collision, lastframecollision;
 
     public Button(Vector2f pos) {
@@ -33,10 +35,11 @@ public class Button extends Switch {
         }
     }
 
+    @Override
     public void update(GameContainer container, int delta)
             throws SlickException {
 
-        float dt = delta / 1000.f;
+//        float dt = delta / 1000.f;
         // TODO clamp dt if dt > 1/60.f ?
         if (lastframecollision) {
             this.setActivated(true);
@@ -46,4 +49,10 @@ public class Button extends Switch {
         lastframecollision = collision;
         collision = false;
     }
+
+	@Override
+	public Fixture getFixture() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

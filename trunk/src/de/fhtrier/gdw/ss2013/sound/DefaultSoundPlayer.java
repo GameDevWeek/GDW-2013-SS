@@ -14,7 +14,6 @@ import de.fhtrier.gdw.ss2013.game.Entity;
  */
 public class DefaultSoundPlayer implements SoundPlayer {
 
-    // Emitter
     private HashMap<Entity, HashSet<Sound>> emitterSoundPlayingMap = new HashMap<>();
 
     @Override
@@ -52,8 +51,8 @@ public class DefaultSoundPlayer implements SoundPlayer {
     public void playSoundAt(Sound sound, Entity listener, Entity emitter) {
         if (!manageEntitySoundPlayMap(emitter, sound))
             return;
-        float dSq = listener.getPosition().distanceSquared(emitter.getPosition());
-        final float MidSound = 0.5f;
+//        float dSq = listener.getPosition().distanceSquared(emitter.getPosition());
+//        final float MidSound = 0.5f;
 
         sound.play();
         emitterSoundPlayingMap.get(emitter).add(sound);
