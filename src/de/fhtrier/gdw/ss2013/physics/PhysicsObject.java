@@ -7,6 +7,7 @@ import org.newdawn.slick.SlickException;
 
 import de.fhtrier.gdw.ss2013.game.Entity;
 
+import org.jbox2d.collision.shapes.MassData;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 
@@ -64,17 +65,64 @@ public abstract class PhysicsObject {
         setPosition(new Vec2(x,y));
     }
     
-    //myBody.applyForceToCenter(force);
-    //myBody.getAngle();
-    //myBody.getLinearVelocity();
-    //myBody.setLinearVelocity(v);
-    //myBody.isAwake();
-    //myBody.setGravityScale(gravityScale);
-    //myBody.getGravityScale();
-    //myBody.setMassData(massData);
-    //myBody.getMass();
+    public void simpelForceApply(Vec2 force)
+    {
+        myBody.applyForceToCenter(force);
+    }
     
+    public float getAngle()
+    {
+        return myBody.getAngle();
+    }
+    
+    public Vec2 getLiniarVelocity()
+    {
+        return myBody.getLinearVelocity();
+    }
 
+    public void setLinearVelocity(Vec2 v)
+    {
+        myBody.setLinearVelocity(v);
+    }
+    
+    public boolean isAwake()
+    {
+        return myBody.isAwake();
+    }
+    
+    public boolean isAsleep()
+    {
+        return !myBody.isAwake();
+    }
+    
+    public void setGravityScale(float gravityScale)
+    {
+        myBody.setGravityScale(gravityScale);
+    }
+    
+    public float getGravityScale()
+    {
+        return myBody.getGravityScale();
+    }
+    
+    public void setMassData(MassData massData)
+    {
+        myBody.setMassData(massData);
+    }
+
+    public void setMassData(float mass)
+    {
+        MassData massData = new MassData();
+        massData.mass = mass;
+        setMassData(massData);
+    }
+    
+    public float getMass()
+    {
+        return myBody.getMass();
+    }
+    
+    
     /**
      * 
      * @param delta
