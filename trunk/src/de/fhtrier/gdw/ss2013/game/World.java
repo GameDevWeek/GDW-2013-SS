@@ -12,6 +12,7 @@ import de.fhtrier.gdw.commons.tiled.TiledMap;
 import de.fhtrier.gdw.ss2013.game.entities.Meteroid;
 import de.fhtrier.gdw.ss2013.game.entities.OxygenFlower;
 import de.fhtrier.gdw.ss2013.game.entities.FlyingEnemy;
+import de.fhtrier.gdw.ss2013.physics.PhysicsManager;
 import de.fhtrier.gdw.ss2013.renderer.MapRenderer;
 
 public class World {
@@ -26,6 +27,7 @@ public class World {
     private final OxygenFlower oxyFlower;;
     // private final List<Entity> entities = new LinkedList<>();
     EntityManager entityManager;
+    PhysicsManager physicsManager;
 
     public World(GameContainer container, StateBasedGame game)
             throws SlickException {
@@ -37,6 +39,7 @@ public class World {
             camera = new Camera(map);
             metro = new Meteroid[3];
             entityManager = new EntityManager();
+            physicsManager = new PhysicsManager();
             player = (Player) entityManager.createEntityAt(Player.class,
                     new Vector2f(200, 200));
             
@@ -105,5 +108,9 @@ public class World {
     public Camera getCamera()
     {
     	return camera;
+    }
+    
+    public PhysicsManager getPhysicsManager() {
+        return physicsManager;
     }
 }
