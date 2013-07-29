@@ -1,4 +1,4 @@
-package de.fhtrier.gdw.ss2013.debug;
+package de.fhtrier.gdw.ss2013.settings;
 
 public class DebugModeStatus {
     static protected boolean testModeStatus;
