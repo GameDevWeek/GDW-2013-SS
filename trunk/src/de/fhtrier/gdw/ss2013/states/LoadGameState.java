@@ -2,10 +2,8 @@ package de.fhtrier.gdw.ss2013.states;
 
 import java.io.IOException;
 
-import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.loading.DeferredResource;
 import org.newdawn.slick.loading.LoadingList;
@@ -13,13 +11,14 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import de.fhtrier.gdw.ss2013.MainGame;
+import de.fhtrier.gdw.ss2013.debug.TestModeStatus;
 
 /**
  * Loading state
  */
 public class LoadGameState extends BasicGameState {
 
-//    private Image loadscreen;
+    // private Image loadscreen;
     private MainMenuState mainMenuState;
     private GameplayState gameplayState;
     private DeferredResource nextResource;
@@ -27,7 +26,7 @@ public class LoadGameState extends BasicGameState {
     @Override
     public void init(GameContainer container, StateBasedGame game)
             throws SlickException {
-//        loadscreen = new Image("/res/LoadScreen/titlescreen.png");
+        // loadscreen = new Image("/res/LoadScreen/titlescreen.png");
         LoadingList.setDeferredLoading(true);
 
         // Todo: initialize assets
@@ -52,20 +51,20 @@ public class LoadGameState extends BasicGameState {
             throws SlickException {
         container.setShowFPS(false);
 
-//        int total = LoadingList.get().getTotalResources();
-//        int loaded = LoadingList.get().getTotalResources()
-//                - LoadingList.get().getRemainingResources();
-//        if (loaded == 0) {
-//            loaded = 1;
-//        }
-//        total = total / loaded;
-//
-//        g.setColor(Color.red);
-//        g.fillRect(container.getWidth() / 2 - 245,
-//                container.getHeight() / 2 - 70, (int) (5.5f * (100 / total)),
-//                100);
-//        loadscreen.draw((container.getWidth() - loadscreen.getWidth()) / 2,
-//                (container.getHeight() - loadscreen.getHeight()) / 2);
+        // int total = LoadingList.get().getTotalResources();
+        // int loaded = LoadingList.get().getTotalResources()
+        // - LoadingList.get().getRemainingResources();
+        // if (loaded == 0) {
+        // loaded = 1;
+        // }
+        // total = total / loaded;
+        //
+        // g.setColor(Color.red);
+        // g.fillRect(container.getWidth() / 2 - 245,
+        // container.getHeight() / 2 - 70, (int) (5.5f * (100 / total)),
+        // 100);
+        // loadscreen.draw((container.getWidth() - loadscreen.getWidth()) / 2,
+        // (container.getHeight() - loadscreen.getHeight()) / 2);
     }
 
     @Override
@@ -85,7 +84,12 @@ public class LoadGameState extends BasicGameState {
             nextResource = LoadingList.get().getNext();
         } else {
             container.setShowFPS(true);
-            MainGame.changeState(MainGame.MAINMENUSTATE);
+
+            if (TestModeStatus.getStatus()) {
+                MainGame.changeState(MainGame.GAMEPLAY);
+            } else {
+                MainGame.changeState(MainGame.MAINMENUSTATE);
+            }
         }
     }
 

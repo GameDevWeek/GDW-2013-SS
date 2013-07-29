@@ -1,7 +1,5 @@
 package de.fhtrier.gdw.ss2013;
 
-import de.fhtrier.gdw.ss2013.states.LoadGameState;
-
 import java.io.File;
 
 import org.lwjgl.LWJGLUtil;
@@ -14,6 +12,9 @@ import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 import org.newdawn.slick.state.transition.Transition;
+
+import de.fhtrier.gdw.ss2013.debug.TestModeStatus;
+import de.fhtrier.gdw.ss2013.states.LoadGameState;
 
 /**
  * The Game object
@@ -28,7 +29,7 @@ public class MainGame extends StateBasedGame {
     public static final int TEAMDEATHMATCH = 2;
     public static int currentState = -1;
     public static MainGame instance;
-    
+
     private LoadGameState loadGameState;
     private AppGameContainer container;
     private Input input;
@@ -48,7 +49,7 @@ public class MainGame extends StateBasedGame {
     public static void checkFullscreenToggle() {
         if (instance.input.isKeyDown(Input.KEY_ENTER)
                 && (instance.input.isKeyDown(Input.KEY_LALT) || instance.input
-                .isKeyDown(Input.KEY_RALT))) {
+                        .isKeyDown(Input.KEY_RALT))) {
             toggleFullscreen();
         }
     }
@@ -71,11 +72,13 @@ public class MainGame extends StateBasedGame {
     public static void changeState(int id) {
         changeState(id, 500, 500);
     }
-    
+
     public static void changeState(int id, int fadeOutTime, int fadeInTime) {
         if (id != currentState) {
-            Transition transitionOut = new FadeOutTransition(Color.black, fadeOutTime);
-            Transition transitionIn = new FadeInTransition(Color.black, fadeInTime);
+            Transition transitionOut = new FadeOutTransition(Color.black,
+                    fadeOutTime);
+            Transition transitionIn = new FadeInTransition(Color.black,
+                    fadeInTime);
             instance.enterState(id, transitionOut, transitionIn);
 
             currentState = id;
@@ -86,10 +89,15 @@ public class MainGame extends StateBasedGame {
         try {
             System.setProperty("org.lwjgl.librarypath",
                     new File(
-                    new File(System.getProperty("user.dir"), "native"),
-                    LWJGLUtil.getPlatformName()).getAbsolutePath());
+                            new File(System.getProperty("user.dir"), "native"),
+                            LWJGLUtil.getPlatformName()).getAbsolutePath());
             System.setProperty("net.java.games.input.librarypath",
                     System.getProperty("org.lwjgl.librarypath"));
+
+            for (String a : args) {
+                if (a.equals("-testmode"))
+                    TestModeStatus.setStatus(true);
+            }
 
             instance = new MainGame(args);
             AppGameContainer app = new AppGameContainer(instance);
