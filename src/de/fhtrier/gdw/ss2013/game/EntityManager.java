@@ -1,5 +1,10 @@
+/**
+ * @author Sebastian, Arnold
+ */
+
 package de.fhtrier.gdw.ss2013.game;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -8,11 +13,14 @@ import java.util.Queue;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Vector2f;
+
+import de.fhtrier.gdw.ss2013.util.VectorUtil;
 
 public class EntityManager {
     // static protected EntityManager managerInstance;
     protected ArrayList<Entity> entityList;
-    protected HashMap<Class<? extends RecycleableEntity>, ArrayList<Entity>> recycleMap;
+    protected HashMap<Class<? extends RecycleableEntity>, LinkedList<Entity>> recycleMap;
     protected Queue<Entity> removalQueue;
 
     public EntityManager() {
@@ -25,9 +33,9 @@ public class EntityManager {
         while (!removalQueue.isEmpty()) {
             Entity e = removalQueue.poll();
             if (e instanceof RecycleableEntity) {
-                ArrayList<Entity> recycleList = recycleMap.get(e.getClass());
+                LinkedList<Entity> recycleList = recycleMap.get(e.getClass());
                 if (recycleList == null) {
-                    recycleList = new ArrayList<>();
+                    recycleList = new LinkedList<>();
                 }
                 recycleList.add(e);
             }
@@ -55,11 +63,39 @@ public class EntityManager {
             e.render(container, g);
     }
 
-    public Entity getEntityAtPosition(float px, float py) {
+    /**
+     * 
+     * @param position
+     * @return entity reference an position, null falls keine entity an position
+     */
+    public Entity getEntityAtPosition(Vector2f position) {
+        for (Entity e : entityList) {
+            if (position.equals(e.position)) {
+                return e;
+            }
+        }
         return null;
     }
 
-    public void addEntity(Entity e) {
+    /**
+     * 
+     * @param position
+     * @param radius
+     *            radius der überprüfung
+     * @return
+     */
+    public Entity getClosestEntityAtPosition(Vector2f position, float radius) {
+        final float EPSILON = 0.001f;
+        for (Entity e : entityList) {
+            if (Math.abs(VectorUtil.subtract(position, e.position).length()
+                    - radius) < EPSILON) {
+                return e;
+            }
+        }
+        return null;
+    }
+
+    private void addEntity(Entity e) {
         entityList.add(e);
     }
 
@@ -67,9 +103,86 @@ public class EntityManager {
         removalQueue.add(e);
     }
 
-    public void createEntity(Class<?> entityClass) {
-        if (entityClass.isInstance(RecycleableEntity.class)) {
-
+    private Entity internalCreate(Class<? extends Entity> entityClass) {
+        Entity e = null;
+        try {
+            assert (entityClass.getConstructor() != null);
+            e = entityClass.newInstance();
+            addEntity(e);
+        } catch (NoSuchMethodException ex) {
+            ex.printStackTrace();
+        } catch (SecurityException ex) {
+            ex.printStackTrace();
+        } catch (InstantiationException ex) {
+            ex.printStackTrace();
+        } catch (IllegalAccessException ex) {
+            ex.printStackTrace();
         }
+        return e;
+    }
+
+    private Entity internalCreateAt(Class<? extends Entity> entityClass,
+            Vector2f position) {
+
+        Entity e = null;
+        try {
+            assert (entityClass.getConstructor(Vector2f.class) != null);
+            e = entityClass.getConstructor(Vector2f.class)
+                    .newInstance(position);
+            addEntity(e);
+        } catch (NoSuchMethodException ex) {
+            ex.printStackTrace();
+        } catch (SecurityException ex) {
+            ex.printStackTrace();
+        } catch (InstantiationException ex) {
+            ex.printStackTrace();
+        } catch (IllegalAccessException ex) {
+            ex.printStackTrace();
+        } catch (IllegalArgumentException ex) {
+            ex.printStackTrace();
+        } catch (InvocationTargetException ex) {
+            ex.printStackTrace();
+        }
+        return e;
+    }
+
+    private boolean testRecyceability(Class<? extends Entity> entityClass) {
+        if (entityClass.isInstance(RecycleableEntity.class)) {
+            if (recycleMap.get(entityClass) != null
+                    && !recycleMap.get(entityClass).isEmpty()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @SuppressWarnings("unchecked")
+    public <T extends Entity> T createEntity(Class<? extends Entity> entityClass) {
+        if (testRecyceability(entityClass)) {
+            Entity e = recycleMap.get(entityClass).poll();
+            assert (e != null);
+            addEntity(e); // TODO delay add, falls möglich
+            return (T) e;
+        }
+
+        Entity e = internalCreate(entityClass);
+        assert (e != null);
+        return (T) e;
+    }
+
+    @SuppressWarnings("unchecked")
+    public <T extends Entity> T createEntityAt(
+            Class<? extends Entity> entityClass, Vector2f position) {
+        if (testRecyceability(entityClass)) {
+            Entity e = recycleMap.get(entityClass).poll();
+            assert (e != null);
+            e.position = position;
+            addEntity(e); // TODO delay add
+            return (T) e;
+        }
+        Entity e = internalCreateAt(entityClass, position);
+        e.position = position;
+        return (T) e;
+
     }
 }

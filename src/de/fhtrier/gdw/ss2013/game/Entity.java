@@ -20,7 +20,7 @@ public class Entity {
 
     public Entity(Vector2f position) {
 
-        this.position = position;
+        this.position = position.copy();
     }
 
     public void render(GameContainer container, Graphics g)
