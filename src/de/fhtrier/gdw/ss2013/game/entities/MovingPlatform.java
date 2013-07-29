@@ -11,6 +11,11 @@ import de.fhtrier.gdw.ss2013.game.Entity;
 public class MovingPlatform extends Entity {
     private Vector2f velocity;
     
+    public  MovingPlatform (Vector2f position){
+        super (position);
+        
+    }
+    
     public MovingPlatform(Vector2f pos, Vector2f velo) {
         super(pos);
         velocity = velo;

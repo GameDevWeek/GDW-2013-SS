@@ -33,9 +33,4 @@ public class Astronaut extends Player{
         this.maxOxygen = maxOxygen;
     }
 
-
-    
-    
-
- 
 }
