@@ -15,8 +15,6 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
-import de.fhtrier.gdw.ss2013.util.VectorUtil;
-
 //TODO filter für getEntities
 public class EntityManager {
     // static protected EntityManager managerInstance;
@@ -90,8 +88,7 @@ public class EntityManager {
         ArrayList<Entity> entities = new ArrayList<>();
         final float EPSILON = 0.001f;
         for (Entity e : entityList) {
-            if (Math.abs(VectorUtil.subtract(position, e.position).length()
-                    - radius) < EPSILON) {
+            if ((position.distance(e.position) - radius) < EPSILON) {
                 entities.add(e);
             }
         }
