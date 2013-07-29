@@ -8,7 +8,7 @@ import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
-import de.fhtrier.gdw.ss2013.game.entities.Bullet;
+import de.fhtrier.gdw.ss2013.game.entities.EnemyBullet;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.player.Player;
 /**
@@ -45,7 +45,7 @@ public class FlyingEnemy extends AbstractEnemy {
         health -= dmg;
     }
     public void shoot(Player player, EntityManager m) {
-        Bullet b = (Bullet) m.createEntityAt(Bullet.class, this.position.copy());
+        EnemyBullet b = (EnemyBullet) m.createEntityAt(EnemyBullet.class, this.position.copy());
         b.getVelocity().x = 5 * calcPlayerDirection(player).x;
         b.getVelocity().y = 5 * calcPlayerDirection(player).y;
         b.setDamage(this.getDamage());
