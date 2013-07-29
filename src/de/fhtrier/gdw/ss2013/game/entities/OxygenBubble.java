@@ -20,7 +20,8 @@ public class OxygenBubble extends Entity {
     // Standard-Konstruktor
     public OxygenBubble(Vector2f position) {
         super (position);
-
+        //Default
+        oxygenLevel = 0; 
     }
 
     public OxygenBubble(Vector2f position, float oxygenLevel) {
