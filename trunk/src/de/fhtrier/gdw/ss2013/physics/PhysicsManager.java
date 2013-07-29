@@ -11,12 +11,15 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 
 public class PhysicsManager {
-    public PhysicsManager() {
-        this(new Vec2(0.0f, -9.81f));
+    public static PhysicsManager getInstance() {
+        if (_physicsManagerSingleton == null) {
+            _physicsManagerSingleton = new PhysicsManager();
+        }
+        return _physicsManagerSingleton;
     }
     
-    public PhysicsManager(Vec2 gravity) {
-        _physicsWorld = new World(gravity);
+    private PhysicsManager() {
+        _physicsWorld = new World(new Vec2(0.0f, -9.81f));
     }
     
     public Vec2 getGravity() {
@@ -45,5 +48,6 @@ public class PhysicsManager {
         _physicsWorld.destroyBody(object.getBody());
     }
     
+    private static PhysicsManager _physicsManagerSingleton = null;
     private World _physicsWorld;
 }
