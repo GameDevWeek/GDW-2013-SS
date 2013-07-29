@@ -27,7 +27,7 @@ public class GameplayState extends BasicGameState {
             throws SlickException {
         world = new World(container, game);
         font = new AngelCodeFont("res/fonts/verdana_46.fnt", "res/fonts/verdana_46_0.tga");
-        hud = new HUD();
+        hud = new HUD(container);
     }
 
     @Override
