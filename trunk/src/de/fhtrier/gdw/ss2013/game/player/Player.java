@@ -18,7 +18,7 @@ import de.fhtrier.gdw.ss2013.input.AstronautControls;
 /**
  * Player class
  */
-public abstract class Player extends Entity implements AlienControls, AstronautControls{
+public class Player extends Entity implements AlienControls, AstronautControls{
    
     Animation bewegungs_ani;
     private Animation animation;

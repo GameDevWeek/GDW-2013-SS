@@ -24,135 +24,134 @@ import de.fhtrier.gdw.ss2013.sound.SoundLocator;
 
 public class World {
 
-    private final TiledMap map;
-    private final MapRenderer mapRender;
-    private final Camera camera;
-    private final Player player;
-    private final FlyingEnemy enemy;
-    private final Meteroid metro[] = new Meteroid[3];
-    private final Input input;
-    private final OxygenFlower oxyFlower;
-    
-    //physics debug
-    private DebugDrawer physicDebug;
-    public boolean debugDraw = true;
+	private TiledMap map;
+	private MapRenderer mapRender;
+	private Camera camera;
+	private Player player;
+	private FlyingEnemy enemy;
+	private Meteroid metro[] = new Meteroid[3];
+	private Input input;
+	private OxygenFlower oxyFlower;
 
-    EntityManager entityManager;
+	// physics debug
+	private DebugDrawer physicDebug;
+	public boolean debugDraw = true;
 
-    public World(GameContainer container, StateBasedGame game)
-            throws SlickException {
-        input = container.getInput();
-        try {
-            map = new TiledMap("res/maps/demo.tmx",
-                    LayerObject.PolyMode.ABSOLUTE);
+	EntityManager entityManager;
 
-            mapRender = new MapRenderer(map);
-            camera = new Camera(map);
+	public World(GameContainer container, StateBasedGame game) {
+		input = container.getInput();
+		map = null;
+		try {
+			map = new TiledMap("res/maps/demo.tmx", LayerObject.PolyMode.ABSOLUTE);
 
-            entityManager = new EntityManager();
-            
-            //physic debug stuff
-            if (debugDraw) {
-            	physicDebug = new DebugDrawer(container, camera);
-            	PhysicsManager.getInstance()._physicsWorld.setDebugDraw(physicDebug);
-            }
-            
-            player = entityManager.createEntityAt(Player.class, new Vector2f(
-                    200, 200));
+			mapRender = new MapRenderer(map);
+		} catch (Exception e) {
+			throw new RuntimeException();
+		}
+		camera = new Camera(map);
 
-            oxyFlower = (OxygenFlower) entityManager.createEntityAt(
-                    OxygenFlower.class, new Vector2f(300, 300));
+		entityManager = new EntityManager();
 
-            enemy = (FlyingEnemy) entityManager.createEntityAt(
-                    FlyingEnemy.class, new Vector2f(500, 500));
-            for (int i = 0; i < metro.length; i++) {
-                metro[i] = (Meteroid) entityManager.createEntityAt(
-                        Meteroid.class, new Vector2f(200 + i * 100, 0));
-            }
+		// physic debug stuff
+		if (debugDraw) {
+			physicDebug = new DebugDrawer(container, camera);
+			PhysicsManager.getInstance()._physicsWorld
+					.setDebugDraw(physicDebug);
+		}
 
-        } catch (Exception e) {
-            throw new SlickException(e.toString());
-        }
-    }
+		player = entityManager.createEntityAt(Player.class, new Vector2f(200,
+				200));
 
-    public void render(GameContainer container, Graphics g)
-            throws SlickException {
-        Vector2f playerPos = player.getPosition();
-        camera.update(container.getWidth(), container.getHeight(), playerPos.x,
-                playerPos.y);
+		oxyFlower = (OxygenFlower) entityManager.createEntityAt(
+				OxygenFlower.class, new Vector2f(300, 300));
 
-        mapRender
-                .renderTileLayers(g, -camera.getTileOverlapX(),
-                        -camera.getTileOverlapY(), camera.getTileX(),
-                        camera.getTileY(), camera.getNumTilesX(),
-                        camera.getNumTilesY());
+		enemy = (FlyingEnemy) entityManager.createEntityAt(FlyingEnemy.class,
+				new Vector2f(500, 500));
+		for (int i = 0; i < metro.length; i++) {
+			metro[i] = (Meteroid) entityManager.createEntityAt(Meteroid.class,
+					new Vector2f(200 + i * 100, 0));
+		}
+	}
 
-        g.pushTransform();
-        g.translate(-camera.getOffsetX(), -camera.getOffsetY());
+	public void render(GameContainer container, Graphics g)
+			throws SlickException {
+		Vector2f playerPos = player.getPosition();
+		camera.update(container.getWidth(), container.getHeight(), playerPos.x,
+				playerPos.y);
 
-        // draw entities
-        entityManager.render(container, g);
-        
+		mapRender
+				.renderTileLayers(g, -camera.getTileOverlapX(),
+						-camera.getTileOverlapY(), camera.getTileX(),
+						camera.getTileY(), camera.getNumTilesX(),
+						camera.getNumTilesY());
+
+		g.pushTransform();
+		g.translate(-camera.getOffsetX(), -camera.getOffsetY());
+
+		// draw entities
+		entityManager.render(container, g);
+
 		if (debugDraw)
-        	PhysicsManager.getInstance()._physicsWorld.drawDebugData();
-        
-        g.popTransform();
-    }
+			PhysicsManager.getInstance()._physicsWorld.drawDebugData();
 
-    public void update(GameContainer container, int delta)
-            throws SlickException {
-        // update entities
-        entityManager.update(container, delta);
-        
-        PhysicsManager.getInstance().update(container, delta);
+		g.popTransform();
+	}
 
-        // This is just a placeholder, not for actual use.
-        Vector2f playerPos = player.getPosition();
-        float speed = 6;
-        if (input.isKeyDown(Input.KEY_UP)) {
-            playerPos.y -= speed;
-        }
-        if (input.isKeyDown(Input.KEY_DOWN)) {
-            playerPos.y += speed;
-        }
-        if (input.isKeyDown(Input.KEY_LEFT)) {
-            playerPos.x -= speed;
-        }
-        if (input.isKeyDown(Input.KEY_RIGHT)) {
-            playerPos.x += speed;
-        }
-        if (input.isKeyPressed(Input.KEY_F)) {
-            enemy.shoot(player, entityManager);
-        }
-        Sound a = SoundLocator.loadSound("teamworld_testsound");
-        SoundLocator.getPlayer().playSoundAt(a,
-                new Entity(new Vector2f(100, 100)), player);
+	public void update(GameContainer container, int delta)
+			throws SlickException {
+		// update entities
+		entityManager.update(container, delta);
 
-        if (input.isKeyPressed(Input.KEY_B)) {
-            oxyFlower.shootBubbles(entityManager);
-        }
-    }
+		PhysicsManager.getInstance().update(container, delta);
 
-    public Vector2f screenToWorldPosition(Vector2f screenPosition) {
-        /**
-         * Top-left (0,0) / Bottom-right (width,height)
-         */
-        Vector2f worldPos = new Vector2f(camera.getOffsetX(),
-                camera.getOffsetY());
+		// This is just a placeholder, not for actual use.
+		Vector2f playerPos = player.getPosition();
+		float speed = 6;
+		if (input.isKeyDown(Input.KEY_UP)) {
+			playerPos.y -= speed;
+		}
+		if (input.isKeyDown(Input.KEY_DOWN)) {
+			playerPos.y += speed;
+		}
+		if (input.isKeyDown(Input.KEY_LEFT)) {
+			playerPos.x -= speed;
+		}
+		if (input.isKeyDown(Input.KEY_RIGHT)) {
+			playerPos.x += speed;
+		}
+		if (input.isKeyPressed(Input.KEY_F)) {
+			enemy.shoot(player, entityManager);
+		}
+		Sound a = SoundLocator.loadSound("teamworld_testsound");
+		SoundLocator.getPlayer().playSoundAt(a,
+				new Entity(new Vector2f(100, 100)), player);
 
-        return worldPos.add(screenPosition);
+		if (input.isKeyPressed(Input.KEY_B)) {
+			oxyFlower.shootBubbles(entityManager);
+		}
+	}
 
-    }
+	public Vector2f screenToWorldPosition(Vector2f screenPosition) {
+		/**
+		 * Top-left (0,0) / Bottom-right (width,height)
+		 */
+		Vector2f worldPos = new Vector2f(camera.getOffsetX(),
+				camera.getOffsetY());
 
-    public Vector2f worldToScreenPosition(Vector2f worldPosition) {
-        Vector2f screenPos = new Vector2f(-camera.getOffsetX(),
-                -camera.getOffsetY());
+		return worldPos.add(screenPosition);
 
-        return screenPos.add(worldPosition);
-    }
+	}
 
-    public Camera getCamera() {
-        return camera;
-    }
+	public Vector2f worldToScreenPosition(Vector2f worldPosition) {
+		Vector2f screenPos = new Vector2f(-camera.getOffsetX(),
+				-camera.getOffsetY());
+
+		return screenPos.add(worldPosition);
+	}
+
+	public Camera getCamera() {
+		return camera;
+	}
 
 }
