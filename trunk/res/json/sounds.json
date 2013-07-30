@@ -1,13 +1,9 @@
 [{
-  "name" : "soundtest",
-  "pfad" : "res/sounds/testwind.wav"
+ "name" : "teamworld_testsound",
+ "pfad" : "res/sounds/testsound.wav"
 },
 {
-	"name" : "teamworld_testsound",
-	"pfad" : "res/sounds/testsound.wav"
-},
-{
-	"name" : "zombiemoan",
-	"pfad" : "res/sounds/zombiemoan.wav"
+ "name" : "zombiemoan",
+ "pfad" : "res/sounds/zombiemoan.wav"
 }
 ]

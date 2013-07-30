@@ -14,8 +14,6 @@ import org.newdawn.slick.Animation;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Sound;
 import org.newdawn.slick.SpriteSheet;
-import org.newdawn.slick.loading.DeferredResource;
-import org.newdawn.slick.loading.LoadingList;
 import org.newdawn.slick.util.ResourceLoader;
 
 import de.fhtrier.gdw.commons.jackson.JacksonReader;
@@ -25,6 +23,7 @@ import de.fhtrier.gdw.ss2013.assetloader.infos.AnimationInfo;
 import de.fhtrier.gdw.ss2013.assetloader.infos.FontInfo;
 import de.fhtrier.gdw.ss2013.assetloader.infos.ImageInfo;
 import de.fhtrier.gdw.ss2013.assetloader.infos.MapInfo;
+import de.fhtrier.gdw.ss2013.assetloader.infos.ScoreInfo;
 import de.fhtrier.gdw.ss2013.assetloader.infos.SoundInfo;
 import org.newdawn.slick.AngelCodeFont;
 import org.newdawn.slick.Font;
@@ -34,7 +33,9 @@ public class AssetLoader {
 	private HashMap<String, Animation> animMap = new HashMap<>();
 	private HashMap<String, Sound> soundMap = new HashMap<>();
 	private HashMap<String, String> mapHashmap = new HashMap<>();
-	HashMap<String, Font> fontMap = new HashMap<>();
+	private HashMap<String, Font> fontMap = new HashMap<>();
+	private List<ScoreInfo> scoreInfos;
+	private int mapCount = 0;
 	
 	private static AssetLoader instance;
 	
@@ -53,7 +54,7 @@ public class AssetLoader {
 		setupImages("res/json/images.json");
 	}
 
-	private void checkForBackslashes(String filename) {
+    private void checkForBackslashes(String filename) {
 		for (int i = 0; i < filename.length(); ++i) {
 			if (filename.charAt(i) == '\\') {
 				throw new IllegalArgumentException(
@@ -117,10 +118,12 @@ public class AssetLoader {
                 checkForBackslashes(mapInfo.pfad);
                 mapHashmap.put(mapInfo.name, mapInfo.pfad); // don't load every map during setup
             }
+            mapCount = mapInfos.size();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+    
 
     private void setupFonts(String filename) {
 		try {
@@ -136,7 +139,20 @@ public class AssetLoader {
 			e.printStackTrace();
 		}
     }
-
+    
+    private void setupScore(String filename) {
+        try {
+            scoreInfos = JacksonReader.readList(filename, ScoreInfo.class);
+        } catch (Exception e) {
+            try {
+                scoreInfos = JacksonReader.readList("res/json/scores/default.json", ScoreInfo.class);
+            } catch (Exception e1) {
+                e1.printStackTrace();
+                e.printStackTrace();
+            }
+        }
+    }
+    
 	public Image getImage(String name) {
 		return imageMap.get(name);
 	}
@@ -147,6 +163,11 @@ public class AssetLoader {
 
 	public Sound getSound(String name) {
 		return soundMap.get(name);
+	}
+	
+	public List<ScoreInfo> getScore(String scoreName){
+	    setupScore("res/json/scores/"+scoreName+".json");
+	    return scoreInfos;
 	}
 	
 	/**
@@ -173,5 +194,8 @@ public class AssetLoader {
 	public Font getFont(String name) {
 		return fontMap.get(name);
 	}
-
+	
+	public void setScore(String scoreName, List<ScoreInfo> scoreList){
+	    
+	}
 }
