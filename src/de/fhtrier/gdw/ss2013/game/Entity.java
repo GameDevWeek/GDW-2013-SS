@@ -14,7 +14,7 @@ import org.newdawn.slick.geom.Vector2f;
  */
 public abstract class Entity {
 
-    protected Vector2f position;
+    protected final Vector2f position;
 
     final static float DEBUG_ENTITY_HALFEXTEND = 5;
 
@@ -42,6 +42,17 @@ public abstract class Entity {
     public Vector2f getPosition() {
         return position;
     }
+    
+    public void setPosition(Vector2f v)
+    {
+        setPosition(v.x, v.y);
+    }
+    public void setPosition(float x, float y)
+    {
+        position.x = x;
+        position.y = y;
+    }
+    
 
     /**
      * Override to provide default values and call in constructor
