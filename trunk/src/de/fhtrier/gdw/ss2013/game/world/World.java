@@ -96,6 +96,7 @@ public class World {
 
         alien = entityManager.createEntityAt(Alien.class,
                 astronaut.getPosition());
+        alien.setContainer(container);
 
 
         SoundLocator.provide(new DefaultSoundPlayer(astronaut));

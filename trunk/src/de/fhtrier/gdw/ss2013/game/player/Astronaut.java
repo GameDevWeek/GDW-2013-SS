@@ -60,14 +60,14 @@ public class Astronaut extends Player implements AstronautController {
     }
         
     @Override
-    public void moveForward() {
+    public void moveRight() {
     	getVelocity().x += getVelocity().x;
         physicsObject.applyImpulse(this.getVelocity());
         setZustand("animtest");
     }
 
     @Override
-    public void moveBackward() {
+    public void moveLeft() {
     	getVelocity().x = -2;
         physicsObject.applyImpulse(this.getVelocity());
         setZustand("animtest");

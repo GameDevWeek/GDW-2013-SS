@@ -1,0 +1,52 @@
+{
+    "keyboard": {
+        "astronaut": {
+            "MOVE_RIGHT": "D",
+            "MOVE_LEFT": "A",
+            "JUMP": "W",
+            "ACTION": "SPACE"
+        },
+        
+        "alien": {
+            "CURSOR_UP": "UP",
+            "CURSOR_DOWN": "DOWN",
+            "CURSOR_LEFT": "LEFT",
+            "CURSOR_RIGHT": "RIGHT",
+            "SHOOT": "J",
+            "USE_ABILITY": "K",
+            "NEXT_ABILITY": "O",
+            "PREV_ABILITY": "L"
+        }
+    },
+    "mouse": {
+        "alien":  {
+            "SHOOT": "LEFT",
+            "USE_ABILITY": "RIGHT",
+            "NEXT_ABILITY": "WHEEL_UP",
+            "PREV_ABILITY": "WHEEL_DOWN"
+        }
+    },
+
+    "gamepads": [
+        {
+            "name": "Controller (XBOX 360 For Windows)",
+            "astronaut": {
+                "MOVE_LEFT": "+POV_X",
+                "MOVE_RIGHT": "-POV_X",
+                "JUMP": "+POV_Y",
+                "ACTION": "Y"
+            },
+            
+            "alien":  {
+                "CURSOR_LEFT": "+Axis 1",
+                "CURSOR_RIGHT": "-Axis 1",
+                "CURSOR_UP": "+Axis 2",
+                "CURSOR_DOWN": "-Axis 2",
+                "SHOOT": "A",
+                "USE_ABILITY": "B",
+                "NEXT_ABILITY": "Left Trigger",
+                "PREV_ABILITY": "Right Trigger"
+            }
+        }
+    ]
+}
