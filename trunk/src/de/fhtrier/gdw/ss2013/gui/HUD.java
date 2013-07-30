@@ -3,6 +3,7 @@
  */
 package de.fhtrier.gdw.ss2013.gui;
 
+import de.fhtrier.gdw.commons.utils.FpsCalculator;
 import org.newdawn.slick.Font;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -13,6 +14,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.world.World;
+import de.fhtrier.gdw.ss2013.gui.utils.CenteredText;
 
 public class HUD {
 
@@ -22,6 +24,8 @@ public class HUD {
 	private AbilitySelection abilityWheel;
 	private Quickselect quickselect;
 	private AssetLoader asset;
+    private FpsCalculator fpsCalc = new FpsCalculator(100);
+    private Font fpsFont;
 
 	public HUD(GameContainer container, World worldinstance) throws SlickException {
 		//init Assetloader
@@ -73,6 +77,7 @@ public class HUD {
 		notation = new Tooltip();
 		notation.init(worldinstance, font);
 
+        fpsFont = asset.getFont("quartz_40");
 	}
 
 	public void update(GameContainer container, StateBasedGame game, int delta) {
@@ -90,5 +95,7 @@ public class HUD {
 		//crosshair.render(container, game, g);
 		notation.render();
 		
+        String fps = String.format("%d fps", (int)fpsCalc.calculate());
+        CenteredText.draw(container.getWidth() / 2, 30, fps, fpsFont);
 	}
 }
