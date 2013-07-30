@@ -87,18 +87,18 @@ public class DefaultSoundPlayer implements SoundPlayer {
          * 1.0f - falloff * ( distance - refDistance ) / ( maxDistance -
          * distance )
          */
-        float MAX_DISTANCE = 100.0f;
+        float MAX_DISTANCE = 1000.0f;
+        System.out.println(playAtDirection.length());
         float distance = Math.min(playAtDirection.length(), MAX_DISTANCE);
 
-        float volume = 1.0f - .30f * (distance - 50.0f)
+        float volume = 1.0f - 1.0f * (distance - 50.0f)
                 / (MAX_DISTANCE - 50.0f);
 
-        System.out.println(volume);
+        // System.out.println(volume);
         volume = Math.max(0.0f, Math.min(1.0f, volume));
-
-        sound.playAt(1.0f, volume, stepfunction(playAtDirection.x),
-                stepfunction(playAtDirection.y), 0.0f);
-        sound.play();
+        System.out.println(stepfunction(playAtDirection.x));
+        sound.playAt(1.0f, volume, -stepfunction(playAtDirection.x), 0, 0.0f);
+        // sound.play();
         emitterSoundPlayingMap.get(emitter).add(sound);
     }
 
