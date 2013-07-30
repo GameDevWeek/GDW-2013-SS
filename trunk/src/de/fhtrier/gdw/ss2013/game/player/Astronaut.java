@@ -19,8 +19,6 @@ public class Astronaut extends Player implements AstronautController {
 	Animation bewegungs_ani;
     
     
-    private AssetLoader asset = AssetLoader.getInstance();
-    
 	public Astronaut(Vector2f position) {
 		super(position);
 
