@@ -33,4 +33,9 @@
 {
   "name" : "ability3",
   "pfad" : "res/Dummy_GUIs_Images/ability3.png"
+},
+{
+  "name" : "world_background",
+  "pfad" : "res/images/background/background.jpg"
 }]
+

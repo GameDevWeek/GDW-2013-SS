@@ -10,6 +10,7 @@ import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
 
 import de.fhtrier.gdw.commons.tiled.TiledMap;
+import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.camera.Camera;
@@ -50,10 +51,11 @@ public class World {
         input = container.getInput();
         map = null;
         try {
-            map = MapLoader.getInstance().loadMap("demo");
+            map = MapLoader.getInstance().loadMap("demo_sidescroller");
 
             mapRender = new MapRenderer(map);
         } catch (Exception e) {
+            e.printStackTrace();
             throw new RuntimeException();
         }
         camera = new Camera(map);
@@ -93,6 +95,9 @@ public class World {
         Vector2f astronautPos = astronaut.getPosition();
         camera.update(container.getWidth(), container.getHeight(), astronautPos.x,
                 astronautPos.y);
+        
+        // Background image TODO: translate
+        g.drawImage(AssetLoader.getInstance().getImage("world_background"), 0, 0);
 
         mapRender
                 .renderTileLayers(g, -camera.getTileOverlapX(),
