@@ -49,17 +49,18 @@ public class LoadGameState extends BasicGameState {
     public void render(GameContainer container, StateBasedGame game, Graphics g)
             throws SlickException {
 
-        int total = LoadingList.get().getTotalResources();
-        int loaded = total - LoadingList.get().getRemainingResources();
-        if (loaded == 0) {
-            loaded = 1;
-        }
+        int totalResources = LoadingList.get().getTotalResources();
+        int remainingResources = LoadingList.get().getRemainingResources();
+		int loadedResources = totalResources - remainingResources;
+//        if (loadedResources == 0) {
+//            loadedResources = 1;
+//        }
         // total = total / loaded;
 
         g.setColor(Color.red);
 
         g.fillRect(container.getWidth() / 8, container.getHeight() / 8 * 6,
-                container.getWidth() / 8 * 6 / total * loaded, 50);
+                container.getWidth() / 8 * 6 / totalResources * loadedResources, 50);
 
         // g.fillRect(container.getWidth() / 2 - 245,
         // container.getHeight() / 2 - 70, (int) (5.5f * (100 / total)),
