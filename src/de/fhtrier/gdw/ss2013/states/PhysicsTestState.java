@@ -19,12 +19,6 @@ import de.fhtrier.gdw.ss2013.sound.SoundLocator;
 
 public class PhysicsTestState extends BasicGameState {
 
-	@Override
-	public void enter(GameContainer container, StateBasedGame game)
-			throws SlickException {
-		PhysicsManager.getInstance().reset();
-	}
-
 	private InputManager inputManager;
 	private TestWorld world;
 	private RectanglePhysicsObject rec;
@@ -52,8 +46,14 @@ public class PhysicsTestState extends BasicGameState {
 		MainGame.checkFullscreenToggle();
 		world.update(container, delta);
 		inputManager.update(delta);
-		PhysicsManager.getInstance().update(container, delta);
+		world.getPhysicsManager().update(container, delta);
 
+	}
+
+	@Override
+	public void enter(GameContainer container, StateBasedGame game)
+			throws SlickException {
+		world.getPhysicsManager().reset();
 	}
 
 	public int getID() {

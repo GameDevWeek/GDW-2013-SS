@@ -43,15 +43,17 @@ public class TestWorld {
     public boolean debugDraw = true;
 
     private EntityManager entityManager;
+    private final PhysicsManager physicsManager;
 
     public TestWorld(GameContainer container, StateBasedGame game) {
         input = container.getInput();
         map = null;
         entityManager = new EntityManager();
+        physicsManager = new PhysicsManager();
 
         try {
             map = AssetLoader.getInstance().loadMap("demo");
-            LevelLoader.load(map, entityManager);
+            LevelLoader.load(map, entityManager, physicsManager);
 
             mapRender = new MapRenderer(map);
         } catch (Exception e) {
@@ -60,12 +62,10 @@ public class TestWorld {
         }
         camera = new Camera(map);
 
-        entityManager = new EntityManager();
-
         // physic debug stuff
         if (debugDraw) {
             physicDebug = new DebugDrawer(container, camera);
-            PhysicsManager.getInstance().getPhysicsWorld()
+            physicsManager.getPhysicsWorld()
                     .setDebugDraw(physicDebug);
         }
 
@@ -104,16 +104,17 @@ public class TestWorld {
         entityManager.render(container, g);
 
         if (debugDraw)
-            PhysicsManager.getInstance().getPhysicsWorld().drawDebugData();
+            physicsManager.getPhysicsWorld().drawDebugData();
 
         g.popTransform();
     }
 
     public void update(GameContainer container, int delta)
             throws SlickException {
+        physicsManager.setCurrent();
         // update entities
         entityManager.update(container, delta);
-        PhysicsManager.getInstance().update(container, delta);
+        physicsManager.update(container, delta);
         // This is just a placeholder, not for actual use.
         Vector2f astronautPos = astronaut.getPosition();
         float speed = 6;
@@ -193,6 +194,10 @@ public class TestWorld {
 
     public EntityManager getEntityManager() {
         return entityManager;
+    }
+
+    public PhysicsManager getPhysicsManager() {
+        return physicsManager;
     }
 
 }

@@ -44,10 +44,6 @@ public class LoadGameState extends BasicGameState {
 
         // Image img = new Image("res/animaions/team0.png");
 
-        physicTestState = new PhysicsTestState();
-        physicTestState.init(container, game);
-        game.addState(physicTestState);
-
         boolean fullscreen = false;
 
         if (fullscreen != container.isFullscreen()) {
@@ -99,8 +95,7 @@ public class LoadGameState extends BasicGameState {
         if (LoadingList.get().getRemainingResources() > 0) {
             nextResource = LoadingList.get().getNext();
         } else {
-            /// TODO: set to true on release
-            ((AppGameContainer)container).setVSync(false);
+            ((AppGameContainer)container).setVSync(true);
             SoundStore.get().setDeferredLoading(false);
 
             mainMenuState = new MainMenuState();
@@ -110,6 +105,10 @@ public class LoadGameState extends BasicGameState {
             gameplayState = new GameplayState();
             gameplayState.init(container, game);
             game.addState(gameplayState);
+
+            physicTestState = new PhysicsTestState();
+            physicTestState.init(container, game);
+            game.addState(physicTestState);
 
             if (DebugModeStatus.getStatus() || DebugModeStatus.getPhysicTest()) {
                 if (DebugModeStatus.getPhysicTest())
