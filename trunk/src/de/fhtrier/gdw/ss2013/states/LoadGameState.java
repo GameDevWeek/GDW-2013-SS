@@ -37,16 +37,10 @@ public class LoadGameState extends BasicGameState {
         // loadscreen = new Image("/res/images/testbild.png");
         LoadingList.setDeferredLoading(true);
 
-        // Todo: initialize assets
-
         assetLoader = AssetLoader.getInstance();
         SoundLocator.provideAssetLoader(assetLoader);
 
-        // Image img = new Image("res/animaions/team0.png");
-
-        boolean fullscreen = false;
-
-        if (fullscreen != container.isFullscreen()) {
+        if (container.isFullscreen()) {
             MainGame.toggleFullscreen();
         }
     }
