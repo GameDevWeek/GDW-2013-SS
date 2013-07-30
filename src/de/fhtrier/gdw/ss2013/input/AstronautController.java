@@ -10,22 +10,18 @@ import org.newdawn.slick.Input;
 
 public interface AstronautController {
 
-	public int forwardKey = Input.KEY_D;
-	public int backwardKey = Input.KEY_A;
-	public int jumpKey = Input.KEY_SPACE;
-	public int actionKey = Input.KEY_E;
-
 	// moves the character forward
-	public void moveForward(int key);
+	public void moveForward();
 
 	// moves the character backward
-	public void moveBackward(int key);
+	public void moveBackward();
 
 	// jump?!
-	public void jump(int key);
+	public void jump();
 
 	// action key
-	public void action(int key);
+	public void action();
+	
 
 	// public void throwAlien();
 
