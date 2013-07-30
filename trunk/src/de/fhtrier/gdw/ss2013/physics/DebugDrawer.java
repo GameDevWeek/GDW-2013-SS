@@ -3,8 +3,8 @@ package de.fhtrier.gdw.ss2013.physics;
 import org.jbox2d.callbacks.DebugDraw;
 import org.jbox2d.collision.AABB;
 import org.jbox2d.common.Color3f;
+import org.jbox2d.common.IViewportTransform;
 import org.jbox2d.common.MathUtils;
-import org.jbox2d.common.OBBViewportTransform;
 import org.jbox2d.common.Transform;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.pooling.arrays.IntArray;
@@ -31,8 +31,9 @@ public class DebugDrawer extends DebugDraw {
     private final static IntArray yIntsPool = new IntArray();
     private final Vec2 temp2 = new Vec2();
 
-    public DebugDrawer(final GameContainer gameContainer, Camera c) {
-        super(new OBBViewportTransform());
+    public DebugDrawer(IViewportTransform viewportTransform,
+            final GameContainer gameContainer, Camera c) {
+        super(viewportTransform);
 
         // WIP
         cam = c;
@@ -86,17 +87,17 @@ public class DebugDrawer extends DebugDraw {
      */
     @Override
     public void drawSegment(final Vec2 p1, final Vec2 p2, final Color3f color) {
-        this.viewportTransform.setCenter(
-                gameContainer.getWidth() / 2 + cam.getOffsetX(),
-                gameContainer.getHeight() / 2 + cam.getOffsetY());
-
-        Graphics g = this.gameContainer.getGraphics();
-        getWorldToScreenToOut(p1, sp1);
-        getWorldToScreenToOut(p2, sp2);
-        g.setColor(new Color(color.x, color.y, color.z));
-
-        g.drawLine((int) sp1.x, (int) sp1.y, (int) sp2.x, (int) sp2.y);
-        g.setColor(Color.white);
+        // this.viewportTransform.setCenter(
+        // gameContainer.getWidth() / 2 + cam.getOffsetX(),
+        // gameContainer.getHeight() / 2 + cam.getOffsetY());
+        //
+        // Graphics g = this.gameContainer.getGraphics();
+        // getWorldToScreenToOut(p1, sp1);
+        // getWorldToScreenToOut(p2, sp2);
+        // g.setColor(new Color(color.x, color.y, color.z));
+        //
+        // g.drawLine((int) sp1.x, (int) sp1.y, (int) sp2.x, (int) sp2.y);
+        // g.setColor(Color.white);
     }
 
     public void drawAABB(final AABB argAABB, final Color3f color) {
@@ -143,8 +144,8 @@ public class DebugDrawer extends DebugDraw {
 
         for (int i = 0; i < vertexCount; i++) {
             getWorldToScreenToOut(vertices[i], temp);
-            xInts[i] = (int) temp.x;
-            yInts[i] = (int) temp.y;
+            xInts[i] = (int) vertices[i].x;
+            yInts[i] = (int) vertices[i].y;
             p.addPoint(xInts[i], yInts[i]);
         }
 
