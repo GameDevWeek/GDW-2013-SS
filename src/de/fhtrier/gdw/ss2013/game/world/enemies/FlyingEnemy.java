@@ -26,7 +26,7 @@ public class FlyingEnemy extends AbstractEnemy implements ICollidable {
 	private EntityManager m;
 	private Player p;
 	final static float DEBUG_ENTITY_HALFEXTEND = 5;
-	private String rechts="animtest", links="animtest", current="animtest", oben="animtest", unten="animtest";
+	private String rechts="animtest", links="animtest", current="animtest";
 
 	public FlyingEnemy(Vector2f pos, Vector2f velo, float dmg, float hp) {
 		super(pos.copy(), velo.copy(), dmg);
@@ -47,8 +47,6 @@ public class FlyingEnemy extends AbstractEnemy implements ICollidable {
 	    setLeft_animation(links);
 	    setRight_animation(rechts);
 	    setCurrent(current);
-	    setOben(oben);
-	    setUnten(unten);
 	}
 
 	public FlyingEnemy() {
@@ -136,6 +134,7 @@ public class FlyingEnemy extends AbstractEnemy implements ICollidable {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
 	public void setReferences(EntityManager m, Player p) {
 	    this.m = m;
 	    this.p = p;
