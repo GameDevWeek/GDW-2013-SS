@@ -17,6 +17,11 @@ public class PhysicsManager implements ContactListener {
         }
         return _physicsManagerSingleton;
     }
+    
+    public World getPhysicsWorld()
+    {
+        return _physicsWorld;
+    }
 
     private PhysicsManager() {
         _physicsWorld = new World(new Vec2(0.0f, -9.81f));
