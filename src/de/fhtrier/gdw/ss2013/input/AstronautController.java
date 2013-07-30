@@ -11,10 +11,10 @@ import org.newdawn.slick.Input;
 public interface AstronautController {
 
 	// moves the character forward
-	public void moveForward();
+	public void moveRight();
 
 	// moves the character backward
-	public void moveBackward();
+	public void moveLeft();
 
 	// jump?!
 	public void jump();

@@ -22,17 +22,17 @@ import de.fhtrier.gdw.commons.jackson.JacksonWriter;
 import de.fhtrier.gdw.commons.tiled.LayerObject;
 import de.fhtrier.gdw.commons.tiled.TiledMap;
 import de.fhtrier.gdw.ss2013.assetloader.infos.AnimationInfo;
+import de.fhtrier.gdw.ss2013.assetloader.infos.ControlsInfo;
 import de.fhtrier.gdw.ss2013.assetloader.infos.FontInfo;
 import de.fhtrier.gdw.ss2013.assetloader.infos.GameStatsInfo;
 import de.fhtrier.gdw.ss2013.assetloader.infos.ImageInfo;
 import de.fhtrier.gdw.ss2013.assetloader.infos.InfoInfo;
-import de.fhtrier.gdw.ss2013.assetloader.infos.KeyInfo;
 import de.fhtrier.gdw.ss2013.assetloader.infos.MapInfo;
 import de.fhtrier.gdw.ss2013.assetloader.infos.PartikelInfo;
 import de.fhtrier.gdw.ss2013.assetloader.infos.ScoreInfo;
 import de.fhtrier.gdw.ss2013.assetloader.infos.SettingsInfo;
 import de.fhtrier.gdw.ss2013.assetloader.infos.SoundInfo;
-import de.fhtrier.gdw.ss2013.input.InputDevice.DEVICE_TYPE;
+import de.fhtrier.gdw.ss2013.input.InputDevice.DeviceType;
 
 public class AssetLoader {
 	private HashMap<String, Image> imageMap = new HashMap<>();
@@ -54,6 +54,7 @@ public class AssetLoader {
 		}
 		return instance;
 	}
+    private ControlsInfo controlsInfo;
 
 	private AssetLoader() {
 		setupMaps("res/json/maps.json");
@@ -65,6 +66,7 @@ public class AssetLoader {
 		setupSettings("res/json/settings.json");
 		setupInfos("res/json/infos.json");
 		setupGameStats("res/json/gameStats.json");
+        setupControls("res/json/controls.json");
 	}
 
 	// BACKSLASH CHECK
@@ -149,14 +151,12 @@ public class AssetLoader {
 		}
 	}
 
-	private List<KeyInfo> setupKeys(String filename) {
-		List<KeyInfo> keyInfos = null;
+	private void setupControls(String filename) {
 		try {
-			keyInfos = JacksonReader.readList(filename, KeyInfo.class);
+			controlsInfo = JacksonReader.read(filename, ControlsInfo.class);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return keyInfos;
 	}
 
 	private void setupMaps(String filename) {
@@ -262,8 +262,8 @@ public class AssetLoader {
 		return infosMap.get(name);
 	}
 
-	public List<KeyInfo> getKeyList(DEVICE_TYPE deviceType) {
-		return setupKeys("res/json/keys/" + deviceType + ".json");
+	public ControlsInfo getControls() {
+		return controlsInfo;
 	}
 
 	/**
@@ -296,18 +296,6 @@ public class AssetLoader {
 
 	public Sound getSound(String name) {
 		return soundMap.get(name);
-	}
-
-	// WRITE
-	// //////////////////////////////////////////////////////////////////////
-
-	public void writeKeys(String device, List<KeyInfo> keyList) {
-		try {
-			JacksonWriter.writeList("res/json/keys/" + device + ".json",
-					keyList);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 	public void writeSettings(SettingsInfo settings) {
