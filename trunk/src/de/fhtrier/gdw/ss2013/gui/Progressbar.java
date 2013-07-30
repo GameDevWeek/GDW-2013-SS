@@ -22,11 +22,10 @@ public class Progressbar {
 	private Image background;
 	private Image bar;
 
-	private int cornerradius = 5;
-
+	
 	// Werte für konkreten Balken
-	private float maxValue = 2000; // gibt den Maximalwert an
-	private float currentValue = 1000; // gibt den aktuellen Wert an
+	private float maxValue; // gibt den Maximalwert an
+	private float currentValue; // gibt den aktuellen Wert an
 	private float currentPercentValue; // currentValue in Prozent in Bezug auf
 										// maxValue
 	private float filled; // gibt an wie weit der Balken gefüllt ist
@@ -36,18 +35,20 @@ public class Progressbar {
 	//private Image progress;
 	private Font font;
 
-	public void init(Vector2f position, Vector2f size, int cornerradius,
+	public void init(Vector2f position, Vector2f size,
 			Image frame, Image background, Image bar, Font font, World worldinstance) {
 		this.position = position.copy();
-		this.size = size.copy();
-		this.cornerradius = cornerradius;
-
+		
+		
 		this.frame = frame;
 		this.background = background;
 		this.bar = bar;
 		this.font = font;
 		this.worldinstance = worldinstance;
 		this.maxValue=worldinstance.getAstronaut().getMaxOxygen();
+		
+		//this.size = size.copy();
+		this.size = new Vector2f(bar.getWidth(), bar.getHeight());
 	}
 
 	public void update(GameContainer container, StateBasedGame game, int delta) {

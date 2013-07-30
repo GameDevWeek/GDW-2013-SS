@@ -6,6 +6,7 @@ package de.fhtrier.gdw.ss2013.game;
 
 import de.fhtrier.gdw.commons.utils.ClassUtils;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -124,7 +125,7 @@ public class EntityManager {
             Class<? extends EntityFilter> filter) {
         ArrayList<Entity> filteredList = new ArrayList<>();
         for (Entity e : entityList) {
-            if (e.getClass().isInstance(filter)) {
+            if (filter.isAssignableFrom(e.getClass())) {
                 filteredList.add(e);
             }
         }
@@ -135,7 +136,7 @@ public class EntityManager {
             float radius, Class<? extends EntityFilter> filter) {
         ArrayList<Entity> filteredList = new ArrayList<>();
         for (Entity e : entityList) {
-            if (e.getClass().isInstance(filter)) {
+            if (filter.isAssignableFrom(e.getClass())) {
                 if ((position.distance(e.position) - radius) < MathConstants.EPSILON_F) {
                     filteredList.add(e);
                 }
