@@ -40,7 +40,7 @@ public class PhysicsTestState extends BasicGameState {
 
     public void update(GameContainer container, StateBasedGame game, int delta)
             throws SlickException {
-        MainGame.checkFullscreenToggle();
+    	((MainGame)game).checkFullscreenToggle();
         world.update(container, delta);
         inputManager.update(delta);
         // world.getPhysicsManager().update(container, delta);
