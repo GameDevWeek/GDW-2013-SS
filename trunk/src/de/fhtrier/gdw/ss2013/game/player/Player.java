@@ -18,7 +18,7 @@ import de.fhtrier.gdw.ss2013.input.AstronautController;
 /**
  * Player class
  */
-public class Player extends Entity implements AlienController, AstronautController {
+public class Player extends Entity {
 
 	Animation bewegungs_ani;
 	private Animation animation;
@@ -55,51 +55,6 @@ public class Player extends Entity implements AlienController, AstronautControll
 	 * public enum Bewegung{ forward, backward, jump, still, sprint; }
 	 */
 
-	public void moveForward(int key) {
-		if (key == forwardKey) {
-			// Vorwärtsbewegung
-			zustand = "animtest";
-		}
-	}
-
-	public void moveBackward(int key) {
-		if (key == backwardKey) {
-			// Rückwärtsbewegung
-			zustand = "animtest";
-		}
-	}
-
-	public void jump(int key) {
-		if (key == jumpKey) {
-			// Springen
-			zustand = "animtest";
-		}
-	}
-
-	public void action(int key) {
-		if (key == actionKey) {
-			// Aktion (Hebel)
-
-		}
-	}
-
-	public void shoot(int button) {
-		if (button == shootButton) {
-			// Schießen
-		}
-	}
-
-	public void rotateAbilities(int value) {
-		if (value == rotateWheel) {
-			// Fähigkeiten ausw�hlen
-		}
-	}
-
-	public void useAbility(int button) {
-		if (button == abilityButton) {
-			// Fähigkeit benutzen
-		}
-	}
 
 	public Vector2f getVelocity() {
 		return velocity;
