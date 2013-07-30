@@ -212,12 +212,12 @@ public class EntityManager {
         if (testRecyceability(entityClass)) {
             Entity e = recycleMap.get(entityClass).poll();
             assert (e != null);
-            e.position = position;
+            e.setPosition(position);
             addEntity(e); // TODO delay add
             return (T) e;
         }
         Entity e = internalCreateAt(entityClass, position);
-        e.position = position;
+        e.setPosition(position);
         return (T) e;
     }
 
