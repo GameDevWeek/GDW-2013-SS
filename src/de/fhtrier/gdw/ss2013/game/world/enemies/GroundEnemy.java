@@ -118,10 +118,10 @@ public class GroundEnemy extends AbstractEnemy implements ICollidable {
                    waitMode = true;
                 } else {
                     this.getVelocity().x = p.getVelocity().x;
-                    System.out.println(this.getVelocity().x *= calcPlayerDirection(p).x);
+                    this.getVelocity().x *= calcPlayerDirection(p).x;
                 }
             } else if (waitMode) {
-                if(Math.abs(this.getPosition().x - lastposition.x) < 0.5f) {
+                if(Math.abs(this.getPosition().x - lastposition.x) < 1f) {
                     normalMode = true;
                     waitMode = false;
                     hunttime = 0;
