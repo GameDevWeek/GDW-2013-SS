@@ -1,7 +1,5 @@
 package de.fhtrier.gdw.ss2013.physics;
 
-import javax.xml.soap.Node;
-
 import org.jbox2d.callbacks.ContactImpulse;
 import org.jbox2d.callbacks.ContactListener;
 import org.jbox2d.collision.Manifold;
@@ -14,15 +12,15 @@ import org.newdawn.slick.SlickException;
 
 public class PhysicsManager implements ContactListener {
     private static PhysicsManager currentManager;
-    
+
     public static PhysicsManager getCurrent() {
         return currentManager;
     }
-    
+
     public final void setCurrent() {
         currentManager = this;
     }
-    
+
     public World getPhysicsWorld() {
         return _physicsWorld;
     }
@@ -45,14 +43,21 @@ public class PhysicsManager implements ContactListener {
         if (bodyIterator == null) {
             return true;
         }
-        
-        Body next = bodyIterator;
-        while(next != null) {
-            next = bodyIterator.getNext();
-            _physicsWorld.destroyBody(bodyIterator);
-            bodyIterator = next;
+        Body body = bodyIterator.getNext();
+        while (bodyIterator.getNext() != null) {
+            Body toBeDeleted = body;
+            body = bodyIterator.getNext();
+            _physicsWorld.destroyBody(toBeDeleted);
+
+            Body next = bodyIterator;
+            while (next != null) {
+                next = bodyIterator.getNext();
+                _physicsWorld.destroyBody(bodyIterator);
+                bodyIterator = next;
+            }
         }
         return true;
+
     }
 
     public void enableDebugDraw(boolean enabled) {
@@ -74,12 +79,12 @@ public class PhysicsManager implements ContactListener {
     public void update(GameContainer c, int delta) throws SlickException {
         // _physicsWorld.step(delta, 6, 3);
         _physicsWorld.step(delta / 1000.f, 9, 4);
-        
+
         Body body = _physicsWorld.getBodyList();
-            while(body != null) {
-                ((PhysicsObject)body.m_userData).update(c, delta);
-                body = body.getNext();
-            }
+        while (body != null) {
+            ((PhysicsObject) body.m_userData).update(c, delta);
+            body = body.getNext();
+        }
         /*
          * for (Contact c1 = _physicsWorld.getContactList(); c1 != null; c1 = c1
          * .getNext()) { PhysicsObject objectA = (PhysicsObject)
@@ -128,6 +133,6 @@ public class PhysicsManager implements ContactListener {
 
     private static PhysicsManager _physicsManagerSingleton = null;
     private World _physicsWorld;
-    private final Vec2 _defaultGravity = new Vec2(0.0f, -9.81f);
+    private final Vec2 _defaultGravity = new Vec2(0.0f, 9.81f);
     private boolean _debugDraw;
 }

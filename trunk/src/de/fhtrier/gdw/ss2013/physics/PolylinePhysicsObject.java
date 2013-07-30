@@ -46,7 +46,7 @@ public class PolylinePhysicsObject extends PhysicsObject {
 			boolean isSensor) {
 		super(restitution, density, friction, isSensor);
 		ChainShape myShape = new ChainShape();
-		myShape.m_vertices = PhysicsTools.pointListToVec2Arr(pointList);
+		myShape.m_vertices = Transform.pointListToVec2Arr(pointList);
 		init(myShape, bodyType,new Vec2(0,0));
 	}
 

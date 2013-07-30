@@ -4,8 +4,6 @@
 
 package de.fhtrier.gdw.ss2013.game.player;
 
-import org.jbox2d.common.Vec2;
-import org.jbox2d.dynamics.BodyType;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -14,60 +12,56 @@ import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.Entity;
-import de.fhtrier.gdw.ss2013.input.AlienController;
-import de.fhtrier.gdw.ss2013.input.AstronautController;
-import de.fhtrier.gdw.ss2013.physics.PhysicsTools;
-import de.fhtrier.gdw.ss2013.physics.RectanglePhysicsObject;
 
 /**
  * Player class
  */
 public class Player extends Entity {
 
-	Animation bewegungs_ani;
-	private Animation animation;
-	private String zustand = "animtest";
-	private Vector2f velocity;
-	AssetLoader assetloader = AssetLoader.getInstance();
+    Animation bewegungs_ani;
+    private Animation animation;
+    private String zustand = "animtest";
+    private Vector2f velocity;
+    AssetLoader assetloader = AssetLoader.getInstance();
 
-	public Player(Vector2f position) {
-		super(position);
-		
-		velocity = new Vector2f();
-		// animation von assetloader beziehen
+    public Player(Vector2f position) {
+        super(position);
 
-		bewegungs_ani = assetloader.getAnimation(zustand);
+        velocity = new Vector2f();
+        // animation von assetloader beziehen
 
-	}
+        bewegungs_ani = assetloader.getAnimation(zustand);
 
-	@Override
-	public void render(GameContainer container, Graphics g)
-			throws SlickException {
-		/*
-		 * super.render(container, g); g.setColor(Color.green);
-		 * g.setLineWidth(2); g.drawRect(position.x - 5, position.y - 5, 10,
-		 * 10);
-		 */
-		bewegungs_ani.draw(position.x-bewegungs_ani.getWidth()/2, position.y-bewegungs_ani.getHeight()/2);
-	}
+    }
 
-	@Override
-	public void update(GameContainer container, int delta)
-			throws SlickException {	    
-	}
+    @Override
+    public void render(GameContainer container, Graphics g)
+            throws SlickException {
+        /*
+         * super.render(container, g); g.setColor(Color.green);
+         * g.setLineWidth(2); g.drawRect(position.x - 5, position.y - 5, 10,
+         * 10);
+         */
+        bewegungs_ani.draw(position.x - bewegungs_ani.getWidth() / 2,
+                position.y - bewegungs_ani.getHeight() / 2);
+    }
 
-	/*
-	 * public enum Bewegung{ forward, backward, jump, still, sprint; }
-	 */
+    @Override
+    public void update(GameContainer container, int delta)
+            throws SlickException {
+    }
 
+    /*
+     * public enum Bewegung{ forward, backward, jump, still, sprint; }
+     */
 
-	public Vector2f getVelocity() {
-		return velocity;
-	}
+    public Vector2f getVelocity() {
+        return velocity;
+    }
 
-	public void setVelocity(Vector2f velocity) {
-		this.velocity = velocity;
-	}
+    public void setVelocity(Vector2f velocity) {
+        this.velocity = velocity;
+    }
 
     public String getZustand() {
         return zustand;
@@ -77,13 +71,12 @@ public class Player extends Entity {
         this.zustand = zustand;
     }
 
-	
-	/*
-	 * public void ani() { switch(zustand) { case "forward": for_ani.draw();
-	 * break; case "backward": back_ani.draw(); break; case "jump":
-	 * jump_ani.draw(); break; default: still_ani.draw(); break;
-	 * 
-	 * } }
-	 */
+    /*
+     * public void ani() { switch(zustand) { case "forward": for_ani.draw();
+     * break; case "backward": back_ani.draw(); break; case "jump":
+     * jump_ani.draw(); break; default: still_ani.draw(); break;
+     * 
+     * } }
+     */
 
 }

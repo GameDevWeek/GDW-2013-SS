@@ -1,5 +1,6 @@
 package de.fhtrier.gdw.ss2013.states;
 
+import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Font;
 import org.newdawn.slick.GameContainer;
@@ -14,69 +15,68 @@ import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.gui.HUD;
 import de.fhtrier.gdw.ss2013.input.InputManager;
-import de.fhtrier.gdw.ss2013.physics.PhysicsManager;
-import org.newdawn.slick.AppGameContainer;
 
 /**
  * Gameplay state
  */
 public class GameplayState extends BasicGameState {
 
-	private World world;
-	private Font font;
-	private HUD hud;
-	private InputManager inputManager;
+    private World world;
+    private Font font;
+    private HUD hud;
+    private InputManager inputManager;
 
-	@Override
-	public void init(GameContainer container, StateBasedGame game)
-			throws SlickException {
-		InputManager.init(container);
-		inputManager = InputManager.getInstance();
-		world = new World(container, game);
-		font = AssetLoader.getInstance().getFont("verdana_46");
-		hud = new HUD(container, world);
-	}
+    @Override
+    public void init(GameContainer container, StateBasedGame game)
+            throws SlickException {
+        InputManager.init(container);
+        inputManager = InputManager.getInstance();
+        world = new World(container, game);
+        font = AssetLoader.getInstance().getFont("verdana_46");
+        hud = new HUD(container, world);
+    }
 
-	@Override
-	public void render(GameContainer container, StateBasedGame game, Graphics g)
-			throws SlickException {
-		g.setBackground(Color.black);
-		g.setColor(Color.white);
+    @Override
+    public void render(GameContainer container, StateBasedGame game, Graphics g)
+            throws SlickException {
+        g.setBackground(Color.black);
+        g.setColor(Color.white);
 
-		world.render(container, g);
-		hud.render(container, game, g);
+        world.render(container, g);
+        hud.render(container, game, g);
 
-	}
+    }
 
-	@Override
-	public void update(GameContainer container, StateBasedGame game, int delta)
-			throws SlickException {
-        ((AppGameContainer)container).setTitle(MainGame.WINDOW_TITLE + " : " + container.getFPS());
-		MainGame.checkFullscreenToggle();
-		inputManager.update(delta);
-		//world.getPhysicsManager().update(container, delta);
-		world.update(container, delta);
-		hud.update(container, game, delta);
-	}
+    @Override
+    public void update(GameContainer container, StateBasedGame game, int delta)
+            throws SlickException {
+        ((AppGameContainer) container).setTitle(MainGame.WINDOW_TITLE + " : "
+                + container.getFPS());
+        MainGame.checkFullscreenToggle();
+        inputManager.update(delta);
+        // world.getPhysicsManager().update(container, delta);
+        world.update(container, delta);
+        hud.update(container, game, delta);
+    }
 
-	@Override
-	public void enter(GameContainer container, StateBasedGame game)
-			throws SlickException {
-		//world.getPhysicsManager().reset();
-	}
+    @Override
+    public void enter(GameContainer container, StateBasedGame game)
+            throws SlickException {
+        // world.getPhysicsManager().reset();
+    }
 
-	@Override
-	public int getID() {
-		return MainGame.GAMEPLAYSTATE;
-	}
+    @Override
+    public int getID() {
+        return MainGame.GAMEPLAYSTATE;
+    }
 
-	@Override
-	public void keyReleased(int key, char c) {
+    @Override
+    public void keyReleased(int key, char c) {
 
-		// triggers PhysicTestState
-		if (key == Input.KEY_EQUALS || key == Input.KEY_P) {
-			MainGame.changeState(MainGame.PHYSIC_TEST);
-		}
-	}
+        // triggers PhysicTestState
+        if (key == Input.KEY_EQUALS || key == Input.KEY_P) {
+            MainGame.changeState(MainGame.PHYSIC_TEST);
+        }
+    }
 
 }
