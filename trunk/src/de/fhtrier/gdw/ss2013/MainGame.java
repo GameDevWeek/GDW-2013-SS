@@ -13,11 +13,8 @@ import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 import org.newdawn.slick.state.transition.Transition;
 
-import de.fhtrier.gdw.ss2013.physics.PhysicsManager;
 import de.fhtrier.gdw.ss2013.settings.DebugModeStatus;
 import de.fhtrier.gdw.ss2013.states.LoadGameState;
-
-//comment so commit works
 
 /**
  * The Game object
