@@ -264,7 +264,7 @@ public class AssetLoader {
     }
     
     public List<ScoreInfo> getScore(String scoreName){
-        return setupScore("res/json/scores/"+scoreName+".json");
+		return setupScore("res/json/scores/"+scoreName+".json");
     }
     
     public SettingsInfo getSettings(){
