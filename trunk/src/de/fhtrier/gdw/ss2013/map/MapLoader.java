@@ -22,7 +22,7 @@ public class MapLoader {
      */
     public TiledMap loadMap(String mapname) throws Exception {
         AssetLoader assetLoader = AssetLoader.getInstance();
-        TiledMap map = new TiledMap("res/maps/demo.tmx", LayerObject.PolyMode.ABSOLUTE);
+        TiledMap map = new TiledMap(assetLoader.getMapPath(mapname), LayerObject.PolyMode.ABSOLUTE);
         return map;
     }
 }

@@ -17,6 +17,7 @@ import de.fhtrier.gdw.ss2013.game.player.Player;
 import de.fhtrier.gdw.ss2013.game.world.enemies.FlyingEnemy;
 import de.fhtrier.gdw.ss2013.game.world.enemies.Meteroid;
 import de.fhtrier.gdw.ss2013.game.world.objects.OxygenFlower;
+import de.fhtrier.gdw.ss2013.map.MapLoader;
 import de.fhtrier.gdw.ss2013.physics.DebugDrawer;
 import de.fhtrier.gdw.ss2013.physics.PhysicsManager;
 import de.fhtrier.gdw.ss2013.renderer.MapRenderer;
@@ -43,8 +44,7 @@ public class World {
 		input = container.getInput();
 		map = null;
 		try {
-			map = new TiledMap("res/maps/demo.tmx",
-					LayerObject.PolyMode.ABSOLUTE);
+			map = MapLoader.getInstance().loadMap("demo");
 
 			mapRender = new MapRenderer(map);
 		} catch (Exception e) {
