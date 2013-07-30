@@ -16,7 +16,6 @@ import org.newdawn.slick.geom.Vector2f;
 import de.fhtrier.gdw.commons.utils.SafeProperties;
 import de.fhtrier.gdw.ss2013.game.filter.EntityFilter;
 import de.fhtrier.gdw.ss2013.math.MathConstants;
-import de.fhtrier.gdw.ss2013.physics.PhysicsObject;
 
 //TODO filter für getEntities
 public class EntityManager {
@@ -156,13 +155,10 @@ public class EntityManager {
         addEntity(e);
         return e;
     }
-
-    public Entity createEntity(String className, SafeProperties properties,
-            PhysicsObject physicsObject) {
+    
+    public Entity createEntity(String className, SafeProperties properties) {
         Class<? extends Entity> entityClass = null;
         Entity e = factory.createEntity(entityClass);
-        e.setPhysicsObject(physicsObject);
-        physicsObject.setOwner(e);
         addEntity(e);
         return e;
     }

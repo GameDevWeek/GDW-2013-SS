@@ -4,9 +4,9 @@ import de.fhtrier.gdw.commons.tiled.Layer;
 import de.fhtrier.gdw.commons.tiled.LayerObject;
 import de.fhtrier.gdw.commons.tiled.TiledMap;
 import de.fhtrier.gdw.commons.utils.SafeProperties;
+import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.physics.PhysicsManager;
-import de.fhtrier.gdw.ss2013.physics.PhysicsObject;
 import de.fhtrier.gdw.ss2013.physics.RectanglePhysicsObject;
 import java.awt.Point;
 import java.util.ArrayList;
@@ -54,7 +54,7 @@ public class LevelLoader {
     }
 
     /**
-     * Create paths, ground, etc here
+     * Create ground, paths, etc here
      *
      * @param type the type set in the editor
      * @param points the points of the line (absolute points)
@@ -69,25 +69,28 @@ public class LevelLoader {
     }
 
     /**
-     * Create dangerzones, triggers, etc here
+     * Create deadzones, triggers, etc here
      *
      * @param type the type set in the editor
      * @param points the points of the line (absolute points)
      * @param properties the object properties
      */
     private static void createPolygon(String type, ArrayList<Point> points, SafeProperties properties) {
+        Entity entity;
         switch (type) {
             case "solid":
                 /// TODO: create a solid (static) object
                 break;
-            case "killzone":
-                /// TODO: create a physics trigger, create an entity for it
+            case "deadzone":
+                entity = entityManager.createEntity(type, properties);
+                /// TODO: create a physics trigger
+                entity.setPhysicsObject(null);
                 break;
         }
     }
 
     /**
-     * Create rectangle dangerzones, triggers, etc here
+     * Create rectangle deadzones, triggers, etc here
      *
      * @param type the type set in the editor
      * @param x the distance from left in pixels
@@ -97,14 +100,14 @@ public class LevelLoader {
      * @param properties the object properties
      */
     private static void createRect(String type, int x, int y, int width, int height, SafeProperties properties) {
-        PhysicsObject physicsObject;
+        Entity entity;
         switch (type) {
             case "solid":
-                /// TODO: create a solid (static) object
+                new RectanglePhysicsObject(new Vec2(x, y), new Vec2(width, height));
                 break;
-            case "killzone":
-                physicsObject = new RectanglePhysicsObject(new Vec2(x, y), new Vec2(width, height));
-                entityManager.createEntity(type, properties, physicsObject);
+            case "deadzone":
+                entity = entityManager.createEntity(type, properties);
+                entity.setPhysicsObject(new RectanglePhysicsObject(new Vec2(x, y), new Vec2(width, height)));
                 break;
         }
     }
@@ -120,7 +123,8 @@ public class LevelLoader {
      * @param properties the object properties
      */
     private static void createTile(String type, int x, int y, int width, int height, SafeProperties properties) {
-        /// TODO: create a physics object, create an entity for it
+        Entity entity = entityManager.createEntity(type, properties);
+        entity.setPhysicsObject(new RectanglePhysicsObject(new Vec2(x, y), new Vec2(width, height)));
     }
 
     /**
