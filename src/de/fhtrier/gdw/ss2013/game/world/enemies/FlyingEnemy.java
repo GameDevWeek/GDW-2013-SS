@@ -96,7 +96,7 @@ public class FlyingEnemy extends AbstractEnemy implements ICollidable {
 			this.getVelocity().y = -this.getVelocity().y;
 			flytime = flytime % 3000;
 		}
-	    if (bolttime >= 1000) {
+	    if (bolttime >= 1000 && calcPlayerDistance(p) < 500) {
 	        this.shoot(p, m);
 	        bolttime = bolttime % 1000;
 	    }
@@ -105,13 +105,20 @@ public class FlyingEnemy extends AbstractEnemy implements ICollidable {
 	private Vector2f calcPlayerDirection(Player player) {
 
 		Vector2f direction = new Vector2f();
-
-		direction.x = player.getPosition().x - this.position.x+((float)Math.random()*factor);
-		direction.y = player.getPosition().y - this.position.y;
-
+		direction = calcPlayerPosition(player);
 		direction.normalise();
-
 		return direction;
+	}
+	private float calcPlayerDistance(Player player) {
+	    Vector2f direction = new Vector2f();
+	    direction = calcPlayerPosition(player);
+	    return (float) Math.sqrt((direction.x*direction.x)+(direction.y*direction.y));
+	}
+	private Vector2f calcPlayerPosition(Player player) {
+        Vector2f direction = new Vector2f();
+        direction.x = player.getPosition().x - this.position.x+((float)Math.random()*factor);
+        direction.y = player.getPosition().y - this.position.y;
+        return direction;
 	}
 
 	@Override
