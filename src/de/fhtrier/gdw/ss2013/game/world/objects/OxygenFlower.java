@@ -67,7 +67,7 @@ public class OxygenFlower extends Entity implements Interactable {
             throws SlickException {
 
         g.setColor(Color.pink);
-        img.draw(this.getPosition().x, this.getPosition().y);
+        //img.draw(this.getPosition().x, this.getPosition().y);
         super.render(container, g);
 
         // g.drawString(this.hashCode(), position.x, position.y);
