@@ -1,0 +1,32 @@
+[{
+ "name" : "MOVEFORWARD",
+ "key" : 1
+},
+{
+ "name" : "MOVEBACKWARD",
+ "key" : 2
+},
+{
+ "name" : "JUMP",
+ "key" : 3
+},
+{
+ "name" : "ACTION",
+ "key" : 4
+},
+{
+ "name" : "SHOOT",
+ "key" : 5
+},
+{
+ "name" : "TARGET",
+ "key" : 6
+},
+{
+ "name" : "ROTATEABILITY",
+ "key" : 7
+},
+{
+ "name" : "USEABILITY",
+ "key" : 8
+}]
