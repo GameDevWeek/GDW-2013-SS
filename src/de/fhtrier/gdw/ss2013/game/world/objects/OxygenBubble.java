@@ -28,17 +28,22 @@ public class OxygenBubble extends Entity {
 		super(position.copy());
 		this.oxygenLevel = oxygenLevel;
 	}
-
-	public void collected(Astronaut astro) {
-		float currentOxygen = astro.getOxygen();
-		if (currentOxygen + oxygenLevel < astro.getMaxOxygen()) {
-			astro.setOxygen(currentOxygen + oxygenLevel);
-		} else {
-			astro.setOxygen(astro.getMaxOxygen());
-		}
-
-	}
-
+	
+	@Override
+    public void onCollision(Entity e)
+    {
+        if(e instanceof Astronaut)
+        {
+            if (((Astronaut)e).getOxygen() + oxygenLevel < ((Astronaut)e).getMaxOxygen())
+            {
+                ((Astronaut) e).setOxygen(((Astronaut)e).getOxygen()+oxygenLevel);
+            }
+            else{
+                ((Astronaut)e).setOxygen(((Astronaut)e).getMaxOxygen());
+            }
+        }
+    }
+	
 	public float getOxygenLevel() {
 		return oxygenLevel;
 	}
