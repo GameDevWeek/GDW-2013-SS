@@ -2,7 +2,7 @@
 package de.fhtrier.gdw.ss2013.physics;
 
 import java.awt.Point;
-import java.util.ArrayList;
+import java.util.List;
 
 import org.jbox2d.common.Vec2;
 
@@ -44,7 +44,7 @@ public class PhysicsTools {
         return new Point((int)v.x,(int)v.y);
     }
     
-    public static Vec2[] PointArrToVec2Arr(ArrayList<Point> pointList)
+    public static Vec2[] PointArrToVec2Arr(List<Point> pointList)
     {
         Vec2[] returner = new Vec2[pointList.size()];
         for(int pointCount = 0;pointCount < returner.length; pointCount++)
