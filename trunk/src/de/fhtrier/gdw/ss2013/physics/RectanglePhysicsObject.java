@@ -34,12 +34,12 @@ public class RectanglePhysicsObject extends PhysicsObject {
 
 	public RectanglePhysicsObject(Entity owner, BodyType bodyType, Vec2 rec,
 			Vec2 pos) {
-		this(owner, bodyType, rec, pos, 0);
+		this(owner, bodyType, rec, pos, 1);
 	}
 
 	public RectanglePhysicsObject(Entity owner, BodyType bodyType, Vec2 rec,
 			Vec2 pos, float restitution) {
-		this(owner, bodyType, rec, pos, restitution, 0);
+		this(owner, bodyType, rec, pos, restitution, 1);
 	}
 	
 	public RectanglePhysicsObject(Entity owner, BodyType bodyType, Vec2 rec,
@@ -49,7 +49,7 @@ public class RectanglePhysicsObject extends PhysicsObject {
 
 	public RectanglePhysicsObject(Entity owner, BodyType bodyType, Vec2 rec,
 			Vec2 pos, float restitution, float density) {
-		this(owner, bodyType, rec, pos, restitution, density, 0);
+		this(owner, bodyType, rec, pos, restitution, density, 1);
 	}
 
 	public RectanglePhysicsObject(Entity owner, BodyType bodyType, Vec2 rec,
@@ -63,11 +63,7 @@ public class RectanglePhysicsObject extends PhysicsObject {
 		super(owner, restitution, density, friction, isSensor);
 		PolygonShape myShape = new PolygonShape();
 		myShape.setAsBox(rec.x, rec.y);
-
-		BodyDef myBodyDef = new BodyDef();
-		myBodyDef.type = bodyType;
-
-		init(myShape, myBodyDef,pos);
+		init(myShape, bodyType,pos);
 	}
 
 }

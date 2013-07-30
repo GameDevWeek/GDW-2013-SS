@@ -10,6 +10,7 @@ import org.jbox2d.collision.shapes.Shape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.BodyDef;
+import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
@@ -38,11 +39,13 @@ public abstract class PhysicsObject {
 		collisionListeners = new ArrayList<ICollisionListener>();
 	}
 
-	protected void init(Shape myShape,BodyDef myBodyDef, Vec2 Pos)
+	protected void init(Shape myShape,BodyType bodyType, Vec2 Pos)
 	{
+	    this.myBodyDef = new BodyDef();
+	    this.myBodyDef.type = bodyType;
 	    myFixtureDef.shape = myShape;
-	    this.myBodyDef = myBodyDef;
 	    enableSimulation();
+	    this.myBody.createFixture(this.myFixtureDef);
 	    setPosition(Pos);
 	}
 	
@@ -119,6 +122,10 @@ public abstract class PhysicsObject {
 		myBody.applyForceToCenter(force);
 	}
 
+	public void applyImpulse(Vec2 force) {
+        myBody.applyLinearImpulse(force, getPosition());
+    }
+	
 	public float getAngle() {
 		return myBody.getAngle();
 	}
