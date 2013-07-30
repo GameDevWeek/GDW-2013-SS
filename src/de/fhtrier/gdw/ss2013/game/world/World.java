@@ -43,7 +43,7 @@ public class World {
 
     // physics debug
     private DebugDrawer physicDebug;
-    public boolean debugDraw = true;
+    public boolean debugDraw = false;
 
     private EntityManager entityManager;
     private final PhysicsManager physicsManager;
@@ -132,6 +132,7 @@ public class World {
         
         // update entities
         entityManager.update(container, delta);
+        physicsManager.update(container, delta);
 
         // This is just a placeholder, not for actual use.
 //        Vector2f astronautPos = astronaut.getPosition();

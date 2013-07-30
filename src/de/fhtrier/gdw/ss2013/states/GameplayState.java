@@ -54,7 +54,7 @@ public class GameplayState extends BasicGameState {
         ((AppGameContainer)container).setTitle(MainGame.WINDOW_TITLE + " : " + container.getFPS());
 		MainGame.checkFullscreenToggle();
 		inputManager.update(delta);
-//		PhysicsManager.getInstance().update(container, delta);
+		//world.getPhysicsManager().update(container, delta);
 		world.update(container, delta);
 		hud.update(container, game, delta);
 	}
@@ -62,7 +62,7 @@ public class GameplayState extends BasicGameState {
 	@Override
 	public void enter(GameContainer container, StateBasedGame game)
 			throws SlickException {
-		world.getPhysicsManager().reset();
+		//world.getPhysicsManager().reset();
 	}
 
 	@Override
