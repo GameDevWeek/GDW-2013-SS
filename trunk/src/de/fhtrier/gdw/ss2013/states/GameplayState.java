@@ -37,7 +37,7 @@ public class GameplayState extends BasicGameState {
 		world = new World(container, game);
 		font = AssetLoader.getInstance().getFont("verdana_46");
 		hud = new HUD(container, world);
-		CenteredText.init(font);
+		
 
 	}
 
@@ -46,7 +46,7 @@ public class GameplayState extends BasicGameState {
 			throws SlickException {
 		g.setBackground(Color.black);
 		g.setColor(Color.white);
-	
+
 		world.render(container, g);
 
 		font.drawString(0, container.getHeight() - font.getLineHeight(),
