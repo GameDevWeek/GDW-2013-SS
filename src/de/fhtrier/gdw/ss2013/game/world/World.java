@@ -22,7 +22,7 @@ import de.fhtrier.gdw.ss2013.physics.PhysicsManager;
 import de.fhtrier.gdw.ss2013.renderer.MapRenderer;
 import de.fhtrier.gdw.ss2013.sound.SoundLocator;
 import de.fhtrier.gdw.ss2013.sound.services.DefaultSoundPlayer;
-
+ 
 public class World {
 
     private TiledMap map;
