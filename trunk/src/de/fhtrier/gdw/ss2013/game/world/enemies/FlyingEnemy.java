@@ -27,6 +27,7 @@ public class FlyingEnemy extends AbstractEnemy implements ICollidable {
 	private EntityManager m;
 	private Player p;
 	final static float DEBUG_ENTITY_HALFEXTEND = 5;
+	private String rechts="animtest", links="animtest", current="animtest", oben="animtest", unten="animtest";
 
 	public FlyingEnemy(Vector2f pos, Vector2f velo, float dmg, float hp) {
 		super(pos.copy(), velo.copy(), dmg);
@@ -44,14 +45,29 @@ public class FlyingEnemy extends AbstractEnemy implements ICollidable {
 	    } else {
 	        factor = 50;
 	    }
+	    setLeft_animation(links);
+	    setRight_animation(rechts);
+	    setCurrent(current);
+	    setOben(oben);
+	    setUnten(unten);
 	}
 
 	public FlyingEnemy() {
 		this(new Vector2f(), new Vector2f(), 0, 0);
+		setLeft_animation(links);
+	    setRight_animation(rechts);
+	    setCurrent(current);
+	    setOben(oben);
+        setUnten(unten);
 	}
 
 	public FlyingEnemy(Vector2f pos) {
 		this(pos.copy(), new Vector2f(2.5f, 2.5f), 0, 0);
+		setLeft_animation(links);
+	       setRight_animation(rechts);
+	        setCurrent(current);
+	        setOben(oben);
+            setUnten(unten);
 	}
 
 	@Override
@@ -76,10 +92,12 @@ public class FlyingEnemy extends AbstractEnemy implements ICollidable {
 
 	public void render(GameContainer container, Graphics g)
 			throws SlickException {
-		g.setColor(Color.blue);
-		g.drawRect(position.x - DEBUG_ENTITY_HALFEXTEND, position.y
-				- DEBUG_ENTITY_HALFEXTEND, DEBUG_ENTITY_HALFEXTEND * 2,
-				DEBUG_ENTITY_HALFEXTEND * 2);
+		//g.setColor(Color.blue);
+		//g.drawRect(position.x - DEBUG_ENTITY_HALFEXTEND, position.y
+			//	- DEBUG_ENTITY_HALFEXTEND, DEBUG_ENTITY_HALFEXTEND * 2,
+			//	DEBUG_ENTITY_HALFEXTEND * 2);
+	    super.render(container, g);
+	    
 		// g.drawString(this.hashCode(), position.x, position.y);
 	}
 

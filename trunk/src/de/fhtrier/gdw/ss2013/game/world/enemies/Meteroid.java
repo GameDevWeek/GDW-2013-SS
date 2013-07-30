@@ -54,6 +54,7 @@ public class Meteroid extends AbstractEnemy implements ICollidable {
 		g.drawRect(position.x - DEBUG_ENTITY_HALFEXTEND, position.y
 				- DEBUG_ENTITY_HALFEXTEND, DEBUG_ENTITY_HALFEXTEND * 2,
 				DEBUG_ENTITY_HALFEXTEND * 2);
+		
 		// g.drawString(this.hashCode(), position.x, position.y);
 	}
 

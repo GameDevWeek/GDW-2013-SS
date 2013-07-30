@@ -52,26 +52,29 @@ public class Alien extends Player implements AlienController{
     public void shoot() {
         // TODO Auto-generated method stub
         Log.debug("shooting");
+        setZustand("animtest");
+        
     }
 
     @Override
     public void rotateAbilities() {
         // TODO Auto-generated method stub
         Log.debug("rotate ability");
+        setZustand("animtest");
     }
 
     @Override
     public void useAbility() {
         // TODO Auto-generated method stub
         Log.debug("using ability");
+        setZustand("animtest");
     }
 
-
-    @Override
+   @Override
     public void targetMouse(int x, int y) {
         // TODO Auto-generated method stub
-      //  Log.debug("targeting at " + x +  ", " + y);
-
+     //   Log.debug("target direction");
+      //  setZustand("animtest");
     }
 
     
