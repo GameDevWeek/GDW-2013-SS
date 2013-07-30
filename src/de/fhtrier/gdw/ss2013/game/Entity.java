@@ -43,4 +43,10 @@ public abstract class Entity {
         return position;
     }
 
+    /**
+     * Override to provide default values and call in constructor
+     */
+    public void initialize() {
+
+    }
 }
