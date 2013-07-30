@@ -21,12 +21,21 @@ import de.fhtrier.gdw.ss2013.physics.ICollidable;
  */
 public class FlyingEnemy extends AbstractEnemy implements ICollidable {
 
-	private float health, change;
+	private float health, flytime, bolttime;
+	private float flyintelligence, boltintelligence;
+	private EntityManager m;
+	private Player p;
 	final static float DEBUG_ENTITY_HALFEXTEND = 5;
 
 	public FlyingEnemy(Vector2f pos, Vector2f velo, float dmg, float hp) {
 		super(pos.copy(), velo.copy(), dmg);
 		health = hp;
+		flyintelligence = boltintelligence = (float)Math.random();
+	    if(flyintelligence > 0.5f) {
+	        this.getVelocity().y = 0.0f;
+	    } else {
+	        this.getVelocity().x = 0.0f;
+	    }
 	}
 
 	public FlyingEnemy() {
@@ -34,7 +43,7 @@ public class FlyingEnemy extends AbstractEnemy implements ICollidable {
 	}
 
 	public FlyingEnemy(Vector2f pos) {
-		this(pos.copy(), new Vector2f(2.5f, 0.0f), 0, 0);
+		this(pos.copy(), new Vector2f(2.5f, 2.5f), 0, 0);
 	}
 
 	@Override
@@ -69,13 +78,20 @@ public class FlyingEnemy extends AbstractEnemy implements ICollidable {
 	public void update(GameContainer container, int delta)
 			throws SlickException {
 		// float dt = delta / 1000.f;
-		change += delta;
+		flytime += delta;
+		bolttime += delta;
 		// TODO clamp dt if dt > 1/60.f ?
 		this.getPosition().x += this.getVelocity().x;
-		if (change >= 3000) {
+		this.getPosition().y += this.getVelocity().y;
+		if (flytime >= 3000) {
 			this.getVelocity().x = -this.getVelocity().x;
-			change = change % 3000;
+			this.getVelocity().y = -this.getVelocity().y;
+			flytime = flytime % 3000;
 		}
+	    if (bolttime >= 2000) {
+	   //     this.shoot(p, m);
+	        bolttime = bolttime % 2000;
+	    }
 	}
 
 	private Vector2f calcPlayerDirection(Player player) {
@@ -94,5 +110,9 @@ public class FlyingEnemy extends AbstractEnemy implements ICollidable {
 	public Fixture getFixture() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	public void setReferences(EntityManager m, Player p) {
+	    this.m = m;
+	    this.p = p;
 	}
 }

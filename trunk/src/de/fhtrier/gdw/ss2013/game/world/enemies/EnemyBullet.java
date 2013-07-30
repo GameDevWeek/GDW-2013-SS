@@ -4,9 +4,11 @@ import org.jbox2d.dynamics.Fixture;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
+import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.physics.ICollidable;
@@ -20,9 +22,12 @@ import de.fhtrier.gdw.ss2013.physics.ICollidable;
 public class EnemyBullet extends AbstractEnemy implements ICollidable {
 
 	final static float DEBUG_ENTITY_HALFEXTEND = 5;
+	private Image img;
+	private AssetLoader a = AssetLoader.getInstance();
 
 	public EnemyBullet(Vector2f pos, Vector2f velo, float dmg) {
 		super(pos.copy(), velo.copy(), dmg);
+		img = a.getImage("GeschossAlien");
 	}
 
 	public EnemyBullet() {
@@ -43,10 +48,7 @@ public class EnemyBullet extends AbstractEnemy implements ICollidable {
 
 	public void render(GameContainer container, Graphics g)
 			throws SlickException {
-		g.setColor(Color.red);
-		g.drawRect(position.x - DEBUG_ENTITY_HALFEXTEND, position.y
-				- DEBUG_ENTITY_HALFEXTEND, DEBUG_ENTITY_HALFEXTEND * 2,
-				DEBUG_ENTITY_HALFEXTEND * 2);
+	    img.draw(this.getPosition().x, this.getPosition().y);
 
 		// g.drawString(this.hashCode(), position.x, position.y);
 	}
