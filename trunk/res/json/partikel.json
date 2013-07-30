@@ -1,0 +1,13 @@
+[{
+  "name" : "blumen_leuchten",
+  "pfad" : "res/partikel/blumen_leuchten.xml"
+  },
+  {
+  "name" : "pollen1",
+  "pfad" : "res/partikel/pollen1.xml"
+  },
+  {
+  "name" : "pollen1",
+  "pfad" : "res/partikel/pollen2.xml"
+  }
+  ]
