@@ -17,17 +17,15 @@ public class Alien extends Player implements AlienController{
 	private float mana;
 	private float maxMana;
 	private Animation  bewegungs_ani;
-	private AssetLoader asset;
 	
 	public Alien(Vector2f position) {
 		super(position);
 	
 		// Default
-		asset = AssetLoader.getInstance();
 		selectedAbility = 1;
 		maxMana = 0.0f;
 		mana = maxMana;
-		bewegungs_ani=asset.getAnimation(getZustand());
+		bewegungs_ani=AssetLoader.getInstance().getAnimation(getZustand());
 	}
 
 	public float getMana() {

@@ -22,7 +22,6 @@ public abstract class Player extends Entity {
     private Animation animation;
     private String zustand = "animtest";
     private Vector2f velocity;
-    AssetLoader assetloader = AssetLoader.getInstance();
 
     public Player(Vector2f position) {
         super(position);
@@ -30,7 +29,7 @@ public abstract class Player extends Entity {
         velocity = new Vector2f();
         // animation von assetloader beziehen
 
-        bewegungs_ani = assetloader.getAnimation(zustand);
+        bewegungs_ani = AssetLoader.getInstance().getAnimation(zustand);
 
     }
 
