@@ -1,5 +1,8 @@
 package de.fhtrier.gdw.ss2013.physics.test;
 
+import java.awt.Point;
+import java.util.ArrayList;
+
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.BodyType;
 import org.newdawn.slick.GameContainer;
@@ -21,6 +24,7 @@ import de.fhtrier.gdw.ss2013.physics.DebugDrawer;
 import de.fhtrier.gdw.ss2013.physics.PhysicsManager;
 import de.fhtrier.gdw.ss2013.physics.PhysicsObject;
 import de.fhtrier.gdw.ss2013.physics.PhysicsTools;
+import de.fhtrier.gdw.ss2013.physics.PolygonPhysicsObject;
 import de.fhtrier.gdw.ss2013.physics.RectanglePhysicsObject;
 import de.fhtrier.gdw.ss2013.renderer.MapRenderer;
 import de.fhtrier.gdw.ss2013.sound.SoundLocator;
@@ -71,6 +75,9 @@ public class TestWorld {
                 .setAstronautController(astronaut);
 
         SoundLocator.provide(new DefaultSoundPlayer(astronaut));
+        
+        
+
 
     }
 
@@ -139,8 +146,23 @@ public class TestWorld {
             Vec2 force = new Vec2(2, 0);
             System.out.println(force);
             rpo.applyImpulse(force);
+          }
+        
+        if(input.isKeyPressed(Input.KEY_ENTER))
+        {
+            ArrayList<Point> li = new ArrayList<Point>();
+            for(int pcount = 0;pcount <= 5;pcount++)
+            {
+                li.add(new Point(pcount*(1000/5), (int)(100+Math.random()*50-25)));
+            }
+            li.add(new Point(1000, 0));
+            li.add(new Point(0, 0));
+            
+            PolygonPhysicsObject PPO = new PolygonPhysicsObject(BodyType.STATIC, li);
+            
+            //RectanglePhysicsObject ding = new RectanglePhysicsObject(BodyType.STATIC, new Vec2(1000,500));
         }
-
+        
     }
 
     public Vector2f screenToWorldPosition(Vector2f screenPosition) {
