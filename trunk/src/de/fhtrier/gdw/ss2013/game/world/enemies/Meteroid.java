@@ -8,6 +8,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.game.Entity;
+import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.physics.ICollidable;
 
@@ -19,6 +20,7 @@ import de.fhtrier.gdw.ss2013.physics.ICollidable;
  */
 public class Meteroid extends AbstractEnemy implements ICollidable {
 
+    private EntityManager m;
 	private float health;
 	final static float DEBUG_ENTITY_HALFEXTEND = 5;
 
@@ -64,11 +66,17 @@ public class Meteroid extends AbstractEnemy implements ICollidable {
 		// TODO clamp dt if dt > 1/60.f ?
 		this.getPosition().x += this.getVelocity().x;
 		this.getPosition().y += this.getVelocity().y;
+	    if (health <= 0) {
+	         m.removeEntity(this);
+	    }
 	}
 
 	@Override
 	public Fixture getFixture() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	public void setReferences(EntityManager m) {
+	    this.m = m;
 	}
 }

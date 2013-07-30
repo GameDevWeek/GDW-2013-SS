@@ -88,13 +88,14 @@ public class World {
                     .createEntityAt(FlyingEnemy.class, new Vector2f(
                             500 + i * 50, 500 + i * 50));
             enemy[i].setReferences(entityManager, astronaut);
+            genemy[i] = entityManager.createEntityAt(GroundEnemy.class, new Vector2f(
+                    100+i*100, 800-i*50));
+            genemy[i].setReferences(astronaut);
         }
-        genemy[0] = entityManager.createEntityAt(GroundEnemy.class, new Vector2f(
-                100, 800));
-        genemy[0].setReferences(astronaut);
         for (int i = 0; i < metro.length; i++) {
             metro[i] = (Meteroid) entityManager.createEntityAt(Meteroid.class,
                     new Vector2f(200 + i * 100, 0));
+            metro[i].setReferences(entityManager);
         }
     }
 
