@@ -7,8 +7,12 @@
   "pfad" : "res/images/testbild.png"
 },
 {
-  "name" : "GeschossAlien",
+  "name" : "boltEnemy",
   "pfad" : "res/dummies/GeschossAlien.png"
+},
+{
+  "name" : "plant",
+  "pfad" : "res/dummies/Pflanze.png"
 },
 { 
   "name" : "healthBarFrame",

@@ -32,7 +32,7 @@ public class OxygenFlower extends Entity implements Interactable {
 
     public OxygenFlower(Vector2f position) {
         super(position.copy());
-        img = a.getImage("Pflanze");
+        img = a.getImage("plant");
         // Default
         maxBubble = 5;
 
@@ -67,7 +67,7 @@ public class OxygenFlower extends Entity implements Interactable {
             throws SlickException {
 
         g.setColor(Color.pink);
-        //img.draw(this.getPosition().x, this.getPosition().y);
+        img.draw(this.getPosition().x-(img.getWidth()/2), this.getPosition().y-(img.getHeight()/2));
         super.render(container, g);
 
         // g.drawString(this.hashCode(), position.x, position.y);
