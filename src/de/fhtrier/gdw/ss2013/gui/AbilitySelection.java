@@ -14,7 +14,7 @@ public class AbilitySelection {
 
 	private Image[] ability;
 	private Vector2f position; // ist hier jeweils der Abstand den die Position
-	private int selected = 3;
+	private int selected = 2;
 	private Color key;
 
 	public AbilitySelection() {
