@@ -14,6 +14,7 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.Sound;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.particles.ParticleSystem;
+import org.newdawn.slick.util.Log;
 import org.newdawn.slick.util.ResourceLoader;
 
 import de.fhtrier.gdw.commons.jackson.JacksonReader;
@@ -247,11 +248,12 @@ public class AssetLoader {
 	}
 
 	public Image getImage(String name) {
-		if (imageMap.get(name) == null) {
-			System.out.println("ERROR: Image '" + name + "' existiert nicht.");
+		Image image = imageMap.get(name);
+		if (image == null) {
+			Log.warn("Image '" + name + "' existiert nicht.");
 			return imageMap.get("error");
 		} else {
-			return imageMap.get(name);
+			return image;
 		}
 	}
 
