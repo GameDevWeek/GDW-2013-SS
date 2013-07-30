@@ -123,8 +123,6 @@ public class World {
         // update entities
         entityManager.update(container, delta);
 
-        PhysicsManager.getInstance().update(container, delta);
-
         // This is just a placeholder, not for actual use.
         Vector2f astronautPos = astronaut.getPosition();
         float speed = 6;

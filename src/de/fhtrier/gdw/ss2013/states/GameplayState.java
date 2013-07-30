@@ -15,6 +15,7 @@ import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.gui.HUD;
 import de.fhtrier.gdw.ss2013.input.InputManager;
+import de.fhtrier.gdw.ss2013.physics.PhysicsManager;
 import de.fhtrier.gdw.ss2013.gui.utils.CenteredText;
 
 /**
@@ -45,7 +46,7 @@ public class GameplayState extends BasicGameState {
 			throws SlickException {
 		g.setBackground(Color.black);
 		g.setColor(Color.white);
-
+	
 		world.render(container, g);
 
 		font.drawString(0, container.getHeight() - font.getLineHeight(),
@@ -59,6 +60,7 @@ public class GameplayState extends BasicGameState {
 	public void update(GameContainer container, StateBasedGame game, int delta)
 			throws SlickException {
 		MainGame.checkFullscreenToggle();
+		PhysicsManager.getInstance().update(container, delta);
 		world.update(container, delta);
 		inputManager.update(delta);
 		hud.update(container, game, delta);
