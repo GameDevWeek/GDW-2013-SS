@@ -27,7 +27,7 @@ public class EnemyBullet extends AbstractEnemy implements ICollidable {
 
 	public EnemyBullet(Vector2f pos, Vector2f velo, float dmg) {
 		super(pos.copy(), velo.copy(), dmg);
-		img = a.getImage("GeschossAlien");
+		img = a.getImage("boltEnemy");
 	}
 
 	public EnemyBullet() {
