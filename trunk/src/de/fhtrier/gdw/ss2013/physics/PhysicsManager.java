@@ -18,19 +18,33 @@ public class PhysicsManager implements ContactListener {
         return _physicsManagerSingleton;
     }
     
-    public World getPhysicsWorld()
-    {
+    public World getPhysicsWorld() {
         return _physicsWorld;
     }
 
     private PhysicsManager() {
-        _physicsWorld = new World(new Vec2(0.0f, -9.81f));
+        _physicsWorld = new World(_defaultGravity);
         //_physicsWorld.setDebugDraw(new DebugDrawer());
         _physicsWorld.setContactListener(this);
     }
 
-    public void reset() {
-        /// TODO
+    public boolean reset() {
+        // It is not allowed to remove bodies from the world while it is locked.
+        // Check locking state to prevent assertion in native library.
+        if (_physicsWorld.isLocked()) {
+            return false;
+        }
+       for (Body bodyIterator = _physicsWorld.getBodyList();
+               bodyIterator.getNext() != null; )
+       {
+           Body body = bodyIterator.getNext();
+           if (body != null) {
+               _physicsWorld.destroyBody(body);
+               body = null;
+           }
+       }
+       _physicsWorld = new World(_defaultGravity);
+       return true;
     }
 
     public void enableDebugDraw(boolean enabled) {
@@ -100,6 +114,7 @@ public class PhysicsManager implements ContactListener {
     }
 
     private static PhysicsManager _physicsManagerSingleton = null;
-    private final World _physicsWorld;
+    private World _physicsWorld;
+    private final Vec2 _defaultGravity = new Vec2(0.0f, -9.81f);
     private boolean _debugDraw;
 }
