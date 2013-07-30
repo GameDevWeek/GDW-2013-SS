@@ -10,12 +10,9 @@ import org.jbox2d.collision.shapes.Shape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.BodyDef;
-import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.BodyType;
+import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.FixtureDef;
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.SlickException;
-
 import de.fhtrier.gdw.ss2013.game.Entity;
 
 public abstract class PhysicsObject {
@@ -171,21 +168,6 @@ public abstract class PhysicsObject {
 		return myBody.getMass();
 	}
 
-	public boolean addCollisionListener(ICollisionListener listener) {
-		return collisionListeners.add(listener);
-	}
-
-	public boolean removeCollisionListener(ICollisionListener listener) {
-		return collisionListeners.remove(listener);
-	}
-
-	public void onCollide(PhysicsObject po) {
-		for (ICollisionListener listener : collisionListeners) {
-			System.out.println("Collision!!!!!!!!!!!!!!!!!!!");
-			listener.onCollide(po);
-		}
-	}
-
 	public float getFriction() {
 		return myFixtureDef.friction;
 	}
@@ -196,5 +178,25 @@ public abstract class PhysicsObject {
 
 	public float getRestitution() {
 		return myFixtureDef.restitution;
+	}
+	
+	public boolean addCollisionListener(ICollisionListener listener) {
+	    return collisionListeners.add(listener);
+	}
+
+	public boolean removeCollisionListener(ICollisionListener listener) {
+	    return collisionListeners.remove(listener);
+	}
+
+	public void beginContact(PhysicsObject object) {
+	    for (ICollisionListener listener : collisionListeners) {
+	        listener.beginContact(object);
+	    }
+	}
+
+	public void endContact(PhysicsObject object) {
+	    for (ICollisionListener listener : collisionListeners) {
+	        listener.endContact(object);
+	    }
 	}
 }
