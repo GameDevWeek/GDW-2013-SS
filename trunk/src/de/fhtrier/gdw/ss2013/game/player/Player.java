@@ -16,7 +16,7 @@ import de.fhtrier.gdw.ss2013.game.Entity;
 /**
  * Player class
  */
-public class Player extends Entity {
+public abstract class Player extends Entity {
 
     Animation bewegungs_ani;
     private Animation animation;
