@@ -18,15 +18,19 @@ import org.newdawn.slick.util.ResourceLoader;
 
 import de.fhtrier.gdw.commons.jackson.JacksonReader;
 import de.fhtrier.gdw.ss2013.assetloader.infos.AnimationInfo;
+import de.fhtrier.gdw.ss2013.assetloader.infos.FontInfo;
 import de.fhtrier.gdw.ss2013.assetloader.infos.ImageInfo;
 import de.fhtrier.gdw.ss2013.assetloader.infos.MapInfo;
 import de.fhtrier.gdw.ss2013.assetloader.infos.SoundInfo;
+import org.newdawn.slick.AngelCodeFont;
+import org.newdawn.slick.Font;
 
 public class AssetLoader {
 	private HashMap<String, Image> imageMap = new HashMap<>();
 	private HashMap<String, Animation> animMap = new HashMap<>();
 	private HashMap<String, Sound> soundMap = new HashMap<>();
 	private HashMap<String, String> mapHashmap = new HashMap<>();
+	HashMap<String, Font> fontMap = new HashMap<>();
 	
 	private static AssetLoader instance;
 	
@@ -39,8 +43,9 @@ public class AssetLoader {
 
 	private AssetLoader() {
 		setupImages("res/json/images.json");
-		setupAnimation("res/json/animations.json");
-		setupSound("res/json/sounds.json");
+		setupAnimations("res/json/animations.json");
+		setupSounds("res/json/sounds.json");
+		setupFonts("res/json/fonts.json");
 		setupMaps("res/json/maps.json");
 	}
 
@@ -66,7 +71,7 @@ public class AssetLoader {
 		}
 	}
 
-	private void setupAnimation(String filename) {
+	private void setupAnimations(String filename) {
 		try {
 			List<AnimationInfo> animInfos = JacksonReader.readList(filename,
 					AnimationInfo.class);
@@ -86,7 +91,7 @@ public class AssetLoader {
 		}
 	}
 
-	private void setupSound(String filename) {
+	private void setupSounds(String filename) {
 		try {
 			List<SoundInfo> soundInfos = JacksonReader.readList(filename,
 					SoundInfo.class);
@@ -113,6 +118,21 @@ public class AssetLoader {
         }
     }
 
+    private void setupFonts(String filename) {
+		try {
+			List<FontInfo> soundInfos = JacksonReader.readList(filename,
+					               FontInfo.class);
+			for (FontInfo fontInfo : soundInfos) {
+				checkForBackslashes(fontInfo.file);
+				checkForBackslashes(fontInfo.image);
+				fontMap.put(fontInfo.name,
+						new AngelCodeFont(fontInfo.file, fontInfo.image));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    }
+
 	public Image getImage(String name) {
 		return imageMap.get(name);
 	}
@@ -121,11 +141,6 @@ public class AssetLoader {
 		return animMap.get(name).copy();
 	}
 
-	/**
-	 * @param name
-	 *            Name out of the JSON file
-	 * @return Instance of the sound
-	 */
 	public Sound getSound(String name) {
 		return soundMap.get(name);
 	}
@@ -137,6 +152,10 @@ public class AssetLoader {
 	 */
 	public String getMapPath(String name) {
 	    return mapHashmap.get(name);
+	}
+
+	public Font getFont(String name) {
+		return fontMap.get(name);
 	}
 
 }

@@ -10,6 +10,7 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import de.fhtrier.gdw.ss2013.MainGame;
+import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 
 /**
  * Menu state
@@ -23,8 +24,7 @@ public class MainMenuState extends BasicGameState {
 	@Override
 	public void init(final GameContainer container, final StateBasedGame game)
 			throws SlickException {
-		font = new AngelCodeFont("res/fonts/quartz_40.fnt",
-				"res/fonts/quartz_40_0.tga");
+		font = AssetLoader.getInstance().getFont("quartz_40");
 	}
 
 	@Override
