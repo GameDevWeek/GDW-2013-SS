@@ -72,6 +72,7 @@ public class OxygenFlower extends Entity implements Interactable {
 
         // g.drawString(this.hashCode(), position.x, position.y);
     }
+    
 
     public void setMaxBubble(int maxBubble) {
         this.maxBubble = maxBubble;
