@@ -1,7 +1,6 @@
 package de.fhtrier.gdw.ss2013.game.world.enemies;
 
 import org.jbox2d.dynamics.Fixture;
-import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -54,20 +53,10 @@ public class FlyingEnemy extends AbstractEnemy implements ICollidable {
 
 	public FlyingEnemy() {
 		this(new Vector2f(), new Vector2f(), 0, 0);
-		setLeft_animation(links);
-	    setRight_animation(rechts);
-	    setCurrent(current);
-	    setOben(oben);
-        setUnten(unten);
 	}
 
 	public FlyingEnemy(Vector2f pos) {
 		this(pos.copy(), new Vector2f(2.5f, 2.5f), 0, 0);
-		setLeft_animation(links);
-	       setRight_animation(rechts);
-	        setCurrent(current);
-	        setOben(oben);
-            setUnten(unten);
 	}
 
 	@Override
