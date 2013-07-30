@@ -4,6 +4,7 @@
 
 package de.fhtrier.gdw.ss2013.game;
 
+import de.fhtrier.gdw.commons.utils.SafeProperties;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -15,6 +16,7 @@ import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.game.filter.EntityFilter;
 import de.fhtrier.gdw.ss2013.math.MathConstants;
+import de.fhtrier.gdw.ss2013.physics.PhysicsObject;
 
 //TODO filter für getEntities
 public class EntityManager {
@@ -31,6 +33,9 @@ public class EntityManager {
         removalQueue = new LinkedList<>();
         insertionQueue = new LinkedList<>();
         factory = new EntityFactory();
+    }
+
+    public void reset() {
     }
 
     private void internalRemove() {
@@ -149,5 +154,13 @@ public class EntityManager {
         addEntity(e);
         return e;
     }
-
+    
+    public Entity createEntity(String className, SafeProperties properties, PhysicsObject physicsObject) {
+        Class<? extends Entity> entityClass = null;
+        Entity e = factory.createEntity(entityClass);
+        e.setPhysicsObject(physicsObject);
+        physicsObject.setOwner(e);
+        addEntity(e);
+        return e;
+    }
 }

@@ -29,6 +29,10 @@ public class PhysicsManager implements ContactListener {
         _physicsWorld.setContactListener(this);
     }
 
+    public void reset() {
+        /// TODO
+    }
+
     public void enableDebugDraw(boolean enabled) {
         _debugDraw = enabled;
     }

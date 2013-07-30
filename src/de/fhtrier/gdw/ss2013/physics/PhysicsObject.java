@@ -25,7 +25,7 @@ public abstract class PhysicsObject {
 
 	private Collection<ICollisionListener> collisionListeners;
 
-	protected PhysicsObject(Entity owner, float restitution, float density, float friction,
+	protected PhysicsObject(float restitution, float density, float friction,
             boolean isSensor)
 	{
 		this.owner = owner;
