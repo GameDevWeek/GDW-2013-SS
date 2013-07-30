@@ -2,6 +2,7 @@ package de.fhtrier.gdw.ss2013.input;
 
 import java.util.LinkedList;
 
+import org.lwjgl.input.Controllers;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.util.Log;
@@ -44,11 +45,13 @@ public class InputManager {
         mouse = new Mouse(container);
         devices.add(mouse);
 
-        for (int i = 0; i < container.getInput().getControllerCount(); ++i) {
-            Gamepad gamepad = new Gamepad(container, i);
-            gamepads.add(gamepad);
-            devices.add(gamepad);
-            Log.debug("gamepad found");
+        for (int i = 0; i < org.lwjgl.input.Controllers.getControllerCount(); ++i) {
+            if (Controllers.getController(i).getName()
+                    .equals("Controller (XBOX 360 For Windows)")) {
+                Gamepad gamepad = new Gamepad(container, i);
+                gamepads.add(gamepad);
+                devices.add(gamepad);
+            }
         }
     }
 

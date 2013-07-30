@@ -4,6 +4,7 @@ import java.util.HashSet;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.util.Log;
 
 /*
  * Team Input
@@ -32,24 +33,6 @@ public class Keyboard extends InputDevice {
 		}
 	}
 
-	private void doAction(ACTION action) {
-		switch (action) {
-		case MOVEFORWARD:
-			astronautController.moveForward();
-			break;
-		case MOVEBACKWARD:
-			astronautController.moveBackward();
-			break;
-		case JUMP:
-			astronautController.jump();
-			break;
-		case ACTION:
-			astronautController.action();
-			break;
-		default:
-			break;
-		}
-	}
 
 	@Override
 	public void loadKeymapping() {
@@ -64,7 +47,8 @@ public class Keyboard extends InputDevice {
 
 		keymapping.put(Input.KEY_S, ACTION.ACTION);
 		keymapping.put(Input.KEY_DOWN, ACTION.ACTION);
-
+		
+		Log.debug(String.valueOf(ACTION.MOVEBACKWARD.ordinal()));
 	}
 
 }
