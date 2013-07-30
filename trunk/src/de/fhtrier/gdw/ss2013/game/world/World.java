@@ -124,20 +124,20 @@ public class World {
         entityManager.update(container, delta);
 
         // This is just a placeholder, not for actual use.
-        Vector2f astronautPos = astronaut.getPosition();
-        float speed = 6;
-        if (input.isKeyDown(Input.KEY_UP)) {
-            astronautPos.y -= speed;
-        }
-        if (input.isKeyDown(Input.KEY_DOWN)) {
-            astronautPos.y += speed;
-        }
-        if (input.isKeyDown(Input.KEY_LEFT)) {
-            astronautPos.x -= speed;
-        }
-        if (input.isKeyDown(Input.KEY_RIGHT)) {
-            astronautPos.x += speed;
-        }
+//        Vector2f astronautPos = astronaut.getPosition();
+//        float speed = 6;
+//        if (input.isKeyDown(Input.KEY_UP)) {
+//            astronautPos.y -= speed;
+//        }
+//        if (input.isKeyDown(Input.KEY_DOWN)) {
+//            astronautPos.y += speed;
+//        }
+//        if (input.isKeyDown(Input.KEY_LEFT)) {
+//            astronautPos.x -= speed;
+//        }
+//        if (input.isKeyDown(Input.KEY_RIGHT)) {
+//            astronautPos.x += speed;
+//        }
         if (input.isKeyPressed(Input.KEY_F)) {
             for (FlyingEnemy e : enemy) {
                 e.shoot(astronaut, entityManager);

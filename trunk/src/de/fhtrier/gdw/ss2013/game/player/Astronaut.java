@@ -56,26 +56,22 @@ public class Astronaut extends Player implements AstronautController {
 
     @Override
     public void moveForward() {
-        // TODO Auto-generated method stub
-        Log.debug("moving forward");
+        position.x += 10;
     }
 
     @Override
     public void moveBackward() {
-        // TODO Auto-generated method stub
-        Log.debug("moving backward");
+        position.x -= 10;
     }
 
     @Override
     public void jump() {
-        // TODO Auto-generated method stub
-        Log.debug("jumping");
+    	position.y -= 10;
     }
 
     @Override
     public void action() {
-        // TODO Auto-generated method stub
-        Log.debug("action key");
+    	position.y += 10;
     }
 	
 	
