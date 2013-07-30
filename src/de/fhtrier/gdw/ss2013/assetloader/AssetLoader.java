@@ -44,11 +44,11 @@ public class AssetLoader {
 	}
 
 	private AssetLoader() {
-		setupImages("res/json/images.json");
+	    setupMaps("res/json/maps.json");
 		setupAnimations("res/json/animations.json");
 		setupSounds("res/json/sounds.json");
 		setupFonts("res/json/fonts.json");
-		setupMaps("res/json/maps.json");
+		setupImages("res/json/images.json");
 	}
 
 	private void checkForBackslashes(String filename) {
