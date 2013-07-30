@@ -27,6 +27,8 @@ public class Astronaut extends Player implements AstronautController {
 		maxOxygen = 1000f;
 		oxygen = maxOxygen;
 		bewegungs_ani = asset.getAnimation(getZustand());
+		this.getVelocity().x = 10;
+		this.getVelocity().y = 10;
 
 	}
 
@@ -56,25 +58,25 @@ public class Astronaut extends Player implements AstronautController {
 
     @Override
     public void moveForward() {
-        position.x += 10;
+        this.getPosition().x += this.getVelocity().x;
         setZustand("animtest");
     }
 
     @Override
     public void moveBackward() {
-        position.x -= 10;
+        position.x -= this.getVelocity().x;
         setZustand("animtest");
     }
 
     @Override
     public void jump() {
-    	position.y -= 10;
+    	position.y -= this.getVelocity().x;
         setZustand("animtest");
     }
 
     @Override
     public void action() {
-    	position.y += 10;
+    	position.y += this.getVelocity().x;
         setZustand("animtest");
     }
 	
