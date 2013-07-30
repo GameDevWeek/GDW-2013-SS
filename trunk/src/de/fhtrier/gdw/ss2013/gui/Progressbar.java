@@ -10,6 +10,8 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
 
+import de.fhtrier.gdw.ss2013.gui.utils.CenteredText;
+
 public class Progressbar {
 	private Vector2f position;
 	private Vector2f size;
@@ -55,6 +57,9 @@ public class Progressbar {
 		bar.draw(position.x, position.y, position.x + filled, position.y
 				+ size.y, 0, 0, size.x - filled, size.y);
 
+		CenteredText.draw(position.x + size.x / 2 , position.y + size.y / 2, String.valueOf(currentPercentValue)+"%",g);
+		
+		g.drawString("Hello World!",200,200);
 	}
 
 }

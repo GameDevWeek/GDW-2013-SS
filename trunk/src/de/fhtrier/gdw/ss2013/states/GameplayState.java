@@ -14,6 +14,7 @@ import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.gui.HUD;
 import de.fhtrier.gdw.ss2013.input.InputManager;
+import de.fhtrier.gdw.ss2013.gui.utils.CenteredText;
 
 /**
  * Gameplay state
@@ -25,6 +26,7 @@ public class GameplayState extends BasicGameState {
 	private HUD hud;
 	private InputManager inputManager;
 
+
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
@@ -33,13 +35,14 @@ public class GameplayState extends BasicGameState {
 		world = new World(container, game);
 		font = AssetLoader.getInstance().getFont("verdana_46");
 		hud = new HUD(container, world);
+		CenteredText.init(font);
 
 	}
 
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
 			throws SlickException {
-		g.setBackground(Color.cyan);
+		g.setBackground(Color.black);
 		g.setColor(Color.white);
 
 		world.render(container, g);

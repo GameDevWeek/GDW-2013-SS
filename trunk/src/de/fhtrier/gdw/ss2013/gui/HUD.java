@@ -41,9 +41,9 @@ public class HUD {
 
 		//final String imagePath = "/res/Dummy_GUIs_Images/";
 
-		final Image frame = asset.getImage("frame");
-        final Image background = asset.getImage("background");
-        final Image bar = asset.getImage("bar");
+		final Image frame = asset.getImage("healthBarFrame");
+        final Image background = asset.getImage("healthBarBackground");
+        final Image bar = asset.getImage("healthBarForeground");
         healthbar.init(position, size, cornerradius, frame, background, bar);
 
 		// Init abilityWheel
@@ -70,6 +70,7 @@ public class HUD {
 		// DEV
 		quickselect.setSelected(2);
 		
+		
 		//init Crosshair
 		final Image cross = asset.getImage("ability1");
 		crosshair = new Crosshair(cross);
@@ -86,5 +87,6 @@ public class HUD {
 		healthbar.render(container, game, g);
 		abilityWheel.render(container, game, g);
 		quickselect.render(container, game, g);
+		
 	}
 }
