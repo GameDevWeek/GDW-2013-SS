@@ -52,13 +52,10 @@ public class LoadGameState extends BasicGameState {
         int totalResources = LoadingList.get().getTotalResources();
         int remainingResources = LoadingList.get().getRemainingResources();
 		int loadedResources = totalResources - remainingResources;
-//        if (loadedResources == 0) {
-//            loadedResources = 1;
-//        }
-        // total = total / loaded;
 
         g.setColor(Color.red);
 
+        //TODO
         g.fillRect(container.getWidth() / 8, container.getHeight() / 8 * 6,
                 container.getWidth() / 8 * 6 / totalResources * loadedResources, 50);
 
