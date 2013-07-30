@@ -15,48 +15,55 @@ import de.fhtrier.gdw.ss2013.physics.PhysicsManager;
 import de.fhtrier.gdw.ss2013.physics.RectanglePhysicsObject;
 import de.fhtrier.gdw.ss2013.physics.test.TestWorld;
 
-public class PhysicsTestState extends BasicGameState{
+public class PhysicsTestState extends BasicGameState {
 
-	private InputManager inputManager;
-	private TestWorld world;
-	public RectanglePhysicsObject rec;
+    @Override
+    public void enter(GameContainer container, StateBasedGame game)
+            throws SlickException {
+        PhysicsManager.getInstance().reset();
+    }
 
-	public void init(GameContainer container, StateBasedGame game)
-			throws SlickException {
-	    InputManager.init(container);
-	    inputManager = InputManager.getInstance();
-		world = new TestWorld(container, game);
-		
-		//Physic Test Objects
-		rec = new RectanglePhysicsObject(BodyType.DYNAMIC, new Vec2(50.0f, 50.0f), new Vec2(400.0f, 400.0f));
-		
-	}
+    private InputManager inputManager;
+    private TestWorld world;
+    private RectanglePhysicsObject rec;
 
-	public void render(GameContainer container, StateBasedGame game, Graphics g)
-			throws SlickException {
-		world.render(container, g);
-		
-	}
+    public void init(GameContainer container, StateBasedGame game)
+            throws SlickException {
+        InputManager.init(container);
+        inputManager = InputManager.getInstance();
+        world = new TestWorld(container, game);
 
-	public void update(GameContainer container, StateBasedGame game, int delta)
-			throws SlickException {
-		MainGame.checkFullscreenToggle();
-		world.update(container, delta);
-		inputManager.update(delta);
-		PhysicsManager.getInstance().update(container, delta);
-		
-	}
+        // Physic Test Objects
+        rec = new RectanglePhysicsObject(BodyType.DYNAMIC, new Vec2(50.0f,
+                50.0f), new Vec2(400.0f, 400.0f));
 
-	public int getID() {
-		return MainGame.PHYSIC_TEST;
-	}
-	
-	public void keyReleased(int key, char c) {
+    }
 
-		//triggers PhysicTestState
-		if (key == Input.KEY_EQUALS || key == Input.KEY_P) {
-			MainGame.changeState(MainGame.PHYSIC_TEST);
-		}
-	}
+    public void render(GameContainer container, StateBasedGame game, Graphics g)
+            throws SlickException {
+        world.render(container, g);
+
+    }
+
+    public void update(GameContainer container, StateBasedGame game, int delta)
+            throws SlickException {
+        MainGame.checkFullscreenToggle();
+        world.update(container, delta);
+        inputManager.update(delta);
+        PhysicsManager.getInstance().update(container, delta);
+
+    }
+
+    public int getID() {
+        return MainGame.PHYSIC_TEST;
+    }
+
+    public void keyReleased(int key, char c) {
+
+        // triggers PhysicTestState
+        if (key == Input.KEY_EQUALS || key == Input.KEY_P) {
+            MainGame.changeState(MainGame.PHYSIC_TEST);
+        }
+    }
 
 }

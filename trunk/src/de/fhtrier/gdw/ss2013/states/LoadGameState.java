@@ -80,9 +80,14 @@ public class LoadGameState extends BasicGameState {
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta)
             throws SlickException {
+
         if (nextResource != null) {
             try {
+                long time = System.currentTimeMillis();
+                System.out.print("Loading: " + nextResource.getDescription());
                 nextResource.load();
+                System.out.println("(Time: "
+                        + (System.currentTimeMillis() - time) + ")");
             } catch (IOException e) {
                 throw new SlickException("Failed to load: "
                         + nextResource.getDescription(), e);
