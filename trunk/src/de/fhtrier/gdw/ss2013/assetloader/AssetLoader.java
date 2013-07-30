@@ -1,7 +1,4 @@
 /*
- * 
- * 
- * 
  * @author Janina, Benjamin
  */
 
@@ -17,11 +14,13 @@ import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.util.ResourceLoader;
 
 import de.fhtrier.gdw.commons.jackson.JacksonReader;
+import de.fhtrier.gdw.commons.jackson.JacksonWriter;
 import de.fhtrier.gdw.commons.tiled.LayerObject;
 import de.fhtrier.gdw.commons.tiled.TiledMap;
 import de.fhtrier.gdw.ss2013.assetloader.infos.AnimationInfo;
 import de.fhtrier.gdw.ss2013.assetloader.infos.FontInfo;
 import de.fhtrier.gdw.ss2013.assetloader.infos.ImageInfo;
+import de.fhtrier.gdw.ss2013.assetloader.infos.KeyInfo;
 import de.fhtrier.gdw.ss2013.assetloader.infos.MapInfo;
 import de.fhtrier.gdw.ss2013.assetloader.infos.ScoreInfo;
 import de.fhtrier.gdw.ss2013.assetloader.infos.SoundInfo;
@@ -34,8 +33,7 @@ public class AssetLoader {
 	private HashMap<String, Sound> soundMap = new HashMap<>();
 	private HashMap<String, String> mapHashmap = new HashMap<>();
 	private HashMap<String, Font> fontMap = new HashMap<>();
-	private List<ScoreInfo> scoreInfos;
-	private int mapCount = 0;
+	private HashMap<String, Font> settingsMap = new HashMap<>();
 	
 	private static AssetLoader instance;
 	
@@ -52,6 +50,7 @@ public class AssetLoader {
 		setupSounds("res/json/sounds.json");
 		setupFonts("res/json/fonts.json");
 		setupImages("res/json/images.json");
+		setupSetups();
 	}
 
     private void checkForBackslashes(String filename) {
@@ -118,7 +117,6 @@ public class AssetLoader {
                 checkForBackslashes(mapInfo.pfad);
                 mapHashmap.put(mapInfo.name, mapInfo.pfad); // don't load every map during setup
             }
-            mapCount = mapInfos.size();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -140,7 +138,8 @@ public class AssetLoader {
 		}
     }
     
-    private void setupScore(String filename) {
+    private List<ScoreInfo> setupScore(String filename) {
+        List<ScoreInfo> scoreInfos = null;
         try {
             scoreInfos = JacksonReader.readList(filename, ScoreInfo.class);
         } catch (Exception e) {
@@ -151,6 +150,21 @@ public class AssetLoader {
                 e.printStackTrace();
             }
         }
+        return scoreInfos;
+    }
+    
+    private void setupSetups(){
+        // TODO
+    }
+    
+    private List<KeyInfo> setupKeys(String filename) { 
+        List<KeyInfo> keyInfos = null;
+        try {
+            keyInfos = JacksonReader.readList(filename, KeyInfo.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return keyInfos;
     }
     
 	public Image getImage(String name) {
@@ -177,11 +191,14 @@ public class AssetLoader {
 	}
 	
 	public List<ScoreInfo> getScore(String scoreName){
-	    setupScore("res/json/scores/"+scoreName+".json");
-	    return scoreInfos;
+	    return setupScore("res/json/scores/"+scoreName+".json");
 	}
 	
-	/**
+	public List<KeyInfo> getKeyList(String device){ //mouse //keyboard //controller
+	    return setupKeys("res/json/keys/"+device+".json");
+	}
+
+    /**
 	 * 
 	 * @param name JSON map name
 	 * @return Path to map file
@@ -206,7 +223,23 @@ public class AssetLoader {
 		return fontMap.get(name);
 	}
 	
-	public void setScore(String scoreName, List<ScoreInfo> scoreList){
-	    
+	/*public Setups getSetup(){
+	    return null; // TODO not jet implemented
+	}*/
+	
+	public void writeScore(String scoreName, List<ScoreInfo> scoreList){
+	    try {
+            JacksonWriter.writeList("res/json/scores/"+scoreName+".json", scoreList);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 	}
+	
+	public void writeKeys(String device, List<KeyInfo> keyList){
+        try {
+            JacksonWriter.writeList("res/json/keys/"+device+".json", keyList);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
