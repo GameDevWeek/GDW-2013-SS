@@ -24,7 +24,7 @@ public class Astronaut extends Player implements AstronautController {
 		super(position);
 
 		// Default
-		maxOxygen = 0.0f;
+		maxOxygen = 1000f;
 		oxygen = maxOxygen;
 		bewegungs_ani = asset.getAnimation(getZustand());
 

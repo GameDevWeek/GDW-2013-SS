@@ -47,7 +47,7 @@ public class HUD {
         final Image bar = asset.getImage("healthBarForeground");
         final Font font = asset.getFont("verdana_24");
         
-        healthbar.init(position, size, cornerradius, frame, background, bar, font);
+        healthbar.init(position, size, cornerradius, frame, background, bar, font, worldinstance);
 
 		// Init abilityWheel
 
@@ -76,7 +76,7 @@ public class HUD {
 		
 		//init Crosshair
 		final Image cross = asset.getImage("ability1");
-		crosshair = new Crosshair(cross);
+		crosshair = new Crosshair(cross, worldinstance);
 
 	}
 
