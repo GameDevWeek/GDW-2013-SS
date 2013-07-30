@@ -14,33 +14,33 @@ import org.newdawn.slick.geom.Vector2f;
  */
 public abstract class Entity {
 
-	protected Vector2f position;
+    protected Vector2f position;
 
-	final static float DEBUG_ENTITY_HALFEXTEND = 5;
+    final static float DEBUG_ENTITY_HALFEXTEND = 5;
 
-	public Entity() {
-		this(new Vector2f());
-	}
+    public Entity() {
+        this(new Vector2f());
+    }
 
-	public Entity(Vector2f position) {
-		this.position = position.copy();
-	}
+    public Entity(Vector2f position) {
+        this.position = position.copy();
+    }
 
-	public void render(GameContainer container, Graphics g)
-			throws SlickException {
-		g.drawRect(position.x - DEBUG_ENTITY_HALFEXTEND, position.y
-				- DEBUG_ENTITY_HALFEXTEND, DEBUG_ENTITY_HALFEXTEND * 2,
-				DEBUG_ENTITY_HALFEXTEND * 2);
+    public void render(GameContainer container, Graphics g)
+            throws SlickException {
+        g.drawRect(position.x - DEBUG_ENTITY_HALFEXTEND, position.y
+                - DEBUG_ENTITY_HALFEXTEND, DEBUG_ENTITY_HALFEXTEND * 2,
+                DEBUG_ENTITY_HALFEXTEND * 2);
 
-		// g.drawString(this.hashCode(), position.x, position.y);
-	}
+        // g.drawString(this.hashCode() + "", position.x, position.y);
+    }
 
-	public void update(GameContainer container, int delta)
-			throws SlickException {
-	}
+    public void update(GameContainer container, int delta)
+            throws SlickException {
+    }
 
-	public Vector2f getPosition() {
-		return position;
-	}
+    public Vector2f getPosition() {
+        return position;
+    }
 
 }
