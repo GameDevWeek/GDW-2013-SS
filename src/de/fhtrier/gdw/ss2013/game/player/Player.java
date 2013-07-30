@@ -4,6 +4,8 @@
 
 package de.fhtrier.gdw.ss2013.game.player;
 
+import org.jbox2d.common.Vec2;
+import org.jbox2d.dynamics.BodyType;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -14,6 +16,8 @@ import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.input.AlienController;
 import de.fhtrier.gdw.ss2013.input.AstronautController;
+import de.fhtrier.gdw.ss2013.physics.PhysicsTools;
+import de.fhtrier.gdw.ss2013.physics.RectanglePhysicsObject;
 
 /**
  * Player class
@@ -49,7 +53,7 @@ public class Player extends Entity {
 
 	@Override
 	public void update(GameContainer container, int delta)
-			throws SlickException {
+			throws SlickException {	    
 	}
 
 	/*

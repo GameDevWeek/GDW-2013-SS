@@ -45,13 +45,13 @@ public class PhysicsManager implements ContactListener {
         if (bodyIterator == null) {
             return true;
         }
-        Body body = bodyIterator.getNext();
-        while(bodyIterator.getNext() != null) {
-            Body toBeDeleted = body;
-            body = bodyIterator.getNext();
-            _physicsWorld.destroyBody(toBeDeleted);
+        
+        Body next = bodyIterator;
+        while(next != null) {
+            next = bodyIterator.getNext();
+            _physicsWorld.destroyBody(bodyIterator);
+            bodyIterator = next;
         }
-        _physicsWorld.destroyBody(bodyIterator);
         return true;
     }
 
@@ -74,6 +74,12 @@ public class PhysicsManager implements ContactListener {
     public void update(GameContainer c, int delta) throws SlickException {
         // _physicsWorld.step(delta, 6, 3);
         _physicsWorld.step(delta / 1000.f, 9, 4);
+        
+        Body body = _physicsWorld.getBodyList();
+            while(body != null) {
+                ((PhysicsObject)body.m_userData).update(c, delta);
+                body = body.getNext();
+            }
         /*
          * for (Contact c1 = _physicsWorld.getContactList(); c1 != null; c1 = c1
          * .getNext()) { PhysicsObject objectA = (PhysicsObject)
