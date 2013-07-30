@@ -28,8 +28,7 @@ public class HUD {
 	    asset = AssetLoader.getInstance();
 	     
 	    // Init healthbar
-
-		healthbar = new Progressbar();
+	    healthbar = new Progressbar();
 
 		final Vector2f position = new Vector2f(10, 10);
 		final Vector2f size = new Vector2f(240, 40);
