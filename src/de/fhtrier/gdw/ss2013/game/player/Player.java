@@ -35,11 +35,6 @@ public abstract class Player extends Entity {
 				position.y - animation.getHeight() / 2);
 	}
 
-	@Override
-	public void update(GameContainer container, int delta)
-			throws SlickException {
-	}
-
 	public Vector2f getVelocity() {
 		return velocity;
 	}

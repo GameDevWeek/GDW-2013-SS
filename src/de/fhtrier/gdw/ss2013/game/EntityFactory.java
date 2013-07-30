@@ -20,6 +20,7 @@ public class EntityFactory {
             recycleList = new LinkedList<>();
         }
         recycleList.add(e);
+        System.out.println("Recycled Entity: " + e);
     }
 
     private boolean testRecyceability(Class<? extends Entity> entityClass) {

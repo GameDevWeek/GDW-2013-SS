@@ -135,8 +135,9 @@ public class LevelLoader {
                     .println("(" + x + "," + y + "((" + width + "; " + height);
             // new RectanglePhysicsObject(new Vec2(width, height), new Vec2(x,
             // y));
+            World.getInstance().getPhysicsManager().enableSimulation(
             new RectanglePhysicsObject(new Vector2f(width, height),
-                    new Vector2f(x, y));
+                    new Vector2f(x, y)));
             break;
         case "deadzone":
             entity = entityManager.createEntity(type, properties);

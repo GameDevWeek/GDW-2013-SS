@@ -55,33 +55,37 @@ public class World {
         input = container.getInput();
         instance=this;
         map = null;
-        entityManager = new EntityManager();
-        physicsManager = new PhysicsManager();
-        IViewportTransform viewportTransform = new OBBViewportTransform();
-        physicsManager.setTransformViewport(viewportTransform);
-        try {
-            map = AssetLoader.getInstance().loadMap("demo_sidescroller");
-            LevelLoader.load(map, entityManager, physicsManager);
+		entityManager = new EntityManager();
+		physicsManager = new PhysicsManager();
+		IViewportTransform viewportTransform = new OBBViewportTransform();
+		physicsManager.setTransformViewport(viewportTransform);
+		try {
+			map = AssetLoader.getInstance().loadMap("demo_sidescroller");
+			LevelLoader.load(map, entityManager, physicsManager);
 
-            mapRender = new MapRenderer(map);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        camera = new Camera(map);
+			mapRender = new MapRenderer(map);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+		camera = new Camera(map);
 
-        // physic debug stuff
-        if (debugDraw) {
+		// physic debug stuff
+		if (debugDraw) {
 
-            physicDebug = new DebugDrawer(viewportTransform, container, camera);
+			physicDebug = new DebugDrawer(viewportTransform, container, camera);
 
-            physicsManager.getPhysicsWorld().setDebugDraw(physicDebug);
-        }
+			physicsManager.getPhysicsWorld().setDebugDraw(physicDebug);
+		}
 
-        astronaut = entityManager.createEntityAt(Astronaut.class, new Vector2f(
-                400, 200));
-        
-        astronaut.setPhysicsObject(new RectanglePhysicsObject(BodyType.DYNAMIC, new Vec2(95,105), new Vec2(astronaut.getPosition().x,astronaut.getPosition().y),0,1));
-        
+		astronaut = entityManager.createEntityAt(Astronaut.class, new Vector2f(
+				400, 200));
+
+		RectanglePhysicsObject physicsObject = new RectanglePhysicsObject(BodyType.DYNAMIC,
+				new Vector2f(10, 10), new Vector2f(astronaut.getPosition().x,
+						astronaut.getPosition().y), 0, 0.0001f, 0, false);
+//		physicsObject.getBody().setFixedRotation(true);
+		physicsManager.enableSimulation(physicsObject);
+		astronaut.setPhysicsObject(physicsObject);
         
         
         
@@ -154,7 +158,6 @@ public class World {
 
     public void update(GameContainer container, int delta)
             throws SlickException {
-        physicsManager.setCurrent();
         physicsManager.update(container, delta);
 
         // update entities

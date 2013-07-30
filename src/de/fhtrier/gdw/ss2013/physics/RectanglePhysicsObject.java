@@ -40,7 +40,7 @@ public class RectanglePhysicsObject extends PhysicsObject {
                 DEFAULT_FRICTION, isSensor);
     }
 
-    public RectanglePhysicsObject(BodyType bodyType, Vec2 rec, Vec2 pos,
+    private RectanglePhysicsObject(BodyType bodyType, Vec2 rec, Vec2 pos,
             float restitution, float density) {
         this(bodyType, rec, pos, restitution, density, DEFAULT_FRICTION);
     }
@@ -79,10 +79,10 @@ public class RectanglePhysicsObject extends PhysicsObject {
             float friction, boolean isSensor) {
         super(restitution, density, friction, isSensor);
         PolygonShape myShape = new PolygonShape();
-        Vec2 pHE = PhysicsManager.getCurrent().toPhysicsWorld(dimension);
+        Vec2 pHE = new Vec2(dimension.x, dimension.y);
         pHE = pHE.mul(0.5f);
         myShape.setAsBox(pHE.x, pHE.y);
-        Vec2 pPos = PhysicsManager.getCurrent().toPhysicsWorld(topLeftPos);
+        Vec2 pPos = new Vec2(topLeftPos.x, topLeftPos.y);
         System.out.println("Create PhysicsObject at " + pPos);
         init(myShape, bodyType, pPos = pPos.add(pHE));
     }

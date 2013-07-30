@@ -142,7 +142,6 @@ public class TestWorld {
 
     public void update(GameContainer container, int delta)
             throws SlickException {
-        physicsManager.setCurrent();
         // update entities
         entityManager.update(container, delta);
         physicsManager.update(container, delta);
@@ -168,8 +167,7 @@ public class TestWorld {
                         BodyType.DYNAMIC, 1, new Vec2(500, 300));
             }
             rpo.setMassData(1f);
-            Vec2 force = new Vec2(2, 0);
-            System.out.println(force);
+            Vector2f force = new Vector2f(2, 0);
             rpo.applyImpulse(force);
           }
     }
