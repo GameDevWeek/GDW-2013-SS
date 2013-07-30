@@ -4,7 +4,6 @@
 
 package de.fhtrier.gdw.ss2013.game;
 
-import de.fhtrier.gdw.commons.utils.SafeProperties;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -14,6 +13,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
+import de.fhtrier.gdw.commons.utils.SafeProperties;
 import de.fhtrier.gdw.ss2013.game.filter.EntityFilter;
 import de.fhtrier.gdw.ss2013.math.MathConstants;
 import de.fhtrier.gdw.ss2013.physics.PhysicsObject;
@@ -109,7 +109,7 @@ public class EntityManager {
     }
 
     public ArrayList<Entity> getEntitiesByFilter(Vector2f position,
-            EntityFilter filter) {
+            Class<? extends EntityFilter> filter) {
         ArrayList<Entity> filteredList = new ArrayList<>();
         for (Entity e : entityList) {
             if (e.getClass().isInstance(filter)) {
@@ -120,7 +120,7 @@ public class EntityManager {
     }
 
     public ArrayList<Entity> getClosestEntitiesByFilter(Vector2f position,
-            float radius, EntityFilter filter) {
+            float radius, Class<? extends EntityFilter> filter) {
         ArrayList<Entity> filteredList = new ArrayList<>();
         for (Entity e : entityList) {
             if (e.getClass().isInstance(filter)) {
@@ -134,10 +134,12 @@ public class EntityManager {
 
     private void addEntity(Entity e) {
         insertionQueue.add(e);
+        e.initialize();
     }
 
     public void removeEntity(Entity e) {
         removalQueue.add(e);
+        e.dispose();
     }
 
     public <T extends Entity> T createEntity(Class<? extends Entity> entityClass) {
@@ -154,8 +156,9 @@ public class EntityManager {
         addEntity(e);
         return e;
     }
-    
-    public Entity createEntity(String className, SafeProperties properties, PhysicsObject physicsObject) {
+
+    public Entity createEntity(String className, SafeProperties properties,
+            PhysicsObject physicsObject) {
         Class<? extends Entity> entityClass = null;
         Entity e = factory.createEntity(entityClass);
         e.setPhysicsObject(physicsObject);

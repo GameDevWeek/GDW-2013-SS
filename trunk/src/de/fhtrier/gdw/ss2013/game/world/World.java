@@ -50,7 +50,7 @@ public class World {
         input = container.getInput();
         map = null;
         entityManager = new EntityManager();
-        
+
         try {
             map = MapLoader.getInstance().loadMap("demo_sidescroller");
             LevelLoader.load(map, entityManager);
@@ -127,20 +127,20 @@ public class World {
         entityManager.update(container, delta);
 
         // This is just a placeholder, not for actual use.
-//        Vector2f astronautPos = astronaut.getPosition();
-//        float speed = 6;
-//        if (input.isKeyDown(Input.KEY_UP)) {
-//            astronautPos.y -= speed;
-//        }
-//        if (input.isKeyDown(Input.KEY_DOWN)) {
-//            astronautPos.y += speed;
-//        }
-//        if (input.isKeyDown(Input.KEY_LEFT)) {
-//            astronautPos.x -= speed;
-//        }
-//        if (input.isKeyDown(Input.KEY_RIGHT)) {
-//            astronautPos.x += speed;
-//        }
+        // Vector2f astronautPos = astronaut.getPosition();
+        // float speed = 6;
+        // if (input.isKeyDown(Input.KEY_UP)) {
+        // astronautPos.y -= speed;
+        // }
+        // if (input.isKeyDown(Input.KEY_DOWN)) {
+        // astronautPos.y += speed;
+        // }
+        // if (input.isKeyDown(Input.KEY_LEFT)) {
+        // astronautPos.x -= speed;
+        // }
+        // if (input.isKeyDown(Input.KEY_RIGHT)) {
+        // astronautPos.x += speed;
+        // }
         if (input.isKeyPressed(Input.KEY_F)) {
             for (FlyingEnemy e : enemy) {
                 e.shoot(astronaut, entityManager);
@@ -161,7 +161,7 @@ public class World {
             rpo.setLinearVelocity(new Vec2(
                     (float) (100 + Math.random() * 1000 - 500),
                     (float) (100 + Math.random() * 500)));
-            Sound a = SoundLocator.loadSound("teamworld_testsound");
+            Sound a = SoundLocator.loadSound("zombiemoan");
             SoundLocator.getPlayer().playSoundAt(a, oxyFlower);
         }
     }

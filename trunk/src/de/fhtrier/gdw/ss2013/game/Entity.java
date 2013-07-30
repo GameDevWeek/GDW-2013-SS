@@ -4,12 +4,12 @@
 
 package de.fhtrier.gdw.ss2013.game;
 
-import de.fhtrier.gdw.ss2013.physics.PhysicsObject;
-import de.fhtrier.gdw.ss2013.physics.RectanglePhysicsObject;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
+
+import de.fhtrier.gdw.ss2013.physics.PhysicsObject;
 
 /**
  * Entity base class
@@ -44,22 +44,27 @@ public abstract class Entity {
     public Vector2f getPosition() {
         return position;
     }
-    
-    public void setPosition(Vector2f v)
-    {
+
+    public void setPosition(Vector2f v) {
         setPosition(v.x, v.y);
     }
-    public void setPosition(float x, float y)
-    {
+
+    public void setPosition(float x, float y) {
         position.x = x;
         position.y = y;
     }
-    
 
     /**
      * Override to provide default values and call in constructor
      */
     public void initialize() {
+
+    }
+
+    /**
+     * Override to provide destroy code for world objects (physic mostly)
+     */
+    public void dispose() {
 
     }
 
