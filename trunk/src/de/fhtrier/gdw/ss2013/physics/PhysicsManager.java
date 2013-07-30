@@ -34,17 +34,18 @@ public class PhysicsManager implements ContactListener {
         if (_physicsWorld.isLocked()) {
             return false;
         }
-       for (Body bodyIterator = _physicsWorld.getBodyList();
-               bodyIterator.getNext() != null; )
-       {
-           Body body = bodyIterator.getNext();
-           if (body != null) {
-               _physicsWorld.destroyBody(body);
-               body = null;
-           }
-       }
-       _physicsWorld = new World(_defaultGravity);
-       return true;
+        // Make sure we delete the first body as well.
+        Body body = _physicsWorld.getBodyList();
+        for (Body bodyIterator = _physicsWorld.getBodyList(); bodyIterator
+                != null; body = bodyIterator.getNext())
+        {
+            if (body != null) {
+                _physicsWorld.destroyBody(body);
+                body = null;
+            }
+        }
+        _physicsWorld = new World(_defaultGravity);
+        return true;
     }
 
     public void enableDebugDraw(boolean enabled) {
