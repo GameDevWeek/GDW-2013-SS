@@ -64,12 +64,18 @@ public class LoadGameState extends BasicGameState {
 		 if (loaded == 0) {
 		 loaded = 1;
 		 }
-		 total = total / loaded;
+		 //total = total / loaded;
 		
 		 g.setColor(Color.red);
-		 g.fillRect(container.getWidth() / 2 - 245,
-		 container.getHeight() / 2 - 70, (int) (5.5f * (100 / total)),
-		 100);
+		 
+		 g.fillRect(100, 100, loaded * 50, 50);
+		 
+		 
+		 
+		 
+		 //g.fillRect(container.getWidth() / 2 - 245,
+		 //container.getHeight() / 2 - 70, (int) (5.5f * (100 / total)),
+		 //100);
 		 //loadscreen.draw((container.getWidth() - loadscreen.getWidth()) / 2,
 		 //(container.getHeight() - loadscreen.getHeight()) / 2);
 	}
