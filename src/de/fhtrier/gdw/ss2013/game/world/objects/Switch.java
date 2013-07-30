@@ -1,5 +1,8 @@
 package de.fhtrier.gdw.ss2013.game.world.objects;
 
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.game.Entity;
@@ -22,16 +25,26 @@ public class Switch extends Entity implements Interactable{
 	public Switch() {
 		this(new Vector2f());
 	}
+	
+	@Override
+    public void render(GameContainer container, Graphics g)
+            throws SlickException {
+    }
 
-	public boolean isActivated() {
-		return activated;
+	@Override
+    public void update(GameContainer container, int delta)
+            throws SlickException {
+    }
+	
+	public void turnSwitch() {
+	    activated = !activated;
 	}
-
-	public void switchActivated() {
-		this.activated = !this.activated;
+	
+	public boolean getSwitch() {
+	    return activated;
 	}
-
-	public void setActivated(boolean a) {
-		this.activated = a;
+	
+	public void setSwitch(boolean value) {
+	    activated = value;
 	}
 }
