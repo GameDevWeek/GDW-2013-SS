@@ -150,7 +150,6 @@ public class World {
 
         // update entities
         entityManager.update(container, delta);
-        physicsManager.update(container, delta);
 
         // This is just a placeholder, not for actual use.
         Vector2f astronautPos = astronaut.getPosition();
