@@ -23,7 +23,7 @@ public class Alien extends Player implements AlienController{
 		selectedAbility = 1;
 		maxMana = 0.0f;
 		mana = maxMana;
-		bewegungs_ani=asset.getAnimation(getZustand());
+		bewegungs_ani=assetloader.getAnimation(getZustand());
 	}
 
 	public float getMana() {
