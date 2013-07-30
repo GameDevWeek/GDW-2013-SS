@@ -7,11 +7,13 @@ import java.util.ArrayList;
 
 import org.newdawn.slick.Font;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.filter.EntityFilter;
 import de.fhtrier.gdw.ss2013.game.world.World;
+import de.fhtrier.gdw.ss2013.game.world.objects.Door;
 import de.fhtrier.gdw.ss2013.game.world.objects.Switch;
 import de.fhtrier.gdw.ss2013.gui.utils.CenteredText;
 
@@ -21,7 +23,6 @@ public class Annotation {
     
     private World worldinstance;
     private EntityManager entityManager;
-    //private Image toolTipSwitch;
     private Font font;
     
 	public Annotation() {
@@ -34,7 +35,9 @@ public class Annotation {
 	    this.worldinstance = worldinstance;
 	    entityManager = worldinstance.getEntityManager();
 	  
-	    //this.toolTipSwitch = toolTipSwitch;
+	    //dev
+	    entityManager.createEntityAt(Switch.class, new Vector2f(100.f,100.f));
+	    //dev
 	}
 	
 	public void update() {
@@ -44,15 +47,17 @@ public class Annotation {
 
 	public void render() {
 	    drawTooltip(Switch.class,"Setz Alien hier drauf zum Umlegen");
-	    drawTooltip(Switch.class,"Drücke \"Aktivieren\" zum aktivieren.");	    
+	    drawTooltip(Door.class,"Drücke \"Aktivieren\" zum aktivieren.");	    
 	}
 
     private void drawTooltip(Class<? extends EntityFilter> filter, String string) {
+        
         ArrayList<Entity> entities = entityManager.getClosestEntitiesByFilter(worldinstance.getAstronaut().getPosition(), 100, filter);
+                                
 	    //Hebel: rendern
 	    for (int i = 0; i < entities.size(); i++){
-	        CenteredText.draw(entities.get(i).getPosition().x + 40, entities.get(i).getPosition().x - 40, string, font);
-	        //tooltip.draw(entities.get(i).getPosition().x + 40, entities.get(i).getPosition().x - 40);
+	       
+	        CenteredText.draw(entities.get(i).getPosition().x, entities.get(i).getPosition().y, string, font);
 	    }
     }
 

@@ -37,9 +37,8 @@ public class HUD {
 	    healthbar = new Progressbar();
 
 		final Vector2f position = new Vector2f(10, 10);
-		final Vector2f size = new Vector2f(240, 40);
-		final int cornerradius = 5;
-
+		final Vector2f size = new Vector2f(240, 40); /////////
+		
 		//final String imagePath = "/res/Dummy_GUIs_Images/";
 
 		final Image frame = asset.getImage("healthBarFrame");
@@ -47,7 +46,7 @@ public class HUD {
         final Image bar = asset.getImage("healthBarForeground");
         final Font font = asset.getFont("verdana_24");
         
-        healthbar.init(position, size, cornerradius, frame, background, bar, font, worldinstance);
+        healthbar.init(position, size, frame, background, bar, font, worldinstance);
 
 		// Init abilityWheel
 
