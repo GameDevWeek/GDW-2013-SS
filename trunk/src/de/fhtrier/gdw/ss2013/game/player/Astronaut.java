@@ -8,6 +8,7 @@ import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.util.Log;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
+import de.fhtrier.gdw.ss2013.constants.PlayerConstants;
 import de.fhtrier.gdw.ss2013.input.AstronautController;
 import de.fhtrier.gdw.ss2013.input.InputManager;
 
@@ -55,7 +56,14 @@ public class Astronaut extends Player implements AstronautController {
         bewegungs_ani.draw(position.x-bewegungs_ani.getWidth()/2, position.y-bewegungs_ani.getHeight()/2);
         
     }
-
+    
+    @Override
+    public void update(GameContainer container, int delta) throws SlickException {
+        super.update(container, delta);
+        if (oxygen > 0) 
+            this.oxygen -= (this.maxOxygen * PlayerConstants.OXYGEN_PERCENTAGE_LOST_PER_SECOND) * (delta / 1000f);
+    }
+        
     @Override
     public void moveForward() {
         this.getPosition().x += this.getVelocity().x;
