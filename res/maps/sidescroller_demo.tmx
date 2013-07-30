@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="65" height="35" tilewidth="32" tileheight="32">
  <tileset firstgid="1" source="dummy_tileset.tsx"/>
- <layer name="Kachelebene 1" width="65" height="35">
+ <layer name="Tiles" width="65" height="35">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2XQQqAIBAAtyI7Ref6/0ND6BCi60KkZjMwR2UdPKgIAAAAAAAAQJpRcao4V0k2xaXiXCXpvcEg+l339t5gFv2MOWlAAxrQgAY0oEFbDWLvG+v73V1+vYGffw20zkSD/hs4w9pSDSz/kdSf3BlsocGROcv+0r73/cMG1rVPZ0TEf3oCoGU6ZYwjAAA=
+   H4sIAAAAAAAAC+2WQQqAIBQFLalW1bruf9ASCkJMQ82vMANv6fc5KKgUAAAAAAAAwDu9J1qwV0lWTybBXiXBAQ4MOMCBAQc4MOAABwYc1O2gU2X+7zU7GM7MVv7ohIM2HYyZ90lx4HqvX6Kvc4RSg4M9cJYtsD527nO+7cC19nb6h4NWkno3pPvjIK+DWA/S/XM5WBJyABxD6emMIwAA
   </data>
  </layer>
+ <objectgroup name="Zones" width="65" height="35">
+  <object type="solid" x="2" y="449" width="254" height="550"/>
+  <object type="solid" x="234" y="959" width="1364" height="178"/>
+  <object type="solid" x="480" y="927" width="479" height="86"/>
+  <object type="solid" x="1248" y="801" width="191" height="179"/>
+  <object type="deadzone" x="1600" y="1086" width="577" height="42"/>
+ </objectgroup>
 </map>

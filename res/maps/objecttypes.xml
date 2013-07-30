@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objecttypes>
+ <objecttype name="solid" color="#262627"/>
+ <objecttype name="deadzone" color="#ff0000"/>
+</objecttypes>
