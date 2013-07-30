@@ -24,6 +24,7 @@ public class LoadGameState extends BasicGameState {
     // private Image loadscreen;
     private MainMenuState mainMenuState;
     private GameplayState gameplayState;
+    private PhysicsTestState physicTestState;
     private DeferredResource nextResource;
     private AssetLoader assetLoader;
 
@@ -47,6 +48,10 @@ public class LoadGameState extends BasicGameState {
         gameplayState = new GameplayState();
         gameplayState.init(container, game);
         game.addState(gameplayState);
+        
+        physicTestState = new PhysicsTestState();
+        physicTestState.init(container, game);
+        game.addState(physicTestState);
 
         boolean fullscreen = false;
 
