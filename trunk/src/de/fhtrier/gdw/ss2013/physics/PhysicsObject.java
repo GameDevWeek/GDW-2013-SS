@@ -25,6 +25,13 @@ public abstract class PhysicsObject {
 	private FixtureDef myFixtureDef;
 	private Fixture myFixture;
 	private Body myBody;
+	
+	protected static final BodyType DEFAULT_BODYTYPE = BodyType.STATIC;
+	protected static final float DEFAULT_DENSITY = 1.0f;
+	protected static final float DEFAULT_RESTITUTION = 1.0f;
+	protected static final float DEFAULT_FRICTION = 1.0f;
+	protected static final boolean DEFAULT_ISSENSOR = false;
+    
 
 	private Collection<ICollisionListener> collisionListeners;
 
