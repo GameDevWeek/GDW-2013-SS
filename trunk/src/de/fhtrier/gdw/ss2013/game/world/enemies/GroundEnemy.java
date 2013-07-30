@@ -1,7 +1,6 @@
 package de.fhtrier.gdw.ss2013.game.world.enemies;
 
 import org.jbox2d.dynamics.Fixture;
-import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -10,7 +9,6 @@ import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.Entity;
-import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.player.Player;
 import de.fhtrier.gdw.ss2013.physics.ICollidable;
@@ -35,12 +33,11 @@ public class GroundEnemy extends AbstractEnemy implements ICollidable {
 	public GroundEnemy(Vector2f pos, Vector2f velo, float dmg) {
 		super(pos.copy(), velo.copy(), dmg);
 		img = a.getImage("groundEnemy");
-/*		if (Math.random() >= 0.5) {
+		if (Math.random() >= 0.5) {
 		    intelligence = true;
 		} else {
 		    intelligence = false;
-		}*/
-		intelligence = true;
+		}
 		normalMode = true;
 		huntMode = waitMode = false;
 		hunttime = 0;
@@ -51,18 +48,10 @@ public class GroundEnemy extends AbstractEnemy implements ICollidable {
 
 	public GroundEnemy() {
 		this(new Vector2f(), new Vector2f(), 0);
-		setLeft_animation(links);
-	    setRight_animation(rechts);
-	    setCurrent(current);
-
 	}
 
 	public GroundEnemy(Vector2f pos) {
 		this(pos.copy(), new Vector2f(2.5f,0f), 0);
-		setLeft_animation(links);
-	    setRight_animation(rechts);
-	    setCurrent(current);
-
 	}
 
 	@Override
