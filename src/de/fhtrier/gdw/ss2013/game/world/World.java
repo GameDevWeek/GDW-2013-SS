@@ -1,5 +1,7 @@
 package de.fhtrier.gdw.ss2013.game.world;
 
+import org.jbox2d.common.IViewportTransform;
+import org.jbox2d.common.OBBViewportTransform;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.BodyType;
 import org.newdawn.slick.GameContainer;
@@ -25,6 +27,7 @@ import de.fhtrier.gdw.ss2013.physics.DebugDrawer;
 import de.fhtrier.gdw.ss2013.physics.PhysicsManager;
 import de.fhtrier.gdw.ss2013.physics.RectanglePhysicsObject;
 import de.fhtrier.gdw.ss2013.renderer.MapRenderer;
+import de.fhtrier.gdw.ss2013.settings.DebugModeStatus;
 import de.fhtrier.gdw.ss2013.sound.SoundLocator;
 import de.fhtrier.gdw.ss2013.sound.services.DefaultSoundPlayer;
 
@@ -43,18 +46,19 @@ public class World {
     private static World instance;
     // physics debug
     private DebugDrawer physicDebug;
-    public boolean debugDraw = false;
+    public boolean debugDraw = DebugModeStatus.isTest();
 
     private EntityManager entityManager;
     private final PhysicsManager physicsManager;
 
     public World(GameContainer container, StateBasedGame game) {
         input = container.getInput();
-        instance=this;
+        instance = this;
         map = null;
         entityManager = new EntityManager();
         physicsManager = new PhysicsManager();
-
+        IViewportTransform viewportTransform = new OBBViewportTransform();
+        physicsManager.setTransformViewport(viewportTransform);
         try {
             map = AssetLoader.getInstance().loadMap("demo_sidescroller");
             LevelLoader.load(map, entityManager, physicsManager);
@@ -66,16 +70,21 @@ public class World {
         camera = new Camera(map);
 
         // physic debug stuff
+
         if (debugDraw) {
-            physicDebug = new DebugDrawer(container, camera);
+
+            physicDebug = new DebugDrawer(viewportTransform, container, camera);
+
             physicsManager.getPhysicsWorld().setDebugDraw(physicDebug);
         }
 
         astronaut = entityManager.createEntityAt(Astronaut.class, new Vector2f(
                 200, 200));
-        
-        //astronaut.setPhysicsObject(new RectanglePhysicsObject(BodyType.DYNAMIC, new Vec2(95,105), new Vec2(astronaut.getPosition().x,astronaut.getPosition().y)));
-        
+
+        // astronaut.setPhysicsObject(new
+        // RectanglePhysicsObject(BodyType.DYNAMIC, new Vec2(95,105), new
+        // Vec2(astronaut.getPosition().x,astronaut.getPosition().y)));
+
         InputManager.getInstance().getKeyboard()
                 .setAstronautController(astronaut);
         alien = entityManager.createEntityAt(Alien.class,
@@ -127,7 +136,7 @@ public class World {
         entityManager.render(container, g);
 
         if (debugDraw) {
-            physicsManager.getPhysicsWorld().drawDebugData();
+            physicsManager.drawDebugData(container, camera);
 
         }
 
@@ -144,25 +153,25 @@ public class World {
         physicsManager.update(container, delta);
 
         // This is just a placeholder, not for actual use.
-        // Vector2f astronautPos = astronaut.getPosition();
-        // float speed = 6;
-        // if (input.isKeyDown(Input.KEY_UP)) {
-        // astronautPos.y -= speed;
+        Vector2f astronautPos = astronaut.getPosition();
+        float speed = 6;
+        if (input.isKeyDown(Input.KEY_UP)) {
+            astronautPos.y -= speed;
+        }
+        if (input.isKeyDown(Input.KEY_DOWN)) {
+            astronautPos.y += speed;
+        }
+        if (input.isKeyDown(Input.KEY_LEFT)) {
+            astronautPos.x -= speed;
+        }
+        if (input.isKeyDown(Input.KEY_RIGHT)) {
+            astronautPos.x += speed;
+        }
+        // if (input.isKeyPressed(Input.KEY_F)) {
+        // for (FlyingEnemy e : enemy) {
+        // e.shoot(astronaut, entityManager);
         // }
-        // if (input.isKeyDown(Input.KEY_DOWN)) {
-        // astronautPos.y += speed;
         // }
-        // if (input.isKeyDown(Input.KEY_LEFT)) {
-        // astronautPos.x -= speed;
-        // }
-        // if (input.isKeyDown(Input.KEY_RIGHT)) {
-        // astronautPos.x += speed;
-        // }
-//        if (input.isKeyPressed(Input.KEY_F)) {
-//            for (FlyingEnemy e : enemy) {
-//                e.shoot(astronaut, entityManager);
-//            }
-//        }
         // Sound a = SoundLocator.loadSound("teamworld_testsound");
         // SoundLocator.getPlayer().playSoundAt(a, player, player);
 
@@ -221,9 +230,8 @@ public class World {
     public PhysicsManager getPhysicsManager() {
         return physicsManager;
     }
-    
-    public static World getInstance()
-    {
+
+    public static World getInstance() {
         return instance;
     }
 

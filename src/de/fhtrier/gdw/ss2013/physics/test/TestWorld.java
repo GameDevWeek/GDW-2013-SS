@@ -3,6 +3,8 @@ package de.fhtrier.gdw.ss2013.physics.test;
 import java.awt.Point;
 import java.util.ArrayList;
 
+import org.jbox2d.common.IViewportTransform;
+import org.jbox2d.common.OBBViewportTransform;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.BodyType;
 import org.newdawn.slick.GameContainer;
@@ -64,8 +66,12 @@ public class TestWorld {
         // entityManager = new EntityManager();
 
         // physic debug stuff
+        IViewportTransform viewport = new OBBViewportTransform();
+        physicsManager.setTransformViewport(viewport);
         if (debugDraw) {
-            physicDebug = new DebugDrawer(container, camera);
+
+            physicDebug = new DebugDrawer(viewport, container, camera);
+
             physicsManager.getPhysicsWorld().setDebugDraw(physicDebug);
         }
 

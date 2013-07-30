@@ -3,12 +3,16 @@ package de.fhtrier.gdw.ss2013.physics;
 import org.jbox2d.callbacks.ContactImpulse;
 import org.jbox2d.callbacks.ContactListener;
 import org.jbox2d.collision.Manifold;
+import org.jbox2d.common.IViewportTransform;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.World;
 import org.jbox2d.dynamics.contacts.Contact;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Vector2f;
+
+import de.fhtrier.gdw.ss2013.game.camera.Camera;
 
 public class PhysicsManager implements ContactListener {
     private static PhysicsManager currentManager;
@@ -135,4 +139,24 @@ public class PhysicsManager implements ContactListener {
     private World _physicsWorld;
     private final Vec2 _defaultGravity = new Vec2(0.0f, 9.81f);
     private boolean _debugDraw;
+
+    private IViewportTransform viewport;
+
+    public void setTransformViewport(IViewportTransform viewport) {
+        this.viewport = viewport;
+
+    }
+
+    public void drawDebugData(GameContainer container, Camera camera) {
+        viewport.setCenter(container.getWidth() / 2 + camera.getOffsetX(),
+                container.getHeight() / 2 + camera.getOffsetY());
+
+        getPhysicsWorld().drawDebugData();
+    }
+
+    protected Vec2 toPhysicsWorld(Vector2f v) {
+        Vec2 r = new Vec2();
+        r = new Vec2(v.x, v.y);
+        return r;
+    }
 }
