@@ -14,6 +14,10 @@
   "name" : "plant",
   "pfad" : "res/dummies/Pflanze.png"
 },
+{
+  "name" : "bubble",
+  "pfad" : "res/dummies/Sauerstoff.png"
+},
 { 
   "name" : "healthBarFrame",
   "pfad" : "res/Dummy_GUIs_Images/frame.png"
