@@ -31,7 +31,7 @@ public class World {
     private Camera camera;
     private Astronaut astronaut;
     private Alien alien;
-    private FlyingEnemy enemy;
+    private FlyingEnemy enemy[] = new FlyingEnemy[10];
     private Meteroid metro[] = new Meteroid[3];
     private Input input;
     private OxygenFlower oxyFlower;
@@ -73,9 +73,11 @@ public class World {
 
         oxyFlower = (OxygenFlower) entityManager.createEntityAt(
                 OxygenFlower.class, new Vector2f(300, 300));
-
-        enemy = (FlyingEnemy) entityManager.createEntityAt(FlyingEnemy.class,
-                new Vector2f(500, 500));
+        for (int i = 0; i < enemy.length; i++) {
+            enemy[i] = (FlyingEnemy) entityManager.createEntityAt(FlyingEnemy.class,
+                    new Vector2f(500+i*50, 500+i*50));
+            enemy[i].setReferences(entityManager, astronaut);
+        }
         for (int i = 0; i < metro.length; i++) {
             metro[i] = (Meteroid) entityManager.createEntityAt(Meteroid.class,
                     new Vector2f(200 + i * 100, 0));
@@ -129,7 +131,9 @@ public class World {
             astronautPos.x += speed;
         }
         if (input.isKeyPressed(Input.KEY_F)) {
-            enemy.shoot(astronaut, entityManager);
+            for (FlyingEnemy e : enemy) {
+                e.shoot(astronaut, entityManager);
+            }
         }
         // Sound a = SoundLocator.loadSound("teamworld_testsound");
         // SoundLocator.getPlayer().playSoundAt(a, player, player);

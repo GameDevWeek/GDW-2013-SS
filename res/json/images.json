@@ -6,6 +6,10 @@
   "name" : "testbild2",
   "pfad" : "res/images/testbild.png"
 },
+{
+  "name" : "GeschossAlien",
+  "pfad" : "res/dummies/GeschossAlien.png"
+},
 { 
   "name" : "frame",
   "pfad" : "res/Dummy_GUIs_Images/frame.png"
@@ -30,4 +34,3 @@
   "name" : "ability3",
   "pfad" : "res/Dummy_GUIs_Images/ability3.png"
 }]
-
