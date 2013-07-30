@@ -52,6 +52,7 @@ public class World {
         map = null;
         try {
             map = MapLoader.getInstance().loadMap("demo_sidescroller");
+            LevelLoader.load(map);
 
             mapRender = new MapRenderer(map);
         } catch (Exception e) {
