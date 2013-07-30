@@ -23,6 +23,7 @@ public class FlyingEnemy extends AbstractEnemy implements ICollidable {
 
 	private float health, flytime, bolttime;
 	private float flyintelligence, boltintelligence;
+	private float factor;
 	private EntityManager m;
 	private Player p;
 	final static float DEBUG_ENTITY_HALFEXTEND = 5;
@@ -35,6 +36,13 @@ public class FlyingEnemy extends AbstractEnemy implements ICollidable {
 	        this.getVelocity().y = 0.0f;
 	    } else {
 	        this.getVelocity().x = 0.0f;
+	    }
+	    if (boltintelligence >= 0.67) {
+	        factor = 100;
+	    } else if (boltintelligence <= 0.33) {
+	        factor = 0;
+	    } else {
+	        factor = 50;
 	    }
 	}
 
@@ -88,9 +96,9 @@ public class FlyingEnemy extends AbstractEnemy implements ICollidable {
 			this.getVelocity().y = -this.getVelocity().y;
 			flytime = flytime % 3000;
 		}
-	    if (bolttime >= 2000) {
+	    if (bolttime >= 1000) {
 	        this.shoot(p, m);
-	        bolttime = bolttime % 2000;
+	        bolttime = bolttime % 1000;
 	    }
 	}
 
@@ -98,7 +106,7 @@ public class FlyingEnemy extends AbstractEnemy implements ICollidable {
 
 		Vector2f direction = new Vector2f();
 
-		direction.x = player.getPosition().x - this.position.x;
+		direction.x = player.getPosition().x - this.position.x+((float)Math.random()*factor);
 		direction.y = player.getPosition().y - this.position.y;
 
 		direction.normalise();
