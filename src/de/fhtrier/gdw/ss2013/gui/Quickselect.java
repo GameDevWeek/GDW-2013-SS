@@ -1,10 +1,8 @@
 package de.fhtrier.gdw.ss2013.gui;
 
-import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
-import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
 
 import de.fhtrier.gdw.ss2013.game.world.World;
@@ -12,10 +10,7 @@ import de.fhtrier.gdw.ss2013.game.world.World;
 public class Quickselect {
 
 	private Image[] ability;
-	private Vector2f position; // ist hier die Position totale Position an der
-								// gezeichnet werden soll.
 	private int selected = 1;
-	private Color key;
 	private int countdown_start = 500;
 	private int countdown_timer = 0;
 	private World worldinstance;
