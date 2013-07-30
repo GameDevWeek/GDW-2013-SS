@@ -2,6 +2,7 @@ package de.fhtrier.gdw.ss2013.game.world.objects;
 
 import org.jbox2d.dynamics.Fixture;
 import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
@@ -16,11 +17,11 @@ import de.fhtrier.gdw.ss2013.physics.ICollidable;
  * 
  */
 public class Button extends Switch implements ICollidable {
-	private boolean collision, lastframecollision;
+	private boolean collision, lastFrameCollision;
 
 	public Button(Vector2f pos) {
 		super(pos.copy());
-		collision = lastframecollision = false;
+		collision = lastFrameCollision = false;
 	}
 
 	public Button() {
@@ -28,9 +29,14 @@ public class Button extends Switch implements ICollidable {
 	}
 
 	@Override
+	public void render(GameContainer container, Graphics g)
+	        throws SlickException {
+	}
+	
+	@Override
 	public void onCollision(Entity e) {
 		if (e instanceof Astronaut || e instanceof Box) {
-			this.setActivated(true);
+			this.setSwitch(true);
 			collision = true;
 		}
 	}
@@ -38,15 +44,12 @@ public class Button extends Switch implements ICollidable {
 	@Override
 	public void update(GameContainer container, int delta)
 			throws SlickException {
-
-		// float dt = delta / 1000.f;
-		// TODO clamp dt if dt > 1/60.f ?
-		if (lastframecollision) {
-			this.setActivated(true);
+		if (lastFrameCollision) {
+			this.setSwitch(true);
 		} else {
-			this.setActivated(false);
+			this.setSwitch(false);
 		}
-		lastframecollision = collision;
+		lastFrameCollision = collision;
 		collision = false;
 	}
 
