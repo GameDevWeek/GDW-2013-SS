@@ -19,7 +19,7 @@ public abstract class InputDevice {
 
 	// enum für actions
 	enum ACTION {
-		MOVEFORWARD, MOVEBACKWARD, JUMP, ACTION, SHOOT, TARGET, ROTATEABILITY, USEABILITY
+		MOVEFORWARD, MOVEBACKWARD, JUMP, ACTION, SHOOT, TARGET, ROTATEABILITY_UP, ROTATEABILITY_DOWN, USEABILITY
 	};
 
 	// dynamsiche tastenzuweisungen
@@ -56,8 +56,11 @@ public abstract class InputDevice {
             case SHOOT:
                 alienController.shoot();
                 break;
-            case ROTATEABILITY:
-                alienController.rotateAbilities();
+            case ROTATEABILITY_UP:
+                alienController.rotateAbilitiesUp();
+                break;
+            case ROTATEABILITY_DOWN:
+                alienController.rotateAbilitiesDown();
                 break;
             case USEABILITY:
                 alienController.useAbility();

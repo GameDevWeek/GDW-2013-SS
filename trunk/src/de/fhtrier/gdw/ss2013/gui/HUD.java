@@ -58,7 +58,7 @@ public class HUD {
         final Image ability2 = asset.getImage("ability2");
         final Image ability3 = asset.getImage("ability3");
         
-        abilityWheel.init(ability1, ability2, ability3, position);
+        abilityWheel.init(ability1, ability2, ability3, position, worldinstance);
 		
 		//abilityWheel.init(ability1, ability2, ability3, position);
 
@@ -86,7 +86,9 @@ public class HUD {
 	public void update(GameContainer container, StateBasedGame game, int delta) {
 
 		healthbar.update(container, game, delta);
+		abilityWheel.update(container, game, delta);
 		quickselect.update(container, game, delta);
+		
 	}
 
 	public void render(GameContainer container, StateBasedGame game, Graphics g) {

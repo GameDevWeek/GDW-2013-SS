@@ -46,7 +46,7 @@ public class Annotation {
 	}
 
 	public void render() {
-	    drawTooltip(Switch.class,"Setz Alien hier drauf zum Umlegen");
+	    drawTooltip(Switch.class,"Setz Alien hier drauf \n zum Umlegen");
 	    drawTooltip(Door.class,"Drücke \"Aktivieren\" zum aktivieren.");	    
 	}
 
@@ -54,9 +54,8 @@ public class Annotation {
         
         ArrayList<Entity> entities = entityManager.getClosestEntitiesByFilter(worldinstance.getAstronaut().getPosition(), 100, filter);
                                 
-	    //Hebel: rendern
+	    //annotation rendern
 	    for (int i = 0; i < entities.size(); i++){
-	       
 	        CenteredText.draw(entities.get(i).getPosition().x, entities.get(i).getPosition().y, string, font);
 	    }
     }

@@ -12,14 +12,17 @@ import de.fhtrier.gdw.ss2013.input.AlienController;
 
 public class Alien extends Player implements AlienController{
 
+    private int selectedAbility;
 	private float mana;
 	private float maxMana;
 	private Animation  bewegungs_ani;
 	private AssetLoader asset=AssetLoader.getInstance();;
+	
 	public Alien(Vector2f position) {
 		super(position);
 	
 		// Default
+		selectedAbility = 1;
 		maxMana = 0.0f;
 		mana = maxMana;
 		bewegungs_ani=asset.getAnimation(getZustand());
@@ -57,10 +60,22 @@ public class Alien extends Player implements AlienController{
     }
 
     @Override
-    public void rotateAbilities() {
+    public void rotateAbilitiesUp() {
         // TODO Auto-generated method stub
+        
+        selectedAbility = (selectedAbility % 3) + 1;
+        
         Log.debug("rotate ability");
         setZustand("animtest");
+    }
+    
+    @Override
+    public void rotateAbilitiesDown(){
+        //yet to implement
+    }
+    
+    public int getselectedAbility(){
+        return selectedAbility;
     }
 
     @Override
@@ -76,6 +91,7 @@ public class Alien extends Player implements AlienController{
      //   Log.debug("target direction");
       //  setZustand("animtest");
     }
+
 
     
     
