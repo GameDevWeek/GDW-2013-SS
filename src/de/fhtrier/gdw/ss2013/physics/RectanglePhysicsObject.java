@@ -3,6 +3,7 @@
 package de.fhtrier.gdw.ss2013.physics;
 
 import org.jbox2d.collision.shapes.EdgeShape;
+import org.jbox2d.collision.shapes.PolygonShape;
 import org.jbox2d.collision.shapes.Shape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
@@ -53,20 +54,20 @@ public class RectanglePhysicsObject extends PhysicsObject {
 
 	public RectanglePhysicsObject(Entity owner, BodyType bodyType, Vec2 rec,
 			Vec2 pos, float restitution, float density, float friction) {
-		this(owner, bodyType, rec, pos, restitution, density, friction, true);
+		this(owner, bodyType, rec, pos, restitution, density, friction, false);
 	}
 
 	public RectanglePhysicsObject(Entity owner, BodyType bodyType, Vec2 rec,
 			Vec2 pos, float restitution, float density, float friction,
 			boolean isSensor) {
 		super(owner, restitution, density, friction, isSensor);
-		EdgeShape myShape = new EdgeShape();
-		myShape.set(pos, new Vec2(pos.x + rec.x, pos.y + rec.y));
+		PolygonShape myShape = new PolygonShape();
+		myShape.setAsBox(rec.x, rec.y);
 
 		BodyDef myBodyDef = new BodyDef();
 		myBodyDef.type = bodyType;
 
-		init(myShape, myBodyDef);
+		init(myShape, myBodyDef,pos);
 	}
 
 }

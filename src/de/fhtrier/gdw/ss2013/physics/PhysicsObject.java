@@ -38,11 +38,12 @@ public abstract class PhysicsObject {
 		collisionListeners = new ArrayList<ICollisionListener>();
 	}
 
-	protected void init(Shape myShape,BodyDef myBodyDef)
+	protected void init(Shape myShape,BodyDef myBodyDef, Vec2 Pos)
 	{
 	    myFixtureDef.shape = myShape;
 	    this.myBodyDef = myBodyDef;
 	    enableSimulation();
+	    setPosition(Pos);
 	}
 	
 	protected void setBodyDef(BodyDef myBodyDef) {
