@@ -153,5 +153,9 @@ public class World {
 	public Camera getCamera() {
 		return camera;
 	}
+	
+	public Player getPlayer(){
+	    return player;
+	}
 
 }
