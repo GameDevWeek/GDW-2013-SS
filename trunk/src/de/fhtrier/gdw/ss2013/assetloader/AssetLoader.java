@@ -20,6 +20,7 @@ import de.fhtrier.gdw.commons.tiled.TiledMap;
 import de.fhtrier.gdw.ss2013.assetloader.infos.AnimationInfo;
 import de.fhtrier.gdw.ss2013.assetloader.infos.FontInfo;
 import de.fhtrier.gdw.ss2013.assetloader.infos.ImageInfo;
+import de.fhtrier.gdw.ss2013.assetloader.infos.InfoInfo;
 import de.fhtrier.gdw.ss2013.assetloader.infos.KeyInfo;
 import de.fhtrier.gdw.ss2013.assetloader.infos.MapInfo;
 import de.fhtrier.gdw.ss2013.assetloader.infos.ScoreInfo;
@@ -33,7 +34,8 @@ public class AssetLoader {
 	private HashMap<String, Sound> soundMap = new HashMap<>();
 	private HashMap<String, String> mapHashmap = new HashMap<>();
 	private HashMap<String, Font> fontMap = new HashMap<>();
-	private HashMap<String, Font> settingsMap = new HashMap<>();
+	private HashMap<String, String> settingsMap = new HashMap<>();
+	private HashMap<String, String> infosMap = new HashMap<>();
 	
 	private static AssetLoader instance;
 	
@@ -50,7 +52,8 @@ public class AssetLoader {
 		setupSounds("res/json/sounds.json");
 		setupFonts("res/json/fonts.json");
 		setupImages("res/json/images.json");
-		setupSetups();
+		setupSetups("res/json/setup.json");
+		setupInfos("res/json/infos.json");
 	}
 
     private void checkForBackslashes(String filename) {
@@ -153,9 +156,22 @@ public class AssetLoader {
         return scoreInfos;
     }
     
-    private void setupSetups(){
+    private void setupSetups(String filename){
         // TODO
     }
+    
+    private void setupInfos(String filename){
+        try {
+            List<InfoInfo> infoInfos = JacksonReader.readList(filename,
+                    InfoInfo.class);
+            for (InfoInfo infoInfo : infoInfos) {
+                infosMap.put(infoInfo.name, infoInfo.info); // don't load every map during setup
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
     
     private List<KeyInfo> setupKeys(String filename) { 
         List<KeyInfo> keyInfos = null;
@@ -226,6 +242,11 @@ public class AssetLoader {
 	/*public Setups getSetup(){
 	    return null; // TODO not jet implemented
 	}*/
+	
+	public String getInfo(String name){
+	    
+	    return infosMap.get(name);
+	}
 	
 	public void writeScore(String scoreName, List<ScoreInfo> scoreList){
 	    try {
