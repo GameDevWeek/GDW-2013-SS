@@ -22,6 +22,7 @@ import de.fhtrier.gdw.commons.tiled.LayerObject;
 import de.fhtrier.gdw.commons.tiled.TiledMap;
 import de.fhtrier.gdw.ss2013.assetloader.infos.AnimationInfo;
 import de.fhtrier.gdw.ss2013.assetloader.infos.FontInfo;
+import de.fhtrier.gdw.ss2013.assetloader.infos.GameStatsInfo;
 import de.fhtrier.gdw.ss2013.assetloader.infos.ImageInfo;
 import de.fhtrier.gdw.ss2013.assetloader.infos.InfoInfo;
 import de.fhtrier.gdw.ss2013.assetloader.infos.KeyInfo;
@@ -42,6 +43,7 @@ public class AssetLoader {
     private HashMap<String, String> infosMap = new HashMap<>();
     
     private SettingsInfo settings;
+    private GameStatsInfo gameStats;
     
     private static AssetLoader instance;
 
@@ -61,6 +63,7 @@ public class AssetLoader {
         setupPartikel("res/json/partikel.json");
         setupSettings("res/json/settings.json");
         setupInfos("res/json/infos.json");
+        setupGameStats("res/json/gameStats.json");
     }
     
     // BACKSLASH CHECK ///////////////////////////////////////////////////////////////
@@ -106,6 +109,14 @@ public class AssetLoader {
                 fontMap.put(fontInfo.name, new AngelCodeFont(fontInfo.file,
                         fontInfo.image));
             }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void setupGameStats(String filename){
+        try {
+            gameStats = JacksonReader.read(filename, GameStatsInfo.class);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -224,6 +235,10 @@ public class AssetLoader {
     
     public Font getFont(String name) {
         return fontMap.get(name);
+    }  
+    
+    public GameStatsInfo getGameStats(){
+        return gameStats;
     }
     
 	public Image getImage(String name) {
