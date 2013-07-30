@@ -33,4 +33,10 @@ public class Mouse extends InputDevice {
         wheel = org.lwjgl.input.Mouse.getDWheel();
     }
 
+    @Override
+    public void loadKeymapping() {
+        // TODO Auto-generated method stub
+        
+    }
+
 }

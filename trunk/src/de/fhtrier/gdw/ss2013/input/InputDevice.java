@@ -1,5 +1,7 @@
 package de.fhtrier.gdw.ss2013.input;
 
+import java.util.HashMap;
+
 import org.newdawn.slick.GameContainer;
 
 /*
@@ -20,14 +22,35 @@ public abstract class InputDevice {
 	};
 
 	// dynamsiche tastenzuweisungen
-	// HashMap<K,V>
+	 HashMap<ACTIONS, Integer> keymapping;
+	 
 
 	public InputDevice(GameContainer gc) {
 		container = gc;
+		keymapping = new HashMap<>();
+		
 	}
 
 	public abstract void update();
+	
+    public abstract void loadKeymapping();
 
+    /**
+     * TODO
+     * @param action
+     * @param key
+     */
+    public void setKey(ACTIONS action, int key){
+        
+    }
+    
+    /**
+     * TODO
+     */
+    public void saveKeymapping(){
+        
+    }
+    
 	public void setAlienController(AlienController ac) {
 		alienController = ac;
 	}
@@ -38,8 +61,10 @@ public abstract class InputDevice {
 
 	/**
 	 * TODO
-	 * - Keymapping für alle Actions je nach InputDevice aus Config datei lesen und speichern
+	 * - Keymapping für alle Actions je nach InputDevice aus Config datei lesen und speichern // Actions zu den Keys
 	 * - Keymapping dynamisch ändern können 
 	 * - Getter für Keymapping
+	 * 
+	 * 
 	 */
 }
