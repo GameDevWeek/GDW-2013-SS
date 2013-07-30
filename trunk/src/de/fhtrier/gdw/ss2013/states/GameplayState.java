@@ -5,6 +5,7 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.Font;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -70,6 +71,9 @@ public class GameplayState extends BasicGameState {
 
 	@Override
 	public void keyReleased(int key, char c) {
+		if (key == Input.KEY_EQUALS) {
+			MainGame.changeState(MainGame.PHYSIC_TEST);
+		}
 	}
 
 	@Override
