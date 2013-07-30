@@ -127,15 +127,14 @@ public class TestWorld {
         }
 
         if (input.isKeyPressed(Input.KEY_SPACE)) {
-
-            RectanglePhysicsObject rpo = new RectanglePhysicsObject(
-                    BodyType.DYNAMIC, new Vec2(30, 30), new Vec2(500, 300));
-            rpo.setMassData(100);
-            rpo.setLinearVelocity(new Vec2(
-                    (float) (100 + Math.random() * 1000 - 500),
-                    (float) (100 + Math.random() * 500)));
-            System.out.println("spawn rec");
-        }
+            
+            RectanglePhysicsObject rpo = new RectanglePhysicsObject( BodyType.DYNAMIC, PhysicsTools.pixelToWorld(new Vec2(100, 100)),new Vec2(500, 300));
+            rpo.setMassData(100f);
+            Vec2 force = new Vec2(2,0);
+            System.out.println(force);
+            rpo.applyImpulse(force);
+          }
+        
         
     }
 
