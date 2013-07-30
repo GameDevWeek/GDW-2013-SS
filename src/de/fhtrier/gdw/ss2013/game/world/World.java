@@ -17,6 +17,7 @@ import de.fhtrier.gdw.ss2013.game.camera.Camera;
 import de.fhtrier.gdw.ss2013.game.player.Alien;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.world.enemies.FlyingEnemy;
+import de.fhtrier.gdw.ss2013.game.world.enemies.GroundEnemy;
 import de.fhtrier.gdw.ss2013.game.world.enemies.Meteroid;
 import de.fhtrier.gdw.ss2013.game.world.objects.OxygenFlower;
 import de.fhtrier.gdw.ss2013.input.InputManager;
@@ -35,6 +36,7 @@ public class World {
     private Astronaut astronaut;
     private Alien alien;
     private FlyingEnemy enemy[] = new FlyingEnemy[10];
+    private GroundEnemy genemy[] = new GroundEnemy[10];
     private Meteroid metro[] = new Meteroid[3];
     private Input input;
     private OxygenFlower oxyFlower;
@@ -49,7 +51,7 @@ public class World {
         input = container.getInput();
         map = null;
         entityManager = new EntityManager();
-
+        
         try {
             map = AssetLoader.getInstance().loadMap("demo_sidescroller");
             LevelLoader.load(map, entityManager);
@@ -81,11 +83,14 @@ public class World {
         oxyFlower = (OxygenFlower) entityManager.createEntityAt(
                 OxygenFlower.class, new Vector2f(300, 300));
         for (int i = 0; i < enemy.length; i++) {
-            enemy[i] = (FlyingEnemy) entityManager
+            enemy[i] = entityManager
                     .createEntityAt(FlyingEnemy.class, new Vector2f(
                             500 + i * 50, 500 + i * 50));
             enemy[i].setReferences(entityManager, astronaut);
         }
+        genemy[0] = entityManager.createEntityAt(GroundEnemy.class, new Vector2f(
+                100, 800));
+        genemy[0].setReferences(astronaut);
         for (int i = 0; i < metro.length; i++) {
             metro[i] = (Meteroid) entityManager.createEntityAt(Meteroid.class,
                     new Vector2f(200 + i * 100, 0));
@@ -126,20 +131,20 @@ public class World {
         entityManager.update(container, delta);
 
         // This is just a placeholder, not for actual use.
-        // Vector2f astronautPos = astronaut.getPosition();
-        // float speed = 6;
-        // if (input.isKeyDown(Input.KEY_UP)) {
-        // astronautPos.y -= speed;
-        // }
-        // if (input.isKeyDown(Input.KEY_DOWN)) {
-        // astronautPos.y += speed;
-        // }
-        // if (input.isKeyDown(Input.KEY_LEFT)) {
-        // astronautPos.x -= speed;
-        // }
-        // if (input.isKeyDown(Input.KEY_RIGHT)) {
-        // astronautPos.x += speed;
-        // }
+//        Vector2f astronautPos = astronaut.getPosition();
+//        float speed = 6;
+//        if (input.isKeyDown(Input.KEY_UP)) {
+//            astronautPos.y -= speed;
+//        }
+//        if (input.isKeyDown(Input.KEY_DOWN)) {
+//            astronautPos.y += speed;
+//        }
+//        if (input.isKeyDown(Input.KEY_LEFT)) {
+//            astronautPos.x -= speed;
+//        }
+//        if (input.isKeyDown(Input.KEY_RIGHT)) {
+//            astronautPos.x += speed;
+//        }
         if (input.isKeyPressed(Input.KEY_F)) {
             for (FlyingEnemy e : enemy) {
                 e.shoot(astronaut, entityManager);

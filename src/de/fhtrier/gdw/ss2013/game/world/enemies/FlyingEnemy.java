@@ -121,7 +121,6 @@ public class FlyingEnemy extends AbstractEnemy implements ICollidable {
 	}
 
 	private Vector2f calcPlayerDirection(Player player) {
-
 		Vector2f direction = new Vector2f();
 		direction = calcPlayerPosition(player);
 		direction.normalise();

@@ -83,7 +83,7 @@ public abstract class AbstractEnemy extends Entity {
             current_ani = asset.getAnimation(left_animation);
 
         }*/
-        current_ani.draw(this.getPosition().x, this.getPosition().y);
+        current_ani.draw(this.getPosition().x - (current_ani.getWidth()/2), this.getPosition().y - (current_ani.getHeight()/2));
 
     }
 
