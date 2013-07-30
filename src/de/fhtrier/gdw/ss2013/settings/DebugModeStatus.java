@@ -5,7 +5,7 @@ public class DebugModeStatus {
 
     static protected boolean physicTestStatus = false;
 
-    static public boolean getStatus() {
+    static public boolean isTest() {
         return testModeStatus;
     }
 
@@ -17,7 +17,7 @@ public class DebugModeStatus {
         physicTestStatus = status;
     }
 
-    static public boolean getPhysicTest() {
+    static public boolean isPhysicTest() {
         return physicTestStatus;
     }
 
