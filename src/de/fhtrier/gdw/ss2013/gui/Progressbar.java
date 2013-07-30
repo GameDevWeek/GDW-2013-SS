@@ -4,6 +4,7 @@
 
 package de.fhtrier.gdw.ss2013.gui;
 
+import org.newdawn.slick.Font;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -30,9 +31,10 @@ public class Progressbar {
 	private float filled; // gibt an wie weit der Balken gefüllt ist
 
 	private Image progress;
+	private Font font;
 
 	public void init(Vector2f position, Vector2f size, int cornerradius,
-			Image frame, Image background, Image bar) {
+			Image frame, Image background, Image bar, Font font) {
 		this.position = position.copy();
 		this.size = size.copy();
 		this.cornerradius = cornerradius;
@@ -40,6 +42,7 @@ public class Progressbar {
 		this.frame = frame;
 		this.background = background;
 		this.bar = bar;
+		this.font = font;
 	}
 
 	public void update(GameContainer container, StateBasedGame game, int delta) {
@@ -57,9 +60,7 @@ public class Progressbar {
 		bar.draw(position.x, position.y, position.x + filled, position.y
 				+ size.y, 0, 0, size.x - filled, size.y);
 
-		CenteredText.draw(position.x + size.x / 2 , position.y + size.y / 2, String.valueOf(currentPercentValue)+"%",g);
-		
-		g.drawString("Hello World!",200,200);
+		CenteredText.draw(position.x + size.x / 2 , position.y + size.y / 2, String.valueOf(currentPercentValue)+"%", font);
 	}
 
 }

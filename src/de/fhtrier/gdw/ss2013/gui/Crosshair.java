@@ -3,7 +3,10 @@
  */
 package de.fhtrier.gdw.ss2013.gui;
 
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.state.StateBasedGame;
 
 public class Crosshair {
 
@@ -19,9 +22,9 @@ public class Crosshair {
 
 	}
 
-	public void render(float x, float y) {
+	public void render(GameContainer container, StateBasedGame game, Graphics g) {
 	    
-	    crosshair.draw(x, y);
+	    crosshair.draw();
 	    
 	}
 }

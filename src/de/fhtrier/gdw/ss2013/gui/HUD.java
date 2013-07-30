@@ -3,6 +3,7 @@
  */
 package de.fhtrier.gdw.ss2013.gui;
 
+import org.newdawn.slick.Font;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -12,6 +13,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.world.World;
+import de.fhtrier.gdw.ss2013.gui.utils.CenteredText;
 
 public class HUD {
 
@@ -25,8 +27,7 @@ public class HUD {
 	private AssetLoader asset;
 
 	public HUD(GameContainer container, World worldinstance) throws SlickException {
-		
-	    //init Assetloader
+		//init Assetloader
 	    asset = AssetLoader.getInstance();
 	    
 	    //init world
@@ -44,7 +45,9 @@ public class HUD {
 		final Image frame = asset.getImage("healthBarFrame");
         final Image background = asset.getImage("healthBarBackground");
         final Image bar = asset.getImage("healthBarForeground");
-        healthbar.init(position, size, cornerradius, frame, background, bar);
+        final Font font = asset.getFont("verdana_24");
+        
+        healthbar.init(position, size, cornerradius, frame, background, bar, font);
 
 		// Init abilityWheel
 
@@ -87,6 +90,7 @@ public class HUD {
 		healthbar.render(container, game, g);
 		abilityWheel.render(container, game, g);
 		quickselect.render(container, game, g);
+		//crosshair.render(container, game, g);
 		
 	}
 }
