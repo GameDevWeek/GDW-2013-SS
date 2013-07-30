@@ -50,6 +50,7 @@ public class PhysicsTestState extends BasicGameState {
     @Override
     public void enter(GameContainer container, StateBasedGame game)
             throws SlickException {
+        world.onEnter();
         // world.getPhysicsManager().reset();
     }
 

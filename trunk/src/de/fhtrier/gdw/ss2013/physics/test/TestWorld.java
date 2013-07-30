@@ -22,11 +22,13 @@ import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.world.LevelLoader;
 import de.fhtrier.gdw.ss2013.game.world.enemies.Meteroid;
 import de.fhtrier.gdw.ss2013.input.InputManager;
+import de.fhtrier.gdw.ss2013.physics.CirclePhysicsObject;
 import de.fhtrier.gdw.ss2013.physics.DebugDrawer;
 import de.fhtrier.gdw.ss2013.physics.PhysicsManager;
 import de.fhtrier.gdw.ss2013.physics.PhysicsObject;
 import de.fhtrier.gdw.ss2013.physics.PolygonPhysicsObject;
 import de.fhtrier.gdw.ss2013.physics.RectanglePhysicsObject;
+import de.fhtrier.gdw.ss2013.physics.Transform;
 import de.fhtrier.gdw.ss2013.renderer.MapRenderer;
 import de.fhtrier.gdw.ss2013.sound.SoundLocator;
 import de.fhtrier.gdw.ss2013.sound.services.DefaultSoundPlayer;
@@ -63,7 +65,7 @@ public class TestWorld {
         }
         camera = new Camera(map);
 
-        // entityManager = new EntityManager();
+        //entityManager = new EntityManager();
 
         // physic debug stuff
         IViewportTransform viewport = new OBBViewportTransform();
@@ -72,21 +74,42 @@ public class TestWorld {
 
             physicDebug = new DebugDrawer(viewport, container, camera);
 
-            physicsManager.getPhysicsWorld().setDebugDraw(physicDebug);
+            physicsManager.getPhysicsWorld()
+                    .setDebugDraw(physicDebug);
         }
 
         astronaut = entityManager.createEntityAt(Astronaut.class, new Vector2f(
                 200, 200));
+                
+        astronaut.setPhysicsObject(new RectanglePhysicsObject(BodyType.DYNAMIC, new Vec2(95, 105), new Vec2(astronaut.getPosition().x, astronaut.getPosition().y)));
 
-        astronaut.setPhysicsObject(new RectanglePhysicsObject(BodyType.DYNAMIC,
-                new Vec2(95, 105), new Vec2(astronaut.getPosition().x,
-                        astronaut.getPosition().y)));
-
-        InputManager.getInstance().getKeyboard()
-                .setAstronautController(astronaut);
-
+        System.out.println(Input.KEY_A);
+        System.out.println(Input.KEY_D);
+        System.out.println(Input.KEY_W);
+        System.out.println(Input.KEY_LEFT);
+        System.out.println(Input.KEY_RIGHT);
+        System.out.println(Input.KEY_UP);
+        
         SoundLocator.provide(new DefaultSoundPlayer(astronaut));
+        
+        int base = 1000;
+        int xbase = 0;
+        
+        ArrayList<Point> li = new ArrayList<Point>();
+        for(int pcount = 0;pcount <= 5;pcount++)
+        {
+            li.add(new Point(xbase+pcount*(1000/5), (int)(base-100+Math.random()*50-25)));
+        }
+        li.add(new Point(xbase+1000, base));
+        li.add(new Point(xbase, base));
+        
+        PolygonPhysicsObject PPO = new PolygonPhysicsObject(BodyType.STATIC, li);
 
+
+    }
+    public void onEnter()
+    {
+        InputManager.getInstance().getKeyboard().setAstronautController(astronaut);
     }
 
     public void render(GameContainer container, Graphics g)
@@ -119,25 +142,10 @@ public class TestWorld {
 
     public void update(GameContainer container, int delta)
             throws SlickException {
-        // physicsManager.setCurrent();
+        physicsManager.setCurrent();
         // update entities
         entityManager.update(container, delta);
-        // physicsManager.update(container, delta);
-        // This is just a placeholder, not for actual use.
-        Vector2f astronautPos = astronaut.getPosition();
-        float speed = 6;
-        if (input.isKeyDown(Input.KEY_UP)) {
-            astronautPos.y -= speed;
-        }
-        if (input.isKeyDown(Input.KEY_DOWN)) {
-            astronautPos.y += speed;
-        }
-        if (input.isKeyDown(Input.KEY_LEFT)) {
-            astronautPos.x -= speed;
-        }
-        if (input.isKeyDown(Input.KEY_RIGHT)) {
-            astronautPos.x += speed;
-        }
+        physicsManager.update(container, delta);
         if (input.isKeyPressed(Input.KEY_M)) {
             Vector2f position = new Vector2f(150, -80);
             Meteroid m = entityManager.createEntityAt(Meteroid.class, position);
@@ -148,38 +156,22 @@ public class TestWorld {
         }
         if (input.isKeyPressed(Input.KEY_SPACE)) {
 
-            RectanglePhysicsObject rpo = new RectanglePhysicsObject(
-                    BodyType.DYNAMIC, new Vec2(100, 100), new Vec2(500, 300));
-            // PhysicsObject rpo;
-            // if (Math.random() > 0.5) {
-            // rpo = new RectanglePhysicsObject(BodyType.DYNAMIC, new Vec2(
-            // 100, 100), new Vec2(500, 300));
-            // } else {
-            // rpo = new CirclePhysicsObject(BodyType.DYNAMIC, 1, new Vec2(
-            // 500, 300));
-            // }
-            rpo.setMassData(100f);
+            PhysicsObject rpo;
+            if(Math.random()>0.5)
+            {
+                rpo = new RectanglePhysicsObject(
+                        BodyType.DYNAMIC, new Vec2(100,100), new Vec2(500, 300));
+            }
+            else
+            {
+                rpo = new CirclePhysicsObject(
+                        BodyType.DYNAMIC, 1, new Vec2(500, 300));
+            }
+            rpo.setMassData(1f);
             Vec2 force = new Vec2(2, 0);
             System.out.println(force);
             rpo.applyImpulse(force);
-        }
-
-        if (input.isKeyPressed(Input.KEY_ENTER)) {
-            ArrayList<Point> li = new ArrayList<Point>();
-            for (int pcount = 0; pcount <= 5; pcount++) {
-                li.add(new Point(pcount * (1000 / 5), (int) (100 + Math
-                        .random() * 50 - 25)));
-            }
-            li.add(new Point(1000, 0));
-            li.add(new Point(0, 0));
-
-            PolygonPhysicsObject PPO = new PolygonPhysicsObject(
-                    BodyType.STATIC, li);
-
-            // RectanglePhysicsObject ding = new
-            // RectanglePhysicsObject(BodyType.STATIC, new Vec2(1000,500));
-        }
-
+          }
     }
 
     public Vector2f screenToWorldPosition(Vector2f screenPosition) {

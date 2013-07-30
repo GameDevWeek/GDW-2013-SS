@@ -16,55 +16,61 @@ import de.fhtrier.gdw.ss2013.physics.PhysicsObject;
  */
 public abstract class Entity {
 
-	protected final Vector2f position;
-	protected PhysicsObject physicsObject;
+    protected final Vector2f position;
+    protected PhysicsObject physicsObject;
 
-	final static float DEBUG_ENTITY_HALFEXTEND = 5;
+    final static float DEBUG_ENTITY_HALFEXTEND = 5;
 
-	public Entity() {
-		this(new Vector2f());
-	}
+    public Entity() {
+        this(new Vector2f());
+    }
 
-	public Entity(Vector2f position) {
-		this.position = position.copy();
-	}
+    public Entity(Vector2f position) {
+        this.position = position.copy();
+    }
 
-	public void render(GameContainer container, Graphics g)
-			throws SlickException {
-		g.drawRect(position.x - DEBUG_ENTITY_HALFEXTEND, position.y
-				- DEBUG_ENTITY_HALFEXTEND, DEBUG_ENTITY_HALFEXTEND * 2,
-				DEBUG_ENTITY_HALFEXTEND * 2);
+    public void render(GameContainer container, Graphics g)
+            throws SlickException {
+        g.drawRect(position.x - DEBUG_ENTITY_HALFEXTEND, position.y
+                - DEBUG_ENTITY_HALFEXTEND, DEBUG_ENTITY_HALFEXTEND * 2,
+                DEBUG_ENTITY_HALFEXTEND * 2);
 
-		// g.drawString(this.hashCode() + "", position.x, position.y);
-	}
+        // g.drawString(this.hashCode() + "", position.x, position.y);
+    }
 
-	public void update(GameContainer container, int delta)
-			throws SlickException {
-	}
+    public void update(GameContainer container, int delta)
+            throws SlickException {
+    }
 
-	public Vector2f getPosition() {
-		return position;
-	}
+    public Vector2f getPosition() {
+        return position;
+    }
 
-	public void setPosition(Vector2f v) {
-		setPosition(v.x, v.y);
-	}
+    public void setPosition(Vector2f v) {
+        setPosition(v.x, v.y);
+    }
 
-	public void setPosition(float x, float y) {
-		position.x = x;
-		position.y = y;
-	}
+    public void setPosition(float x, float y) {
+        position.x = x;
+        position.y = y;
+    }
 
-	/**
-	 * Override to provide destroy code for world objects (physic mostly)
-	 */
-	public void dispose() {
+    /**
+     * Override to provide default values and call in constructor
+     */
+    public void initialize() {
 
-	}
+    }
 
-	public void setPhysicsObject(PhysicsObject physicsObject) {
-		physicsObject.setOwner(this);
-		this.physicsObject = physicsObject;
-	}
+    /**
+     * Override to provide destroy code for world objects (physic mostly)
+     */
+    public void dispose() {
 
+    }
+
+    public void setPhysicsObject(PhysicsObject physicsObject) {
+        physicsObject.setOwner(this);
+        this.physicsObject = physicsObject;
+    }
 }

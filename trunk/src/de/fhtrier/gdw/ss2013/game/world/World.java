@@ -2,6 +2,7 @@ package de.fhtrier.gdw.ss2013.game.world;
 
 import org.jbox2d.common.IViewportTransform;
 import org.jbox2d.common.OBBViewportTransform;
+import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.BodyType;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -52,7 +53,7 @@ public class World {
 
     public World(GameContainer container, StateBasedGame game) {
         input = container.getInput();
-        instance = this;
+        instance=this;
         map = null;
         entityManager = new EntityManager();
         physicsManager = new PhysicsManager();
@@ -69,7 +70,6 @@ public class World {
         camera = new Camera(map);
 
         // physic debug stuff
-
         if (debugDraw) {
 
             physicDebug = new DebugDrawer(viewportTransform, container, camera);
@@ -78,17 +78,21 @@ public class World {
         }
 
         astronaut = entityManager.createEntityAt(Astronaut.class, new Vector2f(
-                200, 200));
+                400, 200));
+        
+        astronaut.setPhysicsObject(new RectanglePhysicsObject(BodyType.DYNAMIC, new Vec2(95,105), new Vec2(astronaut.getPosition().x,astronaut.getPosition().y),0,1));
+        
+        
+        
+        
 
         // astronaut.setPhysicsObject(new
         // RectanglePhysicsObject(BodyType.DYNAMIC, new Vec2(95,105), new
         // Vec2(astronaut.getPosition().x,astronaut.getPosition().y)));
 
-        InputManager.getInstance().getKeyboard()
-                .setAstronautController(astronaut);
         alien = entityManager.createEntityAt(Alien.class,
                 astronaut.getPosition());
-        InputManager.getInstance().getMouse().setAlienController(alien);
+
 
         SoundLocator.provide(new DefaultSoundPlayer(astronaut));
 
@@ -135,11 +139,17 @@ public class World {
         entityManager.render(container, g);
 
         if (debugDraw) {
-            physicsManager.drawDebugData(container, camera);
+            physicsManager.getPhysicsWorld().drawDebugData();
 
         }
 
         g.popTransform();
+    }
+    
+    public void onEnter()
+    {
+        InputManager.getInstance().getKeyboard().setAstronautController(astronaut);
+        InputManager.getInstance().getMouse().setAlienController(alien);
     }
 
     public void update(GameContainer container, int delta)
@@ -151,25 +161,25 @@ public class World {
         entityManager.update(container, delta);
 
         // This is just a placeholder, not for actual use.
-        Vector2f astronautPos = astronaut.getPosition();
-        float speed = 6;
-        if (input.isKeyDown(Input.KEY_UP)) {
-            astronautPos.y -= speed;
-        }
-        if (input.isKeyDown(Input.KEY_DOWN)) {
-            astronautPos.y += speed;
-        }
-        if (input.isKeyDown(Input.KEY_LEFT)) {
-            astronautPos.x -= speed;
-        }
-        if (input.isKeyDown(Input.KEY_RIGHT)) {
-            astronautPos.x += speed;
-        }
-        // if (input.isKeyPressed(Input.KEY_F)) {
-        // for (FlyingEnemy e : enemy) {
-        // e.shoot(astronaut, entityManager);
+        // Vector2f astronautPos = astronaut.getPosition();
+        // float speed = 6;
+        // if (input.isKeyDown(Input.KEY_UP)) {
+        // astronautPos.y -= speed;
         // }
+        // if (input.isKeyDown(Input.KEY_DOWN)) {
+        // astronautPos.y += speed;
         // }
+        // if (input.isKeyDown(Input.KEY_LEFT)) {
+        // astronautPos.x -= speed;
+        // }
+        // if (input.isKeyDown(Input.KEY_RIGHT)) {
+        // astronautPos.x += speed;
+        // }
+//        if (input.isKeyPressed(Input.KEY_F)) {
+//            for (FlyingEnemy e : enemy) {
+//                e.shoot(astronaut, entityManager);
+//            }
+//        }
         // Sound a = SoundLocator.loadSound("teamworld_testsound");
         // SoundLocator.getPlayer().playSoundAt(a, player, player);
 
@@ -229,8 +239,9 @@ public class World {
     public PhysicsManager getPhysicsManager() {
         return physicsManager;
     }
-
-    public static World getInstance() {
+    
+    public static World getInstance()
+    {
         return instance;
     }
 
