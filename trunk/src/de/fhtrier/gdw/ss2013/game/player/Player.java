@@ -44,7 +44,7 @@ public class Player extends Entity {
 		 * g.setLineWidth(2); g.drawRect(position.x - 5, position.y - 5, 10,
 		 * 10);
 		 */
-		bewegungs_ani.draw(position.x, position.y);
+		bewegungs_ani.draw(position.x-bewegungs_ani.getWidth()/2, position.y-bewegungs_ani.getHeight()/2);
 	}
 
 	@Override

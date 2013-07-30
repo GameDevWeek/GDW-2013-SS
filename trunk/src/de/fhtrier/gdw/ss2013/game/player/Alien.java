@@ -8,6 +8,7 @@ import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.util.Log;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
+import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.input.AlienController;
 
 public class Alien extends Player implements AlienController{
@@ -45,11 +46,7 @@ public class Alien extends Player implements AlienController{
 		this.maxMana = maxMana;
 	}
 
-    @Override
-    public void render(GameContainer container, Graphics g)
-            throws SlickException {
-       bewegungs_ani.draw(position.x, position.y+50); // zum testen
-    }
+ 
 
     @Override
     public void shoot() {
@@ -96,6 +93,20 @@ public class Alien extends Player implements AlienController{
       //  setZustand("animtest");
     }
 
+@Override
+public void update(GameContainer container, int delta) throws SlickException {
+    // TODO Auto-generated method stub
+    super.update(container, delta);
+    
+    if(World.getInstance().getAstronaut().isCarryAlien()==true)
+    {
+        this.setPosition(World.getInstance().getAstronaut().getPosition().x, (World.getInstance().getAstronaut().getPosition().y));
+       
+    }
+}
+
+   
+   
 
     
     
