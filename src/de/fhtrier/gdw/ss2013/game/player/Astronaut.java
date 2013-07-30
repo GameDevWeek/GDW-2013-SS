@@ -5,10 +5,13 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
+import org.newdawn.slick.util.Log;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
+import de.fhtrier.gdw.ss2013.input.AstronautController;
+import de.fhtrier.gdw.ss2013.input.InputManager;
 
-public class Astronaut extends Player {
+public class Astronaut extends Player implements AstronautController {
 
 	private float oxygen;
 	private float maxOxygen;
@@ -43,33 +46,36 @@ public class Astronaut extends Player {
 		this.maxOxygen = maxOxygen;
 	}
 
-	
-  // @Override
-   // public void moveForward(int key) {
-        // TODO Auto-generated method stub
-     //   super.moveForward(key);
-   // }
-
-    //@Override
-   // public void moveBackward(int key) {
-        // TODO Auto-generated method stub
-     //   super.moveBackward(key);
-   // }
-
-   // @Override
-   // public void jump(int key) {
-        // TODO Auto-generated method stub
-     //   super.jump(key);
-   // }
-
-   
-
     @Override
     public void render(GameContainer container, Graphics g)
             throws SlickException {
         // TODO Auto-generated method stub
         bewegungs_ani.draw(position.x, position.y);
         
+    }
+
+    @Override
+    public void moveForward() {
+        // TODO Auto-generated method stub
+        Log.debug("moving forward");
+    }
+
+    @Override
+    public void moveBackward() {
+        // TODO Auto-generated method stub
+        Log.debug("moving backward");
+    }
+
+    @Override
+    public void jump() {
+        // TODO Auto-generated method stub
+        Log.debug("jumping");
+    }
+
+    @Override
+    public void action() {
+        // TODO Auto-generated method stub
+        Log.debug("action key");
     }
 	
 	

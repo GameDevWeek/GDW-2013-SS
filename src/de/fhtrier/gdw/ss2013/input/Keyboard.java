@@ -19,19 +19,19 @@ public class Keyboard extends InputDevice {
 	public void update() {
 
 		if (container.getInput().isKeyDown(Input.KEY_D)) {
-			// astronautListener.moveForward();
+			astronautController.moveForward();
 		}
 
 		else if (container.getInput().isKeyDown(Input.KEY_A)) {
-			// astronautListener.moveBackward();
+		    astronautController.moveBackward();
 		}
 
 		else if (container.getInput().isKeyPressed(Input.KEY_SPACE)) {
-			// astronautListener.jump();
+		    astronautController.jump();
 		}
 
 		else if (container.getInput().isKeyPressed(Input.KEY_E)) {
-			// astronautListener.action();
+		    astronautController.action();
 		}
 
 	}
