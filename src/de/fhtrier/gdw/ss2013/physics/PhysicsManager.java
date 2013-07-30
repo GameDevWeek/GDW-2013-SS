@@ -37,7 +37,7 @@ public class PhysicsManager implements ContactListener {
         // Make sure we delete the first body as well.
         Body body = _physicsWorld.getBodyList();
         for (Body bodyIterator = _physicsWorld.getBodyList(); bodyIterator
-                != null; body = bodyIterator.getNext())
+                != null; bodyIterator = bodyIterator.getNext())
         {
             if (body != null) {
                 _physicsWorld.destroyBody(body);
@@ -65,7 +65,7 @@ public class PhysicsManager implements ContactListener {
     }
 
     public void update(GameContainer c, int delta) throws SlickException {
-        _physicsWorld.step(delta/1000.0f, 6, 3);
+        _physicsWorld.step(delta, 6, 3);
         /*
         for (Contact c1 = _physicsWorld.getContactList(); c1 != null; c1 = c1
                 .getNext()) {
