@@ -107,12 +107,10 @@ public class LoadGameState extends BasicGameState {
 			physicTestState.init(container, game);
 			game.addState(physicTestState);
 
-			if (DebugModeStatus.isTest() || DebugModeStatus.isPhysicTest()) {
-				if (DebugModeStatus.isPhysicTest())
-					MainGame.changeState(MainGame.PHYSIC_TEST);
-				else if (DebugModeStatus.isTest()) {
-					MainGame.changeState(MainGame.GAMEPLAY);
-				}
+			if (DebugModeStatus.isPhysicTest()) {
+				MainGame.changeState(MainGame.PHYSIC_TEST);
+			} else if (DebugModeStatus.isTest()) {
+				MainGame.changeState(MainGame.GAMEPLAY);
 			} else {
 				MainGame.changeState(MainGame.MAINMENUSTATE);
 			}
