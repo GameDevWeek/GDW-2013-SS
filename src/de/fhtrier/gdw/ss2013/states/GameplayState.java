@@ -67,7 +67,7 @@ public class GameplayState extends BasicGameState {
 
 	@Override
 	public int getID() {
-		return MainGame.GAMEPLAY;
+		return MainGame.GAMEPLAYSTATE;
 	}
 
 	@Override

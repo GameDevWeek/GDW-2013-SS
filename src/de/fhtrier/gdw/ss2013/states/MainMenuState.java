@@ -46,7 +46,7 @@ public class MainMenuState extends BasicGameState {
 	@Override
 	public void keyReleased(int key, char c) {
 		if (key == Input.KEY_ENTER) {
-			MainGame.changeState(MainGame.GAMEPLAY);
+			MainGame.changeState(MainGame.GAMEPLAYSTATE);
 		}
 	}
 

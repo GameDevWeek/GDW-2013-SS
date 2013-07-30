@@ -110,7 +110,7 @@ public class LoadGameState extends BasicGameState {
 			if (DebugModeStatus.isPhysicTest()) {
 				MainGame.changeState(MainGame.PHYSIC_TEST);
 			} else if (DebugModeStatus.isTest()) {
-				MainGame.changeState(MainGame.GAMEPLAY);
+				MainGame.changeState(MainGame.GAMEPLAYSTATE);
 			} else {
 				MainGame.changeState(MainGame.MAINMENUSTATE);
 			}
@@ -119,6 +119,6 @@ public class LoadGameState extends BasicGameState {
 
 	@Override
 	public int getID() {
-		return 2;
+		return MainGame.LOADGAMESTATE;
 	}
 }
