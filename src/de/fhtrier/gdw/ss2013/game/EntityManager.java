@@ -4,6 +4,7 @@
 
 package de.fhtrier.gdw.ss2013.game;
 
+import de.fhtrier.gdw.commons.utils.ClassUtils;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -16,6 +17,8 @@ import org.newdawn.slick.geom.Vector2f;
 import de.fhtrier.gdw.commons.utils.SafeProperties;
 import de.fhtrier.gdw.ss2013.game.filter.EntityFilter;
 import de.fhtrier.gdw.ss2013.math.MathConstants;
+import java.io.IOException;
+import java.util.HashMap;
 
 //TODO filter für getEntities
 public class EntityManager {
@@ -23,6 +26,7 @@ public class EntityManager {
     protected ArrayList<Entity> entityList;
     protected Queue<Entity> removalQueue;
     protected Queue<Entity> insertionQueue;
+    protected HashMap<String, Class<? extends Entity>> classMap = new HashMap<>();
 
     private EntityFactory factory;
 
@@ -32,6 +36,15 @@ public class EntityManager {
         removalQueue = new LinkedList<>();
         insertionQueue = new LinkedList<>();
         factory = new EntityFactory();
+        
+        try {
+            for(Class c: ClassUtils.findClassesInPackage("de.fhtrier.gdw.ss2013.game.world")) {
+                if(Entity.class.isAssignableFrom(c))
+                    classMap.put(c.getSimpleName().toLowerCase(), c);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Can't find entity classes", e);
+        }
     }
 
     public void reset() {
@@ -157,7 +170,10 @@ public class EntityManager {
     }
     
     public Entity createEntity(String className, SafeProperties properties) {
-        Class<? extends Entity> entityClass = null;
+        Class<? extends Entity> entityClass = classMap.get(className.toLowerCase());
+        if(entityClass == null) {
+            throw new RuntimeException("Could not find entity class for: " + className);
+        }
         Entity e = factory.createEntity(entityClass);
         addEntity(e);
         return e;
