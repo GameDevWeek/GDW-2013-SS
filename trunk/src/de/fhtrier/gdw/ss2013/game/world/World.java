@@ -16,13 +16,14 @@ import de.fhtrier.gdw.ss2013.game.player.Player;
 import de.fhtrier.gdw.ss2013.game.world.enemies.FlyingEnemy;
 import de.fhtrier.gdw.ss2013.game.world.enemies.Meteroid;
 import de.fhtrier.gdw.ss2013.game.world.objects.OxygenFlower;
+import de.fhtrier.gdw.ss2013.input.InputManager;
 import de.fhtrier.gdw.ss2013.map.MapLoader;
 import de.fhtrier.gdw.ss2013.physics.DebugDrawer;
 import de.fhtrier.gdw.ss2013.physics.PhysicsManager;
 import de.fhtrier.gdw.ss2013.renderer.MapRenderer;
 import de.fhtrier.gdw.ss2013.sound.SoundLocator;
 import de.fhtrier.gdw.ss2013.sound.services.DefaultSoundPlayer;
- 
+
 public class World {
 
     private TiledMap map;
@@ -64,7 +65,10 @@ public class World {
 
         astronaut = entityManager.createEntityAt(Astronaut.class, new Vector2f(200,
                 200));
+        InputManager.getInstance().getKeyboard().setAstronautController(astronaut);
         alien= entityManager.createEntityAt(Alien.class, astronaut.getPosition());
+        InputManager.getInstance().getKeyboard().setAlienController(alien);
+        
         SoundLocator.provide(new DefaultSoundPlayer(astronaut));
 
         oxyFlower = (OxygenFlower) entityManager.createEntityAt(

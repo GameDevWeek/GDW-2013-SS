@@ -5,10 +5,12 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
+import org.newdawn.slick.util.Log;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
+import de.fhtrier.gdw.ss2013.input.AlienController;
 
-public class Alien extends Player {
+public class Alien extends Player implements AlienController{
 
 	private float mana;
 	private float maxMana;
@@ -46,19 +48,30 @@ public class Alien extends Player {
        bewegungs_ani.draw(position.x, position.y+50); // zum testen
     }
 
-   /* @Override
-    public void rotateAbilities(int value) {
+    @Override
+    public void shoot() {
         // TODO Auto-generated method stub
-        super.rotateAbilities(value);
-        
+        Log.debug("shooting");
     }
 
     @Override
-    public void shoot(int button) {
+    public void rotateAbilities() {
         // TODO Auto-generated method stub
-        super.shoot(button);
-        
-    }*/
+        Log.debug("rotate ability");
+    }
+
+    @Override
+    public void useAbility() {
+        // TODO Auto-generated method stub
+        Log.debug("using ability");
+    }
+
+    @Override
+    public void targetMouse() {
+        // TODO Auto-generated method stub
+        Log.debug("target direction");
+    }
+
     
     
 

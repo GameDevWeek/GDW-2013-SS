@@ -13,6 +13,7 @@ import de.fhtrier.gdw.ss2013.MainGame;
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.gui.HUD;
+import de.fhtrier.gdw.ss2013.input.InputManager;
 
 /**
  * Gameplay state
@@ -22,13 +23,17 @@ public class GameplayState extends BasicGameState {
 	private World world;
 	private Font font;
 	private HUD hud;
+	private InputManager inputManager;
 
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
+	    InputManager.init(container);
+	    inputManager = InputManager.getInstance();
 		world = new World(container, game);
 		font = AssetLoader.getInstance().getFont("verdana_46");
 		hud = new HUD(container, world);
+
 	}
 
 	@Override
@@ -53,7 +58,7 @@ public class GameplayState extends BasicGameState {
 			throws SlickException {
 		MainGame.checkFullscreenToggle();
 		world.update(container, delta);
-
+		inputManager.update(delta);
 		hud.update(container, game, delta);
 	}
 

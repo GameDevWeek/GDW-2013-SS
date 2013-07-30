@@ -3,6 +3,7 @@ package de.fhtrier.gdw.ss2013.input;
 import java.util.LinkedList;
 
 import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.util.Log;
 
 /*
  * Team Input
@@ -16,7 +17,24 @@ public class InputManager {
     private int delta;
     private LinkedList<InputDevice> devices = new LinkedList<>();
 
-    public InputManager(GameContainer container) {
+    private static InputManager instance;
+    
+    public static void init(GameContainer container){
+        if(instance == null ){
+            instance = new InputManager(container);
+        }
+        
+    }
+    
+    public static InputManager getInstance()  {
+        if(instance == null){
+            Log.error("InputManager nicht initialisiert!");
+        }
+        return instance;
+    }
+    
+    
+    private InputManager(GameContainer container) {
         this.container = container;
         devices.add(new Keyboard(container));
     }
@@ -31,9 +49,12 @@ public class InputManager {
         return devices;
     }
 
-    private InputDevice getInputDeviceByType(InputDevice type) {
-
-        return null;
+    private InputDevice getInputDeviceByType(Class<InputDevice> clazz) {
+//        for (InputDevice device : devices) {
+//            if (device instanceof clazz)
+//                return device;
+//        }
+       return null;
     }
 
     public InputDevice getKeyboard() {
@@ -67,6 +88,14 @@ public class InputManager {
     /**
      * TODO - Methode um alle verfügbaren InputDevices abzufragen - Maussupport
      * implementieren - Gamepadsupport implementieren
+     * 
+     */
+    
+    /*
+     * head ->   node
+     *           next ->    node
+     *                      next ->   node
+     * 
      * 
      */
 }
