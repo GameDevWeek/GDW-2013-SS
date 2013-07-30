@@ -61,6 +61,7 @@ public class Gamepad extends InputDevice {
 
     @Override
     public void loadKeymapping() {
+        /*
         keymapping.put(buttons.get("button_X"), ACTION.MOVEFORWARD);
 
         keymapping.put(buttons.get("button_X"), ACTION.MOVEBACKWARD);
@@ -68,7 +69,7 @@ public class Gamepad extends InputDevice {
         keymapping.put(buttons.get("button_X"), ACTION.JUMP);
 
         keymapping.put(buttons.get("button_Y"), ACTION.ACTION);
-
+        */
     }
 
 }
