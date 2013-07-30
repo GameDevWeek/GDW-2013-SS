@@ -40,7 +40,7 @@ public class World {
     private Meteroid metro[] = new Meteroid[3];
     private Input input;
     private OxygenFlower oxyFlower;
-
+    private static World instance;
     // physics debug
     private DebugDrawer physicDebug;
     public boolean debugDraw = false;
@@ -50,6 +50,7 @@ public class World {
 
     public World(GameContainer container, StateBasedGame game) {
         input = container.getInput();
+        instance=this;
         map = null;
         entityManager = new EntityManager();
         physicsManager = new PhysicsManager();
@@ -211,6 +212,11 @@ public class World {
 
     public PhysicsManager getPhysicsManager() {
         return physicsManager;
+    }
+    
+    public static World getInstance()
+    {
+        return instance;
     }
 
 }
