@@ -82,7 +82,6 @@ public class MainGame extends StateBasedGame {
                     fadeOutTime);
             Transition transitionIn = new FadeInTransition(Color.black,
                     fadeInTime);
-            PhysicsManager.getInstance().reset();
             instance.enterState(id, transitionOut, transitionIn);
 
             currentState = id;

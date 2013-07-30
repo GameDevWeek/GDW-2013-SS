@@ -46,15 +46,17 @@ public class World {
     public boolean debugDraw = true;
 
     private EntityManager entityManager;
+    private final PhysicsManager physicsManager;
 
     public World(GameContainer container, StateBasedGame game) {
         input = container.getInput();
         map = null;
         entityManager = new EntityManager();
+        physicsManager = new PhysicsManager();
         
         try {
             map = AssetLoader.getInstance().loadMap("demo_sidescroller");
-            LevelLoader.load(map, entityManager);
+            LevelLoader.load(map, entityManager, physicsManager);
 
             mapRender = new MapRenderer(map);
         } catch (Exception e) {
@@ -65,7 +67,7 @@ public class World {
         // physic debug stuff
         if (debugDraw) {
             physicDebug = new DebugDrawer(container, camera);
-            PhysicsManager.getInstance().getPhysicsWorld()
+            physicsManager.getPhysicsWorld()
                     .setDebugDraw(physicDebug);
         }
 
@@ -119,13 +121,15 @@ public class World {
         entityManager.render(container, g);
 
         if (debugDraw)
-            PhysicsManager.getInstance().getPhysicsWorld().drawDebugData();
+            physicsManager.getPhysicsWorld().drawDebugData();
 
         g.popTransform();
     }
 
     public void update(GameContainer container, int delta)
             throws SlickException {
+        physicsManager.setCurrent();
+        
         // update entities
         entityManager.update(container, delta);
 
@@ -201,6 +205,10 @@ public class World {
 
     public EntityManager getEntityManager() {
         return entityManager;
+    }
+
+    public PhysicsManager getPhysicsManager() {
+        return physicsManager;
     }
 
 }

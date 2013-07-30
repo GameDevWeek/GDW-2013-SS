@@ -20,10 +20,10 @@ import org.jbox2d.common.Vec2;
 public class LevelLoader {
     private static EntityManager entityManager;
 
-    public static void load(TiledMap map, EntityManager entityManager) {
+    public static void load(TiledMap map, EntityManager entityManager, PhysicsManager physicsManager) {
         LevelLoader.entityManager = entityManager;
         entityManager.reset();
-        PhysicsManager.getInstance().reset();
+        physicsManager.reset();
         
         for (Layer layer : map.getLayers()) {
             if (layer.isObjectLayer()) {

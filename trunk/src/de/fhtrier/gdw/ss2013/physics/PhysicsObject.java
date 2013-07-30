@@ -73,13 +73,13 @@ public abstract class PhysicsObject {
 		if (this.myBodyDef == null) {
 			throw new RuntimeException("Bitte myBodyDef initzalisiren!");
 		}
-		this.myBody = PhysicsManager.getInstance().enableSimulation(this);
+		this.myBody = PhysicsManager.getCurrent().enableSimulation(this);
 		this.myBody.m_userData = this;
 		this.myFixture = this.myBody.createFixture(myFixtureDef);
 	}
 
 	public void disableSimulation() {
-		PhysicsManager.getInstance().disableSimulation(this);
+		PhysicsManager.getCurrent().disableSimulation(this);
 	}
 
 	public Body getBody() {

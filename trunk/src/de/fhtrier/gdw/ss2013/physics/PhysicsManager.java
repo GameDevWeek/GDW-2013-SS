@@ -13,21 +13,25 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 
 public class PhysicsManager implements ContactListener {
-    public static PhysicsManager getInstance() {
-        if (_physicsManagerSingleton == null) {
-            _physicsManagerSingleton = new PhysicsManager();
-        }
-        return _physicsManagerSingleton;
+    private static PhysicsManager currentManager;
+    
+    public static PhysicsManager getCurrent() {
+        return currentManager;
     }
-
+    
+    public final void setCurrent() {
+        currentManager = this;
+    }
+    
     public World getPhysicsWorld() {
         return _physicsWorld;
     }
 
-    private PhysicsManager() {
+    public PhysicsManager() {
         _physicsWorld = new World(_defaultGravity);
         // _physicsWorld.setDebugDraw(new DebugDrawer());
         _physicsWorld.setContactListener(this);
+        setCurrent();
     }
 
     public boolean reset() {

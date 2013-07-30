@@ -60,6 +60,12 @@ public class GameplayState extends BasicGameState {
 	}
 
 	@Override
+	public void enter(GameContainer container, StateBasedGame game)
+			throws SlickException {
+		world.getPhysicsManager().reset();
+	}
+
+	@Override
 	public int getID() {
 		return MainGame.GAMEPLAY;
 	}
