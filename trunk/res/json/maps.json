@@ -1,4 +1,8 @@
 [{
   "name" : "demo",
   "pfad" : "res/maps/demo.tmx"
+},
+{
+  "name" : "demo_sidescroller",
+  "pfad" : "res/maps/sidescroller_demo.tmx"
 }]
