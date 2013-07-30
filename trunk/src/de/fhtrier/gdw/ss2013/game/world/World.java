@@ -1,5 +1,7 @@
 package de.fhtrier.gdw.ss2013.game.world;
 
+import org.jbox2d.common.Vec2;
+import org.jbox2d.dynamics.BodyType;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -8,6 +10,7 @@ import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
 
 import de.fhtrier.gdw.commons.tiled.TiledMap;
+import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.camera.Camera;
 import de.fhtrier.gdw.ss2013.game.player.Alien;
@@ -20,6 +23,7 @@ import de.fhtrier.gdw.ss2013.input.InputManager;
 import de.fhtrier.gdw.ss2013.map.MapLoader;
 import de.fhtrier.gdw.ss2013.physics.DebugDrawer;
 import de.fhtrier.gdw.ss2013.physics.PhysicsManager;
+import de.fhtrier.gdw.ss2013.physics.RectanglePhysicsObject;
 import de.fhtrier.gdw.ss2013.renderer.MapRenderer;
 import de.fhtrier.gdw.ss2013.sound.SoundLocator;
 import de.fhtrier.gdw.ss2013.sound.services.DefaultSoundPlayer;
@@ -59,7 +63,7 @@ public class World {
         // physic debug stuff
         if (debugDraw) {
             physicDebug = new DebugDrawer(container, camera);
-            PhysicsManager.getInstance()._physicsWorld
+            PhysicsManager.getInstance().getPhysicsWorld()
                     .setDebugDraw(physicDebug);
         }
 
@@ -103,7 +107,7 @@ public class World {
         entityManager.render(container, g);
 
         if (debugDraw)
-            PhysicsManager.getInstance()._physicsWorld.drawDebugData();
+            PhysicsManager.getInstance().getPhysicsWorld().drawDebugData();
 
         g.popTransform();
     }
@@ -140,6 +144,14 @@ public class World {
 
         if (input.isKeyPressed(Input.KEY_B)) {
             oxyFlower.shootBubbles(entityManager);
+        }
+        
+        
+        if (input.isKeyPressed(Input.KEY_SPACE)) {
+            
+            RectanglePhysicsObject rpo = new RectanglePhysicsObject(null, BodyType.DYNAMIC, new Vec2(30, 30),new Vec2(500, 300));
+            rpo.setMassData(100);
+            rpo.setLinearVelocity(new Vec2((float)(100+Math.random()*1000-500),(float)(100+Math.random()*500)));
         }
     }
 
