@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import org.jbox2d.collision.shapes.MassData;
+import org.jbox2d.collision.shapes.Shape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.BodyDef;
@@ -23,11 +24,27 @@ public abstract class PhysicsObject {
 	private BodyDef myBodyDef;
 	private FixtureDef myFixtureDef;
 
-	protected PhysicsObject(Entity owner) {
+	protected PhysicsObject(Entity owner, float restitution, float density, float friction,
+            boolean isSensor) {
 		this.owner = owner;
+		
+	      myFixtureDef = new FixtureDef();
+	        myFixtureDef.restitution = restitution;
+	        myFixtureDef.density = density;
+	        myFixtureDef.friction = friction;
+	        myFixtureDef.isSensor = isSensor;
+	        
+	        
 		collisionListeners = new ArrayList<ICollisionListener>();
 	}
 
+	protected void init(Shape myShape,BodyDef myBodyDef)
+	{
+	    myFixtureDef.shape = myShape;
+	    this.myBodyDef = myBodyDef;
+	    enableSimulation();
+	}
+	
 	protected void setBodyDef(BodyDef myBodyDef) {
 		this.myBodyDef = myBodyDef;
 	}
