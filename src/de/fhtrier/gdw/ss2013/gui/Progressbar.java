@@ -11,6 +11,7 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
 
+import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.gui.utils.CenteredText;
 
 public class Progressbar {
@@ -30,11 +31,13 @@ public class Progressbar {
 										// maxValue
 	private float filled; // gibt an wie weit der Balken gefüllt ist
 
-	private Image progress;
+	private World worldinstance; 
+	
+	//private Image progress;
 	private Font font;
 
 	public void init(Vector2f position, Vector2f size, int cornerradius,
-			Image frame, Image background, Image bar, Font font) {
+			Image frame, Image background, Image bar, Font font, World worldinstance) {
 		this.position = position.copy();
 		this.size = size.copy();
 		this.cornerradius = cornerradius;
@@ -43,10 +46,13 @@ public class Progressbar {
 		this.background = background;
 		this.bar = bar;
 		this.font = font;
+		this.worldinstance = worldinstance;
+		this.maxValue=worldinstance.getAstronaut().getMaxOxygen();
 	}
 
 	public void update(GameContainer container, StateBasedGame game, int delta) {
-		// currentValue auslesen.
+		currentValue = worldinstance.getAstronaut().getOxygen();
+		
 		currentPercentValue = (currentValue / maxValue) * 100;
 
 		filled = size.x * (currentPercentValue / 100);
@@ -57,8 +63,14 @@ public class Progressbar {
 
 		// frame.draw(position.x, position.y);
 		background.draw(position.x, position.y);
-		bar.draw(position.x, position.y, position.x + filled, position.y
-				+ size.y, 0, 0, size.x - filled, size.y);
+		bar.draw(position.x
+		        ,position.y       
+		        ,position.x + filled         
+		        ,position.y + size.y         
+		        ,0                           
+		        ,0                          
+		        ,filled
+		        , size.y);
 
 		CenteredText.draw(position.x + size.x / 2 , position.y + size.y / 2, String.valueOf(currentPercentValue)+"%", font);
 	}
