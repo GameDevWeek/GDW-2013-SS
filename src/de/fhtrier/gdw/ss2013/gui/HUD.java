@@ -10,6 +10,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
 
+import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
+
 public class HUD {
 
 	private Progressbar healthbar;
@@ -18,9 +20,14 @@ public class HUD {
 	private AbilitySelection abilityWheel;
 	private Image test;
 	private Quickselect quickselect;
+	private AssetLoader asset;
 
 	public HUD(GameContainer container) throws SlickException {
-		// Init healthbar
+		
+	    //init Assetloader
+	    asset = AssetLoader.getInstance();
+	     
+	    // Init healthbar
 
 		healthbar = new Progressbar();
 
@@ -28,18 +35,12 @@ public class HUD {
 		final Vector2f size = new Vector2f(240, 40);
 		final int cornerradius = 5;
 
-		final String imagePath = "/res/Dummy_GUIs_Images/";
+		//final String imagePath = "/res/Dummy_GUIs_Images/";
 
-		try {
-			final Image frame = new Image(imagePath + "frame.png");
-			final Image background = new Image(imagePath + "background.png");
-			final Image bar = new Image(imagePath + "bar.png");
-			healthbar
-					.init(position, size, cornerradius, frame, background, bar);
-		} catch (SlickException e) {
-
-			e.printStackTrace();
-		}
+		final Image frame = asset.getImage("frame");
+        final Image background = asset.getImage("background");
+        final Image bar = asset.getImage("bar");
+        healthbar.init(position, size, cornerradius, frame, background, bar);
 
 		// Init abilityWheel
 
@@ -47,18 +48,13 @@ public class HUD {
 
 		position.set(20, 20);
 
-		try {
-			final Image ability1 = new Image(imagePath + "ability1.png");
-			final Image ability2 = new Image(imagePath + "ability2.png");
-			final Image ability3 = new Image(imagePath + "ability3.png");
-			abilityWheel.init(ability1, ability2, ability3, position);
-		} catch (SlickException e) {
-			e.printStackTrace();
-		}
-		final Image ability1 = new Image(imagePath + "ability1.png");
-		final Image ability2 = new Image(imagePath + "ability2.png");
-		final Image ability3 = new Image(imagePath + "ability3.png");
-		abilityWheel.init(ability1, ability2, ability3, position);
+		final Image ability1 = asset.getImage("ability1");
+        final Image ability2 = asset.getImage("ability2");
+        final Image ability3 = asset.getImage("ability3");
+        
+        abilityWheel.init(ability1, ability2, ability3, position);
+		
+		//abilityWheel.init(ability1, ability2, ability3, position);
 
 		// Init quickselect
 		quickselect = new Quickselect();
@@ -69,6 +65,10 @@ public class HUD {
 
 		// DEV
 		quickselect.setSelected(2);
+		
+		//init Crosshair
+		final Image cross = asset.getImage("ability1");
+		crosshair = new Crosshair(cross);
 
 	}
 

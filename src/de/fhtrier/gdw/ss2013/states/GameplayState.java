@@ -38,6 +38,7 @@ public class GameplayState extends BasicGameState {
 		g.setColor(Color.white);
 
 		world.render(container, g);
+		
 
 		font.drawString(0, 0, "Gameplay");
 		font.drawString(0, container.getHeight() - font.getLineHeight(),
