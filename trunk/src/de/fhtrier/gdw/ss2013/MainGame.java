@@ -13,6 +13,7 @@ import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 import org.newdawn.slick.state.transition.Transition;
 
+import de.fhtrier.gdw.ss2013.physics.PhysicsManager;
 import de.fhtrier.gdw.ss2013.settings.DebugModeStatus;
 import de.fhtrier.gdw.ss2013.states.LoadGameState;
 
@@ -81,6 +82,7 @@ public class MainGame extends StateBasedGame {
                     fadeOutTime);
             Transition transitionIn = new FadeInTransition(Color.black,
                     fadeInTime);
+            PhysicsManager.getInstance().reset();
             instance.enterState(id, transitionOut, transitionIn);
 
             currentState = id;
