@@ -154,11 +154,22 @@ public class AssetLoader {
     }
     
 	public Image getImage(String name) {
-		return imageMap.get(name);
+	    if(imageMap.get(name) == null){
+	        System.out.println("ERROR: Image '"+name+"' existiert nicht.");
+	        return imageMap.get("error");
+	    }else{
+	        return imageMap.get(name);
+	    }
+		
 	}
 
 	public Animation getAnimation(String name) {
-		return animMap.get(name).copy();
+	    if(animMap.get(name) == null){
+	        System.out.println("ERROR: Animation '"+name+"' existiert nicht.");
+	        return animMap.get("error").copy();
+	    }else{
+	        return animMap.get(name).copy();
+	    }	
 	}
 
 	public Sound getSound(String name) {

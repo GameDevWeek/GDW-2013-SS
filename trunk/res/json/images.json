@@ -1,4 +1,8 @@
 [{
+  "name" : "error",
+  "pfad" : "res/images/error.png"
+},
+{
   "name" : "boltEnemy",
   "pfad" : "res/dummies/GeschossAlien.png"
 },
