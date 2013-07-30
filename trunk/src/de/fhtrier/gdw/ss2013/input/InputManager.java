@@ -37,6 +37,7 @@ public class InputManager {
     private InputManager(GameContainer container) {
         this.container = container;
         devices.add(new Keyboard(container));
+        devices.add(new Mouse(container));
     }
 
     public void update(int delta) {

@@ -16,6 +16,6 @@ public interface AlienController {
 
 	public void useAbility();
 	
-	public void targetMouse();
+	public void targetMouse(int x , int y);
 
 }

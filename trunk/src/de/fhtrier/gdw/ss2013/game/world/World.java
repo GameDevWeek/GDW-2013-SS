@@ -73,7 +73,7 @@ public class World {
                 200));
         InputManager.getInstance().getKeyboard().setAstronautController(astronaut);
         alien= entityManager.createEntityAt(Alien.class, astronaut.getPosition());
-        InputManager.getInstance().getKeyboard().setAlienController(alien);
+        InputManager.getInstance().getMouse().setAlienController(alien);
         
         SoundLocator.provide(new DefaultSoundPlayer(astronaut));
 
