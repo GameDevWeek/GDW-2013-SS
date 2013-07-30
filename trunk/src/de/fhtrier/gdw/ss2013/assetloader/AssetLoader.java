@@ -102,7 +102,7 @@ public class AssetLoader {
 	}
 
 	public Animation getAnimation(String name) {
-		return animMap.get(name);
+		return animMap.get(name).copy();
 	}
 
 	/**
