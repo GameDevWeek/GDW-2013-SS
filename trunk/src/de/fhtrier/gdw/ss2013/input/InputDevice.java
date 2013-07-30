@@ -22,7 +22,7 @@ public abstract class InputDevice {
 	};
 
 	// dynamsiche tastenzuweisungen
-	 HashMap<ACTIONS, Integer> keymapping;
+	 HashMap<Integer, ACTIONS> keymapping;
 	 
 
 	public InputDevice(GameContainer gc) {
