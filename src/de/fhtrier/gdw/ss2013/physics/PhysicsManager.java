@@ -47,7 +47,7 @@ public class PhysicsManager implements ContactListener {
             body = bodyIterator.getNext();
             _physicsWorld.destroyBody(toBeDeleted);
         }
-        _physicsWorld = new World(_defaultGravity);
+        _physicsWorld.destroyBody(bodyIterator);
         return true;
     }
 
