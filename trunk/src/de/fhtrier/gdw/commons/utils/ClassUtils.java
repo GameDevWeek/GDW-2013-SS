@@ -2,6 +2,7 @@ package de.fhtrier.gdw.commons.utils;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -30,7 +31,13 @@ public class ClassUtils {
         List<File> dirs = new ArrayList<>();
         while (resources.hasMoreElements()) {
             URL resource = resources.nextElement();
-            dirs.add(new File(resource.getFile()));
+            try {
+                dirs.add(new File(resource.toURI()));
+            }
+            catch (URISyntaxException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
         ArrayList<Class> classes = new ArrayList<>();
         for (File directory : dirs) {
