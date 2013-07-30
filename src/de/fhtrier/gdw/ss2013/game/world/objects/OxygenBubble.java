@@ -24,6 +24,7 @@ import de.fhtrier.gdw.ss2013.physics.ICollidable;
 public class OxygenBubble extends Entity implements ICollidable {
 
     private float oxygenLevel;
+    private OxygenFlower flower;
     private AssetLoader a = AssetLoader.getInstance();
     private Image img = a.getImage("bubble");
     private Vector2f velocity = new Vector2f(10, 10);
@@ -49,6 +50,8 @@ public class OxygenBubble extends Entity implements ICollidable {
                     .getMaxOxygen()) {
                 ((Astronaut) e).setOxygen(((Astronaut) e).getOxygen()
                         + oxygenLevel);
+                man.removeEntity(this);
+                flower.bubbleLost();
             } else {
                 ((Astronaut) e).setOxygen(((Astronaut) e).getMaxOxygen());
             }
@@ -101,5 +104,7 @@ public class OxygenBubble extends Entity implements ICollidable {
         // TODO Auto-generated method stub
         return null;
     }
-
+    public void setReferences(OxygenFlower flower) {
+        this.flower = flower;
+    }
 }

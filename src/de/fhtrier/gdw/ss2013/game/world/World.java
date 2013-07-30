@@ -154,11 +154,11 @@ public class World {
 //        if (input.isKeyDown(Input.KEY_RIGHT)) {
 //            astronautPos.x += speed;
 //        }
-        if (input.isKeyPressed(Input.KEY_F)) {
-            for (FlyingEnemy e : enemy) {
-                e.shoot(astronaut, entityManager);
-            }
-        }
+//        if (input.isKeyPressed(Input.KEY_F)) {
+//            for (FlyingEnemy e : enemy) {
+//                e.shoot(astronaut, entityManager);
+//            }
+//        }
         // Sound a = SoundLocator.loadSound("teamworld_testsound");
         // SoundLocator.getPlayer().playSoundAt(a, player, player);
 

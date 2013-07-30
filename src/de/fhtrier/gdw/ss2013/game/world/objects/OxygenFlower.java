@@ -27,8 +27,7 @@ public class OxygenFlower extends Entity implements Interactable {
     private Image img;
     
     private int maxBubble;
-
-    private ArrayList<OxygenBubble> bubbles = new ArrayList<OxygenBubble>();
+    private int count;
 
     public OxygenFlower(Vector2f position) {
         super(position.copy());
@@ -45,20 +44,16 @@ public class OxygenFlower extends Entity implements Interactable {
     }
 
     public void shootBubbles(EntityManager manager) {
-
-        int count = maxBubble;
         float x = this.getPosition().getX() - 20;
         float y = this.getPosition().getY() + 11;
 
-        for (int i = 0; i < count; i++) {
+        while (count < maxBubble) {
 
             Vector2f bubblePos = new Vector2f(x, y);
-            OxygenBubble bubble = new OxygenBubble(bubblePos.copy());
             x += (Math.random()*100);
             y += (Math.random()*100);
-            bubbles.add(bubble);
             manager.createEntityAt(OxygenBubble.class, bubblePos.copy());
-            maxBubble--;
+            count++;
         }
 
     }
@@ -78,16 +73,10 @@ public class OxygenFlower extends Entity implements Interactable {
         this.maxBubble = maxBubble;
     }
 
-    public ArrayList<OxygenBubble> getBubbles() {
-        return bubbles;
-    }
-
-    public void setBubbles(ArrayList<OxygenBubble> bubbles) {
-        this.bubbles = bubbles;
-    }
-
     public int getMaxBubble() {
         return maxBubble;
     }
-
+    public void bubbleLost() {
+        count--;
+    }
 }
