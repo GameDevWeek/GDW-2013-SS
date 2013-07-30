@@ -39,7 +39,7 @@ public class GameplayState extends BasicGameState {
 	@Override
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
 			throws SlickException {
-		g.setBackground(Color.black);
+		g.setBackground(Color.cyan);
 		g.setColor(Color.white);
 
 		world.render(container, g);
