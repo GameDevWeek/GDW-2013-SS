@@ -13,14 +13,12 @@ public class Astronaut extends Player implements AstronautController {
 
 	private float oxygen;
 	private float maxOxygen;
-	private boolean carryAlien=true;
+	private boolean carryAlien = true;
 	Animation bewegungs_ani;
-    
-    
+
 	public Astronaut(Vector2f position) {
 		super(position);
 
-		// Default
 		maxOxygen = 1000f;
 		oxygen = maxOxygen;
 		bewegungs_ani = AssetLoader.getInstance().getAnimation(getZustand());
@@ -45,47 +43,45 @@ public class Astronaut extends Player implements AstronautController {
 		this.maxOxygen = maxOxygen;
 	}
 
-  
-    
-    @Override
-    public void update(GameContainer container, int delta) throws SlickException {
-        super.update(container, delta);
-        if (oxygen > 0) 
-            this.oxygen -= (this.maxOxygen * PlayerConstants.OXYGEN_PERCENTAGE_LOST_PER_SECOND) * (delta / 1000f);
-    }
-        
-    @Override
-    public void moveForward() {
-        this.getPosition().x += this.getVelocity().x;
-        setZustand("animtest");
-    }
+	@Override
+	public void update(GameContainer container, int delta)
+			throws SlickException {
+		super.update(container, delta);
+		if (oxygen > 0)
+			this.oxygen -= (this.maxOxygen * PlayerConstants.OXYGEN_PERCENTAGE_LOST_PER_SECOND)
+					* (delta / 1000f);
+	}
 
-    @Override
-    public void moveBackward() {
-        position.x -= this.getVelocity().x;
-        setZustand("animtest");
-    }
+	@Override
+	public void moveForward() {
+		this.getPosition().x += this.getVelocity().x;
+		setZustand("animtest");
+	}
 
-    @Override
-    public void jump() {
-    	position.y -= this.getVelocity().x;
-        setZustand("animtest");
-    }
+	@Override
+	public void moveBackward() {
+		position.x -= this.getVelocity().x;
+		setZustand("animtest");
+	}
 
-    @Override
-    public void action() {
-    	position.y += this.getVelocity().x;
-        setZustand("animtest");
-    }
+	@Override
+	public void jump() {
+		position.y -= this.getVelocity().x;
+		setZustand("animtest");
+	}
 
-    public boolean isCarryAlien() {
-        return carryAlien;
-    }
+	@Override
+	public void action() {
+		position.y += this.getVelocity().x;
+		setZustand("animtest");
+	}
 
-    public void setCarryAlien(boolean carryAlien) {
-        this.carryAlien = carryAlien;
-    }
-	
-	
+	public boolean isCarryAlien() {
+		return carryAlien;
+	}
+
+	public void setCarryAlien(boolean carryAlien) {
+		this.carryAlien = carryAlien;
+	}
 
 }
