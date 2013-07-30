@@ -7,6 +7,8 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
 
+import de.fhtrier.gdw.ss2013.game.world.World;
+
 public class Quickselect {
 
 	private Image[] ability;
@@ -16,9 +18,10 @@ public class Quickselect {
 	private Color key;
 	private int countdown_start = 500;
 	private int countdown_timer = 0;
+	private World worldinstance;
 
 	public void init(Image ability1, Image ability2, Image ability3,
-			int selected, int countdown_start) {
+			int selected, int countdown_start, World worldinstance) {
 
 		ability = new Image[3];
 
@@ -28,13 +31,15 @@ public class Quickselect {
 
 		this.selected = selected;
 		this.countdown_start = countdown_start;
+		
+		this.worldinstance = worldinstance;
 
 	}
 
 	public void render(GameContainer container, StateBasedGame game, Graphics g) {
 
 		if (countdown_timer > 0) {
-			ability[selected - 1].draw(100, 100);
+			ability[selected - 1].draw(worldinstance.getPlayer().getPosition().x + 43, worldinstance.getPlayer().getPosition().y - 25);
 		}
 
 	}

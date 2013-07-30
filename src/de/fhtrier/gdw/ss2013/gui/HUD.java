@@ -11,6 +11,7 @@ import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
+import de.fhtrier.gdw.ss2013.game.world.World;
 
 public class HUD {
 
@@ -20,12 +21,16 @@ public class HUD {
 	private AbilitySelection abilityWheel;
 	private Image test;
 	private Quickselect quickselect;
+	private World worldinstance;
 	private AssetLoader asset;
 
-	public HUD(GameContainer container) throws SlickException {
+	public HUD(GameContainer container, World worldinstance) throws SlickException {
 		
 	    //init Assetloader
 	    asset = AssetLoader.getInstance();
+	    
+	    //init world
+	    this.worldinstance = worldinstance;
 	     
 	    // Init healthbar
 	    healthbar = new Progressbar();
@@ -60,7 +65,7 @@ public class HUD {
 		final int selected = 1;
 		final int countdown_start = 500;
 		quickselect.init(ability1, ability2, ability3, selected,
-				countdown_start);
+				countdown_start, worldinstance);
 
 		// DEV
 		quickselect.setSelected(2);

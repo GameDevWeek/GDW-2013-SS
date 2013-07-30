@@ -28,7 +28,7 @@ public class GameplayState extends BasicGameState {
 			throws SlickException {
 		world = new World(container, game);
 		font = AssetLoader.getInstance().getFont("verdana_46");
-		hud = new HUD(container);
+		hud = new HUD(container, world);
 	}
 
 	@Override
