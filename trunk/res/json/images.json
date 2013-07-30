@@ -11,6 +11,10 @@
   "pfad" : "res/dummies/GeschossAlien.png"
 },
 {
+  "name" : "groundEnemy",
+  "pfad" : "res/dummies/GegnerKlein.png"
+},
+{
   "name" : "plant",
   "pfad" : "res/dummies/Pflanze.png"
 },
