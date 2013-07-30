@@ -10,6 +10,7 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import de.fhtrier.gdw.ss2013.MainGame;
+import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.gui.HUD;
 
@@ -26,8 +27,7 @@ public class GameplayState extends BasicGameState {
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		world = new World(container, game);
-		font = new AngelCodeFont("res/fonts/verdana_46.fnt",
-				"res/fonts/verdana_46_0.tga");
+		font = AssetLoader.getInstance().getFont("verdana_46");
 		hud = new HUD(container);
 	}
 

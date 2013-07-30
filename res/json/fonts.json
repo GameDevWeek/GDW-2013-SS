@@ -1,0 +1,26 @@
+[{
+  "name" : "quartz_40",
+  "file" : "res/fonts/quartz_40.fnt",
+  "image": "res/fonts/quartz_40_0.tga"
+},{
+  "name" : "quartz_50",
+  "file" : "res/fonts/quartz_50.fnt",
+  "image": "res/fonts/quartz_50_0.tga"
+},{
+  "name" : "verdana_24",
+  "file" : "res/fonts/verdana_24.fnt",
+  "image": "res/fonts/verdana_24_0.tga"
+},{
+  "name" : "verdana_32",
+  "file" : "res/fonts/verdana_32.fnt",
+  "image": "res/fonts/verdana_32_0.tga"
+},{
+  "name" : "verdana_46",
+  "file" : "res/fonts/verdana_46.fnt",
+  "image": "res/fonts/verdana_46_0.tga"
+},{
+  "name" : "verdana_90",
+  "file" : "res/fonts/verdana_90.fnt",
+  "image": "res/fonts/verdana_90_0.tga"
+}
+]
