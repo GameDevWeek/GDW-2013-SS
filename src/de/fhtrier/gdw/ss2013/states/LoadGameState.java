@@ -35,7 +35,7 @@ public class LoadGameState extends BasicGameState {
 
 		// Todo: initialize assets
 
-		assetLoader = new AssetLoader();
+		assetLoader = AssetLoader.getInstance();
 		SoundLocator.provideAssetLoader(assetLoader);
 
 		// Image img = new Image("res/animaions/team0.png");

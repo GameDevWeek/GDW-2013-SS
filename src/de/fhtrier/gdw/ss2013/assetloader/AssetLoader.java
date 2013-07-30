@@ -25,8 +25,17 @@ public class AssetLoader {
 	HashMap<String, Image> imageMap = new HashMap<>();
 	HashMap<String, Animation> animMap = new HashMap<>();
 	HashMap<String, Sound> soundMap = new HashMap<>();
+	
+	private static AssetLoader instance;
+	
+	public static AssetLoader getInstance() {
+	    if (instance == null) {
+	        instance = new AssetLoader();
+	    }
+	    return instance;
+	}
 
-	public AssetLoader() {
+	private AssetLoader() {
 		setupImages("res/json/images.json");
 		setupAnimation("res/json/animations.json");
 		setupSound("res/json/sounds.json");
