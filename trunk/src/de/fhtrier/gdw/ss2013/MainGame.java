@@ -28,7 +28,8 @@ public class MainGame extends StateBasedGame {
     public static final int WINDOW_WIDTH = 1024;
     public static final int WINDOW_HEIGHT = 768;
     public static final int MAINMENUSTATE = 0;
-    public static final int GAMEPLAY = 1;
+    public static final int GAMEPLAYSTATE = 1;
+    public static final int LOADGAMESTATE = 2;
     public static final int PHYSIC_TEST = 1337;
     public static int currentState = -1;
     public static MainGame instance;
