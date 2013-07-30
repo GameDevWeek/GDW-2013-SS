@@ -20,6 +20,7 @@ import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.world.LevelLoader;
 import de.fhtrier.gdw.ss2013.game.world.enemies.Meteroid;
 import de.fhtrier.gdw.ss2013.input.InputManager;
+import de.fhtrier.gdw.ss2013.physics.CirclePhysicsObject;
 import de.fhtrier.gdw.ss2013.physics.DebugDrawer;
 import de.fhtrier.gdw.ss2013.physics.PhysicsManager;
 import de.fhtrier.gdw.ss2013.physics.PhysicsObject;
@@ -62,6 +63,8 @@ public class TestWorld {
         }
         camera = new Camera(map);
 
+        //entityManager = new EntityManager();
+
         // physic debug stuff
         if (debugDraw) {
             physicDebug = new DebugDrawer(container, camera);
@@ -71,9 +74,14 @@ public class TestWorld {
 
         astronaut = entityManager.createEntityAt(Astronaut.class, new Vector2f(
                 200, 200));
+        
+        astronaut.setPhysicsObject(new RectanglePhysicsObject(BodyType.DYNAMIC, new Vec2(95,105), new Vec2(astronaut.getPosition().x,astronaut.getPosition().y)));
+        
         InputManager.getInstance().getKeyboard()
                 .setAstronautController(astronaut);
 
+        
+        
         SoundLocator.provide(new DefaultSoundPlayer(astronaut));
         
         
@@ -140,9 +148,18 @@ public class TestWorld {
         }
         if (input.isKeyPressed(Input.KEY_SPACE)) {
 
-            RectanglePhysicsObject rpo = new RectanglePhysicsObject(
-                    BodyType.DYNAMIC, PhysicsTools.pixelToWorld(new Vec2(100,
-                            100)), new Vec2(500, 300));
+            PhysicsObject rpo;
+            if(Math.random()>0.5)
+            {
+                rpo = new RectanglePhysicsObject(
+                        BodyType.DYNAMIC, PhysicsTools.pixelToWorld(new Vec2(100,
+                                100)), new Vec2(500, 300));
+            }
+            else
+            {
+                rpo = new CirclePhysicsObject(
+                        BodyType.DYNAMIC, 1, new Vec2(500, 300));
+            }
             rpo.setMassData(100f);
             Vec2 force = new Vec2(2, 0);
             System.out.println(force);

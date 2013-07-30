@@ -74,6 +74,9 @@ public class World {
 
         astronaut = entityManager.createEntityAt(Astronaut.class, new Vector2f(
                 200, 200));
+        
+        //astronaut.setPhysicsObject(new RectanglePhysicsObject(BodyType.DYNAMIC, new Vec2(95,105), new Vec2(astronaut.getPosition().x,astronaut.getPosition().y)));
+        
         InputManager.getInstance().getKeyboard()
                 .setAstronautController(astronaut);
         alien = entityManager.createEntityAt(Alien.class,
