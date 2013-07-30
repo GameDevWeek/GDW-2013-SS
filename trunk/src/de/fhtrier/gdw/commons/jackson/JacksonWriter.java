@@ -23,6 +23,18 @@ public class JacksonWriter {
 
 	static JsonFactory factory = new JsonFactory();
 
+	public static void writeList(String filename, List<?> list)
+			throws IOException, UnsupportedEncodingException,
+			NoSuchFieldException, IllegalArgumentException,
+			IllegalAccessException, InstantiationException, ParseException {
+
+		try (JsonGenerator generator = factory.createGenerator(new File(
+				filename), JsonEncoding.UTF8);) {
+
+			generator.useDefaultPrettyPrinter();
+			writeList(list, generator);
+		}
+	}
 	public static void write(String filename, Object object)
 			throws IOException, UnsupportedEncodingException,
 			NoSuchFieldException, IllegalArgumentException,
