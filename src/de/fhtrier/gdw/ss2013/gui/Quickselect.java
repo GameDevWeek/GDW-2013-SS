@@ -39,7 +39,7 @@ public class Quickselect {
 	public void render(GameContainer container, StateBasedGame game, Graphics g) {
 
 		if (countdown_timer > 0) {
-			ability[selected - 1].draw(worldinstance.getPlayer().getPosition().x + 43, worldinstance.getPlayer().getPosition().y - 25);
+			ability[selected - 1].draw(worldinstance.getAstronaut().getPosition().x + 43, worldinstance.getAstronaut().getPosition().y - 25);
 		}
 
 	}

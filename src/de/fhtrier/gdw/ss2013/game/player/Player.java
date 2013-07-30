@@ -64,6 +64,15 @@ public class Player extends Entity {
 		this.velocity = velocity;
 	}
 
+    public String getZustand() {
+        return zustand;
+    }
+
+    public void setZustand(String zustand) {
+        this.zustand = zustand;
+    }
+
+	
 	/*
 	 * public void ani() { switch(zustand) { case "forward": for_ani.draw();
 	 * break; case "backward": back_ani.draw(); break; case "jump":
