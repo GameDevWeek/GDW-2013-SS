@@ -44,7 +44,7 @@ public class PolygonPhysicsObject extends PhysicsObject {
 			boolean isSensor) {
 		super(restitution, density, friction, isSensor);
 		PolygonShape myShape = new PolygonShape();
-		myShape.set(PhysicsTools.pointListToVec2Arr(pointList), pointList.size());
+		myShape.set(Transform.pointListToVec2Arr(pointList), pointList.size());
 		init(myShape, bodyType,new Vec2(0,0));
 	}
 
