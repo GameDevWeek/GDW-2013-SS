@@ -39,7 +39,6 @@ public class DebugDrawer extends DebugDraw {
 		this.viewportTransform.setYFlip(true);
 		this.viewportTransform.setExtents(gameContainer.getWidth() / 2,
 				gameContainer.getHeight() / 2);
-		this.viewportTransform.setExtents(0, 0);
 		this.gameContainer = gameContainer;
 		this.setFlags(DebugDraw.e_aabbBit + DebugDraw.e_centerOfMassBit
 				+ DebugDraw.e_dynamicTreeBit + DebugDraw.e_jointBit
