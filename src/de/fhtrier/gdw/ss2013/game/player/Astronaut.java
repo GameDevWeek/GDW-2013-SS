@@ -16,7 +16,7 @@ public class Astronaut extends Player implements AstronautController {
 	private float oxygen;
 	private float maxOxygen;
 	Animation bewegungs_ani;
-    private Animation animation;
+    
     
     private AssetLoader asset = AssetLoader.getInstance();
     
@@ -52,7 +52,7 @@ public class Astronaut extends Player implements AstronautController {
     public void render(GameContainer container, Graphics g)
             throws SlickException {
         // TODO Auto-generated method stub
-        bewegungs_ani.draw(position.x, position.y);
+        bewegungs_ani.draw(position.x-bewegungs_ani.getWidth()/2, position.y-bewegungs_ani.getHeight()/2);
         
     }
 
