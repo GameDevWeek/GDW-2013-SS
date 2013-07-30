@@ -7,6 +7,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.util.Log;
 
+import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.input.AlienController;
 
 public class Alien extends Player implements AlienController{
@@ -15,15 +16,17 @@ public class Alien extends Player implements AlienController{
 	private float mana;
 	private float maxMana;
 	private Animation  bewegungs_ani;
+	private AssetLoader asset;
 	
 	public Alien(Vector2f position) {
 		super(position);
 	
 		// Default
+		asset = AssetLoader.getInstance();
 		selectedAbility = 1;
 		maxMana = 0.0f;
 		mana = maxMana;
-		bewegungs_ani=assetloader.getAnimation(getZustand());
+		bewegungs_ani=asset.getAnimation(getZustand());
 	}
 
 	public float getMana() {
@@ -65,7 +68,15 @@ public class Alien extends Player implements AlienController{
     
     @Override
     public void rotateAbilitiesDown(){
-        //yet to implement
+        
+        /*if (selectedAbility > 0){
+            selectedAbility--;
+        }else{
+            selectedAbility = 3;
+        }*/
+        
+        selectedAbility = ((selectedAbility + 1) % 3) + 1;
+    
     }
     
     public int getselectedAbility(){

@@ -29,14 +29,17 @@ public class Mouse extends InputDevice {
         alienController.targetMouse(container.getInput().getMouseX(), container
                 .getInput().getMouseY());
         
-        if(wheel > org.lwjgl.input.Mouse.getDWheel() ){
+       
+        wheel = org.lwjgl.input.Mouse.getDWheel();
+        
+        if( wheel < 0 ){ 
             doAction(ACTION.ROTATEABILITY_UP);
-        }else if (wheel < org.lwjgl.input.Mouse.getDWheel()){
+        }else if (wheel > 0){
             doAction(ACTION.ROTATEABILITY_DOWN);
         }
         
-        wheel = org.lwjgl.input.Mouse.getDWheel();
-
+        
+        
     }
 
     @Override
