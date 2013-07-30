@@ -7,7 +7,6 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.util.Log;
 
-import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.input.AlienController;
 
 public class Alien extends Player implements AlienController{
@@ -16,7 +15,6 @@ public class Alien extends Player implements AlienController{
 	private float mana;
 	private float maxMana;
 	private Animation  bewegungs_ani;
-	private AssetLoader asset=AssetLoader.getInstance();;
 	
 	public Alien(Vector2f position) {
 		super(position);
@@ -47,13 +45,11 @@ public class Alien extends Player implements AlienController{
     @Override
     public void render(GameContainer container, Graphics g)
             throws SlickException {
-        // TODO Auto-generated method stub
        bewegungs_ani.draw(position.x, position.y+50); // zum testen
     }
 
     @Override
     public void shoot() {
-        // TODO Auto-generated method stub
         Log.debug("shooting");
         setZustand("animtest");
         
@@ -61,8 +57,6 @@ public class Alien extends Player implements AlienController{
 
     @Override
     public void rotateAbilitiesUp() {
-        // TODO Auto-generated method stub
-        
         selectedAbility = (selectedAbility % 3) + 1;
         
         Log.debug("rotate ability");
@@ -80,7 +74,6 @@ public class Alien extends Player implements AlienController{
 
     @Override
     public void useAbility() {
-        // TODO Auto-generated method stub
         Log.debug("using ability");
         setZustand("animtest");
     }
