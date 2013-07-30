@@ -13,7 +13,6 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.world.World;
-import de.fhtrier.gdw.ss2013.gui.utils.CenteredText;
 
 public class HUD {
 
@@ -21,17 +20,12 @@ public class HUD {
 	private Crosshair crosshair;
 	private Annotation notation;
 	private AbilitySelection abilityWheel;
-	private Image test;
 	private Quickselect quickselect;
-	private World worldinstance;
 	private AssetLoader asset;
 
 	public HUD(GameContainer container, World worldinstance) throws SlickException {
 		//init Assetloader
 	    asset = AssetLoader.getInstance();
-	    
-	    //init world
-	    this.worldinstance = worldinstance;
 	     
 	    // Init healthbar
 	    healthbar = new Progressbar();

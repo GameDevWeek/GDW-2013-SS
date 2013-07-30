@@ -43,7 +43,7 @@ public class World {
     private static World instance;
     // physics debug
     private DebugDrawer physicDebug;
-    public boolean debugDraw = true;
+    public boolean debugDraw = false;
 
     private EntityManager entityManager;
     private final PhysicsManager physicsManager;
