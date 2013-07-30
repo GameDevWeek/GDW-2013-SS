@@ -68,7 +68,8 @@ public class LoadGameState extends BasicGameState {
 		
 		 g.setColor(Color.red);
 		 
-		 g.fillRect(100, 100, loaded * 50, 50);
+		 g.fillRect(container.getWidth()/8, container.getHeight()/8*6,
+		         container.getWidth() / 8 * 6  /total * loaded, 50);
 		 
 		 
 		 
