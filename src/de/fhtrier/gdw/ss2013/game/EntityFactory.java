@@ -75,13 +75,14 @@ public class EntityFactory {
 
     @SuppressWarnings("unchecked")
     public <T extends Entity> T createEntity(Class<? extends Entity> entityClass) {
+
         if (testRecyceability(entityClass)) {
             Entity e = recycleMap.get(entityClass).poll();
             assert (e != null);
 
             return (T) e;
         }
-
+        System.out.println("Create Entity: " + entityClass.getName());
         Entity e = internalCreate(entityClass);
         assert (e != null);
         return (T) e;
@@ -90,12 +91,14 @@ public class EntityFactory {
     @SuppressWarnings("unchecked")
     public <T extends Entity> T createEntityAt(
             Class<? extends Entity> entityClass, Vector2f position) {
+
         if (testRecyceability(entityClass)) {
             Entity e = recycleMap.get(entityClass).poll();
             assert (e != null);
             e.setPosition(position);
             return (T) e;
         }
+        System.out.println("Create Entity: " + entityClass.getName());
         Entity e = internalCreateAt(entityClass, position);
         e.setPosition(position);
         return (T) e;
