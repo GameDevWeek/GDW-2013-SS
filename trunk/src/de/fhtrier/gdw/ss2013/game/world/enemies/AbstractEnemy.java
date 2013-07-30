@@ -21,7 +21,7 @@ public abstract class AbstractEnemy extends Entity {
 	private float damage;
 	private Animation rechts_ani, links_ani;
 	private Animation current_ani;
-	private AssetLoader asset = new AssetLoader();
+	private AssetLoader asset = AssetLoader.getInstance();
 
 	public AbstractEnemy() {
 		this(new Vector2f(), new Vector2f(), 0);

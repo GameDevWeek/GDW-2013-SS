@@ -24,7 +24,7 @@ public class Player extends Entity implements AlienController, AstronautControll
 	private Animation animation;
 	private String zustand = "animtest";
 	private Vector2f velocity;
-	AssetLoader asset = new AssetLoader();
+	AssetLoader asset = AssetLoader.getInstance();
 
 	public Player(Vector2f position) {
 		super(position);
