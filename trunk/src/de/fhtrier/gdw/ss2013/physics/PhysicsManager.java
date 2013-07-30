@@ -1,5 +1,7 @@
 package de.fhtrier.gdw.ss2013.physics;
 
+import javax.xml.soap.Node;
+
 import org.jbox2d.callbacks.ContactImpulse;
 import org.jbox2d.callbacks.ContactListener;
 import org.jbox2d.collision.Manifold;
@@ -35,14 +37,15 @@ public class PhysicsManager implements ContactListener {
             return false;
         }
         // Make sure we delete the first body as well.
-        Body body = _physicsWorld.getBodyList();
-        for (Body bodyIterator = _physicsWorld.getBodyList(); bodyIterator
-                != null; bodyIterator = bodyIterator.getNext())
-        {
-            if (body != null) {
-                _physicsWorld.destroyBody(body);
-                body = null;
-            }
+        Body bodyIterator = _physicsWorld.getBodyList();
+        if (bodyIterator == null) {
+            return true;
+        }
+        Body body = bodyIterator.getNext();
+        while(bodyIterator.getNext() != null) {
+            Body toBeDeleted = body;
+            body = bodyIterator.getNext();
+            _physicsWorld.destroyBody(toBeDeleted);
         }
         _physicsWorld = new World(_defaultGravity);
         return true;
