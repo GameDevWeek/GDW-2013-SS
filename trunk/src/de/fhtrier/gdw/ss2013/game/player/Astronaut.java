@@ -2,15 +2,12 @@ package de.fhtrier.gdw.ss2013.game.player;
 
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
-import org.newdawn.slick.util.Log;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.constants.PlayerConstants;
 import de.fhtrier.gdw.ss2013.input.AstronautController;
-import de.fhtrier.gdw.ss2013.input.InputManager;
 
 public class Astronaut extends Player implements AstronautController {
 
@@ -26,7 +23,7 @@ public class Astronaut extends Player implements AstronautController {
 		// Default
 		maxOxygen = 1000f;
 		oxygen = maxOxygen;
-		bewegungs_ani = assetloader.getAnimation(getZustand());
+		bewegungs_ani = AssetLoader.getInstance().getAnimation(getZustand());
 		this.getVelocity().x = 10;
 		this.getVelocity().y = 10;
 
