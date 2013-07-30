@@ -3,7 +3,7 @@ package de.fhtrier.gdw.ss2013.settings;
 public class DebugModeStatus {
     static protected boolean testModeStatus = true;
 
-    static protected boolean physicTestStatus = true;
+    static protected boolean physicTestStatus = false;
 
     static public boolean getStatus() {
         return testModeStatus;
