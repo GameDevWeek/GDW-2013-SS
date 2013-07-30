@@ -18,64 +18,43 @@ import de.fhtrier.gdw.ss2013.game.Entity;
  */
 public abstract class Player extends Entity {
 
-    Animation bewegungs_ani;
-    private Animation animation;
-    private String zustand = "animtest";
-    private Vector2f velocity;
+	Animation bewegungs_ani;
+	private String zustand = "animtest";
+	private Vector2f velocity;
 
-    public Player(Vector2f position) {
-        super(position);
+	public Player(Vector2f position) {
+		super(position);
+		velocity = new Vector2f();
+		bewegungs_ani = AssetLoader.getInstance().getAnimation(zustand);
 
-        velocity = new Vector2f();
-        // animation von assetloader beziehen
+	}
 
-        bewegungs_ani = AssetLoader.getInstance().getAnimation(zustand);
+	@Override
+	public void render(GameContainer container, Graphics g)
+			throws SlickException {
+		bewegungs_ani.draw(position.x - bewegungs_ani.getWidth() / 2,
+				position.y - bewegungs_ani.getHeight() / 2);
+	}
 
-    }
+	@Override
+	public void update(GameContainer container, int delta)
+			throws SlickException {
+	}
 
-    @Override
-    public void render(GameContainer container, Graphics g)
-            throws SlickException {
-        /*
-         * super.render(container, g); g.setColor(Color.green);
-         * g.setLineWidth(2); g.drawRect(position.x - 5, position.y - 5, 10,
-         * 10);
-         */
-        bewegungs_ani.draw(position.x - bewegungs_ani.getWidth() / 2,
-                position.y - bewegungs_ani.getHeight() / 2);
-    }
+	public Vector2f getVelocity() {
+		return velocity;
+	}
 
-    @Override
-    public void update(GameContainer container, int delta)
-            throws SlickException {
-    }
+	public void setVelocity(Vector2f velocity) {
+		this.velocity = velocity;
+	}
 
-    /*
-     * public enum Bewegung{ forward, backward, jump, still, sprint; }
-     */
+	public String getZustand() {
+		return zustand;
+	}
 
-    public Vector2f getVelocity() {
-        return velocity;
-    }
-
-    public void setVelocity(Vector2f velocity) {
-        this.velocity = velocity;
-    }
-
-    public String getZustand() {
-        return zustand;
-    }
-
-    public void setZustand(String zustand) {
-        this.zustand = zustand;
-    }
-
-    /*
-     * public void ani() { switch(zustand) { case "forward": for_ani.draw();
-     * break; case "backward": back_ani.draw(); break; case "jump":
-     * jump_ani.draw(); break; default: still_ani.draw(); break;
-     * 
-     * } }
-     */
+	public void setZustand(String zustand) {
+		this.zustand = zustand;
+	}
 
 }
