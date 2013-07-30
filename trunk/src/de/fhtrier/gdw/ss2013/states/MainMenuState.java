@@ -34,7 +34,7 @@ public class MainMenuState extends BasicGameState {
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta)
 			throws SlickException {
-		MainGame.checkFullscreenToggle();
+		((MainGame)game).checkFullscreenToggle();
 
 	}
 

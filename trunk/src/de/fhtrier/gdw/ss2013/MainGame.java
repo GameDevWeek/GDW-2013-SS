@@ -28,6 +28,7 @@ public class MainGame extends StateBasedGame {
     public static final int GAMEPLAYSTATE = 1;
     public static final int LOADGAMESTATE = 2;
     public static final int PHYSIC_TEST = 1337;
+
     public static int currentState = -1;
     public static MainGame instance;
 
@@ -47,7 +48,7 @@ public class MainGame extends StateBasedGame {
         addState(loadGameState);
     }
 
-    public static void checkFullscreenToggle() {
+    public void checkFullscreenToggle() {
         if (instance.input.isKeyDown(Input.KEY_ENTER)
                 && (instance.input.isKeyDown(Input.KEY_LALT) || instance.input
                         .isKeyDown(Input.KEY_RALT))) {
