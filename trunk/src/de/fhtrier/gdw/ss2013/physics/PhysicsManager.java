@@ -31,7 +31,7 @@ public class PhysicsManager implements ContactListener {
     }
 
     public boolean reset() {
-     // It is not allowed to remove bodies from the world while it is locked.
+        // It is not allowed to remove bodies from the world while it is locked.
         // Check locking state to prevent assertion in native library.
         if (_physicsWorld.isLocked()) {
             return false;
@@ -47,7 +47,7 @@ public class PhysicsManager implements ContactListener {
             body = bodyIterator.getNext();
             _physicsWorld.destroyBody(toBeDeleted);
         }
-        _physicsWorld.destroyBody(bodyIterator);
+        _physicsWorld = new World(_defaultGravity);
         return true;
     }
 

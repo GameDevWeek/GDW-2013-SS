@@ -6,7 +6,6 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.Sound;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -14,15 +13,13 @@ import de.fhtrier.gdw.commons.tiled.TiledMap;
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.camera.Camera;
-import de.fhtrier.gdw.ss2013.game.player.Alien;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.world.LevelLoader;
-import de.fhtrier.gdw.ss2013.game.world.enemies.FlyingEnemy;
 import de.fhtrier.gdw.ss2013.game.world.enemies.Meteroid;
-import de.fhtrier.gdw.ss2013.game.world.objects.OxygenFlower;
 import de.fhtrier.gdw.ss2013.input.InputManager;
 import de.fhtrier.gdw.ss2013.physics.DebugDrawer;
 import de.fhtrier.gdw.ss2013.physics.PhysicsManager;
+import de.fhtrier.gdw.ss2013.physics.PhysicsObject;
 import de.fhtrier.gdw.ss2013.physics.PhysicsTools;
 import de.fhtrier.gdw.ss2013.physics.RectanglePhysicsObject;
 import de.fhtrier.gdw.ss2013.renderer.MapRenderer;
@@ -125,17 +122,25 @@ public class TestWorld {
         if (input.isKeyDown(Input.KEY_RIGHT)) {
             astronautPos.x += speed;
         }
+        if (input.isKeyPressed(Input.KEY_M)) {
+            Vector2f position = new Vector2f(150, -80);
+            Meteroid m = entityManager.createEntityAt(Meteroid.class, position);
+            PhysicsObject t = new RectanglePhysicsObject(BodyType.DYNAMIC,
+                    new Vec2(5, 5), new Vec2(position.x, position.y));
 
+            m.setPhysicsObject(t);
+        }
         if (input.isKeyPressed(Input.KEY_SPACE)) {
-            
-            RectanglePhysicsObject rpo = new RectanglePhysicsObject( BodyType.DYNAMIC, PhysicsTools.pixelToWorld(new Vec2(100, 100)),new Vec2(500, 300));
+
+            RectanglePhysicsObject rpo = new RectanglePhysicsObject(
+                    BodyType.DYNAMIC, PhysicsTools.pixelToWorld(new Vec2(100,
+                            100)), new Vec2(500, 300));
             rpo.setMassData(100f);
-            Vec2 force = new Vec2(2,0);
+            Vec2 force = new Vec2(2, 0);
             System.out.println(force);
             rpo.applyImpulse(force);
-          }
-        
-        
+        }
+
     }
 
     public Vector2f screenToWorldPosition(Vector2f screenPosition) {
