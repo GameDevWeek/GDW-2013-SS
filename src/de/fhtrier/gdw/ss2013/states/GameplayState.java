@@ -26,17 +26,14 @@ public class GameplayState extends BasicGameState {
 	private HUD hud;
 	private InputManager inputManager;
 
-
 	@Override
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
-	    InputManager.init(container);
-	    inputManager = InputManager.getInstance();
+		InputManager.init(container);
+		inputManager = InputManager.getInstance();
 		world = new World(container, game);
 		font = AssetLoader.getInstance().getFont("verdana_46");
 		hud = new HUD(container, world);
-		
-
 	}
 
 	@Override
@@ -67,8 +64,8 @@ public class GameplayState extends BasicGameState {
 
 	@Override
 	public void keyReleased(int key, char c) {
-		
-		//triggers PhysicTestState
+
+		// triggers PhysicTestState
 		if (key == Input.KEY_EQUALS || key == Input.KEY_P) {
 			MainGame.changeState(MainGame.PHYSIC_TEST);
 		}
