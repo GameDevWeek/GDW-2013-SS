@@ -23,6 +23,23 @@ import de.fhtrier.gdw.ss2013.input.InputManager.ACTION;
 
 public abstract class InputDevice {
 
+	public static enum DEVICE_TYPE {
+		MOUSE("mouse"),
+		KEYBOARD("keyboard"),
+		GAMEPAD("gamepad");
+		
+		private String deviceName;
+
+		private DEVICE_TYPE(String deviceName) {
+			this.deviceName = deviceName;
+		}
+		
+		@Override
+		public String toString() {
+			return deviceName; 
+		}
+	};
+
 	protected GameContainer container;
 	protected AlienController alienController = null;
 	protected AstronautController astronautController = null;
@@ -94,8 +111,8 @@ public abstract class InputDevice {
 		}
 	}
 
-	public void loadKeymapping (String device) {
-		List<KeyInfo> mappings = AssetLoader.getInstance().getKeyList(device);
+	public void loadKeymapping (DEVICE_TYPE deviceType) {
+		List<KeyInfo> mappings = AssetLoader.getInstance().getKeyList(deviceType);
 		for (KeyInfo keyInfo : mappings) {
 			ACTION action = ACTION.getAction(keyInfo.name);
 			//derzeit nur 1 Taste pro Action

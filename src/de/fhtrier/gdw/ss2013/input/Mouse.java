@@ -4,7 +4,6 @@ package de.fhtrier.gdw.ss2013.input;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.util.Log;
-import org.lwjgl.input.*;
 
 import de.fhtrier.gdw.ss2013.input.InputManager.ACTION;
 
@@ -12,7 +11,7 @@ public class Mouse extends InputDevice {
 
 	public Mouse (GameContainer gc) {
 		super(gc);
-		loadKeymapping("mouse");
+		loadKeymapping(DEVICE_TYPE.MOUSE);
 	}
 
 	@Override
