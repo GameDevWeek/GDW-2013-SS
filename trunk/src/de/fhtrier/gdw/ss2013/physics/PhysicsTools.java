@@ -1,6 +1,9 @@
 //Author: Jerry, Thomas M.
 package de.fhtrier.gdw.ss2013.physics;
 
+import java.awt.Point;
+import java.util.ArrayList;
+
 import org.jbox2d.common.Vec2;
 
 public class PhysicsTools {
@@ -31,5 +34,24 @@ public class PhysicsTools {
         return returner;
     }
     
+    public static Vec2 PointToVec2(Point point)
+    {
+        return new Vec2(point.x,point.y);
+    }
+    
+    public static Point Vec2ToPoint(Vec2 v)
+    {
+        return new Point((int)v.x,(int)v.y);
+    }
+    
+    public static Vec2[] PointArrToVec2Arr(ArrayList<Point> pointList)
+    {
+        Vec2[] returner = new Vec2[pointList.size()];
+        for(int pointCount = 0;pointCount < returner.length; pointCount++)
+        {
+            returner[pointCount] = PointToVec2(pointList.get(pointCount));
+        }
+        return returner;
+    }
 
 }
