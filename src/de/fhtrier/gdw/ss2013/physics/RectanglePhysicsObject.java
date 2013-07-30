@@ -1,7 +1,11 @@
+//Author: Jerry
+
 package de.fhtrier.gdw.ss2013.physics;
 
 import org.jbox2d.collision.shapes.EdgeShape;
+import org.jbox2d.collision.shapes.Shape;
 import org.jbox2d.common.Vec2;
+import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
@@ -21,6 +25,11 @@ public class RectanglePhysicsObject extends PhysicsObject {
 	public RectanglePhysicsObject(Entity owner, BodyType bodyType, Vec2 rec) {
 		this(owner, bodyType, rec, new Vec2());
 	}
+	
+   public RectanglePhysicsObject(Entity owner,Vec2 rec,
+            Vec2 pos) {
+        this(owner, BodyType.STATIC, rec, pos);
+    }
 
 	public RectanglePhysicsObject(Entity owner, BodyType bodyType, Vec2 rec,
 			Vec2 pos) {
@@ -31,6 +40,11 @@ public class RectanglePhysicsObject extends PhysicsObject {
 			Vec2 pos, float restitution) {
 		this(owner, bodyType, rec, pos, restitution, 0);
 	}
+	
+	public RectanglePhysicsObject(Entity owner, BodyType bodyType, Vec2 rec,
+            Vec2 pos, boolean isSensor) {
+        this(owner, bodyType, rec, pos, 0, 0, 0,isSensor);
+    }
 
 	public RectanglePhysicsObject(Entity owner, BodyType bodyType, Vec2 rec,
 			Vec2 pos, float restitution, float density) {
@@ -45,23 +59,14 @@ public class RectanglePhysicsObject extends PhysicsObject {
 	public RectanglePhysicsObject(Entity owner, BodyType bodyType, Vec2 rec,
 			Vec2 pos, float restitution, float density, float friction,
 			boolean isSensor) {
-		super(owner);
+		super(owner, restitution, density, friction, isSensor);
 		EdgeShape myShape = new EdgeShape();
 		myShape.set(pos, new Vec2(pos.x + rec.x, pos.y + rec.y));
-
-		FixtureDef myFixtureDef = new FixtureDef();
-		myFixtureDef.shape = myShape;
-		myFixtureDef.restitution = restitution;
-		myFixtureDef.density = density;
-		myFixtureDef.friction = friction;
-		myFixtureDef.isSensor = isSensor;
 
 		BodyDef myBodyDef = new BodyDef();
 		myBodyDef.type = bodyType;
 
-		setBodyDef(myBodyDef);
-		enableSimulation();
-		setFixtureDef(myFixtureDef);
+		init(myShape, myBodyDef);
 	}
 
 }
