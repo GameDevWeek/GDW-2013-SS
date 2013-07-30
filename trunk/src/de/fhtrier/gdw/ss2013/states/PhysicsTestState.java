@@ -46,14 +46,14 @@ public class PhysicsTestState extends BasicGameState {
 		MainGame.checkFullscreenToggle();
 		world.update(container, delta);
 		inputManager.update(delta);
-		world.getPhysicsManager().update(container, delta);
+		//world.getPhysicsManager().update(container, delta);
 
 	}
 
 	@Override
 	public void enter(GameContainer container, StateBasedGame game)
 			throws SlickException {
-		world.getPhysicsManager().reset();
+		//world.getPhysicsManager().reset();
 	}
 
 	public int getID() {
