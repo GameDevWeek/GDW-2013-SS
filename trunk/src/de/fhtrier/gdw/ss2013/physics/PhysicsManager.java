@@ -20,7 +20,7 @@ public class PhysicsManager implements ContactListener {
 
     private PhysicsManager() {
         _physicsWorld = new World(new Vec2(0.0f, -9.81f));
-        _physicsWorld.setDebugDraw(new DebugDrawer());
+        //_physicsWorld.setDebugDraw(new DebugDrawer());
         _physicsWorld.setContactListener(this);
     }
 
@@ -51,7 +51,7 @@ public class PhysicsManager implements ContactListener {
             objectB.onCollide(objectA);
         }
         */
-        _physicsWorld.drawDebugData();
+        //_physicsWorld.drawDebugData();
     }
 
     public Body enableSimulation(PhysicsObject object) {
