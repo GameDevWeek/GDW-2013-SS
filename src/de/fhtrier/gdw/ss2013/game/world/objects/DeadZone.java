@@ -7,6 +7,7 @@
 
 package de.fhtrier.gdw.ss2013.game.world.objects;
 
+import org.jbox2d.dynamics.Fixture;
 import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.game.Entity;
@@ -29,6 +30,12 @@ public class DeadZone extends Entity implements ICollidable{
 	    {
 	        ((Astronaut)e).setOxygen(0);
 	    }
+	}
+
+	@Override
+	public Fixture getFixture() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

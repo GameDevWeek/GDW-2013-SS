@@ -8,6 +8,7 @@
 
 package de.fhtrier.gdw.ss2013.game.world.objects;
 
+import org.jbox2d.dynamics.Fixture;
 import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.game.Entity;
@@ -52,6 +53,12 @@ public class OxygenBubble extends Entity implements ICollidable{
 
 	public void setOxygenLevel(float oxygenLevel) {
 		this.oxygenLevel = oxygenLevel;
+	}
+
+	@Override
+	public Fixture getFixture() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
