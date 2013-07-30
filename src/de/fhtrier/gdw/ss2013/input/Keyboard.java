@@ -1,10 +1,18 @@
+
 package de.fhtrier.gdw.ss2013.input;
 
 import java.util.HashSet;
+import java.util.List;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.util.Log;
+
+import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
+import de.fhtrier.gdw.ss2013.assetloader.infos.KeyInfo;
+import de.fhtrier.gdw.ss2013.input.InputManager.ACTION;
 
 /*
  * Team Input
@@ -14,41 +22,16 @@ import org.newdawn.slick.util.Log;
 
 public class Keyboard extends InputDevice {
 
-	public Keyboard(GameContainer gc) {
+	public Keyboard (GameContainer gc) {
 		super(gc);
+		loadKeymapping("keyboard");
 	}
 
 	@Override
-	public void update() {
-
-		HashSet<ACTION> actions = new HashSet<>(keymapping.values());
-		for (int key : keymapping.keySet()) {
-			if (container.getInput().isKeyDown(key)) {
-				ACTION action = keymapping.get(key);
-				if (actions.contains(action)) {
-					actions.remove(action);
-					doAction(action);
-				}
-			}
-		}
+	public void update () {
+		super.update();
 	}
 
 
-	@Override
-	public void loadKeymapping() {
-		keymapping.put(Input.KEY_D, ACTION.MOVEFORWARD);
-		keymapping.put(Input.KEY_RIGHT, ACTION.MOVEFORWARD);
-
-		keymapping.put(Input.KEY_A, ACTION.MOVEBACKWARD);
-		keymapping.put(Input.KEY_LEFT, ACTION.MOVEBACKWARD);
-
-		keymapping.put(Input.KEY_W, ACTION.JUMP);
-		keymapping.put(Input.KEY_UP, ACTION.JUMP);
-
-		keymapping.put(Input.KEY_S, ACTION.ACTION);
-		keymapping.put(Input.KEY_DOWN, ACTION.ACTION);
-		
-		Log.debug(String.valueOf(ACTION.MOVEBACKWARD.ordinal()));
-	}
 
 }
