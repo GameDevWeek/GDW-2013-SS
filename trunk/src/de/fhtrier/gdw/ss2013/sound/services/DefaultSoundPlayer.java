@@ -94,17 +94,22 @@ public class DefaultSoundPlayer implements SoundPlayer {
         float volume = 1.0f - 1.0f * (distance - 50.0f)
                 / (MAX_DISTANCE - 50.0f);
 
-        // System.out.println(volume);
         volume = Math.max(0.0f, Math.min(1.0f, volume));
-        System.out.println(stepfunction(playAtDirection.x));
-        sound.playAt(1.0f, volume, -stepfunction(playAtDirection.x), 0, 0.0f);
+        
+        // Calculate sound direction
+        //float soundX = (1.0f - volume) * -stepfunction(playAtDirection.x); 
+        
+        // x = -1 = LeftSpeaker ; x = 0 = Center ; x = 1 = RightSpeaker
+        sound.playAt(1.0f, volume, 0.0f, 0.0f, 0.0f);
         // sound.play();
         emitterSoundPlayingMap.get(emitter).add(sound);
     }
 
     @Override
     public void playMusic(Sound music) {
-
+        if (!music.playing()) {
+            music.loop(1.0f, 1.0f);
+        }
     }
 
     @Override
