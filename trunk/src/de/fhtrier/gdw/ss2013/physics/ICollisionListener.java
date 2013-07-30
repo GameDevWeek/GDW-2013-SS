@@ -1,5 +1,10 @@
 package de.fhtrier.gdw.ss2013.physics;
 
-public abstract class ICollisionListener {
-	public abstract void onCollide(PhysicsObject object);
+import org.jbox2d.callbacks.ContactListener;
+
+public abstract class ICollisionListener implements ContactListener {
+    
+    abstract void beginContact(PhysicsObject object);
+    
+    abstract void endContact(PhysicsObject object);
 }
