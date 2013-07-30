@@ -57,21 +57,25 @@ public class Astronaut extends Player implements AstronautController {
     @Override
     public void moveForward() {
         position.x += 10;
+        setZustand("animtest");
     }
 
     @Override
     public void moveBackward() {
         position.x -= 10;
+        setZustand("animtest");
     }
 
     @Override
     public void jump() {
     	position.y -= 10;
+        setZustand("animtest");
     }
 
     @Override
     public void action() {
     	position.y += 10;
+        setZustand("animtest");
     }
 	
 	

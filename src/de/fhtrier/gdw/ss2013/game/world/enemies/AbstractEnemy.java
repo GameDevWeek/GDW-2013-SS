@@ -17,51 +17,106 @@ import de.fhtrier.gdw.ss2013.game.Entity;
  */
 public abstract class AbstractEnemy extends Entity {
 
-	private Vector2f velocity;
-	private float damage;
-	private Animation rechts_ani, links_ani;
-	private Animation current_ani;
-	private AssetLoader asset = AssetLoader.getInstance();
+    private Vector2f velocity;
+    private float damage;
+    private Animation current_ani;
+    private String left_animation = "animtest", right_animation = "animtest",
+            current = "animtest", oben = "animtest", unten = "animtest";
 
-	public AbstractEnemy() {
-		this(new Vector2f(), new Vector2f(), 0);
-	}
+    private AssetLoader asset = AssetLoader.getInstance();
 
-	public AbstractEnemy(Vector2f pos) {
-		this(pos.copy(), new Vector2f(), 0);
-		rechts_ani = asset.getAnimation("animtes");
-		links_ani = asset.getAnimation("animtes");
-	}
+    public AbstractEnemy() {
+        this(new Vector2f(), new Vector2f(), 0);
+        current_ani = asset.getAnimation(current);
 
-	public AbstractEnemy(Vector2f pos, Vector2f velo, float dmg) {
-		super(pos.copy());
-		this.velocity = velo.copy();
-		this.damage = dmg;
-	}
+    }
 
-	public Vector2f getVelocity() {
-		return velocity;
-	}
+    public AbstractEnemy(Vector2f pos) {
+        this(pos.copy(), new Vector2f(), 0);
+        current_ani = asset.getAnimation(current);
 
-	public float getDamage() {
-		return damage;
-	}
+    }
 
-	public void setDamage(float dmg) {
-		damage = dmg;
-	}
+    public AbstractEnemy(Vector2f pos, Vector2f velo, float dmg) {
+        super(pos.copy());
+        this.velocity = velo.copy();
+        this.damage = dmg;
+        current_ani = asset.getAnimation(current);
 
-	@Override
-	public void render(GameContainer container, Graphics g)
-			throws SlickException {
-		// TODO Auto-generated method stub
-		if (velocity.x > 0) {
-			current_ani = rechts_ani;
-		}
-		if (velocity.x < 0) {
-			current_ani = links_ani;
-		}
-		current_ani.draw(this.getPosition().x, this.getPosition().y);
+    }
 
-	}
+    public Vector2f getVelocity() {
+        return velocity;
+    }
+
+    public float getDamage() {
+        return damage;
+    }
+
+    public void setDamage(float dmg) {
+        damage = dmg;
+    }
+
+    @Override
+    public void render(GameContainer container, Graphics g)
+            throws SlickException {
+        // TODO Auto-generated method stub
+        // links-rechts
+        // rechts-links
+
+        if (velocity.x > 0
+                && current_ani.equals(asset.getAnimation(right_animation))) {
+            current_ani = asset.getAnimation(right_animation);
+
+        }
+        if (velocity.x < 0
+                && current_ani.equals(asset.getAnimation(left_animation))) {
+            current_ani = asset.getAnimation(left_animation);
+
+            // oben-unten
+        }
+        /*if (velocity.x > 0) {
+            current_ani = asset.getAnimation(right_animation);
+
+        }
+        if (velocity.x < 0) {
+            current_ani = asset.getAnimation(left_animation);
+
+        }*/
+        current_ani.draw(this.getPosition().x, this.getPosition().y);
+
+    }
+
+    public void setLeft_animation(String left_animation) {
+        this.left_animation = left_animation;
+    }
+
+    public void setRight_animation(String right_animation) {
+        this.right_animation = right_animation;
+    }
+
+    public String getCurrent() {
+        return current;
+    }
+
+    public void setCurrent(String current) {
+        this.current = current;
+    }
+
+    public String getLeft_animation() {
+        return left_animation;
+    }
+
+    public String getRight_animation() {
+        return right_animation;
+    }
+
+    public void setOben(String oben) {
+        this.oben = oben;
+    }
+
+    public void setUnten(String unten) {
+        this.unten = unten;
+    }
+
 }
