@@ -14,17 +14,14 @@ public class Astronaut extends Player implements AstronautController {
 	private float oxygen;
 	private float maxOxygen;
 	private boolean carryAlien = true;
-	Animation bewegungs_ani;
 
 	public Astronaut(Vector2f position) {
 		super(position);
 
 		maxOxygen = 1000f;
 		oxygen = maxOxygen;
-		bewegungs_ani = AssetLoader.getInstance().getAnimation(getZustand());
 		this.getVelocity().x = 10;
 		this.getVelocity().y = 10;
-
 	}
 
 	public float getOxygen() {

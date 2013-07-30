@@ -18,22 +18,21 @@ import de.fhtrier.gdw.ss2013.game.Entity;
  */
 public abstract class Player extends Entity {
 
-	Animation bewegungs_ani;
+	private Animation animation;
 	private String zustand = "animtest";
 	private Vector2f velocity;
 
 	public Player(Vector2f position) {
 		super(position);
 		velocity = new Vector2f();
-		bewegungs_ani = AssetLoader.getInstance().getAnimation(zustand);
-
+		animation = AssetLoader.getInstance().getAnimation(zustand);
 	}
 
 	@Override
 	public void render(GameContainer container, Graphics g)
 			throws SlickException {
-		bewegungs_ani.draw(position.x - bewegungs_ani.getWidth() / 2,
-				position.y - bewegungs_ani.getHeight() / 2);
+		animation.draw(position.x - animation.getWidth() / 2,
+				position.y - animation.getHeight() / 2);
 	}
 
 	@Override

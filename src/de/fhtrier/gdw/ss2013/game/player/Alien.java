@@ -1,13 +1,10 @@
 package de.fhtrier.gdw.ss2013.game.player;
 
-import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.util.Log;
 
-import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.input.AlienController;
 
@@ -16,7 +13,6 @@ public class Alien extends Player implements AlienController{
     private int selectedAbility;
 	private float mana;
 	private float maxMana;
-	private Animation  bewegungs_ani;
 	
 	public Alien(Vector2f position) {
 		super(position);
@@ -25,7 +21,6 @@ public class Alien extends Player implements AlienController{
 		selectedAbility = 1;
 		maxMana = 0.0f;
 		mana = maxMana;
-		bewegungs_ani=AssetLoader.getInstance().getAnimation(getZustand());
 	}
 
 	public float getMana() {
