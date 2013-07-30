@@ -12,7 +12,9 @@ public interface AlienController {
 
 	public void shoot();
 
-	public void rotateAbilities();
+	public void rotateAbilitiesUp();
+	
+	public void rotateAbilitiesDown();
 
 	public void useAbility();
 	

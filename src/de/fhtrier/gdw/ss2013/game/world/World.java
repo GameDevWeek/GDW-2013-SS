@@ -190,6 +190,10 @@ public class World {
     public Astronaut getAstronaut() {
         return astronaut;
     }
+    
+    public Alien getAlien(){
+        return alien;
+    }
 
     public Camera getCamera() {
         return camera;

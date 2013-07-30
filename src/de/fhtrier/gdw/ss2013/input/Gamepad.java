@@ -60,7 +60,7 @@ public class Gamepad extends InputDevice{
         
         keymapping.put(3, ACTION.USEABILITY); //  (7)
         
-        keymapping.put(4, ACTION.ROTATEABILITY); //  (8)
+        keymapping.put(4, ACTION.ROTATEABILITY_UP); //  (8)
 
     }
 
