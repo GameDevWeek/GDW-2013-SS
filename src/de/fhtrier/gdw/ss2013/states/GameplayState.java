@@ -15,6 +15,7 @@ import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.gui.HUD;
 import de.fhtrier.gdw.ss2013.input.InputManager;
 import de.fhtrier.gdw.ss2013.physics.PhysicsManager;
+import org.newdawn.slick.AppGameContainer;
 
 /**
  * Gameplay state
@@ -50,6 +51,7 @@ public class GameplayState extends BasicGameState {
 	@Override
 	public void update(GameContainer container, StateBasedGame game, int delta)
 			throws SlickException {
+        ((AppGameContainer)container).setTitle(MainGame.WINDOW_TITLE + " : " + container.getFPS());
 		MainGame.checkFullscreenToggle();
 		inputManager.update(delta);
 //		PhysicsManager.getInstance().update(container, delta);

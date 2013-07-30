@@ -16,6 +16,7 @@ import de.fhtrier.gdw.ss2013.MainGame;
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.settings.DebugModeStatus;
 import de.fhtrier.gdw.ss2013.sound.SoundLocator;
+import org.newdawn.slick.AppGameContainer;
 
 /**
  * Loading state
@@ -32,6 +33,7 @@ public class LoadGameState extends BasicGameState {
     @Override
     public void init(GameContainer container, StateBasedGame game)
             throws SlickException {
+        ((AppGameContainer)container).setVSync(false);
         // loadscreen = new Image("/res/images/testbild.png");
         LoadingList.setDeferredLoading(true);
 
@@ -56,7 +58,6 @@ public class LoadGameState extends BasicGameState {
     @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g)
             throws SlickException {
-        container.setShowFPS(false);
 
         int total = LoadingList.get().getTotalResources();
         int loaded = total - LoadingList.get().getRemainingResources();
@@ -98,7 +99,8 @@ public class LoadGameState extends BasicGameState {
         if (LoadingList.get().getRemainingResources() > 0) {
             nextResource = LoadingList.get().getNext();
         } else {
-            container.setShowFPS(true);
+            /// TODO: set to true on release
+            ((AppGameContainer)container).setVSync(false);
             SoundStore.get().setDeferredLoading(false);
 
             mainMenuState = new MainMenuState();

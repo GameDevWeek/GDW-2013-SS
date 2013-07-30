@@ -110,8 +110,7 @@ public class MainGame extends StateBasedGame {
             app.setDisplayMode(1024, 768, false);
             app.setAlwaysRender(true);
             app.setMaximumLogicUpdateInterval(60);
-            app.setVSync(true);
-            app.setShowFPS(true);
+            app.setShowFPS(false);
             app.start();
 
         } catch (SlickException e) {
