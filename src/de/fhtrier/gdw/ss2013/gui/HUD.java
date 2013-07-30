@@ -66,10 +66,8 @@ public class HUD {
 		// DEV
 		quickselect.setSelected(2);
 		
-		
 		//init Crosshair
-		final Image cross = asset.getImage("ability1");
-		crosshair = new Crosshair(cross, worldinstance);
+		crosshair = new Crosshair();
 		
 		//init tooltip
 		notation = new Annotation();
