@@ -66,10 +66,12 @@ public class Alien extends Player implements AlienController{
         Log.debug("using ability");
     }
 
+
     @Override
-    public void targetMouse() {
+    public void targetMouse(int x, int y) {
         // TODO Auto-generated method stub
-        Log.debug("target direction");
+      //  Log.debug("targeting at " + x +  ", " + y);
+
     }
 
     
