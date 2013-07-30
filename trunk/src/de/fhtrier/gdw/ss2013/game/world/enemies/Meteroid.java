@@ -64,8 +64,8 @@ public class Meteroid extends AbstractEnemy implements ICollidable {
 			throws SlickException {
 		float dt = delta / 1000.f;
 		// TODO clamp dt if dt > 1/60.f ?
-		this.getPosition().x += this.getVelocity().x;
-		this.getPosition().y += this.getVelocity().y;
+		this.getPosition().x += this.getVelocity().x * dt;
+		this.getPosition().y += this.getVelocity().y * dt;
 	    if (health <= 0) {
 	         m.removeEntity(this);
 	    }
