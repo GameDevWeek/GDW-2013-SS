@@ -4,9 +4,7 @@
 
 package de.fhtrier.gdw.ss2013.game;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -22,26 +20,24 @@ import de.fhtrier.gdw.ss2013.math.MathConstants;
 public class EntityManager {
     // static protected EntityManager managerInstance;
     protected ArrayList<Entity> entityList;
-    protected HashMap<Class<? extends RecycleableEntity>, LinkedList<Entity>> recycleMap;
     protected Queue<Entity> removalQueue;
     protected Queue<Entity> insertionQueue;
 
+    private EntityFactory factory;
+
     public EntityManager() {
         entityList = new ArrayList<>();
-        recycleMap = new HashMap<>();
+
         removalQueue = new LinkedList<>();
         insertionQueue = new LinkedList<>();
+        factory = new EntityFactory();
     }
 
     private void internalRemove() {
         while (!removalQueue.isEmpty()) {
             Entity e = removalQueue.poll();
             if (e instanceof RecycleableEntity) {
-                LinkedList<Entity> recycleList = recycleMap.get(e.getClass());
-                if (recycleList == null) {
-                    recycleList = new LinkedList<>();
-                }
-                recycleList.add(e);
+                factory.recycle(e);
             }
             entityList.remove(removalQueue.poll());
         }
@@ -139,86 +135,19 @@ public class EntityManager {
         removalQueue.add(e);
     }
 
-    private Entity internalCreate(Class<? extends Entity> entityClass) {
-        Entity e = null;
-        try {
-            assert (entityClass.getConstructor() != null);
-            e = entityClass.newInstance();
-            addEntity(e);
-        } catch (NoSuchMethodException ex) {
-            ex.printStackTrace();
-        } catch (SecurityException ex) {
-            ex.printStackTrace();
-        } catch (InstantiationException ex) {
-            ex.printStackTrace();
-        } catch (IllegalAccessException ex) {
-            ex.printStackTrace();
-        }
-        return e;
-    }
-
-    private Entity internalCreateAt(Class<? extends Entity> entityClass,
-            Vector2f position) {
-
-        Entity e = null;
-        try {
-            assert (entityClass.getConstructor(Vector2f.class) != null);
-            e = entityClass.getConstructor(Vector2f.class)
-                    .newInstance(position);
-            addEntity(e);
-        } catch (NoSuchMethodException ex) {
-            ex.printStackTrace();
-        } catch (SecurityException ex) {
-            ex.printStackTrace();
-        } catch (InstantiationException ex) {
-            ex.printStackTrace();
-        } catch (IllegalAccessException ex) {
-            ex.printStackTrace();
-        } catch (IllegalArgumentException ex) {
-            ex.printStackTrace();
-        } catch (InvocationTargetException ex) {
-            ex.printStackTrace();
-        }
-        return e;
-    }
-
-    private boolean testRecyceability(Class<? extends Entity> entityClass) {
-        if (entityClass.isInstance(RecycleableEntity.class)) {
-            if (recycleMap.get(entityClass) != null
-                    && !recycleMap.get(entityClass).isEmpty()) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    @SuppressWarnings("unchecked")
     public <T extends Entity> T createEntity(Class<? extends Entity> entityClass) {
-        if (testRecyceability(entityClass)) {
-            Entity e = recycleMap.get(entityClass).poll();
-            assert (e != null);
-            addEntity(e); // TODO delay add, falls möglich
-            return (T) e;
-        }
-
-        Entity e = internalCreate(entityClass);
+        T e = factory.createEntity(entityClass);
+        addEntity(e);
         assert (e != null);
-        return (T) e;
+        return e;
     }
 
-    @SuppressWarnings("unchecked")
     public <T extends Entity> T createEntityAt(
             Class<? extends Entity> entityClass, Vector2f position) {
-        if (testRecyceability(entityClass)) {
-            Entity e = recycleMap.get(entityClass).poll();
-            assert (e != null);
-            e.setPosition(position);
-            addEntity(e); // TODO delay add
-            return (T) e;
-        }
-        Entity e = internalCreateAt(entityClass, position);
+        T e = factory.createEntityAt(entityClass, position);
         e.setPosition(position);
-        return (T) e;
+        addEntity(e);
+        return e;
     }
 
 }

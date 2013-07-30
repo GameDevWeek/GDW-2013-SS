@@ -6,17 +6,16 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
 
 import de.fhtrier.gdw.commons.tiled.TiledMap;
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
-import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.camera.Camera;
 import de.fhtrier.gdw.ss2013.game.player.Alien;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
-import de.fhtrier.gdw.ss2013.game.player.Player;
 import de.fhtrier.gdw.ss2013.game.world.enemies.FlyingEnemy;
 import de.fhtrier.gdw.ss2013.game.world.enemies.Meteroid;
 import de.fhtrier.gdw.ss2013.game.world.objects.OxygenFlower;
@@ -70,19 +69,22 @@ public class World {
                     .setDebugDraw(physicDebug);
         }
 
-        astronaut = entityManager.createEntityAt(Astronaut.class, new Vector2f(200,
-                200));
-        InputManager.getInstance().getKeyboard().setAstronautController(astronaut);
-        alien= entityManager.createEntityAt(Alien.class, astronaut.getPosition());
+        astronaut = entityManager.createEntityAt(Astronaut.class, new Vector2f(
+                200, 200));
+        InputManager.getInstance().getKeyboard()
+                .setAstronautController(astronaut);
+        alien = entityManager.createEntityAt(Alien.class,
+                astronaut.getPosition());
         InputManager.getInstance().getMouse().setAlienController(alien);
-        
+
         SoundLocator.provide(new DefaultSoundPlayer(astronaut));
 
         oxyFlower = (OxygenFlower) entityManager.createEntityAt(
                 OxygenFlower.class, new Vector2f(300, 300));
         for (int i = 0; i < enemy.length; i++) {
-            enemy[i] = (FlyingEnemy) entityManager.createEntityAt(FlyingEnemy.class,
-                    new Vector2f(500+i*50, 500+i*50));
+            enemy[i] = (FlyingEnemy) entityManager
+                    .createEntityAt(FlyingEnemy.class, new Vector2f(
+                            500 + i * 50, 500 + i * 50));
             enemy[i].setReferences(entityManager, astronaut);
         }
         for (int i = 0; i < metro.length; i++) {
@@ -94,11 +96,12 @@ public class World {
     public void render(GameContainer container, Graphics g)
             throws SlickException {
         Vector2f astronautPos = astronaut.getPosition();
-        camera.update(container.getWidth(), container.getHeight(), astronautPos.x,
-                astronautPos.y);
-        
+        camera.update(container.getWidth(), container.getHeight(),
+                astronautPos.x, astronautPos.y);
+
         // Background image TODO: translate
-        g.drawImage(AssetLoader.getInstance().getImage("world_background"), 0, 0);
+        g.drawImage(AssetLoader.getInstance().getImage("world_background"), 0,
+                0);
 
         mapRender
                 .renderTileLayers(g, -camera.getTileOverlapX(),
@@ -149,13 +152,17 @@ public class World {
         if (input.isKeyPressed(Input.KEY_B)) {
             oxyFlower.shootBubbles(entityManager);
         }
-        
-        
+
         if (input.isKeyPressed(Input.KEY_SPACE)) {
-            
-            RectanglePhysicsObject rpo = new RectanglePhysicsObject(null, BodyType.DYNAMIC, new Vec2(30, 30),new Vec2(500, 300));
+
+            RectanglePhysicsObject rpo = new RectanglePhysicsObject(null,
+                    BodyType.DYNAMIC, new Vec2(30, 30), new Vec2(500, 300));
             rpo.setMassData(100);
-            rpo.setLinearVelocity(new Vec2((float)(100+Math.random()*1000-500),(float)(100+Math.random()*500)));
+            rpo.setLinearVelocity(new Vec2(
+                    (float) (100 + Math.random() * 1000 - 500),
+                    (float) (100 + Math.random() * 500)));
+            Sound a = SoundLocator.loadSound("teamworld_testsound");
+            SoundLocator.getPlayer().playSoundAt(a, oxyFlower);
         }
     }
 

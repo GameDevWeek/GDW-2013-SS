@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 import org.newdawn.slick.Sound;
+import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.player.Player;
@@ -21,6 +22,7 @@ public class DefaultSoundPlayer implements SoundPlayer {
 
     public DefaultSoundPlayer(Player listener) {
         this.listener = listener;
+        playAtDirection = new Vector2f();
     }
 
     @Override
@@ -57,6 +59,16 @@ public class DefaultSoundPlayer implements SoundPlayer {
         sound.stop();
     }
 
+    private Vector2f playAtDirection;
+
+    private float stepfunction(float val) {
+        if (val > 0)
+            return 1.0f;
+        if (val < 0)
+            return -1.0f;
+        return 0.0f;
+    }
+
     @Override
     public void playSoundAt(Sound sound, Entity emitter) {
         if (!manageEntitySoundPlayMap(emitter, sound))
@@ -65,6 +77,27 @@ public class DefaultSoundPlayer implements SoundPlayer {
         // listener.getPosition().distanceSquared(emitter.getPosition());
         // final float MidSound = 0.5f;
 
+        playAtDirection.set(listener.getPosition().x, listener.getPosition().y);
+        playAtDirection.sub(emitter.getPosition());
+        // lerp
+        // a*v + (1-a)*v
+        // System.out.println("" + playAtDirection);
+
+        /**
+         * 1.0f - falloff * ( distance - refDistance ) / ( maxDistance -
+         * distance )
+         */
+        float MAX_DISTANCE = 100.0f;
+        float distance = Math.min(playAtDirection.length(), MAX_DISTANCE);
+
+        float volume = 1.0f - .30f * (distance - 50.0f)
+                / (MAX_DISTANCE - 50.0f);
+
+        System.out.println(volume);
+        volume = Math.max(0.0f, Math.min(1.0f, volume));
+
+        sound.playAt(1.0f, volume, stepfunction(playAtDirection.x),
+                stepfunction(playAtDirection.y), 0.0f);
         sound.play();
         emitterSoundPlayingMap.get(emitter).add(sound);
     }
