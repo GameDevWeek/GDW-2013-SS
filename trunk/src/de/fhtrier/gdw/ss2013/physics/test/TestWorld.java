@@ -24,6 +24,7 @@ import de.fhtrier.gdw.ss2013.input.InputManager;
 import de.fhtrier.gdw.ss2013.map.MapLoader;
 import de.fhtrier.gdw.ss2013.physics.DebugDrawer;
 import de.fhtrier.gdw.ss2013.physics.PhysicsManager;
+import de.fhtrier.gdw.ss2013.physics.PhysicsTools;
 import de.fhtrier.gdw.ss2013.physics.RectanglePhysicsObject;
 import de.fhtrier.gdw.ss2013.renderer.MapRenderer;
 import de.fhtrier.gdw.ss2013.sound.SoundLocator;
@@ -128,14 +129,15 @@ public class TestWorld {
         
 
         if (input.isKeyPressed(Input.KEY_SPACE)) {
-
-            RectanglePhysicsObject rpo = new RectanglePhysicsObject(
-                    BodyType.DYNAMIC, new Vec2(30, 30), new Vec2(500, 300));
-            rpo.setMassData(100);
-            rpo.setLinearVelocity(new Vec2(
-                    (float) (100 + Math.random() * 1000 - 500),
-                    (float) (100 + Math.random() * 500)));
-        }
+            
+            RectanglePhysicsObject rpo = new RectanglePhysicsObject( BodyType.DYNAMIC, PhysicsTools.PixelToWorld(new Vec2(100, 100)),new Vec2(500, 300));
+            rpo.setMassData(100f);
+            Vec2 force = new Vec2(2,0);
+            System.out.println(force);
+            rpo.applyImpulse(force);
+          }
+        
+        
     }
 
     public Vector2f screenToWorldPosition(Vector2f screenPosition) {
