@@ -28,6 +28,7 @@ public class Player extends Entity {
 
 	public Player(Vector2f position) {
 		super(position);
+		
 		velocity = new Vector2f();
 		// animation von assetloader beziehen
 
