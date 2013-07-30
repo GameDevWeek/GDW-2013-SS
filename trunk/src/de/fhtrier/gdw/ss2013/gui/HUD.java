@@ -77,6 +77,10 @@ public class HUD {
 		//init Crosshair
 		final Image cross = asset.getImage("ability1");
 		crosshair = new Crosshair(cross, worldinstance);
+		
+		//init tooltip
+		notation = new Annotation();
+		notation.init(worldinstance, font);
 
 	}
 
@@ -91,6 +95,7 @@ public class HUD {
 		abilityWheel.render(container, game, g);
 		quickselect.render(container, game, g);
 		//crosshair.render(container, game, g);
+		notation.render();
 		
 	}
 }

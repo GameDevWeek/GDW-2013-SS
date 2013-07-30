@@ -13,8 +13,9 @@ import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.Entity;
+import de.fhtrier.gdw.ss2013.game.filter.Interactable;
 
-public class Door extends Entity {
+public class Door extends Entity implements Interactable {
 
 	private boolean open;
 //	private AssetLoader a = AssetLoader.getInstance();
