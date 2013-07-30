@@ -3,12 +3,15 @@
  */
 package de.fhtrier.gdw.ss2013.gui;
 
+import org.newdawn.slick.Image;
+
 public class Crosshair {
 
-	private float xpos;
-	private float ypos;
+    private Image crosshair;
 
-	public Crosshair() {
+	public Crosshair(Image crosshair) {
+	    
+	    this.crosshair = crosshair;
 
 	}
 
@@ -16,7 +19,9 @@ public class Crosshair {
 
 	}
 
-	public void render() {
-
+	public void render(float x, float y) {
+	    
+	    crosshair.draw(x, y);
+	    
 	}
 }

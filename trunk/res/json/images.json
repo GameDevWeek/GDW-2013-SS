@@ -5,4 +5,29 @@
 {
   "name" : "testbild2",
   "pfad" : "res/images/testbild.png"
+},
+{ 
+  "name" : "frame",
+  "pfad" : "res/Dummy_GUIs_Images/frame.png"
+},
+{
+  "name" : "bar",
+  "pfad" : "res/Dummy_GUIs_Images/bar.png"
+},
+{
+  "name" : "background",
+  "pfad" : "res/Dummy_GUIs_Images/background.png"
+},
+{ 
+  "name" : "ability1",
+  "pfad" : "res/Dummy_GUIs_Images/ability1.png"
+},
+{
+  "name" : "ability2",
+  "pfad" : "res/Dummy_GUIs_Images/ability2.png"
+},
+{
+  "name" : "ability3",
+  "pfad" : "res/Dummy_GUIs_Images/ability3.png"
 }]
+
