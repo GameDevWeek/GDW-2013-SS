@@ -6,6 +6,7 @@ import de.fhtrier.gdw.commons.tiled.TiledMap;
 import de.fhtrier.gdw.commons.utils.SafeProperties;
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
+import de.fhtrier.gdw.ss2013.physics.CirclePhysicsObject;
 import de.fhtrier.gdw.ss2013.physics.PhysicsManager;
 import de.fhtrier.gdw.ss2013.physics.RectanglePhysicsObject;
 import java.awt.Point;
@@ -103,11 +104,11 @@ public class LevelLoader {
         Entity entity;
         switch (type) {
             case "solid":
-                new RectanglePhysicsObject(new Vec2(x, y), new Vec2(width, height));
+                new RectanglePhysicsObject(new Vec2(width, height), new Vec2(x, y));
                 break;
             case "deadzone":
                 entity = entityManager.createEntity(type, properties);
-                entity.setPhysicsObject(new RectanglePhysicsObject(new Vec2(x, y), new Vec2(width, height)));
+                entity.setPhysicsObject(new RectanglePhysicsObject(new Vec2(width, height), new Vec2(x, y)));
                 break;
         }
     }
@@ -124,7 +125,12 @@ public class LevelLoader {
      */
     private static void createTile(String type, int x, int y, int width, int height, SafeProperties properties) {
         Entity entity = entityManager.createEntity(type, properties);
-        entity.setPhysicsObject(new RectanglePhysicsObject(new Vec2(x, y), new Vec2(width, height)));
+        if(properties.getBoolean("circle", false)) {
+            float radius = Math.max(width, height)/2;
+            entity.setPhysicsObject(new CirclePhysicsObject(radius, new Vec2(x + width/2, y + height/2)));
+        } else {
+            entity.setPhysicsObject(new RectanglePhysicsObject(new Vec2(width, height), new Vec2(x, y)));
+        }
     }
 
     /**
