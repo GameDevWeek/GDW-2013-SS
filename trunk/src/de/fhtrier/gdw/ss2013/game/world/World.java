@@ -30,173 +30,142 @@ import de.fhtrier.gdw.ss2013.sound.services.DefaultSoundPlayer;
 
 public class World {
 
-    private TiledMap map;
-    private MapRenderer mapRender;
-    private Camera camera;
-    private Astronaut astronaut;
-    private Alien alien;
-    private FlyingEnemy enemy[] = new FlyingEnemy[10];
-    private GroundEnemy genemy[] = new GroundEnemy[10];
-    private Meteroid metro[] = new Meteroid[3];
-    private Input input;
-    private OxygenFlower oxyFlower;
+	private TiledMap map;
+	private MapRenderer mapRender;
+	private Camera camera;
+	private Astronaut astronaut;
+	private Alien alien;
+	private FlyingEnemy enemy[] = new FlyingEnemy[10];
+	private GroundEnemy genemy[] = new GroundEnemy[10];
+	private Meteroid metro[] = new Meteroid[3];
+	private Input input;
+	private OxygenFlower oxyFlower;
 
-    // physics debug
-    private DebugDrawer physicDebug;
-    public boolean debugDraw = true;
+	// physics debug
+	private DebugDrawer physicDebug;
+	public boolean debugDraw = true;
 
-    private EntityManager entityManager;
+	private EntityManager entityManager;
 
-    public World(GameContainer container, StateBasedGame game) {
-        input = container.getInput();
-        map = null;
-        entityManager = new EntityManager();
-        
-        try {
-            map = AssetLoader.getInstance().loadMap("demo_sidescroller");
-            LevelLoader.load(map, entityManager);
+	public World(GameContainer container, StateBasedGame game) {
+		input = container.getInput();
+		map = null;
+		entityManager = new EntityManager();
 
-            mapRender = new MapRenderer(map);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        camera = new Camera(map);
+		try {
+			map = AssetLoader.getInstance().loadMap("demo_sidescroller");
+			LevelLoader.load(map, entityManager);
 
-        // physic debug stuff
-        if (debugDraw) {
-            physicDebug = new DebugDrawer(container, camera);
-            PhysicsManager.getInstance().getPhysicsWorld()
-                    .setDebugDraw(physicDebug);
-        }
+			mapRender = new MapRenderer(map);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+		camera = new Camera(map);
 
-        astronaut = entityManager.createEntityAt(Astronaut.class, new Vector2f(
-                200, 200));
-        InputManager.getInstance().getKeyboard()
-                .setAstronautController(astronaut);
-        alien = entityManager.createEntityAt(Alien.class,
-                astronaut.getPosition());
-        InputManager.getInstance().getMouse().setAlienController(alien);
+		// physic debug stuff
+		if (debugDraw) {
+			physicDebug = new DebugDrawer(container, camera);
+			PhysicsManager.getInstance().getPhysicsWorld()
+					.setDebugDraw(physicDebug);
+		}
 
-        SoundLocator.provide(new DefaultSoundPlayer(astronaut));
+		astronaut = entityManager.createEntityAt(Astronaut.class, new Vector2f(
+				200, 200));
+		InputManager.getInstance().getKeyboard()
+				.setAstronautController(astronaut);
+		alien = entityManager.createEntityAt(Alien.class,
+				astronaut.getPosition());
+		InputManager.getInstance().getMouse().setAlienController(alien);
 
-        oxyFlower = (OxygenFlower) entityManager.createEntityAt(
-                OxygenFlower.class, new Vector2f(300, 300));
-        for (int i = 0; i < enemy.length; i++) {
-            enemy[i] = entityManager
-                    .createEntityAt(FlyingEnemy.class, new Vector2f(
-                            500 + i * 50, 500 + i * 50));
-            enemy[i].setReferences(entityManager, astronaut);
-        }
-        genemy[0] = entityManager.createEntityAt(GroundEnemy.class, new Vector2f(
-                100, 800));
-        genemy[0].setReferences(astronaut);
-        for (int i = 0; i < metro.length; i++) {
-            metro[i] = (Meteroid) entityManager.createEntityAt(Meteroid.class,
-                    new Vector2f(200 + i * 100, 0));
-        }
-    }
+		SoundLocator.provide(new DefaultSoundPlayer(astronaut));
 
-    public void render(GameContainer container, Graphics g)
-            throws SlickException {
-        Vector2f astronautPos = astronaut.getPosition();
-        camera.update(container.getWidth(), container.getHeight(),
-                astronautPos.x, astronautPos.y);
+		oxyFlower = (OxygenFlower) entityManager.createEntityAt(
+				OxygenFlower.class, new Vector2f(300, 300));
+		for (int i = 0; i < enemy.length; i++) {
+			enemy[i] = entityManager.createEntityAt(FlyingEnemy.class,
+					new Vector2f(500 + i * 50, 500 + i * 50));
+			enemy[i].setReferences(entityManager, astronaut);
+		}
+		genemy[0] = entityManager.createEntityAt(GroundEnemy.class,
+				new Vector2f(100, 800));
+		genemy[0].setReferences(astronaut);
+		for (int i = 0; i < metro.length; i++) {
+			metro[i] = (Meteroid) entityManager.createEntityAt(Meteroid.class,
+					new Vector2f(200 + i * 100, 0));
+		}
+	}
 
-        // Background image TODO: translate
-        g.drawImage(AssetLoader.getInstance().getImage("world_background"), 0,
-                0);
+	public void render(GameContainer container, Graphics g)
+			throws SlickException {
+		Vector2f astronautPos = astronaut.getPosition();
+		camera.update(container.getWidth(), container.getHeight(),
+				astronautPos.x, astronautPos.y);
 
-        mapRender
-                .renderTileLayers(g, -camera.getTileOverlapX(),
-                        -camera.getTileOverlapY(), camera.getTileX(),
-                        camera.getTileY(), camera.getNumTilesX(),
-                        camera.getNumTilesY());
+		// Background image TODO: translate
+		g.drawImage(AssetLoader.getInstance().getImage("world_background"), 0,
+				0);
 
-        g.pushTransform();
-        g.translate(-camera.getOffsetX(), -camera.getOffsetY());
+		mapRender
+				.renderTileLayers(g, -camera.getTileOverlapX(),
+						-camera.getTileOverlapY(), camera.getTileX(),
+						camera.getTileY(), camera.getNumTilesX(),
+						camera.getNumTilesY());
 
-        // draw entities
-        entityManager.render(container, g);
+		g.pushTransform();
+		g.translate(-camera.getOffsetX(), -camera.getOffsetY());
 
-        if (debugDraw)
-            PhysicsManager.getInstance().getPhysicsWorld().drawDebugData();
+		// draw entities
+		entityManager.render(container, g);
 
-        g.popTransform();
-    }
+		if (debugDraw)
+			PhysicsManager.getInstance().getPhysicsWorld().drawDebugData();
 
-    public void update(GameContainer container, int delta)
-            throws SlickException {
-        // update entities
-        entityManager.update(container, delta);
+		g.popTransform();
+	}
 
-        // This is just a placeholder, not for actual use.
-//        Vector2f astronautPos = astronaut.getPosition();
-//        float speed = 6;
-//        if (input.isKeyDown(Input.KEY_UP)) {
-//            astronautPos.y -= speed;
-//        }
-//        if (input.isKeyDown(Input.KEY_DOWN)) {
-//            astronautPos.y += speed;
-//        }
-//        if (input.isKeyDown(Input.KEY_LEFT)) {
-//            astronautPos.x -= speed;
-//        }
-//        if (input.isKeyDown(Input.KEY_RIGHT)) {
-//            astronautPos.x += speed;
-//        }
-        if (input.isKeyPressed(Input.KEY_F)) {
-            for (FlyingEnemy e : enemy) {
-                e.shoot(astronaut, entityManager);
-            }
-        }
-        // Sound a = SoundLocator.loadSound("teamworld_testsound");
-        // SoundLocator.getPlayer().playSoundAt(a, player, player);
+	public void update(GameContainer container, int delta)
+			throws SlickException {
+		entityManager.update(container, delta);
 
-        if (input.isKeyPressed(Input.KEY_B)) {
-            oxyFlower.shootBubbles(entityManager);
-        }
+		if (input.isKeyPressed(Input.KEY_F)) {
+			for (FlyingEnemy e : enemy) {
+				e.shoot(astronaut, entityManager);
+			}
+		}
 
-        if (input.isKeyPressed(Input.KEY_SPACE)) {
+		if (input.isKeyPressed(Input.KEY_B)) {
+			oxyFlower.shootBubbles(entityManager);
+		}
+	}
 
-            RectanglePhysicsObject rpo = new RectanglePhysicsObject(
-                    BodyType.DYNAMIC, new Vec2(30, 30), new Vec2(500, 300));
-            rpo.setMassData(100);
-            rpo.setLinearVelocity(new Vec2(
-                    (float) (100 + Math.random() * 1000 - 500),
-                    (float) (100 + Math.random() * 500)));
-            Sound a = SoundLocator.loadSound("zombiemoan");
-            SoundLocator.getPlayer().playSoundAt(a, oxyFlower);
-        }
-    }
+	public Vector2f screenToWorldPosition(Vector2f screenPosition) {
+		/**
+		 * Top-left (0,0) / Bottom-right (width,height)
+		 */
+		Vector2f worldPos = new Vector2f(camera.getOffsetX(),
+				camera.getOffsetY());
 
-    public Vector2f screenToWorldPosition(Vector2f screenPosition) {
-        /**
-         * Top-left (0,0) / Bottom-right (width,height)
-         */
-        Vector2f worldPos = new Vector2f(camera.getOffsetX(),
-                camera.getOffsetY());
+		return worldPos.add(screenPosition);
 
-        return worldPos.add(screenPosition);
+	}
 
-    }
+	public Vector2f worldToScreenPosition(Vector2f worldPosition) {
+		Vector2f screenPos = new Vector2f(-camera.getOffsetX(),
+				-camera.getOffsetY());
 
-    public Vector2f worldToScreenPosition(Vector2f worldPosition) {
-        Vector2f screenPos = new Vector2f(-camera.getOffsetX(),
-                -camera.getOffsetY());
+		return screenPos.add(worldPosition);
+	}
 
-        return screenPos.add(worldPosition);
-    }
+	public Astronaut getAstronaut() {
+		return astronaut;
+	}
 
-    public Astronaut getAstronaut() {
-        return astronaut;
-    }
+	public Camera getCamera() {
+		return camera;
+	}
 
-    public Camera getCamera() {
-        return camera;
-    }
-
-    public EntityManager getEntityManager() {
-        return entityManager;
-    }
+	public EntityManager getEntityManager() {
+		return entityManager;
+	}
 
 }
