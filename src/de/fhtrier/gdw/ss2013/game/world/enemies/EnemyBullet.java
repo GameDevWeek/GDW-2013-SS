@@ -10,6 +10,7 @@ import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.Entity;
+import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.physics.ICollidable;
 
@@ -21,9 +22,10 @@ import de.fhtrier.gdw.ss2013.physics.ICollidable;
  */
 public class EnemyBullet extends AbstractEnemy implements ICollidable {
 
-	final static float DEBUG_ENTITY_HALFEXTEND = 5;
 	private Image img;
+	private int livetime = 60*10;
 	private AssetLoader a = AssetLoader.getInstance();
+	private EntityManager m;
 
 	public EnemyBullet(Vector2f pos, Vector2f velo, float dmg) {
 		super(pos.copy(), velo.copy(), dmg);
@@ -60,12 +62,18 @@ public class EnemyBullet extends AbstractEnemy implements ICollidable {
 		// TODO clamp dt if dt > 1/60.f ?
 		this.position.x += this.getVelocity().x;
 		this.position.y += this.getVelocity().y;
-
+		if (livetime == 0) {
+		    m.removeEntity(this);
+		}
+		livetime--;
 	}
 
 	@Override
 	public Fixture getFixture() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	public void setPreferences(EntityManager m) {
+	    this.m = m;
 	}
 }
