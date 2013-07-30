@@ -48,7 +48,7 @@ public class EnemyBullet extends AbstractEnemy implements ICollidable {
 
 	public void render(GameContainer container, Graphics g)
 			throws SlickException {
-	    img.draw(this.getPosition().x, this.getPosition().y);
+	    img.draw(this.getPosition().x-(img.getWidth()/2), this.getPosition().y-(img.getHeight()/2));
 
 		// g.drawString(this.hashCode(), position.x, position.y);
 	}
