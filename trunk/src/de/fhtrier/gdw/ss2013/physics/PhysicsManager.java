@@ -19,19 +19,19 @@ public class PhysicsManager implements ContactListener {
         }
         return _physicsManagerSingleton;
     }
-    
+
     public World getPhysicsWorld() {
         return _physicsWorld;
     }
 
     private PhysicsManager() {
         _physicsWorld = new World(_defaultGravity);
-        //_physicsWorld.setDebugDraw(new DebugDrawer());
+        // _physicsWorld.setDebugDraw(new DebugDrawer());
         _physicsWorld.setContactListener(this);
     }
 
     public boolean reset() {
-        // It is not allowed to remove bodies from the world while it is locked.
+     // It is not allowed to remove bodies from the world while it is locked.
         // Check locking state to prevent assertion in native library.
         if (_physicsWorld.isLocked()) {
             return false;
@@ -54,11 +54,11 @@ public class PhysicsManager implements ContactListener {
     public void enableDebugDraw(boolean enabled) {
         _debugDraw = enabled;
     }
-    
+
     public boolean isDebugDrawEnabled() {
         return _debugDraw;
     }
-    
+
     public Vec2 getGravity() {
         return _physicsWorld.getGravity();
     }
@@ -68,17 +68,16 @@ public class PhysicsManager implements ContactListener {
     }
 
     public void update(GameContainer c, int delta) throws SlickException {
-        _physicsWorld.step(delta, 6, 3);
+        // _physicsWorld.step(delta, 6, 3);
+        _physicsWorld.step(delta / 1000.f, 9, 4);
         /*
-        for (Contact c1 = _physicsWorld.getContactList(); c1 != null; c1 = c1
-                .getNext()) {
-            PhysicsObject objectA = (PhysicsObject) c1.m_fixtureA.m_body.m_userData;
-            PhysicsObject objectB = (PhysicsObject) c1.m_fixtureB.m_body.m_userData;
-            objectA.onCollide(objectB);
-            objectB.onCollide(objectA);
-        }
-        */
-        //_physicsWorld.drawDebugData();
+         * for (Contact c1 = _physicsWorld.getContactList(); c1 != null; c1 = c1
+         * .getNext()) { PhysicsObject objectA = (PhysicsObject)
+         * c1.m_fixtureA.m_body.m_userData; PhysicsObject objectB =
+         * (PhysicsObject) c1.m_fixtureB.m_body.m_userData;
+         * objectA.onCollide(objectB); objectB.onCollide(objectA); }
+         */
+        // _physicsWorld.drawDebugData();
     }
 
     public Body enableSimulation(PhysicsObject object) {
@@ -88,7 +87,7 @@ public class PhysicsManager implements ContactListener {
     public void disableSimulation(PhysicsObject object) {
         _physicsWorld.destroyBody(object.getBody());
     }
-    
+
     @Override
     public void beginContact(Contact contact) {
         PhysicsObject objectA = (PhysicsObject) contact.m_fixtureA.m_body.m_userData;
@@ -108,13 +107,13 @@ public class PhysicsManager implements ContactListener {
     @Override
     public void postSolve(Contact arg0, ContactImpulse arg1) {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void preSolve(Contact arg0, Manifold arg1) {
         // TODO Auto-generated method stub
-        
+
     }
 
     private static PhysicsManager _physicsManagerSingleton = null;

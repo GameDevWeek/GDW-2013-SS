@@ -48,7 +48,7 @@ public class TestWorld {
         input = container.getInput();
         map = null;
         entityManager = new EntityManager();
-        
+
         try {
             map = MapLoader.getInstance().loadMap("demo");
             LevelLoader.load(map, entityManager);
@@ -110,7 +110,7 @@ public class TestWorld {
             throws SlickException {
         // update entities
         entityManager.update(container, delta);
-
+        PhysicsManager.getInstance().update(container, delta);
         // This is just a placeholder, not for actual use.
         Vector2f astronautPos = astronaut.getPosition();
         float speed = 6;
@@ -126,7 +126,6 @@ public class TestWorld {
         if (input.isKeyDown(Input.KEY_RIGHT)) {
             astronautPos.x += speed;
         }
-        
 
         if (input.isKeyPressed(Input.KEY_SPACE)) {
             

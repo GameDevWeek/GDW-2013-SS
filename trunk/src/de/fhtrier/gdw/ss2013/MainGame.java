@@ -28,7 +28,7 @@ public class MainGame extends StateBasedGame {
     public static final int WINDOW_HEIGHT = 768;
     public static final int MAINMENUSTATE = 0;
     public static final int GAMEPLAY = 1;
-    public static final int PHYSIC_TEST = 1337; 
+    public static final int PHYSIC_TEST = 1337;
     public static int currentState = -1;
     public static MainGame instance;
 
@@ -99,6 +99,8 @@ public class MainGame extends StateBasedGame {
             for (String a : args) {
                 if (a.equals("-testmode"))
                     DebugModeStatus.setStatus(false);
+                if (a.equals("-physictest"))
+                    DebugModeStatus.setPhysicTest(true);
             }
 
             instance = new MainGame(args);

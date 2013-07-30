@@ -29,11 +29,11 @@ public class LoadGameState extends BasicGameState {
     private DeferredResource nextResource;
     private AssetLoader assetLoader;
 
-	@Override
-	public void init(GameContainer container, StateBasedGame game)
-			throws SlickException {
-		// loadscreen = new Image("/res/images/testbild.png");
-		LoadingList.setDeferredLoading(true);
+    @Override
+    public void init(GameContainer container, StateBasedGame game)
+            throws SlickException {
+        // loadscreen = new Image("/res/images/testbild.png");
+        LoadingList.setDeferredLoading(true);
 
         // Todo: initialize assets
 
@@ -58,28 +58,24 @@ public class LoadGameState extends BasicGameState {
             throws SlickException {
         container.setShowFPS(false);
 
-		 int total = LoadingList.get().getTotalResources();
-		 int loaded = total
-		 - LoadingList.get().getRemainingResources();
-		 if (loaded == 0) {
-		 loaded = 1;
-		 }
-		 //total = total / loaded;
-		
-		 g.setColor(Color.red);
-		 
-		 g.fillRect(container.getWidth()/8, container.getHeight()/8*6,
-		         container.getWidth() / 8 * 6  /total * loaded, 50);
-		 
-		 
-		 
-		 
-		 //g.fillRect(container.getWidth() / 2 - 245,
-		 //container.getHeight() / 2 - 70, (int) (5.5f * (100 / total)),
-		 //100);
-		 //loadscreen.draw((container.getWidth() - loadscreen.getWidth()) / 2,
-		 //(container.getHeight() - loadscreen.getHeight()) / 2);
-	}
+        int total = LoadingList.get().getTotalResources();
+        int loaded = total - LoadingList.get().getRemainingResources();
+        if (loaded == 0) {
+            loaded = 1;
+        }
+        // total = total / loaded;
+
+        g.setColor(Color.red);
+
+        g.fillRect(container.getWidth() / 8, container.getHeight() / 8 * 6,
+                container.getWidth() / 8 * 6 / total * loaded, 50);
+
+        // g.fillRect(container.getWidth() / 2 - 245,
+        // container.getHeight() / 2 - 70, (int) (5.5f * (100 / total)),
+        // 100);
+        // loadscreen.draw((container.getWidth() - loadscreen.getWidth()) / 2,
+        // (container.getHeight() - loadscreen.getHeight()) / 2);
+    }
 
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta)
@@ -94,28 +90,31 @@ public class LoadGameState extends BasicGameState {
             nextResource = null;
         }
 
-		if (LoadingList.get().getRemainingResources() > 0) {
-			nextResource = LoadingList.get().getNext();
-		} else {
-			container.setShowFPS(true);
-			SoundStore.get().setDeferredLoading(false);
+        if (LoadingList.get().getRemainingResources() > 0) {
+            nextResource = LoadingList.get().getNext();
+        } else {
+            container.setShowFPS(true);
+            SoundStore.get().setDeferredLoading(false);
 
-	        mainMenuState = new MainMenuState();
-	        mainMenuState.init(container, game);
-	        game.addState(mainMenuState);
+            mainMenuState = new MainMenuState();
+            mainMenuState.init(container, game);
+            game.addState(mainMenuState);
 
-	        gameplayState = new GameplayState();
-	        gameplayState.init(container, game);
-	        game.addState(gameplayState);
-	        
-			if (DebugModeStatus.getStatus()) {
-				MainGame.changeState(MainGame.GAMEPLAY);
-			} else {
-				MainGame.changeState(MainGame.MAINMENUSTATE);
-			}
-		}
-	}
+            gameplayState = new GameplayState();
+            gameplayState.init(container, game);
+            game.addState(gameplayState);
 
+            if (DebugModeStatus.getStatus() || DebugModeStatus.getPhysicTest()) {
+                if (DebugModeStatus.getPhysicTest())
+                    MainGame.changeState(MainGame.PHYSIC_TEST);
+                else if (DebugModeStatus.getStatus()) {
+                    MainGame.changeState(MainGame.GAMEPLAY);
+                }
+            } else {
+                MainGame.changeState(MainGame.MAINMENUSTATE);
+            }
+        }
+    }
 
     @Override
     public int getID() {
