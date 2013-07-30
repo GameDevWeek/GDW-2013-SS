@@ -19,12 +19,14 @@ import org.newdawn.slick.util.ResourceLoader;
 import de.fhtrier.gdw.commons.jackson.JacksonReader;
 import de.fhtrier.gdw.ss2013.assetloader.infos.AnimationInfo;
 import de.fhtrier.gdw.ss2013.assetloader.infos.ImageInfo;
+import de.fhtrier.gdw.ss2013.assetloader.infos.MapInfo;
 import de.fhtrier.gdw.ss2013.assetloader.infos.SoundInfo;
 
 public class AssetLoader {
-	HashMap<String, Image> imageMap = new HashMap<>();
-	HashMap<String, Animation> animMap = new HashMap<>();
-	HashMap<String, Sound> soundMap = new HashMap<>();
+	private HashMap<String, Image> imageMap = new HashMap<>();
+	private HashMap<String, Animation> animMap = new HashMap<>();
+	private HashMap<String, Sound> soundMap = new HashMap<>();
+	private HashMap<String, String> mapHashmap = new HashMap<>();
 	
 	private static AssetLoader instance;
 	
@@ -39,6 +41,7 @@ public class AssetLoader {
 		setupImages("res/json/images.json");
 		setupAnimation("res/json/animations.json");
 		setupSound("res/json/sounds.json");
+		setupMaps("res/json/maps.json");
 	}
 
 	private void checkForBackslashes(String filename) {
@@ -97,6 +100,19 @@ public class AssetLoader {
 		}
 	}
 
+    private void setupMaps(String filename) {
+        try {
+            List<MapInfo> mapInfos = JacksonReader.readList(filename,
+                    MapInfo.class);
+            for (MapInfo mapInfo : mapInfos) {
+                checkForBackslashes(mapInfo.pfad);
+                mapHashmap.put(mapInfo.name, mapInfo.pfad); // don't load every map during setup
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 	public Image getImage(String name) {
 		return imageMap.get(name);
 	}
@@ -112,6 +128,15 @@ public class AssetLoader {
 	 */
 	public Sound getSound(String name) {
 		return soundMap.get(name);
+	}
+	
+	/**
+	 * 
+	 * @param name JSON map name
+	 * @return Path to map file
+	 */
+	public String getMapPath(String name) {
+	    return mapHashmap.get(name);
 	}
 
 }
