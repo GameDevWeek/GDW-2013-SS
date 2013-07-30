@@ -19,6 +19,8 @@ import org.newdawn.slick.loading.LoadingList;
 import org.newdawn.slick.util.ResourceLoader;
 
 import de.fhtrier.gdw.commons.jackson.JacksonReader;
+import de.fhtrier.gdw.commons.tiled.LayerObject;
+import de.fhtrier.gdw.commons.tiled.TiledMap;
 import de.fhtrier.gdw.ss2013.assetloader.infos.AnimationInfo;
 import de.fhtrier.gdw.ss2013.assetloader.infos.FontInfo;
 import de.fhtrier.gdw.ss2013.assetloader.infos.ImageInfo;
@@ -155,6 +157,18 @@ public class AssetLoader {
 	public String getMapPath(String name) {
 	    return mapHashmap.get(name);
 	}
+    
+    /**
+     * 
+     * @param mapname Mapname from JSON-Files
+     * @return Loaded TiledMap
+     * @throws Exception
+     */
+    public TiledMap loadMap(String mapname) throws Exception {
+        AssetLoader assetLoader = AssetLoader.getInstance();
+        TiledMap map = new TiledMap(assetLoader.getMapPath(mapname), LayerObject.PolyMode.ABSOLUTE);
+        return map;
+    }
 
 	public Font getFont(String name) {
 		return fontMap.get(name);

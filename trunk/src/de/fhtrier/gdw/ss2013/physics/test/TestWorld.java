@@ -21,7 +21,6 @@ import de.fhtrier.gdw.ss2013.game.world.enemies.FlyingEnemy;
 import de.fhtrier.gdw.ss2013.game.world.enemies.Meteroid;
 import de.fhtrier.gdw.ss2013.game.world.objects.OxygenFlower;
 import de.fhtrier.gdw.ss2013.input.InputManager;
-import de.fhtrier.gdw.ss2013.map.MapLoader;
 import de.fhtrier.gdw.ss2013.physics.DebugDrawer;
 import de.fhtrier.gdw.ss2013.physics.PhysicsManager;
 import de.fhtrier.gdw.ss2013.physics.PhysicsTools;
@@ -50,7 +49,7 @@ public class TestWorld {
         entityManager = new EntityManager();
 
         try {
-            map = MapLoader.getInstance().loadMap("demo");
+            map = AssetLoader.getInstance().loadMap("demo");
             LevelLoader.load(map, entityManager);
 
             mapRender = new MapRenderer(map);
