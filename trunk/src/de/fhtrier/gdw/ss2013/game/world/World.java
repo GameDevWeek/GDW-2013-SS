@@ -124,9 +124,8 @@ public class World {
 		if (input.isKeyPressed(Input.KEY_F)) {
 			enemy.shoot(player, entityManager);
 		}
-		Sound a = SoundLocator.loadSound("teamworld_testsound");
-		SoundLocator.getPlayer().playSoundAt(a,
-				new Entity(new Vector2f(100, 100)), player);
+//		Sound a = SoundLocator.loadSound("teamworld_testsound");
+//		SoundLocator.getPlayer().playSoundAt(a, player, player);
 
 		if (input.isKeyPressed(Input.KEY_B)) {
 			oxyFlower.shootBubbles(entityManager);

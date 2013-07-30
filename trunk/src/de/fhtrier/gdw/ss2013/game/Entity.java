@@ -12,7 +12,7 @@ import org.newdawn.slick.geom.Vector2f;
 /**
  * Entity base class
  */
-public class Entity {
+public abstract class Entity {
 
 	protected Vector2f position;
 
