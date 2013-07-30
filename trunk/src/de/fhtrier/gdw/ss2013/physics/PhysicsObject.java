@@ -15,6 +15,7 @@ import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.FixtureDef;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.game.Entity;
 
@@ -22,8 +23,8 @@ public abstract class PhysicsObject {
 
 	private Entity owner;
 	private BodyDef myBodyDef;
-	private FixtureDef myFixtureDef;
-	private Fixture myFixture;
+	public FixtureDef myFixtureDef;
+	public Fixture myFixture;
 	private Body myBody;
 	
 	protected static final BodyType DEFAULT_BODYTYPE = BodyType.STATIC;
@@ -49,11 +50,11 @@ public abstract class PhysicsObject {
 
 	protected void init(Shape myShape,BodyType bodyType, Vec2 Pos) {
 	    this.myBodyDef = new BodyDef();
+	    myBodyDef.linearDamping = 0.0f;
 	    this.myBodyDef.type = bodyType;
 	    myFixtureDef.shape = myShape;
 	    enableSimulation();
-	    this.myBody.createFixture(this.myFixtureDef);
-	    setPosition(Pos);
+//	    setPosition(Pos);
 	}
 	
 	protected void setBodyDef(BodyDef myBodyDef) {
@@ -73,13 +74,6 @@ public abstract class PhysicsObject {
 		if (this.myBodyDef == null) {
 			throw new RuntimeException("Bitte myBodyDef initzalisiren!");
 		}
-		this.myBody = PhysicsManager.getCurrent().enableSimulation(this);
-		this.myBody.m_userData = this;
-		this.myFixture = this.myBody.createFixture(myFixtureDef);
-	}
-
-	public void disableSimulation() {
-		PhysicsManager.getCurrent().disableSimulation(this);
 	}
 
 	public Body getBody() {
@@ -130,8 +124,9 @@ public abstract class PhysicsObject {
 		myBody.applyForceToCenter(force);
 	}
 
-	public void applyImpulse(Vec2 force) {
-        myBody.applyLinearImpulse(force, this.myBody.getWorldCenter());
+	public void applyImpulse(Vector2f speed) {
+//		myBody.applyLinearImpulse(new Vec2(-1000, -1000), new Vec2());
+		myBody.setLinearVelocity(new Vec2(speed.x, speed.y));
     }
 	
 	public float getAngle() {
@@ -213,4 +208,8 @@ public abstract class PhysicsObject {
             owner.setPosition(getPosition().x, getPosition().y);
         }
     }
+
+	public void setBody(Body body) {
+		this.myBody = body;
+	}
 }

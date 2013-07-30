@@ -57,7 +57,7 @@ public class EntityManager {
             if (e instanceof RecycleableEntity) {
                 factory.recycle(e);
             }
-            entityList.remove(removalQueue.poll());
+            entityList.remove(e);
         }
 
     }
