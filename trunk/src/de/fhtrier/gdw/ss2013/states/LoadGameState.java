@@ -59,7 +59,7 @@ public class LoadGameState extends BasicGameState {
         container.setShowFPS(false);
 
 		 int total = LoadingList.get().getTotalResources();
-		 int loaded = LoadingList.get().getTotalResources()
+		 int loaded = total
 		 - LoadingList.get().getRemainingResources();
 		 if (loaded == 0) {
 		 loaded = 1;
