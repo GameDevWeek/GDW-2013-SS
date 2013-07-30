@@ -8,6 +8,7 @@ import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
+import de.fhtrier.gdw.ss2013.game.camera.Camera;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.player.Player;
 import de.fhtrier.gdw.ss2013.physics.ICollidable;
@@ -77,6 +78,7 @@ public class FlyingEnemy extends AbstractEnemy implements ICollidable {
 		b.getVelocity().x = 5 * calcPlayerDirection(player).x;
 		b.getVelocity().y = 5 * calcPlayerDirection(player).y;
 		b.setDamage(this.getDamage());
+		b.setPreferences(m);
 	}
 
 	public void render(GameContainer container, Graphics g)
