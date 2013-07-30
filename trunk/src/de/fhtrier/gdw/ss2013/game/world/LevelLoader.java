@@ -4,17 +4,26 @@ import de.fhtrier.gdw.commons.tiled.Layer;
 import de.fhtrier.gdw.commons.tiled.LayerObject;
 import de.fhtrier.gdw.commons.tiled.TiledMap;
 import de.fhtrier.gdw.commons.utils.SafeProperties;
+import de.fhtrier.gdw.ss2013.game.EntityManager;
+import de.fhtrier.gdw.ss2013.physics.PhysicsManager;
+import de.fhtrier.gdw.ss2013.physics.PhysicsObject;
+import de.fhtrier.gdw.ss2013.physics.RectanglePhysicsObject;
 import java.awt.Point;
 import java.util.ArrayList;
+import org.jbox2d.common.Vec2;
 
 /**
  *
  * @author Santo
  */
 public class LevelLoader {
+    private static EntityManager entityManager;
 
-    public static void load(TiledMap map) {
-        /// TODO: clear all entities, clear physics
+    public static void load(TiledMap map, EntityManager entityManager) {
+        LevelLoader.entityManager = entityManager;
+        entityManager.reset();
+        PhysicsManager.getInstance().reset();
+        
         for (Layer layer : map.getLayers()) {
             if (layer.isObjectLayer()) {
                 loadObjectLayer(layer);
@@ -88,12 +97,14 @@ public class LevelLoader {
      * @param properties the object properties
      */
     private static void createRect(String type, int x, int y, int width, int height, SafeProperties properties) {
+        PhysicsObject physicsObject;
         switch (type) {
             case "solid":
                 /// TODO: create a solid (static) object
                 break;
             case "killzone":
-                /// TODO: create a physics trigger, create an entity for it
+                physicsObject = new RectanglePhysicsObject(new Vec2(x, y), new Vec2(width, height));
+                entityManager.createEntity(type, properties, physicsObject);
                 break;
         }
     }

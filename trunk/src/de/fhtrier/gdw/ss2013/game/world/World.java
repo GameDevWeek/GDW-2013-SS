@@ -49,9 +49,11 @@ public class World {
     public World(GameContainer container, StateBasedGame game) {
         input = container.getInput();
         map = null;
+        entityManager = new EntityManager();
+        
         try {
             map = MapLoader.getInstance().loadMap("demo_sidescroller");
-            LevelLoader.load(map);
+            LevelLoader.load(map, entityManager);
 
             mapRender = new MapRenderer(map);
         } catch (Exception e) {
@@ -59,8 +61,6 @@ public class World {
             throw new RuntimeException();
         }
         camera = new Camera(map);
-
-        entityManager = new EntityManager();
 
         // physic debug stuff
         if (debugDraw) {
@@ -155,7 +155,7 @@ public class World {
 
         if (input.isKeyPressed(Input.KEY_SPACE)) {
 
-            RectanglePhysicsObject rpo = new RectanglePhysicsObject(null,
+            RectanglePhysicsObject rpo = new RectanglePhysicsObject(
                     BodyType.DYNAMIC, new Vec2(30, 30), new Vec2(500, 300));
             rpo.setMassData(100);
             rpo.setLinearVelocity(new Vec2(

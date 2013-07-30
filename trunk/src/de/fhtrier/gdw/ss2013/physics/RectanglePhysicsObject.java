@@ -15,52 +15,51 @@ import de.fhtrier.gdw.ss2013.game.Entity;
 
 public class RectanglePhysicsObject extends PhysicsObject {
 
-	public RectanglePhysicsObject(Entity owner) {
-		this(owner, BodyType.STATIC);
+	public RectanglePhysicsObject() {
+		this(BodyType.STATIC);
 	}
 
-	public RectanglePhysicsObject(Entity owner, BodyType bodyType) {
-		this(owner, bodyType, new Vec2(10, 10));
+	public RectanglePhysicsObject(BodyType bodyType) {
+		this(bodyType, new Vec2(10, 10));
 	}
 
-	public RectanglePhysicsObject(Entity owner, BodyType bodyType, Vec2 rec) {
-		this(owner, bodyType, rec, new Vec2());
+	public RectanglePhysicsObject(BodyType bodyType, Vec2 rec) {
+		this(bodyType, rec, new Vec2());
 	}
 	
-   public RectanglePhysicsObject(Entity owner,Vec2 rec,
-            Vec2 pos) {
-        this(owner, BodyType.STATIC, rec, pos);
+   public RectanglePhysicsObject(Vec2 rec, Vec2 pos) {
+        this(BodyType.STATIC, rec, pos);
     }
 
-	public RectanglePhysicsObject(Entity owner, BodyType bodyType, Vec2 rec,
+	public RectanglePhysicsObject(BodyType bodyType, Vec2 rec,
 			Vec2 pos) {
-		this(owner, bodyType, rec, pos, 1);
+		this(bodyType, rec, pos, 1);
 	}
 
-	public RectanglePhysicsObject(Entity owner, BodyType bodyType, Vec2 rec,
+	public RectanglePhysicsObject(BodyType bodyType, Vec2 rec,
 			Vec2 pos, float restitution) {
-		this(owner, bodyType, rec, pos, restitution, 1);
+		this(bodyType, rec, pos, restitution, 1);
 	}
 	
-	public RectanglePhysicsObject(Entity owner, BodyType bodyType, Vec2 rec,
+	public RectanglePhysicsObject(BodyType bodyType, Vec2 rec,
             Vec2 pos, boolean isSensor) {
-        this(owner, bodyType, rec, pos, 0, 0, 0,isSensor);
+        this(bodyType, rec, pos, 0, 0, 0,isSensor);
     }
 
-	public RectanglePhysicsObject(Entity owner, BodyType bodyType, Vec2 rec,
+	public RectanglePhysicsObject(BodyType bodyType, Vec2 rec,
 			Vec2 pos, float restitution, float density) {
-		this(owner, bodyType, rec, pos, restitution, density, 1);
+		this(bodyType, rec, pos, restitution, density, 1);
 	}
 
-	public RectanglePhysicsObject(Entity owner, BodyType bodyType, Vec2 rec,
+	public RectanglePhysicsObject(BodyType bodyType, Vec2 rec,
 			Vec2 pos, float restitution, float density, float friction) {
-		this(owner, bodyType, rec, pos, restitution, density, friction, false);
+		this(bodyType, rec, pos, restitution, density, friction, false);
 	}
 
-	public RectanglePhysicsObject(Entity owner, BodyType bodyType, Vec2 rec,
+	public RectanglePhysicsObject(BodyType bodyType, Vec2 rec,
 			Vec2 pos, float restitution, float density, float friction,
 			boolean isSensor) {
-		super(owner, restitution, density, friction, isSensor);
+		super(restitution, density, friction, isSensor);
 		PolygonShape myShape = new PolygonShape();
 		myShape.setAsBox(rec.x, rec.y);
 		init(myShape, bodyType,pos);
