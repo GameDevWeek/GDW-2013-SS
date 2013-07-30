@@ -1,7 +1,7 @@
 package de.fhtrier.gdw.ss2013.assetloader.infos;
 
-public class SetupInfo {
+public class SettingsInfo {
 
-    public float volume;
+    public Integer volume;
     
 }
