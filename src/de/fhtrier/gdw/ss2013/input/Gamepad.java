@@ -15,4 +15,10 @@ public class Gamepad extends InputDevice {
         
     }
 
+    @Override
+    public void loadKeymapping() {
+        // TODO Auto-generated method stub
+        
+    }
+
 }
