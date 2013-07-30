@@ -18,7 +18,7 @@ public class Gamepad extends InputDevice {
 
 	public Gamepad (GameContainer gc, int index) {
 		super(gc);
-		loadKeymapping("gamepad");
+		loadKeymapping(DEVICE_TYPE.GAMEPAD);
 		controller = org.lwjgl.input.Controllers.getController(index);
 		// über alle buttons laufen Controller.getbuttonCount
 		// name davon speichern

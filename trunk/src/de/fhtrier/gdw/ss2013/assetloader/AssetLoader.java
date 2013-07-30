@@ -30,6 +30,7 @@ import de.fhtrier.gdw.ss2013.assetloader.infos.PartikelInfo;
 import de.fhtrier.gdw.ss2013.assetloader.infos.ScoreInfo;
 import de.fhtrier.gdw.ss2013.assetloader.infos.SettingsInfo;
 import de.fhtrier.gdw.ss2013.assetloader.infos.SoundInfo;
+import de.fhtrier.gdw.ss2013.input.InputDevice.DEVICE_TYPE;
 
 public class AssetLoader {
     private HashMap<String, Image> imageMap = new HashMap<>();
@@ -239,8 +240,8 @@ public class AssetLoader {
         return infosMap.get(name);
     }
 	
-	public List<KeyInfo> getKeyList(String device){ //mouse //keyboard //controller
-        return setupKeys("res/json/keys/"+device+".json");
+	public List<KeyInfo> getKeyList(DEVICE_TYPE deviceType){
+        return setupKeys("res/json/keys/"+deviceType+".json");
     }
 	
 	/**
