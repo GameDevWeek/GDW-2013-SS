@@ -12,7 +12,6 @@ import org.jbox2d.pooling.arrays.Vec2Array;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.geom.Polygon;
 
 import de.fhtrier.gdw.ss2013.game.camera.Camera;
 
@@ -65,20 +64,20 @@ public class DebugDrawer extends DebugDraw {
     @Override
     public void drawPoint(final Vec2 argPoint, final float argRadiusOnScreen,
             final Color3f argColor) {
-        this.viewportTransform.setCenter(
-                gameContainer.getWidth() / 2 + cam.getOffsetX(),
-                gameContainer.getHeight() / 2 + cam.getOffsetY());
-
-        Graphics g = this.gameContainer.getGraphics();
-        getWorldToScreenToOut(argPoint, sp1);
-        g.setColor(new Color(1.0f, argColor.y, argColor.z));
-
-        sp1.x -= argRadiusOnScreen;
-        sp1.y -= argRadiusOnScreen;
-        g.fillOval((int) sp1.x, (int) sp1.y, (int) argRadiusOnScreen * 2,
-                (int) argRadiusOnScreen * 2);
-        g.drawString("Point here", sp1.x, sp1.y);
-        g.setColor(Color.white);
+        // this.viewportTransform.setCenter(
+        // gameContainer.getWidth() / 2 + cam.getOffsetX(),
+        // gameContainer.getHeight() / 2 + cam.getOffsetY());
+        //
+        // Graphics g = this.gameContainer.getGraphics();
+        // getWorldToScreenToOut(argPoint, sp1);
+        // g.setColor(new Color(1.0f, argColor.y, argColor.z));
+        //
+        // sp1.x -= argRadiusOnScreen;
+        // sp1.y -= argRadiusOnScreen;
+        // g.fillOval((int) sp1.x, (int) sp1.y, (int) argRadiusOnScreen * 2,
+        // (int) argRadiusOnScreen * 2);
+        // g.drawString("Point here", sp1.x, sp1.y);
+        // g.setColor(Color.white);
     }
 
     /**
@@ -87,17 +86,17 @@ public class DebugDrawer extends DebugDraw {
      */
     @Override
     public void drawSegment(final Vec2 p1, final Vec2 p2, final Color3f color) {
-        // this.viewportTransform.setCenter(
-        // gameContainer.getWidth() / 2 + cam.getOffsetX(),
-        // gameContainer.getHeight() / 2 + cam.getOffsetY());
-        //
-        // Graphics g = this.gameContainer.getGraphics();
+        this.viewportTransform.setCenter(
+                gameContainer.getWidth() / 2 + cam.getOffsetX(),
+                gameContainer.getHeight() / 2 + cam.getOffsetY());
+
+        Graphics g = this.gameContainer.getGraphics();
         // getWorldToScreenToOut(p1, sp1);
         // getWorldToScreenToOut(p2, sp2);
-        // g.setColor(new Color(color.x, color.y, color.z));
-        //
-        // g.drawLine((int) sp1.x, (int) sp1.y, (int) sp2.x, (int) sp2.y);
-        // g.setColor(Color.white);
+        g.setColor(new Color(color.x, color.y, color.z));
+
+        g.drawLine((int) p1.x, (int) p1.y, (int) p2.x, (int) p2.y);
+        g.setColor(Color.white);
     }
 
     public void drawAABB(final AABB argAABB, final Color3f color) {
@@ -133,25 +132,25 @@ public class DebugDrawer extends DebugDraw {
     @Override
     public void drawSolidPolygon(final Vec2[] vertices, final int vertexCount,
             final Color3f color) {
-        this.viewportTransform.setCenter(
-                gameContainer.getWidth() / 2 + cam.getOffsetX(),
-                gameContainer.getHeight() / 2 + cam.getOffsetY());
-
-        Graphics g = this.gameContainer.getGraphics();
-        final int[] xInts = xIntsPool.get(vertexCount);
-        final int[] yInts = yIntsPool.get(vertexCount);
-        final Polygon p = new Polygon();
-
-        for (int i = 0; i < vertexCount; i++) {
-            getWorldToScreenToOut(vertices[i], temp);
-            xInts[i] = (int) vertices[i].x;
-            yInts[i] = (int) vertices[i].y;
-            p.addPoint(xInts[i], yInts[i]);
-        }
-
-        g.setColor(new Color(color.x, color.y, color.z));
-        g.fill(p); // Draws shape filled with colour
-        g.setColor(Color.white);
+        // this.viewportTransform.setCenter(
+        // gameContainer.getWidth() / 2 + cam.getOffsetX(),
+        // gameContainer.getHeight() / 2 + cam.getOffsetY());
+        //
+        // Graphics g = this.gameContainer.getGraphics();
+        // final int[] xInts = xIntsPool.get(vertexCount);
+        // final int[] yInts = yIntsPool.get(vertexCount);
+        // final Polygon p = new Polygon();
+        //
+        // for (int i = 0; i < vertexCount; i++) {
+        // getWorldToScreenToOut(vertices[i], temp);
+        // xInts[i] = (int) vertices[i].x;
+        // yInts[i] = (int) vertices[i].y;
+        // p.addPoint(xInts[i], yInts[i]);
+        // }
+        //
+        // g.setColor(new Color(color.x, color.y, color.z));
+        // g.fill(p); // Draws shape filled with colour
+        // g.setColor(Color.white);
     }
 
     /**
@@ -161,14 +160,14 @@ public class DebugDrawer extends DebugDraw {
     @Override
     public void drawString(final float x, final float y, final String s,
             final Color3f color) {
-        this.viewportTransform.setCenter(
-                gameContainer.getWidth() / 2 + cam.getOffsetX(),
-                gameContainer.getHeight() / 2 + cam.getOffsetY());
-
-        Graphics g = this.gameContainer.getGraphics();
-        g.setColor(new Color(color.x, color.y, color.z));
-        g.drawString(s, x, y);
-        g.setColor(Color.white);
+        // this.viewportTransform.setCenter(
+        // gameContainer.getWidth() / 2 + cam.getOffsetX(),
+        // gameContainer.getHeight() / 2 + cam.getOffsetY());
+        //
+        // Graphics g = this.gameContainer.getGraphics();
+        // g.setColor(new Color(color.x, color.y, color.z));
+        // g.drawString(s, x, y);
+        // g.setColor(Color.white);
     }
 
     /**
@@ -176,31 +175,31 @@ public class DebugDrawer extends DebugDraw {
      */
     @Override
     public void drawTransform(final Transform xf) {
-        this.viewportTransform.setCenter(
-                gameContainer.getWidth() / 2 + cam.getOffsetX(),
-                gameContainer.getHeight() / 2 + cam.getOffsetY());
-
-        Graphics g = this.gameContainer.getGraphics();
-        getWorldToScreenToOut(xf.p, temp);
-        temp2.setZero();
-        final float k_axisScale = 0.4f;
-
-        g.setColor(new Color(1, 0, 0));
-        Vec2 xAxis = new Vec2();
-        xf.q.getXAxis(xAxis);
-        temp2.x = xf.p.x + k_axisScale * xAxis.x;
-        temp2.y = xf.p.y + k_axisScale * xAxis.y;
-        getWorldToScreenToOut(temp2, temp2);
-        g.drawLine((int) temp.x, (int) temp.y, (int) temp2.x, (int) temp2.y);
-
-        g.setColor(new Color(0, 1, 0));
-        Vec2 yAxis = new Vec2();
-        xf.q.getYAxis(yAxis);
-        temp2.x = xf.p.x + k_axisScale * yAxis.x;
-        temp2.y = xf.p.y + k_axisScale * yAxis.y;
-        getWorldToScreenToOut(temp2, temp2);
-        g.drawLine((int) temp.x, (int) temp.y, (int) temp2.x, (int) temp2.y);
-        g.setColor(Color.white);
+        // this.viewportTransform.setCenter(
+        // gameContainer.getWidth() / 2 + cam.getOffsetX(),
+        // gameContainer.getHeight() / 2 + cam.getOffsetY());
+        //
+        // Graphics g = this.gameContainer.getGraphics();
+        // getWorldToScreenToOut(xf.p, temp);
+        // temp2.setZero();
+        // final float k_axisScale = 0.4f;
+        //
+        // g.setColor(new Color(1, 0, 0));
+        // Vec2 xAxis = new Vec2();
+        // xf.q.getXAxis(xAxis);
+        // temp2.x = xf.p.x + k_axisScale * xAxis.x;
+        // temp2.y = xf.p.y + k_axisScale * xAxis.y;
+        // getWorldToScreenToOut(temp2, temp2);
+        // g.drawLine((int) temp.x, (int) temp.y, (int) temp2.x, (int) temp2.y);
+        //
+        // g.setColor(new Color(0, 1, 0));
+        // Vec2 yAxis = new Vec2();
+        // xf.q.getYAxis(yAxis);
+        // temp2.x = xf.p.x + k_axisScale * yAxis.x;
+        // temp2.y = xf.p.y + k_axisScale * yAxis.y;
+        // getWorldToScreenToOut(temp2, temp2);
+        // g.drawLine((int) temp.x, (int) temp.y, (int) temp2.x, (int) temp2.y);
+        // g.setColor(Color.white);
     }
 
     // Circle Generator

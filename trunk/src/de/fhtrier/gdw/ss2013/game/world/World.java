@@ -2,7 +2,6 @@ package de.fhtrier.gdw.ss2013.game.world;
 
 import org.jbox2d.common.IViewportTransform;
 import org.jbox2d.common.OBBViewportTransform;
-import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.BodyType;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -181,7 +180,8 @@ public class World {
         if (input.isKeyPressed(Input.KEY_SPACE)) {
 
             RectanglePhysicsObject rpo = new RectanglePhysicsObject(
-                    BodyType.DYNAMIC, new Vec2(30, 100), new Vec2(0, 0));
+                    BodyType.DYNAMIC, new Vector2f(30, 100), new Vector2f(500,
+                            200));
             // physicsManager.enableSimulation(rpo);
             // rpo.setMassData(100);
             // rpo.setLinearVelocity(new Vec2(

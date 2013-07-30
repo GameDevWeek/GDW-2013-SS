@@ -20,196 +20,191 @@ import de.fhtrier.gdw.ss2013.game.Entity;
 
 public abstract class PhysicsObject {
 
-	private Entity owner;
-	private BodyDef myBodyDef;
-	private FixtureDef myFixtureDef;
-	private Fixture myFixture;
-	private Body myBody;
-	
-	protected static final BodyType DEFAULT_BODYTYPE = BodyType.STATIC;
-	protected static final float DEFAULT_DENSITY = 1.0f;
-	protected static final float DEFAULT_RESTITUTION = 1.0f;
-	protected static final float DEFAULT_FRICTION = 1.0f;
-	protected static final boolean DEFAULT_ISSENSOR = false;
-    
+    private Entity owner;
+    private BodyDef myBodyDef;
+    private FixtureDef myFixtureDef;
+    private Fixture myFixture;
+    private Body myBody;
 
-	private Collection<ICollisionListener> collisionListeners;
+    protected static final BodyType DEFAULT_BODYTYPE = BodyType.STATIC;
+    protected static final float DEFAULT_DENSITY = 1.0f;
+    protected static final float DEFAULT_RESTITUTION = 1.0f;
+    protected static final float DEFAULT_FRICTION = 1.0f;
+    protected static final boolean DEFAULT_ISSENSOR = false;
 
-	protected PhysicsObject(float restitution, float density, float friction,
-            boolean isSensor)
-	{		
-		myFixtureDef = new FixtureDef();
-		myFixtureDef.restitution = restitution;
-		myFixtureDef.density = density;
-		myFixtureDef.friction = friction;
-		myFixtureDef.isSensor = isSensor;
-		
-		collisionListeners = new ArrayList<ICollisionListener>();
-	}
+    private Collection<ICollisionListener> collisionListeners;
 
-	protected void init(Shape myShape,BodyType bodyType, Vec2 Pos) {
-	    this.myBodyDef = new BodyDef();
-	    this.myBodyDef.type = bodyType;
-	    myFixtureDef.shape = myShape;
-	    enableSimulation();
-	    this.myBody.createFixture(this.myFixtureDef);
-	    setPosition(Pos);
-	}
-	
-	protected void setBodyDef(BodyDef myBodyDef) {
-		this.myBodyDef = myBodyDef;
-	}
+    protected PhysicsObject(float restitution, float density, float friction,
+            boolean isSensor) {
+        myFixtureDef = new FixtureDef();
+        myFixtureDef.restitution = restitution;
+        myFixtureDef.density = density;
+        myFixtureDef.friction = friction;
+        myFixtureDef.isSensor = isSensor;
 
-	protected void setFixtureDef(FixtureDef fixtureDef) {
-		if (this.myBody == null) {
-			throw new RuntimeException(
-					"Bitte enableSimulation vorher ausführen.");
-		}
-		this.myFixtureDef = fixtureDef;
-		this.myBody.createFixture(this.myFixtureDef);
-	}
+        collisionListeners = new ArrayList<ICollisionListener>();
+    }
 
-	public void enableSimulation() {
-		if (this.myBodyDef == null) {
-			throw new RuntimeException("Bitte myBodyDef initzalisiren!");
-		}
-		this.myBody = PhysicsManager.getCurrent().enableSimulation(this);
-		this.myBody.m_userData = this;
-		this.myFixture = this.myBody.createFixture(myFixtureDef);
-	}
+    protected void init(Shape myShape, BodyType bodyType, Vec2 Pos) {
+        this.myBodyDef = new BodyDef();
+        this.myBodyDef.type = bodyType;
+        myFixtureDef.shape = myShape;
+        enableSimulation();
+        this.myBody.createFixture(this.myFixtureDef);
+        setPosition(Pos);
+    }
 
-	public void disableSimulation() {
-		PhysicsManager.getCurrent().disableSimulation(this);
-	}
+    protected void setBodyDef(BodyDef myBodyDef) {
+        this.myBodyDef = myBodyDef;
+    }
 
-	public Body getBody() {
-		return myBody;
-	}
+    protected void setFixtureDef(FixtureDef fixtureDef) {
+        if (this.myBody == null) {
+            throw new RuntimeException(
+                    "Bitte enableSimulation vorher ausführen.");
+        }
+        this.myFixtureDef = fixtureDef;
+        this.myBody.createFixture(this.myFixtureDef);
+    }
 
-	public BodyDef getBodyDef() {
-		return myBodyDef;
-	}
+    public void enableSimulation() {
 
-	public void setOwner(Entity owner) {
-		this.owner = owner;
-	}
+        this.myBody = PhysicsManager.getCurrent().enableSimulation(this);
+        this.myBody.m_userData = this;
+        this.myFixture = this.myBody.createFixture(myFixtureDef);
+    }
 
-	public Entity getOwner() {
-		return owner;
-	}
+    public void disableSimulation() {
+        PhysicsManager.getCurrent().disableSimulation(this);
+    }
 
-	public float getX() {
-		return myBody.getPosition().x;
-	}
+    public Body getBody() {
+        return myBody;
+    }
 
-	public float getY() {
-		return myBody.getPosition().y;
-	}
+    public BodyDef getBodyDef() {
+        return myBodyDef;
+    }
 
-	public Vec2 getPosition() {
-		return myBody.getPosition();
-	}
+    public void setOwner(Entity owner) {
+        this.owner = owner;
+    }
 
-	public void setX(float x) {
-		myBody.setTransform(new Vec2(x, getY()), myBody.getAngle());
-	}
+    public Entity getOwner() {
+        return owner;
+    }
 
-	public void setY(float y) {
-		myBody.setTransform(new Vec2(getX(), y), myBody.getAngle());
-	}
+    public float getX() {
+        return myBody.getPosition().x;
+    }
 
-	public void setPosition(Vec2 pos) {
-		myBody.setTransform(pos, myBody.getAngle());
-	}
+    public float getY() {
+        return myBody.getPosition().y;
+    }
 
-	public void setPosition(float x, float y) {
-		setPosition(new Vec2(x, y));
-	}
+    public Vec2 getPosition() {
+        return myBody.getPosition();
+    }
 
-	public void simpelForceApply(Vec2 force) {
-		myBody.applyForceToCenter(force);
-	}
+    public void setX(float x) {
+        myBody.setTransform(new Vec2(x, getY()), myBody.getAngle());
+    }
 
-	public void applyImpulse(Vec2 force) {
+    public void setY(float y) {
+        myBody.setTransform(new Vec2(getX(), y), myBody.getAngle());
+    }
+
+    public void setPosition(Vec2 pos) {
+        myBody.setTransform(pos, myBody.getAngle());
+    }
+
+    public void setPosition(float x, float y) {
+        setPosition(new Vec2(x, y));
+    }
+
+    public void simpelForceApply(Vec2 force) {
+        myBody.applyForceToCenter(force);
+    }
+
+    public void applyImpulse(Vec2 force) {
         myBody.applyLinearImpulse(force, this.myBody.getWorldCenter());
     }
-	
-	public float getAngle() {
-		return myBody.getAngle();
-	}
 
-	public Vec2 getLiniarVelocity() {
-		return myBody.getLinearVelocity();
-	}
+    public float getAngle() {
+        return myBody.getAngle();
+    }
 
-	public void setLinearVelocity(Vec2 v) {
-		myBody.setLinearVelocity(v);
-	}
+    public Vec2 getLiniarVelocity() {
+        return myBody.getLinearVelocity();
+    }
 
-	public boolean isAwake() {
-		return myBody.isAwake();
-	}
+    public void setLinearVelocity(Vec2 v) {
+        myBody.setLinearVelocity(v);
+    }
 
-	public boolean isAsleep() {
-		return !myBody.isAwake();
-	}
+    public boolean isAwake() {
+        return myBody.isAwake();
+    }
 
-	public void setGravityScale(float gravityScale) {
-		myBody.setGravityScale(gravityScale);
-	}
+    public boolean isAsleep() {
+        return !myBody.isAwake();
+    }
 
-	public float getGravityScale() {
-		return myBody.getGravityScale();
-	}
+    public void setGravityScale(float gravityScale) {
+        myBody.setGravityScale(gravityScale);
+    }
 
-	public void setMassData(MassData massData) {
-		myBody.setMassData(massData);
-	}
+    public float getGravityScale() {
+        return myBody.getGravityScale();
+    }
 
-	public void setMassData(float mass) {
-		myBody.m_mass = mass;
-	}
+    public void setMassData(MassData massData) {
+        myBody.setMassData(massData);
+    }
 
-	public float getMass() {
-		return myBody.getMass();
-	}
+    public void setMassData(float mass) {
+        myBody.m_mass = mass;
+    }
 
-	public float getFriction() {
-		return myFixtureDef.friction;
-	}
+    public float getMass() {
+        return myBody.getMass();
+    }
 
-	public float getDensity() {
-		return myFixtureDef.density;
-	}
+    public float getFriction() {
+        return myFixtureDef.friction;
+    }
 
-	public float getRestitution() {
-		return myFixtureDef.restitution;
-	}
-	
-	public boolean addCollisionListener(ICollisionListener listener) {
-	    return collisionListeners.add(listener);
-	}
+    public float getDensity() {
+        return myFixtureDef.density;
+    }
 
-	public boolean removeCollisionListener(ICollisionListener listener) {
-	    return collisionListeners.remove(listener);
-	}
+    public float getRestitution() {
+        return myFixtureDef.restitution;
+    }
 
-	public void beginContact(PhysicsObject object) {
-	    for (ICollisionListener listener : collisionListeners) {
-	        listener.beginContact(object);
-	    }
-	}
+    public boolean addCollisionListener(ICollisionListener listener) {
+        return collisionListeners.add(listener);
+    }
 
-	public void endContact(PhysicsObject object) {
-	    for (ICollisionListener listener : collisionListeners) {
-	        listener.endContact(object);
-	    }
-	}
-	
+    public boolean removeCollisionListener(ICollisionListener listener) {
+        return collisionListeners.remove(listener);
+    }
+
+    public void beginContact(PhysicsObject object) {
+        for (ICollisionListener listener : collisionListeners) {
+            listener.beginContact(object);
+        }
+    }
+
+    public void endContact(PhysicsObject object) {
+        for (ICollisionListener listener : collisionListeners) {
+            listener.endContact(object);
+        }
+    }
+
     public void update(GameContainer container, int delta)
             throws SlickException {
-        if(owner != null)
-        {
+        if (owner != null) {
             owner.setPosition(getPosition().x, getPosition().y);
         }
     }
