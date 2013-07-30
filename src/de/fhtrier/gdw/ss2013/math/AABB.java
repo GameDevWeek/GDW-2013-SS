@@ -12,4 +12,10 @@ final public class AABB extends GeometricObject {
         this.halfExtentY = halfExtentY;
 
     }
+
+    @Override
+    public boolean containsPoint(Vector2f p) {
+        // TODO Auto-generated method stub
+        return false;
+    }
 }
