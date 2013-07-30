@@ -4,9 +4,6 @@
 
 package de.fhtrier.gdw.ss2013.assetloader;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.text.ParseException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -33,10 +30,8 @@ import de.fhtrier.gdw.ss2013.assetloader.infos.PartikelInfo;
 import de.fhtrier.gdw.ss2013.assetloader.infos.ScoreInfo;
 import de.fhtrier.gdw.ss2013.assetloader.infos.SettingsInfo;
 import de.fhtrier.gdw.ss2013.assetloader.infos.SoundInfo;
-//!!!!!!
 
 public class AssetLoader {
-
     private HashMap<String, Image> imageMap = new HashMap<>();
     private HashMap<String, Animation> animMap = new HashMap<>();
     private HashMap<String, Sound> soundMap = new HashMap<>();
@@ -44,7 +39,9 @@ public class AssetLoader {
     private HashMap<String, Font> fontMap = new HashMap<>();
     private HashMap<String, ParticleSystem> partikelMap = new HashMap<>();
     private HashMap<String, String> infosMap = new HashMap<>();
+    
     private SettingsInfo settings;
+    
     private static AssetLoader instance;
 
     public static AssetLoader getInstance() {
@@ -63,9 +60,9 @@ public class AssetLoader {
         setupPartikel("res/json/partikel.json");
         setupSettings("res/json/settings.json");
         setupInfos("res/json/infos.json");
-      
     }
-
+    
+    // BACKSLASH CHECK ///////////////////////////////////////////////////////////////
 
     private void checkForBackslashes(String filename) {
 		for (int i = 0; i < filename.length(); ++i) {
@@ -75,62 +72,23 @@ public class AssetLoader {
 			}
 		}
 	}
-
-	private void setupImages(String filename) {
-		try {
-			List<ImageInfo> imageInfos = JacksonReader.readList(filename,
-					ImageInfo.class);
-			for (ImageInfo imageInfo : imageInfos) {
-				checkForBackslashes(imageInfo.pfad);
-				imageMap.put(imageInfo.name, new Image(imageInfo.pfad));
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	private void setupAnimations(String filename) {
-		try {
-			List<AnimationInfo> animInfos = JacksonReader.readList(filename,
-					AnimationInfo.class);
-			for (AnimationInfo animInfo : animInfos) {
-				checkForBackslashes(animInfo.pfad);
-				Image img = new Image(animInfo.pfad);
-				Animation anim = new Animation();
-				SpriteSheet sheet = new SpriteSheet(img, img.getWidth()
-						/ animInfo.anzBilder, img.getHeight());
-				for (int i = 0; i < animInfo.anzBilder; i += 1) {
-					anim.addFrame(sheet.getSprite(i, 0), animInfo.animSpeed);
-				}
-				animMap.put(animInfo.name, anim);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	private void setupSounds(String filename) {
-		try {
-			List<SoundInfo> soundInfos = JacksonReader.readList(filename,
-					SoundInfo.class);
-			for (SoundInfo soundInfo : soundInfos) {
-				checkForBackslashes(soundInfo.pfad);
-				soundMap.put(soundInfo.name,
-						new Sound(ResourceLoader.getResource(soundInfo.pfad)));
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-    private void setupMaps(String filename) {
+    
+    // SETUP //////////////////////////////////////////////////////////////////////////
+    
+    private void setupAnimations(String filename) {
         try {
-            List<MapInfo> mapInfos = JacksonReader.readList(filename,
-                    MapInfo.class);
-            for (MapInfo mapInfo : mapInfos) {
-                checkForBackslashes(mapInfo.pfad);
-                mapHashmap.put(mapInfo.name, mapInfo.pfad); // don't load every
-                                                            // map during setup
+            List<AnimationInfo> animInfos = JacksonReader.readList(filename,
+                    AnimationInfo.class);
+            for (AnimationInfo animInfo : animInfos) {
+                checkForBackslashes(animInfo.pfad);
+                Image img = new Image(animInfo.pfad);
+                Animation anim = new Animation();
+                SpriteSheet sheet = new SpriteSheet(img, img.getWidth()
+                        / animInfo.anzBilder, img.getHeight());
+                for (int i = 0; i < animInfo.anzBilder; i += 1) {
+                    anim.addFrame(sheet.getSprite(i, 0), animInfo.animSpeed);
+                }
+                animMap.put(animInfo.name, anim);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -152,7 +110,70 @@ public class AssetLoader {
         }
     }
     
-    private List<ScoreInfo> setupScore(String filename) {
+	private void setupImages(String filename) {
+		try {
+			List<ImageInfo> imageInfos = JacksonReader.readList(filename,
+					ImageInfo.class);
+			for (ImageInfo imageInfo : imageInfos) {
+				checkForBackslashes(imageInfo.pfad);
+				imageMap.put(imageInfo.name, new Image(imageInfo.pfad));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	 private void setupInfos(String filename){
+	        try {
+	            List<InfoInfo> infoInfos = JacksonReader.readList(filename,
+	                    InfoInfo.class);
+	            for (InfoInfo infoInfo : infoInfos) {
+	                infosMap.put(infoInfo.name, infoInfo.info); // don't load every map during setup
+	            }
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	    }
+	
+	private List<KeyInfo> setupKeys(String filename) { 
+        List<KeyInfo> keyInfos = null;
+        try {
+            keyInfos = JacksonReader.readList(filename, KeyInfo.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return keyInfos;
+    }
+	
+	private void setupMaps(String filename) {
+        try {
+            List<MapInfo> mapInfos = JacksonReader.readList(filename,
+                    MapInfo.class);
+            for (MapInfo mapInfo : mapInfos) {
+                checkForBackslashes(mapInfo.pfad);
+                mapHashmap.put(mapInfo.name, mapInfo.pfad); // don't load every
+                                                            // map during setup
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+	
+	private void setupPartikel(String filename) {
+        try{
+            List<PartikelInfo> partikelInfos= JacksonReader.readList(filename, PartikelInfo.class);
+            for(PartikelInfo partikelInfo: partikelInfos){
+                checkForBackslashes(partikelInfo.pfad);
+                partikelMap.put(partikelInfo.name, new ParticleSystem(partikelInfo.pfad));
+            }
+            
+        } catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+	private List<ScoreInfo> setupScore(String filename) {
         List<ScoreInfo> scoreInfos = null;
         try {
             scoreInfos = JacksonReader.readList(filename, ScoreInfo.class);
@@ -166,49 +187,42 @@ public class AssetLoader {
         }
         return scoreInfos;
     }
-    
-    private void setupSettings(String filename){
+	
+	private void setupSettings(String filename){
         try {
             settings = JacksonReader.read(filename, SettingsInfo.class);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+	
+	private void setupSounds(String filename) {
+		try {
+			List<SoundInfo> soundInfos = JacksonReader.readList(filename,
+					SoundInfo.class);
+			for (SoundInfo soundInfo : soundInfos) {
+				checkForBackslashes(soundInfo.pfad);
+				soundMap.put(soundInfo.name,
+						new Sound(ResourceLoader.getResource(soundInfo.pfad)));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	  
+    // GET //////////////////////////////////////////////////////////////////////////
     
-    private void setupInfos(String filename){
-        try {
-            List<InfoInfo> infoInfos = JacksonReader.readList(filename,
-                    InfoInfo.class);
-            for (InfoInfo infoInfo : infoInfos) {
-                infosMap.put(infoInfo.name, infoInfo.info); // don't load every map during setup
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public Animation getAnimation(String name) {
+        if(animMap.get(name) == null){
+            System.out.println("ERROR: Animation '"+name+"' existiert nicht.");
+            return animMap.get("error").copy();
+        }else{
+            return animMap.get(name).copy();
+        }   
     }
     
-    private void setupPartikel(String filename) {
-        try{
-            List<PartikelInfo> partikelInfos= JacksonReader.readList(filename, PartikelInfo.class);
-            for(PartikelInfo partikelInfo: partikelInfos){
-                checkForBackslashes(partikelInfo.pfad);
-                partikelMap.put(partikelInfo.name, new ParticleSystem(partikelInfo.pfad));
-            }
-            
-        } catch(Exception e)
-        {
-            e.printStackTrace();
-        }
-    }
-    
-    private List<KeyInfo> setupKeys(String filename) { 
-        List<KeyInfo> keyInfos = null;
-        try {
-            keyInfos = JacksonReader.readList(filename, KeyInfo.class);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return keyInfos;
+    public Font getFont(String name) {
+        return fontMap.get(name);
     }
     
 	public Image getImage(String name) {
@@ -219,62 +233,25 @@ public class AssetLoader {
 	        return imageMap.get(name);
 	    }
 	}
-
-	public Animation getAnimation(String name) {
-	    if(animMap.get(name) == null){
-	        System.out.println("ERROR: Animation '"+name+"' existiert nicht.");
-	        return animMap.get("error").copy();
-	    }else{
-	        return animMap.get(name).copy();
-	    }	
-	}
-
-	public Sound getSound(String name) {
-		return soundMap.get(name);
-	}
 	
-	public List<ScoreInfo> getScore(String scoreName){
-	    return setupScore("res/json/scores/"+scoreName+".json");
-	}
+    public String getInfo(String name){
+        
+        return infosMap.get(name);
+    }
 	
 	public List<KeyInfo> getKeyList(String device){ //mouse //keyboard //controller
-	    return setupKeys("res/json/keys/"+device+".json");
-	}
-
-    /**
-	 * 
-	 * @param name JSON map name
-	 * @return Path to map file
-	 */
-	public String getMapPath(String name) {
-	    return mapHashmap.get(name);
-	}
-    
-    /**
-     * 
-     * @param mapname Mapname from JSON-Files
-     * @return Loaded TiledMap
-     * @throws Exception
-     */
-    public TiledMap loadMap(String mapname) throws Exception {
-        AssetLoader assetLoader = AssetLoader.getInstance();
-        TiledMap map = new TiledMap(assetLoader.getMapPath(mapname), LayerObject.PolyMode.ABSOLUTE);
-        return map;
+        return setupKeys("res/json/keys/"+device+".json");
     }
-
-	public Font getFont(String name) {
-		return fontMap.get(name);
-	}
 	
-	public SettingsInfo getSettings(){
-	    return settings;
-	}
-	
-	public String getInfo(String name){
-	    
-	    return infosMap.get(name);
-	}
-	
+	/**
+     * 
+     * @param name JSON map name
+     * @return Path to map file
+     */
+    public String getMapPath(String name) {
+        return mapHashmap.get(name);
+    }
+    
     public ParticleSystem getParticle(String name) {
         if (partikelMap.get(name) == null) {
             System.out.println("ERROR: Partikelanimtion '" + name
@@ -284,15 +261,21 @@ public class AssetLoader {
             return partikelMap.get(name);
         }
     }
+    
+    public List<ScoreInfo> getScore(String scoreName){
+        return setupScore("res/json/scores/"+scoreName+".json");
+    }
+    
+    public SettingsInfo getSettings(){
+        return settings;
+    }
 	
-	public void writeScore(String scoreName, List<ScoreInfo> scoreList){
-	    try {
-            JacksonWriter.writeList("res/json/scores/"+scoreName+".json", scoreList);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+	public Sound getSound(String name) {
+		return soundMap.get(name);
 	}
-	
+    
+    // WRITE //////////////////////////////////////////////////////////////////////
+
 	public void writeKeys(String device, List<KeyInfo> keyList){
         try {
             JacksonWriter.writeList("res/json/keys/"+device+".json", keyList);
@@ -309,4 +292,26 @@ public class AssetLoader {
             e.printStackTrace();
         }
 	}
+	
+	public void writeScore(String scoreName, List<ScoreInfo> scoreList){
+        try {
+            JacksonWriter.writeList("res/json/scores/"+scoreName+".json", scoreList);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+	
+	// LOADMAP ///////////////////////////////////////////////////////////////////////
+	
+    /**
+     * 
+     * @param mapname Mapname from JSON-Files
+     * @return Loaded TiledMap
+     * @throws Exception
+     */
+    public TiledMap loadMap(String mapname) throws Exception {
+        AssetLoader assetLoader = AssetLoader.getInstance();
+        TiledMap map = new TiledMap(assetLoader.getMapPath(mapname), LayerObject.PolyMode.ABSOLUTE);
+        return map;
+    }
 }
