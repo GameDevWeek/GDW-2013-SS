@@ -23,11 +23,13 @@ public class EntityManager {
     protected ArrayList<Entity> entityList;
     protected HashMap<Class<? extends RecycleableEntity>, LinkedList<Entity>> recycleMap;
     protected Queue<Entity> removalQueue;
+    protected Queue<Entity> insertionQueue;
 
     public EntityManager() {
         entityList = new ArrayList<>();
         recycleMap = new HashMap<>();
         removalQueue = new LinkedList<>();
+        insertionQueue = new LinkedList<>();
     }
 
     private void internalRemove() {
@@ -42,7 +44,13 @@ public class EntityManager {
             }
             entityList.remove(removalQueue.poll());
         }
+    }
 
+    private void internalInsert() {
+        while (!insertionQueue.isEmpty()) {
+            Entity e = insertionQueue.poll();
+            entityList.add(e);
+        }
     }
 
     /**
@@ -52,6 +60,7 @@ public class EntityManager {
      * @throws SlickException
      */
     public void update(GameContainer c, int delta) throws SlickException {
+        internalInsert();
         internalRemove();
         for (Entity e : entityList)
             e.update(c, delta);
@@ -104,7 +113,7 @@ public class EntityManager {
     }
 
     private void addEntity(Entity e) {
-        entityList.add(e);
+        insertionQueue.add(e);
     }
 
     public void removeEntity(Entity e) {
