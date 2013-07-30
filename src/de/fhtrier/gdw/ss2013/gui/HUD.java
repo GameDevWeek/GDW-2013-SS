@@ -18,7 +18,7 @@ public class HUD {
 
 	private Progressbar healthbar;
 	private Crosshair crosshair;
-	private Annotation notation;
+	private Tooltip notation;
 	private AbilitySelection abilityWheel;
 	private Quickselect quickselect;
 	private AssetLoader asset;
@@ -70,7 +70,7 @@ public class HUD {
 		crosshair = new Crosshair();
 		
 		//init tooltip
-		notation = new Annotation();
+		notation = new Tooltip();
 		notation.init(worldinstance, font);
 
 	}
