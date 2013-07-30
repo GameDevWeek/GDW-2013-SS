@@ -3,73 +3,66 @@ package de.fhtrier.gdw.ss2013.input;
 import java.util.HashMap;
 import java.util.HashSet;
 
+import org.newdawn.slick.ControllerListener;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.util.Log;
 
 import de.fhtrier.gdw.ss2013.input.InputDevice.ACTION;
 
-public class Gamepad extends InputDevice {
+public class Gamepad extends InputDevice{
 
     private HashMap<String, Integer> buttons = new HashMap<>();
     org.lwjgl.input.Controller controller;
     
+
     public Gamepad(GameContainer gc, int index) {
         super(gc);
         controller = org.lwjgl.input.Controllers.getController(index);
         // über alle buttons laufen Controller.getbuttonCount
         // name davon speichern
-        // 
+        //
+        Log.debug("NAME " + controller.getName());
     }
 
     @Override
     public void update() {
 
         HashSet<ACTION> actions = new HashSet<>(keymapping.values());
+        
         for (int key : keymapping.keySet()) {
-            if ( controller.isButtonPressed(key)  ) {
+            if (controller.isButtonPressed(key)) {
                 ACTION action = keymapping.get(key);
                 if (actions.contains(action)) {
                     actions.remove(action);
                     doAction(action);
                 }
             }
-            
-            
-        }
-    }
+            if (controller.getPovX() < 0.0f) {
+                doAction(ACTION.MOVEBACKWARD);
+            }
 
-    private void doAction(ACTION action) {
-        switch (action) {
-        case MOVEFORWARD:
-            astronautController.moveForward();
-            break;
-        case MOVEBACKWARD:
-            astronautController.moveBackward();
-            break;
-        case JUMP:
-            astronautController.jump();
-            break;
-        case ACTION:
-            astronautController.action();
-            break;
-        default:
-            break;
+            if (controller.getPovX() > 0.0f) {
+                doAction(ACTION.MOVEFORWARD);
+            }
+            
         }
     }
-    
-   // SHOOT, TARGET, ROTATEABILITY, USEABILITY
 
     @Override
     public void loadKeymapping() {
-        /*
-        keymapping.put(buttons.get("button_X"), ACTION.MOVEFORWARD);
 
-        keymapping.put(buttons.get("button_X"), ACTION.MOVEBACKWARD);
+        keymapping.put(0, ACTION.JUMP); // A (1)
 
-        keymapping.put(buttons.get("button_X"), ACTION.JUMP);
+        keymapping.put(1, ACTION.ACTION); // B (2)
+        
+        keymapping.put(2, ACTION.SHOOT); // RB (6)
+        
+        keymapping.put(3, ACTION.USEABILITY); //  (7)
+        
+        keymapping.put(4, ACTION.ROTATEABILITY); //  (8)
 
-        keymapping.put(buttons.get("button_Y"), ACTION.ACTION);
-        */
     }
+
 
 }

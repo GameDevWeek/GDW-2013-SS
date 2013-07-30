@@ -5,6 +5,8 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.util.Log;
 import org.lwjgl.input.*;
 
+import de.fhtrier.gdw.ss2013.input.InputDevice.ACTION;
+
 public class Mouse extends InputDevice {
 
     private int wheel = 0;
@@ -17,18 +19,18 @@ public class Mouse extends InputDevice {
     public void update() {
 
         if (container.getInput().isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)) {
-            alienController.shoot();
+            doAction(ACTION.SHOOT);
         }
 
         else if (container.getInput().isMousePressed(Input.MOUSE_RIGHT_BUTTON)) {
-            alienController.useAbility();
+            doAction(ACTION.USEABILITY);
         }
 
         alienController.targetMouse(container.getInput().getMouseX(), container
                 .getInput().getMouseY());
 
         if(wheel !=org.lwjgl.input.Mouse.getDWheel() ){
-            alienController.rotateAbilities();
+            doAction(ACTION.ROTATEABILITY);
         }
         wheel = org.lwjgl.input.Mouse.getDWheel();
     }
