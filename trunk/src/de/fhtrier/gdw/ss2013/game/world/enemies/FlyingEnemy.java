@@ -89,7 +89,7 @@ public class FlyingEnemy extends AbstractEnemy implements ICollidable {
 			flytime = flytime % 3000;
 		}
 	    if (bolttime >= 2000) {
-	   //     this.shoot(p, m);
+	        this.shoot(p, m);
 	        bolttime = bolttime % 2000;
 	    }
 	}
