@@ -8,14 +8,17 @@
 
 package de.fhtrier.gdw.ss2013.game.world.objects;
 
+import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Vector2f;
 
+import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.Entity;
 
 public class Door extends Entity {
 
 	private boolean open;
-
+//	private AssetLoader a = AssetLoader.getInstance();
+//	private Image img = a.getImage("Door");
 	public Door(Vector2f position) {
 		super(position);
 		open = false;

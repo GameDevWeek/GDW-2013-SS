@@ -7,27 +7,32 @@
  */
 package de.fhtrier.gdw.ss2013.game.world.objects;
 
+import org.newdawn.slick.Image;
 import java.util.ArrayList;
-
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
-
+import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.filter.Interactable;
 
+
 public class OxygenFlower extends Entity implements Interactable {
 
+    
+    private AssetLoader a = AssetLoader.getInstance();
+    private Image img;
+    
     private int maxBubble;
 
     private ArrayList<OxygenBubble> bubbles = new ArrayList<OxygenBubble>();
 
     public OxygenFlower(Vector2f position) {
         super(position.copy());
-
+        img = a.getImage("Pflanze");
         // Default
         maxBubble = 5;
 
@@ -49,7 +54,8 @@ public class OxygenFlower extends Entity implements Interactable {
 
             Vector2f bubblePos = new Vector2f(x, y);
             OxygenBubble bubble = new OxygenBubble(bubblePos.copy());
-            x += 10;
+            x += (Math.random()*100);
+            y += (Math.random()*100);
             bubbles.add(bubble);
             manager.createEntityAt(OxygenBubble.class, bubblePos.copy());
             maxBubble--;
@@ -61,6 +67,7 @@ public class OxygenFlower extends Entity implements Interactable {
             throws SlickException {
 
         g.setColor(Color.pink);
+        img.draw(this.getPosition().x, this.getPosition().y);
         super.render(container, g);
 
         // g.drawString(this.hashCode(), position.x, position.y);

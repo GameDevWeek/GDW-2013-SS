@@ -9,8 +9,12 @@
 package de.fhtrier.gdw.ss2013.game.world.objects;
 
 import org.jbox2d.dynamics.Fixture;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Vector2f;
-
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Graphics;
+import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.physics.ICollidable;
@@ -19,10 +23,12 @@ import de.fhtrier.gdw.ss2013.physics.ICollidable;
 public class OxygenBubble extends Entity implements ICollidable{
 
 	private float oxygenLevel;
-
+	private AssetLoader a = AssetLoader.getInstance();
+	private Image img = a.getImage("Sauerstoff");
 	// Standard-Konstruktor
 	public OxygenBubble(Vector2f position) {
-		super(position);
+		super(position.copy());
+		a.getImage("Sauerstoff");
 		// Default
 		oxygenLevel = 0;
 	}
@@ -55,6 +61,11 @@ public class OxygenBubble extends Entity implements ICollidable{
 		this.oxygenLevel = oxygenLevel;
 	}
 
+	public void render(GameContainer container, Graphics g)
+	        throws SlickException{
+	        img.draw(this.getPosition().x, this.getPosition().y);
+}
+	
 	@Override
 	public Fixture getFixture() {
 		// TODO Auto-generated method stub
