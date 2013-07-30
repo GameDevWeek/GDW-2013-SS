@@ -10,6 +10,7 @@ import org.jbox2d.collision.shapes.Shape;
 import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.BodyDef;
+import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
 import org.newdawn.slick.GameContainer;
@@ -20,27 +21,28 @@ import de.fhtrier.gdw.ss2013.game.Entity;
 public abstract class PhysicsObject {
 
 	private Entity owner;
-	private Body myBody;
-	private Collection<ICollisionListener> collisionListeners;
 	private BodyDef myBodyDef;
 	private FixtureDef myFixtureDef;
+	private Fixture myFixture;
+	private Body myBody;
+
+	private Collection<ICollisionListener> collisionListeners;
 
 	protected PhysicsObject(Entity owner, float restitution, float density, float friction,
-            boolean isSensor) {
+            boolean isSensor)
+	{
 		this.owner = owner;
 		
-	      myFixtureDef = new FixtureDef();
-	        myFixtureDef.restitution = restitution;
-	        myFixtureDef.density = density;
-	        myFixtureDef.friction = friction;
-	        myFixtureDef.isSensor = isSensor;
-	        
-	        
+		myFixtureDef = new FixtureDef();
+		myFixtureDef.restitution = restitution;
+		myFixtureDef.density = density;
+		myFixtureDef.friction = friction;
+		myFixtureDef.isSensor = isSensor;
+		
 		collisionListeners = new ArrayList<ICollisionListener>();
 	}
 
-	protected void init(Shape myShape,BodyType bodyType, Vec2 Pos)
-	{
+	protected void init(Shape myShape,BodyType bodyType, Vec2 Pos) {
 	    this.myBodyDef = new BodyDef();
 	    this.myBodyDef.type = bodyType;
 	    myFixtureDef.shape = myShape;
@@ -68,6 +70,7 @@ public abstract class PhysicsObject {
 		}
 		this.myBody = PhysicsManager.getInstance().enableSimulation(this);
 		this.myBody.m_userData = this;
+		this.myFixture = this.myBody.createFixture(myFixtureDef);
 	}
 
 	public void disableSimulation() {
@@ -194,15 +197,4 @@ public abstract class PhysicsObject {
 	public float getRestitution() {
 		return myFixtureDef.restitution;
 	}
-
-	/**
-	 * 
-	 * @param delta
-	 *            deltaTime in miliseconds
-	 * @throws SlickException
-	 */
-	public void update(GameContainer c, int delta) throws SlickException {
-
-	}
-
 }
