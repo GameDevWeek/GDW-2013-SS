@@ -11,8 +11,9 @@ import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
+import de.fhtrier.gdw.ss2013.physics.ICollidable;
 
-public class DeadZone extends Entity {
+public class DeadZone extends Entity implements ICollidable{
 
 	public DeadZone(Vector2f position) {
 		super(position);
@@ -22,10 +23,12 @@ public class DeadZone extends Entity {
 
 	}
 
-	public void touched(Astronaut astro) {
+	public void onCollision(Entity e) {
 
-		astro.setOxygen(0);
-
+	    if(e instanceof Astronaut)
+	    {
+	        ((Astronaut)e).setOxygen(0);
+	    }
 	}
 
 }
