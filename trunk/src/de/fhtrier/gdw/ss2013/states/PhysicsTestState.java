@@ -7,19 +7,19 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import de.fhtrier.gdw.ss2013.MainGame;
-import de.fhtrier.gdw.ss2013.game.world.World;
+import de.fhtrier.gdw.ss2013.physics.test.TestWorld;
 import de.fhtrier.gdw.ss2013.input.InputManager;
 
 public class PhysicsTestState extends BasicGameState{
 
 	private InputManager inputManager;
-	private World world;
+	private TestWorld world;
 
 	public void init(GameContainer container, StateBasedGame game)
 			throws SlickException {
 	    InputManager.init(container);
 	    inputManager = InputManager.getInstance();
-		world = new World(container, game);
+		world = new TestWorld(container, game);
 		
 	}
 
