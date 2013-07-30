@@ -58,8 +58,7 @@ public class World {
 
             mapRender = new MapRenderer(map);
         } catch (Exception e) {
-            e.printStackTrace();
-            throw new RuntimeException();
+            throw new RuntimeException(e);
         }
         camera = new Camera(map);
 
