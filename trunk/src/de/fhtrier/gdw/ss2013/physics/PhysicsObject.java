@@ -13,6 +13,9 @@ import org.jbox2d.dynamics.BodyDef;
 import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.FixtureDef;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.SlickException;
+
 import de.fhtrier.gdw.ss2013.game.Entity;
 
 public abstract class PhysicsObject {
@@ -27,9 +30,7 @@ public abstract class PhysicsObject {
 
 	protected PhysicsObject(float restitution, float density, float friction,
             boolean isSensor)
-	{
-		this.owner = owner;
-		
+	{		
 		myFixtureDef = new FixtureDef();
 		myFixtureDef.restitution = restitution;
 		myFixtureDef.density = density;
@@ -123,7 +124,7 @@ public abstract class PhysicsObject {
 	}
 
 	public void applyImpulse(Vec2 force) {
-        myBody.applyLinearImpulse(force, getPosition());
+        myBody.applyLinearImpulse(force, this.myBody.getWorldCenter());
     }
 	
 	public float getAngle() {
@@ -159,9 +160,7 @@ public abstract class PhysicsObject {
 	}
 
 	public void setMassData(float mass) {
-		MassData massData = new MassData();
-		massData.mass = mass;
-		setMassData(massData);
+		myBody.m_mass = mass;
 	}
 
 	public float getMass() {
@@ -199,4 +198,12 @@ public abstract class PhysicsObject {
 	        listener.endContact(object);
 	    }
 	}
+	
+    public void update(GameContainer container, int delta)
+            throws SlickException {
+        if(owner != null)
+        {
+            owner.setPosition(getPosition().x, getPosition().y);
+        }
+    }
 }
