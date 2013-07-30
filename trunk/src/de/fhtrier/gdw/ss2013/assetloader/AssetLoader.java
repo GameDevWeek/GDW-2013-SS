@@ -70,7 +70,7 @@ public class AssetLoader {
 	// ///////////////////////////////////////////////////////////////
 
 	private void checkForBackslashes(String filename) {
-		if (filename.contains("\\")) {
+		if (filename.contains("\\\\")) {
 			throw new IllegalArgumentException(
 					"You shall not use backslashes for paths! Check the JSON-files!");
 		}
