@@ -10,6 +10,8 @@ import org.newdawn.slick.state.StateBasedGame;
 import de.fhtrier.gdw.commons.tiled.TiledMap;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.camera.Camera;
+import de.fhtrier.gdw.ss2013.game.player.Alien;
+import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.player.Player;
 import de.fhtrier.gdw.ss2013.game.world.enemies.FlyingEnemy;
 import de.fhtrier.gdw.ss2013.game.world.enemies.Meteroid;
@@ -26,7 +28,8 @@ public class World {
     private TiledMap map;
     private MapRenderer mapRender;
     private Camera camera;
-    private Player player;
+    private Astronaut astronaut;
+    private Alien alien;
     private FlyingEnemy enemy;
     private Meteroid metro[] = new Meteroid[3];
     private Input input;
@@ -59,10 +62,10 @@ public class World {
                     .setDebugDraw(physicDebug);
         }
 
-        player = entityManager.createEntityAt(Player.class, new Vector2f(200,
+        astronaut = entityManager.createEntityAt(Astronaut.class, new Vector2f(200,
                 200));
-
-        SoundLocator.provide(new DefaultSoundPlayer(player));
+        alien= entityManager.createEntityAt(Alien.class, astronaut.getPosition());
+        SoundLocator.provide(new DefaultSoundPlayer(astronaut));
 
         oxyFlower = (OxygenFlower) entityManager.createEntityAt(
                 OxygenFlower.class, new Vector2f(300, 300));
@@ -77,9 +80,9 @@ public class World {
 
     public void render(GameContainer container, Graphics g)
             throws SlickException {
-        Vector2f playerPos = player.getPosition();
-        camera.update(container.getWidth(), container.getHeight(), playerPos.x,
-                playerPos.y);
+        Vector2f astronautPos = astronaut.getPosition();
+        camera.update(container.getWidth(), container.getHeight(), astronautPos.x,
+                astronautPos.y);
 
         mapRender
                 .renderTileLayers(g, -camera.getTileOverlapX(),
@@ -107,22 +110,22 @@ public class World {
         PhysicsManager.getInstance().update(container, delta);
 
         // This is just a placeholder, not for actual use.
-        Vector2f playerPos = player.getPosition();
+        Vector2f astronautPos = astronaut.getPosition();
         float speed = 6;
         if (input.isKeyDown(Input.KEY_UP)) {
-            playerPos.y -= speed;
+            astronautPos.y -= speed;
         }
         if (input.isKeyDown(Input.KEY_DOWN)) {
-            playerPos.y += speed;
+            astronautPos.y += speed;
         }
         if (input.isKeyDown(Input.KEY_LEFT)) {
-            playerPos.x -= speed;
+            astronautPos.x -= speed;
         }
         if (input.isKeyDown(Input.KEY_RIGHT)) {
-            playerPos.x += speed;
+            astronautPos.x += speed;
         }
         if (input.isKeyPressed(Input.KEY_F)) {
-            enemy.shoot(player, entityManager);
+            enemy.shoot(astronaut, entityManager);
         }
         // Sound a = SoundLocator.loadSound("teamworld_testsound");
         // SoundLocator.getPlayer().playSoundAt(a, player, player);
@@ -150,8 +153,8 @@ public class World {
         return screenPos.add(worldPosition);
     }
 
-    public Player getPlayer() {
-        return player;
+    public Astronaut getAstronaut() {
+        return astronaut;
     }
 
     public Camera getCamera() {
