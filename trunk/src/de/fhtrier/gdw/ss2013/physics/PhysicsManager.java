@@ -65,7 +65,7 @@ public class PhysicsManager implements ContactListener {
     }
 
     public void update(GameContainer c, int delta) throws SlickException {
-        _physicsWorld.step(delta, 6, 3);
+        _physicsWorld.step(delta/1000.0f, 6, 3);
         /*
         for (Contact c1 = _physicsWorld.getContactList(); c1 != null; c1 = c1
                 .getNext()) {
