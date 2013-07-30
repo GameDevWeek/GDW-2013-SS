@@ -52,7 +52,7 @@ public class GameplayState extends BasicGameState {
 			throws SlickException {
 		MainGame.checkFullscreenToggle();
 		inputManager.update(delta);
-		PhysicsManager.getInstance().update(container, delta);
+//		PhysicsManager.getInstance().update(container, delta);
 		world.update(container, delta);
 		hud.update(container, game, delta);
 	}
