@@ -4,7 +4,6 @@
 
 package de.fhtrier.gdw.ss2013.game;
 
-import de.fhtrier.gdw.ss2013.physics.PhysicsObject;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -18,7 +17,7 @@ import de.fhtrier.gdw.ss2013.physics.PhysicsObject;
 public abstract class Entity {
 
     protected final Vector2f position;
-    private PhysicsObject physicsObject;
+    protected PhysicsObject physicsObject;
 
     final static float DEBUG_ENTITY_HALFEXTEND = 5;
 
