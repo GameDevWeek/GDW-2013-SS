@@ -14,6 +14,8 @@ import org.newdawn.slick.Animation;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Sound;
 import org.newdawn.slick.SpriteSheet;
+import org.newdawn.slick.loading.DeferredResource;
+import org.newdawn.slick.loading.LoadingList;
 import org.newdawn.slick.util.ResourceLoader;
 
 import de.fhtrier.gdw.commons.jackson.JacksonReader;
