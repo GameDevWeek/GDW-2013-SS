@@ -16,6 +16,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.game.filter.EntityFilter;
+import de.fhtrier.gdw.ss2013.math.MathConstants;
 
 //TODO filter für getEntities
 public class EntityManager {
@@ -97,9 +98,9 @@ public class EntityManager {
     public ArrayList<Entity> getClosestEntitiesAtPosition(Vector2f position,
             float radius) {
         ArrayList<Entity> entities = new ArrayList<>();
-        final float EPSILON = 0.001f;
+
         for (Entity e : entityList) {
-            if ((position.distance(e.position) - radius) < EPSILON) {
+            if ((position.distance(e.position) - radius) < MathConstants.EPSILON_F) {
                 entities.add(e);
             }
         }
@@ -107,9 +108,27 @@ public class EntityManager {
     }
 
     public ArrayList<Entity> getEntitiesByFilter(Vector2f position,
+            EntityFilter filter) {
+        ArrayList<Entity> filteredList = new ArrayList<>();
+        for (Entity e : entityList) {
+            if (e.getClass().isInstance(filter)) {
+                filteredList.add(e);
+            }
+        }
+        return filteredList;
+    }
+
+    public ArrayList<Entity> getClosestEntitiesByFilter(Vector2f position,
             float radius, EntityFilter filter) {
         ArrayList<Entity> filteredList = new ArrayList<>();
-        return null;
+        for (Entity e : entityList) {
+            if (e.getClass().isInstance(filter)) {
+                if ((position.distance(e.position) - radius) < MathConstants.EPSILON_F) {
+                    filteredList.add(e);
+                }
+            }
+        }
+        return filteredList;
     }
 
     private void addEntity(Entity e) {
