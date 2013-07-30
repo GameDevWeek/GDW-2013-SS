@@ -92,7 +92,7 @@ public class LoadGameState extends BasicGameState {
 		if (LoadingList.get().getRemainingResources() > 0) {
 			nextResource = LoadingList.get().getNext();
 		} else {
-			((AppGameContainer) container).setVSync(true);
+			container.setVSync(true);
 			SoundStore.get().setDeferredLoading(false);
 
 			mainMenuState = new MainMenuState();
