@@ -48,6 +48,8 @@ public class Quickselect {
 		if (countdown_timer > 0) {
 			countdown_timer -= delta;
 		}
+		
+		setSelected(worldinstance.getAlien().getselectedAbility());
 	}
 
 	public void setSelected(int selected) {

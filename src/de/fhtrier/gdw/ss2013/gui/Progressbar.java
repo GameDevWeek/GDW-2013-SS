@@ -73,7 +73,9 @@ public class Progressbar {
 		        ,filled
 		        , size.y);
 
-		CenteredText.draw(position.x + size.x / 2 , position.y + size.y / 2, String.valueOf(currentPercentValue)+"%", font);
+		CenteredText.draw(position.x + size.x / 2 , position.y + size.y / 2, 
+		                  String.format("%.2f %%", currentPercentValue),font);
+		
 	}
 
 }
