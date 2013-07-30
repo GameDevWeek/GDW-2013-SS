@@ -1,9 +1,9 @@
 package de.fhtrier.gdw.ss2013.input;
 
+import java.util.HashSet;
+
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;
-
-import de.fhtrier.gdw.ss2013.input.InputDevice.ACTIONS;
 
 /*
  * Team Input
@@ -21,46 +21,63 @@ public class Keyboard extends InputDevice {
 	@Override
 	public void update() {
 
-		if (container.getInput().isKeyDown(keymapping.get(ACTIONS.MOVEFORWARD))) {
-			astronautController.moveForward();
+		HashSet<ACTIONS> actions = new HashSet<>(keymapping.values());
+		for (int key : keymapping.keySet()) {
+			if (container.getInput().isKeyDown(key)) {
+				ACTIONS action = keymapping.get(key);
+				if (actions.contains(action)) {
+					actions.remove(action);
+					doAction(action);
+				}
+			}
 		}
-		if (container.getInput().isKeyDown(keymapping.get(ACTIONS.MOVEBACKWARD))) {
-			astronautController.moveBackward();
-		}
-		if (container.getInput().isKeyDown(keymapping.get(ACTIONS.JUMP))) {
-			astronautController.jump();
-		}
-		if (container.getInput().isKeyDown(keymapping.get(ACTIONS.ACTION))) {
-			astronautController.action();
-		} 
-//		else if (container.getInput().isKeyDown(Input.KEY_A)) {
-//			astronautController.moveBackward();
-//		}
-//
-//		else if (container.getInput().isKeyPressed(Input.KEY_SPACE)) {
-//			astronautController.jump();
-//		}
-//
-//		else if (container.getInput().isKeyPressed(Input.KEY_E)) {
-//			astronautController.action();
-//		}
 
+		// else if (container.getInput().isKeyDown(Input.KEY_A)) {
+		// astronautController.moveBackward();
+		// }
+		//
+		// else if (container.getInput().isKeyPressed(Input.KEY_SPACE)) {
+		// astronautController.jump();
+		// }
+		//
+		// else if (container.getInput().isKeyPressed(Input.KEY_E)) {
+		// astronautController.action();
+		// }
+
+	}
+
+	private void doAction(ACTIONS action) {
+		switch (action) {
+		case MOVEFORWARD:
+			astronautController.moveForward();
+			break;
+		case MOVEBACKWARD:
+			astronautController.moveBackward();
+			break;
+		case JUMP:
+			astronautController.jump();
+			break;
+		case ACTION:
+			astronautController.action();
+			break;
+		default:
+			break;
+		}
 	}
 
 	@Override
 	public void loadKeymapping() {
-		// TODO Auto-generated method stub
-		keymapping.put(ACTIONS.MOVEFORWARD, Input.KEY_D);
-		keymapping.put(ACTIONS.MOVEFORWARD, Input.KEY_RIGHT);
+		keymapping.put(Input.KEY_D, ACTIONS.MOVEFORWARD);
+		keymapping.put(Input.KEY_RIGHT, ACTIONS.MOVEFORWARD);
 
-		keymapping.put(ACTIONS.MOVEBACKWARD, Input.KEY_A);
-		keymapping.put(ACTIONS.MOVEBACKWARD, Input.KEY_LEFT);
+		keymapping.put(Input.KEY_A, ACTIONS.MOVEBACKWARD);
+		keymapping.put(Input.KEY_LEFT, ACTIONS.MOVEBACKWARD);
 
-		keymapping.put(ACTIONS.JUMP, Input.KEY_W);
-		keymapping.put(ACTIONS.JUMP, Input.KEY_UP);
+		keymapping.put(Input.KEY_W, ACTIONS.JUMP);
+		keymapping.put(Input.KEY_UP, ACTIONS.JUMP);
 
-		keymapping.put(ACTIONS.ACTION, Input.KEY_S);
-		keymapping.put(ACTIONS.ACTION, Input.KEY_DOWN);
+		keymapping.put(Input.KEY_S, ACTIONS.ACTION);
+		keymapping.put(Input.KEY_DOWN, ACTIONS.ACTION);
 
 	}
 
