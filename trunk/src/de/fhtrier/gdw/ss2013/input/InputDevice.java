@@ -1,9 +1,19 @@
 
 package de.fhtrier.gdw.ss2013.input;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.util.Log;
+
+import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
+import de.fhtrier.gdw.ss2013.assetloader.infos.KeyInfo;
+import de.fhtrier.gdw.ss2013.input.InputManager.ACTION;
 
 /*
  * Team Input
@@ -17,78 +27,109 @@ public abstract class InputDevice {
 	protected AlienController alienController = null;
 	protected AstronautController astronautController = null;
 
-	// enum für actions
-	enum ACTION {
-		MOVEFORWARD, MOVEBACKWARD, JUMP, ACTION, SHOOT, TARGET, ROTATEABILITY_UP, ROTATEABILITY_DOWN, USEABILITY
-	};
-
-	// dynamsiche tastenzuweisungen
-	HashMap<Integer, ACTION> keymapping;
-
+	protected HashMap<ACTION, HashSet<Integer>> keymapping;
+	
 	public InputDevice (GameContainer gc) {
 		container = gc;
 		keymapping = new HashMap<>();
-		loadKeymapping();
-	}
-	
-    protected void doAction(ACTION action) {
-        if (astronautController != null) {
-            switch (action) {
-            case MOVEFORWARD:
-                astronautController.moveForward();
-                break;
-            case MOVEBACKWARD:
-                astronautController.moveBackward();
-                break;
-            case JUMP:
-                astronautController.jump();
-                break;
-            case ACTION:
-                astronautController.action();
-                break;
-            default:
-                break;
-            }
-
-        }
-        if (alienController != null) {
-            switch (action) {
-            case SHOOT:
-                alienController.shoot();
-                break;
-            case ROTATEABILITY_UP:
-                alienController.rotateAbilitiesUp();
-                break;
-            case ROTATEABILITY_DOWN:
-                alienController.rotateAbilitiesDown();
-                break;
-            case USEABILITY:
-                alienController.useAbility();
-                break;
-            default:
-                break;
-            }
-        }
-    }
-
-	public abstract void update ();
-
-	public abstract void loadKeymapping ();
-
-	/** TODO */
-	public void saveKeymapping () {
-
 	}
 
-	/** TODO
-	 * @param action
-	 * @param key */
+	protected void doAction (ACTION action) {
+		if (astronautController != null) {
+			switch (action) {
+			case MOVEFORWARD:
+				astronautController.moveForward();
+				break;
+			case MOVEBACKWARD:
+				astronautController.moveBackward();
+				break;
+			case JUMP:
+				astronautController.jump();
+				break;
+			case ACTION:
+				astronautController.action();
+				break;
+			default:
+				break;
+			}
+		}
+		if (alienController != null) {
+			switch (action) {
+			case SHOOT:
+				alienController.shoot();
+				break;
+			case ROTATEABILITY_UP:
+				alienController.rotateAbilitiesUp();
+				break;
+			case ROTATEABILITY_DOWN:
+				alienController.rotateAbilitiesDown();
+				break;
+			case USEABILITY:
+				alienController.useAbility();
+				break;
+			default:
+				break;
+			}
+		}
+	}
+
+	protected void doAction(ACTION action,int x, int y){
+		if (alienController != null) {
+			alienController.targetMouse(x,y);
+			//Log.debug("Alien pointing at " + x +" " +y);
+		}
+	}
+	public void update () {
+		// für alle Actions
+		Set<Entry<ACTION, HashSet<Integer>>> entries = keymapping.entrySet();
+		for (Entry<ACTION, HashSet<Integer>> entry : entries) {
+			// checke jeden gemappte taste
+			for (Integer key : entry.getValue()) {
+				if (container.getInput().isKeyDown(key)) {
+					// führe Aktion aus und breche check für diese Aktion ab
+					doAction(entry.getKey());
+					break;
+				}
+			}
+		}
+	}
+
+	public void loadKeymapping (String device) {
+		List<KeyInfo> mappings = AssetLoader.getInstance().getKeyList(device);
+		for (KeyInfo keyInfo : mappings) {
+			ACTION action = ACTION.getAction(keyInfo.name);
+			//derzeit nur 1 Taste pro Action
+			HashSet<Integer> tmpSet = new HashSet<>();
+			tmpSet.add(keyInfo.key);
+			Log.debug("Loaded Keymapping: " + keyInfo.key +" nach " + keyInfo.key);
+			keymapping.put(action, tmpSet);
+		}
+	}
+		
+
+	public void saveKeymapping (String device) {
+		List<KeyInfo> keyInfo = new ArrayList<>();
+		// für alle Actions
+		Set<Entry<ACTION, HashSet<Integer>>> entries = keymapping.entrySet();
+		for (Entry<ACTION, HashSet<Integer>> entry : entries) {
+			// checke jede gemappte taste
+			for (Integer key : entry.getValue()) {
+				if (container.getInput().isKeyDown(key)) {
+					KeyInfo info = new KeyInfo();
+					info.key = key;
+					info.name = entry.getKey().name;
+				}
+			}
+		}
+
+	}
+
 	public void setKey (ACTION action, int key) {
-
+		keymapping.get(action).add(key);
 	}
 
-	public int getKey (ACTION action) {
-		return 0;
+	public HashSet<Integer> getKey (ACTION action) {
+		return keymapping.get(action);
 	}
 
 	public void setAlienController (AlienController ac) {
@@ -99,6 +140,4 @@ public abstract class InputDevice {
 		astronautController = ac;
 	}
 
-	/** TODO - Keymapping für alle Actions je nach InputDevice aus Config datei lesen und speichern // Actions zu den Keys -
-	 * Keymapping dynamisch ändern können - Getter für Keymapping */
 }
