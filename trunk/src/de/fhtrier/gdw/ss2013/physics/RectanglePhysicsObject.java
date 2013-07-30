@@ -9,7 +9,7 @@ import org.jbox2d.dynamics.BodyType;
 public class RectanglePhysicsObject extends PhysicsObject {
 
 	public RectanglePhysicsObject() {
-		this(BodyType.STATIC);
+		this(DEFAULT_BODYTYPE);
 	}
 
 	public RectanglePhysicsObject(BodyType bodyType) {
@@ -21,32 +21,32 @@ public class RectanglePhysicsObject extends PhysicsObject {
 	}
 	
    public RectanglePhysicsObject(Vec2 rec, Vec2 pos) {
-        this(BodyType.STATIC, rec, pos);
+        this(DEFAULT_BODYTYPE, rec, pos);
     }
 
 	public RectanglePhysicsObject(BodyType bodyType, Vec2 rec,
 			Vec2 pos) {
-		this(bodyType, rec, pos, 1);
+		this(bodyType, rec, pos, DEFAULT_RESTITUTION);
 	}
 
 	public RectanglePhysicsObject(BodyType bodyType, Vec2 rec,
 			Vec2 pos, float restitution) {
-		this(bodyType, rec, pos, restitution, 1);
+		this(bodyType, rec, pos, restitution, DEFAULT_DENSITY);
 	}
 	
 	public RectanglePhysicsObject(BodyType bodyType, Vec2 rec,
             Vec2 pos, boolean isSensor) {
-        this(bodyType, rec, pos, 0, 0, 0,isSensor);
+        this(bodyType, rec, pos, DEFAULT_RESTITUTION,DEFAULT_DENSITY , DEFAULT_FRICTION,isSensor);
     }
 
 	public RectanglePhysicsObject(BodyType bodyType, Vec2 rec,
 			Vec2 pos, float restitution, float density) {
-		this(bodyType, rec, pos, restitution, density, 1);
+		this(bodyType, rec, pos, restitution, density, DEFAULT_FRICTION);
 	}
 
 	public RectanglePhysicsObject(BodyType bodyType, Vec2 rec,
 			Vec2 pos, float restitution, float density, float friction) {
-		this(bodyType, rec, pos, restitution, density, friction, false);
+		this(bodyType, rec, pos, restitution, density, friction, DEFAULT_ISSENSOR);
 	}
 
 	public RectanglePhysicsObject(BodyType bodyType, Vec2 rec,
