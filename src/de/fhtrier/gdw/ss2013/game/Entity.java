@@ -10,6 +10,7 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
+
 import de.fhtrier.gdw.ss2013.physix.PhysixObject;
 
 /**
@@ -19,6 +20,7 @@ public abstract class Entity {
 
     protected PhysixObject physicsObject;
     protected Image img;
+   
 
     final static float DEBUG_ENTITY_HALFEXTEND = 5;
 
@@ -45,6 +47,8 @@ public abstract class Entity {
         return physicsObject.getPosition();
     }
 
+    
+    
     public Vector2f getVelocity() {
         if (physicsObject == null) {
             throw new NullPointerException("Physics object does not exist.");

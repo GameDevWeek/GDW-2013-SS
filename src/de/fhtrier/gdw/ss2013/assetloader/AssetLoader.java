@@ -13,6 +13,7 @@ import org.newdawn.slick.Font;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Sound;
 import org.newdawn.slick.SpriteSheet;
+import org.newdawn.slick.particles.ParticleIO;
 import org.newdawn.slick.particles.ParticleSystem;
 import org.newdawn.slick.util.Log;
 import org.newdawn.slick.util.ResourceLoader;
@@ -213,8 +214,7 @@ public class AssetLoader {
 					PartikelInfo.class);
 			for (PartikelInfo partikelInfo : partikelInfos) {
 				checkForBackslashes(partikelInfo.pfad);
-				partikelMap.put(partikelInfo.name, new ParticleSystem(
-						partikelInfo.pfad));
+				partikelMap.put(partikelInfo.name, ParticleIO.loadConfiguredSystem(partikelInfo.pfad));
 			}
 
 		} catch (Exception e) {

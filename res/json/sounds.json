@@ -9,5 +9,25 @@
 {
  "name" : "zombiemoan",
  "pfad" : "res/sounds/zombiemoan.wav"
+},
+{
+ "name" : "absprung",
+ "pfad" : "res/sounds/absprung.ogg"
+},
+{
+ "name" : "schritt1",
+ "pfad" : "res/sounds/schritt1.ogg"
+},
+{
+ "name" : "schritt2",
+ "pfad" : "res/sounds/schritt2.ogg"
+},
+{
+ "name" : "alienschuss",
+ "pfad" : "res/sounds/alienschuss.ogg"
+},
+{
+ "name" : "fluegelschlag",
+ "pfad" : "res/sounds/fluegelschlag.ogg"
 }
 ]

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <system additive="true" points="true">
-<emitter imageName="smoke.xml" name="NewEmitter_1375192229157" renderType="quads" useAdditive="false" useOriented="false">
+<emitter imageName="" name="NewEmitter_1375192229157" renderType="quads" useAdditive="false" useOriented="false">
 <spawnInterval enabled="true" max="237.0" min="152.0"/>
 <spawnCount enabled="true" max="2.0" min="1.0"/>
 <initialLife enabled="true" max="935.0" min="919.0"/>
@@ -9,8 +9,8 @@
 <yOffset enabled="true" max="0.0" min="0.0"/>
 <initialDistance enabled="true" max="8.0" min="5.0"/>
 <speed enabled="true" max="44.0" min="40.0"/>
-<length enabled="true" max="1027.0" min="981.0"/>
-<emitCount enabled="true" max="955.0" min="955.0"/>
+<length enabled="false" max="-1.0" min="-1.0"/>
+<emitCount enabled="false" max="-1.0" min="-1.0"/>
 <spread type="random" value="182.0"/>
 <angularOffset type="simple" value="0.0"/>
 <growthFactor type="simple" value="2.0"/>

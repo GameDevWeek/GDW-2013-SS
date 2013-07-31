@@ -7,7 +7,7 @@
   "pfad" : "res/partikel/pollen1.xml"
   },
   {
-  "name" : "pollen1",
+  "name" : "pollen2",
   "pfad" : "res/partikel/pollen2.xml"
   },
   {
@@ -29,5 +29,9 @@
   {
   "name" : "lava_boden_partikel_4",
   "pfad" : "res/partikel/lava_luft_partikel.xml"
+  },
+  {
+  "name" : "dust",
+  "pfad" : "res/partikel/dust.xml"
   }
   ]

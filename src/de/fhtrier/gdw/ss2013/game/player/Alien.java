@@ -48,6 +48,8 @@ public class Alien extends Player implements AlienController {
     @Override
     public void shoot() {
         Log.debug("shooting");
+     
+
     }
 
     @Override
@@ -77,6 +79,7 @@ public class Alien extends Player implements AlienController {
     @Override
     public void useAbility() {
         Log.debug("using ability");
+      
     }
 
     @Override
@@ -93,9 +96,9 @@ public class Alien extends Player implements AlienController {
         // TODO Auto-generated method stub
         super.update(container, delta);
 
-//        if (World.getInstance().getAstronaut().isCarryAlien() == true) {
-//            this.setPosition(World.getInstance().getAstronaut().getPosition().x, (World.getInstance().getAstronaut().getPosition().y));
-//        }
+     //  if (World.getInstance().getAstronaut().isCarryAlien() == true) {
+           //this.setPosition(World.getInstance().getAstronaut().getPosition().x, (World.getInstance().getAstronaut().getPosition().y));
+     //  }
     }
     
     @Override
@@ -126,8 +129,11 @@ public class Alien extends Player implements AlienController {
     public void cursorDown() {
         cursor.y = Math.min(container.getHeight(), Math.max(0, cursor.y+10.0f));
     }
-    
-    public Vector2f getCursor(){
+
+    public Vector2f getCursor() {
         return cursor;
     }
+    
+    
+    
 }
