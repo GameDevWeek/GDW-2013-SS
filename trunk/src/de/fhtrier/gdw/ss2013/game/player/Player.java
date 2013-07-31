@@ -17,14 +17,14 @@ import de.fhtrier.gdw.ss2013.game.Entity;
  */
 public abstract class Player extends Entity {
 
-	protected Animation animation;
+	protected Animation animation, animation_Inverted;
 
 	@Override
 	public void render(GameContainer container, Graphics g)
 			throws SlickException {
-        Vector2f position = getPosition();
-		animation.draw(position.x - animation.getWidth() / 2,
-				position.y - animation.getHeight() / 2);
+//        Vector2f position = getPosition();
+//		animation.draw(position.x - animation.getWidth() / 2,
+//				position.y - animation.getHeight() / 2);
 	}
 	
 	public Animation getAnimation(){
