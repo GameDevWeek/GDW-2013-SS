@@ -14,14 +14,23 @@ import de.fhtrier.gdw.ss2013.game.filter.Interactable;
  */
 public class Switch extends Entity implements Interactable {
 
-    boolean activated = false;
+    private boolean canBeTriggered = false;
+    private boolean activated = false;
 
     public Switch() {
-        // super(AssetLoader.getInstance().getImage("switch")); // Image does no exist yet
+        // super(AssetLoader.getInstance().getImage("switch")); // Image does no
+        // exist yet
     }
 
     @Override
-    public void update(GameContainer container, int delta) throws SlickException {
+    public void update(GameContainer container, int delta)
+            throws SlickException {
+        // ToDo: Replace with proper function
+
+    }
+
+    public void setCanBeTtriggerd(boolean value) {
+        canBeTriggered = value;
     }
 
     public void turnSwitch() {
