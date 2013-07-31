@@ -8,7 +8,6 @@
 
 package de.fhtrier.gdw.ss2013.game.world.objects;
 
-import org.jbox2d.dynamics.Fixture;
 import org.newdawn.slick.GameContainer;
 //import org.newdawn.slick.Image;
 
@@ -17,10 +16,9 @@ import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.filter.Interactable;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
-import de.fhtrier.gdw.ss2013.physics.ICollidable;
 
 
-public class OxygenBubble extends Entity implements ICollidable, Interactable {
+public class OxygenBubble extends Entity implements Interactable {
 
     private float oxygenLevel = 10;
     private OxygenFlower flower;
@@ -82,11 +80,6 @@ public class OxygenBubble extends Entity implements ICollidable, Interactable {
 //        img.draw(this.getPosition().x, this.getPosition().y);
 //    }
 
-    @Override
-    public Fixture getFixture() {
-        // TODO Auto-generated method stub
-        return null;
-    }
     public void setReferences(OxygenFlower flower) {
         this.flower = flower;
     }

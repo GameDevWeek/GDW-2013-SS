@@ -2,18 +2,40 @@ package de.fhtrier.gdw.ss2013.game;
 
 import de.fhtrier.gdw.ss2013.physix.ICollisionListener;
 import de.fhtrier.gdw.ss2013.physix.PhysixObject;
+import org.jbox2d.dynamics.Fixture;
+import org.jbox2d.dynamics.contacts.Contact;
+import org.newdawn.slick.Image;
 
 public abstract class EntityCollidable extends Entity implements ICollisionListener {
 
-    public abstract void beginContact(PhysixObject object);
+    public EntityCollidable() {
+        super();
+    }
 
-    public abstract void endContact(PhysixObject object);
-    
+    public EntityCollidable(Image img) {
+        super(img);
+    }
+
+    public EntityCollidable(Image img, String name) {
+        super(img, name);
+    }
+
+    public EntityCollidable(String name) {
+        super(name);
+    }
+
     @Override
     public void setPhysicsObject(PhysixObject physicsObject) {
-        physicsObject.setOwner(this);
-        this.physicsObject = physicsObject;
+        super.setPhysicsObject(physicsObject);
         this.physicsObject.addCollisionListener(this);
     }
 
+    public Entity getOtherEntity(Contact contact) {
+        Fixture a = contact.getFixtureA();
+        if (a.getBody().getUserData() != physicsObject) {
+            return ((PhysixObject) a.getBody().getUserData()).getOwner();
+        }
+        Fixture b = contact.getFixtureB();
+        return ((PhysixObject) b.getBody().getUserData()).getOwner();
+    }
 }

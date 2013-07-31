@@ -23,7 +23,7 @@ public abstract class PhysixObject {
 	protected FixtureDef fixtureDef;
 	protected Fixture fixture;
 	protected Body body;
-	protected HashSet<ICollisionListener> collisionListeners = new HashSet<ICollisionListener>();
+	protected HashSet<ICollisionListener> collisionListeners = new HashSet<>();
     
 	protected Vec2 dimension;
 	
@@ -45,9 +45,8 @@ public abstract class PhysixObject {
 	    fixtureDef.shape = shape;
         
         body = world.createBody(bodyDef);
+	    body.setUserData(this);
         fixture = body.createFixture(fixtureDef);
-        
-        
 	}
 
     Body getBody() {
@@ -59,7 +58,6 @@ public abstract class PhysixObject {
     }
     
 	public void setOwner(Entity owner) {
-	    body.setUserData(this);
 		this.owner = owner;
 	}
 

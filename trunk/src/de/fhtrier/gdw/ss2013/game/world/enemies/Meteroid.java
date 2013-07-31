@@ -13,7 +13,6 @@ import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.world.World;
-import de.fhtrier.gdw.ss2013.physics.ICollidable;
 import de.fhtrier.gdw.ss2013.physix.PhysixObject;
 
 /**
@@ -22,7 +21,7 @@ import de.fhtrier.gdw.ss2013.physix.PhysixObject;
  * @author Kevin, Georg
  * 
  */
-public class Meteroid extends AbstractEnemy implements ICollidable {
+public class Meteroid extends AbstractEnemy {
 
     private EntityManager m;
 	final static float DEBUG_ENTITY_HALFEXTEND = 5;
@@ -30,14 +29,6 @@ public class Meteroid extends AbstractEnemy implements ICollidable {
 	public Meteroid() {
 		super(AssetLoader.getInstance().getAnimation("meteorite"));
 	    this.m = World.getInstance().getEntityManager();
-	}
-
-	@Override
-	public void onCollision(Entity e) {
-		if (e instanceof Astronaut) {
-			((Astronaut) e).setOxygen(((Astronaut) e).getOxygen()
-					- this.getDamage());
-		}
 	}
 
 	public void update(GameContainer container, int delta)
@@ -60,26 +51,16 @@ public class Meteroid extends AbstractEnemy implements ICollidable {
 	    this.m = m;
 	}
 
-
-    public void beginContact(PhysixObject object) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    public void endContact(PhysixObject object) {
-        // TODO Auto-generated method stub
-        
-    }
-
     @Override
-    public void beginContact(Contact object) {
-        // TODO Auto-generated method stub
-        
+    public void beginContact(Contact contact) {
+        Entity other = getOtherEntity(contact);
+        if (other instanceof Astronaut) {
+            ((Astronaut) other).setOxygen(((Astronaut) other).getOxygen()
+                    - this.getDamage());
+        }
     }
 
     @Override
     public void endContact(Contact object) {
-        // TODO Auto-generated method stub
-        
     }
 }

@@ -1,6 +1,5 @@
 package de.fhtrier.gdw.ss2013.physix;
 
-import static de.fhtrier.gdw.ss2013.physics.Transform.pointToVec2;
 import java.awt.Point;
 import java.util.List;
 import org.jbox2d.common.Vec2;

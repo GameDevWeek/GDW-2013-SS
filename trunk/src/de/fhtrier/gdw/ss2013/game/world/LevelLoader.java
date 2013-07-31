@@ -66,7 +66,7 @@ public class LevelLoader {
                         object.getProperties());
                 break;
             case TILE:
-                createTile(object.getType(), object.getX(), object.getY(),
+                createTile(object.getType(), object.getX(), object.getLowestY(),
                         object.getWidth(), object.getHeight(),
                         object.getProperties(), object.getName());
                 break;
@@ -199,16 +199,12 @@ public class LevelLoader {
         if (type == null)
             type = properties.getProperty("type");
 
-        // x|y are in Tiled the left bottom(!) corner, fix that:
-        y -= height;
-
         Entity entity;
         switch (type) {
         case "button":
             entity = entityManager.createEntity(type, properties, name);
             PhysixBox buttonBox = new PhysixBox(physicsManager, x, y, width,
                     height, BodyType.STATIC, 1, 0.5f, true);
-            buttonBox.addCollisionListener(new ButtonContactListener());
             entity.setPhysicsObject(buttonBox);
             controllerbuff.put(entity.getName(), (ObjectController) entity);
             interactablebuff.put(entity.getName(), (Interactable) entity);
