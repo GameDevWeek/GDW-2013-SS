@@ -22,7 +22,7 @@
 {
   "name" : "astronaut_walking",
   "pfad" : "player/astronaut/walking",
-  "anzBilder" : 1,
+  "anzBilder" : 7,
   "animSpeed" : 100,
   "loop" : true
 },
