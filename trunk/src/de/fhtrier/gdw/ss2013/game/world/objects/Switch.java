@@ -1,8 +1,10 @@
 package de.fhtrier.gdw.ss2013.game.world.objects;
 
 import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
+import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.filter.Interactable;
 
@@ -17,15 +19,15 @@ public class Switch extends ObjectController implements Interactable {
     private boolean canBeTriggered = false;
 
     public Switch() {
-        // super(AssetLoader.getInstance().getImage("switch")); // Image does no
-        // exist yet
+        super();
+        this.setImage(AssetLoader.getInstance().getImage("switch_unpressed"));
+        // private Image pressedImg = AssetLoader.getInstance().getImage("switch_pressed");
     }
 
     @Override
     public void update(GameContainer container, int delta)
             throws SlickException {
-        // ToDo: Replace with proper function
-
+        // TODO: Replace with proper function
     }
 
     public void setCanBeTriggered(boolean value) {
