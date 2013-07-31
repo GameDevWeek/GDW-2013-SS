@@ -15,7 +15,6 @@ public class Box extends Entity {
 
 	public void onCollision(Entity e) {
 		if (e instanceof Astronaut) {
-			this.getPosition().x += ((Astronaut) e).getVelocity().x;
 		}
 	}
 }

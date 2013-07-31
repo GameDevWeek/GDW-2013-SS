@@ -8,7 +8,6 @@
 package de.fhtrier.gdw.ss2013.game.world.objects;
 
 import org.jbox2d.dynamics.Fixture;
-import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;

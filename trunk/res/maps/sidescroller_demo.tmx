@@ -1,7 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="65" height="35" tilewidth="32" tileheight="32">
  <tileset firstgid="1" source="dummy_tileset.tsx"/>
- <tileset firstgid="37" source="entity_tileset.tsx"/>
+ <tileset firstgid="37" name="entity_tileset" tilewidth="64" tileheight="64">
+  <image source="entity_tileset.png" width="192" height="192"/>
+  <tile id="0">
+   <properties>
+    <property name="type" value="flyingenemy"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="type" value="groundenemy"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="type" value="door"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="type" value="switch"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="type" value="box"/>
+   </properties>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="type" value="meteroid"/>
+   </properties>
+  </tile>
+  <tile id="6">
+   <properties>
+    <property name="type" value="oxygenflower"/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="type" value="button"/>
+   </properties>
+  </tile>
+ </tileset>
  <layer name="Tiles" width="65" height="35">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+2WQQqAIBQFLalW1bruf9ASCkJMQ82vMANv6fc5KKgUAAAAAAAAwDu9J1qwV0lWTybBXiXBAQ4MOMCBAQc4MOAABwYc1O2gU2X+7zU7GM7MVv7ohIM2HYyZ90lx4HqvX6Kvc4RSg4M9cJYtsD527nO+7cC19nb6h4NWkno3pPvjIK+DWA/S/XM5WBJyABxD6emMIwAA
@@ -27,5 +69,6 @@
   <object gid="41" x="179" y="437"/>
   <object gid="42" x="627" y="106"/>
   <object gid="43" x="671" y="927"/>
+  <object gid="44" x="404" y="943"/>
  </objectgroup>
 </map>

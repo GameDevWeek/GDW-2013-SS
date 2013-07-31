@@ -22,11 +22,6 @@ public class Button extends Switch implements ICollidable {
 	public Button() {
 		collision = lastFrameCollision = false;
 	}
-
-	@Override
-	public void render(GameContainer container, Graphics g)
-	        throws SlickException {
-	}
 	
 	@Override
 	public void onCollision(Entity e) {
