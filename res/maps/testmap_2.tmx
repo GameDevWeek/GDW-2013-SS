@@ -17,7 +17,10 @@
   <object gid="46" x="2339" y="3739"/>
   <object gid="47" x="1703" y="3723"/>
   <object gid="48" x="755" y="3732"/>
-  <object type="platformLine" x="964" y="3973">
+  <object name="platform1" type="platformLine" x="964" y="3973">
+   <properties>
+    <property name="isActive" value="false"/>
+   </properties>
    <polyline points="0,0 -266,-53 -234,-257 0,-362 114,-293 453,-259 606,-237 219,-143 61,-178 1,1"/>
   </object>
   <object type="platformLine" x="1704" y="3829">
@@ -70,5 +73,10 @@
   <object gid="42" x="116" y="3662"/>
   <object gid="42" x="1316" y="3204"/>
   <object gid="37" x="58" y="4351"/>
+  <object gid="44" x="12" y="4056">
+   <properties>
+    <property name="trigger" value="platform1"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

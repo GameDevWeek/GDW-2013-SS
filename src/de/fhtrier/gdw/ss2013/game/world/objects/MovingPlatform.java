@@ -27,7 +27,7 @@ public class MovingPlatform extends Entity implements Interactable {
     private int index;
     private boolean change;
     private float speed;
-    private boolean isActiv;
+    private boolean isActive;
 
     public MovingPlatform() {
         img = asset.getImage("MovingPlatform");
@@ -35,7 +35,7 @@ public class MovingPlatform extends Entity implements Interactable {
         change = false;
         speed = 20;
         setParticle(AssetLoader.getInstance().getParticle("pollen2"));
-        isActiv = true;
+        isActive = true;
 
     }
 
@@ -43,7 +43,7 @@ public class MovingPlatform extends Entity implements Interactable {
         this.line = line;
         if (prop != null) {
             speed = prop.getFloat("speed", 20);
-            isActiv = prop.getBoolean("isActiv", true);
+            isActive = prop.getBoolean("isActive", true);
         }
     }
 
@@ -51,7 +51,7 @@ public class MovingPlatform extends Entity implements Interactable {
     public void update(GameContainer container, int delta)
             throws SlickException {
         super.update(container, delta);
-        if (isActiv)
+        if (isActive)
             move();
     }
 
@@ -98,13 +98,13 @@ public class MovingPlatform extends Entity implements Interactable {
 
     @Override
     public void activate() {
-        isActiv = true;
+        isActive = true;
 
     }
 
     @Override
     public void deactivate() {
-        isActiv = false;
+        isActive = false;
         setVelocity(new Vector2f());
     }
 
