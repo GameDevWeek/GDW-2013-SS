@@ -12,5 +12,12 @@
   <object type="solid" x="480" y="927" width="479" height="86"/>
   <object type="solid" x="1248" y="801" width="191" height="179"/>
   <object type="deadzone" x="1600" y="1086" width="577" height="42"/>
+  <object type="solid" x="-48" y="-38" width="64" height="514"/>
+  <object type="solid" x="-6" y="-43" width="2106" height="56"/>
+  <object type="solid" x="2066" y="-29" width="42" height="1160"/>
+  <object type="solid" x="1586" y="1121" width="500" height="36"/>
+  <object type="solid" x="672" y="918">
+   <polyline points="0,0 112,-52 180,-10 328,-202 384,-122 386,-48"/>
+  </object>
  </objectgroup>
 </map>

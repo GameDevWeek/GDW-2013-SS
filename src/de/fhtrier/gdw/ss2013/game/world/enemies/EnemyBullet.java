@@ -28,17 +28,8 @@ public class EnemyBullet extends AbstractEnemy implements ICollidable,
     private AssetLoader a = AssetLoader.getInstance();
     private EntityManager m;
 
-    public EnemyBullet(Vector2f pos, Vector2f velo, float dmg) {
-        super(pos, velo.copy(), dmg);
-        img = a.getImage("boltEnemy");
-    }
-
     public EnemyBullet() {
-        this(new Vector2f(), new Vector2f(), 0);
-    }
-
-    public EnemyBullet(Vector2f pos) {
-        this(pos, new Vector2f(), 0);
+        img = a.getImage("boltEnemy");
     }
 
     @Override
@@ -61,10 +52,6 @@ public class EnemyBullet extends AbstractEnemy implements ICollidable,
     public void update(GameContainer container, int delta)
             throws SlickException {
 
-        // float dt = delta / 1000.f;
-        // TODO clamp dt if dt > 1/60.f ?
-        this.position.x += this.getVelocity().x;
-        this.position.y += this.getVelocity().y;
         if (livetime <= 0) {
             m.removeEntity(this);
         }

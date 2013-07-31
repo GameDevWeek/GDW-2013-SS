@@ -16,9 +16,7 @@ public class Alien extends Player implements AlienController {
     private final Vector2f cursor = new Vector2f();
     private GameContainer container;
 
-    public Alien(Vector2f position) {
-        super(position);
-
+    public Alien() {
         // Default
         selectedAbility = 1;
         maxMana = 0.0f;
@@ -97,10 +95,9 @@ public class Alien extends Player implements AlienController {
         // TODO Auto-generated method stub
         super.update(container, delta);
 
-        if (World.getInstance().getAstronaut().isCarryAlien() == true) {
-            this.setPosition(World.getInstance().getAstronaut().getPosition().x, (World.getInstance().getAstronaut().getPosition().y));
-
-        }
+//        if (World.getInstance().getAstronaut().isCarryAlien() == true) {
+//            this.setPosition(World.getInstance().getAstronaut().getPosition().x, (World.getInstance().getAstronaut().getPosition().y));
+//        }
     }
 
     @Override

@@ -16,10 +16,6 @@ import de.fhtrier.gdw.ss2013.physics.ICollidable;
 
 public class DeadZone extends Entity implements ICollidable{
 
-	public DeadZone(Vector2f position) {
-		super(position);
-	}
-
 	public DeadZone() {
 
 	}

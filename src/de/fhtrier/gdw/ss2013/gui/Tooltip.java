@@ -32,7 +32,7 @@ public class Tooltip {
         entityManager = worldinstance.getEntityManager();
 
         // dev
-        entityManager.createEntityAt(Switch.class, new Vector2f(100.f, 100.f));
+//        entityManager.createEntityAt(Switch.class, new Vector2f(100.f, 100.f));
         // dev
     }
 

@@ -22,12 +22,11 @@ import de.fhtrier.gdw.ss2013.states.LoadGameState;
 public class MainGame extends StateBasedGame {
 
     public static final String WINDOW_TITLE = "GameDevWeek SS2013";
-    public static final int WINDOW_WIDTH = 1024;
-    public static final int WINDOW_HEIGHT = 768;
+    public static final int WINDOW_WIDTH = 800;
+    public static final int WINDOW_HEIGHT = 600;
     public static final int MAINMENUSTATE = 0;
     public static final int GAMEPLAYSTATE = 1;
     public static final int LOADGAMESTATE = 2;
-    public static final int PHYSIC_TEST = 1337;
 
     public static int currentState = -1;
     public static MainGame instance;
@@ -105,7 +104,7 @@ public class MainGame extends StateBasedGame {
 
             instance = new MainGame(args);
             AppGameContainer app = new AppGameContainer(instance);
-            app.setDisplayMode(1024, 768, false);
+            app.setDisplayMode(WINDOW_WIDTH, WINDOW_HEIGHT, false);
             app.setAlwaysRender(false);
             app.setMaximumLogicUpdateInterval(60);
             app.setShowFPS(false);

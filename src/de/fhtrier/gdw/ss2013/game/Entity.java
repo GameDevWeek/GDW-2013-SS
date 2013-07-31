@@ -9,33 +9,22 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
-import de.fhtrier.gdw.ss2013.physics.PhysicsObject;
+import de.fhtrier.gdw.ss2013.physix.PhysixObject;
 
 /**
  * Entity base class
  */
 public abstract class Entity {
 
-    protected final Vector2f position;
-    protected PhysicsObject physicsObject;
+    protected PhysixObject physicsObject;
 
     final static float DEBUG_ENTITY_HALFEXTEND = 5;
 
     public Entity() {
-        this(new Vector2f());
-    }
-
-    public Entity(Vector2f position) {
-        this.position = position.copy();
     }
 
     public void render(GameContainer container, Graphics g)
             throws SlickException {
-        g.drawRect(position.x - DEBUG_ENTITY_HALFEXTEND, position.y
-                - DEBUG_ENTITY_HALFEXTEND, DEBUG_ENTITY_HALFEXTEND * 2,
-                DEBUG_ENTITY_HALFEXTEND * 2);
-
-        // g.drawString(this.hashCode() + "", position.x, position.y);
     }
 
     public void update(GameContainer container, int delta)
@@ -43,18 +32,25 @@ public abstract class Entity {
     }
 
     public Vector2f getPosition() {
-        return position;
+        return physicsObject.getPosition();
     }
 
-    public void setPosition(Vector2f v) {
-        setPosition(v.x, v.y);
+    public Vector2f getVelocity() {
+        return physicsObject.getLinearVelocity();
     }
 
-    public void setPosition(float x, float y) {
-        position.x = x;
-        position.y = y;
+    public void setVelocity(Vector2f velocity) {
+        physicsObject.setLinearVelocity(velocity);
     }
 
+    public void setVelocityX(float x) {
+        physicsObject.setLinearVelocityX(x);
+    }
+
+    public void setVelocityY(float y) {
+        physicsObject.setLinearVelocityY(y);
+    }
+    
     /**
      * Override to provide default values and call in constructor
      */
@@ -69,7 +65,7 @@ public abstract class Entity {
 
     }
 
-    public void setPhysicsObject(PhysicsObject physicsObject) {
+    public void setPhysicsObject(PhysixObject physicsObject) {
         physicsObject.setOwner(this);
         this.physicsObject = physicsObject;
     }

@@ -30,8 +30,7 @@ public class GroundEnemy extends AbstractEnemy implements ICollidable {
     private String rechts="animtest", links="animtest", current="animtest";
     
     
-	public GroundEnemy(Vector2f pos, Vector2f velo, float dmg) {
-		super(pos.copy(), velo.copy(), dmg);
+	public GroundEnemy() {
 		img = a.getImage("groundEnemy");
 		if (Math.random() >= 0.5) {
 		    intelligence = true;
@@ -44,14 +43,6 @@ public class GroundEnemy extends AbstractEnemy implements ICollidable {
 	    setLeft_animation(links);
 	    setRight_animation(rechts);
 	    setCurrent(current);
-	}
-
-	public GroundEnemy() {
-		this(new Vector2f(), new Vector2f(), 0);
-	}
-
-	public GroundEnemy(Vector2f pos) {
-		this(pos.copy(), new Vector2f(2.5f,0f), 0);
 	}
 
 	@Override
@@ -69,7 +60,8 @@ public class GroundEnemy extends AbstractEnemy implements ICollidable {
 	}
 	public void render(GameContainer container, Graphics g)
 	         throws SlickException {
-	    g.drawImage(img, this.position.x-(img.getWidth()/2), this.position.y-(img.getHeight()/2));
+        Vector2f position = getPosition();
+	    g.drawImage(img, position.x-(img.getWidth()/2), position.y-(img.getHeight()/2));
 	    // g.drawString(this.hashCode(), position.x, position.y);
 	}
 
@@ -136,8 +128,9 @@ public class GroundEnemy extends AbstractEnemy implements ICollidable {
     }
     private Vector2f calcPlayerPosition(Player player) {
         Vector2f direction = new Vector2f();
-        direction.x = player.getPosition().x - this.position.x;
-        direction.y = player.getPosition().y - this.position.y;
+        Vector2f position = getPosition();
+        direction.x = player.getPosition().x - position.x;
+        direction.y = player.getPosition().y - position.y;
         return direction;
     }
     public void setReferences(Player p) {

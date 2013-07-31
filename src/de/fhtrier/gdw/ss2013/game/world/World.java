@@ -2,7 +2,6 @@ package de.fhtrier.gdw.ss2013.game.world;
 
 import org.jbox2d.common.IViewportTransform;
 import org.jbox2d.common.OBBViewportTransform;
-import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.BodyType;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -24,8 +23,10 @@ import de.fhtrier.gdw.ss2013.game.world.enemies.Meteroid;
 import de.fhtrier.gdw.ss2013.game.world.objects.OxygenFlower;
 import de.fhtrier.gdw.ss2013.input.InputManager;
 import de.fhtrier.gdw.ss2013.physics.DebugDrawer;
-import de.fhtrier.gdw.ss2013.physics.PhysicsManager;
-import de.fhtrier.gdw.ss2013.physics.RectanglePhysicsObject;
+import de.fhtrier.gdw.ss2013.physix.PhysixBox;
+import de.fhtrier.gdw.ss2013.physix.PhysixBoxPlayer;
+import de.fhtrier.gdw.ss2013.physix.PhysixManager;
+import de.fhtrier.gdw.ss2013.physix.PhysixObject;
 import de.fhtrier.gdw.ss2013.renderer.MapRenderer;
 import de.fhtrier.gdw.ss2013.settings.DebugModeStatus;
 import de.fhtrier.gdw.ss2013.sound.SoundLocator;
@@ -49,16 +50,14 @@ public class World {
     public boolean debugDraw = DebugModeStatus.isTest();
 
     private EntityManager entityManager;
-    private final PhysicsManager physicsManager;
+    private final PhysixManager physicsManager;
 
     public World(GameContainer container, StateBasedGame game) {
         input = container.getInput();
         instance=this;
         map = null;
 		entityManager = new EntityManager();
-		physicsManager = new PhysicsManager();
-		IViewportTransform viewportTransform = new OBBViewportTransform();
-		physicsManager.setTransformViewport(viewportTransform);
+		physicsManager = new PhysixManager(container);
 		try {
 			map = AssetLoader.getInstance().loadMap("demo_sidescroller");
 			LevelLoader.load(map, entityManager, physicsManager);
@@ -71,20 +70,12 @@ public class World {
 
 		// physic debug stuff
 		if (debugDraw) {
-
-			physicDebug = new DebugDrawer(viewportTransform, container, camera);
-
-			physicsManager.getPhysicsWorld().setDebugDraw(physicDebug);
+			physicsManager.enableDebugDraw(container);
 		}
 
-		astronaut = entityManager.createEntityAt(Astronaut.class, new Vector2f(
-				400, 200));
-
-		RectanglePhysicsObject physicsObject = new RectanglePhysicsObject(BodyType.DYNAMIC,
-				new Vector2f(10, 10), new Vector2f(astronaut.getPosition().x,
-						astronaut.getPosition().y), 0, 0.0001f, 0, false);
-//		physicsObject.getBody().setFixedRotation(true);
-		physicsManager.enableSimulation(physicsObject);
+		astronaut = entityManager.createEntity(Astronaut.class);
+		      PhysixObject physicsObject = new PhysixBoxPlayer(physicsManager, 400, 200,
+                      50, 150);
 		astronaut.setPhysicsObject(physicsObject);
         
         
@@ -94,31 +85,39 @@ public class World {
         // RectanglePhysicsObject(BodyType.DYNAMIC, new Vec2(95,105), new
         // Vec2(astronaut.getPosition().x,astronaut.getPosition().y)));
 
-        alien = entityManager.createEntityAt(Alien.class,
-                astronaut.getPosition());
+        alien = entityManager.createEntity(Alien.class);
+        physicsObject = new PhysixBox(physicsManager, 400, 200,
+                10, 10, BodyType.DYNAMIC, 1, 0.5f, true);
+        alien.setPhysicsObject(physicsObject);
         alien.setContainer(container);
 
 
         SoundLocator.provide(new DefaultSoundPlayer(astronaut));
 
-        oxyFlower = (OxygenFlower) entityManager.createEntityAt(
-                OxygenFlower.class, new Vector2f(300, 300));
-        for (int i = 0; i < enemy.length; i++) {
-            enemy[i] = entityManager.createEntityAt(FlyingEnemy.class,
-                    new Vector2f(500 + i * 50, 500 + i * 50));
-            enemy[i].setReferences(entityManager, astronaut);
-            genemy[i] = entityManager.createEntityAt(GroundEnemy.class,
-                    new Vector2f(100 + i * 100, 800 - i * 50));
-            genemy[i].setReferences(astronaut);
-        }
-        genemy[0] = entityManager.createEntityAt(GroundEnemy.class,
-                new Vector2f(100, 800));
-        genemy[0].setReferences(astronaut);
-        for (int i = 0; i < metro.length; i++) {
-            metro[i] = (Meteroid) entityManager.createEntityAt(Meteroid.class,
-                    new Vector2f(200 + i * 100, 0));
-            metro[i].setReferences(entityManager);
-        }
+//        oxyFlower = (OxygenFlower) entityManager.createEntity(
+//                OxygenFlower.class);
+//        physicsObject = new Vector2f(300, 300);
+//        oxyFlower.setPhysicsObject(physicsObject);
+//        for (int i = 0; i < enemy.length; i++) {
+//            enemy[i] = entityManager.createEntity(FlyingEnemy.class);
+//            physicsObject = new Vector2f(500 + i * 50, 500 + i * 50)
+//            enemy[i].setPhysicsObject(physicsObject);
+//            enemy[i].setReferences(entityManager, astronaut);
+//            genemy[i] = entityManager.createEntity(GroundEnemy.class);
+//            physicsObject = new Vector2f(100 + i * 100, 800 - i * 50)
+//            genemy[i].setPhysicsObject(physicsObject);
+//            genemy[i].setReferences(astronaut);
+//        }
+//        genemy[0] = entityManager.createEntity(GroundEnemy.class);
+//        physicsObject = new Vector2f(100, 800)
+//        genemy[0].setPhysicsObject(physicsObject);
+//        genemy[0].setReferences(astronaut);
+//        for (int i = 0; i < metro.length; i++) {
+//            metro[i] = (Meteroid) entityManager.createEntity(Meteroid.class);
+//            physicsObject = new Vector2f(200 + i * 100, 0)
+//            metro[i].setPhysicsObject(physicsObject);
+//            metro[i].setReferences(entityManager);
+//        }
     }
 
     public void render(GameContainer container, Graphics g)
@@ -144,7 +143,7 @@ public class World {
         entityManager.render(container, g);
 
         if (debugDraw) {
-            physicsManager.getPhysicsWorld().drawDebugData();
+            physicsManager.render();
 
         }
 
@@ -159,7 +158,7 @@ public class World {
 
     public void update(GameContainer container, int delta)
             throws SlickException {
-        physicsManager.update(container, delta);
+        physicsManager.update(delta);
 
         // update entities
         entityManager.update(container, delta);
@@ -193,16 +192,14 @@ public class World {
 
         if (input.isKeyPressed(Input.KEY_SPACE)) {
 
-            RectanglePhysicsObject rpo = new RectanglePhysicsObject(
-                    BodyType.DYNAMIC, new Vector2f(30, 100), new Vector2f(500,
-                            200));
+//            PhysixBox rpo = new PhysixBox(physicsManager, 500, 200, 30, 100, BodyType.DYNAMIC, 1, 0.5f, false);
             // physicsManager.enableSimulation(rpo);
             // rpo.setMassData(100);
             // rpo.setLinearVelocity(new Vec2(
             // (float) (100 + Math.random() * 1000 - 500),
             // (float) (100 + Math.random() * 500)));
-            Sound a = SoundLocator.loadSound("zombiemoan");
-            SoundLocator.getPlayer().playSoundAt(a, oxyFlower);
+//            Sound a = SoundLocator.loadSound("zombiemoan");
+//            SoundLocator.getPlayer().playSoundAt(a, oxyFlower);
         }
     }
 
@@ -240,7 +237,7 @@ public class World {
         return entityManager;
     }
 
-    public PhysicsManager getPhysicsManager() {
+    public PhysixManager getPhysicsManager() {
         return physicsManager;
     }
     

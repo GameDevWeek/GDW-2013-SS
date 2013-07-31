@@ -28,7 +28,6 @@ public class LoadGameState extends BasicGameState {
 	// private Image loadscreen;
 	private MainMenuState mainMenuState;
 	private GameplayState gameplayState;
-	private PhysicsTestState physicTestState;
 	private DeferredResource nextResource;
 	private AssetLoader assetLoader;
 
@@ -103,13 +102,7 @@ public class LoadGameState extends BasicGameState {
 			gameplayState.init(container, game);
 			game.addState(gameplayState);
 
-			physicTestState = new PhysicsTestState();
-			physicTestState.init(container, game);
-			game.addState(physicTestState);
-
-			if (DebugModeStatus.isPhysicTest()) {
-				MainGame.changeState(MainGame.PHYSIC_TEST);
-			} else if (DebugModeStatus.isTest()) {
+			if (DebugModeStatus.isTest()) {
 				MainGame.changeState(MainGame.GAMEPLAYSTATE);
 			} else {
 				MainGame.changeState(MainGame.MAINMENUSTATE);

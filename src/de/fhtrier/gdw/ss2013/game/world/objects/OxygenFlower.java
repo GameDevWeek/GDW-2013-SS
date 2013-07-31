@@ -27,15 +27,8 @@ public class OxygenFlower extends Entity implements Interactable {
     private int maxBubble;
     private int count;
 
-    public OxygenFlower(Vector2f position) {
-        super(position.copy());
+    public void init(Vector2f position, int maxBubble) {
         img = a.getImage("plant");
-        // Default
-        maxBubble = 5;
-    }
-
-    public OxygenFlower(Vector2f position, int maxBubble) {
-        super(position);
         this.maxBubble = maxBubble;
     }
 
@@ -43,13 +36,15 @@ public class OxygenFlower extends Entity implements Interactable {
         float x = this.getPosition().getX() - 20;
         float y = this.getPosition().getY() + 11;
 
-        while (count < maxBubble) {
-            Vector2f bubblePos = new Vector2f(x, y);
-            x += (Math.random() * 100);
-            y += (Math.random() * 100);
-            manager.createEntityAt(OxygenBubble.class, bubblePos.copy());
-            count++;
-        }
+//        while (count < maxBubble) {
+//            Vector2f bubblePos = new Vector2f(x, y);
+//            x += (Math.random() * 100);
+//            y += (Math.random() * 100);
+//            Entity entity = manager.createEntity(OxygenBubble.class);
+//            childPhysics = bubblePos.copy()
+//            entity.setPhysicsObject(childPhysics);
+//            count++;
+//        }
     }
 
     public void render(GameContainer container, Graphics g) throws SlickException {
