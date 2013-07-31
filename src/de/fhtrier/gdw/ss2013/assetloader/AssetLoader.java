@@ -93,11 +93,11 @@ public class AssetLoader {
 				}catch (Exception e1) {
 				    try {
 	                    tmpImg = new Image("res/animations/dummies/"+animInfo.pfad+".png");
-	                    Log.warn("AssetLoader: Lade dummy animation von '" + filename + "'");
+	                    Log.warn("AssetLoader: Lade dummy animation von '" + animInfo.name + "'");
 	                }catch (Exception e2) {
 	                    try {
 	                        tmpImg = new Image("res/animations/error.png");
-	                        Log.warn("AssetLoader: Animation '" + filename + "' existiert weder in res/animations noch res/animations/dummies. Lade error.png");
+	                        Log.warn("AssetLoader: Animation '" + animInfo.name + "' existiert weder in res/animations noch res/animations/dummies. Lade error.png");
 	                    }catch (Exception e3) {
 	                        Log.warn("AssetLoader: Fatal Error (animations) - kann error.png nicht laden.");
 	                        e1.printStackTrace();
@@ -161,11 +161,11 @@ public class AssetLoader {
 				} catch (Exception e1) {
 				    try {
 				        tmpImg = new Image("res/images/dummies/"+imageInfo.pfad+".png");
-				        Log.warn("AssetLoader: Lade dummy image von '" + filename + "'");
+				        Log.warn("AssetLoader: Lade dummy image von '" + imageInfo.name + "'");
 				    } catch (Exception e2) {
 				        try {
 				            tmpImg = imageMap.get("error");
-				            Log.warn("AssetLoader: Image '" + filename + "' existiert weder in res/images noch res/images/dummies. Lade error.png");
+				            Log.warn("AssetLoader: Image '" + imageInfo.name + "' existiert weder in res/images noch res/images/dummies. Lade error.png");
 				        } catch (Exception e3) {
 				            Log.warn("AssetLoader: Fatal Error (images) - kann error.png nicht laden.");
 				            e1.printStackTrace();
