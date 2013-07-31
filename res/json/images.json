@@ -12,7 +12,7 @@
 },
 {
   "name" : "plant",
-  "pfad" : "Pflanze"
+  "pfad" : "entities/plant"
 },
 {
   "name" : "bubble",
@@ -56,6 +56,14 @@
 },
 {
   "name" : "MovingPlatform",
-  "pfad" : "MovingPlatform"
+  "pfad" : "entities/moving_platform"
+},
+{
+  "name" : "switch_unpressed",
+  "pfad" : "entities/switch/switch_unpressed"
+},
+{
+  "name" : "switch_pressed",
+  "pfad" : "entities/switch/switch_pressed"
 }]
 
