@@ -10,6 +10,7 @@ import org.newdawn.slick.geom.Vector2f;
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
+import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.physics.ICollidable;
 import de.fhtrier.gdw.ss2013.physix.PhysixObject;
 
@@ -26,6 +27,7 @@ public class Meteroid extends AbstractEnemy implements ICollidable {
 	final static float DEBUG_ENTITY_HALFEXTEND = 5;
 
 	public Meteroid() {
+	    this.m = World.getInstance().getEntityManager();
 	}
     
     public void setHealth(float hp) {

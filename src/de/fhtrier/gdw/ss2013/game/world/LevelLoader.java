@@ -165,6 +165,13 @@ public class LevelLoader {
      */
     private static void createTile(String type, int x, int y, int width,
             int height, SafeProperties properties) {
+        // tiles must not have a type, but a type-property
+        if (type == null)
+            type = properties.getProperty("type");
+        
+        // x|y are in Tiled the left bottom(!) corner, fix that:
+        y -= height;
+        
         Entity entity = entityManager.createEntity(type, properties);
         if (properties.getBoolean("circle", false)) {
             float radius = Math.max(width, height) / 2;

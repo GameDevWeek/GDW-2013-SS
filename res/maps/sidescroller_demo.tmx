@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="65" height="35" tilewidth="32" tileheight="32">
  <tileset firstgid="1" source="dummy_tileset.tsx"/>
+ <tileset firstgid="37" source="entity_tileset.tsx"/>
  <layer name="Tiles" width="65" height="35">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+2WQQqAIBQFLalW1bruf9ASCkJMQ82vMANv6fc5KKgUAAAAAAAAwDu9J1qwV0lWTybBXiXBAQ4MOMCBAQc4MOAABwYc1O2gU2X+7zU7GM7MVv7ohIM2HYyZ90lx4HqvX6Kvc4RSg4M9cJYtsD527nO+7cC19nb6h4NWkno3pPvjIK+DWA/S/XM5WBJyABxD6emMIwAA
@@ -19,5 +20,11 @@
   <object type="solid" x="1404" y="808">
    <polyline points="0,0 112,-52 184,-52 328,-202 384,-122 524,-98"/>
   </object>
+  <object gid="37" x="1271" y="182"/>
+  <object gid="38" x="973" y="951"/>
+  <object gid="39" x="1282" y="781"/>
+  <object gid="40" x="277" y="940"/>
+  <object gid="41" x="179" y="437"/>
+  <object gid="42" x="627" y="106"/>
  </objectgroup>
 </map>
