@@ -22,20 +22,19 @@ import de.fhtrier.gdw.ss2013.physics.ICollidable;
 
 public class OxygenBubble extends Entity implements ICollidable, Interactable {
 
-    private float oxygenLevel;
+    private float oxygenLevel = 10;
     private OxygenFlower flower;
     private AssetLoader a = AssetLoader.getInstance();
     private Image img = a.getImage("bubble");
     private EntityManager man;
-    private float speed = 2;
-    private float Oxygenlevel;
+    private float speed = 20;
+    private int timer = 10;
 
     public OxygenBubble() {
         super(AssetLoader.getInstance().getImage("bubble"));
         this.oxygenLevel = getOxygenLevel();
     }
 
-    @Override
     public void onCollision(Entity e) {
         if (e instanceof Astronaut) {
             if (((Astronaut) e).getOxygen() + oxygenLevel < ((Astronaut) e)
@@ -46,10 +45,10 @@ public class OxygenBubble extends Entity implements ICollidable, Interactable {
                 flower.bubbleLost();
             } else {
                 ((Astronaut) e).setOxygen(((Astronaut) e).getMaxOxygen());
-            }
+                }
         }//Collision von bubbles
         if(e instanceof OxygenBubble) {
-            setVelocityX(speed);
+            setVelocityX(-speed);
             setVelocityY(speed);
 //            Vector2f position = getPosition();
 //            Vector2f otherPosition = getPosition();
@@ -70,12 +69,17 @@ public class OxygenBubble extends Entity implements ICollidable, Interactable {
 
     @Override
     public void update(GameContainer container, int delta) {
-        hover();
-    }
-
-    public void hover() {
-        setVelocityX(-speed);
-        setVelocityY(-speed);
+        timer += delta;
+        if(timer >= 400)
+        {
+            setVelocityY(0);
+            setVelocityX(0);
+        }
+        else
+        {
+            setVelocityX(-speed);
+            setVelocityY(-speed);
+        }
     }
 
     public void setOxygenLevel(float oxygenLevel) {
