@@ -51,6 +51,7 @@ public class GameplayState extends BasicGameState {
     public void update(GameContainer container, StateBasedGame game, int delta)
             throws SlickException {
         ((MainGame) game).checkFullscreenToggle();
+        world.getAstronaut().preInput();
         inputManager.update(delta);
         // world.getPhysicsManager().update(container, delta);
         world.update(container, delta);
