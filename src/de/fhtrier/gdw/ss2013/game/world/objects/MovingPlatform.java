@@ -4,7 +4,6 @@ import java.awt.Point;
 import java.util.ArrayList;
 
 import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
@@ -37,7 +36,7 @@ public class MovingPlatform extends Entity implements Interactable {
         speed = 20;
         setParticle(AssetLoader.getInstance().getParticle("pollen2"));
         isActiv = true;
-       
+
     }
 
     public void initLine(ArrayList<Point> line, SafeProperties prop) {
@@ -50,12 +49,11 @@ public class MovingPlatform extends Entity implements Interactable {
 
     @Override
     public void update(GameContainer container, int delta)
-                throws SlickException {
+            throws SlickException {
         super.update(container, delta);
         if (isActiv)
-        move();
+            move();
     }
-
 
     public void move() {
         currentPoint = line.get(index);
@@ -107,6 +105,7 @@ public class MovingPlatform extends Entity implements Interactable {
     @Override
     public void deactivate() {
         isActiv = false;
+        setVelocity(new Vector2f());
     }
 
     @Override
