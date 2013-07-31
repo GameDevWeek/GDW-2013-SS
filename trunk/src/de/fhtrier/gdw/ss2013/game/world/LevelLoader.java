@@ -20,7 +20,6 @@ import de.fhtrier.gdw.ss2013.game.filter.Interactable;
 import de.fhtrier.gdw.ss2013.game.world.objects.MovingPlatform;
 import de.fhtrier.gdw.ss2013.game.world.objects.ObjectController;
 import de.fhtrier.gdw.ss2013.gui.TooltipManager;
-import de.fhtrier.gdw.ss2013.physix.ButtonContactListener;
 import de.fhtrier.gdw.ss2013.physix.PhysixBox;
 import de.fhtrier.gdw.ss2013.physix.PhysixManager;
 import de.fhtrier.gdw.ss2013.physix.PhysixPolyline;
@@ -171,8 +170,6 @@ public class LevelLoader {
         Entity entity;
         switch (type) {
         case "solid":
-            System.out.println("Create solid box (" + x + "," + y + "(("
-                    + width + "; " + height);
             new PhysixBox(physicsManager, x, y, width, height, BodyType.STATIC,
                     1, 0.5f, false);
             break;
@@ -282,7 +279,6 @@ public class LevelLoader {
     private static void conntactInteractions() {
         // The Ugly Way
         for (ObjectController control : controllerbuff.values()) {
-            System.out.println(control.getName());
             SafeProperties prop = control.getProperties();
             if (prop != null) {
                 String[] triggers = prop.getProperty("trigger", "").split(",");
