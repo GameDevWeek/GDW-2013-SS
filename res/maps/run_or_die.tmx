@@ -49,5 +49,16 @@
    <polyline points="0,0 673,-1"/>
   </object>
   <object type="solid" x="2872" y="1136" width="3068" height="90"/>
+  <object name="tt_pic_01" gid="16" x="257" y="736">
+   <properties>
+    <property name="image" value="box"/>
+   </properties>
+  </object>
+  <object gid="17" x="256" y="825">
+   <properties>
+    <property name="radius" value="50"/>
+    <property name="trigger" value="tt_pic_01"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
