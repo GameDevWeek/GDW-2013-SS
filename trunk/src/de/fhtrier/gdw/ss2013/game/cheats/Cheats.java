@@ -139,7 +139,7 @@ public class Cheats {
 		@Override
 		public void end(GameContainer container, StateBasedGame game,
 				int delta, World world) {
-			world.getAstronaut().setJumpSpeed(oldSpeed);
+			world.getAstronaut().setSpeed(oldSpeed);
 		}
 	}
 }
