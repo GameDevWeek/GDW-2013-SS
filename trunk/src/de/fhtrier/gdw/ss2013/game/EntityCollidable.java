@@ -13,7 +13,7 @@ public abstract class EntityCollidable extends Entity implements ICollisionListe
     public void setPhysicsObject(PhysixObject physicsObject) {
         physicsObject.setOwner(this);
         this.physicsObject = physicsObject;
-        System.out.println(this.physicsObject.addCollisionListener(this));
+        this.physicsObject.addCollisionListener(this);
     }
 
 }
