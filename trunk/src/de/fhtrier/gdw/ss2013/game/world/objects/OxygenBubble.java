@@ -30,10 +30,11 @@ public class OxygenBubble extends Entity implements ICollidable, Interactable {
     private Image img = a.getImage("bubble");
     private EntityManager man;
     private float speed = 2;
+    private float Oxygenlevel;
 
-    public OxygenBubble(float oxygenLevel) {
+    public OxygenBubble() {
         super(AssetLoader.getInstance().getImage("bubble"));
-        this.oxygenLevel = oxygenLevel;
+        this.oxygenLevel = getOxygenLevel();
     }
 
     @Override
@@ -50,8 +51,8 @@ public class OxygenBubble extends Entity implements ICollidable, Interactable {
             }
         }//Collision von bubbles
         if(e instanceof OxygenBubble) {
-            setVelocityX(-speed);
-            setVelocityY(-speed);
+            setVelocityX(speed);
+            setVelocityY(speed);
 //            Vector2f position = getPosition();
 //            Vector2f otherPosition = getPosition();
 //            if(otherPosition.x <= this.position.x)
@@ -75,8 +76,8 @@ public class OxygenBubble extends Entity implements ICollidable, Interactable {
     }
 
     public void hover() {
-        setVelocityX(speed);
-        setVelocityY(speed);
+        setVelocityX(-speed);
+        setVelocityY(-speed);
     }
 
     public void setOxygenLevel(float oxygenLevel) {

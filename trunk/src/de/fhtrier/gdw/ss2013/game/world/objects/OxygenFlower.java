@@ -7,32 +7,53 @@
  */
 package de.fhtrier.gdw.ss2013.game.world.objects;
 
+import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.Fixture;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.filter.Interactable;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
+import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.game.world.objects.OxygenBubble;
 import de.fhtrier.gdw.ss2013.physics.ICollidable;
+import de.fhtrier.gdw.ss2013.physics.PhysicsObject;
+import de.fhtrier.gdw.ss2013.physix.PhysixCircle;
+import de.fhtrier.gdw.ss2013.physix.PhysixObject;
 
 public class OxygenFlower extends Entity implements Interactable, ICollidable{
 
+    private float bubbletime;
     private int maxBubble;
     private int count;
-    private OxygenBubble bubble = new OxygenBubble(2);
+    private World w = World.getInstance();
+    private EntityManager m;
     // needs to be without parameters!
     public OxygenFlower() {
         super(AssetLoader.getInstance().getImage("plant"));
         this.maxBubble = 5; //FIXME: use a better value
+        bubbletime = 0;
+        m = w.getEntityManager();
     }
 
     //public void shootBubbles(EntityManager manager) {
-    public void shootBubbles(OxygenBubble bubble)
+    public void shootBubbles()
     {
-        float x = this.getPosition().getX() - 20;
-        float y = this.getPosition().getY() + 11;
+        if (count != maxBubble) {
+            float x = this.getPosition().getX() - 20;
+            float y = this.getPosition().getY() + 11;
+            Vector2f bubblePos = new Vector2f(x, y);
+            Entity entity = m.createEntity(OxygenBubble.class);
+            //Bubble-Objekt
+            PhysixObject childPhysics = new PhysixCircle(w.getPhysicsManager(),x,y,(img.getWidth()/2+img.getHeight()/2)/2,BodyType.KINEMATIC,0,0,true);
+            entity.setPhysicsObject(childPhysics);
+            //bubbleCount
+            count++;
+        }
     }
 
 //        while (count < maxBubble) {
@@ -50,7 +71,7 @@ public class OxygenFlower extends Entity implements Interactable, ICollidable{
     {
         if(e instanceof Astronaut)
         {
-            shootBubbles(bubble);
+            shootBubbles();
         }
     }
     public void setMaxBubble(int maxBubble) {
@@ -65,6 +86,13 @@ public class OxygenFlower extends Entity implements Interactable, ICollidable{
         count--;
     }
 
+    public void update(GameContainer container, int delta)
+            throws SlickException {
+        bubbletime += delta;
+        if (bubbletime >= 2000) {
+            this.shootBubbles();
+        }
+    }
     @Override
     public Fixture getFixture() {
         // TODO Auto-generated method stub
