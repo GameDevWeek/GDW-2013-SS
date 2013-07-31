@@ -32,7 +32,6 @@ import de.fhtrier.gdw.ss2013.assetloader.infos.PartikelInfo;
 import de.fhtrier.gdw.ss2013.assetloader.infos.ScoreInfo;
 import de.fhtrier.gdw.ss2013.assetloader.infos.SettingsInfo;
 import de.fhtrier.gdw.ss2013.assetloader.infos.SoundInfo;
-import de.fhtrier.gdw.ss2013.input.InputDevice.DeviceType;
 
 public class AssetLoader {
 	private HashMap<String, Image> imageMap = new HashMap<>();
@@ -101,6 +100,14 @@ public class AssetLoader {
 			e.printStackTrace();
 		}
 	}
+	
+	private void setupControls(String filename) {
+        try {
+            controlsInfo = JacksonReader.read(filename, ControlsInfo.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 	private void setupFonts(String filename) {
 		try {
@@ -143,17 +150,8 @@ public class AssetLoader {
 			List<InfoInfo> infoInfos = JacksonReader.readList(filename,
 					InfoInfo.class);
 			for (InfoInfo infoInfo : infoInfos) {
-				infosMap.put(infoInfo.name, infoInfo.info); // don't load every
-															// map during setup
+				infosMap.put(infoInfo.name, infoInfo.info);
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	private void setupControls(String filename) {
-		try {
-			controlsInfo = JacksonReader.read(filename, ControlsInfo.class);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -238,6 +236,10 @@ public class AssetLoader {
 			return animMap.get(name).copy();
 		}
 	}
+	
+	public ControlsInfo getControls() {
+        return controlsInfo;
+    }
 
 	public Font getFont(String name) {
 		return fontMap.get(name);
@@ -258,12 +260,7 @@ public class AssetLoader {
 	}
 
 	public String getInfo(String name) {
-
 		return infosMap.get(name);
-	}
-
-	public ControlsInfo getControls() {
-		return controlsInfo;
 	}
 
 	/**
@@ -298,8 +295,10 @@ public class AssetLoader {
 		return soundMap.get(name);
 	}
 
+	//WRITE
+	// ///////////////////////////////////////////////////////////////////////
+	
 	public void writeSettings(SettingsInfo settings) {
-
 		try {
 			JacksonWriter.write("res/json/settings.json", settings);
 		} catch (Exception e) {
