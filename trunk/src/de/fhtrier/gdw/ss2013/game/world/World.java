@@ -18,6 +18,7 @@ import de.fhtrier.gdw.ss2013.game.world.enemies.FlyingEnemy;
 import de.fhtrier.gdw.ss2013.game.world.enemies.GroundEnemy;
 import de.fhtrier.gdw.ss2013.game.world.enemies.Meteroid;
 import de.fhtrier.gdw.ss2013.game.world.objects.OxygenFlower;
+import de.fhtrier.gdw.ss2013.game.world.objects.OxygenBubble;
 import de.fhtrier.gdw.ss2013.input.InputManager;
 import de.fhtrier.gdw.ss2013.physics.DebugDrawer;
 import de.fhtrier.gdw.ss2013.physix.PhysixBox;
@@ -41,6 +42,7 @@ public class World {
     private Meteroid metro[] = new Meteroid[3];
     private Input input;
     private OxygenFlower oxyFlower;
+    private OxygenBubble bubble;
     private static World instance;
     // physics debug
     private DebugDrawer physicDebug;
@@ -75,10 +77,7 @@ public class World {
                   50, 150);
           
 		astronaut.setPhysicsObject(physicsObject);
-        
-        
-        
-
+		
         // astronaut.setPhysicsObject(new
         // RectanglePhysicsObject(BodyType.DYNAMIC, new Vec2(95,105), new
         // Vec2(astronaut.getPosition().x,astronaut.getPosition().y)));
@@ -189,9 +188,9 @@ public class World {
         // Sound a = SoundLocator.loadSound("teamworld_testsound");
         // SoundLocator.getPlayer().playSoundAt(a, player, player);
 
-        if (input.isKeyPressed(Input.KEY_B)) {
-//            oxyFlower.shootBubbles(entityManager);
-        }
+//        if (input.isKeyPressed(Input.KEY_B)) {
+//            oxyFlower.shootBubbles(bubble);
+//        }
 
         if (input.isKeyPressed(Input.KEY_SPACE)) {
 
