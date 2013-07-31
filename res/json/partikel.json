@@ -9,5 +9,9 @@
   {
   "name" : "pollen1",
   "pfad" : "res/partikel/pollen2.xml"
+  },
+  {
+  "name" : "lava_luft_partikel",
+  "pfad" : "res/partikel/lava_luft_partikel.xml"
   }
   ]
