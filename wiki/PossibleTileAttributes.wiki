@@ -1,5 +1,6 @@
 Tile Object Attribute:
 
+
 Kachel Attribute:
 - type
 Hat type den Wert einer Entity-Klasse, wird ein Entity bei Spielstart an der Stelle des Tiles gespawnt.
