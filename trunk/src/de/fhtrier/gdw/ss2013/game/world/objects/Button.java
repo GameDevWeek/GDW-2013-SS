@@ -2,9 +2,7 @@ package de.fhtrier.gdw.ss2013.game.world.objects;
 
 import org.jbox2d.dynamics.Fixture;
 import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
@@ -20,6 +18,7 @@ public class Button extends Switch implements ICollidable {
 	private boolean collision, lastFrameCollision;
 
 	public Button() {
+	    // super(AssetLoader.getInstance().getImage("button")); // Image does not exist yet
 		collision = lastFrameCollision = false;
 	}
 	
