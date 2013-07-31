@@ -54,8 +54,11 @@ public class Progressbar {
 	public void update(GameContainer container, StateBasedGame game, int delta) {
 		currentValue = worldinstance.getAstronaut().getOxygen();
 		
-		currentPercentValue = (currentValue / maxValue) * 100;
-
+		currentPercentValue = ((currentValue / maxValue) * 100);
+		
+		if (currentPercentValue < 0)
+		    currentPercentValue = 0;
+		
 		filled = size.x * (currentPercentValue / 100);
 
 	}
@@ -71,7 +74,7 @@ public class Progressbar {
 		        ,0                           
 		        ,0                          
 		        ,filled
-		        , size.y);
+		        ,size.y);
 
 		CenteredText.draw(position.x + size.x / 2 , position.y + size.y / 2, 
 		                  String.format("%.2f %%", currentPercentValue),font);

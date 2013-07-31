@@ -3,6 +3,7 @@ package de.fhtrier.gdw.ss2013.gui;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
 
 import de.fhtrier.gdw.ss2013.game.world.World;
@@ -34,7 +35,9 @@ public class Quickselect {
 	public void render(GameContainer container, StateBasedGame game, Graphics g) {
 
 		if (countdown_timer > 0) {
-			ability[selected - 1].draw(worldinstance.getAstronaut().getPosition().x + 43, worldinstance.getAstronaut().getPosition().y - 25);
+		    Vector2f p = worldinstance.worldToScreenPosition(worldinstance.getAstronaut().getPosition());
+			ability[selected - 1].draw(p.x   - ability[selected-1].getWidth()/2
+			                           ,p.y - worldinstance.getAstronaut().getAnimation().getHeight()/2);
 		}
 
 	}

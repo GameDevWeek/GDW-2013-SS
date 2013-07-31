@@ -124,4 +124,8 @@ public class Alien extends Player implements AlienController {
     public void cursorDown() {
         cursor.y = Math.min(container.getHeight(), Math.max(0, cursor.y+10.0f));
     }
+    
+    public Vector2f getCursor(){
+        return cursor;
+    }
 }
