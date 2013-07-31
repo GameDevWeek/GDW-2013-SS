@@ -56,11 +56,11 @@ public class AssetLoader {
     private ControlsInfo controlsInfo;
 
 	private AssetLoader() {
-		setupMaps("res/json/maps.json");
+	    setupImages("res/json/images.json");
+	    setupMaps("res/json/maps.json");
 		setupAnimations("res/json/animations.json");
 		setupSounds("res/json/sounds.json");
 		setupFonts("res/json/fonts.json");
-		setupImages("res/json/images.json");
 		setupPartikel("res/json/partikel.json");
 		setupSettings("res/json/settings.json");
 		setupInfos("res/json/infos.json");
@@ -83,17 +83,34 @@ public class AssetLoader {
 
 	private void setupAnimations(String filename) {
 		try {
-			List<AnimationInfo> animInfos = JacksonReader.readList(filename,
-					AnimationInfo.class);
+			List<AnimationInfo> animInfos = JacksonReader.readList(filename, AnimationInfo.class);
 			for (AnimationInfo animInfo : animInfos) {
 				checkForBackslashes(animInfo.pfad);
-				Image img = new Image(animInfo.pfad);
+				Image tmpImg = null;
+				try {
+				    tmpImg = new Image("res/animations/"+animInfo.pfad+".png");
+				}catch (Exception e1) {
+				    try {
+	                    tmpImg = new Image("res/animations/dummies/"+animInfo.pfad+".png");
+	                    Log.warn("AssetLoader: Lade dummy animation von '" + filename + "'");
+	                }catch (Exception e2) {
+	                    try {
+	                        tmpImg = new Image("res/animations/error.png");
+	                        Log.warn("AssetLoader: Animation '" + filename + "' existiert weder in res/animations noch res/animations/dummies. Lade error.png");
+	                    }catch (Exception e3) {
+	                        Log.warn("AssetLoader: Fatal Error (animations) - kann error.png nicht laden.");
+	                        e1.printStackTrace();
+	                        e2.printStackTrace();
+	                        e3.printStackTrace();
+	                    }
+	                } 
+		        }
 				Animation anim = new Animation();
-				SpriteSheet sheet = new SpriteSheet(img, img.getWidth()
-						/ animInfo.anzBilder, img.getHeight());
+				SpriteSheet sheet = new SpriteSheet(tmpImg, tmpImg.getWidth() / animInfo.anzBilder, tmpImg.getHeight());
 				for (int i = 0; i < animInfo.anzBilder; i += 1) {
 					anim.addFrame(sheet.getSprite(i, 0), animInfo.animSpeed);
 				}
+				anim.setLooping(animInfo.loop);
 				animMap.put(animInfo.name, anim);
 			}
 		} catch (Exception e) {
@@ -147,9 +164,9 @@ public class AssetLoader {
 				    } catch (Exception e2) {
 				        try {
 				            tmpImg = imageMap.get("error");
-				            Log.warn("AssetLoader: Image '" + filename + "' existiert weder in res/images noch dummies. Lade error.png");
+				            Log.warn("AssetLoader: Image '" + filename + "' existiert weder in res/images noch res/images/dummies. Lade error.png");
 				        } catch (Exception e3) {
-				            Log.warn("AssetLoader: Fatal Error - kann nicht error.png laden.");
+				            Log.warn("AssetLoader: Fatal Error (images) - kann error.png nicht laden.");
 				            e1.printStackTrace();
 				            e2.printStackTrace();
 				            e3.printStackTrace();
@@ -230,12 +247,10 @@ public class AssetLoader {
 
 	private void setupSounds(String filename) {
 		try {
-			List<SoundInfo> soundInfos = JacksonReader.readList(filename,
-					SoundInfo.class);
+			List<SoundInfo> soundInfos = JacksonReader.readList(filename, SoundInfo.class);
 			for (SoundInfo soundInfo : soundInfos) {
 				checkForBackslashes(soundInfo.pfad);
-				soundMap.put(soundInfo.name,
-						new Sound(ResourceLoader.getResource(soundInfo.pfad)));
+				soundMap.put(soundInfo.name, new Sound(ResourceLoader.getResource(soundInfo.pfad)));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
