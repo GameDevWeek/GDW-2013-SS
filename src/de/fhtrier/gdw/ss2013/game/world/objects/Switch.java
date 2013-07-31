@@ -44,4 +44,16 @@ public class Switch extends Entity implements Interactable {
     public void setSwitch(boolean value) {
         activated = value;
     }
+
+    @Override
+    public void activate() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void deactivate() {
+        // TODO Auto-generated method stub
+        
+    }
 }

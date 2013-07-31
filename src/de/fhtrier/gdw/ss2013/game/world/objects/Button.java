@@ -14,32 +14,38 @@ import de.fhtrier.gdw.ss2013.physics.ICollidable;
  * @author Kevin, Georg
  * 
  */
-public class Button extends Switch implements ICollidable {
-	private boolean collision, lastFrameCollision;
+public class Button extends ObjectController implements ICollidable {
 
 	public Button() {
 	    // super(AssetLoader.getInstance().getImage("button")); // Image does not exist yet
-		collision = lastFrameCollision = false;
 	}
 	
 	@Override
 	public void onCollision(Entity e) {
-		if (e instanceof Astronaut || e instanceof Box) {
-			this.setSwitch(true);
-			collision = true;
-		}
+//		if (e instanceof Astronaut || e instanceof Box) {
+//			collisionState = !collisionState;
+//			if(collisionState) {
+//			    activate();
+//			} else {
+//			    deactivate();
+//			}
+//		}
+	}
+	
+	public void setActivated(boolean active) {
+	    if(isActivated != active) {
+	        if(active) {
+	            activate();
+	        } else {
+	            deactivate();
+	        }
+	        isActivated = active;
+	    }
 	}
 
 	@Override
 	public void update(GameContainer container, int delta)
 			throws SlickException {
-		if (lastFrameCollision) {
-			this.setSwitch(true);
-		} else {
-			this.setSwitch(false);
-		}
-		lastFrameCollision = collision;
-		collision = false;
 	}
 
 	@Override
