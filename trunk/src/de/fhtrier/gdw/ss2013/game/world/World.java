@@ -12,6 +12,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import de.fhtrier.gdw.commons.tiled.TiledMap;
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
+import de.fhtrier.gdw.ss2013.assetloader.infos.GameDataInfo;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.camera.Camera;
 import de.fhtrier.gdw.ss2013.game.player.Alien;
@@ -62,10 +63,11 @@ public class World {
 		// physic debug stuff
 		physicsManager.enableDebugDraw(container);
 
+        GameDataInfo info = AssetLoader.getInstance().getGameData();
 		astronaut = entityManager.createEntity(Astronaut.class);
 		Vector2f startpos = LevelLoader.getStartPosition();
 		PhysixObject physicsObject = new PhysixBoxPlayer(physicsManager, startpos.x,
-				startpos.y, 50, 134);
+				startpos.y, info.combined.width, info.combined.height);
 
 		astronaut.setPhysicsObject(physicsObject);
 		
@@ -74,7 +76,8 @@ public class World {
 		// Vec2(astronaut.getPosition().x,astronaut.getPosition().y)));
 
 		alien = entityManager.createEntity(Alien.class);
-		physicsObject = new PhysixBox(physicsManager, 400, 200, 10, 10,
+		physicsObject = new PhysixBox(physicsManager, startpos.x,
+				startpos.y, info.alien.width, info.alien.height,
 				BodyType.DYNAMIC, 1, 0.5f, true);
 		alien.setPhysicsObject(physicsObject);
 		alien.setContainer(container);
