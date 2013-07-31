@@ -106,6 +106,14 @@ public class Astronaut extends Player implements AstronautController {
 	public PlayerState getState() {
 		return state;
 	}
+	
+	public float getSpeed() {
+		return speed;
+	}
+	
+	public void setSpeed(float newSpeed) {
+		speed = newSpeed;
+	}
 
 	public void setState(PlayerState state) {
 		if (this.state == null || !this.state.equals(state)) {

@@ -122,5 +122,24 @@ public class Cheats {
 		cheats.put("iddqd", new Invincibility());
 		cheats.put("idkfa", new FullPower());
 		cheats.put("jumpjump", new MegaJump());
+		cheats.put("flash", new SpeedMode());
+	}
+	
+	private class SpeedMode extends Cheat {
+		
+		private float oldSpeed;
+		@Override
+		public void start(GameContainer container, StateBasedGame game,
+				int delta, World world) {
+			oldSpeed = world.getAstronaut().getSpeed();
+			world.getAstronaut().setSpeed(500.0f);
+			wantsToBeUpdated = true;
+		}
+
+		@Override
+		public void end(GameContainer container, StateBasedGame game,
+				int delta, World world) {
+			world.getAstronaut().setJumpSpeed(oldSpeed);
+		}
 	}
 }
