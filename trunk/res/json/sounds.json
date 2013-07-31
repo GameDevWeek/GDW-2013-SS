@@ -1,4 +1,8 @@
 [{
+ "name" : "error",
+ "pfad" : "res/sounds/error.wav"
+},
+{
  "name" : "teamworld_testsound",
  "pfad" : "res/sounds/testsound.wav"
 },

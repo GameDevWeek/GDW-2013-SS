@@ -1,4 +1,8 @@
 [{
+ "name" : "error",
+ "info" : "Error: Die Info existiert nicht !"
+},
+{
  "name" : "test",
  "info" : "Ich bin eine testinfo"
 }]

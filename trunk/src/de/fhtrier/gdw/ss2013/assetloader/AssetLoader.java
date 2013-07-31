@@ -229,8 +229,7 @@ public class AssetLoader {
 
 	public Animation getAnimation(String name) {
 		if (animMap.get(name) == null) {
-			System.out.println("ERROR: Animation '" + name
-					+ "' existiert nicht.");
+		    Log.warn("AssetLoader: Animation '" + name + "' existiert nicht.");
 			return animMap.get("error").copy();
 		} else {
 			return animMap.get(name).copy();
@@ -242,7 +241,12 @@ public class AssetLoader {
     }
 
 	public Font getFont(String name) {
-		return fontMap.get(name);
+	    if(fontMap.get(name) == null){
+	        Log.warn("AssetLoader: Font '" + name + "' existiert nicht. Du bekommst 'verdana_90'.");
+            return fontMap.get("verdana_90");      
+	    }else{
+	        return fontMap.get(name);
+	    }
 	}
 
 	public GameStatsInfo getGameStats() {
@@ -252,7 +256,7 @@ public class AssetLoader {
 	public Image getImage(String name) {
 		Image image = imageMap.get(name);
 		if (image == null) {
-			Log.warn("Image '" + name + "' existiert nicht.");
+			Log.warn("AssetLoader: Image '" + name + "' existiert nicht.");
 			return imageMap.get("error");
 		} else {
 			return image;
@@ -260,7 +264,12 @@ public class AssetLoader {
 	}
 
 	public String getInfo(String name) {
-		return infosMap.get(name);
+	    if(infosMap.get(name) == null){
+	        Log.warn("AssetLoader: Info '" + name + "' existiert nicht.");
+	        return infosMap.get("error");
+	    }else{
+	        return infosMap.get(name);
+	    }	
 	}
 
 	/**
@@ -275,8 +284,7 @@ public class AssetLoader {
 
 	public ParticleSystem getParticle(String name) {
 		if (partikelMap.get(name) == null) {
-			System.out.println("ERROR: Partikelanimtion '" + name
-					+ "' existiert nicht.");
+		    Log.warn("AssetLoader: Partikelanimtion '" + name + "' existiert nicht.");
 			return partikelMap.get("error");
 		} else {
 			return partikelMap.get(name);
@@ -292,7 +300,12 @@ public class AssetLoader {
 	}
 
 	public Sound getSound(String name) {
-		return soundMap.get(name);
+	    if(soundMap.get(name) == null){
+	        Log.warn("AssetLoader: Sound '" + name + "' existiert nicht.");
+	        return soundMap.get("error");
+	    }else{
+	        return soundMap.get(name);
+	    }
 	}
 
 	//WRITE
