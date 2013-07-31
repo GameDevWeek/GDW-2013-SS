@@ -23,14 +23,16 @@ public class Astronaut extends Player implements AstronautController {
     float speed = 80;
     float jumpSpeed = 300;
     int jumpDelay = 0;
-    
+  
     
 	public Astronaut() {
 
 		// Default
+	    
+	    super("testplayer");
 		maxOxygen = 1000f;
 		oxygen = maxOxygen;
-		bewegungs_ani = AssetLoader.getInstance().getAnimation(getZustand());
+		
 	}
 
 	public float getOxygen() {
@@ -63,13 +65,17 @@ public class Astronaut extends Player implements AstronautController {
     @Override
     public void moveRight() {
         setVelocityX(speed);
+        if(getZustand()!="animtest")
         setZustand("animtest");
+       
     }
 
     @Override
     public void moveLeft() {
         setVelocityX(-speed);
+        if(getZustand()!="animtest")
         setZustand("animtest");
+        
     }
 
     @Override
@@ -78,7 +84,7 @@ public class Astronaut extends Player implements AstronautController {
             jumpDelay = 0;
             setVelocityY(-jumpSpeed);
             physicsObject.applyImpulse(new Vector2f(0, -jumpSpeed));
-            setZustand("animtest");
+            setZustand("testplayer");
             jumpDelay = 500;
         }
     }
@@ -87,6 +93,7 @@ public class Astronaut extends Player implements AstronautController {
     public void action() {
     	getVelocity().y = 2;
         physicsObject.applyImpulse(this.getVelocity());
+        if(getZustand()!="animtest")
         setZustand("animtest");
     }
 

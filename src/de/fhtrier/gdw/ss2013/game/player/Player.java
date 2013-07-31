@@ -18,10 +18,10 @@ import de.fhtrier.gdw.ss2013.game.Entity;
  */
 public abstract class Player extends Entity {
 
-	private Animation animation;
+	protected Animation animation;
 	private String zustand = "testplayer";
 
-	public Player() {
+	public Player(String zustand) {
 		animation = AssetLoader.getInstance().getAnimation(zustand);
 	}
 
@@ -38,7 +38,14 @@ public abstract class Player extends Entity {
 	}
 
 	public void setZustand(String zustand) {
-		this.zustand = zustand;
+		
+		if(!(this.animation.equals(AssetLoader.getInstance().getAnimation(zustand))))
+		{
+		    this.zustand = zustand;
+		    this.animation=AssetLoader.getInstance().getAnimation(zustand);
+	        
+		}
 	}
+	
 
 }

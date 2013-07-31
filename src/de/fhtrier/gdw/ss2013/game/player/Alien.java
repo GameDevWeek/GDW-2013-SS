@@ -15,12 +15,14 @@ public class Alien extends Player implements AlienController {
     private float maxMana;
     private final Vector2f cursor = new Vector2f();
     private GameContainer container;
-
+    
     public Alien() {
         // Default
+        super("animtest");
         selectedAbility = 1;
         maxMana = 0.0f;
         mana = maxMana;
+     
     }
 
     public void setContainer(GameContainer container) {
@@ -46,6 +48,7 @@ public class Alien extends Player implements AlienController {
     @Override
     public void shoot() {
         Log.debug("shooting");
+        if(getZustand()!="animtest")
         setZustand("animtest");
 
     }
@@ -55,6 +58,7 @@ public class Alien extends Player implements AlienController {
         selectedAbility = (selectedAbility % 3) + 1;
 
         Log.debug("rotate ability");
+        if(getZustand()!="animtest")
         setZustand("animtest");
     }
 
@@ -78,6 +82,7 @@ public class Alien extends Player implements AlienController {
     @Override
     public void useAbility() {
         Log.debug("using ability");
+        if(getZustand()!="animtest")
         setZustand("animtest");
     }
 
