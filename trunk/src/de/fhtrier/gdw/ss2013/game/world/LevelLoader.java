@@ -84,7 +84,7 @@ public class LevelLoader {
         case "solid":
             new PhysixPolyline(physicsManager, points, BodyType.STATIC, 1, 0.5f, false);
             break;
-        case "platfromLine":
+        case "platformLine":
             entity = entityManager.createEntity("movingPlatform", properties);
             entity.setPhysicsObject(new PhysixBox(physicsManager, points.get(0).x, points.get(0).y, 170, 36, BodyType.KINEMATIC, 1, 0.5f, false));
             ((MovingPlatform)entity).initLine(points, properties);
@@ -180,13 +180,18 @@ public class LevelLoader {
         y -= height;
         
         Entity entity = entityManager.createEntity(type, properties);
-        if (properties.getBoolean("circle", false)) {
-            float radius = Math.max(width, height) / 2;
-            PhysixCircle circle = new PhysixCircle(physicsManager, x, y, radius, BodyType.DYNAMIC, 1, 0.5f, false);
-            entity.setPhysicsObject(circle);
-        } else {
-            PhysixBox box = new PhysixBox(physicsManager, x, y, width, height, BodyType.DYNAMIC, 1, 0.5f, false);
-            entity.setPhysicsObject(box);
+        switch(type)
+        {
+        // WTF!!!
+//            case "circle":
+//                float radius = Math.max(width, height) / 2;
+//                PhysixCircle circle = new PhysixCircle(physicsManager, x, y, radius, BodyType.DYNAMIC, 1, 0.5f, false);
+//                entity.setPhysicsObject(circle);
+//                break;
+            default:
+                PhysixBox box = new PhysixBox(physicsManager, x, y, width, height, BodyType.DYNAMIC, 1, 0.5f, false);
+                entity.setPhysicsObject(box);
+                break;
         }
     }
 
