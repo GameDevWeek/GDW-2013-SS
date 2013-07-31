@@ -126,16 +126,16 @@ public class InputManager {
 				alienController.useAbility();
 				break;
 			case CURSOR_LEFT:
-				alienController.cursorLeft();
+				alienController.cursorLeft(1);
 				break;
 			case CURSOR_RIGHT:
-				alienController.cursorRight();
+				alienController.cursorRight(1);
 				break;
 			case CURSOR_UP:
-				alienController.cursorUp();
+				alienController.cursorUp(1);
 				break;
 			case CURSOR_DOWN:
-				alienController.cursorDown();
+				alienController.cursorDown(1);
 				break;
 			default:
 				break;
@@ -153,16 +153,16 @@ public class InputManager {
 	protected void setCursorDelta (InputAction action, float value) {
 		switch (action) {
 		case CURSOR_DOWN:
-			alienController.cursorDown();
+			alienController.cursorDown(value);
 			break;
 		case CURSOR_UP:
-			alienController.cursorUp();
+			alienController.cursorUp(value);
 			break;
 		case CURSOR_LEFT:
-			alienController.cursorLeft();
+			alienController.cursorLeft(value);
 			break;
 		case CURSOR_RIGHT:
-			alienController.cursorRight();
+			alienController.cursorRight(value);
 			break;
 		default:
 			break;
@@ -221,7 +221,7 @@ public class InputManager {
 		int numControllers = org.lwjgl.input.Controllers.getControllerCount();
 		for (int i = 0; i < numControllers; i++) {
 			org.lwjgl.input.Controller c = org.lwjgl.input.Controllers.getController(i);
-			Log.debug(c.getName());
+			Log.debug("controller: " + c.getName());
 			for (int j = 0; j < c.getButtonCount(); j++) {
 				Log.debug("Buttonindex: " + j + " Name: " + c.getButtonName(j));
 			}

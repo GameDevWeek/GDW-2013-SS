@@ -1,7 +1,5 @@
 package de.fhtrier.gdw.ss2013.input;
 
-import org.newdawn.slick.Input;
-
 /*
  * Team Input
  * Dennis, Valentin
@@ -20,12 +18,12 @@ public interface AlienController {
 	
 	public void setCursor(int x , int y);
 
-    public void cursorLeft();
+    public void cursorRight(float scale);
 
-    public void cursorRight();
+    public void cursorLeft(float scale);
 
-    public void cursorUp();
+    public void cursorUp(float scale);
 
-    public void cursorDown();
+    public void cursorDown(float scale);
 
 }

@@ -111,23 +111,23 @@ public class Alien extends Player implements AlienController {
     }
 
     @Override
-    public void cursorLeft() {
-        cursor.x = Math.min(container.getWidth(), Math.max(0, cursor.x-20.0f));
+    public void cursorLeft(float scale) {
+        cursor.x = Math.min(container.getWidth(), Math.max(0, cursor.x-10.0f*scale));
     }
 
     @Override
-    public void cursorRight() {
-        cursor.x = Math.min(container.getWidth(), Math.max(0, cursor.x+10.0f));
+    public void cursorRight(float scale) {
+        cursor.x = Math.min(container.getWidth(), Math.max(0, cursor.x+10.0f*scale));
     }
 
     @Override
-    public void cursorUp() {
-        cursor.y = Math.min(container.getHeight(), Math.max(0, cursor.y-10.0f));
+    public void cursorUp(float scale) {
+        cursor.y = Math.min(container.getHeight(), Math.max(0, cursor.y-10.0f*scale));
     }
 
     @Override
-    public void cursorDown() {
-        cursor.y = Math.min(container.getHeight(), Math.max(0, cursor.y+10.0f));
+    public void cursorDown(float scale) {
+        cursor.y = Math.min(container.getHeight(), Math.max(0, cursor.y+10.0f*scale));
     }
 
     public Vector2f getCursor() {
