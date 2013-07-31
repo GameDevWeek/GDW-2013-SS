@@ -50,7 +50,7 @@ public class World {
 		physicsManager = new PhysixManager(container);
 		particleList = new ArrayList<ParticleSystem>();
 		try {
-			map = AssetLoader.getInstance().loadMap("run_or_die");
+			map = AssetLoader.getInstance().loadMap("testmap");
 			LevelLoader.load(map, entityManager, physicsManager);
 
 			mapRender = new MapRenderer(map);

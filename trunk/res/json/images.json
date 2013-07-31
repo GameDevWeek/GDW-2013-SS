@@ -11,6 +11,10 @@
   "pfad" : "GegnerKlein"
 },
 {
+  "name" : "box",
+  "pfad" : "entities/box"
+},
+{
   "name" : "plant",
   "pfad" : "entities/plant"
 },
