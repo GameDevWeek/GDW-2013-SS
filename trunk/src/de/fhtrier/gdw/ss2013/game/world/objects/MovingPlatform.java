@@ -22,7 +22,6 @@ import de.fhtrier.gdw.ss2013.physix.PhysixObject;
  */
 public class MovingPlatform extends Entity {
     private ArrayList<Point> line;
-    private SafeProperties properties;
     private AssetLoader asset = AssetLoader.getInstance();
     private Point nextPoint;
     private Point currentPoint;
@@ -39,7 +38,6 @@ public class MovingPlatform extends Entity {
     
     public void initLine(ArrayList<Point> line, SafeProperties prop) {
         this.line = line;
-        this.properties = prop;
         if (prop != null) {
             speed = prop.getFloat("speed", 20);
         }
@@ -49,7 +47,6 @@ public class MovingPlatform extends Entity {
     public void update(GameContainer container, int delta)
                 throws SlickException {
         move();
-        //System.out.println(getPosition());
     }
     @Override
     public void render(GameContainer container, Graphics g)
@@ -67,8 +64,6 @@ public class MovingPlatform extends Entity {
                     nextPoint = line.get(index + 1);
                 }
                 if (getPosition().distance(new Vector2f(nextPoint.x, nextPoint.y)) > speed) {
-                    //setVelocity(new Vector2f((float)currentPoint.distance(nextPoint.x, 0), (float)currentPoint.distance(0, nextPoint.y)));
-                    //System.out.println(getPosition().distance(new Vector2f(nextPoint.x, nextPoint.y)));
                     setVelocity(new Vector2f(nextPoint.x - currentPoint.x, nextPoint.y - currentPoint.y).normalise().scale(speed));
                 }
                 else {
@@ -105,6 +100,5 @@ public class MovingPlatform extends Entity {
     public void setPhysicsObject(PhysixObject physicsObject) {
         physicsObject.setOwner(this);
         this.physicsObject = physicsObject;
-        //this.physicsObject.setGravityScale(0.0f);
     }
 }
