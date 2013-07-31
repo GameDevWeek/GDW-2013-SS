@@ -1,5 +1,7 @@
 package de.fhtrier.gdw.ss2013.physix;
 
+import java.util.HashMap;
+
 import org.jbox2d.callbacks.ContactImpulse;
 import org.jbox2d.callbacks.ContactListener;
 import org.jbox2d.collision.Manifold;
@@ -8,6 +10,9 @@ import org.jbox2d.dynamics.contacts.Contact;
 
 public class JumpTestListener implements ContactListener {
 
+    HashMap<PhysixObject, Integer> contactCount = new HashMap<>();
+    
+    
     @Override
     public void beginContact(Contact contact) {
         Fixture a = contact.getFixtureA();
@@ -22,7 +27,12 @@ public class JumpTestListener implements ContactListener {
             PhysixObject objectA = (PhysixObject) a.getBody().getUserData();
             
             if(objectA instanceof PhysixBoxPlayer) {
+                if(contactCount.get(objectA)==null) {
+                    contactCount.put(objectA, new Integer(0));
+                }
+                contactCount.put(objectA, contactCount.get(objectA) + 1);
                 ((PhysixBoxPlayer)objectA).isGrounded = true;
+                
 //                System.out.println(objectA + " is Grounded");
             }
         }
@@ -31,6 +41,10 @@ public class JumpTestListener implements ContactListener {
             PhysixObject objectB = (PhysixObject) b.getBody().getUserData();
             
             if(objectB instanceof PhysixBoxPlayer) {
+                if(contactCount.get(objectB)==null) {
+                    contactCount.put(objectB, new Integer(0));
+                }
+                contactCount.put(objectB, contactCount.get(objectB) + 1);
                 ((PhysixBoxPlayer)objectB).isGrounded = true;
 //                System.out.println(objectB + " is Grounded");
             }
@@ -48,14 +62,28 @@ public class JumpTestListener implements ContactListener {
         if(a.isSensor()) { // a has check contact
             PhysixObject objectA = (PhysixObject) a.getBody().getUserData();
             if(objectA instanceof PhysixBoxPlayer) {
-                ((PhysixBoxPlayer)objectA).isGrounded = false;
+                if(contactCount.get(objectA)==null) {
+                    ((PhysixBoxPlayer)objectA).isGrounded = false;
+                }
+                else {
+//                    System.out.println(contactCount.get(objectA) - 1);
+                    contactCount.put(objectA, contactCount.get(objectA) - 1);
+                    ((PhysixBoxPlayer)objectA).isGrounded = contactCount.get(objectA) > 0;
+                }
 //                System.out.println(objectA + " is not Grounded");
             }
         }
         else { // b is sensor
             PhysixObject objectB = (PhysixObject) b.getBody().getUserData();
             if(objectB instanceof PhysixBoxPlayer) {
-                ((PhysixBoxPlayer)objectB).isGrounded = false;
+                if(contactCount.get(objectB)==null) {
+                    ((PhysixBoxPlayer)objectB).isGrounded = false;
+                }
+                else {
+//                    System.out.println(contactCount.get(objectB) - 1);
+                    contactCount.put(objectB, contactCount.get(objectB) - 1);
+                    ((PhysixBoxPlayer)objectB).isGrounded = contactCount.get(objectB) > 0;
+                }
 //                System.out.println(objectB + " is not Grounded");
             }
         }
