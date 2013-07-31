@@ -107,7 +107,7 @@ public class Alien extends Player implements AlienController {
 
     @Override
     public void cursorLeft() {
-        cursor.x = Math.min(container.getWidth(), Math.max(0, cursor.x-10.0f));
+        cursor.x = Math.min(container.getWidth(), Math.max(0, cursor.x-20.0f));
     }
 
     @Override

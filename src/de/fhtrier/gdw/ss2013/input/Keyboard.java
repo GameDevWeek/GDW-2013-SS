@@ -27,7 +27,7 @@ public class Keyboard extends InputDevice {
         Set<Map.Entry<InputAction, Integer>> entries = keyMap.entrySet();
         for (Map.Entry<InputAction, Integer> entry : entries) {
             if (container.getInput().isKeyDown(entry.getValue())) {
-                doAction(entry.getKey());
+                manager.doAction(entry.getKey());
             }
         }
     }

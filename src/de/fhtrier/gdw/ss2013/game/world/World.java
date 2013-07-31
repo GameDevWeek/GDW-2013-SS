@@ -168,8 +168,8 @@ public class World {
     
     public void onEnter()
     {
-        InputManager.getInstance().getKeyboard().setAstronautController(astronaut);
-        InputManager.getInstance().getMouse().setAlienController(alien);
+        InputManager.getInstance().setAstronautController(astronaut);
+        InputManager.getInstance().setAlienController(alien);
     }
 
     public void update(GameContainer container, int delta)
