@@ -118,6 +118,11 @@ public class World {
 //            metro[i].setPhysicsObject(physicsObject);
 //            metro[i].setReferences(entityManager);
 //        }
+        // Ground Enemy AI test
+//        genemy[0] = entityManager.createEntity(GroundEnemy.class);
+//        physicsObject = new PhysixBox(physicsManager, 800, 800, 71, 64, BodyType.DYNAMIC, 1, 0.5f, false);
+//        genemy[0].setPhysicsObject(physicsObject);
+//        genemy[0].setReferences(astronaut);
     }
 
     public void render(GameContainer container, Graphics g)
