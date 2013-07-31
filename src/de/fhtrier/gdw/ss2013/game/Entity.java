@@ -22,8 +22,6 @@ public abstract class Entity {
     protected Image img;
    
 
-    final static float DEBUG_ENTITY_HALFEXTEND = 5;
-
     /* every Entity-class needs a constructor without any parameters! */
     public Entity() {
     }
