@@ -11,7 +11,7 @@ import org.newdawn.slick.geom.Vector2f;
 import de.fhtrier.gdw.commons.utils.SafeProperties;
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.Entity;
-import de.fhtrier.gdw.ss2013.game.player.Player;
+import de.fhtrier.gdw.ss2013.game.filter.Interactable;
 import de.fhtrier.gdw.ss2013.physix.PhysixObject;
 
 /**
@@ -20,7 +20,7 @@ import de.fhtrier.gdw.ss2013.physix.PhysixObject;
  * @author Kevin, Georg
  * 
  */
-public class MovingPlatform extends Entity {
+public class MovingPlatform extends Entity implements Interactable {
     private ArrayList<Point> line;
     private AssetLoader asset = AssetLoader.getInstance();
     private Point nextPoint;
@@ -28,34 +28,40 @@ public class MovingPlatform extends Entity {
     private int index;
     private boolean change;
     private float speed;
-    
+    private boolean isActiv;
+
     public MovingPlatform() {
         img = asset.getImage("MovingPlatform");
         index = 0;
         change = false;
         speed = 20;
+        isActiv = true;
     }
-    
+
     public void initLine(ArrayList<Point> line, SafeProperties prop) {
         this.line = line;
         if (prop != null) {
             speed = prop.getFloat("speed", 20);
+            isActiv = prop.getBoolean("isActiv", true);
         }
     }
-    
+
     @Override
     public void update(GameContainer container, int delta)
-                throws SlickException {
-        move();
+            throws SlickException {
+        if (isActiv)
+            move();
     }
+
     @Override
     public void render(GameContainer container, Graphics g)
             throws SlickException {
         if (img != null) {
-            g.drawImage(img, getPosition().x-(img.getWidth()/2), getPosition().y-(img.getHeight()/2));
+            g.drawImage(img, getPosition().x - (img.getWidth() / 2),
+                    getPosition().y - (img.getHeight() / 2));
         }
     }
-    
+
     public void move() {
         currentPoint = line.get(index);
         if (!change) {
@@ -63,39 +69,51 @@ public class MovingPlatform extends Entity {
                 if (index + 1 < line.size()) {
                     nextPoint = line.get(index + 1);
                 }
-                if (getPosition().distance(new Vector2f(nextPoint.x, nextPoint.y)) > speed) {
-                    setVelocity(new Vector2f(nextPoint.x - currentPoint.x, nextPoint.y - currentPoint.y).normalise().scale(speed));
-                }
-                else {
+                if (getPosition().distance(
+                        new Vector2f(nextPoint.x, nextPoint.y)) > speed) {
+                    setVelocity(new Vector2f(nextPoint.x - currentPoint.x,
+                            nextPoint.y - currentPoint.y).normalise().scale(
+                            speed));
+                } else {
                     if (index < line.size() - 1) {
                         ++index;
                     }
                 }
-            }
-            else {
+            } else {
                 change = true;
             }
-        }
-        else {
+        } else {
             if (index > 0) {
                 if (index - 1 >= 0) {
                     nextPoint = line.get(index - 1);
                 }
-                if (getPosition().distance(new Vector2f(nextPoint.x, nextPoint.y)) > speed) {
-                    setVelocity(new Vector2f(nextPoint.x - currentPoint.x, nextPoint.y - currentPoint.y).normalise().scale(speed));
-                }
-                else {
+                if (getPosition().distance(
+                        new Vector2f(nextPoint.x, nextPoint.y)) > speed) {
+                    setVelocity(new Vector2f(nextPoint.x - currentPoint.x,
+                            nextPoint.y - currentPoint.y).normalise().scale(
+                            speed));
+                } else {
                     if (index > 0) {
                         --index;
                     }
                 }
-            }
-            else {
+            } else {
                 change = false;
             }
         }
     }
-    
+
+    @Override
+    public void activate() {
+        isActiv = true;
+
+    }
+
+    @Override
+    public void deactivate() {
+        isActiv = false;
+    }
+
     @Override
     public void setPhysicsObject(PhysixObject physicsObject) {
         physicsObject.setOwner(this);
