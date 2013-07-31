@@ -70,5 +70,8 @@
   <object gid="42" x="627" y="106"/>
   <object gid="43" x="671" y="927"/>
   <object gid="44" x="404" y="943"/>
+  <object type="platfromLine" x="576" y="768">
+   <polyline points="0,0 320,0"/>
+  </object>
  </objectgroup>
 </map>
