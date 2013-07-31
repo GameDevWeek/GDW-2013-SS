@@ -5,6 +5,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
+import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.constants.PlayerConstants;
 import de.fhtrier.gdw.ss2013.input.AstronautController;
 import de.fhtrier.gdw.ss2013.physix.PhysixBoxPlayer;
@@ -13,22 +14,19 @@ public class Astronaut extends Player implements AstronautController {
 
 	private float oxygen;
 	private float maxOxygen;
-	private boolean carryAlien=true;
+	private boolean carryAlien = true;
 	Animation bewegungs_ani;
-    float maxSpeed = 26;
-    float speed = 80;
-    float jumpSpeed = 300;
-    int jumpDelay = 0;
-  
-    
-	public Astronaut() {
+	float maxSpeed = 26;
+	float speed = 80;
+	float jumpSpeed = 300;
+	int jumpDelay = 0;
 
-		// Default
-	    
-	    super("testplayer");
+	protected PlayerState state;
+
+	public Astronaut() {
+		setState(PlayerState.standing);
 		maxOxygen = 1000f;
 		oxygen = maxOxygen;
-		
 	}
 
 	public float getOxygen() {
@@ -50,66 +48,76 @@ public class Astronaut extends Player implements AstronautController {
 	public void setJumpSpeed(float newJumpSpeed) {
 		jumpSpeed = newJumpSpeed;
 	}
-  
-    
-    @Override
-    public void update(GameContainer container, int delta) throws SlickException {
-        super.update(container, delta);
-        jumpDelay -= delta;
-        if (oxygen > 0)
-			this.oxygen -= (this.maxOxygen * PlayerConstants.OXYGEN_PERCENTAGE_LOST_PER_SECOND)
-					* (delta / 1000f);
-    }
+	@Override
+	public void update(GameContainer container, int delta) throws SlickException {
+		super.update(container, delta);
+		jumpDelay -= delta;
+		if (oxygen > 0)
+			this.oxygen -= (this.maxOxygen * PlayerConstants.OXYGEN_PERCENTAGE_LOST_PER_SECOND) * (delta / 1000f);
         
-    @Override
-    public void moveRight() {
-        setVelocityX(speed);
-        if(getZustand()!="animtest")
-        setZustand("animtest");
-       
-    }
-
-    @Override
-    public void moveLeft() {
-        setVelocityX(-speed);
-        if(getZustand()!="animtest")
-        setZustand("animtest");
-        
-    }
-
-    @Override
-    public void jump() {
-        if(jumpDelay <= 0 && (physicsObject instanceof PhysixBoxPlayer && ((PhysixBoxPlayer)physicsObject).isGrounded())) {
-            jumpDelay = 0;
-            setVelocityY(-jumpSpeed);
-            physicsObject.applyImpulse(new Vector2f(0, -jumpSpeed));
-            setZustand("testplayer");
-            jumpDelay = 500;
+        if (getVelocity().x == 0 && getVelocity().y == 0) {
+        	setState(PlayerState.standing);
         }
-    }
+	}
 
-    @Override
-    public void action() {
-    	getVelocity().y = 2;
-        physicsObject.applyImpulse(this.getVelocity());
-        if(getZustand()!="animtest")
-        setZustand("animtest");
-    }
+	@Override
+	public void moveRight() {
+		setVelocityX(speed);
+		setState(PlayerState.walking);
+	}
 
-    public boolean isCarryAlien() {
-        return carryAlien;
-    }
+	@Override
+	public void moveLeft() {
+		setVelocityX(-speed);
+		setState(PlayerState.walking);
+	}
 
-    public void setCarryAlien(boolean carryAlien) {
-        this.carryAlien = carryAlien;
-    }
+	@Override
+	public void jump() {
+		if (jumpDelay <= 0
+				&& (physicsObject instanceof PhysixBoxPlayer && ((PhysixBoxPlayer) physicsObject).isGrounded())) {
+			jumpDelay = 0;
+			setVelocityY(-jumpSpeed);
+			physicsObject.applyImpulse(new Vector2f(0, -jumpSpeed));
+			setState(PlayerState.jumping);
+			jumpDelay = 500;
+		}
+	}
+
+	@Override
+	public void action() {
+		getVelocity().y = 2;
+		physicsObject.applyImpulse(this.getVelocity());
+		setState(PlayerState.action);
+	}
+
+	public boolean isCarryAlien() {
+		return carryAlien;
+	}
+
+	public void setCarryAlien(boolean carryAlien) {
+		this.carryAlien = carryAlien;
+	}
 
 	public float getJumpSpeed() {
 		return jumpSpeed;
 	}
-	
-	public void die() {
-	    setOxygen(0);
+
+	public PlayerState getState() {
+		return state;
 	}
 
+	public void setState(PlayerState state) {
+		if (this.state == null || !this.state.equals(state)) {
+			this.state = state;
+
+			AssetLoader al = AssetLoader.getInstance();
+			if (isCarryAlien()) {
+				setAnimation(al.getAnimation("astronaut_"+state.toString()));
+			}
+			else {
+				setAnimation(al.getAnimation("player_couple_"+state.toString()));
+			}
+		}
+	}
 }

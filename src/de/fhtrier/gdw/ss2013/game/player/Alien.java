@@ -1,10 +1,12 @@
 package de.fhtrier.gdw.ss2013.game.player;
 
 import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.util.Log;
 
+import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.input.AlienController;
 
@@ -17,12 +19,10 @@ public class Alien extends Player implements AlienController {
     private GameContainer container;
     
     public Alien() {
-        // Default
-        super("animtest");
+    	setAnimation(AssetLoader.getInstance().getAnimation("alien_standing")); // Alien does NOT have different movestates! byRobin
         selectedAbility = 1;
         maxMana = 0.0f;
-        mana = maxMana;
-     
+        mana = maxMana;     
     }
 
     public void setContainer(GameContainer container) {
@@ -48,9 +48,6 @@ public class Alien extends Player implements AlienController {
     @Override
     public void shoot() {
         Log.debug("shooting");
-        if(getZustand()!="animtest")
-        setZustand("animtest");
-
     }
 
     @Override
@@ -58,8 +55,6 @@ public class Alien extends Player implements AlienController {
         selectedAbility = (selectedAbility % 3) + 1;
 
         Log.debug("rotate ability");
-        if(getZustand()!="animtest")
-        setZustand("animtest");
     }
 
     @Override
@@ -82,8 +77,6 @@ public class Alien extends Player implements AlienController {
     @Override
     public void useAbility() {
         Log.debug("using ability");
-        if(getZustand()!="animtest")
-        setZustand("animtest");
     }
 
     @Override
@@ -103,6 +96,15 @@ public class Alien extends Player implements AlienController {
 //        if (World.getInstance().getAstronaut().isCarryAlien() == true) {
 //            this.setPosition(World.getInstance().getAstronaut().getPosition().x, (World.getInstance().getAstronaut().getPosition().y));
 //        }
+    }
+    
+    @Override
+    public void render(GameContainer container, Graphics g) throws SlickException {
+    	Astronaut astronaut = World.getInstance().getAstronaut();
+    	// Just render alien if astronaut does not carry the alien
+    	if (astronaut != null && !astronaut.isCarryAlien()) {
+    		super.render(container, g);
+    	}
     }
 
     @Override

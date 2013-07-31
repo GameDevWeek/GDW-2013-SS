@@ -13,9 +13,86 @@
   "loop" : true
 },
 {
-  "name" : "testplayer",
-  "pfad" : "CharacterGanz",
+  "name" : "meteroid",
+  "pfad" : "entities/meteroid",
   "anzBilder" : 1,
-  "animSpeed" : 1000,
+  "animSpeed" : 100,
+  "loop" : true
+},
+{
+  "name" : "astronaut_standing",
+  "pfad" : "player/astronaut/standing",
+  "anzBilder" : 1,
+  "animSpeed" : 100,
+  "loop" : true
+},
+{
+  "name" : "astronaut_walking",
+  "pfad" : "player/astronaut/walking",
+  "anzBilder" : 1,
+  "animSpeed" : 100,
+  "loop" : true
+},
+{
+  "name" : "astronaut_jumping",
+  "pfad" : "player/astronaut/jumping",
+  "anzBilder" : 1,
+  "animSpeed" : 100,
+  "loop" : true
+},
+{
+  "name" : "astronaut_falling",
+  "pfad" : "player/astronaut/falling",
+  "anzBilder" : 1,
+  "animSpeed" : 100,
+  "loop" : true
+},
+{
+  "name" : "astronaut_action",
+  "pfad" : "player/astronaut/action",
+  "anzBilder" : 1,
+  "animSpeed" : 100,
+  "loop" : true
+},
+{
+  "name" : "player_couple_standing",
+  "pfad" : "player/couple/standing",
+  "anzBilder" : 1,
+  "animSpeed" : 100,
+  "loop" : true
+},
+{
+  "name" : "player_couple_walking",
+  "pfad" : "player/couple/walking",
+  "anzBilder" : 1,
+  "animSpeed" : 100,
+  "loop" : true
+},
+{
+  "name" : "player_couple_jumping",
+  "pfad" : "player/couple/jumping",
+  "anzBilder" : 1,
+  "animSpeed" : 100,
+  "loop" : true
+},
+{
+  "name" : "player_couple_falling",
+  "pfad" : "player/couple/falling",
+  "anzBilder" : 1,
+  "animSpeed" : 100,
+  "loop" : true
+},
+{
+  "name" : "player_couple_action",
+  "pfad" : "player/couple/action",
+  "anzBilder" : 1,
+  "animSpeed" : 100,
+  "loop" : true
+},
+{
+  "name" : "alien_standing",
+  "pfad" : "player/alien/standing",
+  "anzBilder" : 1,
+  "animSpeed" : 100,
   "loop" : true
 }]
