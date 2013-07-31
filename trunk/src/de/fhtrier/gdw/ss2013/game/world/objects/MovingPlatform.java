@@ -8,6 +8,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
+import de.fhtrier.gdw.commons.utils.SafeProperties;
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.player.Player;
@@ -21,27 +22,34 @@ import de.fhtrier.gdw.ss2013.physix.PhysixObject;
  */
 public class MovingPlatform extends Entity {
     private ArrayList<Point> line;
+    private SafeProperties properties;
     private AssetLoader asset = AssetLoader.getInstance();
     private Point nextPoint;
     private Point currentPoint;
     private int index;
-    boolean change;
+    private boolean change;
+    private float speed;
     
     public MovingPlatform() {
         img = asset.getImage("MovingPlatform");
         index = 0;
         change = false;
+        speed = 20;
     }
     
-    public void initLine(ArrayList<Point> line) {
+    public void initLine(ArrayList<Point> line, SafeProperties prop) {
         this.line = line;
+        this.properties = prop;
+        if (prop != null) {
+            speed = prop.getFloat("speed", 20);
+        }
     }
     
     @Override
     public void update(GameContainer container, int delta)
                 throws SlickException {
         move();
-        System.out.println(getPosition());
+        //System.out.println(getPosition());
     }
     @Override
     public void render(GameContainer container, Graphics g)
@@ -54,12 +62,14 @@ public class MovingPlatform extends Entity {
     public void move() {
         currentPoint = line.get(index);
         if (!change) {
-            if (index < line.size()) {
+            if (index < line.size() - 1) {
                 if (index + 1 < line.size()) {
                     nextPoint = line.get(index + 1);
                 }
-                if (getPosition().distance(new Vector2f(nextPoint.x, nextPoint.y)) > 0.1) {
-                    setVelocity(new Vector2f((float)currentPoint.distance(nextPoint.x, 0), (float)currentPoint.distance(0, nextPoint.y)));
+                if (getPosition().distance(new Vector2f(nextPoint.x, nextPoint.y)) > speed) {
+                    //setVelocity(new Vector2f((float)currentPoint.distance(nextPoint.x, 0), (float)currentPoint.distance(0, nextPoint.y)));
+                    //System.out.println(getPosition().distance(new Vector2f(nextPoint.x, nextPoint.y)));
+                    setVelocity(new Vector2f(nextPoint.x - currentPoint.x, nextPoint.y - currentPoint.y).normalise().scale(speed));
                 }
                 else {
                     if (index < line.size() - 1) {
@@ -76,8 +86,8 @@ public class MovingPlatform extends Entity {
                 if (index - 1 >= 0) {
                     nextPoint = line.get(index - 1);
                 }
-                if (getPosition().distance(new Vector2f(nextPoint.x, nextPoint.y)) > 0.1) {
-                    setVelocity(new Vector2f((float)currentPoint.distance(nextPoint.x, 0), (float)currentPoint.distance(0, nextPoint.y)));
+                if (getPosition().distance(new Vector2f(nextPoint.x, nextPoint.y)) > speed) {
+                    setVelocity(new Vector2f(nextPoint.x - currentPoint.x, nextPoint.y - currentPoint.y).normalise().scale(speed));
                 }
                 else {
                     if (index > 0) {

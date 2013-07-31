@@ -87,7 +87,7 @@ public class LevelLoader {
         case "platfromLine":
             entity = entityManager.createEntity("movingPlatform", properties);
             entity.setPhysicsObject(new PhysixBox(physicsManager, points.get(0).x, points.get(0).y, 170, 36, BodyType.KINEMATIC, 1, 0.5f, false));
-            ((MovingPlatform)entity).initLine(points);
+            ((MovingPlatform)entity).initLine(points, properties);
             break;
         }
     }
