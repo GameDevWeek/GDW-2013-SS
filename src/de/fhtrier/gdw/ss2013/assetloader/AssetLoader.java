@@ -11,6 +11,7 @@ import org.newdawn.slick.AngelCodeFont;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Font;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.particles.ParticleIO;
@@ -321,7 +322,13 @@ public class AssetLoader {
 		    Log.warn("AssetLoader: Partikelanimtion '" + name + "' existiert nicht.");
 			return partikelMap.get("error");
 		} else {
-			return partikelMap.get(name);
+			try {
+                return partikelMap.get(name).duplicate();
+            } catch (SlickException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+			return null;
 		}
 	}
 

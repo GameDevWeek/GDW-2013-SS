@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <system additive="true" points="false">
-<emitter imageName="H:\pedigree\fire.xml" name="Feuer_einfach" renderType="points" useAdditive="false" useOriented="false">
+<emitter imageName="" name="Feuer_einfach" renderType="points" useAdditive="false" useOriented="false">
 <spawnInterval enabled="true" max="1.0" min="1.0"/>
 <spawnCount enabled="true" max="50.0" min="25.0"/>
 <initialLife enabled="true" max="243.0" min="10.0"/>
