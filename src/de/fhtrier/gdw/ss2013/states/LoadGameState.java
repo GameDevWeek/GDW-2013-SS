@@ -102,11 +102,11 @@ public class LoadGameState extends BasicGameState {
 			gameplayState.init(container, game);
 			game.addState(gameplayState);
 
-			if (DebugModeStatus.isTest()) {
+//			if (DebugModeStatus.isTest()) {
 				MainGame.changeState(MainGame.GAMEPLAYSTATE);
-			} else {
-				MainGame.changeState(MainGame.MAINMENUSTATE);
-			}
+//			} else {
+//				MainGame.changeState(MainGame.MAINMENUSTATE);
+//			}
 		}
 	}
 
