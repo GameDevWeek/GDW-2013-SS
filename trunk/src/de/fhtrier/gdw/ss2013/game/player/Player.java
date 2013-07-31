@@ -11,6 +11,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.game.Entity;
+import de.fhtrier.gdw.ss2013.physix.PhysixBoxPlayer;
 
 /**
  * Player class
@@ -38,4 +39,8 @@ public abstract class Player extends Entity {
 	public void setAnimation(Animation animation) {
 	    this.animation = animation;
 	}
+
+    public boolean isGrounded() {
+        return (physicsObject instanceof PhysixBoxPlayer && ((PhysixBoxPlayer)physicsObject).isGrounded());
+    }
 }

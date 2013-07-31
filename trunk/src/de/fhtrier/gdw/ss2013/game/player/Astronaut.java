@@ -31,6 +31,7 @@ public class Astronaut extends Player implements AstronautController {
 	private HashSet<Interactable> interactables;
 
 	protected PlayerState state;
+    private boolean walking;
 
 	public Astronaut () {
 		setState(PlayerState.standing);
@@ -67,26 +68,39 @@ public class Astronaut extends Player implements AstronautController {
 		jumpDelay -= delta;
 		if (oxygen > 0) this.oxygen -= (this.maxOxygen * PlayerConstants.OXYGEN_PERCENTAGE_LOST_PER_SECOND) * (delta / 1000f);
 
-		if (getVelocity().x == 0 && getVelocity().y == 0) {
+        boolean grounded = isGrounded();
+        if(!grounded) {
+            if(getVelocity().y < 0)
+                setState(PlayerState.jumping);
+            else
+                setState(PlayerState.falling);
+        }
+        else if (!walking) {
 			setState(PlayerState.standing);
 		}
 	}
+
+    public void preInput() {
+        walking = false;
+    }
 
 	@Override
 	public void moveRight () {
 		setVelocityX(speed);
 		setState(PlayerState.walking);
+        walking = true;
 	}
 
 	@Override
 	public void moveLeft () {
 		setVelocityX(-speed);
 		setState(PlayerState.walking);
+        walking = true;
 	}
 
 	@Override
 	public void jump () {
-		if (jumpDelay <= 0 && (physicsObject instanceof PhysixBoxPlayer && ((PhysixBoxPlayer)physicsObject).isGrounded())) {
+		if (jumpDelay <= 0 && isGrounded()) {
 			jumpDelay = 0;
 			setVelocityY(-jumpSpeed);
 			physicsObject.applyImpulse(new Vector2f(0, -jumpSpeed));
