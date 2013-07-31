@@ -1,10 +1,7 @@
 package de.fhtrier.gdw.ss2013.game;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.LinkedList;
-
-import org.newdawn.slick.geom.Vector2f;
 
 public class EntityFactory {
 
@@ -44,30 +41,6 @@ public class EntityFactory {
         } catch (InstantiationException ex) {
             ex.printStackTrace();
         } catch (IllegalAccessException ex) {
-            ex.printStackTrace();
-        }
-        return e;
-    }
-
-    private Entity internalCreateAt(Class<? extends Entity> entityClass,
-            Vector2f position) {
-
-        Entity e = null;
-        try {
-            assert (entityClass.getConstructor(Vector2f.class) != null);
-            e = entityClass.getConstructor(Vector2f.class)
-                    .newInstance(position);
-        } catch (NoSuchMethodException ex) {
-            ex.printStackTrace();
-        } catch (SecurityException ex) {
-            ex.printStackTrace();
-        } catch (InstantiationException ex) {
-            ex.printStackTrace();
-        } catch (IllegalAccessException ex) {
-            ex.printStackTrace();
-        } catch (IllegalArgumentException ex) {
-            ex.printStackTrace();
-        } catch (InvocationTargetException ex) {
             ex.printStackTrace();
         }
         return e;

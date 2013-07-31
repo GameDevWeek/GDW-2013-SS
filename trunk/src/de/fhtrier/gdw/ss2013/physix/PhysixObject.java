@@ -52,7 +52,9 @@ public abstract class PhysixObject {
     }
     
 	public void setOwner(Entity owner) {
+	    body.setUserData(this);
 		this.owner = owner;
+		
 	}
 
 	public Entity getOwner() {
