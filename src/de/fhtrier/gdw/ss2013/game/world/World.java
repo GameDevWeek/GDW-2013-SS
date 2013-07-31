@@ -59,8 +59,9 @@ public class World {
 		}
 
 		astronaut = entityManager.createEntity(Astronaut.class);
-		PhysixObject physicsObject = new PhysixBoxPlayer(physicsManager, 400,
-				200, 50, 150);
+		Vector2f startpos = LevelLoader.getStartPosition();
+		PhysixObject physicsObject = new PhysixBoxPlayer(physicsManager, startpos.x,
+				startpos.y, 50, 150);
 
 		astronaut.setPhysicsObject(physicsObject);
 		
