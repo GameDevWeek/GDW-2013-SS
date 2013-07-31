@@ -45,5 +45,9 @@
 {
   "name" : "world_background",
   "pfad" : "res/images/background/background.png"
+},
+{
+  "name" : "crosshair1",
+  "pfad" : "res/Dummy_GUIs_Images/crosshair1.png"
 }]
 

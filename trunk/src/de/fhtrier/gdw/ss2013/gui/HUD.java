@@ -67,11 +67,11 @@ public class HUD {
 		quickselect.init(ability1, ability2, ability3, selected,
 				countdown_start, worldinstance);
 
-		// DEV
-		quickselect.setSelected(2);
 		
 		//init Crosshair
+		final Image crosshairImage = asset.getImage("crosshair1");
 		crosshair = new Crosshair();
+		crosshair.init(worldinstance, crosshairImage);
 		
 		//init tooltip
 		notation = new Tooltip();
@@ -92,8 +92,8 @@ public class HUD {
 		healthbar.render(container, game, g);
 		abilityWheel.render(container, game, g);
 		quickselect.render(container, game, g);
-		//crosshair.render(container, game, g);
 		notation.render();
+		crosshair.render(container, game, g);
 		
         String fps = String.format("%d fps", (int)fpsCalc.calculate());
         CenteredText.draw(container.getWidth() / 2, 30, fps, fpsFont);

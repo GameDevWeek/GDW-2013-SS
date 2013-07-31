@@ -47,5 +47,8 @@ public abstract class Player extends Entity {
 		}
 	}
 	
+	public Animation getAnimation(){
+	    return animation;
+	}
 
 }
