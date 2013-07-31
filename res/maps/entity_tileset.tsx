@@ -6,6 +6,11 @@
    <property name="type" value="start"/>
   </properties>
  </tile>
+ <tile id="1">
+  <properties>
+   <property name="type" value="end"/>
+  </properties>
+ </tile>
  <tile id="2">
   <properties>
    <property name="type" value="door"/>
