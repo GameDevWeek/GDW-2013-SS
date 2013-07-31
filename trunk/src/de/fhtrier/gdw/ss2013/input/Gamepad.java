@@ -18,14 +18,15 @@ public class Gamepad extends InputDevice {
 	public Gamepad (GameContainer gc, ControlsInfo.GamepadInfo gamepadInfo) {
 		super(gc);
 
-		//
+		// müsste in config datei ausgelagert werden pro Controller(eigentlich pro treiber...)
 		buttonNameMap.put("A", 0);
 		buttonNameMap.put("B", 1);
 		buttonNameMap.put("X", 2);
 		buttonNameMap.put("Y", 3);
 // buttonNameMap.put("Left Trigger", 0);
 // buttonNameMap.put("Right Trigger", 0);
-		//
+
+		// controller suchen der zur aktuellen Config passt
 		String name = gamepadInfo.name;
 		int numControllers = org.lwjgl.input.Controllers.getControllerCount();
 		for (int i = 0; i < numControllers; i++) {
@@ -64,7 +65,7 @@ public class Gamepad extends InputDevice {
 		for (Entry<String, InputAction> entry : actionMap.entrySet()) {
 			if (buttonNameMap.keySet().contains(entry.getKey())) {
 				if (controller.isButtonPressed(buttonNameMap.get(entry.getKey()))) {
-					doAction(entry.getValue());
+					manager.doAction(entry.getValue());
 				}
 			}
 		}
@@ -80,30 +81,63 @@ public class Gamepad extends InputDevice {
 		} else if (controller.getPovY() < 0) {
 			doButton("-POV_Y");
 		}
-
+		Log.debug("new frame");
 		int numAxes = controller.getAxisCount();
 		for (int i = 0; i < numAxes; i++) {
 			float value = controller.getAxisValue(i);
-			if (value > 0.2f) {
-				doButton("+" + controller.getAxisName(i));
-			} else if (value < 0.2f) {
-				doButton("+" + controller.getAxisName(i));
+			Log.debug("Achse: " + controller.getAxisName(i) + " Wert " + controller.getAxisValue(i));
+			if (value > 0.4f) {
+				doButtonFromAnalog("+" + controller.getAxisName(i), value);
+			} else if (value < -0.4f) {
+				doButtonFromAnalog("-" + controller.getAxisName(i), value);
 			}
 		}
 	}
 
 	public void doButton (String button) {
 		switch (button) {
-		case "+POV_Y":astronautController.jump();
+		case "-POV_Y":
+			manager.doAction(InputAction.JUMP);
 			break;
+		case "-X-Achse":
+			manager.doAction(InputAction.MOVE_LEFT);
+			break;
+		case "+POV_X":
+			manager.doAction(InputAction.MOVE_RIGHT);
+			break;
+		}
+	}
 
+	public void doButtonFromAnalog (String button, float value) {
+		switch (button) {
+		case "-Y-Achse":
+			manager.doAction(InputAction.JUMP);
+			break;
+		case "-X-Achse":
+			manager.doAction(InputAction.MOVE_LEFT);
+			break;
+		case "+X-Achse":
+			manager.doAction(InputAction.MOVE_RIGHT);
+			break;
+		case "+X-Rotation":
+			manager.setCursorDelta(InputAction.CURSOR_RIGHT, value);
+			break;
+		case "-X-Rotation":
+			manager.setCursorDelta(InputAction.CURSOR_LEFT, value);
+			break;
+		case "+Y-Rotation":
+			manager.setCursorDelta(InputAction.CURSOR_DOWN, value);
+			break;
+		case "-Y-Rotation":
+			manager.setCursorDelta(InputAction.CURSOR_UP, value);
+			break;
 		}
 	}
 
 	public void doAxis (String axis, float value) {
 		InputAction action = actionMap.get(axis);
 		if (action != null) {
-			doAction(action);
+			manager.doAction(action);
 		}
 	}
 }
