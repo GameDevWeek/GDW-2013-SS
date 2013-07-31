@@ -27,7 +27,7 @@ public class ButtonContactListener implements ICollisionListener {
                     contactCount.put(objectA, new Integer(0));
                 }
                 Button buttonA = (Button) objectA.owner;
-                buttonA.setSwitch(true);
+                buttonA.setActivated(true);
             }
         } else { // b is sensor
             System.out.println(a.getBody().getUserData());
@@ -38,7 +38,7 @@ public class ButtonContactListener implements ICollisionListener {
                     contactCount.put(objectB, new Integer(0));
                 }
                 Button buttonB = (Button) objectB.owner;
-                buttonB.setSwitch(true);
+                buttonB.setActivated(true);
             }
         }
 
@@ -61,7 +61,7 @@ public class ButtonContactListener implements ICollisionListener {
                 }
                 if (contactCount.size() <= 0) {
                     Button buttonA = (Button) objectA.owner;
-                    buttonA.setSwitch(false);
+                    buttonA.setActivated(false);
                 }
             }
         } else { // b is sensor
@@ -74,7 +74,7 @@ public class ButtonContactListener implements ICollisionListener {
                 }
                 if (contactCount.size() <= 0) {
                     Button buttonB = (Button) objectB.owner;
-                    buttonB.setSwitch(false);
+                    buttonB.setActivated(false);
                 }
             }
         }

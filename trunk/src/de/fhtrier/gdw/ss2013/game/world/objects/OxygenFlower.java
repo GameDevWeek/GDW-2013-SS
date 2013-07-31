@@ -98,4 +98,16 @@ public class OxygenFlower extends Entity implements Interactable, ICollidable{
         // TODO Auto-generated method stub
         return null;
     }
+
+    @Override
+    public void activate() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void deactivate() {
+        // TODO Auto-generated method stub
+        
+    }
 }

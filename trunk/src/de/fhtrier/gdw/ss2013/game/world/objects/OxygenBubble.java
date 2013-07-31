@@ -9,17 +9,15 @@
 package de.fhtrier.gdw.ss2013.game.world.objects;
 
 import org.jbox2d.dynamics.Fixture;
-import org.newdawn.slick.Image;
-import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.SlickException;
-import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
+
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
+import de.fhtrier.gdw.ss2013.game.filter.Interactable;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.physics.ICollidable;
-import de.fhtrier.gdw.ss2013.game.filter.Interactable;
 
 
 public class OxygenBubble extends Entity implements ICollidable, Interactable {
@@ -96,5 +94,17 @@ public class OxygenBubble extends Entity implements ICollidable, Interactable {
     }
     public void setReferences(OxygenFlower flower) {
         this.flower = flower;
+    }
+
+    @Override
+    public void activate() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void deactivate() {
+        // TODO Auto-generated method stub
+        
     }
 }

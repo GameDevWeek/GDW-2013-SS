@@ -19,10 +19,14 @@ public class Door extends Entity implements Interactable {
 	    // super(AssetLoader.getInstance().getImage("door")); // Image does not exist yet
 	}
 
-	public void open() {
+	public void activate() {
 		if (!open) {
 			open = true;
 		}
+	}
+	
+	public void deactivate() {
+	    
 	}
 
 	public boolean isOpen() {
