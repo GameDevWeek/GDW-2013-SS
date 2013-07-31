@@ -3,12 +3,7 @@
  <image source="entity_tileset.png" width="192" height="384"/>
  <tile id="0">
   <properties>
-   <property name="type" value="flyingenemy"/>
-  </properties>
- </tile>
- <tile id="1">
-  <properties>
-   <property name="type" value="groundenemy"/>
+   <property name="type" value="start"/>
   </properties>
  </tile>
  <tile id="2">

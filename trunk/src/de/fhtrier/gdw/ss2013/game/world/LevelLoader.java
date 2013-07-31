@@ -15,6 +15,7 @@ import de.fhtrier.gdw.ss2013.physix.PhysixCircle;
 import de.fhtrier.gdw.ss2013.physix.PhysixManager;
 import de.fhtrier.gdw.ss2013.physix.PhysixPolyline;
 import org.jbox2d.dynamics.BodyType;
+import org.newdawn.slick.geom.Vector2f;
 
 /**
  * 
@@ -23,6 +24,7 @@ import org.jbox2d.dynamics.BodyType;
 public class LevelLoader {
     private static EntityManager entityManager;
     private static PhysixManager physicsManager;
+    private static Vector2f startpos;
 
     public static void load(TiledMap map, EntityManager entityManager,
             PhysixManager physicsManager) {
@@ -179,19 +181,27 @@ public class LevelLoader {
         // x|y are in Tiled the left bottom(!) corner, fix that:
         y -= height;
         
-        Entity entity = entityManager.createEntity(type, properties);
-        switch(type)
-        {
-        // WTF!!!
-//            case "circle":
-//                float radius = Math.max(width, height) / 2;
-//                PhysixCircle circle = new PhysixCircle(physicsManager, x, y, radius, BodyType.DYNAMIC, 1, 0.5f, false);
-//                entity.setPhysicsObject(circle);
-//                break;
-            default:
-                PhysixBox box = new PhysixBox(physicsManager, x, y, width, height, BodyType.DYNAMIC, 1, 0.5f, false);
-                entity.setPhysicsObject(box);
-                break;
+        boolean isStartPosition = type.equals("start");
+        
+        if (!isStartPosition) {
+        	Entity entity = entityManager.createEntity(type, properties);
+        	
+	        switch(type)
+	        {
+	        // WTF!!!
+	//            case "circle":
+	//                float radius = Math.max(width, height) / 2;
+	//                PhysixCircle circle = new PhysixCircle(physicsManager, x, y, radius, BodyType.DYNAMIC, 1, 0.5f, false);
+	//                entity.setPhysicsObject(circle);
+	//                break;
+	            default:
+	                PhysixBox box = new PhysixBox(physicsManager, x, y, width, height, BodyType.DYNAMIC, 1, 0.5f, false);
+	                entity.setPhysicsObject(box);
+	                break;
+	        }
+        }
+        else {
+        	startpos = new Vector2f(x,y);
         }
     }
 
@@ -209,5 +219,15 @@ public class LevelLoader {
      */
     private static void createPoint(String type, int x, int y,
             SafeProperties properties) {
+    }
+    
+    /**
+     * Returns startPosition, if one has been loaded, otherwise you'll get some bullshit
+     */
+    public static Vector2f getStartPosition() {
+    	if (startpos == null) {
+    		return new Vector2f(400, 200);
+    	}
+    	return startpos;
     }
 }
