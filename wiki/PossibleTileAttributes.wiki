@@ -1,0 +1,13 @@
+Tile Object Attribute:
+
+Kachel Attribute:
+- type
+Hat type den Wert einer Entity-Klasse, wird ein Entity bei Spielstart an der Stelle des Tiles gespawnt.
+
+Ausnahme davon:
+type == "start": Die Startposition, die durch den Levelloader gespeichert wird
+type == "particle": Steht für Partikeleffekte, siehe auch Tile Attribut "name"
+
+
+- name
+Wenn type den Wert "particle" hat, kann unter name der Wert angegeben werden, mit dem aus dem AssetLoader ein Partikel geladen werden soll. Werden diese Tiles in der Welt als Objekte gesetzt, wird durch den LevelLoader automatisch ein Partikelelement in der Welt gespeichert, das gerendert und upgedatet wird.
