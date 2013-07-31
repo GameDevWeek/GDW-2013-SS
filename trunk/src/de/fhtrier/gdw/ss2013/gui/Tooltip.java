@@ -6,7 +6,6 @@ package de.fhtrier.gdw.ss2013.gui;
 import java.util.ArrayList;
 
 import org.newdawn.slick.Font;
-import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
@@ -30,10 +29,6 @@ public class Tooltip {
         this.font = font;
         this.worldinstance = worldinstance;
         entityManager = worldinstance.getEntityManager();
-
-        // dev
-//        entityManager.createEntityAt(Switch.class, new Vector2f(100.f, 100.f));
-        // dev
     }
 
     public void update() {

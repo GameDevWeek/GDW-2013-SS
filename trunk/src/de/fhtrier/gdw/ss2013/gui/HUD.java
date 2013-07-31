@@ -28,6 +28,7 @@ public class HUD {
     private Font fpsFont;
 
 	public HUD(GameContainer container, World worldinstance) throws SlickException {
+	        
 		//init Assetloader
 	    asset = AssetLoader.getInstance();
 	     
@@ -52,22 +53,56 @@ public class HUD {
 
 		position.set(20, 20);
 
-		final Image ability1 = asset.getImage("ability1");
-        final Image ability2 = asset.getImage("ability2");
-        final Image ability3 = asset.getImage("ability3");
-        
-        abilityWheel.init(ability1, ability2, ability3, position, worldinstance);
 		
-		//abilityWheel.init(ability1, ability2, ability3, position);
+		final Image abilityDisplay1_Image = asset.getImage("ability1");
+        final Image abilityDisplay2_Image = asset.getImage("ability2");
+        final Image abilityDisplay3_Image = asset.getImage("ability3");
 
-		// Init quickselect
-		quickselect = new Quickselect();
+		final Vector2f abilityDisplay1_Position = new Vector2f(100,20);
+		final Vector2f abilityDisplay2_Position = new Vector2f(70,70);
+		final Vector2f abilityDisplay3_Position = new Vector2f(80,120);
+		
+		final float abilityDisplayFadingSpeed = 1.f;
+		final float quickselectFadingSpeed = 2.f; 
+		
+		final AbilityDisplay[] abilityDisplay;
+		abilityDisplay = new AbilityDisplay[3];
+
+		//Image image, Vector2f position
+        abilityDisplay[0]=new AbilityDisplay(abilityDisplay1_Image, abilityDisplay1_Position,abilityDisplayFadingSpeed);
+        abilityDisplay[1]=new AbilityDisplay(abilityDisplay2_Image, abilityDisplay2_Position,abilityDisplayFadingSpeed);
+        abilityDisplay[2]=new AbilityDisplay(abilityDisplay3_Image, abilityDisplay3_Position,abilityDisplayFadingSpeed);
+        
+        abilityWheel.init(abilityDisplay, worldinstance);
+		
+        //Init quickselect
+
+        //Backup von alter Version
+        quickselect = new Quickselect();
+		
+                
 		final int selected = 1;
 		final int countdown_start = 500;
-		quickselect.init(ability1, ability2, ability3, selected,
-				countdown_start, worldinstance);
-
-		
+	    
+	    quickselect.init(abilityDisplay1_Image, abilityDisplay2_Image, abilityDisplay3_Image, selected,
+	    countdown_start, worldinstance);
+	    
+       /* 
+        quickselect = new Quickselect();
+        
+        final int selected = 1;
+        final int countdown_start = 500;
+        final AbilityDisplay[] quickselectDisplay;
+        
+        quickselectDisplay=new AbilityDisplay[3];
+        
+        //noch zu ersetzen duch eventuell eigene Grafiken.
+        quickselectDisplay = abilityDisplay;
+        
+        
+        quickselect.init(quickselectDisplay, selected,
+        countdown_start, worldinstance);
+		*/
 		//init Crosshair
 		final Image crosshairImage = asset.getImage("crosshair2");
 		crosshair = new Crosshair();
