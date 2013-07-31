@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="230" height="60" tilewidth="32" tileheight="32" backgroundcolor="#b4dcff">
- <tileset firstgid="1" name="tiledmap_final" tilewidth="32" tileheight="32">
-  <image source="tiledmap_final.png" width="289" height="290"/>
- </tileset>
+ <tileset firstgid="1" source="tiledmap_final.tsx"/>
  <tileset firstgid="82" source="entity_tileset.tsx"/>
  <layer name="Tiles" width="230" height="60">
   <data encoding="base64" compression="zlib">
