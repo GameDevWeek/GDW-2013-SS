@@ -14,6 +14,7 @@ import de.fhtrier.gdw.ss2013.game.cheats.Cheats;
 import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.gui.HUD;
 import de.fhtrier.gdw.ss2013.input.InputManager;
+import org.newdawn.slick.Input;
 
 /**
  * Gameplay state
@@ -25,10 +26,12 @@ public class GameplayState extends BasicGameState {
     private Font font;
     private HUD hud;
     private InputManager inputManager;
+    private GameContainer container;
 
     @Override
     public void init(GameContainer container, StateBasedGame game)
             throws SlickException {
+        this.container = container;
         InputManager.init(container);
         inputManager = InputManager.getInstance();
         world = new World(container, game);
@@ -74,7 +77,12 @@ public class GameplayState extends BasicGameState {
 
     @Override
     public void keyReleased(int key, char c) {
-        cheats.addKey(c);
+        if(key == Input.KEY_F1)
+            container.setMouseGrabbed(!container.isMouseGrabbed());
+        else if(key == Input.KEY_F2)
+            world.debugDraw = !world.debugDraw;
+        else
+            cheats.addKey(c);
     }
 
 	public static void hideMenu () {

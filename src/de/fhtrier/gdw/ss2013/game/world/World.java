@@ -60,9 +60,7 @@ public class World {
 		camera = new Camera(map);
 
 		// physic debug stuff
-		if (debugDraw) {
-			physicsManager.enableDebugDraw(container);
-		}
+		physicsManager.enableDebugDraw(container);
 
 		astronaut = entityManager.createEntity(Astronaut.class);
 		Vector2f startpos = LevelLoader.getStartPosition();
