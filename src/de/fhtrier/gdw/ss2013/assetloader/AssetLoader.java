@@ -93,7 +93,7 @@ public class AssetLoader {
 				}catch (Exception e1) {
 				    try {
 	                    tmpImg = new Image("res/animations/dummies/"+animInfo.pfad+".png");
-	                    Log.warn("AssetLoader: Lade dummy animation von '" + animInfo.name + "'");
+	                    Log.info("AssetLoader: Lade dummy animation von '" + animInfo.name + "'");
 	                }catch (Exception e2) {
 	                    try {
 	                        tmpImg = new Image("res/animations/error.png");
@@ -161,7 +161,7 @@ public class AssetLoader {
 				} catch (Exception e1) {
 				    try {
 				        tmpImg = new Image("res/images/dummies/"+imageInfo.pfad+".png");
-				        Log.warn("AssetLoader: Lade dummy image von '" + imageInfo.name + "'");
+				        Log.info("AssetLoader: Lade dummy image von '" + imageInfo.name + "'");
 				    } catch (Exception e2) {
 				        try {
 				            tmpImg = imageMap.get("error");
