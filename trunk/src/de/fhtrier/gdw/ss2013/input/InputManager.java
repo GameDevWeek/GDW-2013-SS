@@ -4,6 +4,8 @@ import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.assetloader.infos.ControlsInfo;
 import java.util.LinkedList;
 
+import org.lwjgl.input.Controller;
+import org.lwjgl.input.Controllers;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.util.Log;
 
@@ -42,13 +44,17 @@ public class InputManager {
         devices.add(keyboard);
         mouse = new Mouse(container);
         devices.add(mouse);
-
+//        for (int i = 0; i < org.lwjgl.input.Controllers.getControllerCount(); i++) {
+//      	  System.out.println(Controllers.getController(i).getName());
+//      	  Controller c= Controllers.getController(i);
+//      	  System.out.println();
+//      	
+//		}
         ControlsInfo controlsInfo = AssetLoader.getInstance().getControls();
         if (controlsInfo.gamepads != null) {
             for (ControlsInfo.GamepadInfo gamepadInfo : controlsInfo.gamepads) {
                 try {
                     Gamepad gamepad = new Gamepad(container, gamepadInfo);
-
                     gamepads.add(gamepad);
                     devices.add(gamepad);
                 } catch (IllegalArgumentException e) {
@@ -56,6 +62,7 @@ public class InputManager {
                 }
             }
         }
+        printControllerInfo();
     }
 
     public void update(int delta) {
@@ -94,12 +101,19 @@ public class InputManager {
     public int getGamepadCount() {
         return gamepads.size();
     }
-    /**
-     * TODO - Methode um alle verfügbaren InputDevices abzufragen - Maussupport
-     * implementieren - Gamepadsupport implementieren
-     */
 
-    /*
-     * head -> node next -> node next -> node
-     */
+    private void printControllerInfo(){
+   		
+   		int numControllers = org.lwjgl.input.Controllers.getControllerCount();
+   		for (int i = 0; i < numControllers; i++) {
+   			org.lwjgl.input.Controller c = org.lwjgl.input.Controllers.getController(i);
+   			Log.debug(c.getName());
+   			for (int j = 0; j < c.getButtonCount(); j++) {
+   				Log.debug("Buttonindex: "+ j +" Name: " + c.getButtonName(j)  );
+   			}
+   			for (int j = 0; j < c.getAxisCount(); j++) {
+   				Log.debug("Axisindex: "+ j +" Name: " + c.getAxisName(j)  );
+   			}
+   		}
+   	}
 }
