@@ -31,6 +31,7 @@ public class Astronaut extends Player implements AstronautController {
 	private HashSet<Interactable> interactables;
 
 	protected PlayerState state;
+    private boolean invertAnimation = false;
     private boolean walking;
 
 	public Astronaut () {
@@ -38,8 +39,6 @@ public class Astronaut extends Player implements AstronautController {
 		maxOxygen = 1000f;
 		oxygen = maxOxygen;
 		interactables = new HashSet<Interactable>();
-
-		flipAnimation();
 	}
 
 	public float getOxygen () {
@@ -88,6 +87,7 @@ public class Astronaut extends Player implements AstronautController {
 	public void moveRight () {
 		setVelocityX(speed);
 		setState(PlayerState.walking);
+        invertAnimation = false;
         walking = true;
 	}
 
@@ -95,6 +95,7 @@ public class Astronaut extends Player implements AstronautController {
 	public void moveLeft () {
 		setVelocityX(-speed);
 		setState(PlayerState.walking);
+        invertAnimation = true;
         walking = true;
 	}
 
@@ -155,29 +156,11 @@ public class Astronaut extends Player implements AstronautController {
 	public void render (GameContainer container, Graphics g) throws SlickException {
 		Vector2f position = getPosition();
 
-		switch (state) {
-		case walking:
-			if (getVelocity().x > 0f) {
-				animation.draw(position.x - animation.getWidth() / 2, position.y - animation.getHeight() / 2);
-			} else if (getVelocity().x < 0f) {
-				animation_Inverted.draw(position.x - animation.getWidth() / 2, position.y - animation.getHeight() / 2);
-			}
-			break;
-
-		default:
-			animation.draw(position.x - animation.getWidth() / 2, position.y - animation.getHeight() / 2);
-			break;
-		}
-	}
-
-	private void flipAnimation () {
-		Animation a = AssetLoader.getInstance().getAnimation("astronaut_" + PlayerState.walking);
-		animation_Inverted = new Animation();
-		for (int i = 0; i < a.getFrameCount(); i++) {
-			Image flipped = a.getImage(i).getFlippedCopy(true, false);
-			animation_Inverted.addFrame(flipped, a.getDuration(i));
-		}
-
+        if (invertAnimation) {
+            animation.draw(position.x + animation.getWidth() / 2, position.y - animation.getHeight() / 2, -animation.getWidth(), animation.getHeight());
+        } else {
+            animation.draw(position.x - animation.getWidth() / 2, position.y - animation.getHeight() / 2);
+        }
 	}
 
 	public void setState (PlayerState state) {
