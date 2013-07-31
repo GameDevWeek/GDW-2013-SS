@@ -21,7 +21,7 @@ import de.fhtrier.gdw.ss2013.physics.ICollidable;
 public class Button extends ObjectController implements ICollidable {
 
 	public Button() {
-        setImage(AssetLoader.getInstance().getImage("button_unpressed"));
+		img = AssetLoader.getInstance().getImage("button_unpressed");
         // private Image pressedImg = AssetLoader.getInstance().getImage("button_pressed");
 	}
 	

@@ -97,12 +97,4 @@ public abstract class Entity {
     public PhysixObject getPhysicsObject() {
         return this.physicsObject;
     }
-    
-    public void setImage(Image img) {
-    	this.img = img;
-    }
-    
-    public Image getImage() {
-    	return img;
-    }
 }

@@ -19,7 +19,7 @@ public class Switch extends ObjectController implements Interactable {
 
     public Switch() {
         super();
-        this.setImage(AssetLoader.getInstance().getImage("switch_unpressed"));
+        img = AssetLoader.getInstance().getImage("switch_unpressed");
         // private Image pressedImg = AssetLoader.getInstance().getImage("switch_pressed");
     }
 
