@@ -26,13 +26,15 @@ public class FlyingEnemy extends AbstractEnemy implements ICollidable {
     private float flyintelligence, boltintelligence;
     private float factor;
     private EntityManager m;
-    private Player p;
+    private Astronaut p;
+    private World w = World.getInstance();
     final static float DEBUG_ENTITY_HALFEXTEND = 5;
     private String rechts = "animtest", links = "animtest", current = "animtest";
 
     public FlyingEnemy() {
         this.health = 100f; // FIXME: dummy value!
-        this.m = World.getInstance().getEntityManager();
+        this.m = w.getEntityManager();
+        this.p = w.getAstronaut();
         // FIXME: Player will never be set!
         flyintelligence = boltintelligence = (float) Math.random();
         // Don't use Velocity in the constructor!
@@ -144,7 +146,7 @@ public class FlyingEnemy extends AbstractEnemy implements ICollidable {
         return null;
     }
 
-    public void setReferences(EntityManager m, Player p) {
+    public void setReferences(EntityManager m, Astronaut p) {
         this.m = m;
         this.p = p;
     }
