@@ -47,6 +47,9 @@ public class Astronaut extends Player implements AstronautController {
 		this.maxOxygen = maxOxygen;
 	}
 
+	public void setJumpSpeed(float newJumpSpeed) {
+		jumpSpeed = newJumpSpeed;
+	}
   
     
     @Override
@@ -100,6 +103,10 @@ public class Astronaut extends Player implements AstronautController {
     public void setCarryAlien(boolean carryAlien) {
         this.carryAlien = carryAlien;
     }
+
+	public float getJumpSpeed() {
+		return jumpSpeed;
+	}
 	
 	
 
