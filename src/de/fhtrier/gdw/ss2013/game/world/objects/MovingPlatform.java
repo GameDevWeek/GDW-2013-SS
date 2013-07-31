@@ -35,7 +35,7 @@ public class MovingPlatform extends Entity implements Interactable {
         index = 0;
         change = false;
         speed = 20;
-        setParticle(AssetLoader.getInstance().getParticle("pollen1"));
+        setParticle(AssetLoader.getInstance().getParticle("pollen2"));
         isActiv = true;
        
     }

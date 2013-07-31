@@ -7,6 +7,7 @@ import de.fhtrier.gdw.commons.tiled.Layer;
 import de.fhtrier.gdw.commons.tiled.LayerObject;
 import de.fhtrier.gdw.commons.tiled.TiledMap;
 import de.fhtrier.gdw.commons.utils.SafeProperties;
+import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.world.objects.MovingPlatform;
@@ -16,6 +17,7 @@ import de.fhtrier.gdw.ss2013.physix.PhysixManager;
 import de.fhtrier.gdw.ss2013.physix.PhysixPolyline;
 import org.jbox2d.dynamics.BodyType;
 import org.newdawn.slick.geom.Vector2f;
+import org.newdawn.slick.particles.ParticleSystem;
 
 /**
  * 
@@ -191,6 +193,14 @@ public class LevelLoader {
 //                break;
         case "start":
         	startpos = new Vector2f(x,y);
+        	break;
+        case "particle":
+        	String name = properties.getProperty("name");
+        	if (name != null) {
+        		ParticleSystem p = AssetLoader.getInstance().getParticle(name);
+        		p.setPosition(x+(width/2), y+(height/2));
+        		World.getInstance().addParticle(p);
+        	}
         	break;
         default:
         	Entity entity = entityManager.createEntity(type, properties);
