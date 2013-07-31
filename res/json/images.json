@@ -65,5 +65,13 @@
 {
   "name" : "switch_pressed",
   "pfad" : "entities/switch/switch_pressed"
+},
+{
+  "name" : "button_unpressed",
+  "pfad" : "entities/button/button_unpressed"
+},
+{
+  "name" : "button_pressed",
+  "pfad" : "entities/switch/button_pressed"
 }]
 
