@@ -6,6 +6,8 @@ package de.fhtrier.gdw.ss2013.gui;
 import java.util.ArrayList;
 
 import org.newdawn.slick.Font;
+import org.newdawn.slick.Image;
+import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
@@ -14,13 +16,15 @@ import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.game.world.objects.Door;
 import de.fhtrier.gdw.ss2013.game.world.objects.Switch;
 import de.fhtrier.gdw.ss2013.gui.utils.CenteredText;
+import de.fhtrier.gdw.ss2013.math.MathConstants;
 
 public class Tooltip {
 
     private World worldinstance;
     private EntityManager entityManager;
     private Font font;
-
+    private ArrayList<Specifictooltip> specificTooltipList;
+    
     public Tooltip() {
 
     }
@@ -29,18 +33,37 @@ public class Tooltip {
         this.font = font;
         this.worldinstance = worldinstance;
         entityManager = worldinstance.getEntityManager();
+        Specifictooltip.setWorld(worldinstance);
+        specificTooltipList = new ArrayList<>();
+        
+  
     }
 
+    public void addSpecificTooltip(Vector2f position, Image img, Vector2f trigger, float triggerRadius)
+    {
+        
+        specificTooltipList.add(new Specifictooltip(img, position, trigger, triggerRadius));
+    }
+     
     public void update() {
 
     }
 
     public void render() {
-        drawTooltip(Switch.class, "Setz Alien hier drauf \n zum Umlegen");
-        drawTooltip(Door.class, "Drücke \"Aktivieren\" zum aktivieren.");
+        
+        drawGeneralTooltip(Switch.class, "Setz Alien hier drauf \n zum Umlegen");
+        drawGeneralTooltip(Door.class, "Drücke \"Aktivieren\" zum aktivieren.");
+        
+          for (Specifictooltip elem : specificTooltipList)
+          {
+              if (elem.getTrigger().distance(worldinstance.getAstronaut().getPosition()) - elem.getRadius() < MathConstants.EPSILON_F){ 
+                  elem.render();
+              }
+          }
+         
     }
 
-    private void drawTooltip(Class<? extends EntityFilter> filter, String string) {
+    private void drawGeneralTooltip(Class<? extends EntityFilter> filter, String string) {
 
         ArrayList<Entity> entities = entityManager.getClosestEntitiesByFilter(worldinstance.getAstronaut()
                 .getPosition(), 100, filter);
@@ -50,5 +73,6 @@ public class Tooltip {
             CenteredText.draw(entities.get(i).getPosition().x, entities.get(i).getPosition().y, string, font);
         }
     }
+ 
 
 }
