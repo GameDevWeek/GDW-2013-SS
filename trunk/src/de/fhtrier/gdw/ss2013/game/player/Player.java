@@ -18,7 +18,7 @@ import de.fhtrier.gdw.ss2013.physix.PhysixBoxPlayer;
  */
 public abstract class Player extends Entity {
 
-	protected Animation animation, animation_Inverted;
+	protected Animation animation;
 
 	@Override
 	public void render(GameContainer container, Graphics g)
