@@ -21,12 +21,15 @@ public class PhysixManager implements ContactListener {
     public PhysixManager(GameContainer container) {
         this.input = container.getInput();
         world = new World(new Vec2(0, GRAVITY));
+        world.setContactListener(this);
     }
 
     public void update(int delta) {
 
-        world.step(1 / 30.0f, 10, 10); //performs a time step in the box2d simulation
-        world.clearForces(); //used to clear the forces after performing the time step
+        world.step(1 / 30.0f, 10, 10); // performs a time step in the box2d
+                                       // simulation
+        world.clearForces(); // used to clear the forces after performing the
+                             // time step
 
     }
 
@@ -36,18 +39,26 @@ public class PhysixManager implements ContactListener {
 
     @Override
     public void beginContact(Contact contact) {
-        PhysixObject objectA = (PhysixObject) contact.getFixtureA().getBody().getUserData();
-        PhysixObject objectB = (PhysixObject) contact.getFixtureB().getBody().getUserData();
-        objectA.beginContact(objectA, objectB);
-        objectB.beginContact(objectA, objectB);
+        PhysixObject objectA = (PhysixObject) contact.getFixtureA().getBody()
+                .getUserData();
+        PhysixObject objectB = (PhysixObject) contact.getFixtureB().getBody()
+                .getUserData();
+        if (objectA != null)
+            objectA.beginContact(objectA, objectB);
+        if (objectB != null)
+            objectB.beginContact(objectA, objectB);
     }
 
     @Override
     public void endContact(Contact contact) {
-        PhysixObject objectA = (PhysixObject) contact.getFixtureA().getBody().getUserData();
-        PhysixObject objectB = (PhysixObject) contact.getFixtureB().getBody().getUserData();
-        objectA.endContact(objectA, objectB);
-        objectB.endContact(objectA, objectB);
+        PhysixObject objectA = (PhysixObject) contact.getFixtureA().getBody()
+                .getUserData();
+        PhysixObject objectB = (PhysixObject) contact.getFixtureB().getBody()
+                .getUserData();
+        if (objectA != null)
+            objectA.endContact(objectA, objectB);
+        if (objectB != null)
+            objectB.endContact(objectA, objectB);
     }
 
     @Override
@@ -59,9 +70,9 @@ public class PhysixManager implements ContactListener {
     }
 
     public void reset() {
-		// It is not allowed to remove bodies from the world while it is locked.
-		// Check locking state to prevent assertion in native library.
-		if (!world.isLocked()) {
+        // It is not allowed to remove bodies from the world while it is locked.
+        // Check locking state to prevent assertion in native library.
+        if (!world.isLocked()) {
             Body body = world.getBodyList();
             while (body != null) {
                 world.destroyBody(body);
@@ -72,7 +83,8 @@ public class PhysixManager implements ContactListener {
 
     public void enableDebugDraw(GameContainer container) {
         IViewportTransform viewportTransform = new OBBViewportTransform();
-        world.setDebugDraw(new PhysixDebugDraw(viewportTransform, container.getGraphics()));
+        world.setDebugDraw(new PhysixDebugDraw(viewportTransform, container
+                .getGraphics()));
     }
 
     World getWorld() {
