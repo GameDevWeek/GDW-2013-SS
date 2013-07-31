@@ -27,9 +27,10 @@ public class OxygenFlower extends Entity implements Interactable {
     private int maxBubble;
     private int count;
 
-    public void init(Vector2f position, int maxBubble) {
+    // needs to be without parameters!
+    public OxygenFlower() {
         img = a.getImage("plant");
-        this.maxBubble = maxBubble;
+        this.maxBubble = 5; //FIXME: use a better value
     }
 
     public void shootBubbles(EntityManager manager) {
