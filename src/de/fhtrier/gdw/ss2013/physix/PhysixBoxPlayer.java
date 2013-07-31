@@ -6,6 +6,8 @@ import org.jbox2d.common.Vec2;
 import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
 
+import de.fhtrier.gdw.ss2013.math.MathConstants;
+
 public class PhysixBoxPlayer extends PhysixBox {
     
     protected boolean isGrounded = false;
@@ -22,7 +24,7 @@ public class PhysixBoxPlayer extends PhysixBox {
         addSlideShape(onePx, halfHeight, halfWidth, onePx - halfWidth);
         addSlideShape(onePx, halfHeight, halfWidth, halfWidth - onePx);
         
-        addSensor(0, halfHeight, PhysixUtil.toBox2D(5), 1);
+        addSensor(0, halfHeight, (halfWidth-MathConstants.EPSILON_F), 1);
     }
 
     private void addSlideShape(float onePx, float halfHeight, float halfWidth, float x) {

@@ -76,14 +76,14 @@ public abstract class Entity {
     /**
      * Override to provide default values and call in constructor
      */
-    public void initialize() {
+    protected void initialize() {
 
     }
 
     /**
      * Override to provide destroy code for world objects (physic mostly)
      */
-    public void dispose() {
+    protected void dispose() {
 
     }
 

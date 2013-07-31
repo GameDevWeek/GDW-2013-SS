@@ -1,7 +1,5 @@
 package de.fhtrier.gdw.ss2013.physix;
 
-import de.fhtrier.gdw.ss2013.game.Entity;
-import java.util.Collection;
 import java.util.HashSet;
 
 import org.jbox2d.collision.shapes.MassData;
@@ -14,6 +12,8 @@ import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
 import org.newdawn.slick.geom.Vector2f;
+
+import de.fhtrier.gdw.ss2013.game.Entity;
 
 public abstract class PhysixObject {
 
@@ -54,7 +54,6 @@ public abstract class PhysixObject {
 	public void setOwner(Entity owner) {
 	    body.setUserData(this);
 		this.owner = owner;
-		
 	}
 
 	public Entity getOwner() {
