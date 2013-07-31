@@ -2,7 +2,8 @@ package de.fhtrier.gdw.ss2013.game.cheats;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Queue;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.state.StateBasedGame;
@@ -14,16 +15,12 @@ public class Cheats {
 	private String currentCheatCode = "";
 	private World world;
 	private HashMap<String, Cheat> cheats = new HashMap<>();
-	private ArrayList<Cheat> enabledCheats = new ArrayList<>();
+	private ArrayList<Cheat> cheatsThatNeedupdate = new ArrayList<>();
+	private Queue<Cheat> newCheats = new LinkedList<>();
 
 	public Cheats(World world) {
 		this.world = world;
 		addStandardCheats();
-	}
-
-	private void addStandardCheats() {
-		cheats.put("iddqd", new Invincibility());
-		cheats.put("idkfa", new FullPower());
 	}
 
 	private void checkCheats() {
@@ -33,11 +30,7 @@ public class Cheats {
 				legalCheat = true;
 				if (code.equals(currentCheatCode)) {
 					Cheat cheat = cheats.get(currentCheatCode);
-					if (enabledCheats.contains(cheat)) {
-						enabledCheats.remove(cheat);
-					} else {
-						enabledCheats.add(cheat);
-					}
+					newCheats.add(cheat);
 					currentCheatCode = "";
 				}
 			}
@@ -48,13 +41,21 @@ public class Cheats {
 	}
 
 	public void update(GameContainer container, StateBasedGame game, int delta) {
-		Iterator<Cheat> iterator = enabledCheats.iterator();
-		while (iterator.hasNext()) {
-			Cheat cheat = iterator.next();
-			boolean isFinished = cheat.doCheat(container, game, delta, world);
-			if (isFinished) {
-				iterator.remove();
+		while (newCheats.peek() != null) {
+			final Cheat cheat = newCheats.poll();
+			if (cheatsThatNeedupdate.contains(cheat)) {
+				cheatsThatNeedupdate.remove(cheat);
+				cheat.end(container, game, delta, world);
+			} else {
+				cheat.start(container, game, delta, world);
+				if (cheat.wantsToBeUpdated) {
+					cheatsThatNeedupdate.add(cheat);
+				}
 			}
+		}
+
+		for (Cheat cheat : cheatsThatNeedupdate) {
+			cheat.doCheat(container, game, delta, world);
 		}
 	}
 
@@ -63,26 +64,63 @@ public class Cheats {
 		checkCheats();
 	}
 
-	private interface Cheat {
-		boolean doCheat(GameContainer container, StateBasedGame game, int delta,
-				World world);
-	};
+	private abstract class Cheat {
+		protected boolean wantsToBeUpdated = true;
 
-	private class Invincibility implements Cheat {
+		void start(GameContainer container, StateBasedGame game, int delta,
+				World world) {
+		}
+
+		void doCheat(GameContainer container, StateBasedGame game, int delta,
+				World world) {
+		}
+
+		void end(GameContainer container, StateBasedGame game, int delta,
+				World world) {
+		}
+
+	}
+
+	private class Invincibility extends Cheat {
 		@Override
-		public boolean doCheat(GameContainer container, StateBasedGame game,
+		public void doCheat(GameContainer container, StateBasedGame game,
 				int delta, World world) {
 			world.getAstronaut().setOxygen(world.getAstronaut().getMaxOxygen());
-			return false;
+			wantsToBeUpdated = true;
 		}
 	}
 
-	private class FullPower implements Cheat {
+	private class FullPower extends Cheat {
 		@Override
-		public boolean doCheat(GameContainer container, StateBasedGame game,
+		public void start(GameContainer container, StateBasedGame game,
 				int delta, World world) {
 			world.getAstronaut().setOxygen(world.getAstronaut().getMaxOxygen());
-			return true;
+			wantsToBeUpdated = false;
 		}
+	}
+
+	private class MegaJump extends Cheat {
+
+		private float oldJumpSpeed = 0.0f;
+
+		@Override
+		public void start(GameContainer container, StateBasedGame game,
+				int delta, World world) {
+			oldJumpSpeed = world.getAstronaut().getJumpSpeed();
+			world.getAstronaut().setJumpSpeed(600.0f);
+			wantsToBeUpdated = true;
+		}
+
+		@Override
+		public void end(GameContainer container, StateBasedGame game,
+				int delta, World world) {
+			world.getAstronaut().setJumpSpeed(oldJumpSpeed);
+		}
+	}
+
+	private void addStandardCheats() {
+		cheats.put("iddqd", new Invincibility());
+		cheats.put("idkfa", new FullPower());
+		cheats.put("jumpjump", new MegaJump());
 	}
 }
