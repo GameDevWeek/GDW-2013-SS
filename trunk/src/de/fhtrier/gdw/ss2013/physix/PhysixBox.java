@@ -15,6 +15,9 @@ public class PhysixBox extends PhysixObject {
 
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(halfWidth, halfHeight);
+        this.dimension.set(halfWidth, halfHeight);
+        
+        
         
         init(physicsManager.getWorld(), shape, type, px + halfWidth, py + halfHeight);
     }

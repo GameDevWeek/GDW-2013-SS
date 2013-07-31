@@ -2,6 +2,7 @@ package de.fhtrier.gdw.ss2013.physix;
 
 import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.contacts.Contact;
+import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.game.player.Player;
 import de.fhtrier.gdw.ss2013.game.world.enemies.AbstractEnemy;
@@ -44,7 +45,15 @@ public class EnemyContactListener implements ICollisionListener {
         if(damageDealer == null || damageTaker == null)
             return;
         // is above TODO(check for astronaut later..)
-        if(damageTaker.getPosition().y < damageDealer.getPosition().y) {
+        Vector2f damageTakerPos = damageTaker.getPosition();
+        Vector2f damageTakerDim = damageTaker.getPhysicsObject().getDimension();
+        
+        Vector2f damageDealerPos = damageDealer.getPosition();
+        Vector2f damageDealerDim = damageDealer.getPhysicsObject().getDimension();
+        
+        if( (damageTakerPos.x + damageTakerDim.x > damageDealerPos.x - damageDealerDim.x  ) //  
+                && ((damageTakerPos.x - damageTakerDim.x < damageDealerPos.x + damageDealerDim.x  ))
+                && (damageTakerPos.y + damageTakerDim.y < damageDealerPos.y)) { // player deals damage
             System.out.println(damageDealer+" hit by "+damageTaker);
         }
         else {
@@ -59,4 +68,6 @@ public class EnemyContactListener implements ICollisionListener {
     public void endContact(Contact contact) {
 
     }
+
+   
 }

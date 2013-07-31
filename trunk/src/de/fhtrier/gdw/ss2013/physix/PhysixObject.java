@@ -25,11 +25,15 @@ public abstract class PhysixObject {
 	protected Body body;
 	protected HashSet<ICollisionListener> collisionListeners = new HashSet<ICollisionListener>();
     
+	protected Vec2 dimension;
+	
     public PhysixObject(float density, float friction, boolean sensor) {
         fixtureDef = new FixtureDef();
         fixtureDef.density = density;
         fixtureDef.friction = friction;
         fixtureDef.isSensor = sensor;
+        
+        dimension = new Vec2();
     }
     
 	protected void init(World world, Shape shape, BodyType type, float x, float y) {
@@ -42,6 +46,8 @@ public abstract class PhysixObject {
         
         body = world.createBody(bodyDef);
         fixture = body.createFixture(fixtureDef);
+        
+        
 	}
 
     Body getBody() {
@@ -181,5 +187,9 @@ public abstract class PhysixObject {
 	    for (ICollisionListener listener : collisionListeners) {
 	        listener.endContact(contact);
 	    }
+	}
+	
+	public Vector2f getDimension() {
+	    return PhysixUtil.toWorld(this.dimension);
 	}
 }
