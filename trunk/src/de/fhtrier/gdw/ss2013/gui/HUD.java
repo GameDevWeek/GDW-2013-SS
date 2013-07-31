@@ -69,7 +69,7 @@ public class HUD {
 
 		
 		//init Crosshair
-		final Image crosshairImage = asset.getImage("crosshair1");
+		final Image crosshairImage = asset.getImage("crosshair2");
 		crosshair = new Crosshair();
 		crosshair.init(worldinstance, crosshairImage);
 		
