@@ -4,8 +4,8 @@ import org.jbox2d.dynamics.Fixture;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 
+import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.Entity;
-import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.physics.ICollidable;
 
 /**
@@ -17,7 +17,8 @@ import de.fhtrier.gdw.ss2013.physics.ICollidable;
 public class Button extends ObjectController implements ICollidable {
 
 	public Button() {
-	    // super(AssetLoader.getInstance().getImage("button")); // Image does not exist yet
+        this.setImage(AssetLoader.getInstance().getImage("button_unpressed"));
+        // private Image pressedImg = AssetLoader.getInstance().getImage("button_pressed");
 	}
 	
 	@Override
