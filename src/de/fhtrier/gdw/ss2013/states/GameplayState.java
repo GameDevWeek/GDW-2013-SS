@@ -76,4 +76,9 @@ public class GameplayState extends BasicGameState {
         cheats.addKey(c);
     }
 
+	public static void hideMenu () {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
