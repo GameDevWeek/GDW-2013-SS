@@ -21,7 +21,8 @@ public class PhysixManager implements ContactListener {
     public PhysixManager(GameContainer container) {
         this.input = container.getInput();
         world = new World(new Vec2(0, GRAVITY));
-        world.setContactListener(this);
+
+        world.setContactListener(new JumpTestListener()); // listener for jumptest of playerboxes
     }
 
     public void update(int delta) {

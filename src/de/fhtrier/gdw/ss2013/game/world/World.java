@@ -1,13 +1,10 @@
 package de.fhtrier.gdw.ss2013.game.world;
 
-import org.jbox2d.common.IViewportTransform;
-import org.jbox2d.common.OBBViewportTransform;
 import org.jbox2d.dynamics.BodyType;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.Sound;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -15,7 +12,6 @@ import de.fhtrier.gdw.commons.tiled.TiledMap;
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.camera.Camera;
-import de.fhtrier.gdw.ss2013.game.cheats.Cheats;
 import de.fhtrier.gdw.ss2013.game.player.Alien;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.world.enemies.FlyingEnemy;
@@ -24,6 +20,7 @@ import de.fhtrier.gdw.ss2013.game.world.enemies.Meteroid;
 import de.fhtrier.gdw.ss2013.game.world.objects.OxygenFlower;
 import de.fhtrier.gdw.ss2013.input.InputManager;
 import de.fhtrier.gdw.ss2013.physics.DebugDrawer;
+import de.fhtrier.gdw.ss2013.physix.ICollisionListener;
 import de.fhtrier.gdw.ss2013.physix.PhysixBox;
 import de.fhtrier.gdw.ss2013.physix.PhysixBoxPlayer;
 import de.fhtrier.gdw.ss2013.physix.PhysixManager;
@@ -75,8 +72,21 @@ public class World {
 		}
 
 		astronaut = entityManager.createEntity(Astronaut.class);
-		      PhysixObject physicsObject = new PhysixBoxPlayer(physicsManager, 400, 200,
-                      50, 150);
+          PhysixObject physicsObject = new PhysixBoxPlayer(physicsManager, 400, 200,
+                  50, 150);
+          physicsObject.addCollisionListener(new ICollisionListener() {
+            
+            @Override
+            public void endContact(PhysixObject object) {
+                System.out.println(object);
+            }
+            
+            @Override
+            public void beginContact(PhysixObject object) {
+                System.out.println(object);
+                
+            }
+        });
 		astronaut.setPhysicsObject(physicsObject);
         
         

@@ -15,9 +15,9 @@ class PhysixDebugDraw extends DebugDraw {
         super(viewportTransform);
         this.graphics = graphics;
         this.setFlags(DebugDraw.e_aabbBit | DebugDraw.e_centerOfMassBit
-                + DebugDraw.e_dynamicTreeBit | DebugDraw.e_jointBit
-                + DebugDraw.e_pairBit | DebugDraw.e_shapeBit);
-    }
+                | DebugDraw.e_dynamicTreeBit | DebugDraw.e_jointBit
+                | DebugDraw.e_pairBit | DebugDraw.e_shapeBit);
+        }
 
     @Override
     public void drawPoint(Vec2 p, float radiusOnScreen, Color3f color) {
