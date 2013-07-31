@@ -52,11 +52,8 @@ public class MovingPlatform extends Entity implements Interactable {
     public void update(GameContainer container, int delta)
                 throws SlickException {
         super.update(container, delta);
-        System.out.println(this.particle);
         if (isActiv)
         move();
-        //System.out.println(getPosition());
-        
     }
 
 

@@ -90,7 +90,6 @@ public class AssetLoader {
 				checkForBackslashes(animInfo.pfad);
 				Image tmpImg = null;
 				try {
-					System.out.println(animInfo.pfad);
 				    tmpImg = new Image("res/animations/"+animInfo.pfad+".png");
 				}catch (Exception e1) {
 				    try {
