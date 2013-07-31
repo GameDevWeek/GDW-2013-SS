@@ -1,57 +1,57 @@
 [{
   "name" : "error",
-  "pfad" : "res/images/error.png"
+  "pfad" : "error"
 },
 {
   "name" : "boltEnemy",
-  "pfad" : "res/dummies/GeschossAlien.png"
+  "pfad" : "GeschossAlien"
 },
 {
   "name" : "groundEnemy",
-  "pfad" : "res/dummies/GegnerKlein.png"
+  "pfad" : "GegnerKlein"
 },
 {
   "name" : "plant",
-  "pfad" : "res/dummies/Pflanze.png"
+  "pfad" : "Pflanze"
 },
 {
   "name" : "bubble",
-  "pfad" : "res/dummies/Sauerstoff.png"
+  "pfad" : "Sauerstoff"
 },
 { 
   "name" : "healthBarFrame",
-  "pfad" : "res/Dummy_GUIs_Images/frame.png"
+  "pfad" : "gui/frame"
 },
 {
   "name" : "healthBarForeground",
-  "pfad" : "res/Dummy_GUIs_Images/bar.png"
+  "pfad" : "gui/bar"
 },
 {
   "name" : "healthBarBackground",
-  "pfad" : "res/Dummy_GUIs_Images/background.png"
+  "pfad" : "gui/background"
 },
 { 
   "name" : "ability1",
-  "pfad" : "res/Dummy_GUIs_Images/ability1.png"
+  "pfad" : "gui/ability1"
 },
 {
   "name" : "ability2",
-  "pfad" : "res/Dummy_GUIs_Images/ability2.png"
+  "pfad" : "gui/ability2"
 },
 {
   "name" : "ability3",
-  "pfad" : "res/Dummy_GUIs_Images/ability3.png"
+  "pfad" : "gui/ability3"
 },
 {
   "name" : "world_background",
-  "pfad" : "res/images/background/background.png"
+  "pfad" : "background/background"
 },
 {
   "name" : "crosshair1",
-  "pfad" : "res/Dummy_GUIs_Images/crosshair1.png"
+  "pfad" : "gui/crosshair1"
 },
 {
   "name" : "crosshair2",
-  "pfad" : "res/Dummy_GUIs_Images/crosshair2.png"
+  "pfad" : "gui/crosshair2"
 }]
 
