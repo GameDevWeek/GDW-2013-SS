@@ -12,12 +12,16 @@ import de.fhtrier.gdw.ss2013.physics.ICollidable;
  * Switch class
  * 
  * @author Kevin, Georg
+ * edited by: Thomas M.
+ * 
+ * Button, which gets activated by collision with the player or a box,
+ * 
  * 
  */
 public class Button extends ObjectController implements ICollidable {
 
 	public Button() {
-        this.setImage(AssetLoader.getInstance().getImage("button_unpressed"));
+        setImage(AssetLoader.getInstance().getImage("button_unpressed"));
         // private Image pressedImg = AssetLoader.getInstance().getImage("button_pressed");
 	}
 	
