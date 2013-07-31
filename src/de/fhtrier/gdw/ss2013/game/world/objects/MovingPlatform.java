@@ -59,7 +59,7 @@ public class MovingPlatform extends Entity {
                     nextPoint = line.get(index + 1);
                 }
                 if (getPosition().distance(new Vector2f(nextPoint.x, nextPoint.y)) > 0.1) {
-                    setVelocity(new Vector2f((float)currentPoint.distance(nextPoint.x, 0), (float)currentPoint.distance(0, nextPoint.y)).normalise());
+                    setVelocity(new Vector2f((float)currentPoint.distance(nextPoint.x, 0), (float)currentPoint.distance(0, nextPoint.y)));
                 }
                 else {
                     if (index < line.size() - 1) {
@@ -77,7 +77,7 @@ public class MovingPlatform extends Entity {
                     nextPoint = line.get(index - 1);
                 }
                 if (getPosition().distance(new Vector2f(nextPoint.x, nextPoint.y)) > 0.1) {
-                    setVelocity(new Vector2f((float)currentPoint.distance(nextPoint.x, 0), (float)currentPoint.distance(0, nextPoint.y)).normalise());
+                    setVelocity(new Vector2f((float)currentPoint.distance(nextPoint.x, 0), (float)currentPoint.distance(0, nextPoint.y)));
                 }
                 else {
                     if (index > 0) {
