@@ -12,6 +12,7 @@ import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.player.Player;
 import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.physics.ICollidable;
+import de.fhtrier.gdw.ss2013.physix.PhysixObject;
 
 /**
  * Flying Enemy Class
@@ -146,5 +147,17 @@ public class FlyingEnemy extends AbstractEnemy implements ICollidable {
     public void setReferences(EntityManager m, Player p) {
         this.m = m;
         this.p = p;
+    }
+
+    @Override
+    public void beginContact(PhysixObject object) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void endContact(PhysixObject object) {
+        // TODO Auto-generated method stub
+        
     }
 }

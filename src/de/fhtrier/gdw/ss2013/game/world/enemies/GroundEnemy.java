@@ -12,6 +12,7 @@ import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.player.Player;
 import de.fhtrier.gdw.ss2013.physics.ICollidable;
+import de.fhtrier.gdw.ss2013.physix.PhysixObject;
 
 /**
  * Ground Enemy Class
@@ -19,10 +20,10 @@ import de.fhtrier.gdw.ss2013.physics.ICollidable;
  * @author Kevin, Georg
  * 
  */
-public class GroundEnemy extends AbstractEnemy implements ICollidable {
+public class GroundEnemy extends AbstractEnemy {
     private float movetime, lasttime, hunttime;
     private boolean intelligence, normalMode, huntMode, waitMode, moveLR;
-    private Player p;
+    private Astronaut p;
     private Image img;
     private AssetLoader a = AssetLoader.getInstance();
     private Vector2f lastvelocity, lastposition;
@@ -47,19 +48,6 @@ public class GroundEnemy extends AbstractEnemy implements ICollidable {
 	    setCurrent(current);
 	}
 
-	@Override
-	public void onCollision(Entity e) {
-		if (e instanceof Astronaut) {
-			((Astronaut) e).setOxygen(((Astronaut) e).getOxygen()
-					- this.getDamage());
-		}
-	}
-
-	@Override
-	public Fixture getFixture() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	public void render(GameContainer container, Graphics g)
 	         throws SlickException {
         Vector2f position = getPosition();
@@ -157,7 +145,18 @@ public class GroundEnemy extends AbstractEnemy implements ICollidable {
         direction.y = player.getPosition().y - position.y;
         return direction;
     }
-    public void setReferences(Player p) {
+    public void setReferences(Astronaut p) {
         this.p = p;
+    }
+
+    @Override
+    public void beginContact(PhysixObject object) {
+        System.out.println("Do collision handling");
+    }
+
+    @Override
+    public void endContact(PhysixObject object) {
+        // TODO Auto-generated method stub
+        
     }
 }

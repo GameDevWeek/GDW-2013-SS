@@ -5,10 +5,15 @@ import de.fhtrier.gdw.ss2013.physix.PhysixObject;
 
 public abstract class EntityCollidable extends Entity implements ICollisionListener {
 
-    @Override
     public abstract void beginContact(PhysixObject object);
 
-    @Override
     public abstract void endContact(PhysixObject object);
+    
+    @Override
+    public void setPhysicsObject(PhysixObject physicsObject) {
+        physicsObject.setOwner(this);
+        this.physicsObject = physicsObject;
+        System.out.println(this.physicsObject.addCollisionListener(this));
+    }
 
 }

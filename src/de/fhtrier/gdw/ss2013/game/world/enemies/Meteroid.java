@@ -11,6 +11,7 @@ import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.physics.ICollidable;
+import de.fhtrier.gdw.ss2013.physix.PhysixObject;
 
 /**
  * Meteroid class
@@ -73,4 +74,16 @@ public class Meteroid extends AbstractEnemy implements ICollidable {
 	public void setReferences(EntityManager m) {
 	    this.m = m;
 	}
+
+    @Override
+    public void beginContact(PhysixObject object) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void endContact(PhysixObject object) {
+        // TODO Auto-generated method stub
+        
+    }
 }
