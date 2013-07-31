@@ -77,12 +77,20 @@ public class GameplayState extends BasicGameState {
 
     @Override
     public void keyReleased(int key, char c) {
-        if(key == Input.KEY_F1)
-            container.setMouseGrabbed(!container.isMouseGrabbed());
-        else if(key == Input.KEY_F2)
-            world.debugDraw = !world.debugDraw;
-        else
-            cheats.addKey(c);
+        switch(key) {
+            case Input.KEY_F1:
+                container.setMouseGrabbed(!container.isMouseGrabbed());
+                break;
+            case Input.KEY_F2:
+                world.debugDraw = !world.debugDraw;
+                break;
+            case Input.KEY_F3:
+                inputManager.printControllerInfo();
+                break;
+            default:
+                cheats.addKey(c);
+                break;
+        }
     }
 
 	public static void hideMenu () {

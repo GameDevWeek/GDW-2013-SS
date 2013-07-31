@@ -3,6 +3,7 @@ package de.fhtrier.gdw.ss2013.input;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.assetloader.infos.ControlsInfo;
+import java.util.HashSet;
 import java.util.LinkedList;
 
 import org.lwjgl.input.Controller;
@@ -71,8 +72,6 @@ public class InputManager {
 		for (Gamepad pad : gamepads) {
 			activeDevices.add(pad);
 		}
-		printControllerInfo();
-		
 	}
 
 	public void activateDevice (InputDevice device) {
@@ -216,18 +215,24 @@ public class InputManager {
 		return astronautController;
 	}
 
-	private void printControllerInfo () {
+	public void printControllerInfo () {
+        HashSet<String> ignoreList = new HashSet<>();
+        ignoreList.add("Programmable Hotkeys");
+        ignoreList.add("USB Receiver");
+        ignoreList.add("Cordless Keyboard");
 
 		int numControllers = org.lwjgl.input.Controllers.getControllerCount();
 		for (int i = 0; i < numControllers; i++) {
 			org.lwjgl.input.Controller c = org.lwjgl.input.Controllers.getController(i);
-			Log.debug("controller: " + c.getName());
-			for (int j = 0; j < c.getButtonCount(); j++) {
-				Log.debug("Buttonindex: " + j + " Name: " + c.getButtonName(j));
-			}
-			for (int j = 0; j < c.getAxisCount(); j++) {
-				Log.debug("Axisindex: " + j + " Name: " + c.getAxisName(j));
-			}
+            if(c.getButtonCount() > 0 && !ignoreList.contains(c.getName())) {
+                Log.debug("controller: " + c.getName());
+                for (int j = 0; j < c.getButtonCount(); j++) {
+                    Log.debug("Buttonindex: " + j + " Name: " + c.getButtonName(j));
+                }
+                for (int j = 0; j < c.getAxisCount(); j++) {
+                    Log.debug("Axisindex: " + j + " Name: " + c.getAxisName(j));
+                }
+            }
 		}
 	}
 }
