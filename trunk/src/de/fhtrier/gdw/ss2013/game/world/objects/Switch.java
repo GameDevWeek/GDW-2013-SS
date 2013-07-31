@@ -1,11 +1,10 @@
 package de.fhtrier.gdw.ss2013.game.world.objects;
 
 import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
-import de.fhtrier.gdw.ss2013.game.filter.Interactable;
+import de.fhtrier.gdw.ss2013.game.filter.ActivateableByAstronaut;
 
 /**
  * Switch Class
@@ -13,7 +12,7 @@ import de.fhtrier.gdw.ss2013.game.filter.Interactable;
  * @author Kevin, Georg
  * 
  */
-public class Switch extends ObjectController implements Interactable {
+public class Switch extends ObjectController implements ActivateableByAstronaut {
 
     private boolean canBeTriggered = false;
 

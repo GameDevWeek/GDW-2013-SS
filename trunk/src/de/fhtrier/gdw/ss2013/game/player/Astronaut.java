@@ -1,9 +1,6 @@
 
 package de.fhtrier.gdw.ss2013.game.player;
 
-import java.util.HashSet;
-import java.util.LinkedList;
-
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -13,9 +10,10 @@ import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.constants.PlayerConstants;
-import de.fhtrier.gdw.ss2013.game.filter.Interactable;
 import de.fhtrier.gdw.ss2013.input.AstronautController;
+import de.fhtrier.gdw.ss2013.physix.InteractionManager;
 import de.fhtrier.gdw.ss2013.physix.PhysixBoxPlayer;
+import de.fhtrier.gdw.ss2013.physix.PhysixObject;
 
 public class Astronaut extends Player implements AstronautController {
 
@@ -28,7 +26,7 @@ public class Astronaut extends Player implements AstronautController {
 	float jumpSpeed = 350;// 300
 	int jumpDelay = 0;
 	// set of entities, which can currently be activated with the action button
-	private HashSet<Interactable> interactables;
+	private InteractionManager interactionManager;
 
 	protected PlayerState state;
     private boolean invertAnimation = false;
@@ -38,7 +36,6 @@ public class Astronaut extends Player implements AstronautController {
 		setState(PlayerState.standing);
 		maxOxygen = 1000f;
 		oxygen = maxOxygen;
-		interactables = new HashSet<Interactable>();
 	}
 
 	public float getOxygen () {
@@ -115,9 +112,8 @@ public class Astronaut extends Player implements AstronautController {
 		getVelocity().y = 2;
 		physicsObject.applyImpulse(this.getVelocity());
 		setState(PlayerState.action);
-		for (Interactable ia : interactables) {
-			ia.activate();
-		}
+		interactionManager.activateAll();
+
 	}
 
 	public boolean isCarryAlien () {
@@ -144,14 +140,6 @@ public class Astronaut extends Player implements AstronautController {
 		speed = newSpeed;
 	}
 
-	public void addInteractable (Interactable ia) {
-		interactables.add(ia);
-	}
-
-	public void removeInteractable (Interactable ia) {
-		interactables.remove(ia);
-	}
-
 	@Override
 	public void render (GameContainer container, Graphics g) throws SlickException {
 		Vector2f position = getPosition();
@@ -175,4 +163,11 @@ public class Astronaut extends Player implements AstronautController {
 			}
 		}
 	}
+	
+	@Override
+    public void setPhysicsObject(PhysixObject physicsObject) {
+	    interactionManager = new InteractionManager();
+	    physicsObject.addCollisionListener(interactionManager);
+	    super.setPhysicsObject(physicsObject);
+    }
 }
