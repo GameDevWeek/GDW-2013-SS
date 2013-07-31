@@ -12,4 +12,5 @@ public class AnimationInfo {
 	public String pfad;
 	public Integer anzBilder;
 	public Integer animSpeed;
+	public Boolean loop;
 }
