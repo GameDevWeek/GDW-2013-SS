@@ -20,7 +20,7 @@ public class HUD {
 
 	private Progressbar healthbar;
 	private Crosshair crosshair;
-	private Tooltip notation;
+	private Tooltip tooltipmanager;
 	private AbilitySelection abilityWheel;
 	private Quickselect quickselect;
 	private AssetLoader asset;
@@ -109,8 +109,9 @@ public class HUD {
 		crosshair.init(worldinstance, crosshairImage);
 		
 		//init tooltip
-		notation = new Tooltip();
-		notation.init(worldinstance, font);
+		tooltipmanager = new Tooltip();
+		tooltipmanager.init(worldinstance, font);
+		
 
         fpsFont = asset.getFont("quartz_40");
 	}
@@ -127,10 +128,14 @@ public class HUD {
 		healthbar.render(container, game, g);
 		abilityWheel.render(container, game, g);
 		quickselect.render(container, game, g);
-		notation.render();
+		tooltipmanager.render();
 		crosshair.render(container, game, g);
 		
         String fps = String.format("%d fps", (int)fpsCalc.calculate());
         CenteredText.draw(container.getWidth() / 2, 30, fps, fpsFont);
+	}
+	
+	public void addNewTooltip (Vector2f position, Image img, Vector2f trigger, float triggerRadius){
+	    tooltipmanager.addSpecificTooltip(position, img, trigger, triggerRadius);
 	}
 }

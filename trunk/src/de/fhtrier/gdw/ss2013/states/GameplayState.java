@@ -45,7 +45,6 @@ public class GameplayState extends BasicGameState {
 
         world.render(container, g);
         hud.render(container, game, g);
-
     }
 
     @Override
