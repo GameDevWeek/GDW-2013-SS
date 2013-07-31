@@ -73,7 +73,7 @@
   <object gid="42" x="116" y="3662"/>
   <object gid="42" x="1316" y="3204"/>
   <object gid="37" x="58" y="4351"/>
-  <object gid="44" x="785" y="4063">
+  <object gid="44" x="243" y="4063">
    <properties>
     <property name="trigger" value="platform1"/>
    </properties>
