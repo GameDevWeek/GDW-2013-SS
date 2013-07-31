@@ -169,50 +169,7 @@ public class World {
     public void update(GameContainer container, int delta)
             throws SlickException {
         physicsManager.update(delta);
- 
-        // update entities
         entityManager.update(container, delta);
-        
-        // This is just a placeholder, not for actual use.
-        // Vector2f astronautPos = astronaut.getPosition();
-        // float speed = 6;
-        // if (input.isKeyDown(Input.KEY_UP)) {
-        // astronautPos.y -= speed;
-        // }
-        // if (input.isKeyDown(Input.KEY_DOWN)) {
-        // astronautPos.y += speed;
-        // }
-        // if (input.isKeyDown(Input.KEY_LEFT)) {
-        // astronautPos.x -= speed;
-        // }
-        // if (input.isKeyDown(Input.KEY_RIGHT)) {
-        // astronautPos.x += speed;
-        // }
-//        if (input.isKeyPressed(Input.KEY_F)) {
-//            for (FlyingEnemy e : enemy) {
-//                e.shoot(astronaut, entityManager);
-//            }
-//        }
-        // Sound a = SoundLocator.loadSound("teamworld_testsound");
-        // SoundLocator.getPlayer().playSoundAt(a, player, player);
-
-//        if (input.isKeyPressed(Input.KEY_B)) {
-//            oxyFlower.shootBubbles(bubble);
-//        }
-
-        if (input.isKeyPressed(Input.KEY_SPACE)) {
-
-//            PhysixBox rpo = new PhysixBox(physicsManager, 500, 200, 30, 100, BodyType.DYNAMIC, 1, 0.5f, false);
-            // physicsManager.enableSimulation(rpo);
-            // rpo.setMassData(100);
-            // rpo.setLinearVelocity(new Vec2(
-            // (float) (100 + Math.random() * 1000 - 500),
-            // (float) (100 + Math.random() * 500)));
-//            Sound a = SoundLocator.loadSound("zombiemoan");
-//            SoundLocator.getPlayer().playSoundAt(a, oxyFlower);
-        }
-        
-     //   FrameSound();
     }
 
     public Vector2f screenToWorldPosition(Vector2f screenPosition) {
