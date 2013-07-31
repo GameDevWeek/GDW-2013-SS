@@ -5,4 +5,8 @@
 {
   "name" : "demo_sidescroller",
   "pfad" : "res/maps/sidescroller_demo.tmx"
+},
+{
+  "name" : "testmap",
+  "pfad" : "res/maps/testmap_2.tmx"
 }]
