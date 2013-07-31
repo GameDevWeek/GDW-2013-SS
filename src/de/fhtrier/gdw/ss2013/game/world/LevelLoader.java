@@ -3,6 +3,8 @@ package de.fhtrier.gdw.ss2013.game.world;
 import java.awt.Point;
 import java.util.ArrayList;
 
+import org.jbox2d.dynamics.BodyType;
+
 import de.fhtrier.gdw.commons.tiled.Layer;
 import de.fhtrier.gdw.commons.tiled.LayerObject;
 import de.fhtrier.gdw.commons.tiled.TiledMap;
@@ -13,7 +15,6 @@ import de.fhtrier.gdw.ss2013.physix.PhysixBox;
 import de.fhtrier.gdw.ss2013.physix.PhysixCircle;
 import de.fhtrier.gdw.ss2013.physix.PhysixManager;
 import de.fhtrier.gdw.ss2013.physix.PhysixPolyline;
-import org.jbox2d.dynamics.BodyType;
 
 /**
  * 
@@ -179,6 +180,7 @@ public class LevelLoader {
             entity.setPhysicsObject(circle);
         } else {
             PhysixBox box = new PhysixBox(physicsManager, x, y, width, height, BodyType.DYNAMIC, 1, 0.5f, false);
+
             entity.setPhysicsObject(box);
         }
     }

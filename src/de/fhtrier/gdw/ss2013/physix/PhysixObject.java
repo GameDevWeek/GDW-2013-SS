@@ -11,6 +11,7 @@ import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.FixtureDef;
 import org.jbox2d.dynamics.World;
+import org.jbox2d.dynamics.contacts.Contact;
 import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.game.Entity;
@@ -166,19 +167,19 @@ public abstract class PhysixObject {
 	    return collisionListeners.remove(listener);
 	}
 
-	public void beginContact(PhysixObject objectA, PhysixObject objectB) {
-        PhysixObject other = objectA == this ? objectB : objectA;
-            
+	public void beginContact(Contact contact) {
+//        PhysixObject other = objectA == this ? objectB : objectA;
+//            
 	    for (ICollisionListener listener : collisionListeners) {
-	        listener.beginContact(other);
+	        listener.beginContact(contact);
 	    }
 	}
 
-	public void endContact(PhysixObject objectA, PhysixObject objectB) {
-        PhysixObject other = objectA == this ? objectB : objectA;
-        
+	public void endContact(Contact contact) {
+//        PhysixObject other = objectA == this ? objectB : objectA;
+//        
 	    for (ICollisionListener listener : collisionListeners) {
-	        listener.endContact(other);
+	        listener.endContact(contact);
 	    }
 	}
 }

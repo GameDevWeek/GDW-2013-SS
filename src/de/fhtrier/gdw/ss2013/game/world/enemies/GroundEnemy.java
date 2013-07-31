@@ -1,5 +1,6 @@
 package de.fhtrier.gdw.ss2013.game.world.enemies;
 
+import org.jbox2d.dynamics.contacts.Contact;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -189,5 +190,17 @@ public class GroundEnemy extends AbstractEnemy {
     public void endContact(PhysixObject object) {
         // TODO Auto-generated method stub
 
+    }
+
+    @Override
+    public void beginContact(Contact object) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void endContact(Contact object) {
+        // TODO Auto-generated method stub
+        
     }
 }
