@@ -1,78 +1,51 @@
-/**
- * Boris, David (UI-Team)
- */
 package de.fhtrier.gdw.ss2013.gui;
 
-import java.util.ArrayList;
-
-import org.newdawn.slick.Font;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Vector2f;
 
-import de.fhtrier.gdw.ss2013.game.Entity;
-import de.fhtrier.gdw.ss2013.game.EntityManager;
-import de.fhtrier.gdw.ss2013.game.filter.EntityFilter;
 import de.fhtrier.gdw.ss2013.game.world.World;
-import de.fhtrier.gdw.ss2013.game.world.objects.Door;
-import de.fhtrier.gdw.ss2013.game.world.objects.Switch;
-import de.fhtrier.gdw.ss2013.gui.utils.CenteredText;
-import de.fhtrier.gdw.ss2013.math.MathConstants;
+
 
 public class Tooltip {
-
-    private World worldinstance;
-    private EntityManager entityManager;
-    private Font font;
-    private ArrayList<Specifictooltip> specificTooltipList;
     
-    public Tooltip() {
-
-    }
-
-    public void init(World worldinstance, Font font) {
-        this.font = font;
-        this.worldinstance = worldinstance;
-        entityManager = worldinstance.getEntityManager();
-        Specifictooltip.setWorld(worldinstance);
-        specificTooltipList = new ArrayList<>();
+    private Image image;
+    private Vector2f imagePosition;
+    private Vector2f triggerPosition;
+    private float triggerRadius;
+    private static World worldinstance;
+    
+    public Tooltip(Vector2f position, Image img, Vector2f trigger, float triggerRadius){
         
-  
-    }
-
-    public void addSpecificTooltip(Vector2f position, Image img, Vector2f trigger, float triggerRadius)
-    {
+        init(position, img, trigger, triggerRadius);
         
-        specificTooltipList.add(new Specifictooltip(img, position, trigger, triggerRadius));
     }
-     
-    public void update() {
-
-    }
-
-    public void render() {
+    
+    public void init(Vector2f imagePosition, Image image, Vector2f triggerPosition, float triggerRadius){
         
-        drawGeneralTooltip(Switch.class, "Setz Alien hier drauf \n zum Umlegen");
-        drawGeneralTooltip(Door.class, "Drücke \"Aktivieren\" zum aktivieren.");
+        this.image = image;
+        this.imagePosition = imagePosition;
+        this.triggerPosition = triggerPosition;
+        this.triggerRadius = triggerRadius;    
+    }
+
+    public void update(){
         
-          for (Specifictooltip elem : specificTooltipList)
-          {
-              if (elem.getTrigger().distance(worldinstance.getAstronaut().getPosition()) - elem.getRadius() < MathConstants.EPSILON_F){ 
-                  elem.render();
-              }
-          }
-         
     }
-
-    private void drawGeneralTooltip(Class<? extends EntityFilter> filter, String string) {
-
-        ArrayList<Entity> entities = entityManager.getClosestEntitiesByFilter(worldinstance.getAstronaut()
-                .getPosition(), 100, filter);
-
-        // annotation rendern
-        for (int i = 0; i < entities.size(); i++) {
-            CenteredText.draw(entities.get(i).getPosition().x, entities.get(i).getPosition().y, string, font);
-        }
+    
+    public void render(){
+        Vector2f worldPosition = worldinstance.worldToScreenPosition(imagePosition);
+        image.draw(worldPosition.x, worldPosition.y);
     }
- 
-
+    
+    public float getRadius(){
+        return triggerRadius;
+    }
+    
+    public Vector2f getTrigger(){
+        return triggerPosition;
+    }
+    
+    public static void setWorld(World worldinstance){
+        Tooltip.worldinstance = worldinstance; 
+    }
 }
