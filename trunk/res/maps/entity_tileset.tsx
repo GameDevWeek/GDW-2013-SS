@@ -66,4 +66,14 @@
    <property name="type" value="biggroundenemy"/>
   </properties>
  </tile>
+ <tile id="15">
+  <properties>
+   <property name="type" value="tt_pic"/>
+  </properties>
+ </tile>
+ <tile id="16">
+  <properties>
+   <property name="type" value="tt_trigger"/>
+  </properties>
+ </tile>
 </tileset>

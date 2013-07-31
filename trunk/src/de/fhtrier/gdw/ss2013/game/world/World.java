@@ -1,10 +1,13 @@
 package de.fhtrier.gdw.ss2013.game.world;
 
+import java.util.ArrayList;
+
 import org.jbox2d.dynamics.BodyType;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
+import org.newdawn.slick.particles.ParticleSystem;
 import org.newdawn.slick.state.StateBasedGame;
 
 import de.fhtrier.gdw.commons.tiled.TiledMap;
@@ -37,12 +40,15 @@ public class World {
 
     private EntityManager entityManager;
     private final PhysixManager physicsManager;
+    
+    private ArrayList<ParticleSystem> particleList; 
 
 	public World(GameContainer container, StateBasedGame game) {
 		instance = this;
 		map = null;
 		entityManager = new EntityManager();
 		physicsManager = new PhysixManager(container);
+		particleList = new ArrayList<ParticleSystem>();
 		try {
 			map = AssetLoader.getInstance().loadMap("testmap");
 			LevelLoader.load(map, entityManager, physicsManager);
@@ -76,7 +82,6 @@ public class World {
 		alien.setContainer(container);
 		
 		SoundLocator.provide(new DefaultSoundPlayer(astronaut));
-
 	}
 
 	public void render(GameContainer container, Graphics g)
@@ -100,6 +105,10 @@ public class World {
 
 		entityManager.render(container, g);
 
+		for (ParticleSystem p : particleList) {
+			p.render();
+		}
+
 		if (debugDraw) {
 			physicsManager.render();
 		}
@@ -120,6 +129,10 @@ public class World {
         physicsManager.update(delta);
      
         entityManager.update(container, delta);
+
+		for (ParticleSystem p : particleList) {
+			p.update(delta);
+		}
     }
     
     public Vector2f screenToWorldPosition(Vector2f screenPosition) {
@@ -162,6 +175,14 @@ public class World {
 
 	public static World getInstance() {
 		return instance;
+	}
+
+	public void addParticle(ParticleSystem p) {
+		particleList.add(p);
+	}
+
+	public void removeParticle(ParticleSystem p) {
+		particleList.remove(p);
 	}
 
 }
