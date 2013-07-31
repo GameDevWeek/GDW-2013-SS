@@ -1,5 +1,7 @@
 package de.fhtrier.gdw.ss2013.game.player;
 
+import java.util.HashSet;
+
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
@@ -7,6 +9,7 @@ import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.constants.PlayerConstants;
+import de.fhtrier.gdw.ss2013.game.filter.Interactable;
 import de.fhtrier.gdw.ss2013.input.AstronautController;
 import de.fhtrier.gdw.ss2013.physix.PhysixBoxPlayer;
 
@@ -20,6 +23,8 @@ public class Astronaut extends Player implements AstronautController {
 	float speed = 80;
 	float jumpSpeed = 300;
 	int jumpDelay = 0;
+	// set of entities, which can currently be activated with the action button
+	private HashSet<Interactable> interactables;
 
 	protected PlayerState state;
 
@@ -27,6 +32,7 @@ public class Astronaut extends Player implements AstronautController {
 		setState(PlayerState.standing);
 		maxOxygen = 1000f;
 		oxygen = maxOxygen;
+		interactables = new HashSet<Interactable>();
 	}
 
 	public float getOxygen() {
@@ -89,6 +95,9 @@ public class Astronaut extends Player implements AstronautController {
 		getVelocity().y = 2;
 		physicsObject.applyImpulse(this.getVelocity());
 		setState(PlayerState.action);
+		for(Interactable ia: interactables) {
+		    ia.activate();
+		}
 	}
 
 	public boolean isCarryAlien() {
@@ -113,6 +122,14 @@ public class Astronaut extends Player implements AstronautController {
 	
 	public void setSpeed(float newSpeed) {
 		speed = newSpeed;
+	}
+	
+	public void addInteractable(Interactable ia) {
+	    interactables.add(ia);
+	}
+	
+	public void removeInteractable(Interactable ia) {
+	    interactables.remove(ia);
 	}
 
 	public void setState(PlayerState state) {
