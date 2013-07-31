@@ -67,6 +67,26 @@
                 "NEXT_ABILITY": "Left Trigger",
                 "PREV_ABILITY": "Right Trigger"
             }
+        },
+        {
+            "name": "Saitek Cyborg Rumble Pad",
+            "astronaut": {
+                "MOVE_LEFT": "-POV_X",
+                "MOVE_RIGHT": "+POV_X",
+                "JUMP": "-POV_Y",
+                "ACTION": "RB"
+            },
+            
+            "alien":  {
+                "CURSOR_LEFT": "-Right X",
+                "CURSOR_RIGHT": "+Right X",
+                "CURSOR_UP": "-Right Y",
+                "CURSOR_DOWN": "+Right Y",
+                "SHOOT": "LB",
+                "USE_ABILITY": "Right Stick Button",
+                "NEXT_ABILITY": "LT",
+                "PREV_ABILITY": "RT"
+            }
         }
         
     ]
