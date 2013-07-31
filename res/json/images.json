@@ -49,5 +49,9 @@
 {
   "name" : "crosshair1",
   "pfad" : "res/Dummy_GUIs_Images/crosshair1.png"
+},
+{
+  "name" : "crosshair2",
+  "pfad" : "res/Dummy_GUIs_Images/crosshair2.png"
 }]
 
