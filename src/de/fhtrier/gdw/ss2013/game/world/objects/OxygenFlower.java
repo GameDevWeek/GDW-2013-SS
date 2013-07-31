@@ -27,7 +27,7 @@ import de.fhtrier.gdw.ss2013.physix.PhysixObject;
 
 public class OxygenFlower extends Entity implements Interactable, ICollidable{
 
-    private float bubbletime;
+    private float bubbleTime;
     private int maxBubble;
     private int count;
     private World w = World.getInstance();
@@ -35,24 +35,26 @@ public class OxygenFlower extends Entity implements Interactable, ICollidable{
     // needs to be without parameters!
     public OxygenFlower() {
         super(AssetLoader.getInstance().getImage("plant"));
-        this.maxBubble = 5; //FIXME: use a better value
-        bubbletime = 0;
+        this.maxBubble = 6; //FIXME: use a better value
+        bubbleTime = 0;
         m = w.getEntityManager();
     }
 
     //public void shootBubbles(EntityManager manager) {
+    
     public void shootBubbles()
     {
-        if (count != maxBubble) {
-            float x = this.getPosition().getX() - 20;
-            float y = this.getPosition().getY() + 11;
+        if (count != getMaxBubble()) {
+            float x = this.getPosition().getX() + (float)Math.random()*100;
+            float y = this.getPosition().getY() - (float)Math.random()*100;
             Vector2f bubblePos = new Vector2f(x, y);
             Entity entity = m.createEntity(OxygenBubble.class);
             //Bubble-Objekt
-            PhysixObject childPhysics = new PhysixCircle(w.getPhysicsManager(),x,y,(img.getWidth()/2+img.getHeight()/2)/2,BodyType.KINEMATIC,0,0,true);
+            PhysixObject childPhysics = new PhysixCircle(w.getPhysicsManager(),x,y,(img.getWidth()/2+img.getHeight()/2)/6,BodyType.KINEMATIC,0,0,true);
             entity.setPhysicsObject(childPhysics);
             //bubbleCount
             count++;
+            bubbleTime = 0;
         }
     }
 
@@ -71,7 +73,10 @@ public class OxygenFlower extends Entity implements Interactable, ICollidable{
     {
         if(e instanceof Astronaut)
         {
-            shootBubbles();
+            if (bubbleTime >= 2000)
+            {
+                this.shootBubbles();
+            }
         }
     }
     public void setMaxBubble(int maxBubble) {
@@ -88,10 +93,10 @@ public class OxygenFlower extends Entity implements Interactable, ICollidable{
 
     public void update(GameContainer container, int delta)
             throws SlickException {
-        bubbletime += delta;
-        if (bubbletime >= 2000) {
+        
+        bubbleTime += delta;
+        if (bubbleTime >= 1000)
             this.shootBubbles();
-        }
     }
     @Override
     public Fixture getFixture() {
