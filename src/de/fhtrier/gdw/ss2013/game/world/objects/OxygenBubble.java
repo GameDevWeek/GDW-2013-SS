@@ -19,18 +19,20 @@ import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.physics.ICollidable;
+import de.fhtrier.gdw.ss2013.game.filter.Interactable;
 
 
-public class OxygenBubble extends Entity implements ICollidable {
+public class OxygenBubble extends Entity implements ICollidable, Interactable {
 
     private float oxygenLevel;
     private OxygenFlower flower;
     private AssetLoader a = AssetLoader.getInstance();
     private Image img = a.getImage("bubble");
     private EntityManager man;
+    private float speed = 2;
 
-    public void init(float oxygenLevel) {
-        a.getImage("bubble");
+    public OxygenBubble(float oxygenLevel) {
+        super(AssetLoader.getInstance().getImage("bubble"));
         this.oxygenLevel = oxygenLevel;
     }
 
@@ -48,6 +50,8 @@ public class OxygenBubble extends Entity implements ICollidable {
             }
         }//Collision von bubbles
         if(e instanceof OxygenBubble) {
+            setVelocityX(-speed);
+            setVelocityY(-speed);
 //            Vector2f position = getPosition();
 //            Vector2f otherPosition = getPosition();
 //            if(otherPosition.x <= this.position.x)
@@ -71,26 +75,18 @@ public class OxygenBubble extends Entity implements ICollidable {
     }
 
     public void hover() {
-    
-//        if(this.position.x >= this.velocity.x || this.position.y > this.velocity.y)
-//        {
-//            this.position.x -= this.velocity.x;
-//            this.position.y -= this.velocity.y;
-//        }
-//        else if(this.position.x < this.velocity.x || this.position.y < this.velocity.y){
-//            this.position.x += this.velocity.x;
-//            this.position.y += this.velocity.y;
-//        }
+        setVelocityX(speed);
+        setVelocityY(speed);
     }
 
     public void setOxygenLevel(float oxygenLevel) {
         this.oxygenLevel = oxygenLevel;
     }
 
-    public void render(GameContainer container, Graphics g)
-            throws SlickException {
-        img.draw(this.getPosition().x, this.getPosition().y);
-    }
+//    public void render(GameContainer container, Graphics g)
+//            throws SlickException {
+//        img.draw(this.getPosition().x, this.getPosition().y);
+//    }
 
     @Override
     public Fixture getFixture() {
