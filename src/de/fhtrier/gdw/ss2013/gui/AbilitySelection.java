@@ -39,16 +39,11 @@ public class AbilitySelection {
 		
 		this.worldinstance = worldinstance;
 		selected = worldinstance.getAlien().getselectedAbility();
-	}
-
-	
+	}	
 	
 	public void update(GameContainer container, StateBasedGame game, int delta) {
 	    selected = worldinstance.getAlien().getselectedAbility();
-	   // System.out.println(selected);
-	}
-
-	
+	}	
 	
 	public void render(GameContainer container, StateBasedGame game, Graphics g) {
 

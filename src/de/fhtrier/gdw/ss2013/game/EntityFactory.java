@@ -20,7 +20,6 @@ public class EntityFactory {
             recycleList = new LinkedList<>();
         }
         recycleList.add(e);
-        System.out.println("Recycled Entity: " + e);
     }
 
     private boolean testRecyceability(Class<? extends Entity> entityClass) {
@@ -83,7 +82,6 @@ public class EntityFactory {
 
             return (T) e;
         }
-        System.out.println("Create Entity: " + entityClass.getName());
         Entity e = internalCreate(entityClass);
         assert (e != null);
         return (T) e;
