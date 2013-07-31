@@ -134,11 +134,29 @@ public class AssetLoader {
 
 	private void setupImages(String filename) {
 		try {
-			List<ImageInfo> imageInfos = JacksonReader.readList(filename,
-					ImageInfo.class);
+			List<ImageInfo> imageInfos = JacksonReader.readList(filename, ImageInfo.class);
 			for (ImageInfo imageInfo : imageInfos) {
 				checkForBackslashes(imageInfo.pfad);
-				imageMap.put(imageInfo.name, new Image(imageInfo.pfad));
+				Image tmpImg = null;
+				try {
+				    tmpImg = new Image("res/images/"+imageInfo.pfad+".png");
+				} catch (Exception e1) {
+				    try {
+				        tmpImg = new Image("res/images/dummies/"+imageInfo.pfad+".png");
+				        Log.warn("AssetLoader: Lade dummy image von '" + filename + "'");
+				    } catch (Exception e2) {
+				        try {
+				            tmpImg = imageMap.get("error");
+				            Log.warn("AssetLoader: Image '" + filename + "' existiert weder in res/images noch dummies. Lade error.png");
+				        } catch (Exception e3) {
+				            Log.warn("AssetLoader: Fatal Error - kann nicht error.png laden.");
+				            e1.printStackTrace();
+				            e2.printStackTrace();
+				            e3.printStackTrace();
+				        }
+				    }
+		        }
+				imageMap.put(imageInfo.name, tmpImg);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
