@@ -5,7 +5,7 @@ import java.util.HashSet;
 import org.jbox2d.dynamics.contacts.Contact;
 
 import de.fhtrier.gdw.ss2013.game.Entity;
-import de.fhtrier.gdw.ss2013.game.filter.ActivateableByAstronaut;
+import de.fhtrier.gdw.ss2013.game.filter.ActivatableByAstronaut;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 
 /** 
@@ -14,16 +14,23 @@ import de.fhtrier.gdw.ss2013.game.player.Astronaut;
  * this keeps a list of those colliding and activatable Entities.
  * 
  * @author BreakingTheHobbit
+ * 
+ * @see ActivatableByAstronaut
+ * @see Astronaut
  */
 public class InteractionManager implements ICollisionListener {
 
-    /** set of activateable Entities */
-    HashSet<ActivateableByAstronaut> interactables;
+    /** set of activatable Entities */
+    HashSet<ActivatableByAstronaut> interactables;
     
     public InteractionManager() {
-        interactables = new HashSet<ActivateableByAstronaut>();
+        interactables = new HashSet<ActivatableByAstronaut>();
     }
 
+    /**
+     * if Astronaut starts colliding with an Entity, which can be activated by the Astronaut,<br>
+     * add that Entity to the set of activatable Entities in range<br>
+     */
     @Override
     public void beginContact(Contact contact) {
         PhysixObject objectA = (PhysixObject) contact.getFixtureA().getBody().getUserData();
@@ -42,18 +49,22 @@ public class InteractionManager implements ICollisionListener {
             return;
         }
         
-        // if the colliding entity is activateable by the Astronaut, add it to the set
+        // if the colliding entity is activatable by the Astronaut, add it to the set
         if (entityA instanceof Astronaut) { // objectA is the Astronaut
-            if(entityB instanceof ActivateableByAstronaut) {
-                interactables.add((ActivateableByAstronaut) entityB);
+            if(entityB instanceof ActivatableByAstronaut) {
+                interactables.add((ActivatableByAstronaut) entityB);
             }
         } else { // objectB is the Astronaut
-            if(entityA instanceof ActivateableByAstronaut) {
-                interactables.add((ActivateableByAstronaut) entityA);
+            if(entityA instanceof ActivatableByAstronaut) {
+                interactables.add((ActivatableByAstronaut) entityA);
             }
         }
     }
 
+    /**
+     * if Astronaut stops colliding with an Entity, which can be activated by the Astronaut,<br>
+     * remove that Entity from the set of activatable Entities in range<br>
+     */
     @Override
     public void endContact(Contact contact) {
         PhysixObject objectA = (PhysixObject) contact.getFixtureA().getBody().getUserData();
@@ -67,26 +78,29 @@ public class InteractionManager implements ICollisionListener {
         Entity entityA = objectA.getOwner();
         Entity entityB = objectB.getOwner();
         
-        // check, if the collided objects include exactly one Astronaut
+        // check, if the not anymore colliding objects include exactly one Astronaut
         if (!(entityA instanceof Astronaut ^ entityB instanceof Astronaut)) {
             return;
         }
         
-        // if the not anymore colliding entity is activateable by the Astronaut, remove it from the set
+        // if the not anymore colliding entity is activatable by the Astronaut, remove it from the set
         if (entityA instanceof Astronaut) { // objectA is the Astronaut
-            if(entityB instanceof ActivateableByAstronaut) {
-                interactables.remove((ActivateableByAstronaut) entityB);
+            if(entityB instanceof ActivatableByAstronaut) {
+                interactables.remove((ActivatableByAstronaut) entityB);
             }
         } else { // objectB is the Astronaut
-            if(entityA instanceof ActivateableByAstronaut) {
-                interactables.remove((ActivateableByAstronaut) entityA);
+            if(entityA instanceof ActivatableByAstronaut) {
+                interactables.remove((ActivatableByAstronaut) entityA);
             }
         }
     }
     
-    /** activate all listed Entities, when Astronaut performs action() */
+    /**
+     * - activate all Entities in range<br>
+     * - called when Astronaut performs action()
+     * */
     public void activateAll() {
-        for(ActivateableByAstronaut a: interactables) {
+        for(ActivatableByAstronaut a: interactables) {
             a.activate();
         }
     }

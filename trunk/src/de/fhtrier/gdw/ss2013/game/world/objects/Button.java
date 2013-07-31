@@ -12,14 +12,18 @@ import de.fhtrier.gdw.ss2013.physix.PhysixObject;
 import org.jbox2d.dynamics.contacts.Contact;
 
 /**
- * Switch class
- *
- * @author Kevin, Georg
- * edited by: Thomas M.
- *
- * Button, which gets activated by collision with the player or a box,
- *
- *
+ * Button Entity<br>
+ * <br>
+ * Behavior:<br>
+ * - gets activated when collision with first {@link Player} or {@link Box} starts<br>
+ * - gets deactivated when all collisions with Players and Boxes stop<br>
+ * - de/activates all connected Entities when getting de/activated
+ * 
+ * @author Kevin, Georg<br>
+ * Editor: BreakingTheHobbit, Mr.X??
+ * 
+ * @see ObjectController
+ * @see ICollisionListener
  */
 public class Button extends ObjectController implements ICollisionListener {
 

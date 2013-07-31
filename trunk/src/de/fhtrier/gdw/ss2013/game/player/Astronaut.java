@@ -4,7 +4,6 @@ package de.fhtrier.gdw.ss2013.game.player;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
@@ -13,7 +12,6 @@ import de.fhtrier.gdw.ss2013.assetloader.infos.GameDataInfo;
 import de.fhtrier.gdw.ss2013.constants.PlayerConstants;
 import de.fhtrier.gdw.ss2013.input.AstronautController;
 import de.fhtrier.gdw.ss2013.physix.InteractionManager;
-import de.fhtrier.gdw.ss2013.physix.PhysixBoxPlayer;
 import de.fhtrier.gdw.ss2013.physix.PhysixObject;
 
 public class Astronaut extends Player implements AstronautController {
@@ -115,13 +113,21 @@ public class Astronaut extends Player implements AstronautController {
 		}
 	}
 
+	/** 
+	 * activate all activatable Entities in range
+	 * 
+	 * @see InteractionManager
+	 */
 	@Override
 	public void action () {
 		getVelocity().y = 2;
 		physicsObject.applyImpulse(this.getVelocity());
 		setState(PlayerState.action);
-		interactionManager.activateAll();
-
+		if(interactionManager != null) {
+		    interactionManager.activateAll();
+		} else {
+		    System.err.println("No InteractionManager registered to Astronaut!");
+		}
 	}
 
 	public boolean isCarryAlien () {
@@ -172,6 +178,8 @@ public class Astronaut extends Player implements AstronautController {
 		}
 	}
 	
+	// overriding because the InteractionManager has to be added to the PhysixObject
+	// and the Astronaut needs to know its InteractionManager, so it is done here
 	@Override
     public void setPhysicsObject(PhysixObject physicsObject) {
 	    interactionManager = new InteractionManager();
