@@ -19,18 +19,18 @@ public class Astronaut extends Player implements AstronautController {
 	private float maxOxygen;
 	private boolean carryAlien=true;
 	Animation bewegungs_ani;
+    float maxSpeed = 26;
+    float speed = 80;
+    float jumpSpeed = 300;
+    int jumpDelay = 0;
     
     
-	public Astronaut(Vector2f position) {
-		super(position);
+	public Astronaut() {
 
 		// Default
 		maxOxygen = 1000f;
 		oxygen = maxOxygen;
 		bewegungs_ani = AssetLoader.getInstance().getAnimation(getZustand());
-		this.getVelocity().x = 200000;
-		this.getVelocity().y = 200000;
-
 	}
 
 	public float getOxygen() {
@@ -54,6 +54,7 @@ public class Astronaut extends Player implements AstronautController {
     @Override
     public void update(GameContainer container, int delta) throws SlickException {
         super.update(container, delta);
+        jumpDelay -= delta;
         if (oxygen > 0)
 			this.oxygen -= (this.maxOxygen * PlayerConstants.OXYGEN_PERCENTAGE_LOST_PER_SECOND)
 					* (delta / 1000f);
@@ -61,23 +62,25 @@ public class Astronaut extends Player implements AstronautController {
         
     @Override
     public void moveRight() {
-    	getVelocity().x += getVelocity().x;
-        physicsObject.applyImpulse(this.getVelocity());
+        setVelocityX(speed);
         setZustand("animtest");
     }
 
     @Override
     public void moveLeft() {
-    	getVelocity().x = -2;
-        physicsObject.applyImpulse(this.getVelocity());
+        setVelocityX(-speed);
         setZustand("animtest");
     }
 
     @Override
     public void jump() {
-    	getVelocity().y = -2;
-        physicsObject.applyImpulse(this.getVelocity());
-        setZustand("animtest");
+        if(jumpDelay <= 0) {
+            jumpDelay = 0;
+            setVelocityY(-jumpSpeed);
+            physicsObject.applyImpulse(new Vector2f(0, -jumpSpeed));
+            setZustand("animtest");
+            jumpDelay = 500;
+        }
     }
 
     @Override

@@ -17,7 +17,6 @@ import de.fhtrier.gdw.ss2013.game.Entity;
  */
 public abstract class AbstractEnemy extends Entity {
 
-    private Vector2f velocity;
     private float damage;
     private Animation current_ani;
     private String left_animation = "animtest", right_animation = "animtest",
@@ -26,27 +25,7 @@ public abstract class AbstractEnemy extends Entity {
     private AssetLoader asset = AssetLoader.getInstance();
 
     public AbstractEnemy() {
-        this(new Vector2f(), new Vector2f(), 0);
         current_ani = asset.getAnimation(current);
-
-    }
-
-    public AbstractEnemy(Vector2f pos) {
-        this(pos.copy(), new Vector2f(), 0);
-        current_ani = asset.getAnimation(current);
-
-    }
-
-    public AbstractEnemy(Vector2f pos, Vector2f velo, float dmg) {
-        super(pos.copy());
-        this.velocity = velo.copy();
-        this.damage = dmg;
-        current_ani = asset.getAnimation(current);
-
-    }
-
-    public Vector2f getVelocity() {
-        return velocity;
     }
 
     public float getDamage() {
@@ -61,6 +40,7 @@ public abstract class AbstractEnemy extends Entity {
     public void render(GameContainer container, Graphics g)
             throws SlickException {
         // Move right
+        Vector2f velocity = getVelocity();
         if (velocity.x > 0
                 && current_ani.equals(asset.getAnimation(right_animation))) {
             current_ani = asset.getAnimation(right_animation);

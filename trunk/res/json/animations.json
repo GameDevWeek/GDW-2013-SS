@@ -9,4 +9,10 @@
   "pfad" : "res/animations/team0.png",
   "anzBilder" : 12,
   "animSpeed" : 100
+},
+{
+  "name" : "testplayer",
+  "pfad" : "res/images/CharacterGanz.png",
+  "anzBilder" : 1,
+  "animSpeed" : 1000
 }]

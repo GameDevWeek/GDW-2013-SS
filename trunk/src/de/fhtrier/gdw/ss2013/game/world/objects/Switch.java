@@ -18,12 +18,7 @@ public class Switch extends Entity implements Interactable{
 
 	boolean activated = false;
 
-	public Switch(Vector2f pos) {
-		super(pos.copy());
-	}
-
 	public Switch() {
-		this(new Vector2f());
 	}
 	
 	@Override

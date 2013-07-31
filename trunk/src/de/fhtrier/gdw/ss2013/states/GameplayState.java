@@ -71,11 +71,6 @@ public class GameplayState extends BasicGameState {
 
     @Override
     public void keyReleased(int key, char c) {
-
-        // triggers PhysicTestState
-        if (key == Input.KEY_EQUALS || key == Input.KEY_P) {
-            MainGame.changeState(MainGame.PHYSIC_TEST);
-        }
     }
 
 }

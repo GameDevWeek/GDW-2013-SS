@@ -3,18 +3,17 @@ package de.fhtrier.gdw.ss2013.game.world;
 import java.awt.Point;
 import java.util.ArrayList;
 
-import org.jbox2d.common.Vec2;
-import org.newdawn.slick.geom.Vector2f;
-
 import de.fhtrier.gdw.commons.tiled.Layer;
 import de.fhtrier.gdw.commons.tiled.LayerObject;
 import de.fhtrier.gdw.commons.tiled.TiledMap;
 import de.fhtrier.gdw.commons.utils.SafeProperties;
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
-import de.fhtrier.gdw.ss2013.physics.CirclePhysicsObject;
-import de.fhtrier.gdw.ss2013.physics.PhysicsManager;
-import de.fhtrier.gdw.ss2013.physics.RectanglePhysicsObject;
+import de.fhtrier.gdw.ss2013.physix.PhysixBox;
+import de.fhtrier.gdw.ss2013.physix.PhysixCircle;
+import de.fhtrier.gdw.ss2013.physix.PhysixManager;
+import de.fhtrier.gdw.ss2013.physix.PhysixPolyline;
+import org.jbox2d.dynamics.BodyType;
 
 /**
  * 
@@ -22,10 +21,12 @@ import de.fhtrier.gdw.ss2013.physics.RectanglePhysicsObject;
  */
 public class LevelLoader {
     private static EntityManager entityManager;
+    private static PhysixManager physicsManager;
 
     public static void load(TiledMap map, EntityManager entityManager,
-            PhysicsManager physicsManager) {
+            PhysixManager physicsManager) {
         LevelLoader.entityManager = entityManager;
+        LevelLoader.physicsManager = physicsManager;
         entityManager.reset();
         physicsManager.reset();
 
@@ -79,7 +80,7 @@ public class LevelLoader {
             SafeProperties properties) {
         switch (type) {
         case "solid":
-            // / TODO: create a solid line (static)
+            new PhysixPolyline(physicsManager, points, BodyType.STATIC, 1, 0.5f, false);
             break;
         }
     }
@@ -133,16 +134,12 @@ public class LevelLoader {
         case "solid":
             System.out
                     .println("(" + x + "," + y + "((" + width + "; " + height);
-            // new RectanglePhysicsObject(new Vec2(width, height), new Vec2(x,
-            // y));
-            World.getInstance().getPhysicsManager().enableSimulation(
-            new RectanglePhysicsObject(new Vector2f(width, height),
-                    new Vector2f(x, y)));
+            new PhysixBox(physicsManager, x, y, width, height, BodyType.STATIC, 1, 0.5f, false);
             break;
         case "deadzone":
             entity = entityManager.createEntity(type, properties);
-            entity.setPhysicsObject(new RectanglePhysicsObject(new Vec2(width,
-                    height), new Vec2(x, y)));
+            PhysixBox box = new PhysixBox(physicsManager, x, y, width, height, BodyType.STATIC, 1, 0.5f, true);
+            entity.setPhysicsObject(box);
             break;
         }
     }
@@ -168,11 +165,11 @@ public class LevelLoader {
         Entity entity = entityManager.createEntity(type, properties);
         if (properties.getBoolean("circle", false)) {
             float radius = Math.max(width, height) / 2;
-            entity.setPhysicsObject(new CirclePhysicsObject(radius, new Vec2(x
-                    + width / 2, y + height / 2)));
+            PhysixCircle circle = new PhysixCircle(physicsManager, x, y, radius, BodyType.DYNAMIC, 1, 0.5f, false);
+            entity.setPhysicsObject(circle);
         } else {
-            entity.setPhysicsObject(new RectanglePhysicsObject(new Vec2(width,
-                    height), new Vec2(x, y)));
+            PhysixBox box = new PhysixBox(physicsManager, x, y, width, height, BodyType.DYNAMIC, 1, 0.5f, false);
+            entity.setPhysicsObject(box);
         }
     }
 

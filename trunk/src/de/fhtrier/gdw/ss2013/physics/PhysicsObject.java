@@ -205,7 +205,7 @@ public abstract class PhysicsObject {
             throws SlickException {
         if(owner != null)
         {
-            owner.setPosition(getPosition().x, getPosition().y);
+//            owner.setPosition(getPosition().x, getPosition().y);
         }
     }
 

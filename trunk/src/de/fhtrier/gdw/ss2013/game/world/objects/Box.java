@@ -13,10 +13,6 @@ import de.fhtrier.gdw.ss2013.game.player.Astronaut;
  */
 public class Box extends Entity {
 
-	public Box(Vector2f pos) {
-		super(pos.copy());
-	}
-
 	public void onCollision(Entity e) {
 		if (e instanceof Astronaut) {
 			this.getPosition().x += ((Astronaut) e).getVelocity().x;

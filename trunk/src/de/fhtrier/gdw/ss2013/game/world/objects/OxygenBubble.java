@@ -27,19 +27,10 @@ public class OxygenBubble extends Entity implements ICollidable {
     private OxygenFlower flower;
     private AssetLoader a = AssetLoader.getInstance();
     private Image img = a.getImage("bubble");
-    private Vector2f velocity = new Vector2f(10, 10);
     private EntityManager man;
 
-    // Standard-Konstruktor
-    public OxygenBubble(Vector2f position) {
-        super(position.copy());
+    public void init(float oxygenLevel) {
         a.getImage("bubble");
-        // Default
-        oxygenLevel = 0;
-    }
-
-    public OxygenBubble(Vector2f position, float oxygenLevel) {
-        super(position.copy());
         this.oxygenLevel = oxygenLevel;
     }
 
@@ -57,14 +48,16 @@ public class OxygenBubble extends Entity implements ICollidable {
             }
         }//Collision von bubbles
         if(e instanceof OxygenBubble) {
-            if(e.getPosition().x <= this.position.x)
-            {
-                this.position.x -= this.velocity.x;
-            }
-            if(e.getPosition().y <= this.position.y)
-            {
-                this.position.y -= this.velocity.y;
-            }
+//            Vector2f position = getPosition();
+//            Vector2f otherPosition = getPosition();
+//            if(otherPosition.x <= this.position.x)
+//            {
+//                this.position.x -= this.velocity.x;
+//            }
+//            if(e.getPosition().y <= this.position.y)
+//            {
+//                this.position.y -= this.velocity.y;
+//            }
         }
     }
 
@@ -79,15 +72,15 @@ public class OxygenBubble extends Entity implements ICollidable {
 
     public void hover() {
     
-        if(this.position.x >= this.velocity.x || this.position.y > this.velocity.y)
-        {
-            this.position.x -= this.velocity.x;
-            this.position.y -= this.velocity.y;
-        }
-        else if(this.position.x < this.velocity.x || this.position.y < this.velocity.y){
-            this.position.x += this.velocity.x;
-            this.position.y += this.velocity.y;
-        }
+//        if(this.position.x >= this.velocity.x || this.position.y > this.velocity.y)
+//        {
+//            this.position.x -= this.velocity.x;
+//            this.position.y -= this.velocity.y;
+//        }
+//        else if(this.position.x < this.velocity.x || this.position.y < this.velocity.y){
+//            this.position.x += this.velocity.x;
+//            this.position.y += this.velocity.y;
+//        }
     }
 
     public void setOxygenLevel(float oxygenLevel) {

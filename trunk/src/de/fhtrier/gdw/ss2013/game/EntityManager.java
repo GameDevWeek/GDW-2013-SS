@@ -96,7 +96,7 @@ public class EntityManager {
      */
     public Entity getEntityAtPosition(Vector2f position) {
         for (Entity e : entityList) {
-            if (position.equals(e.position)) {
+            if (position.equals(e.getPosition())) {
                 return e;
             }
         }
@@ -115,7 +115,7 @@ public class EntityManager {
         ArrayList<Entity> entities = new ArrayList<>();
 
         for (Entity e : entityList) {
-            if ((position.distance(e.position) - radius) < MathConstants.EPSILON_F) {
+            if ((position.distance(e.getPosition()) - radius) < MathConstants.EPSILON_F) {
                 entities.add(e);
             }
         }
@@ -138,7 +138,7 @@ public class EntityManager {
         ArrayList<Entity> filteredList = new ArrayList<>();
         for (Entity e : entityList) {
             if (filter.isAssignableFrom(e.getClass())) {
-                if ((position.distance(e.position) - radius) < MathConstants.EPSILON_F) {
+                if ((position.distance(e.getPosition()) - radius) < MathConstants.EPSILON_F) {
                     filteredList.add(e);
                 }
             }
@@ -159,14 +159,6 @@ public class EntityManager {
         T e = factory.createEntity(entityClass);
         addEntity(e);
         assert (e != null);
-        return e;
-    }
-
-    public <T extends Entity> T createEntityAt(
-            Class<? extends Entity> entityClass, Vector2f position) {
-        T e = factory.createEntityAt(entityClass, position);
-        e.setPosition(position);
-        addEntity(e);
         return e;
     }
 

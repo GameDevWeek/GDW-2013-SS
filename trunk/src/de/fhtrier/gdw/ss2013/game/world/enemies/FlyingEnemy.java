@@ -28,9 +28,7 @@ public class FlyingEnemy extends AbstractEnemy implements ICollidable {
 	final static float DEBUG_ENTITY_HALFEXTEND = 5;
 	private String rechts="animtest", links="animtest", current="animtest";
 
-	public FlyingEnemy(Vector2f pos, Vector2f velo, float dmg, float hp) {
-		super(pos.copy(), velo.copy(), dmg);
-		health = hp;
+	public FlyingEnemy() {
 		flyintelligence = boltintelligence = (float)Math.random();
 	    if(flyintelligence > 0.5f) {
 	        this.getVelocity().y = 0.0f;
@@ -48,14 +46,10 @@ public class FlyingEnemy extends AbstractEnemy implements ICollidable {
 	    setRight_animation(rechts);
 	    setCurrent(current);
 	}
-
-	public FlyingEnemy() {
-		this(new Vector2f(), new Vector2f(), 0, 0);
-	}
-
-	public FlyingEnemy(Vector2f pos) {
-		this(pos.copy(), new Vector2f(2.5f, 2.5f), 0, 0);
-	}
+    
+    public void setHealth(float hp) {
+		health = hp;
+    }
 
 	@Override
 	public void onCollision(Entity e) {
@@ -70,12 +64,13 @@ public class FlyingEnemy extends AbstractEnemy implements ICollidable {
 	}
 
 	public void shoot(Player player, EntityManager m) {
-		EnemyBullet b = (EnemyBullet) m.createEntityAt(EnemyBullet.class,
-				this.position.copy());
-		b.getVelocity().x = 5 * calcPlayerDirection(player).x;
-		b.getVelocity().y = 5 * calcPlayerDirection(player).y;
-		b.setDamage(this.getDamage());
-		b.setReferences(m);
+//		EnemyBullet b = (EnemyBullet) m.createEntity(EnemyBullet.class);
+//        childPhysics = this.getPosition();
+//        b.setPhysicsObject(childPhysics);
+//		b.getVelocity().x = 5 * calcPlayerDirection(player).x;
+//		b.getVelocity().y = 5 * calcPlayerDirection(player).y;
+//		b.setDamage(this.getDamage());
+//		b.setReferences(m);
 	}
 
 	public void render(GameContainer container, Graphics g)
@@ -124,8 +119,9 @@ public class FlyingEnemy extends AbstractEnemy implements ICollidable {
 	}
 	private Vector2f calcPlayerPosition(Player player) {
         Vector2f direction = new Vector2f();
-        direction.x = player.getPosition().x - this.position.x+((float)Math.random()*factor);
-        direction.y = player.getPosition().y - this.position.y;
+        Vector2f position = getPosition();
+        direction.x = player.getPosition().x - position.x+((float)Math.random()*factor);
+        direction.y = player.getPosition().y - position.y;
         return direction;
 	}
 

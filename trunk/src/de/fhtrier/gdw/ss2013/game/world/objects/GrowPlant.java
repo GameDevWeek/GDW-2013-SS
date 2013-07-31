@@ -11,18 +11,15 @@ public class GrowPlant extends Entity implements ICollidable {
     private Vector2f growVelocity;
     private int number;
     
-    public GrowPlant(Vector2f pos, GrowPlant n, Vector2f velo, int num) {
-        super(pos.copy());
+    public GrowPlant() {
+    }
+    
+    public void init(GrowPlant n, Vector2f velo, int num) {
         next = n;
         growVelocity = velo;
         number = num;
     }
-    public GrowPlant() {
-        this(new Vector2f(), null, new Vector2f(), 0);
-    }
-    public GrowPlant(Vector2f pos) {
-        this(pos.copy(), null, new Vector2f(), 0);
-    }
+    
     @Override
     public void onCollision(Entity e) {
         // TODO Auto-generated method stub

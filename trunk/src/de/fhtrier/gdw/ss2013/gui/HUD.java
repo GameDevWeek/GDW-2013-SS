@@ -85,7 +85,7 @@ public class HUD {
 		healthbar.update(container, game, delta);
 		abilityWheel.update(container, game, delta);
 		quickselect.update(container, game, delta);
-		
+		fpsCalc.update();
 	}
 
 	public void render(GameContainer container, StateBasedGame game, Graphics g) {

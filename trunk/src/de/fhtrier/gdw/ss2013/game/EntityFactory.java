@@ -88,20 +88,4 @@ public class EntityFactory {
         assert (e != null);
         return (T) e;
     }
-
-    @SuppressWarnings("unchecked")
-    public <T extends Entity> T createEntityAt(
-            Class<? extends Entity> entityClass, Vector2f position) {
-
-        if (testRecyceability(entityClass)) {
-            Entity e = recycleMap.get(entityClass).poll();
-            assert (e != null);
-            e.setPosition(position);
-            return (T) e;
-        }
-        System.out.println("Create Entity: " + entityClass.getName());
-        Entity e = internalCreateAt(entityClass, position);
-        e.setPosition(position);
-        return (T) e;
-    }
 }

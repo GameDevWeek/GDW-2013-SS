@@ -18,16 +18,6 @@ public class Door extends Entity implements Interactable {
 	private boolean open;
 //	private AssetLoader a = AssetLoader.getInstance();
 //	private Image img = a.getImage("Door");
-	public Door(Vector2f position) {
-		super(position);
-		open = false;
-	}
-
-	public Door(Vector2f position, boolean open) {
-		super(position);
-		this.open = open;
-
-	}
 
 	public void open() {
 		if (!open) {

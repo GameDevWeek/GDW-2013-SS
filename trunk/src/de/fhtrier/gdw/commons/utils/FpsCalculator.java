@@ -24,10 +24,13 @@ public class FpsCalculator {
     }
 
     public float calculate() {
+        return value;
+    }
+
+    public void update() {
         long time = System.currentTimeMillis();
         if (lastTime == -1) {
             lastTime = time;
-            return 0;
         }
 
         long delta = time - lastTime;
@@ -45,7 +48,5 @@ public class FpsCalculator {
             nextUpdate = waitTime;
             value = 1000 / Math.max(1, (sum / (float) MAX));
         }
-        
-        return value;
     }
 }

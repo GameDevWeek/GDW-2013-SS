@@ -19,13 +19,8 @@ import de.fhtrier.gdw.ss2013.physics.ICollidable;
 public class Button extends Switch implements ICollidable {
 	private boolean collision, lastFrameCollision;
 
-	public Button(Vector2f pos) {
-		super(pos.copy());
-		collision = lastFrameCollision = false;
-	}
-
 	public Button() {
-		this(new Vector2f());
+		collision = lastFrameCollision = false;
 	}
 
 	@Override
