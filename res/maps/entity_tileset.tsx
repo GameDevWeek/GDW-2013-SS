@@ -31,4 +31,9 @@
    <property name="type" value="meteroid"/>
   </properties>
  </tile>
+ <tile id="6">
+  <properties>
+   <property name="type" value="oxygenflower"/>
+  </properties>
+ </tile>
 </tileset>
