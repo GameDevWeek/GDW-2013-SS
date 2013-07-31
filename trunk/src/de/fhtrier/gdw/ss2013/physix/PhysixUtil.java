@@ -41,7 +41,8 @@ public class PhysixUtil {
     public static Vec2[] toBox2D(List<Point> pointList) {
         Vec2[] returner = new Vec2[pointList.size()];
         for (int pointCount = 0; pointCount < returner.length; pointCount++) {
-            returner[pointCount] = pointToVec2(pointList.get(pointCount));
+            Point p = pointList.get(pointCount);
+            returner[pointCount] = new Vec2(toBox2D(p.x), toBox2D(p.y));
         }
         return returner;
     }
