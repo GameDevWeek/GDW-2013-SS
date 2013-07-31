@@ -10,7 +10,7 @@ package de.fhtrier.gdw.ss2013.game.world.objects;
 
 import org.jbox2d.dynamics.Fixture;
 import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Image;
+//import org.newdawn.slick.Image;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.Entity;
@@ -24,8 +24,8 @@ public class OxygenBubble extends Entity implements ICollidable, Interactable {
 
     private float oxygenLevel = 10;
     private OxygenFlower flower;
-    private AssetLoader a = AssetLoader.getInstance();
-    private Image img = a.getImage("bubble");
+//    private AssetLoader a = AssetLoader.getInstance();
+//    private Image img = a.getImage("bubble");
     private EntityManager man;
     private float speed = 20;
     private int timer = 10;
@@ -43,23 +43,15 @@ public class OxygenBubble extends Entity implements ICollidable, Interactable {
                         + oxygenLevel);
                 man.removeEntity(this);
                 flower.bubbleLost();
+                System.out.println("hello");
             } else {
                 ((Astronaut) e).setOxygen(((Astronaut) e).getMaxOxygen());
+                
                 }
         }//Collision von bubbles
         if(e instanceof OxygenBubble) {
             setVelocityX(-speed);
             setVelocityY(speed);
-//            Vector2f position = getPosition();
-//            Vector2f otherPosition = getPosition();
-//            if(otherPosition.x <= this.position.x)
-//            {
-//                this.position.x -= this.velocity.x;
-//            }
-//            if(e.getPosition().y <= this.position.y)
-//            {
-//                this.position.y -= this.velocity.y;
-//            }
         }
     }
 
