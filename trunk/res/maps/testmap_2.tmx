@@ -1,82 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="100" height="150" tilewidth="32" tileheight="32">
  <tileset firstgid="1" source="dummy_tileset.tsx"/>
- <tileset firstgid="37" name="entity_tileset" tilewidth="64" tileheight="64">
-  <image source="entity_tileset.png" width="192" height="384"/>
-  <tile id="0">
-   <properties>
-    <property name="type" value="flyingenemy"/>
-   </properties>
-  </tile>
-  <tile id="1">
-   <properties>
-    <property name="type" value="groundenemy"/>
-   </properties>
-  </tile>
-  <tile id="2">
-   <properties>
-    <property name="type" value="door"/>
-   </properties>
-  </tile>
-  <tile id="3">
-   <properties>
-    <property name="type" value="switch"/>
-   </properties>
-  </tile>
-  <tile id="4">
-   <properties>
-    <property name="type" value="box"/>
-   </properties>
-  </tile>
-  <tile id="5">
-   <properties>
-    <property name="type" value="meteroid"/>
-   </properties>
-  </tile>
-  <tile id="6">
-   <properties>
-    <property name="type" value="oxygenflower"/>
-   </properties>
-  </tile>
-  <tile id="7">
-   <properties>
-    <property name="type" value="button"/>
-   </properties>
-  </tile>
-  <tile id="9">
-   <properties>
-    <property name="type" value="smallflyingenemy"/>
-   </properties>
-  </tile>
-  <tile id="10">
-   <properties>
-    <property name="type" value="middleflyingenemy"/>
-   </properties>
-  </tile>
-  <tile id="11">
-   <properties>
-    <property name="type" value="bigflyingenemy"/>
-   </properties>
-  </tile>
-  <tile id="12">
-   <properties>
-    <property name="type" value="smallgroundenemy"/>
-   </properties>
-  </tile>
-  <tile id="13">
-   <properties>
-    <property name="type" value="middlegroundenemy"/>
-   </properties>
-  </tile>
-  <tile id="14">
-   <properties>
-    <property name="type" value="biggroundenemy"/>
-   </properties>
-  </tile>
- </tileset>
+ <tileset firstgid="37" source="entity_tileset.tsx"/>
  <layer name="Kachelebene 1" width="100" height="150">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3Z4UrDMBQG0Kg4UVEREZniD33/h3QFxVCatKlud13PgctYt4QmHyxplhIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABA2SZ73dS+uABnuzofqYuAPmt9zGnbOoYo17u6GanbgD5rfbS2fdvVVeMYmG/sd+oyyeOQanm8JHkckzyPj+B74TeP1zS+x1jSur9UXR5T9hdz9y7M89grAFir/FxoTfvC0lla9Bx0+/iH71rT824+7ryi50Ae8jgG8ojVP5uMzKO2Zp96Hp9peN3eprg8anN+ynl0WdxlNTT/8jiMfhZry+PpD23/21AWkXm899635HE/s7o1auhZ6uf680DtQymLyDxqa1f/P5zaZy21LbQvXd9XlbKYmkfLvU71BXY5Z8Vg6gAA
+   H4sIAAAAAAAAC+3Z0UrDMBgG0Kg4caIiMmTzSt//IW1BMZQkbaNb1vUc+Bl0S2jywZKmIQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADkbaLPTemHC3DV1fVI3TTos9RHTdu5Y2jlvqvtSD006LPUx9y2713dzRwD9cb+p26DPE6plMdbkMc5ifP4aHwv/OZxCON7jCWt+0vV5zFlf1G7d6HOy6AAYK3ic6E17QtzZ2mt56Dfxz9/15qed+Nxx9V6DuQhj3Mgj7aGZ5Mt8yit2Zeex2dIr9v70C6P0pxfch59Fo9RpeZfHqcxzGJtebz+oe1/S2Wx1DyeKqtfo1LPUj/Xd4k6hlwWLfMorV3Ddzil7+bUPtM+d/1Ylctiah5z7nWqLwGhlhhg6gAA
   </data>
  </layer>
  <objectgroup name="Objektebene 1" width="100" height="150">
@@ -86,9 +14,9 @@
   <object gid="49" x="1494" y="4758"/>
   <object gid="50" x="2228" y="4605"/>
   <object gid="51" x="2462" y="4447"/>
-  <object gid="46" x="2348" y="3917"/>
-  <object gid="47" x="1688" y="3689"/>
-  <object gid="48" x="771" y="3767"/>
+  <object gid="46" x="2339" y="3739"/>
+  <object gid="47" x="1703" y="3723"/>
+  <object gid="48" x="755" y="3732"/>
   <object type="platformLine" x="964" y="3973">
    <polyline points="0,0 -266,-53 -234,-257 0,-362 114,-293 453,-259 606,-237 219,-143 61,-178 1,1"/>
   </object>
@@ -133,7 +61,7 @@
   <object type="deadzone" x="476" y="4750" width="450" height="14"/>
   <object type="deadzone" x="1184" y="4752" width="160" height="16"/>
   <object type="deadzone" x="1854" y="4286" width="128" height="16"/>
-  <object type="solid" x="-24" y="-4" width="20" height="4824"/>
+  <object type="solid" x="-18" y="-2" width="20" height="4824"/>
   <object type="solid" x="3198" y="-28" width="28" height="4852"/>
   <object type="solid" x="-26" y="4" width="3230" height="14"/>
   <object type="solid" x="928" y="4734" width="64" height="42"/>
@@ -141,5 +69,6 @@
   <object gid="42" x="224" y="3790"/>
   <object gid="42" x="116" y="3662"/>
   <object gid="42" x="1316" y="3204"/>
+  <object gid="37" x="58" y="4351"/>
  </objectgroup>
 </map>

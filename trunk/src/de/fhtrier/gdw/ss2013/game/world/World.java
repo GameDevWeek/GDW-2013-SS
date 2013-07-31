@@ -44,7 +44,7 @@ public class World {
 		entityManager = new EntityManager();
 		physicsManager = new PhysixManager(container);
 		try {
-			map = AssetLoader.getInstance().loadMap("demo_sidescroller");
+			map = AssetLoader.getInstance().loadMap("testmap");
 			LevelLoader.load(map, entityManager, physicsManager);
 
 			mapRender = new MapRenderer(map);

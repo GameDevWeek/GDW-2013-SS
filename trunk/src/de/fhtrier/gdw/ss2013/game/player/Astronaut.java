@@ -21,7 +21,7 @@ public class Astronaut extends Player implements AstronautController {
 	Animation bewegungs_ani;
 	float maxSpeed = 26;
 	float speed = 80;
-	float jumpSpeed = 300;
+	float jumpSpeed = 400;//300
 	int jumpDelay = 0;
 	// set of entities, which can currently be activated with the action button
 	private HashSet<Interactable> interactables;
