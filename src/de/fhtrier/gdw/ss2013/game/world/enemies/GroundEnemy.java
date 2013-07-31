@@ -63,6 +63,8 @@ public class GroundEnemy extends AbstractEnemy {
     public void update(GameContainer container, int delta)
             throws SlickException {
         p = w.getAstronaut();
+//        System.out.println(normalMode + "     " + huntMode + "    " + waitMode);
+
         if (p != null) {
             // float dt = delta / 1000.f;
             movetime += delta;

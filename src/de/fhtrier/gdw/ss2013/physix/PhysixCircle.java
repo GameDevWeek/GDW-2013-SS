@@ -10,6 +10,7 @@ public class PhysixCircle extends PhysixObject {
         
         CircleShape shape = new CircleShape();
         shape.m_radius = PhysixUtil.toBox2D(radius);
+        dimension.set(shape.m_radius, shape.m_radius);
         
         init(physicsManager.getWorld(), shape, type, PhysixUtil.toBox2D(x), PhysixUtil.toBox2D(y));
     }

@@ -91,4 +91,8 @@ public abstract class Entity {
         physicsObject.setOwner(this);
         this.physicsObject = physicsObject;
     }
+    
+    public PhysixObject getPhysicsObject() {
+        return this.physicsObject;
+    }
 }
