@@ -5,7 +5,12 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 import org.newdawn.slick.geom.Vector2f;
+import org.newdawn.slick.particles.ConfigurableEmitter;
+import org.newdawn.slick.particles.Particle;
+import org.newdawn.slick.particles.ParticleIO;
+import org.newdawn.slick.particles.ParticleSystem;
 import org.newdawn.slick.state.StateBasedGame;
 
 import de.fhtrier.gdw.commons.tiled.TiledMap;
@@ -44,10 +49,10 @@ public class World {
     private OxygenFlower oxyFlower;
     private OxygenBubble bubble;
     private static World instance;
+    
     // physics debug
     private DebugDrawer physicDebug;
     public boolean debugDraw = DebugModeStatus.isTest();
-
     private EntityManager entityManager;
     private final PhysixManager physicsManager;
 
@@ -77,7 +82,9 @@ public class World {
                   50, 150);
           
 		astronaut.setPhysicsObject(physicsObject);
+
 		
+
         // astronaut.setPhysicsObject(new
         // RectanglePhysicsObject(BodyType.DYNAMIC, new Vec2(95,105), new
         // Vec2(astronaut.getPosition().x,astronaut.getPosition().y)));
@@ -88,7 +95,7 @@ public class World {
         alien.setPhysicsObject(physicsObject);
         alien.setContainer(container);
 
-
+      
         SoundLocator.provide(new DefaultSoundPlayer(astronaut));
 
 //        oxyFlower = (OxygenFlower) entityManager.createEntity(
@@ -148,7 +155,8 @@ public class World {
             physicsManager.render();
 
         }
-
+        
+       
         g.popTransform();
     }
     
@@ -161,10 +169,10 @@ public class World {
     public void update(GameContainer container, int delta)
             throws SlickException {
         physicsManager.update(delta);
-
+ 
         // update entities
         entityManager.update(container, delta);
-
+        
         // This is just a placeholder, not for actual use.
         // Vector2f astronautPos = astronaut.getPosition();
         // float speed = 6;
@@ -203,6 +211,8 @@ public class World {
 //            Sound a = SoundLocator.loadSound("zombiemoan");
 //            SoundLocator.getPlayer().playSoundAt(a, oxyFlower);
         }
+        
+     //   FrameSound();
     }
 
     public Vector2f screenToWorldPosition(Vector2f screenPosition) {
@@ -247,5 +257,20 @@ public class World {
     {
         return instance;
     }
+    
+   /* public void FrameSound()
+    {
+      System.out.println(astronaut.getAnimation().getFrame());
+      if(alien.getAnimation().getFrame()%2==0)
+      {
+          Sound schritt3 = SoundLocator.loadSound("schritt1");
+          SoundLocator.getPlayer().playSound(schritt3);
+      }else
+      {
+          Sound schritt3 = SoundLocator.loadSound("schritt2");
+          SoundLocator.getPlayer().playSound(schritt3);
+      }
+    }*/
 
+  
 }
