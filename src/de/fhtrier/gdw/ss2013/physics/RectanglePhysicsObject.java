@@ -83,7 +83,6 @@ public class RectanglePhysicsObject extends PhysicsObject {
         pHE = pHE.mul(0.5f);
         myShape.setAsBox(pHE.x, pHE.y);
         Vec2 pPos = new Vec2(topLeftPos.x, topLeftPos.y);
-        System.out.println("Create PhysicsObject at " + pPos);
         init(myShape, bodyType, pPos = pPos.add(pHE));
     }
 }

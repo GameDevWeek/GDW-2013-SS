@@ -60,7 +60,7 @@ public class InputManager {
 					Gamepad gamepad = new Gamepad(container, gamepadInfo);
 					gamepads.add(gamepad);
 				} catch (IllegalArgumentException e) {
-					System.out.println(e.toString());
+					Log.warn("Failed to create controller: " + e.getMessage());
 				}
 			}
 		}

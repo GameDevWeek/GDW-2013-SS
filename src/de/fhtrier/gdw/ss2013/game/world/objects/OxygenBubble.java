@@ -43,7 +43,6 @@ public class OxygenBubble extends Entity implements ICollidable, Interactable {
                         + oxygenLevel);
                 man.removeEntity(this);
                 flower.bubbleLost();
-                System.out.println("hello");
             } else {
                 ((Astronaut) e).setOxygen(((Astronaut) e).getMaxOxygen());
                 
