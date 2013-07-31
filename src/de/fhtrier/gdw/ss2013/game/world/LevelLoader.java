@@ -133,13 +133,16 @@ public class LevelLoader {
         switch (type) {
         case "solid":
             System.out
-                    .println("(" + x + "," + y + "((" + width + "; " + height);
+                    .println("Create solid box (" + x + "," + y + "((" + width + "; " + height);
             new PhysixBox(physicsManager, x, y, width, height, BodyType.STATIC, 1, 0.5f, false);
             break;
         case "deadzone":
             entity = entityManager.createEntity(type, properties);
             PhysixBox box = new PhysixBox(physicsManager, x, y, width, height, BodyType.STATIC, 1, 0.5f, true);
             entity.setPhysicsObject(box);
+            break;
+        default:
+            System.err.println("Unknown Rect-Object in Map, type: "+type);
             break;
         }
     }

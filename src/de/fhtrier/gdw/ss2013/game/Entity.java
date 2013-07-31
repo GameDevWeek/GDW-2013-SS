@@ -36,18 +36,30 @@ public abstract class Entity {
     }
 
     public Vector2f getVelocity() {
+        if (physicsObject == null) {
+            throw new NullPointerException("Physics object does not exist.");
+        }
         return physicsObject.getLinearVelocity();
     }
 
     public void setVelocity(Vector2f velocity) {
+        if (physicsObject == null) {
+            throw new NullPointerException("Physics object does not exist.");
+        }
         physicsObject.setLinearVelocity(velocity);
     }
 
     public void setVelocityX(float x) {
+        if (physicsObject == null) {
+            throw new NullPointerException("Physics object does not exist.");
+        }
         physicsObject.setLinearVelocityX(x);
     }
 
     public void setVelocityY(float y) {
+        if (physicsObject == null) {
+            throw new NullPointerException("Physics object does not exist.");
+        }
         physicsObject.setLinearVelocityY(y);
     }
     
