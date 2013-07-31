@@ -2,9 +2,9 @@ package de.fhtrier.gdw.ss2013.physix;
 
 import org.jbox2d.callbacks.ContactListener;
 
-public abstract class ICollisionListener implements ContactListener {
+public interface ICollisionListener {
     
-    public abstract void beginContact(PhysixObject object);
+    public void beginContact(PhysixObject object);
     
-    public abstract void endContact(PhysixObject object);
+    public void endContact(PhysixObject object);
 }
