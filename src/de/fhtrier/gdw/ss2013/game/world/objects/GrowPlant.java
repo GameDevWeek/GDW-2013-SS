@@ -1,14 +1,10 @@
 package de.fhtrier.gdw.ss2013.game.world.objects;
 
-import org.jbox2d.dynamics.Fixture;
 import org.newdawn.slick.geom.Vector2f;
-import org.newdawn.slick.particles.ParticleSystem;
+import de.fhtrier.gdw.ss2013.game.EntityCollidable;
+import org.jbox2d.dynamics.contacts.Contact;
 
-import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
-import de.fhtrier.gdw.ss2013.game.Entity;
-import de.fhtrier.gdw.ss2013.physics.ICollidable;
-
-public class GrowPlant extends Entity implements ICollidable {
+public class GrowPlant extends EntityCollidable {
     private GrowPlant next;
     private Vector2f growVelocity;
     private int number;
@@ -24,18 +20,16 @@ public class GrowPlant extends Entity implements ICollidable {
         number = num;
     }
     
-    @Override
-    public void onCollision(Entity e) {
-        // TODO Auto-generated method stub
-        
-    }
-    @Override
-    public Fixture getFixture() {
-        // TODO Auto-generated method stub
-        return null;
-    }
     public void grow() {
         
+    }
+
+    @Override
+    public void beginContact(Contact object) {
+    }
+
+    @Override
+    public void endContact(Contact object) {
     }
 
  

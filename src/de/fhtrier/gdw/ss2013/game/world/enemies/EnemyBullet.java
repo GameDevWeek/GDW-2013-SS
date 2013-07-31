@@ -12,8 +12,6 @@ import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.RecycleableEntity;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
-import de.fhtrier.gdw.ss2013.physics.ICollidable;
-import de.fhtrier.gdw.ss2013.physix.PhysixObject;
 
 /**
  * Bullet Class
@@ -21,7 +19,7 @@ import de.fhtrier.gdw.ss2013.physix.PhysixObject;
  * @author Kevin, Georg
  * 
  */
-public class EnemyBullet extends AbstractEnemy implements ICollidable,
+public class EnemyBullet extends AbstractEnemy implements
         RecycleableEntity {
 
     private Image img;
@@ -32,15 +30,6 @@ public class EnemyBullet extends AbstractEnemy implements ICollidable,
     public EnemyBullet() {
     	super(null);
         img = a.getImage("boltEnemy");
-    }
-
-    @Override
-    public void onCollision(Entity e) {
-        if (e instanceof Astronaut) {
-            ((Astronaut) e).setOxygen(((Astronaut) e).getOxygen()
-                    - this.getDamage());
-            this.livetime = 0;
-        }
     }
 
     public void render(GameContainer container, Graphics g)
@@ -60,37 +49,21 @@ public class EnemyBullet extends AbstractEnemy implements ICollidable,
         livetime--;
     }
 
-    @Override
-    public Fixture getFixture() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
     public void setReferences(EntityManager m) {
         this.m = m;
     }
 
     @Override
-    public void beginContact(PhysixObject object) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void endContact(PhysixObject object) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void beginContact(Contact object) {
-        // TODO Auto-generated method stub
-        
+    public void beginContact(Contact contact) {
+        Entity other = getOtherEntity(contact);
+        if (other instanceof Astronaut) {
+            ((Astronaut) other).setOxygen(((Astronaut) other).getOxygen()
+                    - this.getDamage());
+            this.livetime = 0;
+        }
     }
 
     @Override
     public void endContact(Contact object) {
-        // TODO Auto-generated method stub
-        
     }
 }

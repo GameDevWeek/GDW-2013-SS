@@ -61,7 +61,8 @@ public class Astronaut extends Player implements AstronautController {
 	@Override
 	public void update (GameContainer container, int delta) throws SlickException {
 		super.update(container, delta);
-		jumpDelay -= delta;
+        if(jumpDelay > 0)
+            jumpDelay -= delta;
 		if (oxygen > 0) this.oxygen -= (this.maxOxygen * PlayerConstants.OXYGEN_PERCENTAGE_LOST_PER_SECOND) * (delta / 1000f);
 
         boolean grounded = isGrounded();

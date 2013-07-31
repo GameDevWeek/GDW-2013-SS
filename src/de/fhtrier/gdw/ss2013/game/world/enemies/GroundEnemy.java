@@ -7,10 +7,10 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
+import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.player.Player;
 import de.fhtrier.gdw.ss2013.game.world.World;
-import de.fhtrier.gdw.ss2013.physix.PhysixObject;
 
 /**
  * Ground Enemy Class
@@ -42,6 +42,7 @@ public abstract class GroundEnemy extends AbstractEnemy {
         p = w.getAstronaut();
     }
 
+    @Override
     public void update(GameContainer container, int delta)
             throws SlickException {
         p = w.getAstronaut();
@@ -139,15 +140,13 @@ public abstract class GroundEnemy extends AbstractEnemy {
     }
 
     private Vector2f calcPlayerDirection(Player player) {
-        Vector2f direction = new Vector2f();
-        direction = calcPlayerPosition(player);
+        Vector2f direction = calcPlayerPosition(player);
         direction.normalise();
         return direction;
     }
 
     private float calcPlayerDistance(Player player) {
-        Vector2f direction = new Vector2f();
-        direction = calcPlayerPosition(player);
+        Vector2f direction = calcPlayerPosition(player);
         return (float) Math.sqrt((direction.x * direction.x)
                 + (direction.y * direction.y));
     }
@@ -164,24 +163,15 @@ public abstract class GroundEnemy extends AbstractEnemy {
     }
 
     @Override
-    public void beginContact(PhysixObject object) {
-    }
-
-    @Override
-    public void endContact(PhysixObject object) {
-        // TODO Auto-generated method stub
-
-    }
-
-    @Override
-    public void beginContact(Contact object) {
-        // TODO Auto-generated method stub
-        
+    public void beginContact(Contact contact) {
+        Entity other = getOtherEntity(contact);
+        if (other instanceof Astronaut) {
+            ((Astronaut) other).setOxygen(((Astronaut) other).getOxygen()
+                    - this.getDamage());
+        }
     }
 
     @Override
     public void endContact(Contact object) {
-        // TODO Auto-generated method stub
-        
     }
 }

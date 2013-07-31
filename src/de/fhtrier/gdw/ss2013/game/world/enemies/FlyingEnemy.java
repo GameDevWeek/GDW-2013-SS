@@ -1,6 +1,6 @@
 package de.fhtrier.gdw.ss2013.game.world.enemies;
 
-import org.jbox2d.dynamics.Fixture;
+import de.fhtrier.gdw.ss2013.game.Entity;
 import org.jbox2d.dynamics.contacts.Contact;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
@@ -8,14 +8,10 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
-import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
-import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.player.Player;
 import de.fhtrier.gdw.ss2013.game.world.World;
-import de.fhtrier.gdw.ss2013.physics.ICollidable;
-import de.fhtrier.gdw.ss2013.physix.PhysixObject;
 
 /**
  * Flying Enemy Class
@@ -23,7 +19,7 @@ import de.fhtrier.gdw.ss2013.physix.PhysixObject;
  * @author Kevin, Georg
  * 
  */
-public abstract class FlyingEnemy extends AbstractEnemy implements ICollidable {
+public abstract class FlyingEnemy extends AbstractEnemy {
 
     private float health, flytime, bolttime;
     private float flyintelligence, boltintelligence;
@@ -59,13 +55,6 @@ public abstract class FlyingEnemy extends AbstractEnemy implements ICollidable {
 
     public void setHealth(float hp) {
         health = hp;
-    }
-
-    @Override
-    public void onCollision(Entity e) {
-        if (e instanceof Astronaut) {
-            ((Astronaut) e).setOxygen(((Astronaut) e).getOxygen() - this.getDamage());
-        }
     }
 
     public void reduceHealth(float dmg) {
@@ -140,38 +129,21 @@ public abstract class FlyingEnemy extends AbstractEnemy implements ICollidable {
         return null;
     }
 
-    @Override
-    public Fixture getFixture() {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
     public void setReferences(EntityManager m, Astronaut p) {
         this.m = m;
         this.p = p;
     }
 
     @Override
-    public void beginContact(PhysixObject object) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void endContact(PhysixObject object) {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public void beginContact(Contact object) {
-        // TODO Auto-generated method stub
-        
+    public void beginContact(Contact contact) {
+        Entity other = getOtherEntity(contact);
+        if (other instanceof Astronaut) {
+            ((Astronaut) other).setOxygen(((Astronaut) other).getOxygen()
+                    - this.getDamage());
+        }
     }
 
     @Override
     public void endContact(Contact object) {
-        // TODO Auto-generated method stub
-        
     }
 }
