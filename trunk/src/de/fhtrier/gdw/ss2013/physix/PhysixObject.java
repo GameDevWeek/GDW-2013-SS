@@ -2,6 +2,8 @@ package de.fhtrier.gdw.ss2013.physix;
 
 import de.fhtrier.gdw.ss2013.game.Entity;
 import java.util.Collection;
+import java.util.HashSet;
+
 import org.jbox2d.collision.shapes.MassData;
 import org.jbox2d.collision.shapes.Shape;
 import org.jbox2d.common.Vec2;
@@ -20,7 +22,7 @@ public abstract class PhysixObject {
 	protected FixtureDef fixtureDef;
 	protected Fixture fixture;
 	protected Body body;
-	protected Collection<ICollisionListener> collisionListeners;
+	protected HashSet<ICollisionListener> collisionListeners = new HashSet<ICollisionListener>();
     
     public PhysixObject(float density, float friction, boolean sensor) {
         fixtureDef = new FixtureDef();
