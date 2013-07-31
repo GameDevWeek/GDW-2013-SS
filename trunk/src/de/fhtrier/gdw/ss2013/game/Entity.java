@@ -9,8 +9,10 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
+import org.newdawn.slick.particles.ParticleSystem;
 
 
+import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.physix.PhysixObject;
 
 /**
@@ -20,8 +22,9 @@ public abstract class Entity {
 
     protected PhysixObject physicsObject;
     protected Image img;
-   
-
+    
+    protected ParticleSystem particle;
+    protected AssetLoader asset;
     /* every Entity-class needs a constructor without any parameters! */
     public Entity() {
     }
@@ -35,10 +38,17 @@ public abstract class Entity {
         if (img != null) {
             g.drawImage(img, getPosition().x-(img.getWidth()/2), getPosition().y-(img.getHeight()/2));
         }
+        if(particle!=null)
+        particle.render();
     }
 
     public void update(GameContainer container, int delta)
             throws SlickException {
+        if(particle!=null)
+        {
+            particle.update(delta);
+            particle.setPosition(this.getPosition().x,this.getPosition().y);
+        }
     }
 
     public Vector2f getPosition() {
@@ -97,4 +107,15 @@ public abstract class Entity {
     public PhysixObject getPhysicsObject() {
         return this.physicsObject;
     }
+
+    public ParticleSystem getParticle() {
+        return particle;
+    }
+
+    public void setParticle(ParticleSystem particle) {
+        this.particle = particle;
+    }
+    
+    
+    
 }

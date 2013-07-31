@@ -31,7 +31,7 @@
   "pfad" : "res/partikel/lava_luft_partikel.xml"
   },
   {
-  "name" : "dust",
-  "pfad" : "res/partikel/dust.xml"
+  "name" : "wool",
+  "pfad" : "res/partikel/wool.xml"
   }
   ]

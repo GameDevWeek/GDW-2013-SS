@@ -25,18 +25,18 @@ import de.fhtrier.gdw.ss2013.sound.services.DefaultSoundPlayer;
 
 public class World {
 
-	private TiledMap map;
-	private MapRenderer mapRender;
-	private Camera camera;
-	private Astronaut astronaut;
-	private Alien alien;
+    private TiledMap map;
+    private MapRenderer mapRender;
+    private Camera camera;
+    private Astronaut astronaut;
+    private Alien alien;
 
-	private static World instance;
+    private static World instance;
 
-	public boolean debugDraw = DebugModeStatus.isTest();
+    public boolean debugDraw = DebugModeStatus.isTest();
 
-	private EntityManager entityManager;
-	private final PhysixManager physicsManager;
+    private EntityManager entityManager;
+    private final PhysixManager physicsManager;
 
 	public World(GameContainer container, StateBasedGame game) {
 		instance = this;
@@ -63,7 +63,7 @@ public class World {
 				200, 50, 150);
 
 		astronaut.setPhysicsObject(physicsObject);
-
+		
 		// astronaut.setPhysicsObject(new
 		// RectanglePhysicsObject(BodyType.DYNAMIC, new Vec2(95,105), new
 		// Vec2(astronaut.getPosition().x,astronaut.getPosition().y)));
@@ -73,7 +73,7 @@ public class World {
 				BodyType.DYNAMIC, 1, 0.5f, true);
 		alien.setPhysicsObject(physicsObject);
 		alien.setContainer(container);
-
+		
 		SoundLocator.provide(new DefaultSoundPlayer(astronaut));
 
 	}
@@ -111,19 +111,23 @@ public class World {
 		InputManager.getInstance().setAlienController(alien);
 	}
 
-	public void update(GameContainer container, int delta)
-			throws SlickException {
-		physicsManager.update(delta);
-		entityManager.update(container, delta);
-	}
 
-	public Vector2f screenToWorldPosition(Vector2f screenPosition) {
-		/**
-		 * Top-left (0,0) / Bottom-right (width,height)
-		 */
-		Vector2f worldPos = new Vector2f(camera.getOffsetX(),
-				camera.getOffsetY());
 
+
+    public void update(GameContainer container, int delta)
+            throws SlickException {
+        physicsManager.update(delta);
+     
+        entityManager.update(container, delta);
+    }
+    
+    public Vector2f screenToWorldPosition(Vector2f screenPosition) {
+        /**
+         * Top-left (0,0) / Bottom-right (width,height)
+         */
+        Vector2f worldPos = new Vector2f(camera.getOffsetX(),
+                camera.getOffsetY());
+        
 		return worldPos.add(screenPosition);
 
 	}

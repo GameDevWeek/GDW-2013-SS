@@ -35,7 +35,9 @@ public class MovingPlatform extends Entity implements Interactable {
         index = 0;
         change = false;
         speed = 20;
+        setParticle(AssetLoader.getInstance().getParticle("pollen1"));
         isActiv = true;
+       
     }
 
     public void initLine(ArrayList<Point> line, SafeProperties prop) {
@@ -48,19 +50,15 @@ public class MovingPlatform extends Entity implements Interactable {
 
     @Override
     public void update(GameContainer container, int delta)
-            throws SlickException {
+                throws SlickException {
+        super.update(container, delta);
+        System.out.println(this.particle);
         if (isActiv)
-            move();
+        move();
+        //System.out.println(getPosition());
+        
     }
 
-    @Override
-    public void render(GameContainer container, Graphics g)
-            throws SlickException {
-        if (img != null) {
-            g.drawImage(img, getPosition().x - (img.getWidth() / 2),
-                    getPosition().y - (img.getHeight() / 2));
-        }
-    }
 
     public void move() {
         currentPoint = line.get(index);

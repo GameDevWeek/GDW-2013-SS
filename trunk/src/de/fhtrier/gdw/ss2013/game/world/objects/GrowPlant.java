@@ -2,7 +2,9 @@ package de.fhtrier.gdw.ss2013.game.world.objects;
 
 import org.jbox2d.dynamics.Fixture;
 import org.newdawn.slick.geom.Vector2f;
+import org.newdawn.slick.particles.ParticleSystem;
 
+import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.physics.ICollidable;
 
@@ -10,8 +12,10 @@ public class GrowPlant extends Entity implements ICollidable {
     private GrowPlant next;
     private Vector2f growVelocity;
     private int number;
-    
+   
     public GrowPlant() {
+        
+       // setParticle(AssetLoader.getInstance().getParticle("pollen1"));
     }
     
     public void init(GrowPlant n, Vector2f velo, int num) {
@@ -33,4 +37,8 @@ public class GrowPlant extends Entity implements ICollidable {
     public void grow() {
         
     }
+
+ 
+    
+    
 }
