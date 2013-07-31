@@ -25,17 +25,12 @@ import de.fhtrier.gdw.ss2013.physix.PhysixObject;
 public class Meteroid extends AbstractEnemy implements ICollidable {
 
     private EntityManager m;
-	private float health;
 	final static float DEBUG_ENTITY_HALFEXTEND = 5;
 
 	public Meteroid() {
 		super(AssetLoader.getInstance().getAnimation("meteorite"));
 	    this.m = World.getInstance().getEntityManager();
 	}
-    
-    public void setHealth(float hp) {
-		health = hp;
-    }
 
 	@Override
 	public void onCollision(Entity e) {
@@ -45,28 +40,14 @@ public class Meteroid extends AbstractEnemy implements ICollidable {
 		}
 	}
 
-	public void reduceHealth(float dmg) {
-		health -= dmg;
-	}
-
-	public void render(GameContainer container, Graphics g)
-			throws SlickException {
-		g.setColor(Color.magenta);
-        Vector2f position = getPosition();
-		g.drawRect(position.x - DEBUG_ENTITY_HALFEXTEND, position.y
-				- DEBUG_ENTITY_HALFEXTEND, DEBUG_ENTITY_HALFEXTEND * 2,
-				DEBUG_ENTITY_HALFEXTEND * 2);
-		
-		// g.drawString(this.hashCode(), position.x, position.y);
-	}
-
 	public void update(GameContainer container, int delta)
 			throws SlickException {
 		float dt = delta / 1000.f;
 		// TODO clamp dt if dt > 1/60.f ?
 		this.getPosition().x += this.getVelocity().x * dt;
 		this.getPosition().y += this.getVelocity().y * dt;
-	    if (health <= 0) {
+
+		if (getPosition().y > 5000) { // FIXME: rausnehmen, wenn Objekt aus dem Level raus ist
 	         m.removeEntity(this);
 	    }
 	}

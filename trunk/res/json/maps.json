@@ -9,4 +9,8 @@
 {
   "name" : "testmap",
   "pfad" : "res/maps/testmap_2.tmx"
+},
+{
+  "name" : "run_or_die",
+  "pfad" : "res/maps/run_or_die.tmx"
 }]
