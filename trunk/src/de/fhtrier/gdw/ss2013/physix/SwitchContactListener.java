@@ -20,7 +20,7 @@ public class SwitchContactListener implements ICollisionListener {
 
             if (objectA.owner instanceof Switch) {
                 Switch switchA = (Switch) objectA.owner;
-                switchA.setCanBeTtriggerd(true);
+                switchA.setCanBeTriggered(true);
             }
         } else { // b is sensor
             System.out.println(a.getBody().getUserData());
@@ -28,7 +28,7 @@ public class SwitchContactListener implements ICollisionListener {
 
             if (objectB.owner instanceof Switch) {
                 Switch switchB = (Switch) objectB.owner;
-                switchB.setCanBeTtriggerd(true);
+                switchB.setCanBeTriggered(true);
             }
         }
 
@@ -47,7 +47,7 @@ public class SwitchContactListener implements ICollisionListener {
 
             if (objectA.owner instanceof Switch) {
                 Switch switchA = (Switch) objectA.owner;
-                switchA.setCanBeTtriggerd(false);
+                switchA.setCanBeTriggered(false);
             }
         } else { // b is sensor
             System.out.println(a.getBody().getUserData());
@@ -55,7 +55,7 @@ public class SwitchContactListener implements ICollisionListener {
 
             if (objectB.owner instanceof Switch) {
                 Switch switchB = (Switch) objectB.owner;
-                switchB.setCanBeTtriggerd(false);
+                switchB.setCanBeTriggered(false);
             }
         }
     }

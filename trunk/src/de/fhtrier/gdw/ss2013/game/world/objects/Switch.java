@@ -12,10 +12,9 @@ import de.fhtrier.gdw.ss2013.game.filter.Interactable;
  * @author Kevin, Georg
  * 
  */
-public class Switch extends Entity implements Interactable {
+public class Switch extends ObjectController implements Interactable {
 
     private boolean canBeTriggered = false;
-    private boolean activated = false;
 
     public Switch() {
         // super(AssetLoader.getInstance().getImage("switch")); // Image does no
@@ -29,20 +28,20 @@ public class Switch extends Entity implements Interactable {
 
     }
 
-    public void setCanBeTtriggerd(boolean value) {
+    public void setCanBeTriggered(boolean value) {
         canBeTriggered = value;
     }
 
     public void turnSwitch() {
-        activated = !activated;
+        isActivated = !isActivated;
     }
 
     public boolean getSwitch() {
-        return activated;
+        return isActivated;
     }
 
     public void setSwitch(boolean value) {
-        activated = value;
+        isActivated = value;
     }
 
     @Override
