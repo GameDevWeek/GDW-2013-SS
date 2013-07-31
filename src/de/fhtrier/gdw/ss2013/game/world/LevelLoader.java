@@ -3,18 +3,18 @@ package de.fhtrier.gdw.ss2013.game.world;
 import java.awt.Point;
 import java.util.ArrayList;
 
-import org.jbox2d.dynamics.BodyType;
-
 import de.fhtrier.gdw.commons.tiled.Layer;
 import de.fhtrier.gdw.commons.tiled.LayerObject;
 import de.fhtrier.gdw.commons.tiled.TiledMap;
 import de.fhtrier.gdw.commons.utils.SafeProperties;
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
+import de.fhtrier.gdw.ss2013.game.world.objects.MovingPlatform;
 import de.fhtrier.gdw.ss2013.physix.PhysixBox;
 import de.fhtrier.gdw.ss2013.physix.PhysixCircle;
 import de.fhtrier.gdw.ss2013.physix.PhysixManager;
 import de.fhtrier.gdw.ss2013.physix.PhysixPolyline;
+import org.jbox2d.dynamics.BodyType;
 
 /**
  * 
@@ -79,9 +79,15 @@ public class LevelLoader {
      */
     private static void createPolyLine(String type, ArrayList<Point> points,
             SafeProperties properties) {
+        Entity entity;
         switch (type) {
         case "solid":
             new PhysixPolyline(physicsManager, points, BodyType.STATIC, 1, 0.5f, false);
+            break;
+        case "platfromLine":
+            entity = entityManager.createEntity("movingPlatform", properties);
+            entity.setPhysicsObject(new PhysixBox(physicsManager, points.get(0).x, points.get(0).y, 170, 36, BodyType.KINEMATIC, 1, 0.5f, false));
+            ((MovingPlatform)entity).initLine(points);
             break;
         }
     }
@@ -180,7 +186,6 @@ public class LevelLoader {
             entity.setPhysicsObject(circle);
         } else {
             PhysixBox box = new PhysixBox(physicsManager, x, y, width, height, BodyType.DYNAMIC, 1, 0.5f, false);
-
             entity.setPhysicsObject(box);
         }
     }
