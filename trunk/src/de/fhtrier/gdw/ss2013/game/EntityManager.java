@@ -22,7 +22,7 @@ import de.fhtrier.gdw.ss2013.math.MathConstants;
 //TODO filter für getEntities
 public class EntityManager {
     // static protected EntityManager managerInstance;
-    protected ArrayList<Entity> entityList;
+    protected HashMap<String, Entity> entityList;
     protected Queue<Entity> removalQueue;
     protected Queue<Entity> insertionQueue;
     protected HashMap<String, Class<? extends Entity>> classMap = new HashMap<>();
@@ -30,7 +30,7 @@ public class EntityManager {
     private EntityFactory factory;
 
     public EntityManager() {
-        entityList = new ArrayList<>();
+        entityList = new HashMap<>();
 
         removalQueue = new LinkedList<>();
         insertionQueue = new LinkedList<>();
@@ -57,7 +57,7 @@ public class EntityManager {
             if (e instanceof RecycleableEntity) {
                 factory.recycle(e);
             }
-            entityList.remove(e);
+            entityList.remove(e.getName());
         }
 
     }
@@ -65,7 +65,13 @@ public class EntityManager {
     private void internalInsert() {
         while (!insertionQueue.isEmpty()) {
             Entity e = insertionQueue.poll();
-            entityList.add(e);
+            if (entityList.containsKey(e.getName())) {
+                String oldName = e.getName();
+                e.setName();
+                System.err.println("Warning: Changed " + oldName + " to "
+                        + e.getName() + " to prevent Name Duplication");
+            }
+            entityList.put(e.getName(), e);
         }
     }
 
@@ -78,14 +84,14 @@ public class EntityManager {
     public void update(GameContainer c, int delta) throws SlickException {
         internalInsert();
         internalRemove();
-        for (Entity e : entityList)
+        for (Entity e : entityList.values())
             e.update(c, delta);
 
     }
 
     public void render(GameContainer container, Graphics g)
             throws SlickException {
-        for (Entity e : entityList)
+        for (Entity e : entityList.values())
             e.render(container, g);
     }
 
@@ -95,7 +101,7 @@ public class EntityManager {
      * @return entity reference an position, null falls keine entity an position
      */
     public Entity getEntityAtPosition(Vector2f position) {
-        for (Entity e : entityList) {
+        for (Entity e : entityList.values()) {
             if (position.equals(e.getPosition())) {
                 return e;
             }
@@ -114,7 +120,7 @@ public class EntityManager {
             float radius) {
         ArrayList<Entity> entities = new ArrayList<>();
 
-        for (Entity e : entityList) {
+        for (Entity e : entityList.values()) {
             if ((position.distance(e.getPosition()) - radius) < MathConstants.EPSILON_F) {
                 entities.add(e);
             }
@@ -122,10 +128,14 @@ public class EntityManager {
         return entities;
     }
 
+    public Entity getEntityByName(String name) {
+        return entityList.get(name);
+    }
+
     public ArrayList<Entity> getEntitiesByFilter(Vector2f position,
             Class<? extends EntityFilter> filter) {
         ArrayList<Entity> filteredList = new ArrayList<>();
-        for (Entity e : entityList) {
+        for (Entity e : entityList.values()) {
             if (filter.isAssignableFrom(e.getClass())) {
                 filteredList.add(e);
             }
@@ -136,7 +146,7 @@ public class EntityManager {
     public ArrayList<Entity> getClosestEntitiesByFilter(Vector2f position,
             float radius, Class<? extends EntityFilter> filter) {
         ArrayList<Entity> filteredList = new ArrayList<>();
-        for (Entity e : entityList) {
+        for (Entity e : entityList.values()) {
             if (filter.isAssignableFrom(e.getClass())) {
                 if ((position.distance(e.getPosition()) - radius) < MathConstants.EPSILON_F) {
                     filteredList.add(e);
@@ -163,6 +173,11 @@ public class EntityManager {
     }
 
     public Entity createEntity(String className, SafeProperties properties) {
+        return createEntity(className, properties, null);
+    }
+
+    public Entity createEntity(String className, SafeProperties properties,
+            String name) {
         Class<? extends Entity> entityClass = classMap.get(className
                 .toLowerCase());
         if (entityClass == null) {
@@ -170,6 +185,8 @@ public class EntityManager {
                     + className);
         }
         Entity e = factory.createEntity(entityClass);
+        e.setName(name);
+        e.setProperties(properties);
         addEntity(e);
         return e;
     }
