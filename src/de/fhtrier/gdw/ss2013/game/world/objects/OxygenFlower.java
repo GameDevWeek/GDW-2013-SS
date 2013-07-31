@@ -7,13 +7,6 @@
  */
 package de.fhtrier.gdw.ss2013.game.world.objects;
 
-import org.newdawn.slick.Color;
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
-import org.newdawn.slick.SlickException;
-import org.newdawn.slick.geom.Vector2f;
-
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
@@ -21,15 +14,12 @@ import de.fhtrier.gdw.ss2013.game.filter.Interactable;
 
 public class OxygenFlower extends Entity implements Interactable {
 
-    private AssetLoader a = AssetLoader.getInstance();
-    private Image img;
-
     private int maxBubble;
     private int count;
 
     // needs to be without parameters!
     public OxygenFlower() {
-        img = a.getImage("plant");
+        super(AssetLoader.getInstance().getImage("plant"));
         this.maxBubble = 5; //FIXME: use a better value
     }
 
@@ -46,14 +36,6 @@ public class OxygenFlower extends Entity implements Interactable {
 //            entity.setPhysicsObject(childPhysics);
 //            count++;
 //        }
-    }
-
-    public void render(GameContainer container, Graphics g) throws SlickException {
-        g.setColor(Color.pink);
-        img.draw(this.getPosition().x - (img.getWidth() / 2), this.getPosition().y - (img.getHeight() / 2));
-        super.render(container, g);
-
-        // g.drawString(this.hashCode(), position.x, position.y);
     }
 
     public void setMaxBubble(int maxBubble) {
