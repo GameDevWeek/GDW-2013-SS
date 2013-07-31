@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.jbox2d.dynamics.BodyType;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.particles.ParticleSystem;
 
@@ -18,6 +19,7 @@ import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.filter.Interactable;
 import de.fhtrier.gdw.ss2013.game.world.objects.MovingPlatform;
 import de.fhtrier.gdw.ss2013.game.world.objects.ObjectController;
+import de.fhtrier.gdw.ss2013.gui.TooltipManager;
 import de.fhtrier.gdw.ss2013.physix.ButtonContactListener;
 import de.fhtrier.gdw.ss2013.physix.PhysixBox;
 import de.fhtrier.gdw.ss2013.physix.PhysixManager;
@@ -54,6 +56,10 @@ public class LevelLoader {
     }
 
     private static void loadObjectLayer(Layer layer) {
+    	// Two lists for tooltip, has to be that way, sorry
+    	ArrayList<LayerObject> tooltipTrigger = new ArrayList<>(); // contains all trigger for a tooltip image
+    	HashMap<String, ArrayList<LayerObject>> tooltipImagesMap = new HashMap<>(); // contains images fitting to a trigger
+    	
         for (LayerObject object : layer.getObjects()) {
             switch (object.getPrimitive()) {
             case POINT:
@@ -65,10 +71,15 @@ public class LevelLoader {
                         object.getWidth(), object.getHeight(),
                         object.getProperties());
                 break;
-            case TILE:
-                createTile(object.getType(), object.getX(), object.getLowestY(),
-                        object.getWidth(), object.getHeight(),
-                        object.getProperties(), object.getName());
+            case TILE:                
+                if (!isTooltipObject(object)) {
+                	createTile(object.getType(), object.getX(), object.getLowestY(),
+                            object.getWidth(), object.getHeight(),
+                            object.getProperties(), object.getName());
+            	}
+            	else {
+            		handleTooltipObject(object, tooltipTrigger, tooltipImagesMap);
+            	}
                 break;
             case POLYGON:
                 createPolygon(object.getType(), object.getPoints(),
@@ -317,4 +328,106 @@ public class LevelLoader {
         }
         return startpos;
     }
+    
+    /**
+     * Check, if an layerobject has to do something with tooltips
+     * @author Robin
+     */
+    private static boolean isTooltipObject(LayerObject object) {
+    	String type = object.getProperties().getProperty("type");
+    	if (type != null) {
+    		return type.equals("tt_pic") || type.equals("tt_trigger");
+    	}
+    	return false;
+    }
+
+    /**
+     * Handle different tooltip objects during insertion process
+     * @author Robin
+     */
+    private static void handleTooltipObject(LayerObject object, ArrayList<LayerObject> tooltipTrigger, HashMap<String, ArrayList<LayerObject>> tooltipImagesMap) {
+    	String type = object.getProperties().getProperty("type");
+    	if (!isTooltipObject(object)) {
+    		System.err.println("Wrong tooltip object!");
+    		return;
+    	}
+    	if (type != null) {
+    		if (type.equals("tt_pic")) {
+    			String name = object.getName();
+    			if (name == null || name.equals("")) {
+    				System.err.println("You have failed during try to use tooltips! Object with type \'tt_pic\' has no name! Correct that!");
+    				return;
+    			}
+    			ArrayList<LayerObject> tooltipImages = tooltipImagesMap.get("name");
+    			if (tooltipImages == null) {
+    				ArrayList<LayerObject> l = new ArrayList<>();
+    				l.add(object);
+    				tooltipImagesMap.put(name, l);
+    			}
+    			else {
+    				tooltipImages.add(object);
+    			}
+    		}
+    		else {
+    			String triggerName = object.getProperties().getProperty("trigger");
+    			if (triggerName == null || triggerName.equals("")) {
+    				System.err.println("You have failed during try to use tooltips! Object with type \'tt_trigger\' has no trigger aim! Correct that!");
+    				return;
+    			}
+    			tooltipTrigger.add(object);
+    		}
+    	}
+	}
+
+    /**
+     * Give all correct tooltips to TooltipManager
+     * @author Robin
+     */
+	private static void handleAllTooltips(ArrayList<LayerObject> tooltipTrigger,
+			HashMap<String, ArrayList<LayerObject>> tooltipImagesMap) {
+		TooltipManager ttm = TooltipManager.getInstance();
+		
+		for (LayerObject trigger : tooltipTrigger) {
+			String triggerAim = trigger.getProperties().getProperty("trigger");
+			ArrayList<LayerObject> triggeredImages = tooltipImagesMap.get(triggerAim);
+			if (triggeredImages == null) {
+				System.err.println("You have failed during try to use tooltips! There is no trigger-target with name "+triggerAim);
+				break;
+			}
+			for (LayerObject triggeredImage : triggeredImages) {
+				int img_x = triggeredImage.getX();
+				int img_y = triggeredImage.getY();
+				Vector2f img_pos = new Vector2f(img_x,img_y);
+
+				int trigger_x = trigger.getX();
+				int trigger_y = trigger.getY();
+				Vector2f trigger_pos = new Vector2f(trigger_x,trigger_y);
+				
+				String imageName = triggeredImage.getProperties().getProperty("image");
+				if (imageName == null || imageName.equals("")) {
+					System.err.println("You have failed during try to use tooltips! tt_pic does have no image-attribute.");
+					break;
+				}
+				Image img = AssetLoader.getInstance().getImage(imageName);
+				if (img == null) {
+					System.err.println("You have failed during try to use tooltips! tt_pic does use the image "+imageName+", but that doesn't exist.");
+					break;
+				}
+				String radius = triggeredImage.getProperties().getProperty("radius");
+				if (radius == null || radius.equals("")) {
+//					ttm.addTooltip(img_pos, img, trigger_pos);
+				}
+				else {
+					try {
+						Integer iRadius = new Integer(radius);
+//						ttm.addTooltip(img_pos, img, trigger_pos, iRadius);
+					}
+					catch (Exception e) {
+						System.err.println("You have failed during try to use tooltips! tt_trigger uses the radius \'"+radius+"\', which is no number.");
+						break;
+					}
+				}
+			}
+		}
+	}
 }
