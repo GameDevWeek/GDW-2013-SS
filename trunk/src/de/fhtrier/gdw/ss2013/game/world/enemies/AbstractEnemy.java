@@ -8,6 +8,8 @@ import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.Entity;
+import de.fhtrier.gdw.ss2013.game.EntityCollidable;
+import de.fhtrier.gdw.ss2013.physix.PhysixObject;
 
 /**
  * Abstract Enemy Class for Enemys and Meteroids
@@ -15,7 +17,7 @@ import de.fhtrier.gdw.ss2013.game.Entity;
  * @author Kevin, Georg
  * 
  */
-public abstract class AbstractEnemy extends Entity {
+public abstract class AbstractEnemy extends EntityCollidable {
 
     private float damage;
     private Animation current_ani;
