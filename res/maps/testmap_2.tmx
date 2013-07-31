@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="100" height="150" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" source="dummy_tileset.tsx"/>
+ <tileset firstgid="37" name="entity_tileset" tilewidth="64" tileheight="64">
+  <image source="entity_tileset.png" width="192" height="384"/>
+  <tile id="0">
+   <properties>
+    <property name="type" value="flyingenemy"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="type" value="groundenemy"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="type" value="door"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="type" value="switch"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="type" value="box"/>
+   </properties>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="type" value="meteroid"/>
+   </properties>
+  </tile>
+  <tile id="6">
+   <properties>
+    <property name="type" value="oxygenflower"/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="type" value="button"/>
+   </properties>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="type" value="smallflyingenemy"/>
+   </properties>
+  </tile>
+  <tile id="10">
+   <properties>
+    <property name="type" value="middleflyingenemy"/>
+   </properties>
+  </tile>
+  <tile id="11">
+   <properties>
+    <property name="type" value="bigflyingenemy"/>
+   </properties>
+  </tile>
+  <tile id="12">
+   <properties>
+    <property name="type" value="smallgroundenemy"/>
+   </properties>
+  </tile>
+  <tile id="13">
+   <properties>
+    <property name="type" value="middlegroundenemy"/>
+   </properties>
+  </tile>
+  <tile id="14">
+   <properties>
+    <property name="type" value="biggroundenemy"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="Kachelebene 1" width="100" height="150">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3Y4UrDMBQG0KhYUVEREZniD33/h7QFxVDatKlud+3OgctYt4Q237abLiUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGDLmuyxKb1xBc7aOp+oi4A5S3MsGVt7DVGu27qZqNuAOUtz1I59a+uq8hpYrknl36rLJI9DKmXxkuRxTPI8PoLPhd88XtP0HmNNfX+tujzm7C+W7l0i5fvItX2OHntVY2zvHb0G3ff+4btOqT/m151X9BrIQx7HQB6x+vcykXmUevbW8/hMw317l+LyKK35lvPosrjLamj95XEY/SxOLY+nP4z9b0NZRObx3ntek8f9wup61NC91M/x54Hah7EsIvMo9a7+fz6l12pqNzJ+7Pi+aiyLuXnUnOtcXyk39+1g6gAA
+  </data>
+ </layer>
+ <objectgroup name="Objektebene 1" width="100" height="150">
+  <object type="plattformline" x="501" y="4458">
+   <polyline points="0,0 399,253"/>
+  </object>
+  <object gid="49" x="1494" y="4758"/>
+  <object gid="50" x="2228" y="4605"/>
+  <object gid="51" x="2462" y="4447"/>
+  <object gid="46" x="2220" y="4207"/>
+  <object gid="47" x="1690" y="4019"/>
+  <object gid="48" x="839" y="3993"/>
+  <object type="plattformline" x="976" y="3985">
+   <polyline points="0,0 -266,-53 -234,-257 0,-362 114,-293 453,-259 606,-237 219,-143 61,-178 1,1"/>
+  </object>
+  <object type="plattformline" x="1514" y="3983">
+   <polyline points="0,0 314,2 337,-116 320,-283 112,-149 -138,-51 -25,17 2,-1"/>
+  </object>
+  <object type="plattformline" x="2312" y="4174">
+   <polyline points="0,0 -263,-2 -318,-297 -312,-646 30,-676 198,-653 218,-201 104,0 -9,0"/>
+  </object>
+  <object gid="43" x="2008" y="4381"/>
+  <object gid="42" x="2726" y="4383"/>
+  <object gid="42" x="2634" y="4423"/>
+  <object gid="42" x="2798" y="4590"/>
+  <object gid="39" x="1873" y="4777"/>
+  <object gid="40" x="1722" y="4786"/>
+  <object gid="41" x="1326" y="4221"/>
+  <object gid="44" x="1827" y="4233"/>
+  <object gid="39" x="1731" y="4224"/>
+  <object gid="41" x="1120" y="4744"/>
+  <object type="solid" x="-9" y="4770" width="2889" height="46"/>
+  <object type="solid" x="352" y="4448" width="126" height="332"/>
+  <object type="solid" x="128" y="4608" width="126" height="194"/>
+  <object type="solid" x="1216" y="4226" width="254" height="60"/>
+  <object type="solid" x="672" y="4224" width="320" height="64"/>
+  <object type="solid" x="0" y="4226" width="318" height="60"/>
+  <object type="solid" x="2338" y="4448" width="220" height="330"/>
+  <object type="solid" x="2174" y="4608" width="196" height="190"/>
+  <object type="solid" x="2178" y="4610">
+   <polyline points="0,0 -174,172"/>
+  </object>
+  <object type="solid" x="1698" y="4224" width="190" height="222"/>
+  <object x="2208" y="4384" height="54"/>
+  <object x="2206" y="4386" height="44"/>
+  <object type="solid" x="1870" y="4386" width="334" height="64"/>
+  <object type="solid" x="1884" y="4350">
+   <polyline points="0,0 48,46"/>
+  </object>
+  <object type="solid" x="990" y="4254" width="226" height="32"/>
+  <object type="solid" x="2608" y="4206">
+   <polyline points="0,0 172,-170 432,-180 600,-750"/>
+  </object>
+  <object type="deadzone" x="476" y="4750" width="450" height="14"/>
+  <object type="deadzone" x="1184" y="4752" width="160" height="16"/>
+  <object type="deadzone" x="1856" y="4446" width="128" height="16"/>
+  <object type="solid" x="-18" y="-10" width="20" height="4824"/>
+  <object type="solid" x="3198" y="-28" width="28" height="4852"/>
+  <object type="solid" x="-26" y="4" width="3230" height="14"/>
+ </objectgroup>
+</map>
