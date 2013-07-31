@@ -30,6 +30,7 @@ public class EnemyBullet extends AbstractEnemy implements ICollidable,
     private EntityManager m;
 
     public EnemyBullet() {
+    	super(null);
         img = a.getImage("boltEnemy");
     }
 

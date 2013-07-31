@@ -7,6 +7,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
+import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
@@ -30,9 +31,9 @@ public class FlyingEnemy extends AbstractEnemy implements ICollidable {
     private Astronaut p;
     private World w = World.getInstance();
     final static float DEBUG_ENTITY_HALFEXTEND = 5;
-    private String rechts = "animtest", links = "animtest", current = "animtest";
 
     public FlyingEnemy() {
+    	super(AssetLoader.getInstance().getAnimation("flying_ememy_middle"));
         this.health = 100f; // FIXME: dummy value!
         this.m = w.getEntityManager();
         this.p = w.getAstronaut();
@@ -53,9 +54,6 @@ public class FlyingEnemy extends AbstractEnemy implements ICollidable {
         else {
             factor = 50;
         }
-        setLeft_animation(links);
-        setRight_animation(rechts);
-        setCurrent(current);
     }
 
     public void setHealth(float hp) {

@@ -8,7 +8,6 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
-import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.player.Player;
 import de.fhtrier.gdw.ss2013.game.world.World;
@@ -26,15 +25,12 @@ public class GroundEnemy extends AbstractEnemy {
     private Astronaut p;
     private Image img;
     private AssetLoader a = AssetLoader.getInstance();
-    private EntityManager m;
     private World w = World.getInstance();
     private Vector2f lastposition;
     private float speed = 80;
 
-    private String rechts = "animtest", links = "animtest",
-            current = "animtest";
-
     public GroundEnemy() {
+    	super(AssetLoader.getInstance().getAnimation("ground_ememy_middle"));
         img = a.getImage("groundEnemy");
         /*
          * if (Math.random() >= 0.5) { intelligence = true; } else {
@@ -45,19 +41,7 @@ public class GroundEnemy extends AbstractEnemy {
         huntMode = waitMode = false;
         hunttime = 0;
         moveLR = false;
-        setLeft_animation(links);
-        setRight_animation(rechts);
-        setCurrent(current);
         p = w.getAstronaut();
-        m = w.getEntityManager();
-    }
-
-    public void render(GameContainer container, Graphics g)
-            throws SlickException {
-        Vector2f position = getPosition();
-        g.drawImage(img, position.x - (img.getWidth() / 2),
-                position.y - (img.getHeight() / 2));
-        // g.drawString(this.hashCode(), position.x, position.y);
     }
 
     public void update(GameContainer container, int delta)

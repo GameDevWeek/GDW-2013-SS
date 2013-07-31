@@ -13,13 +13,6 @@
   "loop" : true
 },
 {
-  "name" : "meteroid",
-  "pfad" : "entities/meteroid",
-  "anzBilder" : 1,
-  "animSpeed" : 100,
-  "loop" : true
-},
-{
   "name" : "astronaut_standing",
   "pfad" : "player/astronaut/standing",
   "anzBilder" : 1,
@@ -93,6 +86,27 @@
   "name" : "alien_standing",
   "pfad" : "player/alien/standing",
   "anzBilder" : 1,
+  "animSpeed" : 100,
+  "loop" : true
+},
+{
+  "name" : "meteroid",
+  "pfad" : "entities/meteroid",
+  "anzBilder" : 1,
+  "animSpeed" : 100,
+  "loop" : true
+},
+{
+  "name" : "flying_ememy_middle",
+  "pfad" : "enemies/flying/middle",
+  "anzBilder" : 2,
+  "animSpeed" : 100,
+  "loop" : true
+},
+{
+  "name" : "ground_ememy_middle",
+  "pfad" : "enemies/ground/middle",
+  "anzBilder" : 2,
   "animSpeed" : 100,
   "loop" : true
 }]
