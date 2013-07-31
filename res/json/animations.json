@@ -90,8 +90,15 @@
   "loop" : true
 },
 {
-  "name" : "meteroid",
-  "pfad" : "entities/meteroid",
+  "name" : "meteorite",
+  "pfad" : "entities/meteorite",
+  "anzBilder" : 1,
+  "animSpeed" : 100,
+  "loop" : true
+},
+{
+  "name" : "flying_ememy_small",
+  "pfad" : "enemies/flying/small",
   "anzBilder" : 1,
   "animSpeed" : 100,
   "loop" : true
@@ -104,9 +111,30 @@
   "loop" : true
 },
 {
+  "name" : "flying_ememy_big",
+  "pfad" : "enemies/flying/big",
+  "anzBilder" : 1,
+  "animSpeed" : 100,
+  "loop" : true
+},
+{
+  "name" : "ground_ememy_small",
+  "pfad" : "enemies/ground/small",
+  "anzBilder" : 1,
+  "animSpeed" : 100,
+  "loop" : true
+},
+{
   "name" : "ground_ememy_middle",
   "pfad" : "enemies/ground/middle",
   "anzBilder" : 2,
+  "animSpeed" : 100,
+  "loop" : true
+},
+{
+  "name" : "ground_ememy_big",
+  "pfad" : "enemies/ground/big",
+  "anzBilder" : 1,
   "animSpeed" : 100,
   "loop" : true
 }]

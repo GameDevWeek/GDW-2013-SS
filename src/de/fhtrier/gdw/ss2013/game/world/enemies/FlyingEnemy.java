@@ -2,6 +2,7 @@ package de.fhtrier.gdw.ss2013.game.world.enemies;
 
 import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.contacts.Contact;
+import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -22,7 +23,7 @@ import de.fhtrier.gdw.ss2013.physix.PhysixObject;
  * @author Kevin, Georg
  * 
  */
-public class FlyingEnemy extends AbstractEnemy implements ICollidable {
+public abstract class FlyingEnemy extends AbstractEnemy implements ICollidable {
 
     private float health, flytime, bolttime;
     private float flyintelligence, boltintelligence;
@@ -32,8 +33,8 @@ public class FlyingEnemy extends AbstractEnemy implements ICollidable {
     private World w = World.getInstance();
     final static float DEBUG_ENTITY_HALFEXTEND = 5;
 
-    public FlyingEnemy() {
-    	super(AssetLoader.getInstance().getAnimation("flying_ememy_middle"));
+    public FlyingEnemy(Animation animation) {
+    	super(animation);
         this.health = 100f; // FIXME: dummy value!
         this.m = w.getEntityManager();
         this.p = w.getAstronaut();

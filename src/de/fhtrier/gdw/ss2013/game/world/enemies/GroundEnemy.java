@@ -1,9 +1,8 @@
 package de.fhtrier.gdw.ss2013.game.world.enemies;
 
 import org.jbox2d.dynamics.contacts.Contact;
+import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
@@ -19,18 +18,17 @@ import de.fhtrier.gdw.ss2013.physix.PhysixObject;
  * @author Kevin, Georg
  * 
  */
-public class GroundEnemy extends AbstractEnemy {
+public abstract class GroundEnemy extends AbstractEnemy {
     private float movetime, lasttime, hunttime;
     private boolean intelligence, normalMode, huntMode, waitMode, moveLR;
     private Astronaut p;
-    private Image img;
     private AssetLoader a = AssetLoader.getInstance();
     private World w = World.getInstance();
     private Vector2f lastposition;
     private float speed = 80;
 
-    public GroundEnemy() {
-    	super(AssetLoader.getInstance().getAnimation("ground_ememy_middle"));
+    public GroundEnemy(Animation animation) {
+    	super(animation);
         img = a.getImage("groundEnemy");
         /*
          * if (Math.random() >= 0.5) { intelligence = true; } else {

@@ -29,7 +29,7 @@ public class Meteroid extends AbstractEnemy implements ICollidable {
 	final static float DEBUG_ENTITY_HALFEXTEND = 5;
 
 	public Meteroid() {
-		super(AssetLoader.getInstance().getAnimation("meteroid"));
+		super(AssetLoader.getInstance().getAnimation("meteorite"));
 	    this.m = World.getInstance().getEntityManager();
 	}
     
