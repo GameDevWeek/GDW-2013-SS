@@ -22,7 +22,11 @@ public class PhysixManager implements ContactListener {
         this.input = container.getInput();
         world = new World(new Vec2(0, GRAVITY));
 
-        world.setContactListener(new JumpTestListener()); // listener for jumptest of playerboxes
+        
+        world.setContactListener(this);
+//        world.setContactListener(new JumpTestListener()); // listener for jumptest of playerboxes
+//        world.setContactListener(new EnemyContactListener());
+        
     }
 
     public void update(int delta) {
@@ -45,9 +49,9 @@ public class PhysixManager implements ContactListener {
         PhysixObject objectB = (PhysixObject) contact.getFixtureB().getBody()
                 .getUserData();
         if (objectA != null)
-            objectA.beginContact(objectA, objectB);
+            objectA.beginContact(contact);
         if (objectB != null)
-            objectB.beginContact(objectA, objectB);
+            objectB.beginContact(contact);
     }
 
     @Override
@@ -57,9 +61,9 @@ public class PhysixManager implements ContactListener {
         PhysixObject objectB = (PhysixObject) contact.getFixtureB().getBody()
                 .getUserData();
         if (objectA != null)
-            objectA.endContact(objectA, objectB);
+            objectA.endContact(contact);
         if (objectB != null)
-            objectB.endContact(objectA, objectB);
+            objectB.endContact(contact);
     }
 
     @Override

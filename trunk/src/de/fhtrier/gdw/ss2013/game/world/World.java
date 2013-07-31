@@ -20,7 +20,6 @@ import de.fhtrier.gdw.ss2013.game.world.enemies.Meteroid;
 import de.fhtrier.gdw.ss2013.game.world.objects.OxygenFlower;
 import de.fhtrier.gdw.ss2013.input.InputManager;
 import de.fhtrier.gdw.ss2013.physics.DebugDrawer;
-import de.fhtrier.gdw.ss2013.physix.ICollisionListener;
 import de.fhtrier.gdw.ss2013.physix.PhysixBox;
 import de.fhtrier.gdw.ss2013.physix.PhysixBoxPlayer;
 import de.fhtrier.gdw.ss2013.physix.PhysixManager;
@@ -74,19 +73,7 @@ public class World {
 		astronaut = entityManager.createEntity(Astronaut.class);
           PhysixObject physicsObject = new PhysixBoxPlayer(physicsManager, 400, 200,
                   50, 150);
-          physicsObject.addCollisionListener(new ICollisionListener() {
-            
-            @Override
-            public void endContact(PhysixObject object) {
-                System.out.println(object);
-            }
-            
-            @Override
-            public void beginContact(PhysixObject object) {
-                System.out.println(object);
-                
-            }
-        });
+          
 		astronaut.setPhysicsObject(physicsObject);
         
         
@@ -203,7 +190,7 @@ public class World {
         // SoundLocator.getPlayer().playSoundAt(a, player, player);
 
         if (input.isKeyPressed(Input.KEY_B)) {
-            oxyFlower.shootBubbles(entityManager);
+//            oxyFlower.shootBubbles(entityManager);
         }
 
         if (input.isKeyPressed(Input.KEY_SPACE)) {

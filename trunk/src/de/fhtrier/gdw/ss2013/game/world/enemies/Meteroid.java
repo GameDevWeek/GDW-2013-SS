@@ -1,6 +1,7 @@
 package de.fhtrier.gdw.ss2013.game.world.enemies;
 
 import org.jbox2d.dynamics.Fixture;
+import org.jbox2d.dynamics.contacts.Contact;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -68,7 +69,6 @@ public class Meteroid extends AbstractEnemy implements ICollidable {
 	    }
 	}
 
-	@Override
 	public Fixture getFixture() {
 		// TODO Auto-generated method stub
 		return null;
@@ -77,14 +77,25 @@ public class Meteroid extends AbstractEnemy implements ICollidable {
 	    this.m = m;
 	}
 
-    @Override
+
     public void beginContact(PhysixObject object) {
         // TODO Auto-generated method stub
         
     }
 
-    @Override
     public void endContact(PhysixObject object) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void beginContact(Contact object) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void endContact(Contact object) {
         // TODO Auto-generated method stub
         
     }

@@ -25,7 +25,11 @@ public class PhysixBoxPlayer extends PhysixBox {
         addSlideShape(onePx, halfHeight, halfWidth, halfWidth - onePx);
         
         addSensor(0, halfHeight, (halfWidth-MathConstants.EPSILON_F), 1);
-    }
+        
+        
+        this.addCollisionListener(new JumpTestListener());
+        this.addCollisionListener(new EnemyContactListener());
+        }
 
     private void addSlideShape(float onePx, float halfHeight, float halfWidth, float x) {
         PolygonShape slideShape = new PolygonShape();

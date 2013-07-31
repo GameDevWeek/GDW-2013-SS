@@ -2,13 +2,10 @@ package de.fhtrier.gdw.ss2013.physix;
 
 import java.util.HashMap;
 
-import org.jbox2d.callbacks.ContactImpulse;
-import org.jbox2d.callbacks.ContactListener;
-import org.jbox2d.collision.Manifold;
 import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.contacts.Contact;
 
-public class JumpTestListener implements ContactListener {
+public class JumpTestListener implements ICollisionListener {
 
     HashMap<PhysixObject, Integer> contactCount = new HashMap<>();
     
@@ -89,14 +86,6 @@ public class JumpTestListener implements ContactListener {
         }
     }
 
-    @Override
-    public void preSolve(Contact contact, Manifold oldManifold) {
-        
-    }
 
-    @Override
-    public void postSolve(Contact contact, ContactImpulse impulse) {
-        
-    }
 
 }

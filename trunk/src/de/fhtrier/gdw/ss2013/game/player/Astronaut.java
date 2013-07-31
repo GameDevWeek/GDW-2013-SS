@@ -108,6 +108,8 @@ public class Astronaut extends Player implements AstronautController {
 		return jumpSpeed;
 	}
 	
-	
+	public void die() {
+	    setOxygen(0);
+	}
 
 }
