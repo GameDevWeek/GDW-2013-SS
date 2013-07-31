@@ -81,11 +81,11 @@ public class Gamepad extends InputDevice {
 		} else if (controller.getPovY() < 0) {
 			doButton("-POV_Y");
 		}
-		Log.debug("new frame");
+		//Log.debug("new frame");
 		int numAxes = controller.getAxisCount();
 		for (int i = 0; i < numAxes; i++) {
 			float value = controller.getAxisValue(i);
-			Log.debug("Achse: " + controller.getAxisName(i) + " Wert " + controller.getAxisValue(i));
+		//	Log.debug("Achse: " + controller.getAxisName(i) + " Wert " + controller.getAxisValue(i));
 			if (value > 0.4f) {
 				doButtonFromAnalog("+" + controller.getAxisName(i), value);
 			} else if (value < -0.4f) {
