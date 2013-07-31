@@ -1,0 +1,23 @@
+{
+ "astronaut": {
+   "width": 50,
+   "height": 110,
+   "speed": 160,
+   "jumpSpeed": 400,
+   "jumpDelay": 500
+ },
+ "alien": {
+   "width": 70,
+   "height": 70,
+   "speed": 0,
+   "jumpSpeed": 0,
+   "jumpDelay": 500
+ },
+ "combined": {
+   "width": 50,
+   "height": 134,
+   "speed": 160,
+   "jumpSpeed": 350,
+   "jumpDelay": 500
+ }
+}

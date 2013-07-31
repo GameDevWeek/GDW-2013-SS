@@ -9,6 +9,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
+import de.fhtrier.gdw.ss2013.assetloader.infos.GameDataInfo;
 import de.fhtrier.gdw.ss2013.constants.PlayerConstants;
 import de.fhtrier.gdw.ss2013.input.AstronautController;
 import de.fhtrier.gdw.ss2013.physix.InteractionManager;
@@ -21,10 +22,10 @@ public class Astronaut extends Player implements AstronautController {
 	private float maxOxygen;
 	private boolean carryAlien = true;
 	Animation bewegungs_ani;
-	float maxSpeed = 320;
-	float speed = 160;
-	float jumpSpeed = 350;// 300
+	float speed;
+	float jumpSpeed;
 	int jumpDelay = 0;
+	int jumpDelayTotal;
 	// set of entities, which can currently be activated with the action button
 	private InteractionManager interactionManager;
 
@@ -36,6 +37,12 @@ public class Astronaut extends Player implements AstronautController {
 		setState(PlayerState.standing);
 		maxOxygen = 1000f;
 		oxygen = maxOxygen;
+        
+        
+        GameDataInfo info = AssetLoader.getInstance().getGameData();
+        speed = info.combined.speed;
+        jumpSpeed = info.combined.jumpSpeed;
+        jumpDelayTotal = info.combined.jumpDelay;
 	}
 
 	public float getOxygen () {
@@ -104,7 +111,7 @@ public class Astronaut extends Player implements AstronautController {
 			setVelocityY(-jumpSpeed);
 			physicsObject.applyImpulse(new Vector2f(0, -jumpSpeed));
 			setState(PlayerState.jumping);
-			jumpDelay = 500;
+			jumpDelay = jumpDelayTotal;
 		}
 	}
 

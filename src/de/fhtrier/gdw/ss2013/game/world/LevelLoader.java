@@ -60,19 +60,27 @@ public class LevelLoader {
     	HashMap<String, ArrayList<LayerObject>> tooltipImagesMap = new HashMap<>(); // contains images fitting to a trigger
     	
         for (LayerObject object : layer.getObjects()) {
+            String type = object.getType();
+            if(object.getPrimitive() == LayerObject.Primitive.TILE)
+                type = object.getProperty("type", null);
+            if(type == null) {
+                System.out.println("Warning: type missing for object!");
+                continue;
+            }
+            
             switch (object.getPrimitive()) {
             case POINT:
-                createPoint(object.getType(), object.getX(), object.getY(),
+                createPoint(type, object.getX(), object.getY(),
                         object.getProperties());
                 break;
             case RECT:
-                createRect(object.getType(), object.getX(), object.getY(),
+                createRect(type, object.getX(), object.getY(),
                         object.getWidth(), object.getHeight(),
                         object.getProperties());
                 break;
             case TILE:                
                 if (!isTooltipObject(object)) {
-                	createTile(object.getType(), object.getX(), object.getLowestY(),
+                	createTile(type, object.getX(), object.getLowestY(),
                             object.getWidth(), object.getHeight(),
                             object.getProperties(), object.getName());
             	}
@@ -81,7 +89,7 @@ public class LevelLoader {
             	}
                 break;
             case POLYGON:
-                createPolygon(object.getType(), object.getPoints(),
+                createPolygon(type, object.getPoints(),
                         object.getProperties());
                 break;
             case POLYLINE:
@@ -203,9 +211,6 @@ public class LevelLoader {
      */
     private static void createTile(String type, int x, int y, int width,
             int height, SafeProperties properties, String name) {
-        // tiles must not have a type, but a type-property
-        if (type == null)
-            type = properties.getProperty("type");
 
         Entity entity;
         switch (type) {

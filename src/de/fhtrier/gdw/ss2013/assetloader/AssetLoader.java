@@ -26,7 +26,7 @@ import de.fhtrier.gdw.commons.tiled.TiledMap;
 import de.fhtrier.gdw.ss2013.assetloader.infos.AnimationInfo;
 import de.fhtrier.gdw.ss2013.assetloader.infos.ControlsInfo;
 import de.fhtrier.gdw.ss2013.assetloader.infos.FontInfo;
-import de.fhtrier.gdw.ss2013.assetloader.infos.GameStatsInfo;
+import de.fhtrier.gdw.ss2013.assetloader.infos.GameDataInfo;
 import de.fhtrier.gdw.ss2013.assetloader.infos.ImageInfo;
 import de.fhtrier.gdw.ss2013.assetloader.infos.InfoInfo;
 import de.fhtrier.gdw.ss2013.assetloader.infos.MapInfo;
@@ -45,7 +45,7 @@ public class AssetLoader {
 	private HashMap<String, String> infosMap = new HashMap<>();
 
 	private SettingsInfo settings;
-	private GameStatsInfo gameStats;
+	private GameDataInfo gameStats;
 
 	private static AssetLoader instance;
 
@@ -66,7 +66,7 @@ public class AssetLoader {
 		setupPartikel("res/json/partikel.json");
 		setupSettings("res/json/settings.json");
 		setupInfos("res/json/infos.json");
-		setupGameStats("res/json/gameStats.json");
+		setupGameStats("res/json/gameData.json");
         setupControls("res/json/controls.json");
 	}
 
@@ -145,7 +145,7 @@ public class AssetLoader {
 
 	private void setupGameStats(String filename) {
 		try {
-			gameStats = JacksonReader.read(filename, GameStatsInfo.class);
+			gameStats = JacksonReader.read(filename, GameDataInfo.class);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -283,7 +283,7 @@ public class AssetLoader {
 	    }
 	}
 
-	public GameStatsInfo getGameStats() {
+	public GameDataInfo getGameData() {
 		return gameStats;
 	}
 
