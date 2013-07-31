@@ -210,6 +210,19 @@ public class ThreePointCamera {
             tileOverlapY = getOffsetY() % mapTileHeight;
         }
     }
+    
+    public void pushViewMatrix(Graphics g) {
+        g.pushTransform();
+        g.translate(this.getZoomedTranslateX() / 2 ,
+                this.getZoomedTranslateY() / 2);
+
+        g.scale(this.scaleX(), this.scaleY());
+        g.translate(-this.getCenter().x , -this.getCenter().y);
+    }
+    
+    public void popViewMatrix(Graphics g) {
+        g.popTransform();
+    }
 
     private int numTilesX;
     private int numTilesY;
