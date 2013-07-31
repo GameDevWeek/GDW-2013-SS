@@ -6,6 +6,7 @@ package de.fhtrier.gdw.ss2013.game;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
@@ -17,14 +18,23 @@ import de.fhtrier.gdw.ss2013.physix.PhysixObject;
 public abstract class Entity {
 
     protected PhysixObject physicsObject;
+    protected Image img;
 
     final static float DEBUG_ENTITY_HALFEXTEND = 5;
 
+    /* every Entity-class needs a constructor without any parameters! */
     public Entity() {
+    }
+    
+    public Entity(Image img) {
+        this.img = img;
     }
 
     public void render(GameContainer container, Graphics g)
             throws SlickException {
+        if (img != null) {
+            g.drawImage(img, getPosition().x-(img.getWidth()/2), getPosition().y-(img.getHeight()/2));
+        }
     }
 
     public void update(GameContainer container, int delta)
