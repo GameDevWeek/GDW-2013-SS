@@ -180,28 +180,23 @@ public class LevelLoader {
         
         // x|y are in Tiled the left bottom(!) corner, fix that:
         y -= height;
-        
-        boolean isStartPosition = type.equals("start");
-        
-        if (!isStartPosition) {
-        	Entity entity = entityManager.createEntity(type, properties);
-        	
-	        switch(type)
-	        {
-	        // WTF!!!
-	//            case "circle":
-	//                float radius = Math.max(width, height) / 2;
-	//                PhysixCircle circle = new PhysixCircle(physicsManager, x, y, radius, BodyType.DYNAMIC, 1, 0.5f, false);
-	//                entity.setPhysicsObject(circle);
-	//                break;
-	            default:
-	                PhysixBox box = new PhysixBox(physicsManager, x, y, width, height, BodyType.DYNAMIC, 1, 0.5f, false);
-	                entity.setPhysicsObject(box);
-	                break;
-	        }
-        }
-        else {
+    	
+        switch(type)
+        {
+        // WTF!!!
+//            case "circle":
+//                float radius = Math.max(width, height) / 2;
+//                PhysixCircle circle = new PhysixCircle(physicsManager, x, y, radius, BodyType.DYNAMIC, 1, 0.5f, false);
+//                entity.setPhysicsObject(circle);
+//                break;
+        case "start":
         	startpos = new Vector2f(x,y);
+        	break;
+        default:
+        	Entity entity = entityManager.createEntity(type, properties);
+            PhysixBox box = new PhysixBox(physicsManager, x, y, width, height, BodyType.DYNAMIC, 1, 0.5f, false);
+            entity.setPhysicsObject(box);
+            break;
         }
     }
 
