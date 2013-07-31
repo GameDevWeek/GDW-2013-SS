@@ -5,7 +5,6 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
-import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.filter.Interactable;
 
 /**
@@ -45,16 +44,18 @@ public class Switch extends ObjectController implements Interactable {
     public void setSwitch(boolean value) {
         isActivated = value;
     }
-
+    
     @Override
     public void activate() {
-        // TODO Auto-generated method stub
-        
+        if(canBeTriggered) {
+            super.activate();
+        }
     }
-
+    
     @Override
     public void deactivate() {
-        // TODO Auto-generated method stub
-        
+        if(canBeTriggered) {
+            super.deactivate();
+        }
     }
 }
