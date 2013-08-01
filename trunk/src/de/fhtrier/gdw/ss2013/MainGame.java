@@ -106,6 +106,9 @@ public class MainGame extends StateBasedGame {
                 if(a.toLowerCase().equals("-tpcamera")) {
                     DebugModeStatus.setTPCamera(true);
                 }
+                if(a.toLowerCase().startsWith("-level=")) {
+                	DebugModeStatus.setLevel(a.substring(7, a.length()));
+                }
             }
 
             instance = new MainGame(args);

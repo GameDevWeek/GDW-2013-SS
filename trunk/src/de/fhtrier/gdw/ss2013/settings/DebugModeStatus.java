@@ -6,6 +6,8 @@ public class DebugModeStatus {
     static protected boolean physicTestStatus = false;
     
     static protected boolean tpCameraStatus = false;
+    
+    static String levelName = "run_or_die";
 
     static public boolean isTest() {
         return testModeStatus;
@@ -31,4 +33,12 @@ public class DebugModeStatus {
     static public boolean isTPCamera() {
         return tpCameraStatus;
     }
+
+	public static void setLevel(String levelname) {
+		levelName = levelname;
+	}
+
+	public static String getLevelName() {
+		return levelName;
+	}
 }
