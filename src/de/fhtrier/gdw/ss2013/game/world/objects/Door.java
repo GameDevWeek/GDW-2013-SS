@@ -18,6 +18,12 @@ public class Door extends Entity implements Interactable {
 
     public Door() {
         super(AssetLoader.getInstance().getImage("door_closed"));
+        initialize();
+    }
+    
+    @Override
+    protected void initialize() {
+        open = false;
     }
 
     public void activate() {
@@ -36,7 +42,6 @@ public class Door extends Entity implements Interactable {
 
     @Override
     public boolean isActive() {
-        // TODO Auto-generated method stub
         return open;
     }
 
