@@ -28,7 +28,7 @@
 },
 {
   "name" : "bubble",
-  "pfad" : "Sauerstoff"
+  "pfad" : "entities/oxygen_bubble"
 },
 { 
   "name" : "healthBarFrame",
