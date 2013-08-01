@@ -28,7 +28,7 @@ import de.fhtrier.gdw.ss2013.physix.PhysixObject;
 
 public class OxygenBubble extends EntityCollidable implements Interactable {
 
-    private float oxygenLevel = 10;
+    private float oxygenLevel = 20;
     private OxygenFlower flower;
     // private AssetLoader a = AssetLoader.getInstance();
     // private Image img = a.getImage("bubble");
