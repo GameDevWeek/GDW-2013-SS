@@ -32,6 +32,7 @@ public abstract class ObjectController extends Entity implements Interactable {
      */
     @Override
     public void activate() {
+        isActivated = true;
         for (Interactable ia : connectedEntities) {
             ia.activate();
         }
@@ -42,6 +43,7 @@ public abstract class ObjectController extends Entity implements Interactable {
      */
     @Override
     public void deactivate() {
+        isActivated = false;
         for (Interactable ia : connectedEntities) {
             ia.deactivate();
         }
@@ -56,7 +58,9 @@ public abstract class ObjectController extends Entity implements Interactable {
 
     /**
      * connect interactable Entity to this Controller
-     * @param interactable interactable Entity to be connected
+     * 
+     * @param interactable
+     *            interactable Entity to be connected
      */
     public void connectEntity(Interactable interactable) {
         connectedEntities.add(interactable);
@@ -64,7 +68,9 @@ public abstract class ObjectController extends Entity implements Interactable {
 
     /**
      * disconnected interactable Entity from this Controller
-     * @param interactable interactable Entity to be disconnected
+     * 
+     * @param interactable
+     *            interactable Entity to be disconnected
      */
     public void disconnectEntity(Interactable interactable) {
         connectedEntities.remove(interactable);
