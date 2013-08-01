@@ -160,8 +160,12 @@ public class Alien extends Player implements AlienController {
 		}
 	}
 
+	Vector2f screenCursor = new Vector2f();
 	@Override
 	public void setCursor(int x, int y) {
+//	    screenCursor.set(x, y);
+//	    Vector2f worldSpace = World.getInstance().screenToWorldPosition(screenCursor);
+//	    cursor.set(worldSpace.x, worldSpace.y);
 		cursor.set(Math.min(container.getWidth(), Math.max(0, x)), Math.min(container.getHeight(), Math.max(0, y)));
 		// TODO Auto-generated method stub
 		// Log.debug("target direction");

@@ -4,20 +4,20 @@
 
 package de.fhtrier.gdw.ss2013.game.player;
 
+import org.jbox2d.collision.shapes.ShapeType;
+import org.jbox2d.dynamics.Fixture;
+import org.jbox2d.dynamics.contacts.Contact;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.game.EntityCollidable;
 import de.fhtrier.gdw.ss2013.game.cheats.Cheats;
 import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.game.world.enemies.AbstractEnemy;
 import de.fhtrier.gdw.ss2013.physix.PhysixObject;
-import org.jbox2d.collision.shapes.ShapeType;
-import org.jbox2d.dynamics.Fixture;
-import org.jbox2d.dynamics.contacts.Contact;
-import org.newdawn.slick.geom.Vector2f;
 
 /**
  * Player class
@@ -89,6 +89,7 @@ public abstract class Player extends EntityCollidable {
                     && ((damageTakerPos.x - damageTakerDim.x < damageDealerPos.x + damageDealerDim.x  ))
                     && (damageTakerPos.y + damageTakerDim.y < damageDealerPos.y)) { // player deals damage
                 System.out.println(damageDealer+" hit by "+damageTaker);
+                World.getInstance().getEntityManager().removeEntity(damageDealer);
             }
             else {
             	// Wird in Bullet-Klassen geregelt

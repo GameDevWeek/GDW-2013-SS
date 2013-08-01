@@ -6,6 +6,7 @@ import org.newdawn.slick.SlickException;
 
 import de.fhtrier.gdw.ss2013.constants.PlayerConstants;
 import de.fhtrier.gdw.ss2013.game.Entity;
+import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.game.world.enemies.AbstractEnemy;
 import de.fhtrier.gdw.ss2013.game.world.enemies.EnemyBullet;
 
@@ -35,6 +36,11 @@ public class PlayerBullet extends EnemyBullet {
         if (other instanceof AbstractEnemy) {
             ((AbstractEnemy) other).setHealth(((AbstractEnemy) other).getHealth() - PlayerConstants.BULLET_DAMAGE);
             this.livetime = 0;
+        }
+        
+        System.out.println(other+"");
+        if(other == null) {
+            World.getInstance().getEntityManager().removeEntity(this);
         }
     }
 }

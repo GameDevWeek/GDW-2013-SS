@@ -21,7 +21,6 @@ import de.fhtrier.gdw.ss2013.game.camera.ThreePointCamera;
 import de.fhtrier.gdw.ss2013.game.player.Alien;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.score.ScoreCounter;
-import de.fhtrier.gdw.ss2013.game.world.enemies.boss.AbstractBoss;
 import de.fhtrier.gdw.ss2013.game.world.enemies.boss.ThaWhale;
 import de.fhtrier.gdw.ss2013.input.InputManager;
 import de.fhtrier.gdw.ss2013.physix.PhysixBox;
@@ -189,7 +188,7 @@ public class World {
         entityManager.update(container, delta);
         
         if(DebugModeStatus.isTPCamera()) {
-            tpCamera.update(delta, container.getWidth(), container.getHeight(), astronaut.getPosition().x, astronaut.getPosition().y);
+            tpCamera.update(delta, container.getWidth(), container.getHeight(), astronaut.getPosition().x + astronaut.getPhysicsObject().getDimension().x/2, astronaut.getPosition().y+astronaut.getPhysicsObject().getDimension().y/2);
             
             if(container.getInput().isKeyDown(Input.KEY_ADD)) {
                 tpCamera.zoom(0.01f);
@@ -208,7 +207,7 @@ public class World {
     
     public Vector2f screenToWorldPosition(Vector2f screenPosition) {
         if(DebugModeStatus.isTPCamera()) {
-            return tpCamera.screenToWorldPosition(screenPosition);
+            return tpCamera.screenToWorldPositionFromTarget(screenPosition);
         }
         /**
          * Top-left (0,0) / Bottom-right (width,height)
