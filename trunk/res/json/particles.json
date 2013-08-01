@@ -11,27 +11,11 @@
   "pfad" : "res/partikel/pollen2.xml"
   },
   {
-  "name" : "lava_luft_partikel",
-  "pfad" : "res/partikel/lava_luft_partikel.xml"
+  "name" : "lava_3",
+  "pfad" : "res/partikel/lava_3.xml"
   },
   {
-  "name" : "lava_boden_partikel_1",
-  "pfad" : "res/partikel/lava_luft_partikel.xml"
-  },
-  {
-  "name" : "lava_boden_partikel_2",
-  "pfad" : "res/partikel/lava_luft_partikel.xml"
-  }, 
-  {
-  "name" : "lava_boden_partikel_3",
-  "pfad" : "res/partikel/lava_luft_partikel.xml"
-  },
-  {
-  "name" : "lava_boden_partikel_4",
-  "pfad" : "res/partikel/lava_luft_partikel.xml"
-  },
-  {
-  "name" : "wool",
-  "pfad" : "res/partikel/wool.xml"
+   "name" : "lava_4",
+  "pfad" : "res/partikel/lava_4.xml"
   }
   ]

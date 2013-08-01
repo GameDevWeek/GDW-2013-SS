@@ -64,9 +64,9 @@ public abstract class Entity {
 
     public void update(GameContainer container, int delta)
             throws SlickException {
-        if (particle != null) {
+        if (particle != null&& img!=null) {
             particle.update(delta);
-            particle.setPosition(this.getPosition().x, this.getPosition().y);
+            particle.setPosition(this.getPosition().x-this.img.getWidth()/3, this.getPosition().y+this.img.getHeight()/2);
         }
     }
 
