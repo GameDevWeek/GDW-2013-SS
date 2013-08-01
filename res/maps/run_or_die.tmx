@@ -1,79 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="320" height="37" tilewidth="32" tileheight="32">
- <tileset firstgid="1" source="entity_tileset.tsx"/>
- <tileset firstgid="19" source="tiledmap_final.tsx"/>
- <tileset firstgid="100" source="shadow_tileset.tsx"/>
- <tileset firstgid="125" name="moving_platform" tilewidth="64" tileheight="64">
-  <image source="movingplatform.png" width="192" height="64"/>
- </tileset>
- <layer name="Tiles" width="320" height="37">
+<map version="1.0" orientation="orthogonal" width="80" height="40" tilewidth="64" tileheight="64">
+ <tileset firstgid="1" source="tiledmap_final.tsx"/>
+ <tileset firstgid="626" source="entity_tileset.tsx"/>
+ <layer name="Kachelebene 1" width="80" height="40">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2ZwXKbMBCG9RJO3ItteimQ6Vv10ksvvfTxC1N2/HsD2LKFBOX7Zv4hBGl30S6LQkIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIBXOHR6H/Rlg+NfRf155fAPAOU4dbp0qjp93eD4V1F//pjDPwCk5Tio38O8DdLf2bHXt05Np7bTh5vzJudT49XWUXzZcWz8XGxT8byH6dhi7vfobKo/f/y44/v7nTwcRvztbU4qDmE8F0vXxxZsbsHuPVspfZ0HVcOxHn7uj/2zfQn/nu8qXPc7zTDWjjqmEVsXOVd7r8rs1OJn6prFVIdrv7Lrdbju3yo5H7PTynkV4tfm3v7Q9pamPc5Jhfdt+c+R50v47Fvtz13LUatri690PHZu9lqZ37jxFxeT2W1lfONsWo1o7Swp249VYfneHrM2Mf1ir3NS4ftfryrkybP3O6eStbqW+ErH4235XmjXW7FhMn/nEXtmR+NqRxRz/49oqg/b/aTs7TFr80i/sDXZ65xUjPW/XHn2fudUolbXFl/peOyaf3/5nliF2/6of0+YzE7l7LTOpmqsJ96TXxe9ZrHYfS7Z22PW5pF+obHucU4qtPdqveTI89prdW3xlY5Hc1c7P75/+r6lttS+vfMbGVuP2HhWfs30mt1rjt4eszYx/WKvc1KhvrVecuR5i7VaMr7S8dThNoe1m+v/5vb2tKfqOrfOn9/7NmG8XlL0Rl3fJXt7zNr0z/6PGZ2cnz3OSSXf/7Quls7z2mt1jfGVjEf/d2Jj9Fud5rxxYys3R2vD7NsYi8e/C3w/fET+nvSavQsspiV7e8za9M/+zxmdxP9e56SS7726J1g6z2uv1bXFt4Z4UkjtxvTUZ32pUsRxr66nevuj8fbP/q8Z2TerPc9JJe29Wi858ry1Wl1DfCXjyf0d1v8/+BnfqXrvs3Vk9xazNv2z/3tGp3D7DtvjnFTS3qu5zpHnrdVq6fhKx6Prk+M77Nn5yeF7KT8x8/pn/8+M7JtVu+M5qWS+NR9WA0vn+X+o1ZzxlY7nL1ocn0QAuQAA
+   H4sIAAAAAAAAC+2WUc6DIBCEeWx7O622d7C2egeL1Vv/kHwbSPO/0QdMZpKNCDvD4uKCc4IgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIJwXFywc7AT9t+79V2++k70nzPO+cu/Zv1SfhfsGewe7BFsCtYG88EGnm/6lmA77xP+se9DO46N+Mbx9QD6pfzo0wS78YxaL9ovdFf8hkznjZbHp0Ojy9r3A+iX8if8Ppl/C2ch39Gu9I/wZjQ62h0a5rMxX+36pfxH5vMkDzvx5ryescGlPbCyjibLoyeWG9q16/8ivp64Vr7r06WaMJKXB1ob/fbtba4WrmeeFV7t+qX8lXy+ya/lo8cs/z0+G3NNrMPjb//BQAx57ahZv5Rve3Hnm8/4f/CxGhPfFzi2D67ZvEs2v8WwHED/F/HNxLPytBgtPwPfP6+Z1m9npO2JjTisZtSuX8q/ZWNWO3uX7lp25zHN2aWzymfW4du6dD/rDqBfyo+5tPPNwx3w7Rkf8WlcqgGWB9sjm0v3oWuWo9r1S/l2Z2xdqpN2Jll9sTx41mBnn+35nTUtLtX4Bm7t+qX8Pz4UTksAMgAA
   </data>
  </layer>
- <objectgroup name="Objects" width="320" height="37">
-  <object gid="1" x="44" y="814"/>
-  <object type="solid" x="7" y="831" width="2904" height="448"/>
-  <object type="solid" x="1503" y="769" width="128" height="90"/>
-  <object type="solid" x="1120" y="769" width="128" height="94"/>
-  <object type="solid" x="736" y="767" width="127" height="102"/>
-  <object type="solid" x="351" y="768" width="129" height="91"/>
-  <object type="solid" x="2401" y="768" width="254" height="89"/>
-  <object type="solid" x="3137" y="830" width="190" height="474"/>
-  <object type="solid" x="3552" y="833" width="191" height="506"/>
-  <object type="solid" x="3971" y="834" width="188" height="459"/>
-  <object type="solid" x="4385" y="833" width="189" height="476"/>
-  <object type="solid" x="4800" y="832" width="190" height="465"/>
-  <object type="solid" x="-32" y="95" width="50" height="754"/>
-  <object gid="13" x="488" y="824"/>
-  <object gid="13" x="871" y="824"/>
-  <object gid="14" x="1254" y="824"/>
-  <object gid="15" x="1879" y="824"/>
-  <object type="deadzone" x="2915" y="1086" width="225" height="117"/>
-  <object type="deadzone" x="3331" y="1087" width="225" height="117"/>
-  <object type="deadzone" x="3745" y="1081" width="225" height="117"/>
-  <object type="deadzone" x="4163" y="1084" width="225" height="117"/>
-  <object type="deadzone" x="4578" y="1090" width="225" height="117"/>
-  <object gid="6" x="4868" y="564"/>
-  <object gid="6" x="4438" y="575"/>
-  <object gid="6" x="4019" y="573"/>
-  <object gid="6" x="3617" y="574"/>
-  <object gid="6" x="3190" y="575"/>
-  <object name="button_01" gid="8" x="4918" y="829">
-   <properties>
-    <property name="trigger" value="p1"/>
-   </properties>
-  </object>
-  <object gid="5" x="2671" y="822"/>
-  <object name="p1" type="platformLine" x="5054" y="840">
-   <properties>
-    <property name="isActive" value="false"/>
-   </properties>
-   <polyline points="0,0 673,-1"/>
-  </object>
-  <object type="solid" x="2872" y="1136" width="3068" height="90"/>
-  <object name="tt_pic_01" gid="16" x="257" y="736">
-   <properties>
-    <property name="image" value="Tooltip"/>
-   </properties>
-  </object>
-  <object gid="17" x="256" y="825">
-   <properties>
-    <property name="radius" value="200"/>
-    <property name="trigger" value="tt_pic_01"/>
-   </properties>
-  </object>
-  <object name="platformPath" type="platformLine" x="736" y="704">
-   <properties>
-    <property name="moveAround" value="true"/>
-   </properties>
-   <polyline points="0,0 512,0 512,-384 0,-384 0,0"/>
-  </object>
-  <object gid="125" x="960" y="736"/>
-  <object gid="126" x="960" y="352"/>
-  <object gid="6" x="377" y="286"/>
-  <object gid="8" x="387" y="771"/>
-  <object gid="4" x="773" y="771"/>
-  <object gid="10" x="391" y="634"/>
+ <objectgroup name="Objektebene 1" width="80" height="40">
+  <object type="solid" x="-52" y="1816" width="5208" height="824"/>
+  <object type="solid" x="-400" y="-432" width="496" height="3080"/>
+  <object type="solid" x="-392" y="-744" width="6000" height="904"/>
+  <object type="solid" x="4984" y="-144" width="336" height="2864"/>
+  <object gid="626" x="263" y="1743"/>
+  <object gid="630" x="668" y="1792"/>
+  <object gid="640" x="1451" y="1797"/>
+  <object gid="636" x="1779" y="1355"/>
+  <object gid="631" x="1013" y="1359"/>
+  <object gid="627" x="4829" y="1779"/>
+  <object gid="629" x="1167" y="1813"/>
+  <object gid="633" x="921" y="1816"/>
  </objectgroup>
 </map>

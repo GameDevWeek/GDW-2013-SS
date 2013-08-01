@@ -50,7 +50,7 @@
 {
   "name" : "player_couple_walking",
   "pfad" : "player/couple/walking",
-  "anzBilder" : 1,
+  "anzBilder" : 7,
   "animSpeed" : 100,
   "loop" : true
 },
