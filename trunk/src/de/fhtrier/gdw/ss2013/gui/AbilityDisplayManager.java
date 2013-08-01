@@ -12,16 +12,16 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import de.fhtrier.gdw.ss2013.game.world.World;
 
-public class AbilitySelection {
+public class AbilityDisplayManager {
 
-	private AbilityDisplay[] abilityDisplay;
+	private StaticAbilityDisplay[] abilityDisplay;
 	private int selected;
 	private World worldinstance;
 
-	public AbilitySelection() {
+	public AbilityDisplayManager() {
 	}
 
-	public void init(AbilityDisplay[] abilityDisplay,
+	public void init(StaticAbilityDisplay[] abilityDisplay,
             World worldinstance) 
 	{
 	    this.abilityDisplay = abilityDisplay;
@@ -42,14 +42,14 @@ public class AbilitySelection {
 	      abilityDisplay[selected-1].setActivated(true);
 	    };
 	    
-	    for(AbilityDisplay elem : abilityDisplay)
+	    for(StaticAbilityDisplay elem : abilityDisplay)
         {
             elem.update(container, game, delta);
         }
 	}
 	
 	public void render(GameContainer container, StateBasedGame game, Graphics g) {
-	    for(AbilityDisplay elem : abilityDisplay)
+	    for(StaticAbilityDisplay elem : abilityDisplay)
 	    {
 	        elem.render(container, game, g);
 	    }

@@ -8,7 +8,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import de.fhtrier.gdw.ss2013.game.world.World;
 
-public class Quickselect {
+public class Quickselect_old {
 
 	private Image[] ability;
     private int selected = 1;

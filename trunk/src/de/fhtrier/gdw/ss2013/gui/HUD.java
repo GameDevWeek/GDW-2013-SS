@@ -21,8 +21,8 @@ public class HUD {
 	private Progressbar healthbar;
 	private Crosshair crosshair;
 	private TooltipManager tooltipmanager;
-	private AbilitySelection abilityWheel;
-	private Quickselect quickselect;
+	private AbilityDisplayManager abilityDisplayManager;
+	private Quickselect_old quickselect; //old
 	private AssetLoader asset;
     private FpsCalculator fpsCalc = new FpsCalculator(100);
     private Font fpsFont;
@@ -47,9 +47,9 @@ public class HUD {
         
         healthbar.init(position, size, frame, background, bar, font, worldinstance);
 
-		// Init abilityWheel
+		// Init abilityDisplayManager
 
-		abilityWheel = new AbilitySelection();
+		abilityDisplayManager = new AbilityDisplayManager();
 
 		position.set(20, 20);
 
@@ -65,20 +65,20 @@ public class HUD {
 		final float abilityDisplayFadingSpeed = 1.f;
 		final float quickselectFadingSpeed = 2.f; 
 		
-		final AbilityDisplay[] abilityDisplay;
-		abilityDisplay = new AbilityDisplay[3];
+		final StaticAbilityDisplay[] abilityDisplay;
+		abilityDisplay = new StaticAbilityDisplay[3];
 
 		//Image image, Vector2f position
-        abilityDisplay[0]=new AbilityDisplay(abilityDisplay1_Image, abilityDisplay1_Position,abilityDisplayFadingSpeed);
-        abilityDisplay[1]=new AbilityDisplay(abilityDisplay2_Image, abilityDisplay2_Position,abilityDisplayFadingSpeed);
-        abilityDisplay[2]=new AbilityDisplay(abilityDisplay3_Image, abilityDisplay3_Position,abilityDisplayFadingSpeed);
+        abilityDisplay[0]=new StaticAbilityDisplay(abilityDisplay1_Image, abilityDisplay1_Position,abilityDisplayFadingSpeed);
+        abilityDisplay[1]=new StaticAbilityDisplay(abilityDisplay2_Image, abilityDisplay2_Position,abilityDisplayFadingSpeed);
+        abilityDisplay[2]=new StaticAbilityDisplay(abilityDisplay3_Image, abilityDisplay3_Position,abilityDisplayFadingSpeed);
         
-        abilityWheel.init(abilityDisplay, worldinstance);
+        abilityDisplayManager.init(abilityDisplay, worldinstance);
         
         //Init quickselect
 
         //Backup von alter Version
-        quickselect = new Quickselect();
+        quickselect = new Quickselect_old();
 		
                 
 		final int selected = 1;
@@ -123,14 +123,14 @@ public class HUD {
 	public void update(GameContainer container, StateBasedGame game, int delta) {
 
 		healthbar.update(container, game, delta);
-		abilityWheel.update(container, game, delta);
+		abilityDisplayManager.update(container, game, delta);
 		quickselect.update(container, game, delta);
 		fpsCalc.update();
 	}
 
 	public void render(GameContainer container, StateBasedGame game, Graphics g) {
 		healthbar.render(container, game, g);
-		abilityWheel.render(container, game, g);
+		abilityDisplayManager.render(container, game, g);
 		quickselect.render(container, game, g);
 		tooltipmanager.render();
 		crosshair.render(container, game, g);
