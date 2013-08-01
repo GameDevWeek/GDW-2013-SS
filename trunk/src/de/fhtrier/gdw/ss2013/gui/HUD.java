@@ -35,7 +35,7 @@ public class HUD {
 	    // Init healthbar
 	    healthbar = new Progressbar();
 
-		final Vector2f position = new Vector2f(0, 0);
+		final Vector2f position = new Vector2f(20, 20);
 		final Vector2f size = new Vector2f(240, 40); /////////
 		
 		//final String imagePath = "/res/Dummy_GUIs_Images/";
