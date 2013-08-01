@@ -75,6 +75,11 @@ public class EntityManager {
         }
     }
 
+    public void initalUpdate() {
+        internalInsert();
+        internalRemove();
+    }
+
     /**
      * 
      * @param delta
