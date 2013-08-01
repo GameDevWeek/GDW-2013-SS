@@ -95,5 +95,6 @@
   <object type="solid" x="7244" y="1749" width="173" height="121"/>
   <object gid="632" x="4535" y="1805"/>
   <object gid="632" x="610" y="1802"/>
+  <object type="winningzone" x="11649" y="1045" width="1052" height="982"/>
  </objectgroup>
 </map>

@@ -152,16 +152,16 @@ public class LevelLoader {
      */
     private static void createPolygon(String type, ArrayList<Point> points,
             SafeProperties properties) {
-        Entity entity;
         switch (type) {
         case "solid":
 
             // / TODO: create a solid (static) object
             break;
         case "deadzone":
-            entity = entityManager.createEntity(type, properties);
-            // / TODO: create a physics trigger
-            entity.setPhysicsObject(null);
+        case "winningzone":
+            entityManager.createEntity(type, properties);
+            
+            // TODO physix
             break;
         }
     }
@@ -191,6 +191,7 @@ public class LevelLoader {
                     worldInfo.density, worldInfo.friction, false);
             break;
         case "deadzone":
+        case "winningzone":
             entity = entityManager.createEntity(type, properties);
             PhysixBox box = new PhysixBox(physicsManager, x, y, width, height,
                     BodyType.STATIC, worldInfo.density, worldInfo.friction,

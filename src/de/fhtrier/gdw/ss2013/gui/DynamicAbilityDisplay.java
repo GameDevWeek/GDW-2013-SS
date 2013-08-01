@@ -92,7 +92,6 @@ public class DynamicAbilityDisplay extends AbilityDisplay {
             
             if(activated)
             {
-                System.out.println("hey");
                 image.setAlpha(alphaValue);
                 Vector2f p = worldinstance.worldToScreenPosition(worldinstance.getAstronaut().getPosition());
                 
