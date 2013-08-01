@@ -19,6 +19,10 @@
   "pfad" : "entities/door/door_closed"
 },
 {
+  "name" : "door_open",
+  "pfad" : "entities/door/door_open"
+},
+{
   "name" : "plant",
   "pfad" : "entities/plant"
 },
