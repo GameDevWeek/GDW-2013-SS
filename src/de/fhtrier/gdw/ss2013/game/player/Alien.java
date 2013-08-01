@@ -7,7 +7,11 @@ import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.util.Log;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
+import de.fhtrier.gdw.ss2013.game.Entity;
+import de.fhtrier.gdw.ss2013.game.EntityManager;
+import de.fhtrier.gdw.ss2013.game.camera.Camera;
 import de.fhtrier.gdw.ss2013.game.world.World;
+import de.fhtrier.gdw.ss2013.game.world.objects.Box;
 import de.fhtrier.gdw.ss2013.input.AlienController;
 
 public class Alien extends Player implements AlienController {
@@ -17,12 +21,27 @@ public class Alien extends Player implements AlienController {
     private float maxMana;
     private final Vector2f cursor = new Vector2f();
     private GameContainer container;
-    
+
+    private EntityManager entityManager = World.getInstance()
+            .getEntityManager();
+    // telekinese values
+    private Camera camera = World.getInstance().getCamera();
+    private Box currentSelectedBox = null;
+    private float selectionRadius = 10;
+    private final Vector2f oldcursor = new Vector2f();
+    private final Vector2f dragDirection = new Vector2f();
+
     public Alien() {
-    	setAnimation(AssetLoader.getInstance().getAnimation("alien_standing")); // Alien does NOT have different movestates! byRobin
+        setAnimation(AssetLoader.getInstance().getAnimation("alien_standing")); // Alien
+                                                                                // does
+                                                                                // NOT
+                                                                                // have
+                                                                                // different
+                                                                                // movestates!
+                                                                                // byRobin
         selectedAbility = 1;
         maxMana = 0.0f;
-        mana = maxMana;     
+        mana = maxMana;
     }
 
     public void setContainer(GameContainer container) {
@@ -48,7 +67,6 @@ public class Alien extends Player implements AlienController {
     @Override
     public void shoot() {
         Log.debug("shooting");
-     
 
     }
 
@@ -62,11 +80,10 @@ public class Alien extends Player implements AlienController {
     @Override
     public void previousAbility() {
 
-        /*if (selectedAbility > 0){
-         selectedAbility--;
-         }else{
-         selectedAbility = 3;
-         }*/
+        /*
+         * if (selectedAbility > 0){ selectedAbility--; }else{ selectedAbility =
+         * 3; }
+         */
 
         selectedAbility = ((selectedAbility + 1) % 3) + 1;
 
@@ -79,61 +96,96 @@ public class Alien extends Player implements AlienController {
     @Override
     public void useAbility() {
         Log.debug("using ability");
-      
+
+        switch (selectedAbility) {
+        case 1:
+            // telekinese
+            if (currentSelectedBox == null) {
+                for (Entity e : entityManager.getClosestEntitiesAtPosition(
+                        cursor.add(new Vector2f(camera.getOffsetX(), camera
+                                .getOffsetY())), selectionRadius)) {
+                    System.out.println(e.getName());
+                    if (e instanceof Box) {
+                        currentSelectedBox = (Box) e;
+                    }
+                }
+
+            } else {
+                currentSelectedBox = null;
+            }
+            break;
+        }
     }
 
     @Override
     public void setCursor(int x, int y) {
-        cursor.set(Math.min(container.getWidth(), Math.max(0, x)), 
+        cursor.set(Math.min(container.getWidth(), Math.max(0, x)),
                 Math.min(container.getHeight(), Math.max(0, y)));
         // TODO Auto-generated method stub
-        //   Log.debug("target direction");
-        //  setZustand("animtest");
+        // Log.debug("target direction");
+        // setZustand("animtest");
     }
 
     @Override
-    public void update(GameContainer container, int delta) throws SlickException {
+    public void update(GameContainer container, int delta)
+            throws SlickException {
         // TODO Auto-generated method stub
         super.update(container, delta);
 
-     //  if (World.getInstance().getAstronaut().isCarryAlien() == true) {
-           //this.setPosition(World.getInstance().getAstronaut().getPosition().x, (World.getInstance().getAstronaut().getPosition().y));
-     //  }
+        // if (World.getInstance().getAstronaut().isCarryAlien() == true) {
+        // this.setPosition(World.getInstance().getAstronaut().getPosition().x,
+        // (World.getInstance().getAstronaut().getPosition().y));
+        // }
+
+        switch (selectedAbility) {
+        case 1:
+            // telekinese
+            if (currentSelectedBox != null) {
+                dragDirection.x = cursor.x + camera.getOffsetX()
+                        - currentSelectedBox.getPosition().x;
+                dragDirection.y = cursor.y + camera.getOffsetY()
+                        - currentSelectedBox.getPosition().y;
+                currentSelectedBox.setVelocity(dragDirection);
+            }
+        }
     }
-    
+
     @Override
-    public void render(GameContainer container, Graphics g) throws SlickException {
-    	Astronaut astronaut = World.getInstance().getAstronaut();
-    	// Just render alien if astronaut does not carry the alien
-    	if (astronaut != null && !astronaut.isCarryAlien()) {
-    		super.render(container, g);
-    	}
+    public void render(GameContainer container, Graphics g)
+            throws SlickException {
+        Astronaut astronaut = World.getInstance().getAstronaut();
+        // Just render alien if astronaut does not carry the alien
+        if (astronaut != null && !astronaut.isCarryAlien()) {
+            super.render(container, g);
+        }
     }
 
     @Override
     public void cursorLeft(float scale) {
-        cursor.x = Math.min(container.getWidth(), Math.max(0, cursor.x-10.0f*scale));
+        cursor.x = Math.min(container.getWidth(),
+                Math.max(0, cursor.x - 10.0f * scale));
     }
 
     @Override
     public void cursorRight(float scale) {
-        cursor.x = Math.min(container.getWidth(), Math.max(0, cursor.x+10.0f*scale));
+        cursor.x = Math.min(container.getWidth(),
+                Math.max(0, cursor.x + 10.0f * scale));
     }
 
     @Override
     public void cursorUp(float scale) {
-        cursor.y = Math.min(container.getHeight(), Math.max(0, cursor.y-10.0f*scale));
+        cursor.y = Math.min(container.getHeight(),
+                Math.max(0, cursor.y - 10.0f * scale));
     }
 
     @Override
     public void cursorDown(float scale) {
-        cursor.y = Math.min(container.getHeight(), Math.max(0, cursor.y+10.0f*scale));
+        cursor.y = Math.min(container.getHeight(),
+                Math.max(0, cursor.y + 10.0f * scale));
     }
 
     public Vector2f getCursor() {
         return cursor;
     }
-    
-    
-    
+
 }
