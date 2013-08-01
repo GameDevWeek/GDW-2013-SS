@@ -8,4 +8,5 @@ public class PlayerConstants {
 	 */
 	public static final long SHOTDELAY = 250;
 	public static final float BULLET_SPEED = 10;
+	public static final float START_HEALTH = 1000f;
 }
