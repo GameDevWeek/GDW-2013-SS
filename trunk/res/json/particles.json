@@ -17,5 +17,13 @@
   {
    "name" : "lava_4",
   "pfad" : "res/partikel/lava_4.xml"
+  },
+  {
+  	 "name" : "plattform1",
+  "pfad" : "res/partikel/plattform1.xml"
+  },
+  {
+  "name" : "plattform2",
+  "pfad" : "res/partikel/plattform2.xml"
   }
   ]

@@ -33,7 +33,7 @@ public class MovingPlatform extends Entity implements Interactable {
         img = asset.getImage("MovingPlatform");
         index = 0;
         speed = 80;
-        setParticle(AssetLoader.getInstance().getParticle("pollen2"));
+        setParticle(AssetLoader.getInstance().getParticle("plattform1"));
         isActive = true;
         moveAround = false;
 
