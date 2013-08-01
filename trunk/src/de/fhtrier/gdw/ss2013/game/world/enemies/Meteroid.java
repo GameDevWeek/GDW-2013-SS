@@ -29,15 +29,7 @@ public class Meteroid extends AbstractEnemy implements RecycleableEntity {
 	}
 
 	public void update(GameContainer container, int delta) throws SlickException {
-		float dt = delta / 1000.f;
-		// TODO clamp dt if dt > 1/60.f ?
-		this.getPosition().x += this.getVelocity().x * dt;
-		this.getPosition().y += this.getVelocity().y * dt;
 
-		if (getPosition().y > 5000) { // FIXME: rausnehmen, wenn Objekt aus dem
-										// Level raus ist
-			m.removeEntity(this);
-		}
 	}
 
 	public Fixture getFixture() {
