@@ -15,6 +15,8 @@ import org.newdawn.slick.GameContainer;
 public class PhysixManager implements ContactListener {
 
     private World world;
+    private final int UPDATE_TIME = 20;
+    private long lastTime;
 
     public PhysixManager(GameContainer container) {
         float gravity = AssetLoader.getInstance().getGameData().world.gravity;
@@ -28,12 +30,13 @@ public class PhysixManager implements ContactListener {
     }
 
     public void update(int delta) {
-
-        world.step(1 / 30.0f, 10, 10); // performs a time step in the box2d
-                                       // simulation
-        world.clearForces(); // used to clear the forces after performing the
-                             // time step
-
+        long time = System.currentTimeMillis();
+        long timeDiff = time - lastTime;
+        if(timeDiff > UPDATE_TIME) {
+            lastTime = time;
+            world.step(1 / (float)Math.min(60, timeDiff), 10, 10);
+            world.clearForces();
+        }
     }
 
     public void render() {
