@@ -23,10 +23,9 @@ public class Progressbar {
 	private Image frame;
 	private Image background;
 	private Image bar;
-	private Image adaptedBar;
 	private boolean b = false;
 	
-	private Color colorKey;
+	
 	
 	// Werte für konkreten Balken
 	private float maxValue; // gibt den Maximalwert an
@@ -48,22 +47,13 @@ public class Progressbar {
 		this.frame = frame;
 		this.background = background;
 		this.bar = bar;
-		try {
-            this.adaptedBar = new Image(bar.getWidth(), bar.getHeight()/2);
-        } catch (SlickException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
 		this.font = font;
 		this.worldinstance = worldinstance;
 		this.maxValue=worldinstance.getAstronaut().getMaxOxygen();
 		
-		//colorKey = new Color(45,4,200);
-		colorKey = new Color(0.0f, 0.0f,0.0f, 0.0f);
 		bar.setCenterOfRotation(0.f, bar.getHeight()/2);
 		
 		
-		//this.size = size.copy();
 		this.size = new Vector2f(bar.getWidth(), bar.getHeight());
 		
 		b = false;
@@ -85,23 +75,17 @@ public class Progressbar {
 		
 		bar.setRotation(90 * (100-currentPercentValue)/100);
 		
-		Graphics f = container.getGraphics();
-        f.clear();
-        f.drawImage(bar,position.x,position.y-bar.getHeight()/2);
-        //save the result to the outputImage
-        f.copyArea(adaptedBar, (int)position.x, (int)position.y);		
-        f.clear();
-        
-       		
 
 	}
 	
 //	Image creatAdaptedBar(Image bar);
 
 	public void render(GameContainer container, StateBasedGame game, Graphics g) {
-	    //es gilt für alle:	 g=container.getGraphics();
-	    g.setBackground(colorKey);
-	    adaptedBar.draw(position.x, position.y);		
+	    
+	    g.setClip((int)position.x, (int)position.y, bar.getWidth(), bar.getHeight()/2);
+	    bar.draw(position.x, position.y - bar.getHeight()/2);
+        
+	    g.setClip(0, 0, container.getWidth(), container.getHeight());
 		
 		CenteredText.draw(position.x + size.x / 2 , position.y + size.y / 2, 
 		                  String.format("%.2f %%", currentPercentValue),font);
