@@ -251,12 +251,14 @@ public class LevelLoader {
             startpos = new Vector2f(x, y);
             break;
         case "end":
-        	break;
-    	case "meteroid": 		
-    		entity = entityManager.createEntity("meteoritespawner", properties, name); 		
-    		box = new PhysixBox(physicsManager, x, y, 0, 0, BodyType.STATIC, 1, 0.5f, true); 		
-    		entity.setPhysicsObject(box); 		
-    		break;
+            break;
+        case "meteroid":
+            entity = entityManager.createEntity("meteoritespawner", properties,
+                    name);
+            box = new PhysixBox(physicsManager, x, y, 0, 0, BodyType.STATIC, 1,
+                    0.5f, true);
+            entity.setPhysicsObject(box);
+            break;
         case "MovingPlatform":
             entity = entityManager.createEntity(type, properties, name);
             width = (int) entity.getImage().getWidth();
@@ -268,6 +270,12 @@ public class LevelLoader {
             entity.setPhysicsObject(platformBox);
             break;
         case "teleporter":
+            entity = entityManager.createEntity(type, properties, name);
+            box = new PhysixBox(physicsManager, x, y, 0, 0, BodyType.STATIC, 1,
+                    0.5f, true);
+            entity.setPhysicsObject(box);
+            break;
+        case "oxygenflower":
             entity = entityManager.createEntity(type, properties, name);
             box = new PhysixBox(physicsManager, x, y, 0, 0, BodyType.STATIC, 1,
                     0.5f, true);

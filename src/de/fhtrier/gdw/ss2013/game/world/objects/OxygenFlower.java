@@ -8,10 +8,10 @@
  */
 package de.fhtrier.gdw.ss2013.game.world.objects;
 
-import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.contacts.Contact;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.Entity;
@@ -20,8 +20,6 @@ import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.filter.Interactable;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.world.World;
-import de.fhtrier.gdw.ss2013.physix.PhysixCircle;
-import de.fhtrier.gdw.ss2013.physix.PhysixObject;
 
 public class OxygenFlower extends EntityCollidable implements Interactable {
 
@@ -46,10 +44,9 @@ public class OxygenFlower extends EntityCollidable implements Interactable {
             float y = this.getPosition().getY() - (float) Math.random() * 100;
             Entity entity = m.createEntity(OxygenBubble.class);
             // Bubble-Objekt
-            PhysixObject childPhysics = new PhysixCircle(w.getPhysicsManager(),
-                    x, y, (img.getWidth() / 2 + img.getHeight() / 2) / 6,
-                    BodyType.KINEMATIC, 0, 0, true);
-            entity.setPhysicsObject(childPhysics);
+
+            ((OxygenBubble) entity).setFlower(this);
+            ((OxygenBubble) entity).setPosition(new Vector2f(x, y));
             // bubbleCount
             count++;
             bubbleTime = 0;
