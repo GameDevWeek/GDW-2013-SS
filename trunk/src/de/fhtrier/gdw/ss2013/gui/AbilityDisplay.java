@@ -12,20 +12,23 @@ public abstract class AbilityDisplay {
     
     protected boolean activated;
     
+    protected float startAlphaValue;
     protected float alphaValue;
     protected float alphaSeed;
     protected float fadingSpeed;
     
-    public void setActivated(boolean activated)
-    {
-        this.activated=activated;
+    public void update(GameContainer container, StateBasedGame game, int delta) {
+        
     }
     
     public void render(GameContainer container, StateBasedGame game, Graphics g) {
-        image.setAlpha(alphaValue);
-        image.draw(container.getWidth() - position.x,position.y);
+        
     }
     
+    public void setActivated(boolean activated) {
+        
+    }
+     
     public AbilityDisplay() {
         // TODO Auto-generated constructor stub
     }

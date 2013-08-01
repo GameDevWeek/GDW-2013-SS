@@ -11,14 +11,14 @@ import de.fhtrier.gdw.ss2013.game.world.World;
 
 public class AbilityDisplayManager {
 
-	private StaticAbilityDisplay[] abilityDisplay;
+	private AbilityDisplay[] abilityDisplay;
 	private int selected;
 	private World worldinstance;
 
 	public AbilityDisplayManager() {
 	}
 
-	public void init(StaticAbilityDisplay[] abilityDisplay,
+	public void init(AbilityDisplay[] abilityDisplay,
             World worldinstance) 
 	{
 	    this.abilityDisplay = abilityDisplay;
@@ -35,18 +35,23 @@ public class AbilityDisplayManager {
 	      int selectedOld = selected;
 	      selected = worldinstance.getAlien().getselectedAbility();
 	      
+	      //staticAbilityDisplays aktivieren und deaktivieren
 	      abilityDisplay[selectedOld-1].setActivated(false);
 	      abilityDisplay[selected-1].setActivated(true);
+	      
+	    //dynamicAbilityDisplays aktivieren und deaktivieren
+	      abilityDisplay[3+(selectedOld-1)].setActivated(false);
+          abilityDisplay[3+(selected-1)].setActivated(true);
 	    };
 	    
-	    for(StaticAbilityDisplay elem : abilityDisplay)
+	    for(AbilityDisplay elem : abilityDisplay)
         {
             elem.update(container, game, delta);
         }
 	}
 	
 	public void render(GameContainer container, StateBasedGame game, Graphics g) {
-	    for(StaticAbilityDisplay elem : abilityDisplay)
+	    for(AbilityDisplay elem : abilityDisplay)
 	    {
 	        elem.render(container, game, g);
 	    }
