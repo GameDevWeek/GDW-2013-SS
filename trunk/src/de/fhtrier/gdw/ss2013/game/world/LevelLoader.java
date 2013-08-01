@@ -244,7 +244,7 @@ public class LevelLoader {
             entity = entityManager.createEntity(type, properties, name);
             PhysixBox doorBox = new PhysixBox(physicsManager, x, y, width,
                     height, BodyType.STATIC, worldInfo.density,
-                    worldInfo.friction, false);
+                    worldInfo.friction, true);
             entity.setPhysicsObject(doorBox);
             break;
         case "meteroid":

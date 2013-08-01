@@ -90,9 +90,6 @@ public class Alien extends Player implements AlienController {
 			shootDirection.sub(playerPos);
 			
 			shootDirection = shootDirection.normalise().scale(PlayerConstants.BULLET_SPEED);
-			
-			
-			Log.debug("shooting");
 
 			EntityManager entityManager = World.getInstance().getEntityManager();
 			PhysixManager physicsManager = World.getInstance().getPhysicsManager();
