@@ -22,6 +22,15 @@ public class Switch extends ObjectController implements ActivatableByAstronaut {
         super();
         unpressedImg = AssetLoader.getInstance().getImage("switch_unpressed");
         pressedImg = AssetLoader.getInstance().getImage("switch_pressed");
+        initialize();
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void initialize() {
+        super.initialize();
         setImage(unpressedImg);
     }
 

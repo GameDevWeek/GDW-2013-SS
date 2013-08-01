@@ -18,10 +18,19 @@ import de.fhtrier.gdw.ss2013.physix.PhysixObject;
  */
 public class Box extends EntityCollidable {
 
-    private int isPlayerOnMe = 0;
+    private int isPlayerOnMe;
 
     public Box() {
         super(AssetLoader.getInstance().getImage("box"));
+        initialize();
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void initialize() {
+        isPlayerOnMe = 0;
     }
 
     public void onCollision(Entity e) {

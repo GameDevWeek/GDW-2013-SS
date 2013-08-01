@@ -21,7 +21,7 @@ import org.jbox2d.dynamics.contacts.Contact;
  * - de/activates all connected Entities when getting de/activated
  * 
  * @author Kevin, Georg<br>
- * Editor: BreakingTheHobbit, Mr.X??
+ * Editor: BreakingTheHobbit
  * 
  * @see ObjectController
  * @see ICollisionListener
@@ -35,7 +35,17 @@ public class Button extends ObjectController implements ICollisionListener {
     public Button() {
     	unpressedImg = AssetLoader.getInstance().getImage("button_unpressed");
         pressedImg = AssetLoader.getInstance().getImage("button_pressed");
-    	setImage(unpressedImg);
+        initialize();
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void initialize() {
+        super.initialize();
+        pressContacts = 0;
+        setImage(unpressedImg);
     }
 
     public void setActivated(boolean active) {

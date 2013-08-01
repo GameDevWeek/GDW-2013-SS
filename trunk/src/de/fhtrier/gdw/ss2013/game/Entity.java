@@ -127,7 +127,9 @@ public abstract class Entity {
     }
 
     /**
-     * Override to provide default values and call in constructor
+     * provide default values:<br>
+     * - called in constructor<br>
+     * - called when recycled<br>
      */
     protected void initialize() {
 
