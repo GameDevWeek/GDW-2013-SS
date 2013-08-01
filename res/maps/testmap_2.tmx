@@ -1,81 +1,157 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="100" height="150" tilewidth="32" tileheight="32">
- <tileset firstgid="1" source="dummy_tileset.tsx"/>
- <tileset firstgid="37" source="entity_tileset.tsx"/>
- <layer name="Kachelebene 1" width="100" height="150">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3Z0UrDMBgG0Kg4caIiMmTzSt//IW1BMZQkbaNb1vUc+Bl0S2jywZKmIQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADkbaLPTemHC3DV1fVI3TTos9RHTdu5Y2jlvqvtSD006LPUx9y2713dzRwD9cb+p26DPE6plMdbkMc5ifP4aHwv/OZxCON7jCWt+0vV5zFlf1G7d6HOy6AAYK3ic6E17QtzZ2mt56Dfxz9/15qed+Nxx9V6DuQhj3Mgj7aGZ5Mt8yit2Zeex2dIr9v70C6P0pxfch59Fo9RpeZfHqcxzGJtebz+oe1/S2Wx1DyeKqtfo1LPUj/Xd4k6hlwWLfMorV3Ddzil7+bUPtM+d/1Ylctiah5z7nWqLwGhlhhg6gAA
+<map version="1.0" orientation="orthogonal" width="100" height="100" tilewidth="64" tileheight="64">
+ <tileset firstgid="1" source="tiledmap_final.tsx"/>
+ <tileset firstgid="626" name="entity_tileset" tilewidth="64" tileheight="64">
+  <image source="entity_tileset.png" width="192" height="384"/>
+  <tile id="0">
+   <properties>
+    <property name="type" value="start"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="type" value="end"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="type" value="door"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="type" value="switch"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="type" value="box"/>
+   </properties>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="type" value="meteroid"/>
+   </properties>
+  </tile>
+  <tile id="6">
+   <properties>
+    <property name="type" value="oxygenflower"/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="type" value="button"/>
+   </properties>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="type" value="smallflyingenemy"/>
+   </properties>
+  </tile>
+  <tile id="10">
+   <properties>
+    <property name="type" value="middleflyingenemy"/>
+   </properties>
+  </tile>
+  <tile id="11">
+   <properties>
+    <property name="type" value="bigflyingenemy"/>
+   </properties>
+  </tile>
+  <tile id="12">
+   <properties>
+    <property name="type" value="smallgroundenemy"/>
+   </properties>
+  </tile>
+  <tile id="13">
+   <properties>
+    <property name="type" value="middlegroundenemy"/>
+   </properties>
+  </tile>
+  <tile id="14">
+   <properties>
+    <property name="type" value="biggroundenemy"/>
+   </properties>
+  </tile>
+  <tile id="15">
+   <properties>
+    <property name="type" value="tt_pic"/>
+   </properties>
+  </tile>
+  <tile id="16">
+   <properties>
+    <property name="type" value="tt_trigger"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="Kachelebene 1" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJztmult1VAUhOcfWxMToAi20ANreghrD0BCigBCFZQBhIY4Rz5XGCvJIwFzBjGfNIolL7q+4/di+307AD5GvkS+Ro68fOblP3Gsd5GXlesw3TByUHEf/TByr+I++mFkt+I++mHkVcV99MPItYr76IeROxX30Q8jjyruox9GnlfcRz+M7FfcRz+MHFbcRz+MXK24j34YuV1xH/0w8rDiPvph5FnFffTDyF7FffTDyIeK++iHka2K++iHkVsV99EPIw8q7qMfRp5W3Ec/jLypuI9+GHlfcR/9MPKp4j76YWSn4j76IezDKUHYh1OCsA+nBGEfTgnCPpwShH04JQj7cEoQ9uGUIOzDKUHYh1OCsA+nBGEfTgnCPpwShH04JQj7cEoQ9uGUIOzDKUHYh1OCsA+nBGEfTgnCPpwShH04JQj7cEoQ9uGUIOzDKUHYh1OCsA+nBGEfTgnCPpwShH04JQj7cEoQ9uGUIOzDKUHYh1OCsA+nBGEfTgnCPpwShH04JQj7cEoQ9uGUIOzDKUHYh1OCsA+nBGEfTgnCPpwShH04JQj7cEoQ9uGUIOzDKUHYh1OCsA+nBGEfTgnCPpwShH04JQj7cEoQ9uGUIHR9uAuRS5HLs79XWke0PoSuD/c5crTIt9YRrQ9hH04Jwj6cEoR9OCUI+3BKEPbhlCDswylB6Ppw/+vzh6oPt+n547x9zfdT65f4d3248z4vzvc7bvvsq6snwj7cnOziJvrmgrAPNxhddL47Itb14fIcL2L6vlb7rl5CTPPQea+ZY/hdH+60Oc/j5/kpvq9M5mPPz0bOQ+e9JvFrPtymOT/pusp1L7D5feXf/B+67CDPPe8v857mEL2/BRE/fLhtTPeAY6xj+QZ+Hndud7e2GevGdbW92DfXPcH0vvKk4495We671vL8XMZ1lJ/fx5i8p7c1ljXHcNrYhg933Nh2az7HfOd1ntd7+kH5G+/r2bnt17kcVL/z6+2+j3+m438HAxYNhA==
   </data>
  </layer>
- <objectgroup name="Objektebene 1" width="100" height="150">
-  <object type="platformLine" x="501" y="4458">
-   <polyline points="0,0 399,253"/>
+ <objectgroup name="Objektebene 1" width="100" height="100">
+  <object gid="626" x="194" y="6148"/>
+  <object x="10" y="6276" width="2"/>
+  <object type="solid" x="-7" y="6293" width="6404" height="96"/>
+  <object type="solid" x="1420" y="6100" width="232" height="233"/>
+  <object type="solid" x="972" y="6165" width="231" height="129"/>
+  <object type="solid" x="524" y="6229" width="231" height="129"/>
+  <object type="solid" x="2061" y="6230" width="103" height="73"/>
+  <object type="solid" x="3788" y="6230" width="612" height="81"/>
+  <object type="solid" x="3980" y="6165" width="342" height="77"/>
+  <object type="solid" x="4173" y="6038" width="143" height="136"/>
+  <object type="solid" x="4236" y="5974" width="87" height="194"/>
+  <object type="solid" x="4301" y="5909" width="102" height="340"/>
+  <object type="solid" x="3787" y="5846" width="232" height="72"/>
+  <object type="solid" x="-2" y="0" width="6404" height="96"/>
+  <object type="solid" x="22" y="24" width="88" height="6308"/>
+  <object type="solid" x="6284" y="34" width="88" height="6308"/>
+  <object type="solid" x="2892" y="5845" width="359" height="75"/>
+  <object type="solid" x="2380" y="5781" width="360" height="81"/>
+  <object type="solid" x="2380" y="5269" width="357" height="75"/>
+  <object gid="635" x="3851" y="5716"/>
+  <object gid="636" x="3019" y="5652"/>
+  <object gid="637" x="2509" y="5587"/>
+  <object gid="632" x="2261" y="6292"/>
+  <object gid="633" x="3176" y="5836">
+   <properties>
+    <property name="trigger" value="p1"/>
+   </properties>
   </object>
-  <object gid="49" x="1494" y="4758"/>
-  <object gid="50" x="2228" y="4605"/>
-  <object gid="51" x="2462" y="4447"/>
-  <object gid="46" x="2339" y="3739"/>
-  <object gid="47" x="1703" y="3723"/>
-  <object gid="48" x="755" y="3732"/>
-  <object name="platform1" type="platformLine" x="964" y="3973">
+  <object gid="629" x="2632" y="5777">
+   <properties>
+    <property name="trigger" value="p2"/>
+   </properties>
+  </object>
+  <object gid="631" x="3584" y="5585"/>
+  <object gid="631" x="3412" y="5581"/>
+  <object type="platformLine" x="1685" y="6203">
+   <polyline points="0,0 339,0"/>
+  </object>
+  <object type="deadzone" x="1649" y="6253" width="408" height="37"/>
+  <object name="p1" type="platformLine" x="3281" y="5877">
    <properties>
     <property name="isActive" value="false"/>
    </properties>
-   <polyline points="0,0 -266,-53 -234,-257 0,-362 114,-293 453,-259 606,-237 219,-143 61,-178 1,1"/>
+   <polyline points="0,0 465,0"/>
   </object>
-  <object type="platformLine" x="1704" y="3829">
-   <polyline points="0,0 314,2 337,-116 320,-283 112,-149 -138,-51 -25,17 2,-1"/>
-  </object>
-  <object type="platformLine" x="2400" y="3694">
-   <polyline points="0,0 -263,-2 -318,-297 -312,-646 30,-676 198,-653 218,-201 104,0 -9,0"/>
-  </object>
-  <object gid="43" x="2006" y="4221"/>
-  <object gid="42" x="2726" y="4383"/>
-  <object gid="42" x="2634" y="4423"/>
-  <object gid="42" x="2798" y="4590"/>
-  <object gid="39" x="1873" y="4777"/>
-  <object gid="40" x="1722" y="4786"/>
-  <object gid="41" x="1324" y="4061"/>
-  <object gid="44" x="1823" y="4057"/>
-  <object gid="39" x="1729" y="4064"/>
-  <object gid="41" x="1120" y="4744"/>
-  <object type="solid" x="-9" y="4770" width="2889" height="46"/>
-  <object type="solid" x="352" y="4448" width="126" height="332"/>
-  <object type="solid" x="128" y="4608" width="126" height="194"/>
-  <object type="solid" x="1214" y="4066" width="254" height="60"/>
-  <object type="solid" x="670" y="4064" width="320" height="64"/>
-  <object type="solid" x="-2" y="4066" width="318" height="60"/>
-  <object type="solid" x="2338" y="4448" width="220" height="330"/>
-  <object type="solid" x="1696" y="4064" width="190" height="222"/>
-  <object x="2206" y="4224" height="54"/>
-  <object x="2204" y="4226" height="44"/>
-  <object type="solid" x="1868" y="4226" width="334" height="64"/>
-  <object type="solid" x="1882" y="4190">
-   <polyline points="0,0 48,46"/>
-  </object>
-  <object type="solid" x="988" y="4094" width="226" height="32"/>
-  <object type="solid" x="2608" y="4206">
-   <polyline points="0,0 172,-170 432,-180 600,-750"/>
-  </object>
-  <object type="deadzone" x="476" y="4750" width="450" height="14"/>
-  <object type="deadzone" x="1184" y="4752" width="160" height="16"/>
-  <object type="deadzone" x="1854" y="4286" width="128" height="16"/>
-  <object type="solid" x="-18" y="-2" width="20" height="4824"/>
-  <object type="solid" x="3198" y="-28" width="28" height="4852"/>
-  <object type="solid" x="-26" y="4" width="3230" height="14"/>
-  <object type="solid" x="928" y="4734" width="64" height="42"/>
-  <object type="solid" x="1122" y="4744" width="62" height="38"/>
-  <object gid="42" x="224" y="3790"/>
-  <object gid="42" x="116" y="3662"/>
-  <object gid="42" x="1316" y="3204"/>
-  <object gid="37" x="58" y="4351"/>
-  <object gid="44" x="243" y="4063">
+  <object name="p2" type="platformLine" x="2276" y="5799">
    <properties>
-    <property name="trigger" value="platform1"/>
+    <property name="isActive" value="false"/>
+   </properties>
+   <polyline points="0,0 3,-528"/>
+  </object>
+  <object gid="630" x="3775" y="5823"/>
+  <object gid="632" x="2941" y="5837"/>
+  <object name="d1" gid="628" x="3649" y="6211"/>
+  <object gid="629" x="3523" y="6292">
+   <properties>
+    <property name="trigger " value="d1"/>
    </properties>
   </object>
-  <object type="solid" x="2016" y="4768">
-   <polyline points="-32,32 160,-160 320,-160"/>
-  </object>
+  <object gid="638" x="2645" y="6272"/>
+  <object gid="627" x="2611" y="5236"/>
+  <object gid="639" x="3321" y="6263"/>
+  <object gid="640" x="4095" y="6141"/>
  </objectgroup>
 </map>

@@ -7,7 +7,7 @@ public class DebugModeStatus {
     
     static protected boolean tpCameraStatus = false;
     
-    static String levelName = "run_or_die";
+    static String levelName = "testmap";
 
     static public boolean isTest() {
         return testModeStatus;
