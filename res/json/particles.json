@@ -19,6 +19,14 @@
   "pfad" : "res/partikel/lava_4.xml"
   },
   {
+   "name" : "lava_luft",
+   "pfad" : "res/partikel/lava_luft.xml"
+  },
+  {
+   "name" : "rauch",
+   "pfad" : "res/partikel/rauch.xml"
+  },
+  {
   	 "name" : "plattform1",
   "pfad" : "res/partikel/plattform1.xml"
   },
