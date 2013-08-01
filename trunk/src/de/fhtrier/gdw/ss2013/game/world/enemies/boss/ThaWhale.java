@@ -1,54 +1,20 @@
 package de.fhtrier.gdw.ss2013.game.world.enemies.boss;
 
-import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
-import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.world.World;
 
-public class Boss extends Entity {
 
-	private Phase phase;
+public class ThaWhale extends AbstractBoss {
 
-	public Boss() {
+	public ThaWhale () {
 		super(AssetLoader.getInstance().getImage("whale"));
-		phase = new IdlePhase();
-	}
+		phase = new IdlePhase();	
+		}
 
-	@Override
-	public void render(GameContainer container, Graphics g)
-			throws SlickException {
-		phase.render(g);
-	}
-
-	@Override
-	public void update(GameContainer container, int delta)
-			throws SlickException {
-		phase.update(delta);
-	}
-
-	public void setPhase(Phase newPhase) {
-		phase.leave();
-		phase = newPhase;
-		phase.enter();
-	}
-
-	private abstract class Phase {
-
-		void enter() {
-		};
-
-		abstract void update(int delta);
-
-		abstract void render(Graphics g);
-
-		void leave() {
-		};
-	}
 
 	private class IdlePhase extends Phase {
 		private int timer = 3000;
