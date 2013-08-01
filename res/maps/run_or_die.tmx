@@ -11,7 +11,7 @@
   <object type="solid" x="-400" y="-432" width="496" height="3080"/>
   <object type="solid" x="-392" y="-744" width="13282" height="952"/>
   <object type="solid" x="12549" y="-230" width="336" height="2864"/>
-  <object gid="626" x="263" y="1743"/>
+  <object gid="626" x="3393" y="1788"/>
   <object gid="630" x="3491" y="1791"/>
   <object gid="627" x="7518" y="1703"/>
   <object gid="629" x="4362" y="1811">
@@ -66,7 +66,7 @@
   </object>
   <object type="solid" x="1994" y="1811" width="177" height="739"/>
   <object type="solid" x="2309" y="1808" width="173" height="737"/>
-  <object name="door" gid="628" x="4085" y="1810"/>
+  <object name="door" gid="628" x="4082" y="1762"/>
   <object type="solid" x="2948" y="1815" width="179" height="717"/>
   <object gid="631" x="3006" y="1252">
    <properties>
