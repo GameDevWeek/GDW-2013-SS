@@ -69,7 +69,7 @@ public class World {
         particleList.clear();
         
 		try {
-			map = AssetLoader.getInstance().loadMap("testmap");
+			map = AssetLoader.getInstance().loadMap("run_or_die");
 			LevelLoader.load(map, entityManager, physicsManager);
 
 			mapRender = new MapRenderer(map);
