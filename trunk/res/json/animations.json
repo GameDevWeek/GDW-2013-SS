@@ -6,13 +6,6 @@
   "loop" : false
 },
 {
-  "name" : "animtest",
-  "pfad" : "team0",
-  "anzBilder" : 12,
-  "animSpeed" : 100,
-  "loop" : true
-},
-{
   "name" : "astronaut_standing",
   "pfad" : "player/astronaut/standing",
   "anzBilder" : 1,

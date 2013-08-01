@@ -11,6 +11,7 @@ import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.menu.IActionListener;
 import de.fhtrier.gdw.ss2013.menu.MenuManager;
 import de.fhtrier.gdw.ss2013.menu.MenuPage;
+import de.fhtrier.gdw.ss2013.menu.MenuPageAction;
 import de.fhtrier.gdw.ss2013.states.GameplayState;
 
 
@@ -43,7 +44,16 @@ public class MenuPageRoot extends MenuPage {
                     }
                 });
 		}
-
+        
+		MenuPage credits = new MenuPageCredits(container, _game, manager, this);
+		addLeftAlignedButton("Credits", x, y - h * (i--), font, new MenuPageAction(manager, credits));
+        
+        addCenteredButton("Exit", 943, 710, font,
+			new IActionListener() {
+				public void onAction() {
+					System.exit(0); // todo
+				}
+			});
 	}
 
 }

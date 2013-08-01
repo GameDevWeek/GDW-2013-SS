@@ -15,6 +15,10 @@
   "file" : "res/fonts/verdana_32.fnt",
   "image": "res/fonts/verdana_32_0.tga"
 },{
+  "name" : "verdana_32_inverted",
+  "file" : "res/fonts/verdana_32.fnt",
+  "image": "res/fonts/verdana_32_inverted_0.tga"
+},{
   "name" : "verdana_46",
   "file" : "res/fonts/verdana_46.fnt",
   "image": "res/fonts/verdana_46_0.tga"
