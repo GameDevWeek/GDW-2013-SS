@@ -27,10 +27,8 @@ public class MainGame extends StateBasedGame {
     public static final int MAINMENUSTATE = 0;
     public static final int GAMEPLAYSTATE = 1;
     public static final int LOADGAMESTATE = 2;
-
     public static int currentState = -1;
     public static MainGame instance;
-
     private LoadGameState loadGameState;
     private AppGameContainer container;
     private Input input;
@@ -50,7 +48,7 @@ public class MainGame extends StateBasedGame {
     public void checkFullscreenToggle() {
         if (instance.input.isKeyDown(Input.KEY_ENTER)
                 && (instance.input.isKeyDown(Input.KEY_LALT) || instance.input
-                        .isKeyDown(Input.KEY_RALT))) {
+                .isKeyDown(Input.KEY_RALT))) {
             toggleFullscreen();
         }
     }
@@ -71,6 +69,9 @@ public class MainGame extends StateBasedGame {
     }
 
     public static void changeState(int id) {
+        if (id == GAMEPLAYSTATE) {
+            instance.container.setMouseGrabbed(true);
+        }
         changeState(id, 500, 500);
     }
 
@@ -90,16 +91,18 @@ public class MainGame extends StateBasedGame {
         try {
             System.setProperty("org.lwjgl.librarypath",
                     new File(
-                            new File(System.getProperty("user.dir"), "native"),
-                            LWJGLUtil.getPlatformName()).getAbsolutePath());
+                    new File(System.getProperty("user.dir"), "native"),
+                    LWJGLUtil.getPlatformName()).getAbsolutePath());
             System.setProperty("net.java.games.input.librarypath",
                     System.getProperty("org.lwjgl.librarypath"));
 
             for (String a : args) {
-                if (a.equals("-testmode"))
+                if (a.equals("-testmode")) {
                     DebugModeStatus.setStatus(false);
-                if (a.equals("-physictest"))
+                }
+                if (a.equals("-physictest")) {
                     DebugModeStatus.setPhysicTest(true);
+                }
             }
 
             instance = new MainGame(args);

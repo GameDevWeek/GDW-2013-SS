@@ -14,7 +14,9 @@ import de.fhtrier.gdw.ss2013.game.cheats.Cheats;
 import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.gui.HUD;
 import de.fhtrier.gdw.ss2013.input.InputManager;
+import de.fhtrier.gdw.ss2013.menu.MenuManager;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.Music;
 
 /**
  * Gameplay state
@@ -23,10 +25,12 @@ public class GameplayState extends BasicGameState {
 
     private World world;
     private Cheats cheats;
-    private Font font;
     private HUD hud;
     private InputManager inputManager;
     private GameContainer container;
+    static boolean menuOpened;
+    MenuManager menuManager;
+    private Music music;
 
     @Override
     public void init(GameContainer container, StateBasedGame game)
@@ -36,8 +40,10 @@ public class GameplayState extends BasicGameState {
         inputManager = InputManager.getInstance();
         world = new World(container, game);
         cheats = new Cheats(world);
-        font = AssetLoader.getInstance().getFont("verdana_46");
         hud = new HUD(container, world);
+
+        menuManager = new MenuManager(container, game, MenuManager.Type.INGAME);
+        music = AssetLoader.getInstance().getMusic("gameplay");
     }
 
     @Override
@@ -48,6 +54,9 @@ public class GameplayState extends BasicGameState {
 
         world.render(container, g);
         hud.render(container, game, g);
+
+        if(menuOpened)
+			menuManager.render(container, game, g);
     }
 
     @Override
@@ -55,19 +64,15 @@ public class GameplayState extends BasicGameState {
             throws SlickException {
         ((MainGame) game).checkFullscreenToggle();
         world.getAstronaut().preInput();
-        inputManager.update(delta);
+        if(!menuOpened)
+            inputManager.update(delta);
         // world.getPhysicsManager().update(container, delta);
         world.update(container, delta);
         hud.update(container, game, delta);
         cheats.update(container, game, delta);
-
-    }
-
-    @Override
-    public void enter(GameContainer container, StateBasedGame game)
-            throws SlickException {
-        world.onEnter();
-        // world.getPhysicsManager().reset();
+    
+        if(menuOpened)
+			menuManager.update(container, game, delta);
     }
 
     @Override
@@ -76,8 +81,8 @@ public class GameplayState extends BasicGameState {
     }
 
     @Override
-    public void keyReleased(int key, char c) {
-        switch(key) {
+	public void keyReleased(int key, char c) {
+        switch (key) {
             case Input.KEY_F1:
                 container.setMouseGrabbed(!container.isMouseGrabbed());
                 break;
@@ -87,15 +92,83 @@ public class GameplayState extends BasicGameState {
             case Input.KEY_F3:
                 inputManager.printControllerInfo();
                 break;
+            case Input.KEY_F4:
+                if(music.playing())
+                    music.stop();
+                else
+                    music.play();
+                break;
             default:
-                cheats.addKey(c);
+                if(menuOpened) {
+                    menuOpened = menuManager.keyReleased(key, c);
+                    if(!menuOpened)
+                        container.setMouseGrabbed(true);
+                } else if(key == Input.KEY_ESCAPE) {
+                    menuOpened = true;
+                    container.setMouseGrabbed(false);
+                } else {
+                    cheats.addKey(c);
+                }
                 break;
         }
-    }
-
-	public static void hideMenu () {
-		// TODO Auto-generated method stub
-		
 	}
 
+    @Override
+	public void keyPressed(int key, char c) {
+		if(menuOpened)
+			menuManager.keyPressed(key, c);
+	}
+
+    @Override
+	public void mouseMoved(int oldx, int oldy, int newx, int newy) {
+		if(menuOpened)
+			menuManager.mouseMoved(oldx, oldy, newx, newy);
+	}
+
+    @Override
+	public void mouseDragged(int oldx, int oldy, int newx, int newy) {
+		if(menuOpened)
+			menuManager.mouseDragged(oldx, oldy, newx, newy);
+	}
+
+    @Override
+	public void mouseReleased(int button, int x, int y) {
+		if(menuOpened)
+			menuManager.mouseReleased(button, x, y);
+	}
+
+    @Override
+	public void mousePressed(int button, int x, int y) {
+		if(menuOpened)
+			menuManager.mousePressed(button, x, y);
+	}
+	
+    @Override
+	public void mouseWheelMoved(int newValue) {
+		if(menuOpened)
+			menuManager.mouseWheelMoved(newValue);
+	}
+
+	@Override
+	public void enter(GameContainer container, StateBasedGame game) throws SlickException {
+		menuOpened = false;
+		menuManager.activate();
+		if (music != null)
+			music.loop(1f, 1f);
+        
+        world.onEnter();
+        // world.getPhysicsManager().reset();
+	}
+	
+	@Override
+	public void leave(GameContainer container, StateBasedGame game) throws SlickException {
+		menuOpened = false;
+		menuManager.activate();
+		if (music != null)
+			music.stop();
+	}
+	
+	public static void hideMenu() {
+		menuOpened = false;
+	}
 }

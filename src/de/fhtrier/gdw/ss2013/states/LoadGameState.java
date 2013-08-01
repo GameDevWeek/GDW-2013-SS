@@ -105,6 +105,7 @@ public class LoadGameState extends BasicGameState {
 //			if (DebugModeStatus.isTest()) {
 				MainGame.changeState(MainGame.GAMEPLAYSTATE);
 //			} else {
+//                container.setMouseGrabbed(false);
 //				MainGame.changeState(MainGame.MAINMENUSTATE);
 //			}
 		}
