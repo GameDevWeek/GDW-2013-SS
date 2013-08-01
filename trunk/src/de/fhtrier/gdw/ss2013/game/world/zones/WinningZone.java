@@ -1,4 +1,4 @@
-package de.fhtrier.gdw.ss2013.game.world.zone;
+package de.fhtrier.gdw.ss2013.game.world.zones;
 
 import org.jbox2d.dynamics.contacts.Contact;
 

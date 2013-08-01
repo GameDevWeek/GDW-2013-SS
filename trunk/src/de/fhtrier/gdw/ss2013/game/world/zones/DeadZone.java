@@ -5,7 +5,7 @@
  *
  *
  */
-package de.fhtrier.gdw.ss2013.game.world.objects;
+package de.fhtrier.gdw.ss2013.game.world.zones;
 
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityCollidable;
