@@ -145,7 +145,6 @@ public class InputManager {
 	protected void setCursor (InputAction action, int x, int y) {
 		if (alienController != null) {
 			alienController.setCursor(x, y);
-			// Log.debug("Alien pointing at " + x +" " +y);
 		}
 	}
 

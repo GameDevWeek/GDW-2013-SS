@@ -9,6 +9,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
+import org.newdawn.slick.util.Log;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.assetloader.infos.GameDataInfo;
@@ -186,6 +187,7 @@ public class Astronaut extends Player implements AstronautController {
         // System.err
         // .println("No InteractionManager registered to Astronaut!");
         // }
+   	 interactionManager.activateAll();
         for (Switch s : switches) {
             s.turnSwitch();
         }
