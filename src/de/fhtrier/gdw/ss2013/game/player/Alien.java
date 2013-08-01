@@ -14,7 +14,6 @@ import de.fhtrier.gdw.ss2013.game.camera.Camera;
 import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.game.world.objects.Box;
 import de.fhtrier.gdw.ss2013.input.AlienController;
-import de.fhtrier.gdw.ss2013.physix.PhysixManager;
 
 public class Alien extends Player implements AlienController {
 
@@ -29,7 +28,6 @@ public class Alien extends Player implements AlienController {
 	private Camera camera = World.getInstance().getCamera();
 	private Box currentSelectedBox;
 	private float selectionRadius;
-	private final Vector2f oldcursor = new Vector2f();
 	private final Vector2f dragDirection = new Vector2f();
 
 	private long lastShotTime;
@@ -78,8 +76,8 @@ public class Alien extends Player implements AlienController {
 	public void shoot() {
 		if (System.currentTimeMillis() > lastShotTime + PlayerConstants.SHOTDELAY) {
 			Vector2f playerPos;
-			if (World.getInstance().getAstronaut().isCarryAlien()) {
-				playerPos = World.getInstance().getAstronaut().getPosition(); // notwendig, weil alienPos net stimmt
+			if (getAstronaut().isCarryAlien()) {
+				playerPos = getAstronaut().getPosition(); // notwendig, weil alienPos net stimmt
 			}
 			else {
 				playerPos = getPosition();
@@ -90,10 +88,6 @@ public class Alien extends Player implements AlienController {
 			shootDirection = shootDirection.normalise().scale(PlayerConstants.BULLET_SPEED);
 
 			EntityManager entityManager = World.getInstance().getEntityManager();
-			PhysixManager physicsManager = World.getInstance().getPhysicsManager();
-
-			// Dirty hack to get width and height of an Meteorite
-
 
 			// Create a meteorite entity
 			PlayerBullet entity = entityManager.createEntity(PlayerBullet.class);
@@ -154,7 +148,7 @@ public class Alien extends Player implements AlienController {
 			break;
 		case 2:
 			//großer sprung
-			World.getInstance().getAstronaut().superjump();
+			getAstronaut().superjump();
 			break;
 		}
 	}
@@ -198,7 +192,7 @@ public class Alien extends Player implements AlienController {
 
 	@Override
 	public void render(GameContainer container, Graphics g) throws SlickException {
-		Astronaut astronaut = World.getInstance().getAstronaut();
+		Astronaut astronaut = getAstronaut();
 		// Just render alien if astronaut does not carry the alien
 		if (astronaut != null && !astronaut.isCarryAlien()) {
 			super.render(container, g);
