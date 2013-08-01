@@ -22,7 +22,6 @@ import de.fhtrier.gdw.ss2013.gui.TooltipManager;
 import de.fhtrier.gdw.ss2013.physix.PhysixBox;
 import de.fhtrier.gdw.ss2013.physix.PhysixManager;
 import de.fhtrier.gdw.ss2013.physix.PhysixPolyline;
-import de.fhtrier.gdw.ss2013.physix.SwitchContactListener;
 import de.fhtrier.gdw.ss2013.renderer.DynamicParticleSystem;
 
 /**
@@ -230,7 +229,6 @@ public class LevelLoader {
             entity = entityManager.createEntity(type, properties, name);
             PhysixBox switchBox = new PhysixBox(physicsManager, x, y, width,
                     height, BodyType.STATIC, 1, 0.5f, true);
-            switchBox.addCollisionListener(new SwitchContactListener());
             entity.setPhysicsObject(switchBox);
             break;
         case "door":

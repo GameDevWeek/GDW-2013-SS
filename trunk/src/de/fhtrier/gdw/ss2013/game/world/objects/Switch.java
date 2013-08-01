@@ -14,26 +14,17 @@ import de.fhtrier.gdw.ss2013.game.filter.ActivatableByAstronaut;
  */
 public class Switch extends ObjectController implements ActivatableByAstronaut {
 
-    private boolean canBeTriggered = false;
-
     public Switch() {
         super();
         img = AssetLoader.getInstance().getImage("switch_unpressed");
-        // private Image pressedImg = AssetLoader.getInstance().getImage("switch_pressed");
+        // private Image pressedImg =
+        // AssetLoader.getInstance().getImage("switch_pressed");
     }
 
     @Override
     public void update(GameContainer container, int delta)
             throws SlickException {
         // TODO: Replace with proper function
-    }
-
-    public void setCanBeTriggered(boolean value) {
-        canBeTriggered = value;
-    }
-
-    public void turnSwitch() {
-        isActivated = !isActivated;
     }
 
     public boolean getSwitch() {
@@ -43,18 +34,12 @@ public class Switch extends ObjectController implements ActivatableByAstronaut {
     public void setSwitch(boolean value) {
         isActivated = value;
     }
-    
-    @Override
-    public void activate() {
-        if(canBeTriggered) {
-            super.activate();
-        }
-    }
-    
-    @Override
-    public void deactivate() {
-        if(canBeTriggered) {
-            super.deactivate();
+
+    public void turnSwitch() {
+        if (isActivated) {
+            deactivate();
+        } else {
+            activate();
         }
     }
 }
