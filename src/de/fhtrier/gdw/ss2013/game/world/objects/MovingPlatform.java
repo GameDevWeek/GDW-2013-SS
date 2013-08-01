@@ -32,7 +32,7 @@ public class MovingPlatform extends Entity implements Interactable, EntityFilter
     private int indexmod;
 
     public MovingPlatform() {
-        img = asset.getImage("MovingPlatform");
+        img = asset.getImage("bigPlatform");
         index = 0;
         speed = 80;
         setParticle(AssetLoader.getInstance().getParticle("plattform1"));
@@ -45,7 +45,7 @@ public class MovingPlatform extends Entity implements Interactable, EntityFilter
     public void initLine(ArrayList<Point> points, SafeProperties properties) {
         this.points = points;
         if (properties != null) {
-            speed = properties.getFloat("speed", 20);
+            speed = properties.getFloat("speed", 20.0f);
             isActive = properties.getBoolean("isActive", true);
             moveAround = properties.getBoolean("moveAround", false);
         }
@@ -117,7 +117,6 @@ public class MovingPlatform extends Entity implements Interactable, EntityFilter
 
     @Override
     public boolean isActive() {
-        // TODO Auto-generated method stub
-        return false;
+        return isActive;
     }
 }

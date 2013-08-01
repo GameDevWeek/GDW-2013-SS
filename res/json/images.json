@@ -67,8 +67,12 @@
   "pfad" : "gui/crosshair2"
 },
 {
-  "name" : "MovingPlatform",
-  "pfad" : "entities/moving_platform"
+  "name" : "PlatformBig",
+  "pfad" : "entities/platform_big"
+},
+{
+  "name" : "PlatformSmall",
+  "pfad" : "entities/platform_small"
 },
 {
   "name" : "Tooltip",
