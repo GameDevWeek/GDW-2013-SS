@@ -38,6 +38,10 @@
   "name" : "healthBarBackground",
   "pfad" : "gui/background"
 },
+{
+  "name" : "healthbar_rund_ganz",
+  "pfad" : "gui/healthbar_rund_ganz"
+},
 { 
   "name" : "ability1",
   "pfad" : "gui/ability1"

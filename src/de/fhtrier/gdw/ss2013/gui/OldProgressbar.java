@@ -14,7 +14,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.gui.utils.CenteredText;
 
-public class Progressbar {
+public class OldProgressbar {
 	private Vector2f position;
 	private Vector2f size;
 
@@ -47,7 +47,6 @@ public class Progressbar {
 		this.worldinstance = worldinstance;
 		this.maxValue=worldinstance.getAstronaut().getMaxOxygen();
 		
-		bar.setCenterOfRotation(0.f, bar.getHeight()/2);
 		
 		
 		//this.size = size.copy();
@@ -67,11 +66,19 @@ public class Progressbar {
 	}
 
 	public void render(GameContainer container, StateBasedGame game, Graphics g) {
+
+		// frame.draw(position.x, position.y);
+		background.draw(position.x, position.y);
+		bar.draw(position.x
+		        ,position.y       
+		        ,position.x + filled         
+		        ,position.y + size.y         
+		        ,0                           
+		        ,0                          
+		        ,filled
+		        ,size.y);
 		
-		bar.setRotation(90 * (100-currentPercentValue)/100);
-		bar.draw(position.x, position.y - bar.getHeight()/2);
-		
-		
+
 		CenteredText.draw(position.x + size.x / 2 , position.y + size.y / 2, 
 		                  String.format("%.2f %%", currentPercentValue),font);
 		
