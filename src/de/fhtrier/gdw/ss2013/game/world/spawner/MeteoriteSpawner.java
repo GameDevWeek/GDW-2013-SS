@@ -23,11 +23,19 @@ public class MeteoriteSpawner extends Entity {
 	public MeteoriteSpawner(int spawnDuration) {
 		super();
 		this.spawnDuration = spawnDuration;
-		this.timeSinceLastSpawn = 0;
+		initialize();
 	}
 	
 	public MeteoriteSpawner() {
 		this(SpawnerConstants.METEORIT_DEFAULT_SPAWN_DELAY);
+		initialize();
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	protected void initialize() {
+	    timeSinceLastSpawn = 0;
 	}
 	
 	@Override
