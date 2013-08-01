@@ -93,5 +93,9 @@
 {
   "name" : "whale",
   "pfad" : "dummies/boss2"
+},
+{
+  "name" : "symbion",
+  "pfad" : "symbion"
 }]
 
