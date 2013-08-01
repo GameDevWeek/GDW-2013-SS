@@ -24,6 +24,7 @@ import de.fhtrier.gdw.ss2013.physix.PhysixBox;
 import de.fhtrier.gdw.ss2013.physix.PhysixManager;
 import de.fhtrier.gdw.ss2013.physix.PhysixPolyline;
 import de.fhtrier.gdw.ss2013.physix.SwitchContactListener;
+import de.fhtrier.gdw.ss2013.renderer.DynamicParticleSystem;
 
 /**
  * 
@@ -260,7 +261,7 @@ public class LevelLoader {
 		case "particle":
 			String pname = properties.getProperty("name");
 			if (pname != null) {
-				ParticleSystem p = AssetLoader.getInstance().getParticle(pname);
+				DynamicParticleSystem p = AssetLoader.getInstance().getParticle(pname);
 				p.setPosition(x + (width / 2), y + (height / 2));
 				World.getInstance().addParticle(p);
 			}

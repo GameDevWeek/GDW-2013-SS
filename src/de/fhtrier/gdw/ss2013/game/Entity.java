@@ -14,6 +14,7 @@ import org.newdawn.slick.particles.ParticleSystem;
 import de.fhtrier.gdw.commons.utils.SafeProperties;
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.physix.PhysixObject;
+import de.fhtrier.gdw.ss2013.renderer.DynamicParticleSystem;
 
 /**
  * Entity base class
@@ -29,7 +30,7 @@ public abstract class Entity {
 
     final static float DEBUG_ENTITY_HALFEXTEND = 5;
 
-    protected ParticleSystem particle;
+    protected DynamicParticleSystem particle;
     protected AssetLoader asset;
 
     /* every Entity-class needs a constructor without any parameters! */
@@ -149,11 +150,11 @@ public abstract class Entity {
         return this.physicsObject;
     }
 
-    public ParticleSystem getParticle() {
+    public DynamicParticleSystem getParticle() {
         return particle;
     }
 
-    public void setParticle(ParticleSystem particle) {
+    public void setParticle(DynamicParticleSystem particle) {
         this.particle = particle;
     }
 

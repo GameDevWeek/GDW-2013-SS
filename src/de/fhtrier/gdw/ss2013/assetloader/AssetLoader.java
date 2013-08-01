@@ -12,11 +12,8 @@ import org.newdawn.slick.AngelCodeFont;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Font;
 import org.newdawn.slick.Image;
-import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
 import org.newdawn.slick.SpriteSheet;
-import org.newdawn.slick.particles.ParticleIO;
-import org.newdawn.slick.particles.ParticleSystem;
 import org.newdawn.slick.util.Log;
 import org.newdawn.slick.util.ResourceLoader;
 
@@ -31,10 +28,11 @@ import de.fhtrier.gdw.ss2013.assetloader.infos.GameDataInfo;
 import de.fhtrier.gdw.ss2013.assetloader.infos.ImageInfo;
 import de.fhtrier.gdw.ss2013.assetloader.infos.InfoInfo;
 import de.fhtrier.gdw.ss2013.assetloader.infos.MapInfo;
-import de.fhtrier.gdw.ss2013.assetloader.infos.PartikelInfo;
+import de.fhtrier.gdw.ss2013.assetloader.infos.ParticleInfo;
 import de.fhtrier.gdw.ss2013.assetloader.infos.ScoreInfo;
 import de.fhtrier.gdw.ss2013.assetloader.infos.SettingsInfo;
 import de.fhtrier.gdw.ss2013.assetloader.infos.SoundInfo;
+import de.fhtrier.gdw.ss2013.renderer.DynamicParticleSystem;
 import org.newdawn.slick.Music;
 
 public class AssetLoader {
@@ -44,7 +42,7 @@ public class AssetLoader {
 	private HashMap<String, Music> musicMap = new HashMap<>();
 	private HashMap<String, String> mapHashmap = new HashMap<>();
 	private HashMap<String, Font> fontMap = new HashMap<>();
-	private HashMap<String, ParticleSystem> partikelMap = new HashMap<>();
+	private HashMap<String, DynamicParticleSystem> particleMap = new HashMap<>();
 	private HashMap<String, String> infosMap = new HashMap<>();
 
 	private SettingsInfo settings;
@@ -68,7 +66,7 @@ public class AssetLoader {
 		setupSounds("res/json/sounds.json");
 		setupMusic("res/json/music.json");
 		setupFonts("res/json/fonts.json");
-		setupPartikel("res/json/partikel.json");
+		setupParticles("res/json/particles.json");
 		setupSettings("res/json/settings.json");
 		setupInfos("res/json/infos.json");
 		setupGameStats("res/json/gameData.json");
@@ -214,13 +212,13 @@ public class AssetLoader {
 		}
 	}
 
-	private void setupPartikel(String filename) {
+	private void setupParticles(String filename) {
 		try {
-			List<PartikelInfo> partikelInfos = JacksonReader.readList(filename,
-					PartikelInfo.class);
-			for (PartikelInfo partikelInfo : partikelInfos) {
-				checkForBackslashes(partikelInfo.pfad);
-				partikelMap.put(partikelInfo.name, ParticleIO.loadConfiguredSystem(partikelInfo.pfad));
+			List<ParticleInfo> particleInfos = JacksonReader.readList(filename,
+					ParticleInfo.class);
+			for (ParticleInfo particleInfo : particleInfos) {
+				checkForBackslashes(particleInfo.pfad);
+				particleMap.put(particleInfo.name, new DynamicParticleSystem(particleInfo.pfad, true));
 			}
 
 		} catch (Exception e) {
@@ -342,18 +340,12 @@ public class AssetLoader {
 		return mapHashmap.get(name);
 	}
 
-	public ParticleSystem getParticle(String name) {
-		if (partikelMap.get(name) == null) {
-		    Log.warn("AssetLoader: Partikelanimtion '" + name + "' existiert nicht.");
-			return partikelMap.get("error");
+	public DynamicParticleSystem getParticle(String name) {
+		if (particleMap.get(name) == null) {
+		    Log.warn("AssetLoader: Particleanimtion '" + name + "' existiert nicht.");
+			return particleMap.get("error");
 		} else {
-			try {
-                return partikelMap.get(name).duplicate();
-            } catch (SlickException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-			return null;
+			return particleMap.get(name).clone();
 		}
 	}
 

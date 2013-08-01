@@ -23,6 +23,7 @@ import de.fhtrier.gdw.ss2013.physix.PhysixBoxPlayer;
 import de.fhtrier.gdw.ss2013.physix.PhysixManager;
 import de.fhtrier.gdw.ss2013.physix.PhysixObject;
 import de.fhtrier.gdw.ss2013.renderer.MapRenderer;
+import de.fhtrier.gdw.ss2013.renderer.DynamicParticleSystem;
 import de.fhtrier.gdw.ss2013.settings.DebugModeStatus;
 import de.fhtrier.gdw.ss2013.sound.SoundLocator;
 import de.fhtrier.gdw.ss2013.sound.services.DefaultSoundPlayer;
@@ -42,14 +43,14 @@ public class World {
     private EntityManager entityManager;
     private final PhysixManager physicsManager;
     
-    private ArrayList<ParticleSystem> particleList; 
+    private ArrayList<DynamicParticleSystem> particleList; 
 
 	public World(GameContainer container, StateBasedGame game) {
 		instance = this;
 		map = null;
 		entityManager = new EntityManager();
 		physicsManager = new PhysixManager(container);
-		particleList = new ArrayList<ParticleSystem>();
+		particleList = new ArrayList<DynamicParticleSystem>();
 		try {
 			map = AssetLoader.getInstance().loadMap("testmap");
 			LevelLoader.load(map, entityManager, physicsManager);
@@ -106,7 +107,7 @@ public class World {
 
 		entityManager.render(container, g);
 
-		for (ParticleSystem p : particleList) {
+		for (DynamicParticleSystem p : particleList) {
 			p.render();
 		}
 
@@ -131,7 +132,7 @@ public class World {
      
         entityManager.update(container, delta);
 
-		for (ParticleSystem p : particleList) {
+		for (DynamicParticleSystem p : particleList) {
 			p.update(delta);
 		}
     }
@@ -178,7 +179,7 @@ public class World {
 		return instance;
 	}
 
-	public void addParticle(ParticleSystem p) {
+	public void addParticle(DynamicParticleSystem p) {
 		particleList.add(p);
 	}
 
