@@ -19,6 +19,10 @@
   "pfad" : "res/maps/spacemap.tmx"
 },
 {
+  "name" : "a1",
+  "pfad" : "res/maps/map-a1.tmx"
+},
+{
   "name" : "bossmap",
   "pfad" : "res/maps/bossmap.tmx"
 },
