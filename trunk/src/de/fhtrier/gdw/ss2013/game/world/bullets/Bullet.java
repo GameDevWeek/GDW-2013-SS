@@ -10,6 +10,7 @@ import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.constants.PlayerConstants;
+import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityCollidable;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.world.World;
@@ -42,10 +43,9 @@ public abstract class Bullet extends EntityCollidable {
 		int height = img.getHeight();
 
 		PhysixBox box = new PhysixBox(World.getInstance().getPhysicsManager(), spawnx, spawny, width, height,
-				BodyType.DYNAMIC, 1, 0.5f, true);
+				BodyType.KINEMATIC, 1, 0.5f, true);
 		setPhysicsObject(box);
-		box.setLinearVelocity(shootDirection);
-
+		setVelocity(shootDirection);
 	}
 
 	public void render(GameContainer container, Graphics g) throws SlickException {
@@ -55,9 +55,12 @@ public abstract class Bullet extends EntityCollidable {
 	}
 
 	public void update(GameContainer container, int delta) throws SlickException {
+		float df = delta / 1000f;
+		
 		float x = physicsObject.getX();
 		float y = physicsObject.getY();
-		physicsObject.setPosition(x + getVelocity().x, y + getVelocity().y);
+		System.out.println((getVelocity().x * df) + " | " + (getVelocity().y * df));
+		physicsObject.setPosition(x + (getVelocity().x * df), y + (getVelocity().y * df));
 
 		if (livetime <= 0) {
 			m.removeEntity(this);
@@ -90,6 +93,16 @@ public abstract class Bullet extends EntityCollidable {
 	}
 
 	public void setShootDirection(Vector2f shootDirection) {
-		this.shootDirection = shootDirection;
+		this.shootDirection = shootDirection.copy();
+	}
+
+	/**
+	 * use this for level collision ect.
+	 */
+	public void checkForUnwantedContacts(Contact contact) {
+		Entity other = getOtherEntity(contact);
+        if(other == null) {
+            World.getInstance().getEntityManager().removeEntity(this);
+        }    
 	}
 }
