@@ -8,6 +8,7 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
+import de.fhtrier.gdw.ss2013.MainGame;
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.menu.pages.MenuPageRoot;
 
@@ -20,7 +21,10 @@ import de.fhtrier.gdw.ss2013.menu.pages.MenuPageRoot;
  * @author Kevin Korte
  */
 public class MenuManager {
-	MenuPage rootPage;
+	public static final int MENU_WIDTH = 1024;
+	public static final int MENU_HEIGHT = 720;
+    
+    MenuPage rootPage;
 	MenuPage currentPage;
 	/** The key repeat interval */
 	private static final int INITIAL_KEY_REPEAT_INTERVAL = 400;
@@ -70,13 +74,13 @@ public class MenuManager {
 			g.fillRect(0, 0, container.getWidth(), container.getHeight());
 			g.setColor(Color.white);
 			
-//			Image i = AssetLoader.getInstance().getImage("menu_ref_image");
-//			xOffset = (container.getWidth() - i.getWidth()) / 2.0f;
-//			yOffset = (container.getHeight() - i.getHeight()) / 2.0f;
-//			
+			//Image i = AssetLoader.getInstance().getImage("menu_ref_image");
+			xOffset = (container.getWidth() - MenuManager.MENU_WIDTH) / 2.0f;
+			yOffset = (container.getHeight() - MenuManager.MENU_HEIGHT) / 2.0f;
+			
 			g.pushTransform();
-//			g.translate(xOffset, yOffset);		
-//			g.setWorldClip(0, 0, i.getWidth(), i.getHeight());
+			g.translate(xOffset, yOffset);		
+			g.setWorldClip(0, 0, MenuManager.MENU_WIDTH, MenuManager.MENU_HEIGHT);
 			
 			currentPage.render(g);
 			//foregroundBorder.draw();
