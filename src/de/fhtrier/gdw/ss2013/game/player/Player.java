@@ -10,6 +10,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
 import de.fhtrier.gdw.ss2013.game.EntityCollidable;
+import de.fhtrier.gdw.ss2013.game.cheats.Cheats;
 import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.game.world.enemies.AbstractEnemy;
 import de.fhtrier.gdw.ss2013.physix.PhysixObject;
@@ -39,7 +40,8 @@ public abstract class Player extends EntityCollidable {
 	}
 	
 	public void die() {
-	    World.getInstance().shallBeReseted(true);
+		if (!Cheats.isGodmode)
+			World.getInstance().shallBeReseted(true);
 	}
 	
 	public void setAnimation(Animation animation) {

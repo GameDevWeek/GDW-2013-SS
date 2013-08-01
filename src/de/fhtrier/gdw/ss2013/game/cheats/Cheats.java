@@ -17,6 +17,8 @@ public class Cheats {
 	private HashMap<String, Cheat> cheats = new HashMap<>();
 	private ArrayList<Cheat> cheatsThatNeedupdate = new ArrayList<>();
 	private Queue<Cheat> newCheats = new LinkedList<>();
+	
+	public static boolean isGodmode = false;
 
 	public Cheats(World world) {
 		this.world = world;
@@ -87,6 +89,7 @@ public class Cheats {
 				int delta, World world) {
 			world.getAstronaut().setOxygen(world.getAstronaut().getMaxOxygen());
 			wantsToBeUpdated = true;
+			isGodmode = true;
 		}
 	}
 
