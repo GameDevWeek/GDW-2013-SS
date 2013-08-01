@@ -16,7 +16,7 @@ public class ThreePointCamera {
     private final int mapPixelHeight;
     private final int mapTileWidth;
     private final int mapTileHeight;
-    
+    private final Vector2f targetPos;
     private final float cameraSpeed;
 
     private static final float CAM_ZOOM_EPSILON = 0.0001f;
@@ -29,6 +29,7 @@ public class ThreePointCamera {
 
 
     public ThreePointCamera(CameraInfo info) {
+        targetPos = new Vector2f();
         cameraSpeed = info.cameraSpeed;
         viewport = new Vector2f();
         pointOfInterests = new LinkedList<>();
@@ -96,6 +97,8 @@ public class ThreePointCamera {
                     focusPoint.y + (targetY - focusPoint.y) * (dt*cameraSpeed));
         }
         
+        targetPos.set(targetX - focusPoint.x, targetY - focusPoint.y);
+        
         cameraPosition
                 .set(cameraPosition.x + (focusPoint.x - cameraPosition.x) * dt*cameraSpeed,
                         cameraPosition.y + (focusPoint.y - cameraPosition.y)
@@ -123,6 +126,15 @@ public class ThreePointCamera {
         return world;
     }
     
+    public Vector2f screenToWorldPositionFromTarget(Vector2f screen) {
+        Vector2f world = new Vector2f();
+//        System.out.print(targetPos); System.out.println(focusPoint);
+        
+        world.set(this.topLeftPoint.x + targetPos.x + screen.x, this.topLeftPoint.y + targetPos.y + screen.y);
+//        System.out.println(world);
+        
+        return world;
+    }
     
     // PRIORITY!
     public Vector2f worldToScreenPosition(Vector2f world) {

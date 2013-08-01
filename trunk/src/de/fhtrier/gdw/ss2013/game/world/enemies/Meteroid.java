@@ -41,7 +41,7 @@ public class Meteroid extends EntityCollidable {
 		if (physicsObject != null)
 			System.out.println("BAM");
 		PhysixManager physicsManager = World.getInstance().getPhysicsManager();
-		System.out.println("hubuhzbuhz");
+		
 		// FIXME: Dirty hack to get width and height of an Meteorite
 		int width = AssetLoader.getInstance().getAnimation("meteorite").getWidth();
 		int height = AssetLoader.getInstance().getAnimation("meteorite").getHeight();
