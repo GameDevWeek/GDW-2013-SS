@@ -1,0 +1,9 @@
+[{
+ "name" : "menu",
+ "pfad" : "res/music/menu.ogg"
+},
+{
+ "name" : "gameplay",
+ "pfad" : "res/music/gameplay.ogg"
+}
+]

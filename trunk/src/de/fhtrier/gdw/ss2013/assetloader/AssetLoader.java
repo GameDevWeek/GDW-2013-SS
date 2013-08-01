@@ -34,11 +34,13 @@ import de.fhtrier.gdw.ss2013.assetloader.infos.PartikelInfo;
 import de.fhtrier.gdw.ss2013.assetloader.infos.ScoreInfo;
 import de.fhtrier.gdw.ss2013.assetloader.infos.SettingsInfo;
 import de.fhtrier.gdw.ss2013.assetloader.infos.SoundInfo;
+import org.newdawn.slick.Music;
 
 public class AssetLoader {
 	private HashMap<String, Image> imageMap = new HashMap<>();
 	private HashMap<String, Animation> animMap = new HashMap<>();
 	private HashMap<String, Sound> soundMap = new HashMap<>();
+	private HashMap<String, Music> musicMap = new HashMap<>();
 	private HashMap<String, String> mapHashmap = new HashMap<>();
 	private HashMap<String, Font> fontMap = new HashMap<>();
 	private HashMap<String, ParticleSystem> partikelMap = new HashMap<>();
@@ -62,6 +64,7 @@ public class AssetLoader {
 	    setupMaps("res/json/maps.json");
 		setupAnimations("res/json/animations.json");
 		setupSounds("res/json/sounds.json");
+		setupMusic("res/json/music.json");
 		setupFonts("res/json/fonts.json");
 		setupPartikel("res/json/partikel.json");
 		setupSettings("res/json/settings.json");
@@ -130,9 +133,9 @@ public class AssetLoader {
 
 	private void setupFonts(String filename) {
 		try {
-			List<FontInfo> soundInfos = JacksonReader.readList(filename,
+			List<FontInfo> fontInfos = JacksonReader.readList(filename,
 					FontInfo.class);
-			for (FontInfo fontInfo : soundInfos) {
+			for (FontInfo fontInfo : fontInfos) {
 				checkForBackslashes(fontInfo.file);
 				checkForBackslashes(fontInfo.image);
 				fontMap.put(fontInfo.name, new AngelCodeFont(fontInfo.file,
@@ -258,6 +261,18 @@ public class AssetLoader {
 		}
 	}
 
+	private void setupMusic(String filename) {
+		try {
+			List<SoundInfo> musicInfos = JacksonReader.readList(filename, SoundInfo.class);
+			for (SoundInfo musicInfo : musicInfos) {
+				checkForBackslashes(musicInfo.pfad);
+				musicMap.put(musicInfo.name, new Music(ResourceLoader.getResource(musicInfo.pfad)));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	// GET
 	// //////////////////////////////////////////////////////////////////////////
 
@@ -347,6 +362,15 @@ public class AssetLoader {
 	        return soundMap.get(name);
 	    }
 	}
+
+    public Music getMusic(String name) {
+	    if(musicMap.get(name) == null){
+	        Log.warn("AssetLoader: Music '" + name + "' existiert nicht.");
+	        return musicMap.get("error");
+	    }else{
+	        return musicMap.get(name);
+	    }
+    }
 
 	//WRITE
 	// ///////////////////////////////////////////////////////////////////////

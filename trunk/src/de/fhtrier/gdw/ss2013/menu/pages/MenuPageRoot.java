@@ -1,6 +1,7 @@
 
 package de.fhtrier.gdw.ss2013.menu.pages;
 
+import de.fhtrier.gdw.ss2013.MainGame;
 import org.newdawn.slick.Font;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
@@ -25,12 +26,24 @@ public class MenuPageRoot extends MenuPage {
 		float y = 480;
 		float h = font.getLineHeight() * 1.2f;
 		int i=2;
-		addLeftAlignedButton("Symbion", x, y - h * (i--), font, 
-			new IActionListener() {
-				public void onAction() {
-					GameplayState.hideMenu();
-				}
-			});
+        
+		if(!ingame) {
+            addLeftAlignedButton("Symbion", x, y - h * (i--), font, 
+                new IActionListener() {
+                    public void onAction() {
+                        MainGame.changeState(MainGame.GAMEPLAYSTATE);
+                    }
+                });
+		}
+		else {
+            addLeftAlignedButton("Fortsetzen", x, y - h * (i--), font, 
+                new IActionListener() {
+                    public void onAction() {
+                        GameplayState.hideMenu();
+                    }
+                });
+		}
+
 	}
 
 }
