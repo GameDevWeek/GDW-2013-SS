@@ -20,6 +20,7 @@ import de.fhtrier.gdw.ss2013.game.camera.CameraInfo;
 import de.fhtrier.gdw.ss2013.game.camera.ThreePointCamera;
 import de.fhtrier.gdw.ss2013.game.player.Alien;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
+import de.fhtrier.gdw.ss2013.game.score.ScoreCounter;
 import de.fhtrier.gdw.ss2013.game.world.enemies.boss.AbstractBoss;
 import de.fhtrier.gdw.ss2013.game.world.enemies.boss.ThaWhale;
 import de.fhtrier.gdw.ss2013.input.InputManager;
@@ -43,6 +44,7 @@ public class World {
     private ThreePointCamera tpCamera;
     private Astronaut astronaut;
     private Alien alien;
+    private ScoreCounter scoreCounter;
 
     private static World instance;
 
@@ -61,7 +63,7 @@ public class World {
 		entityManager = new EntityManager();
 		physicsManager = new PhysixManager(container);
 		particleList = new ArrayList<DynamicParticleSystem>();
-        
+        scoreCounter = new ScoreCounter();
         reset();
 	}
     
@@ -125,6 +127,7 @@ public class World {
 			b.getPosition().y = 100;
 		}
 		// <<< DEBUG
+		scoreCounter.reset();
     }
 
 	public void render(GameContainer container, Graphics g)
@@ -171,6 +174,7 @@ public class World {
 		}
 		
 		g.popTransform();
+		scoreCounter.render(g);
 	}
 
     public void update(GameContainer container, int delta)
@@ -261,6 +265,10 @@ public class World {
 
 	public void shallBeReseted(boolean shallBeReseted) {
 		this.shallBeReseted = shallBeReseted;
+	}
+	
+	public ScoreCounter getScoreCounter() {
+		return scoreCounter;
 	}
 
 }
