@@ -38,7 +38,7 @@ public class OxygenFlower extends EntityCollidable implements Interactable {
         m = w.getEntityManager();
     }
 
-    public void shootBubbles() {
+    public void createBubbles() {
         if (count != getMaxBubble()) {
             float x = this.getPosition().getX() + (float) Math.random() * 100;
             float y = this.getPosition().getY() - (float) Math.random() * 100;
@@ -70,7 +70,7 @@ public class OxygenFlower extends EntityCollidable implements Interactable {
 
         bubbleTime += delta;
         if (bubbleTime >= 500) {
-            this.shootBubbles();
+            this.createBubbles();
         }
     }
 
@@ -95,7 +95,7 @@ public class OxygenFlower extends EntityCollidable implements Interactable {
         Entity other = getOtherEntity(contact);
         if (other instanceof Astronaut) {
             if (bubbleTime >= 2000) {
-                this.shootBubbles();
+                this.createBubbles();
             }
         }
     }

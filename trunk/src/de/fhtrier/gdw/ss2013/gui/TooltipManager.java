@@ -9,6 +9,7 @@ import org.newdawn.slick.Font;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Vector2f;
 
+import de.fhtrier.gdw.ss2013.constants.MathConstants;
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.filter.EntityFilter;
@@ -16,7 +17,6 @@ import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.game.world.objects.Door;
 import de.fhtrier.gdw.ss2013.game.world.objects.Switch;
 import de.fhtrier.gdw.ss2013.gui.utils.CenteredText;
-import de.fhtrier.gdw.ss2013.math.MathConstants;
 
 public class TooltipManager {
 
