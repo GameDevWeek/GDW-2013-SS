@@ -69,7 +69,9 @@ public class EntityManager {
             if (e instanceof RecycleableEntity) {
                 factory.recycle(e);
             }
+            e.dispose();
             entityList.remove(e.getName());
+            
         }
 
     }
@@ -179,7 +181,7 @@ public class EntityManager {
 
     public void removeEntity(Entity e) {
         removalQueue.add(e);
-        e.dispose();
+
     }
 
     public <T extends Entity> T createEntity(Class<? extends Entity> entityClass) {

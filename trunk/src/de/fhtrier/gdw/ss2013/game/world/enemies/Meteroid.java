@@ -60,7 +60,7 @@ public class Meteroid extends AbstractEnemy {
 		}
 		
 		if (other == null) {
-			//World.getInstance().getEntityManager().removeEntity(this); // doesnt work until dispose() works
+			World.getInstance().getEntityManager().removeEntity(this); // doesnt work until dispose() works
 		}
 
 //		Fixture a = contact.m_fixtureA;
