@@ -85,6 +85,12 @@ public class MovingPlatform extends Entity implements Interactable {
     }
 
     @Override
+    public boolean isActive() {
+        // TODO Auto-generated method stub
+        return isActive;
+    }
+
+    @Override
     public void deactivate() {
         isActive = false;
         setVelocity(new Vector2f());

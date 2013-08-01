@@ -8,9 +8,12 @@ package de.fhtrier.gdw.ss2013.game.filter;
  * - deactivate()<br>
  * 
  * @author BreakingTheHobbit
- *
+ * 
  */
 public interface Interactable extends EntityFilter {
     public void activate();
+
     public void deactivate();
+
+    public boolean isActive();
 }

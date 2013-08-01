@@ -2,6 +2,9 @@ package de.fhtrier.gdw.ss2013.game.world.objects;
 
 import java.util.HashSet;
 
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.SlickException;
+
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.filter.Interactable;
 
@@ -25,6 +28,20 @@ public abstract class ObjectController extends Entity implements Interactable {
     protected ObjectController() {
         isActivated = false;
         connectedEntities = new HashSet<Interactable>();
+    }
+
+    @Override
+    public void update(GameContainer container, int delta)
+            throws SlickException {
+        for (Interactable ia : connectedEntities) {
+            ia.isActive();
+        }
+        super.update(container, delta);
+    }
+
+    @Override
+    public boolean isActive() {
+        return isActivated;
     }
 
     /**
