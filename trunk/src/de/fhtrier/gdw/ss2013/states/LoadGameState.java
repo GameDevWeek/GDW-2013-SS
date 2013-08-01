@@ -28,6 +28,7 @@ public class LoadGameState extends BasicGameState {
 	// private Image loadscreen;
 	private MainMenuState mainMenuState;
 	private GameplayState gameplayState;
+	private GameWonState gamewonState;
 	private DeferredResource nextResource;
 	private AssetLoader assetLoader;
 
@@ -102,8 +103,18 @@ public class LoadGameState extends BasicGameState {
 			gameplayState.init(container, game);
 			game.addState(gameplayState);
 
+			gamewonState = new GameWonState();
+			gamewonState.init(container, game);
+			game.addState(gamewonState);
+
+
 //			if (DebugModeStatus.isTest()) {
+			if (DebugModeStatus.isWinMenuStatus()) {
+				MainGame.changeState(MainGame.WINSTATE);
+			}
+			else {
 				MainGame.changeState(MainGame.GAMEPLAYSTATE);
+			}
 //			} else {
 //                container.setMouseGrabbed(false);
 //				MainGame.changeState(MainGame.MAINMENUSTATE);

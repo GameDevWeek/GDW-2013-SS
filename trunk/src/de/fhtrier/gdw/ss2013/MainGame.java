@@ -27,6 +27,7 @@ public class MainGame extends StateBasedGame {
     public static final int MAINMENUSTATE = 0;
     public static final int GAMEPLAYSTATE = 1;
     public static final int LOADGAMESTATE = 2;
+    public static final int WINSTATE = 3;
     public static int currentState = -1;
     public static MainGame instance;
     private LoadGameState loadGameState;
@@ -108,6 +109,9 @@ public class MainGame extends StateBasedGame {
                 }
                 if(a.toLowerCase().startsWith("-level=")) {
                 	DebugModeStatus.setLevel(a.substring(7, a.length()));
+                }
+                if(a.toLowerCase().startsWith("-win")) {
+                	DebugModeStatus.setWinMenuStatus(true);
                 }
             }
 

@@ -7,6 +7,8 @@ public class DebugModeStatus {
     
     static protected boolean tpCameraStatus = false;
     
+    static protected boolean winMenuStatus = false;
+    
     static String levelName = "run_or_die";
 
     static public boolean isTest() {
@@ -40,5 +42,13 @@ public class DebugModeStatus {
 
 	public static String getLevelName() {
 		return levelName;
+	}
+
+	public static void setWinMenuStatus(boolean s) {
+		winMenuStatus = s;
+	}
+	
+	public static boolean isWinMenuStatus() {
+		return winMenuStatus;
 	}
 }
