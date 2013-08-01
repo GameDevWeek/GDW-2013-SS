@@ -7,7 +7,7 @@
    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
   </data>
  </layer>
- <objectgroup name="Zonen" width="230" height="60" visible="0">
+ <objectgroup name="Zonen" width="230" height="60">
   <object type="solid" x="450" y="191" width="158" height="385"/>
   <object type="solid" x="-3" y="195" width="287" height="379"/>
   <object type="solid" x="835" y="194" width="155" height="291"/>
@@ -39,7 +39,7 @@
   <object type="deadzone" x="3258" y="1806" width="2085" height="121"/>
   <object type="solid" x="4928" y="1634" width="1728" height="92"/>
  </objectgroup>
- <objectgroup name="Entitys" width="230" height="60" visible="0">
+ <objectgroup name="Entitys" width="230" height="60">
   <object type="platformline" x="1164" y="225">
    <polyline points="0,0 221,0"/>
   </object>
