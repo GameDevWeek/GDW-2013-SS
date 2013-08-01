@@ -92,6 +92,44 @@ public class MenuPage {
 
         return button;
     }
+    
+    public TextField addLeftAlignedTextField(final String text, float x, float y, Font font) throws SlickException {
+        float w = font.getWidth(text);
+        float h = font.getLineHeight();
+
+        TextField textField = TextField.create(text, x, y, w, h)
+                .font(font)
+                .color(Color.gray);
+        addWidget(textField);
+        textField.init(container);
+
+        return textField;
+    }
+    
+    public TextField addCenteredTextField(final String text, float x, float y, Font font) throws SlickException {
+        float w = font.getWidth(text);
+        float h = font.getLineHeight();
+
+        TextField textField = TextField.create(text, x - w / 2, y - h / 2, w, h)
+                .font(font)
+                .color(Color.gray);
+        addWidget(textField);
+        textField.init(container);
+
+        return textField;
+    }
+    
+    public Label addLeftAlignedLabel(final String text, float x, float y, Font font) throws SlickException {
+        float w = font.getWidth(text);
+        float h = font.getLineHeight();
+        
+        Label label = Label.create(text, x, y, w, h)
+                .font(font)
+                .color(Color.gray);
+        addWidget(label);
+        
+        return label;
+    }
 
     public void keyReleased(int key, char c) {
         if (key == Input.KEY_ESCAPE) {
