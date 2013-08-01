@@ -73,8 +73,6 @@ public class GameplayState extends BasicGameState {
     
         if(menuOpened)
 			menuManager.update(container, game, delta);
-        
-        System.out.println("update end");
     }
 
     @Override
