@@ -265,7 +265,6 @@ public class LevelLoader {
                     x - width / 2, y - height / 2, width, height,
                     BodyType.KINEMATIC, worldInfo.density, worldInfo.friction,
                     false);
-            System.out.println(properties.getProperty("path"));
             entity.setPhysicsObject(platformBox);
             break;
         case "teleporter":

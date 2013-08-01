@@ -175,5 +175,22 @@
     <property name="path" value="p2"/>
    </properties>
   </object>
+  <object name="p3" type="PlatformPath" x="576" y="6080">
+   <properties>
+    <property name="isActive" value="true"/>
+    <property name="moveAround" value="true"/>
+   </properties>
+   <polyline points="0,0 768,0 768,-512 0,-512 0,0"/>
+  </object>
+  <object name="mp3" gid="644" x="546" y="6108">
+   <properties>
+    <property name="path" value="p3"/>
+   </properties>
+  </object>
+  <object name="mp4" gid="644" x="1308" y="5601">
+   <properties>
+    <property name="path" value="p3"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
