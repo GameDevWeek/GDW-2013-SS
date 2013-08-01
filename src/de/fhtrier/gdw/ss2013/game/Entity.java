@@ -9,7 +9,6 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
-import org.newdawn.slick.particles.ParticleSystem;
 
 import de.fhtrier.gdw.commons.utils.SafeProperties;
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
@@ -138,7 +137,9 @@ public abstract class Entity {
      * Override to provide destroy code for world objects (physic mostly)
      */
     protected void dispose() {
-
+        
+        this.physicsObject.removeFromWorld();
+        this.physicsObject = null;
     }
 
     public void setPhysicsObject(PhysixObject physicsObject) {

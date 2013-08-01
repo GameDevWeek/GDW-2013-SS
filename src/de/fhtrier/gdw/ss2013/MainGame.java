@@ -97,11 +97,14 @@ public class MainGame extends StateBasedGame {
                     System.getProperty("org.lwjgl.librarypath"));
 
             for (String a : args) {
-                if (a.equals("-testmode")) {
+                if (a.toLowerCase().equals("-testmode")) {
                     DebugModeStatus.setStatus(false);
                 }
-                if (a.equals("-physictest")) {
+                if (a.toLowerCase().equals("-physictest")) {
                     DebugModeStatus.setPhysicTest(true);
+                }
+                if(a.toLowerCase().equals("-tpcamera")) {
+                    DebugModeStatus.setTPCamera(true);
                 }
             }
 

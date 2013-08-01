@@ -1,5 +1,6 @@
 package de.fhtrier.gdw.ss2013.game.camera;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -16,6 +17,8 @@ public class ThreePointCamera {
     private final int mapPixelHeight;
     private final int mapTileWidth;
     private final int mapTileHeight;
+    
+    private final float cameraSpeed;
 
     private static final float CAM_ZOOM_EPSILON = 0.0001f;
 
@@ -23,7 +26,10 @@ public class ThreePointCamera {
 
     private final LinkedList<PointOfInterest> pointOfInterests;
 
+
     public ThreePointCamera(CameraInfo info) {
+        cameraSpeed = info.cameraSpeed;
+
         pointOfInterests = new LinkedList<>();
         centerPoint = new Vector2f();
         cameraPosition = new Vector2f();
@@ -78,19 +84,19 @@ public class ThreePointCamera {
 
 //            System.out.println("Final(" + finalPosX + ", " + finalPosY + ")");
 
-            focusPoint.set(focusPoint.x + (finalPosX - focusPoint.x) * (dt),
-                    focusPoint.y + (finalPosY - focusPoint.y) * (dt));
+            focusPoint.set(focusPoint.x + (finalPosX - focusPoint.x) * (dt*cameraSpeed),
+                    focusPoint.y + (finalPosY - focusPoint.y) * (dt*cameraSpeed));
             // focusPoint.set(finalPosX, finalPosY);
 
         } else {
-            focusPoint.set(focusPoint.x + (targetX - focusPoint.x) * (dt),
-                    focusPoint.y + (targetY - focusPoint.y) * (dt));
+            focusPoint.set(focusPoint.x + (targetX - focusPoint.x) * (dt*cameraSpeed),
+                    focusPoint.y + (targetY - focusPoint.y) * (dt*cameraSpeed));
         }
         
         cameraPosition
-                .set(cameraPosition.x + (focusPoint.x - cameraPosition.x) * dt,
+                .set(cameraPosition.x + (focusPoint.x - cameraPosition.x) * dt*cameraSpeed,
                         cameraPosition.y + (focusPoint.y - cameraPosition.y)
-                                * dt);
+                                * dt*cameraSpeed);
 
         float xadjust = width * this.zoomFactor * 0.5f;
         float yadjust = height * this.zoomFactor * 0.5f;
@@ -100,14 +106,7 @@ public class ThreePointCamera {
         
         centerPoint.set(focusPoint.x - width/2, focusPoint.y - height/2);
 
-        /*
-         * 0 + aspectedZoom.x, m_viewPort.x - aspectedZoom.x, 0 +
-         * aspectedZoom.y, m_viewPort.y - aspectedZoom.y
-         */
-
-        /**
-         * zoomFactor = 0 => keine änderung
-         */
+        
 
         updateTiled(width, height, focusPoint.x, focusPoint.y);
     }
@@ -175,6 +174,21 @@ public class ThreePointCamera {
 
     }
 
+    public void pushViewMatrix(Graphics g) {
+        g.pushTransform();
+        g.translate(this.getZoomedTranslateX() / 2 ,
+                this.getZoomedTranslateY() / 2);
+
+        g.scale(this.scaleX(), this.scaleY());
+        g.translate(-this.getCenter().x , -this.getCenter().y);
+    }
+    
+    public void popViewMatrix(Graphics g) {
+        g.popTransform();
+    }
+
+    
+
     private int limit(float pos, float windowSize, float mapSize) {
         float camX = pos - windowSize * 0.5f;
         if (camX < 0) {
@@ -211,19 +225,6 @@ public class ThreePointCamera {
         }
     }
     
-    public void pushViewMatrix(Graphics g) {
-        g.pushTransform();
-        g.translate(this.getZoomedTranslateX() / 2 ,
-                this.getZoomedTranslateY() / 2);
-
-        g.scale(this.scaleX(), this.scaleY());
-        g.translate(-this.getCenter().x , -this.getCenter().y);
-    }
-    
-    public void popViewMatrix(Graphics g) {
-        g.popTransform();
-    }
-
     private int numTilesX;
     private int numTilesY;
     private int tileX;

@@ -25,6 +25,8 @@ public abstract class PhysixObject {
 	protected Body body;
 	protected HashSet<ICollisionListener> collisionListeners = new HashSet<>();
     
+	protected World associatedWorld; 
+	
 	protected Vec2 dimension;
 	
     public PhysixObject(float density, float friction, boolean sensor) {
@@ -43,6 +45,8 @@ public abstract class PhysixObject {
 	    bodyDef.type = type;
         bodyDef.position.set(x, y);
 	    fixtureDef.shape = shape;
+	    
+	    associatedWorld = world;
         
         body = world.createBody(bodyDef);
 	    body.setUserData(this);
@@ -189,5 +193,9 @@ public abstract class PhysixObject {
 	
 	public Vector2f getDimension() {
 	    return PhysixUtil.toWorld(this.dimension);
+	}
+	
+	public void removeFromWorld() {
+	    associatedWorld.destroyBody(body);
 	}
 }
