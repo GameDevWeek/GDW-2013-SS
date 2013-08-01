@@ -37,6 +37,7 @@ public class Door extends Entity implements Interactable {
     public void activate() {
         if (!open ) {
             open = true;
+            physicsObject.setActive(false);
         }
 
     }
