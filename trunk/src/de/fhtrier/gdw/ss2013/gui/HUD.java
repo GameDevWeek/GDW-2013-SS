@@ -74,7 +74,7 @@ public class HUD {
         abilityDisplay[2]=new AbilityDisplay(abilityDisplay3_Image, abilityDisplay3_Position,abilityDisplayFadingSpeed);
         
         abilityWheel.init(abilityDisplay, worldinstance);
-		
+        
         //Init quickselect
 
         //Backup von alter Version
@@ -113,6 +113,8 @@ public class HUD {
 		tooltipmanager = TooltipManager.getInstance();
 		//tooltipmanager = new Tooltip();
 		tooltipmanager.init(worldinstance, font);
+		
+		//tooltipmanager.addTooltip(new Vector2f (500,500), crosshairImage, new Vector2f (500,500), 500);
 		
 
         fpsFont = asset.getFont("quartz_40");

@@ -27,6 +27,7 @@ public class TooltipManager {
     private static TooltipManager instance;
     
     public TooltipManager() {
+        tooltipList = new ArrayList<>();
     }
     
     public void init(World worldinstance, Font font) {
@@ -34,7 +35,7 @@ public class TooltipManager {
         this.worldinstance = worldinstance;
         entityManager = worldinstance.getEntityManager();
         Tooltip.setWorld(worldinstance);
-        tooltipList = new ArrayList<>();
+        
     }
 
     public void addTooltip(Vector2f imagePosition, Image image, Vector2f triggerPosition) {        
