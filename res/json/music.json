@@ -1,9 +1,9 @@
 [{
  "name" : "menu",
- "pfad" : "res/music/menu.ogg"
+ "pfad" : "res/music/hauptmenue.ogg"
 },
 {
  "name" : "gameplay",
- "pfad" : "res/music/track1crystalpeakbeta.ogg"
+ "pfad" : "res/music/track1crystalpeak.ogg"
 }
 ]
