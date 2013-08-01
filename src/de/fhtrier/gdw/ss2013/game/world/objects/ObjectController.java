@@ -26,6 +26,14 @@ public abstract class ObjectController extends Entity implements Interactable {
     protected HashSet<Interactable> connectedEntities;
 
     protected ObjectController() {
+        initialize();
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void initialize() {
         isActivated = false;
         connectedEntities = new HashSet<Interactable>();
     }
@@ -84,7 +92,7 @@ public abstract class ObjectController extends Entity implements Interactable {
     }
 
     /**
-     * disconnected interactable Entity from this Controller
+     * disconnect interactable Entity from this Controller
      * 
      * @param interactable
      *            interactable Entity to be disconnected
