@@ -258,15 +258,27 @@ public class LevelLoader {
                     0.5f, true);
             entity.setPhysicsObject(box);
             break;
-        case "MovingPlatform":
-            entity = entityManager.createEntity(type, properties, name);
+        case "smallPlatform":
+            entity = entityManager.createEntity("MovingPlatform", properties, name);
+            entity.setImage(AssetLoader.getInstance().getImage("PlatformSmall"));
             width = (int) entity.getImage().getWidth();
             height = (int) entity.getImage().getHeight();
-            PhysixBox platformBox = new PhysixBox(physicsManager,
+            PhysixBox platformBoxSmall = new PhysixBox(physicsManager,
                     x - width / 2, y - height / 2, width, height,
                     BodyType.KINEMATIC, worldInfo.density, worldInfo.friction,
                     false);
-            entity.setPhysicsObject(platformBox);
+            entity.setPhysicsObject(platformBoxSmall);
+            break;
+        case "bigPlatform":
+            entity = entityManager.createEntity("MovingPlatform", properties, name);
+            entity.setImage(AssetLoader.getInstance().getImage("PlatformBig"));
+            width = (int) entity.getImage().getWidth();
+            height = (int) entity.getImage().getHeight();
+            PhysixBox platformBoxBig = new PhysixBox(physicsManager,
+                    x - width / 2, y - height / 2, width, height,
+                    BodyType.KINEMATIC, worldInfo.density, worldInfo.friction,
+                    false);
+            entity.setPhysicsObject(platformBoxBig);
             break;
         case "teleporter":
             entity = entityManager.createEntity(type, properties, name);
@@ -331,7 +343,7 @@ public class LevelLoader {
             MovingPlatform platform = (MovingPlatform) e;
             if (platform.getProperties() != null) {
                 String name = platform.getProperties().getProperty("path");
-                if (!name.isEmpty()) {
+                if (name != null) {
                     PlatformPath path = platformPaths.get(name);
                     if (path != null) {
                         platform.initLine(path.getPoints(), path.getProperties());

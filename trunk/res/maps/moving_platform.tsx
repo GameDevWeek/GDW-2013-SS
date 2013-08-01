@@ -3,12 +3,12 @@
  <image source="movingplatform.png" width="192" height="64"/>
  <tile id="0">
   <properties>
-   <property name="type" value="MovingPlatform"/>
+   <property name="type" value="bigPlatform"/>
   </properties>
  </tile>
  <tile id="1">
   <properties>
-   <property name="type" value="MovingPlatform"/>
+   <property name="type" value="smallPlatform"/>
   </properties>
  </tile>
 </tileset>
