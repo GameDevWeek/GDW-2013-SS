@@ -7,7 +7,9 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
+import de.fhtrier.gdw.ss2013.constants.EnemyConstants;
 import de.fhtrier.gdw.ss2013.game.Entity;
+import de.fhtrier.gdw.ss2013.game.EntityCollidable;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.world.World;
@@ -18,14 +20,15 @@ import de.fhtrier.gdw.ss2013.game.world.World;
  * @author Kevin, Georg
  * 
  */
-public class EnemyBullet extends AbstractEnemy {
+public class EnemyBullet extends EntityCollidable {
 
     private Image img;
     protected int livetime;
     private EntityManager m;
+    protected float damage;
 
     public EnemyBullet() {
-    	super(null);
+    	super();
     	img = AssetLoader.getInstance().getImage("boltEnemy");
     	m = World.getInstance().getEntityManager();
     	initialize();
@@ -37,6 +40,7 @@ public class EnemyBullet extends AbstractEnemy {
     @Override
     protected void initialize() {
         super.initialize();
+        damage = EnemyConstants.ENEMY_BULLET_DAMAGE;
         livetime = 60 * 10;
     }
 
@@ -77,4 +81,12 @@ public class EnemyBullet extends AbstractEnemy {
     @Override
     public void endContact(Contact object) {
     }
+
+	public float getDamage() {
+		return damage;
+	}
+
+	public void setDamage(float damage) {
+		this.damage = damage;
+	}
 }
