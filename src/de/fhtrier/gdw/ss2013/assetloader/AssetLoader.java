@@ -342,7 +342,7 @@ public class AssetLoader {
 
 	public DynamicParticleSystem getParticle(String name) {
 		if (particleMap.get(name) == null) {
-		    Log.warn("AssetLoader: Particleanimtion '" + name + "' existiert nicht.");
+		    Log.warn("AssetLoader: Particleanimation '" + name + "' existiert nicht.");
 			return particleMap.get("error");
 		} else {
 			return particleMap.get(name).clone();
