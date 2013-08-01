@@ -35,14 +35,14 @@ public class HUD {
 	    // Init healthbar
 	    healthbar = new Progressbar();
 
-		final Vector2f position = new Vector2f(10, 10);
+		final Vector2f position = new Vector2f(0, 0);
 		final Vector2f size = new Vector2f(240, 40); /////////
 		
 		//final String imagePath = "/res/Dummy_GUIs_Images/";
 
 		final Image frame = asset.getImage("healthBarFrame");
-        final Image background = asset.getImage("healthBarBackground");
-        final Image bar = asset.getImage("healthBarForeground");
+        final Image background = asset.getImage("healthbar_rund_background");
+        final Image bar = asset.getImage("healthbar_rund_ganz");
         final Font font = asset.getFont("verdana_24");
         
         healthbar.init(position, size, frame, background, bar, font, worldinstance);
