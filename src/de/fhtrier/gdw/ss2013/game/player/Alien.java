@@ -27,7 +27,7 @@ public class Alien extends Player implements AlienController {
     // telekinese values
     private Camera camera = World.getInstance().getCamera();
     private Box currentSelectedBox = null;
-    private float selectionRadius = 10;
+    private float selectionRadius = 50;
     private final Vector2f oldcursor = new Vector2f();
     private final Vector2f dragDirection = new Vector2f();
 
