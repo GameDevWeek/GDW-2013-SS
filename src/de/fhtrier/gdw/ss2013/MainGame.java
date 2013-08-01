@@ -21,9 +21,9 @@ import de.fhtrier.gdw.ss2013.states.LoadGameState;
  */
 public class MainGame extends StateBasedGame {
 
-    public static final String WINDOW_TITLE = "GameDevWeek SS2013";
+    public static final String WINDOW_TITLE = "Symbion";
     public static final int WINDOW_WIDTH = 1280;
-    public static final int WINDOW_HEIGHT = 960;
+    public static final int WINDOW_HEIGHT = 720;
     public static final int MAINMENUSTATE = 0;
     public static final int GAMEPLAYSTATE = 1;
     public static final int LOADGAMESTATE = 2;
