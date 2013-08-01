@@ -7,7 +7,7 @@ import de.fhtrier.gdw.ss2013.constants.SpawnerConstants;
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.world.World;
-import de.fhtrier.gdw.ss2013.game.world.enemies.Meteroid;
+import de.fhtrier.gdw.ss2013.game.world.objects.Meteroid;
 
 public class MeteoriteSpawner extends Entity {
 	private int spawnDelay;

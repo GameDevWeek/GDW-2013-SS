@@ -1,4 +1,4 @@
-package de.fhtrier.gdw.ss2013.game.world.enemies;
+package de.fhtrier.gdw.ss2013.game.world.objects;
 
 import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.contacts.Contact;
@@ -22,6 +22,7 @@ import de.fhtrier.gdw.ss2013.physix.PhysixManager;
  * 
  * @author Kevin, Georg
  * 
+ * dont fix spelling mistake, is used too often byRD
  */
 public class Meteroid extends EntityCollidable {
 
@@ -38,8 +39,6 @@ public class Meteroid extends EntityCollidable {
 	@Override
 	protected void initialize() {
 		super.initialize();
-		if (physicsObject != null)
-			System.out.println("BAM");
 		PhysixManager physicsManager = World.getInstance().getPhysicsManager();
 		
 		// FIXME: Dirty hack to get width and height of an Meteorite
