@@ -25,5 +25,9 @@
   {
   "name" : "plattform2",
   "pfad" : "res/partikel/plattform2.xml"
+  },
+  {
+  	"name" : "error",
+  "pfad" : "res/partikel/error.xml"
   }
   ]
