@@ -1,0 +1,126 @@
+{
+    "paths" : [
+		{ "name": "left",
+           "destinations": [
+			{"x": -1200, "y": 750, "speed": 0 },
+			{"x": 312, "y": 700, "speed": 1500 },
+			{"x": 780, "y": 200, "speed": 100 },
+			{"x": 810, "y": -100, "speed": 1500 }
+           ]
+		},
+		{ "name": "right",
+           "destinations": [
+			{"x": 1800, "y": 750, "speed": 0 },
+			{"x": 312, "y": 700, "speed": 1500 },
+			{"x": 780, "y": 200, "speed": 100 },
+			{"x": 810, "y": -100, "speed": 1500 }
+           ]
+		},
+		{ "name": "middle",
+           "destinations": [
+			{"x": 312, "y": 1150, "speed": 0 },
+			{"x": 312, "y": 700, "speed": 450 },
+			{"x": 780, "y": 200, "speed": 100 },
+			{"x": 810, "y": -100, "speed": 1500 }
+           ]
+		},
+		{ "name": "player",
+           "destinations": [
+			{"x": -60, "y": 200, "speed": -1 },
+			{"x": 550, "y": 200, "speed": 250 },
+			{"x": 60, "y": 650, "speed": 250 },
+			{"x": -60, "y": 650, "speed": 250 }
+           ]
+		},
+		{ "name": "player_reverse",
+           "destinations": [
+			{"x": -60, "y": 650, "speed": -1 },
+			{"x": 60, "y": 650, "speed": 250 },
+			{"x": 650, "y": 100, "speed": 250 },
+			{"x": 810, "y": -100, "speed": 1500 }
+           ]
+		},
+		{ "name": "player2",
+           "destinations": [
+			{"x": 1100, "y": 230, "speed": -1 },
+			{"x": 940, "y": 230, "speed": 250 },
+			{"x": 600, "y": 650, "speed": 250 },
+			{"x": 1100, "y": 650, "speed": 250 }
+           ]
+		},
+		{ "name": "player2_reverse",
+           "destinations": [
+			{"x": 1100, "y": 650, "speed": -1 },
+			{"x": 300, "y": 650, "speed": 250 },
+			{"x": 100, "y": 250, "speed": 250 },
+			{"x": 700, "y": 450, "speed": 250 },
+			{"x": 800, "y": 200, "speed": 250 },
+			{"x": 800, "y": -100, "speed": 1500 }
+           ]
+		},
+		{ "name": "player2_reverse_pizza",
+           "destinations": [
+			{"x": 1100, "y": 650, "speed": -1 },
+			{"x": 300, "y": 650, "speed": 250 },
+			{"x": 100, "y": 250, "speed": 250 },
+			{"x": 700, "y": 450, "speed": 250 },
+			{"x": 800, "y": 260, "speed": 250 },
+			{"x": 800, "y": 230, "speed": 150 },
+			{"x": 800, "y": 220, "speed": 50 },
+			{"x": 800, "y": 240, "speed": 100 },
+			{"x": 800, "y": 280, "speed": 50 },
+			{"x": 800, "y": 250, "speed": 150 },
+			{"x": 800, "y": 240, "speed": 250 },
+			{"x": 800, "y": 230, "speed": 500 },
+			{"x": 800, "y": -100, "speed": 1500 }
+           ]
+		}
+    ],
+    "styles" : [
+        { "name": "title", "path": "middle", "color": "F8BB08", "font": "verdana_46" },
+        { "name": "name_left", "path": "left", "color": "FFFFFF", "font": "verdana_32_inverted" },
+        { "name": "name_right", "path": "right", "color": "FFFFFF", "font": "verdana_32_inverted" }
+    ],
+    "texts" : [
+		{ "style" : "title", "delay": 100, "value": "Organisation" },
+		{ "style" : "name_right", "delay": 750, "value": "Santo Pfingsten" },
+		{ "style" : "name_right", "delay": 750, "value": "Robin Dick" },
+		{ "style" : "name_right", "delay": 750, "value": "Tobias Krumholz" },
+		{ "style" : "name_right", "delay": 750, "value": "Torsten Scholer" },
+		{ "style" : "name_left", "delay": 750, "value": "Johannes Strack" },
+		{ "style" : "title", "delay": 1150, "value": "Design" },
+		{ "style" : "name_right", "delay": 750, "value": "Annalena Weber" },
+		{ "style" : "name_left", "delay": 750, "value": "......" },
+		{ "style" : "title", "delay": 1150, "value": "Programmierung" },
+		{ "style" : "name_left", "delay": 750, "value": "Tobias Krumholz" },
+		{ "style" : "name_right", "delay": 750, "value": "Santo Pfingsten" },
+		{ "style" : "name_left", "delay": 750, "value": "Robin Dick" },
+		{ "style" : "name_right", "delay": 750, "value": "Torsten Scholer" },
+		{ "style" : "name_left", "delay": 750, "value": "Janina Nöell" },
+		{ "style" : "name_left", "delay": 750, "value": "......" },
+		{ "style" : "title", "delay": 1150, "value": "Level Editing" },
+		{ "style" : "name_left", "delay": 750, "value": "Robin Dick" },
+		{ "style" : "name_left", "delay": 750, "value": "Wendelin Lehr" },
+		{ "style" : "title", "delay": 1150, "value": "Fotos & Interview" },
+		{ "style" : "name_left", "delay": 750, "value": "Lisa Feiler" }
+    ],
+    "animations" : [
+		{ "name": "pizza_icon", "x": 0, "y": 0, "width": 32, "height": 32, "path": "player", "angle": 0, "delay": 0, "oriented": false, "animation": false },
+		
+		{ "name": "player_team0", "x": 0, "y": 0, "width": 64, "height": 64, "path": "player", "angle": 0, "delay": 1000, "oriented": true, "animation": true },
+		{ "name": "player_wiggle2", "x": 0, "y": 0, "width": 48, "height": 48, "path": "player", "angle": 0, "delay": 500, "oriented": true, "animation": true },
+
+		{ "name": "player_wiggle", "x": 0, "y": 0, "width": 64, "height": 64, "path": "player_reverse", "angle": 0, "delay": 6500, "oriented": true, "animation": true },
+		{ "name": "player_team1", "x": 0, "y": 0, "width": 96, "height": 96, "path": "player_reverse", "angle": 0, "delay": 7000, "oriented": true, "animation": true },
+
+		{ "name": "player_team1", "x": 0, "y": 0, "width": 64, "height": 64, "path": "player2", "angle": 0, "delay": 12000, "oriented": true, "animation": true },
+		{ "name": "player_wiggle", "x": 0, "y": 0, "width": 48, "height": 48, "path": "player2", "angle": 0, "delay": 11500, "oriented": true, "animation": true },
+		{ "name": "pizza_icon", "x": 0, "y": 0, "width": 32, "height": 32, "path": "player2", "angle": 0, "delay": 11000, "oriented": false, "animation": false },
+
+		{ "name": "player_wiggle2", "x": 0, "y": 0, "width": 64, "height": 64, "path": "player2_reverse", "angle": 0, "delay": 17500, "oriented": true, "animation": true },
+		{ "name": "player_wiggle", "x": 0, "y": 0, "width": 48, "height": 48, "path": "player2_reverse", "angle": 0, "delay": 18000, "oriented": true, "animation": true },
+		{ "name": "pizza_icon", "x": 0, "y": 0, "width": 128, "height": 128, "path": "player2_reverse_pizza", "angle": 0, "delay": 19000, "oriented": false, "animation": false },
+
+		{ "name": "player_team0", "x": 644, "y": -170, "width": 360, "height": 360, "path": "null", "angle": 0, "delay": 0, "oriented": true, "animation": true }
+    ]
+}

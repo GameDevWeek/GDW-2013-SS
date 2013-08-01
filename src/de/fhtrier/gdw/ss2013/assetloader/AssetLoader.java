@@ -4,6 +4,7 @@
 
 package de.fhtrier.gdw.ss2013.assetloader;
 
+import de.fhtrier.gdw.ss2013.assetloader.infos.CreditsInfo;
 import java.util.HashMap;
 import java.util.List;
 
@@ -48,6 +49,8 @@ public class AssetLoader {
 
 	private SettingsInfo settings;
 	private GameDataInfo gameStats;
+    private ControlsInfo controlsInfo;
+    private CreditsInfo creditsInfo;
 
 	private static AssetLoader instance;
 
@@ -57,7 +60,6 @@ public class AssetLoader {
 		}
 		return instance;
 	}
-    private ControlsInfo controlsInfo;
 
 	private AssetLoader() {
 	    setupImages("res/json/images.json");
@@ -71,6 +73,7 @@ public class AssetLoader {
 		setupInfos("res/json/infos.json");
 		setupGameStats("res/json/gameData.json");
         setupControls("res/json/controls.json");
+        setupCredits("res/json/credits.json");
 	}
 
 	// BACKSLASH CHECK
@@ -273,6 +276,14 @@ public class AssetLoader {
 		}
 	}
 
+    private void setupCredits(String filename) {
+		try {
+			creditsInfo = JacksonReader.read(filename, CreditsInfo.class);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    }
+
 	// GET
 	// //////////////////////////////////////////////////////////////////////////
 
@@ -370,6 +381,10 @@ public class AssetLoader {
 	    }else{
 	        return musicMap.get(name);
 	    }
+    }
+
+    public CreditsInfo getCredits() {
+        return creditsInfo;
     }
 
 	//WRITE
