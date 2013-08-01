@@ -38,7 +38,6 @@ public class PlayerBullet extends EnemyBullet {
             this.livetime = 0;
         }
         
-        System.out.println(other+"");
         if(other == null) {
             World.getInstance().getEntityManager().removeEntity(this);
         }

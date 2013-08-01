@@ -129,7 +129,6 @@ public class LevelLoader {
      */
     private static void createPolyLine(String type, ArrayList<Point> points,
             SafeProperties properties, String name) {
-        Entity entity;
         switch (type) {
         case "solid":
             new PhysixPolyline(physicsManager, points, BodyType.STATIC,
@@ -281,15 +280,15 @@ public class LevelLoader {
                     0.5f, true);
             entity.setPhysicsObject(box);
             break;
-        // WTF!!!
-        // case "circle":
-        // float radius = Math.max(width, height) / 2;
-        // PhysixCircle circle = new PhysixCircle(physicsManager, x, y,
-        // radius,
-        // BodyType.DYNAMIC, worldInfo.density,
-        // worldInfo.friction, false);
-        // entity.setPhysicsObject(circle);
-        // break;
+        case "smallflyingenemy":
+        case "middleflyingenemy":
+        case "bigflyingenemy":
+        	entity = entityManager.createEntity(type, properties, name);
+            box = new PhysixBox(physicsManager, x, y, width, height,
+                    BodyType.KINEMATIC, worldInfo.density, worldInfo.friction,
+                    false);
+            entity.setPhysicsObject(box);
+            break;
         case "particle":
             String pname = properties.getProperty("name");
             if (pname != null) {

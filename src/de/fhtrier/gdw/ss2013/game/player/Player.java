@@ -88,7 +88,6 @@ public abstract class Player extends EntityCollidable {
             if( (damageTakerPos.x + damageTakerDim.x > damageDealerPos.x - damageDealerDim.x  ) //  
                     && ((damageTakerPos.x - damageTakerDim.x < damageDealerPos.x + damageDealerDim.x  ))
                     && (damageTakerPos.y + damageTakerDim.y < damageDealerPos.y)) { // player deals damage
-                System.out.println(damageDealer+" hit by "+damageTaker);
                 World.getInstance().getScoreCounter().addScore(5);
                 World.getInstance().getEntityManager().removeEntity(damageDealer);
             }

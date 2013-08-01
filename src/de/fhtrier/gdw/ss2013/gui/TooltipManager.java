@@ -42,11 +42,7 @@ public class TooltipManager {
         this.addTooltip(imagePosition, image, triggerPosition, 200);
     }
 
-    public void addTooltip(Vector2f imagePosition, Image image, Vector2f triggerPosition, float triggerRadius) {
-        System.out.println("ImagePosition: " + imagePosition.x + ", " + imagePosition.y);
-        System.out.println("TriggerPosition: " + triggerPosition.x + ", " + triggerPosition.y);
-        System.out.println("TriggerRadius: " + triggerRadius);
-        
+    public void addTooltip(Vector2f imagePosition, Image image, Vector2f triggerPosition, float triggerRadius) {        
         tooltipList.add(new Tooltip(imagePosition, image, triggerPosition, triggerRadius));
         //tooltipList.add(new Tooltip(imagePosition, image, triggerPosition,500.f));
     }

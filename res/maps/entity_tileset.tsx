@@ -81,9 +81,4 @@
    <property name="type" value="tt_trigger"/>
   </properties>
  </tile>
- <tile id="17">
-  <properties>
-   <property name="type" value="teleporter"/>
-  </properties>
- </tile>
 </tileset>

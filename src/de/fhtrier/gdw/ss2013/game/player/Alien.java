@@ -146,7 +146,6 @@ public class Alien extends Player implements AlienController {
 			if (currentSelectedBox == null) {
 				for (Entity e : entityManager.getClosestEntitiesAtPosition(
 						cursor.add(new Vector2f(camera.getOffsetX(), camera.getOffsetY())), selectionRadius)) {
-					System.out.println(e.getName());
 					if (e instanceof Box) {
 						currentSelectedBox = (Box) e;
 					}
