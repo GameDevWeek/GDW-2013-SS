@@ -28,6 +28,7 @@ public class AbilitySelection {
        
         this.worldinstance = worldinstance;
         selected = worldinstance.getAlien().getselectedAbility();
+        abilityDisplay[selected-1].setActivated(true);
     }
 	
 	public void update(GameContainer container, StateBasedGame game, int delta) {

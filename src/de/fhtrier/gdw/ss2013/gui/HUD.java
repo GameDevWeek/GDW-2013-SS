@@ -113,10 +113,10 @@ public class HUD {
 		tooltipmanager = TooltipManager.getInstance();
 		//tooltipmanager = new Tooltip();
 		tooltipmanager.init(worldinstance, font);
+	
 		
 		//tooltipmanager.addTooltip(new Vector2f (500,500), crosshairImage, new Vector2f (500,500), 500);
 		
-
         fpsFont = asset.getFont("quartz_40");
 	}
 
