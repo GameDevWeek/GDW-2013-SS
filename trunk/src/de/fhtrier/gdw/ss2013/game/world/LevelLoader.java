@@ -104,6 +104,7 @@ public class LevelLoader {
                 break;
             }
         }
+        handleAllTooltips(tooltipTrigger, tooltipImagesMap);
     }
 
     /**
