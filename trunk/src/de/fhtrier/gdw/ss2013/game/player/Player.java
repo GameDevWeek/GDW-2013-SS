@@ -24,40 +24,32 @@ import org.newdawn.slick.geom.Vector2f;
  */
 public abstract class Player extends EntityCollidable {
 
-	protected Animation animation;
+    protected Animation animation;
     protected int groundContacts;
-    
-    /**
-     * {@inheritDoc}
-     */
+
     @Override
-    protected void initialize() {
-        groundContacts = 0;
+    public void render(GameContainer container, Graphics g)
+            throws SlickException {
+//        Vector2f position = getPosition();
+//      animation.draw(position.x - animation.getWidth() / 2,
+//              position.y - animation.getHeight() / 2);
+    }
+    
+    public Animation getAnimation(){
+        return animation;
+    }
+    
+    public void die() {
+        if (!Cheats.isGodmode)
+            World.getInstance().shallBeReseted(true);
+    }
+    
+    public void setAnimation(Animation animation) {
+        this.animation = animation;
     }
 
-	@Override
-	public void render(GameContainer container, Graphics g)
-			throws SlickException {
-//        Vector2f position = getPosition();
-//		animation.draw(position.x - animation.getWidth() / 2,
-//				position.y - animation.getHeight() / 2);
-	}
-	
-	public Animation getAnimation(){
-	    return animation;
-	}
-	
-	public void die() {
-		if (!Cheats.isGodmode)
-			World.getInstance().shallBeReseted(true);
-	}
-	
-	public void setAnimation(Animation animation) {
-	    this.animation = animation;
-	}
-
     public boolean isGrounded() {
-        return groundContacts > 0;
+        return groundContacts > 0; 
     }
 
     @Override
@@ -99,9 +91,9 @@ public abstract class Player extends EntityCollidable {
                 System.out.println(damageDealer+" hit by "+damageTaker);
             }
             else {
-            	if (damageTaker instanceof Astronaut && !(damageDealer instanceof PlayerBullet))
-            		((Astronaut) damageTaker).setOxygen(0);
-            	
+                if (damageTaker instanceof Astronaut && !(damageDealer instanceof PlayerBullet))
+                    ((Astronaut) damageTaker).setOxygen(0);
+                
             }
         }
     }
