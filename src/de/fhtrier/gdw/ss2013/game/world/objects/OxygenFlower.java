@@ -9,6 +9,7 @@
 package de.fhtrier.gdw.ss2013.game.world.objects;
 
 import org.jbox2d.dynamics.BodyType;
+import org.jbox2d.dynamics.contacts.Contact;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 
@@ -21,7 +22,6 @@ import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.physix.PhysixCircle;
 import de.fhtrier.gdw.ss2013.physix.PhysixObject;
-import org.jbox2d.dynamics.contacts.Contact;
 
 public class OxygenFlower extends EntityCollidable implements Interactable {
 
@@ -30,11 +30,12 @@ public class OxygenFlower extends EntityCollidable implements Interactable {
     private int count;
     private World w = World.getInstance();
     private EntityManager m;
+
     // needs to be without parameters!
 
     public OxygenFlower() {
         super(AssetLoader.getInstance().getImage("plant"));
-        this.maxBubble = 6; //FIXME: use a better value
+        this.maxBubble = 6; // FIXME: use a better value
         bubbleTime = 0;
         m = w.getEntityManager();
     }
@@ -44,10 +45,12 @@ public class OxygenFlower extends EntityCollidable implements Interactable {
             float x = this.getPosition().getX() + (float) Math.random() * 100;
             float y = this.getPosition().getY() - (float) Math.random() * 100;
             Entity entity = m.createEntity(OxygenBubble.class);
-            //Bubble-Objekt
-            PhysixObject childPhysics = new PhysixCircle(w.getPhysicsManager(), x, y, (img.getWidth() / 2 + img.getHeight() / 2) / 6, BodyType.KINEMATIC, 0, 0, true);
+            // Bubble-Objekt
+            PhysixObject childPhysics = new PhysixCircle(w.getPhysicsManager(),
+                    x, y, (img.getWidth() / 2 + img.getHeight() / 2) / 6,
+                    BodyType.KINEMATIC, 0, 0, true);
             entity.setPhysicsObject(childPhysics);
-            //bubbleCount
+            // bubbleCount
             count++;
             bubbleTime = 0;
         }
@@ -72,6 +75,12 @@ public class OxygenFlower extends EntityCollidable implements Interactable {
         if (bubbleTime >= 500) {
             this.shootBubbles();
         }
+    }
+
+    @Override
+    public boolean isActive() {
+        // TODO Auto-generated method stub
+        return false;
     }
 
     @Override
