@@ -16,8 +16,8 @@ import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.commons.utils.ClassUtils;
 import de.fhtrier.gdw.commons.utils.SafeProperties;
+import de.fhtrier.gdw.ss2013.constants.MathConstants;
 import de.fhtrier.gdw.ss2013.game.filter.EntityFilter;
-import de.fhtrier.gdw.ss2013.math.MathConstants;
 
 //TODO filter für getEntities
 public class EntityManager {

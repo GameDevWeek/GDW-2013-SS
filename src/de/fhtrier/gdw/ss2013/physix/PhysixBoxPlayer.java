@@ -4,7 +4,7 @@ import org.jbox2d.collision.shapes.CircleShape;
 import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.FixtureDef;
 
-import de.fhtrier.gdw.ss2013.math.MathConstants;
+import de.fhtrier.gdw.ss2013.constants.MathConstants;
 
 public class PhysixBoxPlayer extends PhysixBox {
 
