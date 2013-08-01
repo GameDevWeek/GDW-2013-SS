@@ -6,68 +6,19 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
 
-
-
-public class AbilityDisplay {
-    private Image image;
-    private Vector2f position;
+public abstract class AbilityDisplay {
+    protected Image image;
+    protected Vector2f position;
     
-    private boolean activated;
+    protected boolean activated;
     
-    private float alphaValue;
-    private float alphaSeed;
-    private float fadingSpeed;
-    
-    public AbilityDisplay(Image image, Vector2f position, float fadingSpeed)
-    {
-        init(image, position, fadingSpeed);
-    }
-    
-    public void init(Image image, Vector2f position, float fadingSpeed)
-    {
-        this.image = image.copy();
-        this.position = position;
-        this.fadingSpeed = fadingSpeed;
-        
-        alphaSeed = 0;
-        
-        alphaValue = 0;
-        
-        float startAlphaValue = 0.5f;
-        
-        
-        while(alphaValue < startAlphaValue)
-        {
-            alphaSeed+=fadingSpeed;
-            alphaValue = computeAlphaValue(alphaSeed);  
-        }
-    }
+    protected float alphaValue;
+    protected float alphaSeed;
+    protected float fadingSpeed;
     
     public void setActivated(boolean activated)
     {
         this.activated=activated;
-    }
-    
-    public void update(GameContainer container, StateBasedGame game, int delta) {
-      //wenn diese Anzeige aktiviert ist, soll die Transperenz soweit heruntergeregelt werden, bis es gar nicht mehr transperent ist.
-        if (activated)
-        {
-            if(alphaValue < 1.0f)
-            {
-                alphaSeed+=delta*fadingSpeed;
-                alphaValue = computeAlphaValue(alphaSeed);
-            }
-        }
-        
-      //wenn diese Anzeige nicht aktiviert ist, soll die Transperenz so weit hochgereglet werden, bis es nur noch halb transperent ist.
-        else
-        {
-            if(alphaValue > 0.5f)
-            {
-                alphaSeed-=delta*fadingSpeed;
-                alphaValue = computeAlphaValue(alphaSeed);  
-            }
-        }
     }
     
     public void render(GameContainer container, StateBasedGame game, Graphics g) {
@@ -75,16 +26,8 @@ public class AbilityDisplay {
         image.draw(container.getWidth() - position.x,position.y);
     }
     
-    private float computeAlphaValue(float x)
-    {
-        if (x <= 0)
-            return 0.f;
-        else if (x >= 1000)
-            return 1.f;
-        else
-        {
-            return (x*x*(1.f/1000000.f));
-            
-        }
+    public AbilityDisplay() {
+        // TODO Auto-generated constructor stub
     }
+
 }
