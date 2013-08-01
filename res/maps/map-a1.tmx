@@ -5,7 +5,7 @@
  <tileset firstgid="644" source="moving_platform.tsx"/>
  <layer name="main" width="120" height="100">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <objectgroup name="objekt" width="120" height="100">
@@ -21,7 +21,7 @@
   <object type="solid" x="-9" y="1043" width="699" height="74"/>
   <object type="solid" x="395" y="1491" width="167" height="266"/>
   <object type="solid" x="780" y="1492" width="189" height="266"/>
-  <object gid="626" x="132" y="4608"/>
+  <object gid="626" x="1148" y="3582"/>
   <object type="deadzone" x="547" y="1600" width="244" height="127"/>
   <object type="solid" x="561" y="1684" width="228" height="73"/>
   <object name="mpline1" type="PlatformPath" x="226" y="1474">
@@ -58,18 +58,18 @@
   </object>
   <object type="solid" x="51" y="2452" width="805" height="138"/>
   <object type="solid" x="267" y="2900" width="169" height="139"/>
-  <object gid="629" x="3200" y="2506">
+  <object gid="629" x="3136" y="2512">
    <properties>
     <property name="trigger" value="mp3"/>
    </properties>
   </object>
-  <object type="solid" x="62" y="3283" width="182" height="138"/>
+  <object type="solid" x="46" y="3283" width="198" height="136"/>
   <object type="solid" x="972" y="3668" width="359" height="136"/>
   <object type="solid" x="50" y="3923" width="1026" height="138"/>
-  <object type="solid" x="586" y="3539" width="234" height="76"/>
+  <object type="solid" x="434" y="3539" width="384" height="74"/>
   <object type="solid" x="331" y="3540" width="105" height="137"/>
   <object type="deadzone" x="24" y="3842" width="991" height="115"/>
-  <object gid="633" x="129" y="3277">
+  <object gid="633" x="125" y="3281">
    <properties>
     <property name="trigger" value="mp4"/>
    </properties>
@@ -81,12 +81,11 @@
    </properties>
    <polyline points="0,0 0,655 -42,797 -155,903 -370,942 -618,945 -1203,942"/>
   </object>
-  <object gid="630" x="326" y="2862"/>
-  <object type="solid" x="1866" y="3411" width="233" height="265"/>
+  <object type="solid" x="1866" y="3411" width="239" height="571"/>
   <object type="solid" x="1676" y="3603" width="191" height="74"/>
   <object type="solid" x="972" y="468" width="167" height="1159"/>
   <object type="solid" x="54" y="4691" width="189" height="140"/>
-  <object type="solid" x="395" y="5012" width="361" height="202"/>
+  <object type="solid" x="393" y="5074" width="363" height="140"/>
   <object gid="635" x="1172" y="1847"/>
   <object gid="635" x="1992" y="2344"/>
   <object gid="636" x="1212" y="3116"/>
@@ -122,11 +121,11 @@
    </properties>
    <polyline points="0,0 2,224"/>
   </object>
-  <object type="solid" x="52" y="5136" width="124" height="206"/>
-  <object type="solid" x="650" y="4754" width="106" height="276"/>
-  <object type="solid" x="138" y="5716" width="298" height="202"/>
+  <object type="solid" x="52" y="5136" width="76" height="204"/>
+  <object type="solid" x="652" y="4626" width="100" height="452"/>
+  <object type="solid" x="48" y="5716" width="388" height="200"/>
   <object type="solid" x="522" y="6036" width="232" height="138"/>
-  <object type="solid" x="908" y="6036" width="234" height="72"/>
+  <object type="solid" x="766" y="6036" width="372" height="74"/>
   <object type="solid" x="1290" y="5970" width="172" height="76"/>
   <object name="mpline5" type="PlatformPath" x="1600" y="5697">
    <properties>
@@ -155,12 +154,56 @@
     <property name="path" value="mpline5"/>
    </properties>
   </object>
-  <object gid="630" x="436" y="4972"/>
-  <object gid="633" x="1022" y="6014"/>
-  <object gid="630" x="498" y="6000"/>
-  <object gid="630" x="156" y="1002"/>
-  <object gid="630" x="896" y="2092"/>
   <object type="solid" x="1290" y="5200" width="554" height="144"/>
   <object type="solid" x="778" y="5268" width="508" height="140"/>
+  <object type="solid" x="1162" y="4116" width="104" height="72"/>
+  <object type="solid" x="1802" y="3988" width="234" height="166"/>
+  <object type="solid" x="1228" y="4692" width="168" height="136"/>
+  <object type="solid" x="2188" y="4244" width="232" height="138"/>
+  <object type="solid" x="2250" y="5010" width="236" height="140"/>
+  <object type="solid" x="1802" y="5522" width="298" height="138"/>
+  <object type="solid" x="2252" y="5332" width="102" height="74"/>
+  <object type="solid" x="2762" y="5650" width="234" height="74"/>
+  <object type="solid" x="2252" y="6036" width="232" height="202"/>
+  <object type="solid" x="266" y="4180" width="168" height="72"/>
+  <object type="solid" x="778" y="5584" width="170" height="78"/>
+  <object type="solid" x="1228" y="5524" width="424" height="72"/>
+  <object type="solid" x="1932" y="5142" width="232" height="72"/>
+  <object type="solid" x="2890" y="4948" width="234" height="76"/>
+  <object type="solid" x="206" y="5396" width="104" height="72"/>
+  <object type="solid" x="438" y="5842" width="126" height="74"/>
+  <object gid="629" x="896" y="5266">
+   <properties>
+    <property name="trigger" value="mp6"/>
+   </properties>
+  </object>
+  <object name="mp6" gid="644" x="3270" y="4634">
+   <properties>
+    <property name="path" value="mpline6"/>
+   </properties>
+  </object>
+  <object type="solid" x="1674" y="4178" width="108" height="360"/>
+  <object type="solid" x="1546" y="4564" width="168" height="74"/>
+  <object type="solid" x="1418" y="4624" width="108" height="78"/>
+  <object type="solid" x="760" y="4752" width="462" height="78"/>
+  <object type="deadzone" x="748" y="4694" width="500" height="114"/>
+  <object name="mpline6" type="PlatformPath" x="3300" y="4592">
+   <properties>
+    <property name="isActive" value="false"/>
+    <property name="speed" value="80"/>
+   </properties>
+   <polyline points="0,0 -4,830"/>
+  </object>
+  <object type="solid" x="3148" y="5394" width="296" height="140"/>
+  <object gid="632" x="436" y="1444"/>
+  <object gid="632" x="1396" y="2216"/>
+  <object gid="632" x="2678" y="2286"/>
+  <object gid="632" x="300" y="2872"/>
+  <object gid="630" x="830" y="1450"/>
+  <object gid="630" x="370" y="2852"/>
+  <object gid="630" x="1484" y="1850"/>
+  <object gid="630" x="1722" y="3558"/>
+  <object gid="630" x="56" y="5670"/>
+  <object gid="630" x="1976" y="5104"/>
  </objectgroup>
 </map>
