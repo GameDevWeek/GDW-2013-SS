@@ -50,7 +50,7 @@ public class MeteoriteSpawner extends Entity {
 		// Create a meteorite entity
 		Entity entity = entityManager.createEntity(Meteroid.class);
         PhysixBox box = new PhysixBox(physicsManager, getPosition().x, getPosition().y+200, width, height,
-                BodyType.DYNAMIC, 1, 0.5f, false);
+                BodyType.KINEMATIC, 1, 0.5f, false);
         entity.setPhysicsObject(box);
 		timeSinceLastSpawn -= spawnDuration;
 	}

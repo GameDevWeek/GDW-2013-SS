@@ -128,6 +128,10 @@ public class Astronaut extends Player implements AstronautController {
         Fixture b = contact.getFixtureB();
         PhysixObject objectA = (PhysixObject) a.getBody().getUserData();
         PhysixObject objectB = (PhysixObject) b.getBody().getUserData();
+        
+//        if (objectA.getOwner() instanceof PlayerBullet || objectB.getOwner() instanceof PlayerBullet) {
+//        	return;
+//        }
 
         if (objectA.getOwner() instanceof Switch) {
             switches.add((Switch) objectA.getOwner());

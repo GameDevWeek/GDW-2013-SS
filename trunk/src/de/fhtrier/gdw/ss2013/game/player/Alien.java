@@ -1,5 +1,6 @@
 package de.fhtrier.gdw.ss2013.game.player;
 
+import org.jbox2d.dynamics.BodyType;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -7,12 +8,15 @@ import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.util.Log;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
+import de.fhtrier.gdw.ss2013.constants.PlayerConstants;
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.camera.Camera;
 import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.game.world.objects.Box;
 import de.fhtrier.gdw.ss2013.input.AlienController;
+import de.fhtrier.gdw.ss2013.physix.PhysixBox;
+import de.fhtrier.gdw.ss2013.physix.PhysixManager;
 
 public class Alien extends Player implements AlienController {
 
@@ -30,6 +34,8 @@ public class Alien extends Player implements AlienController {
     private float selectionRadius = 50;
     private final Vector2f oldcursor = new Vector2f();
     private final Vector2f dragDirection = new Vector2f();
+    
+    private long lastShotTime = 0;
 
     public Alien() {
         setAnimation(AssetLoader.getInstance().getAnimation("alien_standing")); // Alien
@@ -66,11 +72,32 @@ public class Alien extends Player implements AlienController {
 
     @Override
     public void shoot() {
-        Log.debug("shooting");
-
+    	if (System.currentTimeMillis() > lastShotTime + PlayerConstants.SHOTDELAY) {
+	        Log.debug("shooting");
+	
+	        EntityManager entityManager = World.getInstance().getEntityManager();
+			PhysixManager physicsManager = World.getInstance().getPhysicsManager();
+			
+			// Dirty hack to get width and height of an Meteorite
+			int width = AssetLoader.getInstance().getImage("boltEnemy").getWidth();
+			int height = AssetLoader.getInstance().getImage("boltEnemy").getHeight();
+			
+			// Create a meteorite entity
+			Entity entity = entityManager.createEntity(PlayerBullet.class);
+	        PhysixBox box = new PhysixBox(physicsManager, getAstronaut().getPosition().x, getAstronaut().getPosition().y, width, height,
+	                BodyType.KINEMATIC, 1, 0.5f, true);
+	        entity.setPhysicsObject(box);
+	        entity.setVelocity(new Vector2f(5f,0));
+	        
+	        lastShotTime = System.currentTimeMillis();
+    	}
     }
 
-    @Override
+    private Astronaut getAstronaut() {
+		return World.getInstance().getAstronaut();
+	}
+
+	@Override
     public void nextAbility() {
         selectedAbility = (selectedAbility % 3) + 1;
 
