@@ -26,6 +26,14 @@ public abstract class Player extends EntityCollidable {
 
 	protected Animation animation;
     protected int groundContacts;
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void initialize() {
+        groundContacts = 0;
+    }
 
 	@Override
 	public void render(GameContainer container, Graphics g)

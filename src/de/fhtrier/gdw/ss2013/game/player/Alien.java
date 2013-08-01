@@ -29,19 +29,31 @@ public class Alien extends Player implements AlienController {
 	private EntityManager entityManager = World.getInstance().getEntityManager();
 	// telekinese values
 	private Camera camera = World.getInstance().getCamera();
-	private Box currentSelectedBox = null;
-	private float selectionRadius = 50;
+	private Box currentSelectedBox;
+	private float selectionRadius;
 	private final Vector2f oldcursor = new Vector2f();
 	private final Vector2f dragDirection = new Vector2f();
 
-	private long lastShotTime = 0;
+	private long lastShotTime;
 
 	public Alien() {
 		setAnimation(AssetLoader.getInstance().getAnimation("alien_standing"));
 		// Alien does NOT have different movestates! byRobin
-		selectedAbility = 1;
-		maxMana = 0.0f;
-		mana = maxMana;
+		initialize();
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected void initialize() {
+	    super.initialize();
+	    currentSelectedBox = null;
+	    selectionRadius = 50;
+	    lastShotTime = 0;
+	    selectedAbility = 1;
+        maxMana = 0.0f;
+        mana = maxMana;
 	}
 
 	public void setContainer(GameContainer container) {
