@@ -91,8 +91,9 @@ public abstract class Player extends EntityCollidable {
                 System.out.println(damageDealer+" hit by "+damageTaker);
             }
             else {
-            	if (damageTaker instanceof Astronaut)
+            	if (damageTaker instanceof Astronaut && !(damageDealer instanceof PlayerBullet))
             		((Astronaut) damageTaker).setOxygen(0);
+            	
             }
         }
     }

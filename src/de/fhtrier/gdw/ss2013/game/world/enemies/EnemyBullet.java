@@ -1,6 +1,5 @@
 package de.fhtrier.gdw.ss2013.game.world.enemies;
 
-import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.contacts.Contact;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -12,6 +11,7 @@ import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.RecycleableEntity;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
+import de.fhtrier.gdw.ss2013.game.world.World;
 
 /**
  * Bullet Class
@@ -23,13 +23,13 @@ public class EnemyBullet extends AbstractEnemy implements
         RecycleableEntity {
 
     private Image img;
-    private int livetime = 60 * 10;
-    private AssetLoader a = AssetLoader.getInstance();
+    protected int livetime = 60 * 10;
     private EntityManager m;
 
     public EnemyBullet() {
     	super(null);
-        img = a.getImage("boltEnemy");
+    	img = AssetLoader.getInstance().getImage("boltEnemy");
+    	m = World.getInstance().getEntityManager();
     }
 
     public void render(GameContainer container, Graphics g)
@@ -42,7 +42,10 @@ public class EnemyBullet extends AbstractEnemy implements
 
     public void update(GameContainer container, int delta)
             throws SlickException {
-
+    	float x = physicsObject.getX();
+    	float y = physicsObject.getY();
+    	physicsObject.setPosition(x+getVelocity().x, y+getVelocity().y);
+    	
         if (livetime <= 0) {
             m.removeEntity(this);
         }
