@@ -14,10 +14,13 @@ public class PlayerBullet extends EnemyBullet {
 		super();
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	protected void initialize() {
-		this.livetime = 60 * 10;
 		super.initialize();
+	    livetime = 60 * 10;
 	}
 	
 	@Override

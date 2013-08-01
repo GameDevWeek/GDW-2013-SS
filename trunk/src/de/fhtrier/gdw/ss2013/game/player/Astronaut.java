@@ -22,7 +22,7 @@ public class Astronaut extends Player implements AstronautController {
 
     private float oxygen;
     private float maxOxygen;
-    private boolean carryAlien = true;
+    private boolean carryAlien;
     Animation bewegungs_ani;
     float speed;
     float jumpSpeed;
@@ -34,18 +34,28 @@ public class Astronaut extends Player implements AstronautController {
     private ArrayList<Switch> switches= new ArrayList<>();
 
     protected PlayerState state;
-    private boolean invertAnimation = false;
+    private boolean invertAnimation;
     private boolean walking;
 
     public Astronaut() {
+        initialize();
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void initialize() {
+        super.initialize();
         setState(PlayerState.standing);
-        maxOxygen = 1000f;
-        oxygen = maxOxygen;
-
         GameDataInfo info = AssetLoader.getInstance().getGameData();
         speed = info.combined.speed;
         jumpSpeed = info.combined.jumpSpeed;
         jumpDelayTotal = info.combined.jumpDelay;
+        maxOxygen = 1000f;
+        oxygen = maxOxygen;
+        carryAlien = true;
+        invertAnimation = false;
     }
 
     public float getOxygen() {
