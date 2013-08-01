@@ -3,22 +3,24 @@ package de.fhtrier.gdw.ss2013.game.world.objects;
 import java.awt.Point;
 import java.util.ArrayList;
 
+import de.fhtrier.gdw.commons.utils.SafeProperties;
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.filter.EntityFilter;
 
-public class PlatformPath extends Entity implements EntityFilter{
-    private ArrayList<Point> line;
+public class PlatformPath{
+    private ArrayList<Point> points;
+    private SafeProperties properties;
 
-    public PlatformPath() {
-        super();
-        line = new ArrayList<Point>();
-    }
-    
-    public ArrayList<Point> getLine() {
-        return line;
+    public PlatformPath(ArrayList<Point> points, SafeProperties properties) {
+        this.points = points;
+        this.properties = properties;
     }
 
-    public void setLine(ArrayList<Point> line) {
-        this.line = line;
+    public ArrayList<Point> getPoints() {
+        return points;
+    }
+
+    public SafeProperties getProperties() {
+        return properties;
     }
 }

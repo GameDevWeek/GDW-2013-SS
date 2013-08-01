@@ -36,11 +36,13 @@ public class LevelLoader {
     private static PhysixManager physicsManager;
     private static Vector2f startpos;
     private static GameDataInfo.WorldInfo worldInfo;
+    private static HashMap<String, PlatformPath> platformPaths;
 
     public static void load(TiledMap map, EntityManager entityManager,
             PhysixManager physicsManager) {
 
         worldInfo = AssetLoader.getInstance().getGameData().world;
+        platformPaths = new HashMap<String, PlatformPath>();
 
         LevelLoader.entityManager = entityManager;
         LevelLoader.physicsManager = physicsManager;
@@ -134,9 +136,7 @@ public class LevelLoader {
                     worldInfo.density, worldInfo.friction, false);
             break;
         case "PlatformPath":
-            entity = entityManager.createEntity(type, properties, name);
-            ((PlatformPath) entity).setLine(points);
-            // entity.setPhysicsObject(null);
+            platformPaths.put(name, new PlatformPath(points, properties));
             break;
         }
     }
@@ -323,14 +323,13 @@ public class LevelLoader {
         for (Entity e : platforms) {
             MovingPlatform platform = (MovingPlatform) e;
             if (platform.getProperties() != null) {
-                String prop = platform.getProperties().getProperty("path");
-                if (!prop.isEmpty()) {
-                    PlatformPath path = (PlatformPath) entityManager
-                            .getEntityByName(prop);
+                String name = platform.getProperties().getProperty("path");
+                if (!name.isEmpty()) {
+                    PlatformPath path = platformPaths.get(name);
                     if (path != null) {
-                        platform.initLine(path.getLine(), path.getProperties());
+                        platform.initLine(path.getPoints(), path.getProperties());
                     } else {
-                        System.err.println("Didn't find path " + prop + "!");
+                        System.err.println("Didn't find path " + name + "!");
                     }
                 } else {
                     System.err.println("Missing path option in "

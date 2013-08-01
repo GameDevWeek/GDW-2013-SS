@@ -21,7 +21,7 @@ import de.fhtrier.gdw.ss2013.physix.PhysixObject;
  * 
  */
 public class MovingPlatform extends Entity implements Interactable, EntityFilter {
-    private ArrayList<Point> line;
+    private ArrayList<Point> points;
     private AssetLoader asset = AssetLoader.getInstance();
     private Point nextPoint;
     private Point currentPoint;
@@ -42,25 +42,25 @@ public class MovingPlatform extends Entity implements Interactable, EntityFilter
 
     }
 
-    public void initLine(ArrayList<Point> line, SafeProperties prop) {
-        this.line = line;
-        if (prop != null) {
-            speed = prop.getFloat("speed", 20);
-            isActive = prop.getBoolean("isActive", true);
-            moveAround = prop.getBoolean("moveAround", false);
+    public void initLine(ArrayList<Point> points, SafeProperties properties) {
+        this.points = points;
+        if (properties != null) {
+            speed = properties.getFloat("speed", 20);
+            isActive = properties.getBoolean("isActive", true);
+            moveAround = properties.getBoolean("moveAround", false);
         }
         index = getClosestPoint();
-        getPhysicsObject().setPosition(line.get(index).x, line.get(index).y);
+        getPhysicsObject().setPosition(points.get(index).x, points.get(index).y);
     }
     
     public int getClosestPoint() {
-        float dist[] = new float[line.size() - 1];
-        for (int i = 0; i < line.size() - 1; i++) {
-            dist[i] = getPosition().distanceSquared(new Vector2f(line.get(i).x, line.get(i).y));
+        float dist[] = new float[points.size() - 1];
+        for (int i = 0; i < points.size() - 1; i++) {
+            dist[i] = getPosition().distanceSquared(new Vector2f(points.get(i).x, points.get(i).y));
         }
         float closestDist = Float.MAX_VALUE;
         int closestPoint = 0;
-        for (int i = 0; i < line.size() - 1; i++) {
+        for (int i = 0; i < points.size() - 1; i++) {
             if (dist[i] < closestDist) {
                 closestDist = dist[i];
                 closestPoint = i;
@@ -78,19 +78,19 @@ public class MovingPlatform extends Entity implements Interactable, EntityFilter
     }
 
     public void move() {
-        currentPoint = line.get(index);
-        nextPoint = line.get(index + indexmod);
+        currentPoint = points.get(index);
+        nextPoint = points.get(index + indexmod);
         if (getPosition().distance(new Vector2f(nextPoint.x, nextPoint.y)) > speed / 2) {
             setVelocity(new Vector2f(nextPoint.x - currentPoint.x, nextPoint.y
                     - currentPoint.y).normalise().scale(speed));
         } else {
             index += indexmod;
             if (moveAround) {
-                if (index == line.size() - 1) {
+                if (index == points.size() - 1) {
                     index = 0;
                 }
             } else {
-                if (index + indexmod < 0 || index + indexmod >= line.size()) {
+                if (index + indexmod < 0 || index + indexmod >= points.size()) {
                     indexmod *= -1;
                 }
             }
