@@ -17,4 +17,8 @@
 {
   "name" : "spacemap",
   "pfad" : "res/maps/spacemap.tmx"
+},
+{
+  "name" : "bossmap",
+  "pfad" : "res/maps/bossmap.tmx"
 }]
