@@ -13,4 +13,8 @@
 {
   "name" : "run_or_die",
   "pfad" : "res/maps/run_or_die.tmx"
+},
+{
+  "name" : "spacemap",
+  "pfad" : "res/maps/spacemap.tmx"
 }]
