@@ -11,6 +11,7 @@ import de.fhtrier.gdw.ss2013.game.world.enemies.Meteroid;
 
 public class MeteoriteSpawner extends Entity {
 	private int spawnDelay;
+	private int startDelay;
 	private int timeSinceLastSpawn;
 	boolean init = false;
 	
@@ -37,20 +38,31 @@ public class MeteoriteSpawner extends Entity {
 	
 	@Override
 	public void update(GameContainer container, int delta) {
-		if (!init && getProperties().getProperty("delay") != null) {
-			String newDelay = getProperties().getProperty("delay");
-			try {
-				this.spawnDelay = new Integer(newDelay);
+		if (!init) {
+			if (getProperties().getProperty("delay") != null) {
+				String newDelay = getProperties().getProperty("delay");
+				try {
+					this.spawnDelay = new Integer(newDelay);
+				}
+				catch (Exception e) {
+					System.err.println("Warning: A MeteoriteSpawner got a wrong spawn delay value.");
+				}
 			}
-			catch (Exception e) {
-				System.err.println("Warning: A MeteoriteSpawner got a wrong spawn delay value.");
+			if (getProperties().getProperty("startDelay") != null) {
+				String startDelay = getProperties().getProperty("startDelay");
+				try {
+					this.startDelay = new Integer(startDelay);
+				}
+				catch (Exception e) {
+					System.err.println("Warning: A MeteoriteSpawner got a wrong spawn startDelay value.");
+				}
 			}
 		}
 		init = true;
 		
 		timeSinceLastSpawn += delta;
 		
-		if (timeSinceLastSpawn > spawnDelay) {
+		if (timeSinceLastSpawn > spawnDelay+startDelay) {
 			spawnMeteorite();
 		}
 	}

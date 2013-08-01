@@ -9,7 +9,6 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
-import org.newdawn.slick.util.Log;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.assetloader.infos.GameDataInfo;
@@ -53,7 +52,7 @@ public class Astronaut extends Player implements AstronautController {
         speed = info.combined.speed;
         jumpSpeed = info.combined.jumpSpeed;
         jumpDelayTotal = info.combined.jumpDelay;
-        maxOxygen = 1000f;
+        maxOxygen = PlayerConstants.START_HEALTH;
         oxygen = maxOxygen;
         carryAlien = true;
         invertAnimation = false;
