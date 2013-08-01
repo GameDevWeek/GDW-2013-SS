@@ -190,6 +190,10 @@ public abstract class PhysixObject {
 	        listener.endContact(contact);
 	    }
 	}
+    
+    public void setActive(boolean value) {
+        body.setActive(value);
+    }
 	
 	public Vector2f getDimension() {
 	    return PhysixUtil.toWorld(this.dimension);
