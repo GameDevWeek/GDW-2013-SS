@@ -105,5 +105,9 @@
 {
   "name" : "healthbar",
   "pfad" : "gui/lebensanzeige"
+},
+{
+  "name" : "winning",
+  "pfad" : "menu/win/troll"
 }]
 
