@@ -84,6 +84,19 @@
    </properties>
   </tile>
  </tileset>
+ <tileset firstgid="644" name="moving_platform" tilewidth="64" tileheight="64">
+  <image source="movingplatform.png" width="192" height="64"/>
+  <tile id="0">
+   <properties>
+    <property name="type" value="MovingPlatform"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="type" value="MovingPlatform"/>
+   </properties>
+  </tile>
+ </tileset>
  <layer name="Kachelebene 1" width="100" height="100">
   <data encoding="base64" compression="zlib">
    eJztmult1VAUhOcfWxMToAi20ANreghrD0BCigBCFZQBhIY4Rz5XGCvJIwFzBjGfNIolL7q+4/di+307AD5GvkS+Ro68fOblP3Gsd5GXlesw3TByUHEf/TByr+I++mFkt+I++mHkVcV99MPItYr76IeROxX30Q8jjyruox9GnlfcRz+M7FfcRz+MHFbcRz+MXK24j34YuV1xH/0w8rDiPvph5FnFffTDyF7FffTDyIeK++iHka2K++iHkVsV99EPIw8q7qMfRp5W3Ec/jLypuI9+GHlfcR/9MPKp4j76YWSn4j76IezDKUHYh1OCsA+nBGEfTgnCPpwShH04JQj7cEoQ9uGUIOzDKUHYh1OCsA+nBGEfTgnCPpwShH04JQj7cEoQ9uGUIOzDKUHYh1OCsA+nBGEfTgnCPpwShH04JQj7cEoQ9uGUIOzDKUHYh1OCsA+nBGEfTgnCPpwShH04JQj7cEoQ9uGUIOzDKUHYh1OCsA+nBGEfTgnCPpwShH04JQj7cEoQ9uGUIOzDKUHYh1OCsA+nBGEfTgnCPpwShH04JQj7cEoQ9uGUIOzDKUHYh1OCsA+nBGEfTgnCPpwShH04JQj7cEoQ9uGUIHR9uAuRS5HLs79XWke0PoSuD/c5crTIt9YRrQ9hH04Jwj6cEoR9OCUI+3BKEPbhlCDswylB6Ppw/+vzh6oPt+n547x9zfdT65f4d3248z4vzvc7bvvsq6snwj7cnOziJvrmgrAPNxhddL47Itb14fIcL2L6vlb7rl5CTPPQea+ZY/hdH+60Oc/j5/kpvq9M5mPPz0bOQ+e9JvFrPtymOT/pusp1L7D5feXf/B+67CDPPe8v857mEL2/BRE/fLhtTPeAY6xj+QZ+Hndud7e2GevGdbW92DfXPcH0vvKk4495We671vL8XMZ1lJ/fx5i8p7c1ljXHcNrYhg933Nh2az7HfOd1ntd7+kH5G+/r2bnt17kcVL/z6+2+j3+m438HAxYNhA==
@@ -129,13 +142,13 @@
    <polyline points="0,0 339,0"/>
   </object>
   <object type="deadzone" x="1649" y="6253" width="408" height="37"/>
-  <object name="p1" type="platformLine" x="3281" y="5877">
+  <object name="p1" type="PlatformPath" x="3281" y="5877">
    <properties>
     <property name="isActive" value="false"/>
    </properties>
    <polyline points="0,0 465,0"/>
   </object>
-  <object name="p2" type="platformLine" x="2276" y="5799">
+  <object name="p2" type="PlatformPath" x="2276" y="5799">
    <properties>
     <property name="isActive" value="false"/>
    </properties>
@@ -150,8 +163,17 @@
    </properties>
   </object>
   <object gid="638" x="2645" y="6272"/>
-  <object gid="627" x="2611" y="5236"/>
   <object gid="639" x="3321" y="6263"/>
   <object gid="640" x="4095" y="6141"/>
+  <object name="mp1" gid="644" x="3259" y="5909">
+   <properties>
+    <property name="path" value="p1"/>
+   </properties>
+  </object>
+  <object name="mp2" gid="644" x="2248" y="5307">
+   <properties>
+    <property name="path" value="p2"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
