@@ -1,10 +1,11 @@
-package de.fhtrier.gdw.ss2013.game.world.objects;
+package de.fhtrier.gdw.ss2013.game.world.spawner;
 
 import org.jbox2d.dynamics.BodyType;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
+import de.fhtrier.gdw.ss2013.constants.SpawnerConstants;
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.world.World;
@@ -26,7 +27,7 @@ public class MeteoriteSpawner extends Entity {
 	}
 	
 	public MeteoriteSpawner() {
-		this(5000);
+		this(SpawnerConstants.METEORIT_DEFAULT_SPAWN_DELAY);
 	}
 	
 	@Override
@@ -39,7 +40,6 @@ public class MeteoriteSpawner extends Entity {
 	}
 	
 	private void spawnMeteorite() {
-		System.out.println(System.currentTimeMillis()+": spawn it, baby!");
 		EntityManager entityManager = World.getInstance().getEntityManager();
 		PhysixManager physicsManager = World.getInstance().getPhysicsManager();
 		
