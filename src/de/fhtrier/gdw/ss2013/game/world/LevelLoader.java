@@ -249,6 +249,8 @@ public class LevelLoader {
         case "start":
             startpos = new Vector2f(x, y);
             break;
+        case "end":
+        	break;
         case "MovingPlatform":
             entity = entityManager.createEntity(type, properties, name);
             width = (int) entity.getImage().getWidth();
