@@ -14,13 +14,13 @@ import de.fhtrier.gdw.commons.tiled.TiledMap;
 import de.fhtrier.gdw.commons.utils.SafeProperties;
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.assetloader.infos.GameDataInfo;
-import de.fhtrier.gdw.ss2013.assetloader.infos.CreditsInfo.Path;
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.filter.Interactable;
 import de.fhtrier.gdw.ss2013.game.world.objects.MovingPlatform;
 import de.fhtrier.gdw.ss2013.game.world.objects.ObjectController;
 import de.fhtrier.gdw.ss2013.game.world.objects.PlatformPath;
+import de.fhtrier.gdw.ss2013.game.world.objects.Teleporter;
 import de.fhtrier.gdw.ss2013.gui.TooltipManager;
 import de.fhtrier.gdw.ss2013.physix.PhysixBox;
 import de.fhtrier.gdw.ss2013.physix.PhysixManager;
@@ -56,6 +56,7 @@ public class LevelLoader {
         entityManager.initalUpdate();
         conntactInteractions();
         bindPlatformsToPath();
+        setTeleporterTargets();
     }
 
     private static void loadObjectLayer(Layer layer) {
@@ -134,8 +135,8 @@ public class LevelLoader {
             break;
         case "PlatformPath":
             entity = entityManager.createEntity(type, properties, name);
-            ((PlatformPath)entity).setLine(points);
-            //entity.setPhysicsObject(null);
+            ((PlatformPath) entity).setLine(points);
+            // entity.setPhysicsObject(null);
             break;
         }
     }
@@ -222,7 +223,7 @@ public class LevelLoader {
     private static void createTile(String type, int x, int y, int width,
             int height, SafeProperties properties, String name) {
 
-    	PhysixBox box;
+        PhysixBox box;
         Entity entity;
         switch (type) {
         case "button":
@@ -266,6 +267,12 @@ public class LevelLoader {
                     false);
             System.out.println(properties.getProperty("path"));
             entity.setPhysicsObject(platformBox);
+            break;
+        case "teleporter":
+            entity = entityManager.createEntity(type, properties, name);
+            box = new PhysixBox(physicsManager, x, y, 0, 0, BodyType.STATIC, 1,
+                    0.5f, true);
+            entity.setPhysicsObject(box);
             break;
         // WTF!!!
         // case "circle":
@@ -315,21 +322,43 @@ public class LevelLoader {
         ArrayList<Entity> platforms = entityManager
                 .getEntitiesByFilter(MovingPlatform.class);
         for (Entity e : platforms) {
-            MovingPlatform platform = (MovingPlatform)e;
+            MovingPlatform platform = (MovingPlatform) e;
             if (platform.getProperties() != null) {
                 String prop = platform.getProperties().getProperty("path");
                 if (!prop.isEmpty()) {
-                    PlatformPath path = (PlatformPath)entityManager.getEntityByName(prop);
+                    PlatformPath path = (PlatformPath) entityManager
+                            .getEntityByName(prop);
                     if (path != null) {
                         platform.initLine(path.getLine(), path.getProperties());
                     } else {
                         System.err.println("Didn't find path " + prop + "!");
                     }
                 } else {
-                    System.err.println("Missing path option in " + platform.getName() + "!");
+                    System.err.println("Missing path option in "
+                            + platform.getName() + "!");
                 }
             } else {
                 System.err.println("No options in " + platform.getName() + "!");
+            }
+        }
+    }
+
+    private static void setTeleporterTargets() {
+        ArrayList<Entity> controller = entityManager
+                .getEntitiesByFilter(Teleporter.class);
+
+        for (Entity e : controller) {
+            Teleporter teleporter = (Teleporter) e;
+            SafeProperties prop = e.getProperties();
+            if (prop != null) {
+                String target = prop.getProperty("target");
+                Entity targetTeleporter = entityManager.getEntityByName(target);
+                if (targetTeleporter instanceof Teleporter) {
+                    teleporter
+                            .setTargetTeleporter((Teleporter) targetTeleporter);
+                } else {
+                    System.err.println(e.getName() + "can not find " + target);
+                }
             }
         }
     }
@@ -355,7 +384,8 @@ public class LevelLoader {
 
         // The Nice Way
 
-        ArrayList<Entity> controller = entityManager.getEntitiesByFilter(ObjectController.class);
+        ArrayList<Entity> controller = entityManager
+                .getEntitiesByFilter(ObjectController.class);
 
         for (Entity e : controller) {
             ObjectController control = (ObjectController) e;
