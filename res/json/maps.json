@@ -21,4 +21,8 @@
 {
   "name" : "bossmap",
   "pfad" : "res/maps/bossmap.tmx"
+},
+{
+  "name" : "featureTestMap",
+  "pfad" : "res/maps/featureTestMap.tmx"
 }]

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="100" height="100" tilewidth="64" tileheight="64">
+ <tileset firstgid="1" source="tiledmap_final.tsx"/>
+ <tileset firstgid="626" name="entity_tileset" tilewidth="64" tileheight="64">
+  <image source="entity_tileset.png" width="192" height="384"/>
+  <tile id="0">
+   <properties>
+    <property name="type" value="start"/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="type" value="end"/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="type" value="door"/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="type" value="switch"/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="type" value="box"/>
+   </properties>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="type" value="meteroid"/>
+   </properties>
+  </tile>
+  <tile id="6">
+   <properties>
+    <property name="type" value="oxygenflower"/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="type" value="button"/>
+   </properties>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="type" value="smallflyingenemy"/>
+   </properties>
+  </tile>
+  <tile id="10">
+   <properties>
+    <property name="type" value="middleflyingenemy"/>
+   </properties>
+  </tile>
+  <tile id="11">
+   <properties>
+    <property name="type" value="bigflyingenemy"/>
+   </properties>
+  </tile>
+  <tile id="12">
+   <properties>
+    <property name="type" value="smallgroundenemy"/>
+   </properties>
+  </tile>
+  <tile id="13">
+   <properties>
+    <property name="type" value="middlegroundenemy"/>
+   </properties>
+  </tile>
+  <tile id="14">
+   <properties>
+    <property name="type" value="biggroundenemy"/>
+   </properties>
+  </tile>
+  <tile id="15">
+   <properties>
+    <property name="type" value="tt_pic"/>
+   </properties>
+  </tile>
+  <tile id="16">
+   <properties>
+    <property name="type" value="tt_trigger"/>
+   </properties>
+  </tile>
+ </tileset>
+ <layer name="Kachelebene 1" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt0UEKABAABEBHz/ANBx/0ak7upIiZ2uPW1oYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADvqAudtHsEgz/u4o+7lJ44mXxkKQD8pwFV8ALV
+  </data>
+ </layer>
+ <objectgroup name="Objektebene 1" width="100" height="100">
+  <object gid="629" x="1024" y="6072">
+   <properties>
+    <property name="trigger" value="door"/>
+   </properties>
+  </object>
+  <object name="door" gid="628" x="1263" y="6071"/>
+  <object type="solid" x="641" y="6104" width="894" height="38"/>
+  <object type="solid" x="1479" y="5886" width="55" height="258"/>
+  <object type="solid" x="640" y="5888" width="53" height="255"/>
+  <object gid="626" x="716" y="6104"/>
+ </objectgroup>
+</map>
