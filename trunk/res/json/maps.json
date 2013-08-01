@@ -29,4 +29,10 @@
 {
   "name" : "featureTestMap",
   "pfad" : "res/maps/featureTestMap.tmx"
+},
+{
+  "name" : "spacemap_second",
+  "pfad" : "res/maps/spacemap_second.tmx"
 }]
+
+
