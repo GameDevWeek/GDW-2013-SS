@@ -15,7 +15,7 @@ import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.filter.ActivatableByAstronaut;
 import de.fhtrier.gdw.ss2013.game.filter.Interactable;
 
-public class Door extends Entity implements Interactable, ActivatableByAstronaut {
+public class Door extends Entity implements Interactable {
 
     private boolean open;
 
