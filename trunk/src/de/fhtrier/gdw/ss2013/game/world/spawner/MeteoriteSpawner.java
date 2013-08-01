@@ -1,28 +1,25 @@
 package de.fhtrier.gdw.ss2013.game.world.spawner;
 
-import org.jbox2d.dynamics.BodyType;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 
-import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.constants.SpawnerConstants;
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.game.world.enemies.Meteroid;
-import de.fhtrier.gdw.ss2013.physix.PhysixBox;
-import de.fhtrier.gdw.ss2013.physix.PhysixManager;
 
 public class MeteoriteSpawner extends Entity {
-	private int spawnDuration;
+	private int spawnDelay;
 	private int timeSinceLastSpawn;
+	boolean init = false;
 	
 	/**
 	 * @param spawnDuration Time between spawns of different meteorites in millisecs
 	 */
 	public MeteoriteSpawner(int spawnDuration) {
 		super();
-		this.spawnDuration = spawnDuration;
+		this.spawnDelay = spawnDuration;
 		initialize();
 	}
 	
@@ -40,27 +37,32 @@ public class MeteoriteSpawner extends Entity {
 	
 	@Override
 	public void update(GameContainer container, int delta) {
+		if (!init && getProperties().getProperty("delay") != null) {
+			String newDelay = getProperties().getProperty("delay");
+			try {
+				this.spawnDelay = new Integer(newDelay);
+			}
+			catch (Exception e) {
+				System.err.println("Warning: A MeteoriteSpawner got a wrong spawn delay value.");
+			}
+		}
+		init = true;
+		
 		timeSinceLastSpawn += delta;
 		
-		if (timeSinceLastSpawn > spawnDuration) {
+		if (timeSinceLastSpawn > spawnDelay) {
 			spawnMeteorite();
 		}
 	}
 	
 	private void spawnMeteorite() {
 		EntityManager entityManager = World.getInstance().getEntityManager();
-		PhysixManager physicsManager = World.getInstance().getPhysicsManager();
-		
-		// Dirty hack to get width and height of an Meteorite
-		int width = AssetLoader.getInstance().getAnimation("meteorite").getWidth();
-		int height = AssetLoader.getInstance().getAnimation("meteorite").getWidth();
 		
 		// Create a meteorite entity
-		Entity entity = entityManager.createEntity(Meteroid.class);
-        PhysixBox box = new PhysixBox(physicsManager, getPosition().x, getPosition().y, width, height,
-                BodyType.KINEMATIC, 1, 0.5f, false);
-        entity.setPhysicsObject(box);
-		timeSinceLastSpawn -= spawnDuration;
+		Meteroid entity = entityManager.createEntity(Meteroid.class);
+        entity.setSpawnPosition(getPosition().x,getPosition().y);
+
+        timeSinceLastSpawn -= spawnDelay;
 	}
 
 	@Override

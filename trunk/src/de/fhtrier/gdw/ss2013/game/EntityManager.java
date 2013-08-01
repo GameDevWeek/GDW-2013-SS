@@ -22,7 +22,7 @@ import de.fhtrier.gdw.ss2013.math.MathConstants;
 //TODO filter für getEntities
 public class EntityManager {
     // static protected EntityManager managerInstance;
-    protected HashMap<String, Entity> entityList;
+    protected HashMap<String, Entity> entityMap;
     protected Queue<Entity> removalQueue;
     protected Queue<Entity> insertionQueue;
     protected HashMap<String, Class<? extends Entity>> classMap = new HashMap<>();
@@ -30,7 +30,7 @@ public class EntityManager {
     private EntityFactory factory;
 
     public EntityManager() {
-        entityList = new HashMap<>();
+        entityMap = new HashMap<>();
 
         removalQueue = new LinkedList<>();
         insertionQueue = new LinkedList<>();
@@ -48,8 +48,8 @@ public class EntityManager {
     }
 
     public void reset() {
-        
-        for(Entity e: entityList.values()) {
+    	//FIXME offensichtlich wird hier nichts disposed
+        for(Entity e: entityMap.values()) {
             factory.recycle(e);
         }
         
@@ -57,7 +57,7 @@ public class EntityManager {
             factory.recycle(e);
         }
         
-        entityList.clear();
+        entityMap.clear();
         removalQueue.clear();
         insertionQueue.clear();
     }
@@ -66,27 +66,22 @@ public class EntityManager {
 
         while (!removalQueue.isEmpty()) {
             Entity e = removalQueue.poll();
-            if (e instanceof RecycleableEntity) {
-                factory.recycle(e);
-            }
             e.dispose();
-            entityList.remove(e.getName());
-            
+            entityMap.remove(e.getName());            
         }
-
     }
 
     private void internalInsert() {
         while (!insertionQueue.isEmpty()) {
             Entity e = insertionQueue.poll();
-            if (entityList.containsKey(e.getName())) {
+            if (entityMap.containsKey(e.getName())) {
                 String oldName = e.getName();
                 e.setName();
                 System.err.println("Warning: Changed " + oldName + " to "
                         + e.getName() + " to prevent Name Duplication");
             }
             e.initialize();
-            entityList.put(e.getName(), e);
+            entityMap.put(e.getName(), e);
         }
     }
 
@@ -102,16 +97,17 @@ public class EntityManager {
      * @throws SlickException
      */
     public void update(GameContainer c, int delta) throws SlickException {
-        internalInsert();
         internalRemove();
-        for (Entity e : entityList.values())
+        internalInsert();
+        
+        for (Entity e : entityMap.values())
             e.update(c, delta);
 
     }
 
     public void render(GameContainer container, Graphics g)
             throws SlickException {
-        for (Entity e : entityList.values())
+        for (Entity e : entityMap.values())
             e.render(container, g);
     }
 
@@ -121,7 +117,7 @@ public class EntityManager {
      * @return entity reference an position, null falls keine entity an position
      */
     public Entity getEntityAtPosition(Vector2f position) {
-        for (Entity e : entityList.values()) {
+        for (Entity e : entityMap.values()) {
             if (position.equals(e.getPosition())) {
                 return e;
             }
@@ -140,7 +136,7 @@ public class EntityManager {
             float radius) {
         ArrayList<Entity> entities = new ArrayList<>();
 
-        for (Entity e : entityList.values()) {
+        for (Entity e : entityMap.values()) {
             if ((position.distance(e.getPosition()) - radius) < MathConstants.EPSILON_F) {
                 entities.add(e);
             }
@@ -149,12 +145,12 @@ public class EntityManager {
     }
 
     public Entity getEntityByName(String name) {
-        return entityList.get(name);
+        return entityMap.get(name);
     }
 
     public ArrayList<Entity> getEntitiesByFilter(Class<? extends EntityFilter> filter) {
         ArrayList<Entity> filteredList = new ArrayList<>();
-        for (Entity e : entityList.values()) {
+        for (Entity e : entityMap.values()) {
             if (filter.isAssignableFrom(e.getClass())) {
                 filteredList.add(e);
             }
@@ -165,7 +161,7 @@ public class EntityManager {
     public ArrayList<Entity> getClosestEntitiesByFilter(Vector2f position,
             float radius, Class<? extends EntityFilter> filter) {
         ArrayList<Entity> filteredList = new ArrayList<>();
-        for (Entity e : entityList.values()) {
+        for (Entity e : entityMap.values()) {
             if (filter.isAssignableFrom(e.getClass())) {
                 if ((position.distance(e.getPosition()) - radius) < MathConstants.EPSILON_F) {
                     filteredList.add(e);

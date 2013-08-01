@@ -4,21 +4,37 @@
  <tileset firstgid="626" source="entity_tileset.tsx"/>
  <layer name="Kachelebene 1" width="80" height="40">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2WUc6DIBCEeWx7O622d7C2egeL1Vv/kHwbSPO/0QdMZpKNCDvD4uKCc4IgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIJwXFywc7AT9t+79V2++k70nzPO+cu/Zv1SfhfsGewe7BFsCtYG88EGnm/6lmA77xP+se9DO46N+Mbx9QD6pfzo0wS78YxaL9ovdFf8hkznjZbHp0Ojy9r3A+iX8if8Ppl/C2ch39Gu9I/wZjQ62h0a5rMxX+36pfxH5vMkDzvx5ryescGlPbCyjibLoyeWG9q16/8ivp64Vr7r06WaMJKXB1ob/fbtba4WrmeeFV7t+qX8lXy+ya/lo8cs/z0+G3NNrMPjb//BQAx57ahZv5Rve3Hnm8/4f/CxGhPfFzi2D67ZvEs2v8WwHED/F/HNxLPytBgtPwPfP6+Z1m9npO2JjTisZtSuX8q/ZWNWO3uX7lp25zHN2aWzymfW4du6dD/rDqBfyo+5tPPNwx3w7Rkf8WlcqgGWB9sjm0v3oWuWo9r1S/l2Z2xdqpN2Jll9sTx41mBnn+35nTUtLtX4Bm7t+qX8Pz4UTksAMgAA
+   H4sIAAAAAAAAC+1WW07DMBD0J3AhPrkCaR5wBUJo4ApNk6acGq80I1srK43rL6QdaZXY3p2M12s7zhkMBoPBYDAYDAaDwWAwGAwGg8FgMBgMBoPBYDAYDP8XT7BHbw+wVJt9Lyr+WfXlttn3AP4n9U3202K/R5evX/OXxjfevry9efv0Nno7eJu99Xie0Td5e1dz//D2s9E+efvdaDOmB/8V3xuhR/oueJexAVpkfLlDv+YvjRefyluHp3Ad8X4E7wK/PjH3VH7iHL/eaDPmCH7qPEPrDA0NNDbR+9sd+jV/afwIv0vkf0CM+A2wGv1xbQk+EvnZqkfdZt8E/gG6vqGxwXsDjfRZMZ9c/Zq/NP4z8pHcdxhvVFyLsdTe26q/W21yDODvXaixBXmqXKiTGXPtoD1Xv+YvjV8xNqP9DR6eCcJxxHfqRP70ftT1KPnS56Guv1d8q4Yeeefaci4HaJsxjwW6cvVr/tJ4ibmgXbmwHi2M69/CJ3V2xfnQ+3dP/k4R/4q5jMjTDD3cZz3mGJ9NOfo1f2k8a1HW+QvaKnCOLpwx0t5z/6bytWf/juDvXKizOprXFM2Pc5zu0K/5S+PPaIueBU9q5PoIRwu/1P2r60/fJ78bbXJQV7wvehfuYNbcinnyTMrVr/lL47tojGdn68K/Fv95yJnae1v1tef+PUW6RQfvwjmyxoU7mv9//I/J0a/5S+NlLXm/zYjt4dtifIBP5W6ff6n7eO/5J/w8Y7jOrMHVhf+t2oUayNWv+Uvj+c94cOGc5J3E84XrMLv03tP1dk/+yH914W7lnroiZ5MLd0gFbbn6NX9p/B/MqsUXADIAAA==
   </data>
  </layer>
  <objectgroup name="Objektebene 1" width="80" height="40">
-  <object type="solid" x="-52" y="1816" width="5208" height="824"/>
   <object type="solid" x="-400" y="-432" width="496" height="3080"/>
   <object type="solid" x="-392" y="-744" width="6000" height="904"/>
   <object type="solid" x="4984" y="-144" width="336" height="2864"/>
   <object gid="626" x="263" y="1743"/>
-  <object gid="630" x="668" y="1792"/>
-  <object gid="640" x="1451" y="1797"/>
+  <object gid="630" x="2576" y="1774"/>
+  <object gid="640" x="2419" y="1773"/>
   <object gid="636" x="1779" y="1355"/>
-  <object gid="631" x="1013" y="1359"/>
   <object gid="627" x="4829" y="1779"/>
-  <object gid="629" x="1167" y="1813"/>
-  <object gid="633" x="921" y="1816"/>
+  <object gid="629" x="2259" y="1809"/>
+  <object gid="633" x="2715" y="1810"/>
+  <object gid="631" x="1055" y="1566">
+   <properties>
+    <property name="delay" value="500"/>
+   </properties>
+  </object>
+  <object type="solid" x="38" y="1802" width="782" height="796"/>
+  <object type="solid" x="1030" y="1814" width="108" height="778"/>
+  <object type="solid" x="1290" y="1812" width="104" height="910"/>
+  <object type="solid" x="1544" y="1814" width="104" height="866"/>
+  <object type="solid" x="1800" y="1810" width="106" height="928"/>
+  <object type="solid" x="2122" y="1816" width="3014" height="930"/>
+  <object type="deadzone" x="704" y="2416" width="1572" height="344"/>
+  <object type="solid" x="743" y="1788" width="1481" height="143"/>
+  <object gid="631" x="1306" y="1572">
+   <properties>
+    <property name="delay" value="400"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

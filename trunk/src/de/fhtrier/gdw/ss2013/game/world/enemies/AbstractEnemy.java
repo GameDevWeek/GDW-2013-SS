@@ -17,7 +17,7 @@ import de.fhtrier.gdw.ss2013.game.EntityCollidable;
 public abstract class AbstractEnemy extends EntityCollidable {
 
 	private float damage;
-	private Animation current_ani;
+	protected Animation current_ani;
 	private Animation leftAnimation, rightAnimation;
 
 	public AbstractEnemy(Animation moveToRightAnimation) {
@@ -45,18 +45,19 @@ public abstract class AbstractEnemy extends EntityCollidable {
 
 	@Override
 	public void render(GameContainer container, Graphics g) throws SlickException {
+		// FIXME: change ani?
 		// Move right
-		Vector2f velocity = getVelocity();
-		if (velocity != null && velocity.x > 0 && current_ani.equals(rightAnimation)) {
-			current_ani = rightAnimation;
+//		Vector2f velocity = getVelocity();
+//		if (velocity != null && velocity.x > 0 && current_ani.equals(rightAnimation)) {
+//			current_ani = rightAnimation;
+//
+//		}
+//		// Move left
+//		if (velocity != null && velocity.x < 0 && current_ani.equals(leftAnimation)) {
+//			current_ani = leftAnimation;
+//		}
 
-		}
-		// Move left
-		if (velocity != null && velocity.x < 0 && current_ani.equals(leftAnimation)) {
-			current_ani = leftAnimation;
-		}
-
-		if (current_ani != null) {
+		if (physicsObject != null && current_ani != null) {
 			current_ani.draw(this.getPosition().x - (current_ani.getWidth() / 2),
 					this.getPosition().y - (current_ani.getHeight() / 2));
 		}
