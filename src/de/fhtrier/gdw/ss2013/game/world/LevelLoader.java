@@ -256,6 +256,8 @@ public class LevelLoader {
         case "start":
             startpos = new Vector2f(x, y);
             break;
+        case "end":
+        	break;
         // WTF!!!
         // case "circle":
         // float radius = Math.max(width, height) / 2;
