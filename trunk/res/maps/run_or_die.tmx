@@ -86,17 +86,7 @@
  <tileset firstgid="19" source="tiledmap_final.tsx"/>
  <tileset firstgid="100" source="shadow_tileset.tsx"/>
  <tileset firstgid="125" name="moving_platform" tilewidth="64" tileheight="64">
-  <image source="../../../../../mvoingplatform.png" width="192" height="64"/>
-  <tile id="0">
-   <properties>
-    <property name="path" value=""/>
-   </properties>
-  </tile>
-  <tile id="1">
-   <properties>
-    <property name="path" value=""/>
-   </properties>
-  </tile>
+  <image source="movingplatform.png" width="192" height="64"/>
  </tileset>
  <layer name="Tiles" width="320" height="37">
   <data encoding="base64" compression="gzip">
@@ -155,5 +145,13 @@
     <property name="trigger" value="tt_pic_01"/>
    </properties>
   </object>
+  <object name="platformPath" type="platformLine" x="736" y="704">
+   <properties>
+    <property name="moveAround" value="true"/>
+   </properties>
+   <polyline points="0,0 512,0 512,-384 0,-384 0,0"/>
+  </object>
+  <object gid="125" x="960" y="736"/>
+  <object gid="126" x="960" y="352"/>
  </objectgroup>
 </map>
