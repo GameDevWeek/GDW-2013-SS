@@ -89,5 +89,9 @@
 {
   "name" : "button_pressed",
   "pfad" : "entities/button/button_pressed"
+},
+{
+  "name" : "whale",
+  "pfad" : "dummies/boss2"
 }]
 
