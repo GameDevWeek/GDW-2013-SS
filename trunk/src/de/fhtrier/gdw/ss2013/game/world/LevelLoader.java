@@ -435,7 +435,7 @@ public class LevelLoader {
                                     + imageName + ", but that doesn't exist.");
                     break;
                 }
-                String radius = triggeredImage.getProperties().getProperty(
+                String radius = trigger.getProperties().getProperty(
                         "radius");
                 if (radius == null || radius.equals("")) {
                      ttm.addTooltip(img_pos, img, trigger_pos);
