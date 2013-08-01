@@ -15,12 +15,12 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 public class CreditsAnimation extends Widget implements IActionListener {
-	protected List<Widget> widgets = new ArrayList<>();
-	boolean reset = false;
-	CreditsInfo credits;
-	HashMap<String, ArrayList<PathMover.Destination>> paths = new HashMap<>();
-	HashMap<String, Style> styles = new HashMap<>();
-	int numMovers = 0;
+	private List<Widget> widgets = new ArrayList<>();
+	private boolean reset = false;
+	private CreditsInfo credits;
+	private HashMap<String, ArrayList<PathMover.Destination>> paths = new HashMap<>();
+	private HashMap<String, Style> styles = new HashMap<>();
+	private int numMovers = 0;
 
 	
 	private class Style {
@@ -72,7 +72,7 @@ public class CreditsAnimation extends Widget implements IActionListener {
 		reset();
 	}
 	
-	public void reset() {
+	public final void reset() {
 		reset = false;
 		widgets.clear();
 		numMovers = 0;
