@@ -12,8 +12,8 @@ public class PhysixBoxPlayer extends PhysixBox {
 
     protected boolean isGrounded = false;
 
-    public PhysixBoxPlayer(PhysixManager physicsManager, float x, float y, float width, float height) {
-        super(physicsManager, x, y, width, height, BodyType.DYNAMIC, 1, 0.0f, false);
+    public PhysixBoxPlayer(PhysixManager physicsManager, float x, float y, float width, float height, float density, float friction) {
+        super(physicsManager, x, y, width, height, BodyType.DYNAMIC, density, 0.0f, false);
 
         float halfWidth = PhysixUtil.toBox2D(width) * 0.5f;
         float halfHeight = PhysixUtil.toBox2D(height) * 0.5f;
@@ -23,7 +23,7 @@ public class PhysixBoxPlayer extends PhysixBox {
 //        addSlideShape(onePx, halfHeight, halfWidth, onePx - halfWidth);
 //        addSlideShape(onePx, halfHeight, halfWidth, halfWidth - onePx);
 
-        addFeet(0, halfHeight, (halfWidth - MathConstants.EPSILON_F), 1.0f);
+        addFeet(0, halfHeight, (halfWidth - MathConstants.EPSILON_F), friction);
     }
 
 //    private void addSlideShape(float onePx, float halfHeight, float halfWidth, float x) {

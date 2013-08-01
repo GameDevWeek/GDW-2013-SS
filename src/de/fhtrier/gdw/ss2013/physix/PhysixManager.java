@@ -1,5 +1,6 @@
 package de.fhtrier.gdw.ss2013.physix;
 
+import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import org.jbox2d.callbacks.ContactImpulse;
 import org.jbox2d.callbacks.ContactListener;
 import org.jbox2d.collision.Manifold;
@@ -10,17 +11,14 @@ import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.World;
 import org.jbox2d.dynamics.contacts.Contact;
 import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Input;
 
 public class PhysixManager implements ContactListener {
 
-    private static final float GRAVITY = 9.8f;
     private World world;
-    private final Input input;
 
     public PhysixManager(GameContainer container) {
-        this.input = container.getInput();
-        world = new World(new Vec2(0, GRAVITY));
+        float gravity = AssetLoader.getInstance().getGameData().world.gravity;
+        world = new World(new Vec2(0, gravity));
 
         
         world.setContactListener(this);

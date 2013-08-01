@@ -31,7 +31,7 @@ public class Astronaut extends Player implements AstronautController {
     // set of entities, which can currently be activated with the action button
     private InteractionManager interactionManager;
 
-    private ArrayList<Switch> switches;
+    private ArrayList<Switch> switches= new ArrayList<>();
 
     protected PlayerState state;
     private boolean invertAnimation = false;
@@ -46,7 +46,6 @@ public class Astronaut extends Player implements AstronautController {
         speed = info.combined.speed;
         jumpSpeed = info.combined.jumpSpeed;
         jumpDelayTotal = info.combined.jumpDelay;
-        switches = new ArrayList<Switch>();
     }
 
     public float getOxygen() {
