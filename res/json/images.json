@@ -67,12 +67,12 @@
   "pfad" : "entities/moving_platform"
 },
 {
-  "name" : "switch_unpressed",
-  "pfad" : "entities/switch/switch_unpressed"
-},
-{
   "name" : "Tooltip",
   "pfad" : "gui/Tooltip"
+},
+{
+  "name" : "switch_unpressed",
+  "pfad" : "entities/switch/switch_unpressed"
 },
 {
   "name" : "switch_pressed",
@@ -84,6 +84,6 @@
 },
 {
   "name" : "button_pressed",
-  "pfad" : "entities/switch/button_pressed"
+  "pfad" : "entities/button/button_pressed"
 }]
 
