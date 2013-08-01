@@ -35,10 +35,10 @@ public class PhysixManager implements ContactListener {
         if(timeDiff > UPDATE_TIME) {
             lastTime = time;
             world.step((float)Math.min(60, timeDiff) * 0.002f, 10, 10);
-            System.out.println(delta + "/" +timeDiff);
+            //System.out.println(delta + "/" +timeDiff);
             world.clearForces();
         } else {
-            System.out.println("---");
+            //System.out.println("---");
         }
     }
 
