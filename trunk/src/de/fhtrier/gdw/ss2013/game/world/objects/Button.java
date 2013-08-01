@@ -2,6 +2,7 @@ package de.fhtrier.gdw.ss2013.game.world.objects;
 
 import org.jbox2d.dynamics.Fixture;
 import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
@@ -28,10 +29,13 @@ import org.jbox2d.dynamics.contacts.Contact;
 public class Button extends ObjectController implements ICollisionListener {
 
     protected int pressContacts;
+    private Image unpressedImg;
+    private Image pressedImg;
 
     public Button() {
-        img = AssetLoader.getInstance().getImage("button_unpressed");
-        // private Image pressedImg = AssetLoader.getInstance().getImage("button_pressed");
+    	unpressedImg = AssetLoader.getInstance().getImage("button_unpressed");
+        pressedImg = AssetLoader.getInstance().getImage("button_pressed");
+    	setImage(unpressedImg);
     }
 
     public void setActivated(boolean active) {
@@ -48,6 +52,12 @@ public class Button extends ObjectController implements ICollisionListener {
     @Override
     public void update(GameContainer container, int delta)
             throws SlickException {
+    	if (isActivated() && getImage().equals(unpressedImg)) {
+    		setImage(pressedImg);
+    	}
+    	else if (!isActivated() && getImage().equals(pressedImg)) {
+    		setImage(unpressedImg);
+    	}
     }
 
     public boolean isPressed() {
