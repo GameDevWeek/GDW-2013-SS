@@ -3,7 +3,7 @@
    "width": 50,
    "height": 110,
    "speed": 160,
-   "jumpSpeed": 400,
+   "jumpSpeed": 550,
    "jumpDelay": 500,
    "density": 1,
    "friction": 0.5
@@ -27,7 +27,7 @@
    "friction": 0.5
  },
  "world": {
-   "gravity": 9.81,
+   "gravity": 12,
    "density": 1,
    "friction": 0.5
  }
