@@ -42,7 +42,6 @@ public class OxygenBubble extends EntityCollidable implements Interactable {
         super(AssetLoader.getInstance().getImage("bubble"));
         this.oxygenLevel = getOxygenLevel();
         man = World.getInstance().getEntityManager();
-        System.out.println("Werde erstellt");
     }
 
     @Override
@@ -68,7 +67,6 @@ public class OxygenBubble extends EntityCollidable implements Interactable {
         }
 
         if (e instanceof Astronaut) {
-            System.out.println("Hallo Astronaut");
             if (((Astronaut) e).getOxygen() + oxygenLevel < ((Astronaut) e)
                     .getMaxOxygen()) {
                 ((Astronaut) e).setOxygen(((Astronaut) e).getOxygen()

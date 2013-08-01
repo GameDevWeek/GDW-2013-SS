@@ -88,7 +88,6 @@ public class DefaultSoundPlayer implements SoundPlayer {
          * distance )
          */
         float MAX_DISTANCE = 1000.0f;
-        System.out.println(playAtDirection.length());
         float distance = Math.min(playAtDirection.length(), MAX_DISTANCE);
 
         float volume = 1.0f - 1.0f * (distance - 50.0f)
