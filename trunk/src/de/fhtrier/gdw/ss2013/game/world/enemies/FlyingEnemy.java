@@ -31,17 +31,26 @@ public abstract class FlyingEnemy extends AbstractEnemy {
 
     public FlyingEnemy(Animation animation) {
     	super(animation);
-        this.health = 100f; // FIXME: dummy value!
         this.m = w.getEntityManager();
         this.p = w.getAstronaut();
         // FIXME: Player will never be set!
-        flyintelligence = boltintelligence = (float) Math.random();
         // Don't use Velocity in the constructor!
         // if(flyintelligence > 0.5f) {
         // this.getVelocity().y = 0.0f;
         // } else {
         // this.getVelocity().x = 0.0f;
         // }
+        initialize();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void initialize() {
+        super.initialize();
+        health = 100f; // FIXME: dummy value!
+        flyintelligence = boltintelligence = (float) Math.random();
         if (boltintelligence >= 0.67) {
             factor = 100;
         }
@@ -52,7 +61,7 @@ public abstract class FlyingEnemy extends AbstractEnemy {
             factor = 50;
         }
     }
-
+    
     public void setHealth(float hp) {
         health = hp;
     }

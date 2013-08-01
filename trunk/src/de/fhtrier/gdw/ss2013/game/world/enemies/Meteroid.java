@@ -27,6 +27,13 @@ public class Meteroid extends AbstractEnemy implements RecycleableEntity {
 		super(AssetLoader.getInstance().getAnimation("meteorite"));
 		this.m = World.getInstance().getEntityManager();
 	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected void initialize() {
+	}
 
 	public void update(GameContainer container, int delta) throws SlickException {
 
