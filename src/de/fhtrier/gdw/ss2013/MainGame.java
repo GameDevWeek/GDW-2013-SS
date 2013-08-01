@@ -115,7 +115,7 @@ public class MainGame extends StateBasedGame {
             AppGameContainer app = new AppGameContainer(instance);
             app.setDisplayMode(WINDOW_WIDTH, WINDOW_HEIGHT, false);
             app.setAlwaysRender(false);
-            app.setMaximumLogicUpdateInterval(60);
+            app.setMaximumLogicUpdateInterval(0);
             app.setShowFPS(false);
             app.setMouseGrabbed(true);
             app.start();
