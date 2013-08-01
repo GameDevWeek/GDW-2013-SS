@@ -25,7 +25,6 @@ public abstract class AbstractEnemy extends EntityCollidable {
 	public AbstractEnemy(Animation moveToRightAnimation) {
 		this.rightAnimation = moveToRightAnimation;
 		leftAnimation = rightAnimation; // FIXME: flip me, baby!
-		initialize();
 	}
 	
 	/**
