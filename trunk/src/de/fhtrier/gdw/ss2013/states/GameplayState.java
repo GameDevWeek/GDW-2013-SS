@@ -32,6 +32,10 @@ public class GameplayState extends BasicGameState {
     MenuManager menuManager;
     private Music music;
 
+	protected long storedDelta;
+	protected long maximumLogicInterval = 16;
+    protected long minimumLogicInterval = 1;
+
     @Override
     public void init(GameContainer container, StateBasedGame game)
             throws SlickException {
@@ -61,6 +65,19 @@ public class GameplayState extends BasicGameState {
 
     @Override
     public void update(GameContainer container, StateBasedGame game, int delta)
+            throws SlickException {
+        storedDelta += delta;
+
+        if (storedDelta >= minimumLogicInterval) {
+            long cycles = (long)Math.floor(storedDelta / (double)maximumLogicInterval);
+            for (int i=0;i<cycles;i++) {
+                update2(container, game, (int) maximumLogicInterval);
+            }
+
+            storedDelta -= (cycles * maximumLogicInterval);
+        }
+    }
+    public void update2(GameContainer container, StateBasedGame game, int delta)
             throws SlickException {
         ((MainGame) game).checkFullscreenToggle();
         world.getAstronaut().preInput();
