@@ -146,6 +146,10 @@ public class Alien extends Player implements AlienController {
                 dragDirection.y = cursor.y + camera.getOffsetY()
                         - currentSelectedBox.getPosition().y;
                 currentSelectedBox.setVelocity(dragDirection);
+                if (currentSelectedBox.isPlayerOnBox()) {
+                    currentSelectedBox.setVelocity(new Vector2f(0, -10));
+                    currentSelectedBox = null;
+                }
             }
         }
     }
