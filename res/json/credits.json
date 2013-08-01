@@ -35,7 +35,7 @@
 		
 		
 		
-		{ "name": "platform",
+		{ "name": "platform_moving",
            "destinations": [
             {"x": -60, "y": 768, "speed": -1 },
             {"x": 200, "y": 768, "speed": 500 },
@@ -49,20 +49,31 @@
 			{"x": 924, "y": 210, "speed": 500 },
 			
 			{"x": 924, "y": 210, "speed": -1 },
-			{"x": 924, "y": 728, "speed": 500 },
+			{"x": 924, "y": 728, "speed": 120 },
 			
 			
 			{"x": 924, "y": 728, "speed": -1 },
-			{"x": 924, "y": -20, "speed": 500 }
+			{"x": 924, "y": -20, "speed": 120 }
 			
+           ]
+		},
+		
+		
+				
+		{ "name": "platform_steady",
+           "destinations": [
+            {"x": 1164, "y": 708, "speed": -1 },
+            {"x": 1164, "y": 708, "speed": -1 }
            ]
 		},
 		
 		
 		{ "name": "player_test",
            "destinations": [
+           
+           
             {"x": -60, "y": 638, "speed": -1 },
-            {"x": 200, "y": 638, "speed": 500 },
+            {"x": -320, "y": 638, "speed": 500 },
            
 			{"x": 200, "y": -130, "speed": -1 },
 			{"x": 200, "y": 618, "speed": 500 },
@@ -73,10 +84,10 @@
 			{"x": 924, "y": 100, "speed": 500 },
 			
 			{"x": 924, "y": 100, "speed": -1 },
-			{"x": 924, "y": 618, "speed": 500 },
+			{"x": 924, "y": 618, "speed": 120 },
 			
 			{"x": 924, "y": 618, "speed": -1 },
-			{"x": 1600, "y": 618, "speed": 500 }
+			{"x": 1600, "y": 618, "speed": 120 }
            ]
 		},
 		
@@ -200,7 +211,8 @@
     
     
     "animations" : [
-		{ "name": "MovingPlatform", "x": 0, "y": 0, "width": 170, "height": 36, "path": "platform", "angle": 0, "delay": 0, "oriented": false, "animation": false },
+		{ "name": "MovingPlatform", "x": 0, "y": 0, "width": 170, "height": 36, "path": "platform_moving", "angle": 0, "delay": 0, "oriented": false, "animation": false },
+		{ "name": "MovingPlatform", "x": 0, "y": 0, "width": 170, "height": 36, "path": "platform_steady", "angle": 0, "delay": 0, "oriented": false, "animation": false },
 		{ "name": "astronaut_standing", "x": 0, "y": 0, "width": 228, "height": 191, "path": "player_test", "angle": 0, "delay": 0, "oriented": false, "animation": true }
 	]
 }
