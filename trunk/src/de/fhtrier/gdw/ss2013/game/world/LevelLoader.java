@@ -13,6 +13,7 @@ import de.fhtrier.gdw.commons.tiled.LayerObject;
 import de.fhtrier.gdw.commons.tiled.TiledMap;
 import de.fhtrier.gdw.commons.utils.SafeProperties;
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
+import de.fhtrier.gdw.ss2013.assetloader.infos.GameDataInfo;
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.filter.Interactable;
@@ -32,9 +33,13 @@ public class LevelLoader {
     private static EntityManager entityManager;
     private static PhysixManager physicsManager;
     private static Vector2f startpos;
+    private static GameDataInfo.WorldInfo worldInfo;
 
     public static void load(TiledMap map, EntityManager entityManager,
             PhysixManager physicsManager) {
+        
+        worldInfo = AssetLoader.getInstance().getGameData().world;
+        
         LevelLoader.entityManager = entityManager;
         LevelLoader.physicsManager = physicsManager;
         entityManager.reset();
@@ -121,15 +126,16 @@ public class LevelLoader {
         Entity entity;
         switch (type) {
         case "solid":
-            new PhysixPolyline(physicsManager, points, BodyType.STATIC, 1,
-                    0.5f, false);
+            new PhysixPolyline(physicsManager, points, BodyType.STATIC, worldInfo.density,
+                    worldInfo.friction, false);
             break;
         case "platformLine":
             entity = entityManager.createEntity("movingPlatform", properties,
                     name);
             entity.setPhysicsObject(new PhysixBox(physicsManager,
                     points.get(0).x - 170 / 2, points.get(0).y - 36 / 2, 170,
-                    36, BodyType.KINEMATIC, 1, 0.5f, false));
+                    36, BodyType.KINEMATIC, worldInfo.density,
+                    worldInfo.friction, false));
             ((MovingPlatform) entity).initLine(points, properties);
 
             break;
@@ -184,12 +190,12 @@ public class LevelLoader {
         switch (type) {
         case "solid":
             new PhysixBox(physicsManager, x, y, width, height, BodyType.STATIC,
-                    1, 0.5f, false);
+                    worldInfo.density, worldInfo.friction, false);
             break;
         case "deadzone":
             entity = entityManager.createEntity(type, properties);
             PhysixBox box = new PhysixBox(physicsManager, x, y, width, height,
-                    BodyType.STATIC, 1, 0.5f, true);
+                    BodyType.STATIC, worldInfo.density, worldInfo.friction, true);
             entity.setPhysicsObject(box);
             break;
         default:
@@ -222,19 +228,22 @@ public class LevelLoader {
         case "button":
             entity = entityManager.createEntity(type, properties, name);
             PhysixBox buttonBox = new PhysixBox(physicsManager, x, y, width,
-                    height, BodyType.STATIC, 1, 0.5f, true);
+                    height, BodyType.STATIC, worldInfo.density,
+                    worldInfo.friction, true);
             entity.setPhysicsObject(buttonBox);
             break;
         case "switch":
             entity = entityManager.createEntity(type, properties, name);
             PhysixBox switchBox = new PhysixBox(physicsManager, x, y, width,
-                    height, BodyType.STATIC, 1, 0.5f, true);
+                    height, BodyType.STATIC, worldInfo.density,
+                    worldInfo.friction, true);
             entity.setPhysicsObject(switchBox);
             break;
         case "door":
             entity = entityManager.createEntity(type, properties, name);
             PhysixBox doorBox = new PhysixBox(physicsManager, x, y, width,
-                    height, BodyType.STATIC, 1, 0.5f, false);
+                    height, BodyType.STATIC, worldInfo.density,
+                    worldInfo.friction, false);
             entity.setPhysicsObject(doorBox);
             break;
         case "start":
@@ -244,7 +253,8 @@ public class LevelLoader {
         // case "circle":
         // float radius = Math.max(width, height) / 2;
         // PhysixCircle circle = new PhysixCircle(physicsManager, x, y, radius,
-        // BodyType.DYNAMIC, 1, 0.5f, false);
+        // BodyType.DYNAMIC, worldInfo.density,
+        //          worldInfo.friction, false);
         // entity.setPhysicsObject(circle);
         // break;
         case "particle":
@@ -259,7 +269,8 @@ public class LevelLoader {
         default:
             entity = entityManager.createEntity(type, properties, name);
             PhysixBox box = new PhysixBox(physicsManager, x, y, width, height,
-                    BodyType.DYNAMIC, 1, 0.5f, false);
+                    BodyType.DYNAMIC, worldInfo.density,
+                    worldInfo.friction, false);
             entity.setPhysicsObject(box);
             break;
         }

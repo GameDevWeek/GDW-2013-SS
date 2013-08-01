@@ -68,7 +68,8 @@ public class World {
 		astronaut = entityManager.createEntity(Astronaut.class);
 		Vector2f startpos = LevelLoader.getStartPosition();
 		PhysixObject physicsObject = new PhysixBoxPlayer(physicsManager, startpos.x,
-				startpos.y, info.combined.width, info.combined.height);
+				startpos.y, info.combined.width, info.combined.height,
+                info.combined.density, info.combined.friction);
 
 		astronaut.setPhysicsObject(physicsObject);
 		
@@ -79,7 +80,7 @@ public class World {
 		alien = entityManager.createEntity(Alien.class);
 		physicsObject = new PhysixBox(physicsManager, startpos.x,
 				startpos.y, info.alien.width, info.alien.height,
-				BodyType.DYNAMIC, 1, 0.5f, true);
+				BodyType.DYNAMIC, info.alien.density, info.alien.friction, true);
 		alien.setPhysicsObject(physicsObject);
 		alien.setContainer(container);
 		

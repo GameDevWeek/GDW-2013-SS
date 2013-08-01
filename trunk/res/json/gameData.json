@@ -4,20 +4,31 @@
    "height": 110,
    "speed": 160,
    "jumpSpeed": 400,
-   "jumpDelay": 500
+   "jumpDelay": 500,
+   "density": 1,
+   "friction": 0.5
  },
  "alien": {
    "width": 70,
    "height": 70,
    "speed": 0,
    "jumpSpeed": 0,
-   "jumpDelay": 500
+   "jumpDelay": 500,
+   "density": 1,
+   "friction": 0.5
  },
  "combined": {
    "width": 50,
    "height": 134,
    "speed": 160,
    "jumpSpeed": 350,
-   "jumpDelay": 500
+   "jumpDelay": 500,
+   "density": 1,
+   "friction": 0.5
+ },
+ "world": {
+   "gravity": 9.81,
+   "density": 1,
+   "friction": 0.5
  }
 }
