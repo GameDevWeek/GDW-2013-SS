@@ -438,11 +438,11 @@ public class LevelLoader {
                 String radius = triggeredImage.getProperties().getProperty(
                         "radius");
                 if (radius == null || radius.equals("")) {
-                    // ttm.addTooltip(img_pos, img, trigger_pos);
+                     ttm.addTooltip(img_pos, img, trigger_pos);
                 } else {
                     try {
                         Integer iRadius = new Integer(radius);
-                        // ttm.addTooltip(img_pos, img, trigger_pos, iRadius);
+                        ttm.addTooltip(img_pos, img, trigger_pos, iRadius);
                     } catch (Exception e) {
                         System.err
                                 .println("You have failed during try to use tooltips! tt_trigger uses the radius \'"
