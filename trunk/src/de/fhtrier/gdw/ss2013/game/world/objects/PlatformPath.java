@@ -4,8 +4,6 @@ import java.awt.Point;
 import java.util.ArrayList;
 
 import de.fhtrier.gdw.commons.utils.SafeProperties;
-import de.fhtrier.gdw.ss2013.game.Entity;
-import de.fhtrier.gdw.ss2013.game.filter.EntityFilter;
 
 public class PlatformPath{
     private ArrayList<Point> points;
