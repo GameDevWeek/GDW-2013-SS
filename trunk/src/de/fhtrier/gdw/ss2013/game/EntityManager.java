@@ -48,6 +48,18 @@ public class EntityManager {
     }
 
     public void reset() {
+        
+        for(Entity e: entityList.values()) {
+            factory.recycle(e);
+        }
+        
+        for(Entity e: insertionQueue) {
+            factory.recycle(e);
+        }
+        
+        entityList.clear();
+        removalQueue.clear();
+        insertionQueue.clear();
     }
 
     private void internalRemove() {

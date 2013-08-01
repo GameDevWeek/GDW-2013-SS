@@ -155,9 +155,6 @@ public class GameplayState extends BasicGameState {
 		menuManager.activate();
 		if (music != null)
 			music.loop(1f, 1f);
-        
-        world.onEnter();
-        // world.getPhysicsManager().reset();
 	}
 	
 	@Override

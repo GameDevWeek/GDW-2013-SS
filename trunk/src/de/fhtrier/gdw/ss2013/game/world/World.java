@@ -44,13 +44,24 @@ public class World {
     private final PhysixManager physicsManager;
     
     private ArrayList<DynamicParticleSystem> particleList; 
+    private final GameContainer container;
 
 	public World(GameContainer container, StateBasedGame game) {
+        this.container = container;
 		instance = this;
 		map = null;
 		entityManager = new EntityManager();
 		physicsManager = new PhysixManager(container);
 		particleList = new ArrayList<DynamicParticleSystem>();
+        
+        reset();
+	}
+    
+    public void reset() {
+        entityManager.reset();
+        physicsManager.reset();
+        particleList.clear();
+        
 		try {
 			map = AssetLoader.getInstance().loadMap("run_or_die");
 			LevelLoader.load(map, entityManager, physicsManager);
@@ -85,7 +96,10 @@ public class World {
 		alien.setContainer(container);
 		
 		SoundLocator.provide(new DefaultSoundPlayer(astronaut));
-	}
+        
+		InputManager.getInstance().setAstronautController(astronaut);
+		InputManager.getInstance().setAlienController(alien);
+    }
 
 	public void render(GameContainer container, Graphics g)
 			throws SlickException {
@@ -118,14 +132,6 @@ public class World {
 
 		g.popTransform();
 	}
-
-	public void onEnter() {
-		InputManager.getInstance().setAstronautController(astronaut);
-		InputManager.getInstance().setAlienController(alien);
-	}
-
-
-
 
     public void update(GameContainer container, int delta)
             throws SlickException {
