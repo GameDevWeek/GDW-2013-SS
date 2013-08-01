@@ -23,13 +23,23 @@ public class EnemyBullet extends AbstractEnemy implements
         RecycleableEntity {
 
     private Image img;
-    protected int livetime = 60 * 10;
+    protected int livetime;
     private EntityManager m;
 
     public EnemyBullet() {
     	super(null);
     	img = AssetLoader.getInstance().getImage("boltEnemy");
     	m = World.getInstance().getEntityManager();
+    	initialize();
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void initialize() {
+        super.initialize();
+        livetime = 60 * 10;
     }
 
     public void render(GameContainer container, Graphics g)

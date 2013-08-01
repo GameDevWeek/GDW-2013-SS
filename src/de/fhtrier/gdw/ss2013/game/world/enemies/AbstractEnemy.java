@@ -23,7 +23,16 @@ public abstract class AbstractEnemy extends EntityCollidable {
 	public AbstractEnemy(Animation moveToRightAnimation) {
 		this.rightAnimation = moveToRightAnimation;
 		leftAnimation = rightAnimation; // FIXME: flip me, baby!
-		current_ani = rightAnimation;
+		initialize();
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	protected void initialize() {
+	    super.initialize();
+	    current_ani = rightAnimation;
+	    damage = 0;
 	}
 
 	public float getDamage() {

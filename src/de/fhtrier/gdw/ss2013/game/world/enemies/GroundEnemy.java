@@ -25,7 +25,7 @@ public abstract class GroundEnemy extends AbstractEnemy {
     private AssetLoader a = AssetLoader.getInstance();
     private World w = World.getInstance();
     private Vector2f lastposition;
-    private float speed = 80;
+    private float speed;
 
     public GroundEnemy(Animation animation) {
     	super(animation);
@@ -34,12 +34,19 @@ public abstract class GroundEnemy extends AbstractEnemy {
          * if (Math.random() >= 0.5) { intelligence = true; } else {
          * intelligence = false; }
          */
+        p = w.getAstronaut();
+        initialize();
+    }
+    
+    @Override
+    protected void initialize() {
+        super.initialize();
+        speed = 80;
         intelligence = false;
         normalMode = true;
         huntMode = waitMode = false;
         hunttime = 0;
         moveLR = false;
-        p = w.getAstronaut();
     }
 
     @Override
