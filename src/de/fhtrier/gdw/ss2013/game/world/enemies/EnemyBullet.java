@@ -9,7 +9,6 @@ import org.newdawn.slick.SlickException;
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
-import de.fhtrier.gdw.ss2013.game.RecycleableEntity;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.world.World;
 
@@ -19,8 +18,7 @@ import de.fhtrier.gdw.ss2013.game.world.World;
  * @author Kevin, Georg
  * 
  */
-public class EnemyBullet extends AbstractEnemy implements
-        RecycleableEntity {
+public class EnemyBullet extends AbstractEnemy {
 
     private Image img;
     protected int livetime;

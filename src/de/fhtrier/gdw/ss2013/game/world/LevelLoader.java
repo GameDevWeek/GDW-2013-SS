@@ -243,7 +243,7 @@ public class LevelLoader {
             entity = entityManager.createEntity(type, properties, name);
             PhysixBox doorBox = new PhysixBox(physicsManager, x, y, width,
                     height, BodyType.STATIC, worldInfo.density,
-                    worldInfo.friction, false);
+                    worldInfo.friction, true);
             entity.setPhysicsObject(doorBox);
             break;
         case "start":
@@ -251,6 +251,11 @@ public class LevelLoader {
             break;
         case "end":
         	break;
+    	case "meteroid": 		
+    		entity = entityManager.createEntity("meteoritespawner", properties, name); 		
+    		box = new PhysixBox(physicsManager, x, y, 0, 0, BodyType.STATIC, 1, 0.5f, true); 		
+    		entity.setPhysicsObject(box); 		
+    		break;
         case "MovingPlatform":
             entity = entityManager.createEntity(type, properties, name);
             width = (int) entity.getImage().getWidth();

@@ -196,6 +196,8 @@ public abstract class PhysixObject {
 	}
 	
 	public void removeFromWorld() {
+		System.out.println(associatedWorld.isLocked());
+		
 	    associatedWorld.destroyBody(body);
 	}
 }
