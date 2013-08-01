@@ -29,6 +29,8 @@ import de.fhtrier.gdw.ss2013.sound.SoundLocator;
 import de.fhtrier.gdw.ss2013.sound.services.DefaultSoundPlayer;
 
 public class World {
+	
+	private boolean shallBeReseted;
 
     private TiledMap map;
     private MapRenderer mapRender;
@@ -134,7 +136,12 @@ public class World {
 	}
 
     public void update(GameContainer container, int delta)
-            throws SlickException {
+            throws SlickException {		
+		if (shallBeReseted) {
+			reset();
+			shallBeReseted = false;
+		}
+		
         physicsManager.update(delta);
      
         entityManager.update(container, delta);
@@ -192,6 +199,10 @@ public class World {
 
 	public void removeParticle(ParticleSystem p) {
 		particleList.remove(p);
+	}
+
+	public void shallBeReseted(boolean shallBeReseted) {
+		this.shallBeReseted = shallBeReseted;
 	}
 
 }
