@@ -20,6 +20,7 @@ import de.fhtrier.gdw.ss2013.game.camera.PointOfInterest;
 import de.fhtrier.gdw.ss2013.game.camera.ThreePointCamera;
 import de.fhtrier.gdw.ss2013.game.player.Alien;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
+import de.fhtrier.gdw.ss2013.game.world.enemies.boss.Boss;
 import de.fhtrier.gdw.ss2013.input.InputManager;
 import de.fhtrier.gdw.ss2013.physix.PhysixBox;
 import de.fhtrier.gdw.ss2013.physix.PhysixBoxPlayer;
@@ -112,6 +113,17 @@ public class World {
         
 		InputManager.getInstance().setAstronautController(astronaut);
 		InputManager.getInstance().setAlienController(alien);
+		
+		
+		// DEBUG >>>
+		if (DebugModeStatus.getLevelName().equals("bossmap")) {
+			Boss b = entityManager.createEntity(Boss.class);
+			PhysixBox bossPhysics = new PhysixBox(physicsManager, 2000, 100, 250, 100, BodyType.DYNAMIC, 1.f, 1.0f, false);
+			b.setPhysicsObject(bossPhysics);
+			b.getPosition().x = 100;
+			b.getPosition().y = 100;
+		}
+		// <<< DEBUG
     }
 
 	public void render(GameContainer container, Graphics g)
