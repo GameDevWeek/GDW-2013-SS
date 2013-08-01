@@ -85,6 +85,19 @@
  </tileset>
  <tileset firstgid="19" source="tiledmap_final.tsx"/>
  <tileset firstgid="100" source="shadow_tileset.tsx"/>
+ <tileset firstgid="125" name="moving_platform" tilewidth="64" tileheight="64">
+  <image source="../../../../../mvoingplatform.png" width="192" height="64"/>
+  <tile id="0">
+   <properties>
+    <property name="path" value=""/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="path" value=""/>
+   </properties>
+  </tile>
+ </tileset>
  <layer name="Tiles" width="320" height="37">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+2ZwZKbMAyGfeobZDe9JKGXAjt9q1566aWXPn5hiiZ/VAJxYmwo3zfzD8tiS8ISwsuGAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALBePpUOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOABDp3eB33e4PhXUX9eOfwDQDlOnS6dqk5fNjj+VdSfP+bwDwBpOQ7q9zBvg/R3duz1tVPTqe304ea8yfm98WrrKL7sODZ+KrZ78byH+7HF3O/R2VR//vgx4/vbTB4OI/72NicVhzCei6XrYws2t2B3zlZKX+dB1XCsh5/7Y/9sX8Lf57sK1/1OM4y1o45pxNZFztXeqzI7tfi5d81iqsO1X9n1Olz3b5Wcj9lp5bwK8Wsztz+0vaVpj3NS4X1b/nPk+RL+9a32p67lqNW1xVc6Hjs3e63Mb9z4i4vJ7LYyvnE2rUa0dpaU7ceqsHxvj1mbmH6x1zmp8P2vVxXy5Nn7nVLJWl1LfKXj8bZ8L7Trrdgwmb/ziD2zo3G1I4q5/0d0rw/b/aTs7TFr80i/sDXZ65xUjPW/XHn2fqdUolbXFl/peOyaf3/5nliF2/6of0+YzE7l7LTOpmqsJ87Jr4tes1jsPpfs7TFr80i/0Fj3OCcV2nu1XnLkee21urb4SsejuaudH98/fd9SW2rf3vmNjK1HbDwrv2Z6ze41R2+PWZuYfrHXOalQ31ovOfK8xVotGV/peOpwm8PazfV/c3t72lN1nVvnz+99mzBeLyl6o67vkr09Zm36Z//7hE7Ozx7npJLvf1oXS+d57bW6xvhKxqP/O7Ex+q1Oc964sZWbo7Vh9m2MxePfBb4fPiJ/T3rN3gUW05K9PWZt+mf/x4RO4n+vc1LJ917dEyyd57XX6triW0M8KaR2Y3rqs75UKeKYq+t7vf3RePtn/+eE7JvVnuekkvZerZcced5ara4hvpLx5P4O6/8f/IzvVL332Tqye4tZm/7Z/zWhU7h9h+1xTipp79Vc58jz1mq1dHyl49H1yfEd9uz85PC9lJ+Yef2z/3tC9s2q3fGcVDLfmg+rgaXz/D/Uas74SsfzBzt2mrQAuQAA
