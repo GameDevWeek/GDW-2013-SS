@@ -223,6 +223,7 @@ public class LevelLoader {
     private static void createTile(String type, int x, int y, int width,
             int height, SafeProperties properties, String name) {
 
+    	PhysixBox box;
         Entity entity;
         switch (type) {
         case "button":
@@ -246,6 +247,12 @@ public class LevelLoader {
                     worldInfo.friction, false);
             entity.setPhysicsObject(doorBox);
             break;
+        case "meteroid":
+        	entity = entityManager.createEntity("meteoritespawner", properties, name);
+            box = new PhysixBox(physicsManager, x, y, 0,
+                    0, BodyType.STATIC, 1, 0.5f, true);
+            entity.setPhysicsObject(box);
+        	break;
         case "start":
             startpos = new Vector2f(x, y);
             break;
@@ -268,7 +275,7 @@ public class LevelLoader {
             break;
         default:
             entity = entityManager.createEntity(type, properties, name);
-            PhysixBox box = new PhysixBox(physicsManager, x, y, width, height,
+            box = new PhysixBox(physicsManager, x, y, width, height,
                     BodyType.DYNAMIC, worldInfo.density,
                     worldInfo.friction, false);
             entity.setPhysicsObject(box);
