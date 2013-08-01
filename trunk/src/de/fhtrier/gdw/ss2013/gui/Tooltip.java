@@ -34,7 +34,8 @@ public class Tooltip {
     
     public void render(){
         Vector2f worldPosition = worldinstance.worldToScreenPosition(imagePosition);
-        image.draw(worldPosition.x, worldPosition.y);
+        image.drawCentered(worldPosition.x, worldPosition.y);
+//        image.drawCentered(imagePosition.x, imagePosition.y);
     }
     
     public float getRadius(){

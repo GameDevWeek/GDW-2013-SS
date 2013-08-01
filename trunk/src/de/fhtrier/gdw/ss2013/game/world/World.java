@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.jbox2d.dynamics.BodyType;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.particles.ParticleSystem;
@@ -16,7 +17,6 @@ import de.fhtrier.gdw.ss2013.assetloader.infos.GameDataInfo;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.camera.Camera;
 import de.fhtrier.gdw.ss2013.game.camera.CameraInfo;
-import de.fhtrier.gdw.ss2013.game.camera.PointOfInterest;
 import de.fhtrier.gdw.ss2013.game.camera.ThreePointCamera;
 import de.fhtrier.gdw.ss2013.game.player.Alien;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
@@ -80,9 +80,9 @@ public class World {
 		if(DebugModeStatus.isTPCamera()) {
 		    CameraInfo info = new CameraInfo(2, map);
 		    tpCamera = new ThreePointCamera(info);
-		    tpCamera.setZoom(-0.5f);
+		    tpCamera.setZoom(-0.00f);
 		    
-		    tpCamera.addPointOfInterest(new PointOfInterest(1000, 500, 1, 1000));
+//		    tpCamera.addPointOfInterest(new PointOfInterest(1000, 500, 1, 1000));
 		}
 		camera = new Camera(map);
 
@@ -140,7 +140,12 @@ public class World {
 		    
 		    tpCamera.debugdraw(g, astronautPos.x, astronautPos.y);
 		    mapRender.render(g, 0, 0);
-//		    mapRender.renderTileLayers(g, x, y, sx, sy, width, height);
+
+//		    mapRender
+//            .renderTileLayers(g, -tpCamera.getTileOverlapX(),
+//                    -tpCamera.getTileOverlapY(), camera.getTileX(),
+//                    tpCamera.getTileY(), tpCamera.getNumTilesX(),
+//                    tpCamera.getNumTilesY());
 		}
 		else {
     		mapRender
@@ -181,16 +186,25 @@ public class World {
         if(DebugModeStatus.isTPCamera()) {
             tpCamera.update(delta, container.getWidth(), container.getHeight(), astronaut.getPosition().x, astronaut.getPosition().y);
             
-            
+            if(container.getInput().isKeyDown(Input.KEY_ADD)) {
+                tpCamera.zoom(0.01f);
+            }
+            if(container.getInput().isKeyDown(Input.KEY_SUBTRACT)) {
+                tpCamera.zoom(-0.01f);
+            }
             
         }
         
 		for (DynamicParticleSystem p : particleList) {
 			p.update(delta);
 		}
+		
     }
     
     public Vector2f screenToWorldPosition(Vector2f screenPosition) {
+        if(DebugModeStatus.isTPCamera()) {
+            return tpCamera.screenToWorldPosition(screenPosition);
+        }
         /**
          * Top-left (0,0) / Bottom-right (width,height)
          */
@@ -202,9 +216,13 @@ public class World {
 	}
 
 	public Vector2f worldToScreenPosition(Vector2f worldPosition) {
-		Vector2f screenPos = new Vector2f(-camera.getOffsetX(),
+	    if(DebugModeStatus.isTPCamera()) {
+            return tpCamera.worldToScreenPosition(worldPosition);
+        }
+	    
+	    Vector2f screenPos = new Vector2f(-camera.getOffsetX(),
 				-camera.getOffsetY());
-
+		
 		return screenPos.add(worldPosition);
 	}
 

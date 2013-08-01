@@ -1,6 +1,5 @@
 package de.fhtrier.gdw.ss2013.game.camera;
 
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -12,7 +11,7 @@ public class ThreePointCamera {
 
     private final Vector2f cameraPosition;
     private final Vector2f focusPoint;
-    private final Vector2f centerPoint;
+    private final Vector2f topLeftPoint;
     private final int mapPixelWidth;
     private final int mapPixelHeight;
     private final int mapTileWidth;
@@ -25,13 +24,15 @@ public class ThreePointCamera {
     private float zoomFactor;
 
     private final LinkedList<PointOfInterest> pointOfInterests;
+    
+    private final Vector2f viewport;
 
 
     public ThreePointCamera(CameraInfo info) {
         cameraSpeed = info.cameraSpeed;
-
+        viewport = new Vector2f();
         pointOfInterests = new LinkedList<>();
-        centerPoint = new Vector2f();
+        topLeftPoint = new Vector2f();
         cameraPosition = new Vector2f();
         focusPoint = new Vector2f();
         zoomFactor = 0.0f;
@@ -57,10 +58,12 @@ public class ThreePointCamera {
             float targetY) {
 
         float dt = deltaTime / 1000.f;
+        
+        viewport.set(width,height);
 
         if (!pointOfInterests.isEmpty()) {
             Iterator<PointOfInterest> iterator = pointOfInterests.iterator();
-            float totalWeight = 1.0f;
+            float totalWeight = 2.0f;
             float finalPosX = targetX;
             float finalPosY = targetY;
             do {
@@ -98,19 +101,37 @@ public class ThreePointCamera {
                         cameraPosition.y + (focusPoint.y - cameraPosition.y)
                                 * dt*cameraSpeed);
 
-        float xadjust = width * this.zoomFactor * 0.5f;
-        float yadjust = height * this.zoomFactor * 0.5f;
+        float xadjust = width * this.zoomFactor ;
+        float yadjust = height * this.zoomFactor ;
 
-        zoomedTranslateX = -xadjust*2;
-        zoomedTranslateY = -yadjust*2;
+        zoomedTranslateX = -xadjust;
+        zoomedTranslateY = -yadjust;
         
-        centerPoint.set(focusPoint.x - width/2, focusPoint.y - height/2);
-
         
+        topLeftPoint.set(focusPoint.x - width/2, focusPoint.y - height/2);
+//        topLeftPoint.set(-width/2 * scaleX() + a, -height/2 * scaleX() + b);
 
         updateTiled(width, height, focusPoint.x, focusPoint.y);
     }
 
+    public Vector2f screenToWorldPosition(Vector2f screen) {
+        Vector2f world = new Vector2f();
+        world.set((screen.x - viewport.x*0.5f) * (1-zoomFactor), (screen.y - viewport.y * 0.5f)*(1+zoomFactor));
+        
+        return world;
+    }
+    
+    
+    // PRIORITY!
+    public Vector2f worldToScreenPosition(Vector2f world) {
+        Vector2f screen = new Vector2f();
+        
+        screen.set(-topLeftPoint.x + world.x, -topLeftPoint.y  + world.y);
+//        System.out.println(screen);
+//        System.out.println(world);
+        return screen;
+    }
+    
     public float getZoomedTranslateX() {
         return zoomedTranslateX;
     }
@@ -127,8 +148,8 @@ public class ThreePointCamera {
         return (1 + zoomFactor);
     }
 
-    public Vector2f getCenter() {
-        return centerPoint;
+    public Vector2f getTopLeftPoint() {
+        return topLeftPoint;
     }
 
     /**
@@ -172,6 +193,8 @@ public class ThreePointCamera {
             g.drawOval(p.x - p.radius, p.y - p.radius, p.radius*2, p.radius*2);
         }
 
+
+
     }
 
     public void pushViewMatrix(Graphics g) {
@@ -180,7 +203,7 @@ public class ThreePointCamera {
                 this.getZoomedTranslateY() / 2);
 
         g.scale(this.scaleX(), this.scaleY());
-        g.translate(-this.getCenter().x , -this.getCenter().y);
+        g.translate(-this.topLeftPoint.x , -this.topLeftPoint.y);
     }
     
     public void popViewMatrix(Graphics g) {
@@ -203,6 +226,8 @@ public class ThreePointCamera {
             float playerY) {
         numTilesX = windowWidth / mapTileWidth + 2;
         numTilesY = windowHeight / mapTileHeight + 2;
+        
+        
 
         tileX = tileY = offsetX = offsetY = 0;
         tileOverlapX = tileOverlapY = 0;
@@ -211,22 +236,22 @@ public class ThreePointCamera {
             // Center in window
             offsetX = (int) Math.floor((windowWidth - mapPixelWidth) * 0.5);
         } else if (windowWidth < mapPixelWidth) {
-            offsetX = limit(playerX, windowWidth, mapPixelWidth);
-            tileX = (int) Math.floor(getOffsetX() / (float) mapTileWidth);
+//            offsetX = limit(playerX, windowWidth, mapPixelWidth);
+            tileX = (int) Math.floor(focusPoint.x / (float) mapTileWidth);
             tileOverlapX = getOffsetX() % mapTileWidth;
         }
         if (windowHeight > mapPixelHeight) {
             // Center in window
             offsetY = (int) Math.floor((windowHeight - mapPixelHeight) * 0.5);
         } else if (windowHeight < mapPixelHeight) {
-            offsetY = limit(playerY, windowHeight, mapPixelHeight);
-            tileY = (int) Math.floor(getOffsetY() / (float) mapTileHeight);
+//            offsetY = limit(playerY, windowHeight, mapPixelHeight);
+            tileY = (int) Math.floor(focusPoint.y / (float) mapTileHeight);
             tileOverlapY = getOffsetY() % mapTileHeight;
         }
     }
     
-    private int numTilesX;
-    private int numTilesY;
+    private int numTilesX; // x tiles rendered
+    private int numTilesY; // y tiles renderd
     private int tileX;
     private int tileY;
     private int tileOverlapX;
@@ -259,10 +284,10 @@ public class ThreePointCamera {
     }
 
     public int getOffsetY() {
-        return (int) offsetY;
+        return (int) focusPoint.x;
     }
 
     public int getOffsetX() {
-        return (int) offsetX;
+        return (int) focusPoint.y;
     }
 }
