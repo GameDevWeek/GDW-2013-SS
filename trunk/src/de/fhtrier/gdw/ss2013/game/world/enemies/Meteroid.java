@@ -2,18 +2,15 @@ package de.fhtrier.gdw.ss2013.game.world.enemies;
 
 import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.contacts.Contact;
-import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
+import de.fhtrier.gdw.ss2013.game.RecycleableEntity;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.world.World;
-import de.fhtrier.gdw.ss2013.physix.PhysixObject;
 
 /**
  * Meteroid class
@@ -21,7 +18,7 @@ import de.fhtrier.gdw.ss2013.physix.PhysixObject;
  * @author Kevin, Georg
  * 
  */
-public class Meteroid extends AbstractEnemy {
+public class Meteroid extends AbstractEnemy implements RecycleableEntity {
 
 	private EntityManager m;
 	final static float DEBUG_ENTITY_HALFEXTEND = 5;

@@ -5,7 +5,7 @@ import java.util.LinkedList;
 
 public class EntityFactory {
 
-    protected HashMap<Class<? extends RecycleableEntity>, LinkedList<Entity>> recycleMap;
+    protected HashMap<Class<? extends Entity>, LinkedList<Entity>> recycleMap;
 
     public EntityFactory() {
         recycleMap = new HashMap<>();
@@ -15,12 +15,14 @@ public class EntityFactory {
         LinkedList<Entity> recycleList = recycleMap.get(e.getClass());
         if (recycleList == null) {
             recycleList = new LinkedList<>();
+            recycleMap.put(e.getClass(), recycleList);
         }
         recycleList.add(e);
     }
 
     private boolean testRecyceability(Class<? extends Entity> entityClass) {
-        if (entityClass.isInstance(RecycleableEntity.class)) {
+        
+        if (RecycleableEntity.class.isAssignableFrom(entityClass)) {
             if (recycleMap.get(entityClass) != null
                     && !recycleMap.get(entityClass).isEmpty()) {
                 return true;
@@ -48,8 +50,9 @@ public class EntityFactory {
 
     @SuppressWarnings("unchecked")
     public <T extends Entity> T createEntity(Class<? extends Entity> entityClass) {
-
+        
         if (testRecyceability(entityClass)) {
+            
             Entity e = recycleMap.get(entityClass).poll();
             assert (e != null);
 
