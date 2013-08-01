@@ -115,8 +115,10 @@ public class ThreePointCamera {
     }
 
     public Vector2f screenToWorldPosition(Vector2f screen) {
+//        System.out.println(screen);
         Vector2f world = new Vector2f();
-        world.set((screen.x - viewport.x*0.5f) * (1-zoomFactor), (screen.y - viewport.y * 0.5f)*(1+zoomFactor));
+        world.set(this.topLeftPoint.x + screen.x, this.topLeftPoint.y + screen.y);
+//        System.out.println(world);
         
         return world;
     }
