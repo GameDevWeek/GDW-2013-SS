@@ -31,7 +31,7 @@
   "file" : "res/fonts/jabjai_light.fnt",
   "image": "res/fonts/jabjai_light_0.tga"
 },{
-  "name" : "verdana_90",
+  "name" : "jabjai_heavy",
   "file" : "res/fonts/jabjai_heavy.fnt",
   "image": "res/fonts/jabjai_heavy_0.tga"
 }
