@@ -152,6 +152,10 @@ public class Alien extends Player implements AlienController {
 				currentSelectedBox = null;
 			}
 			break;
+		case 2:
+			//großer sprung
+			World.getInstance().getAstronaut().superjump();
+			break;
 		}
 	}
 
