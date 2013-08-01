@@ -75,7 +75,7 @@ public class Alien extends Player implements AlienController {
 				playerPos = getPosition();
 			}
 			Vector2f playerScreenVector = World.getInstance().worldToScreenPosition(playerPos);
-			Vector2f shootDirection = new Vector2f(cursor.sub(playerScreenVector));
+			Vector2f shootDirection = new Vector2f(getCursor().sub(playerScreenVector));
 			shootDirection = shootDirection.normalise().scale(PlayerConstants.BULLET_SPEED);
 			
 			Log.debug("shooting");
@@ -212,7 +212,7 @@ public class Alien extends Player implements AlienController {
 	}
 
 	public Vector2f getCursor() {
-		return cursor;
+		return cursor.copy();
 	}
 
 }
