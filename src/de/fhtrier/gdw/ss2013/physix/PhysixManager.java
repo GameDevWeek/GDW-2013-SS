@@ -15,7 +15,7 @@ import org.newdawn.slick.GameContainer;
 public class PhysixManager implements ContactListener {
 
     private World world;
-    private final int UPDATE_TIME = 20;
+    private final int UPDATE_TIME = 10;
     private long lastTime;
 
     public PhysixManager(GameContainer container) {
