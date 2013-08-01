@@ -89,7 +89,6 @@ public class Progressbar {
         f.clear();
         f.drawImage(bar,position.x,position.y-bar.getHeight()/2);
         //save the result to the outputImage
-        System.out.println("float: (" + position.x + ", " + position.y + ") Int: (" + (int)position.x + ", " + (int)position.y+ ")");
         f.copyArea(adaptedBar, (int)position.x, (int)position.y);		
         f.clear();
         
