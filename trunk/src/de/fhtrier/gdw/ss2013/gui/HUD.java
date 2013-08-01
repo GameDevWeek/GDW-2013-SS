@@ -37,14 +37,12 @@ public class HUD {
 
 
 		final Vector2f position = new Vector2f(20, 20);
-		final Vector2f size = new Vector2f(240, 40); /////////
-
+		//final Vector2f size = new Vector2f(240, 40); /////////
+		final Vector2f size = new Vector2f(0,0);
 		
-		//final String imagePath = "/res/Dummy_GUIs_Images/";
-
 		final Image frame = asset.getImage("healthBarFrame");
         final Image background = asset.getImage("healthbar_rund_background");
-        final Image bar = asset.getImage("healthbar_rund_ganz");
+        final Image bar = asset.getImage("healthbar");
         final Font font = asset.getFont("verdana_24");
         
         healthbar.init(position, size, frame, background, bar, font, worldinstance);
@@ -64,17 +62,22 @@ public class HUD {
 		final Vector2f abilityDisplay2_Position = new Vector2f(70,70);
 		final Vector2f abilityDisplay3_Position = new Vector2f(80,120);
 		
-		final float abilityDisplayFadingSpeed = 1.f;
-		final float quickselectFadingSpeed = 2.f; 
-		
+		final float staticAbilityDisplayFadingspeed = 1.f;
+		final float dynamicAbilityDisplayFadingspeed = 1.f;
+				
 		final StaticAbilityDisplay[] abilityDisplay;
 		abilityDisplay = new StaticAbilityDisplay[3];
 
 		//Image image, Vector2f position
-        abilityDisplay[0]=new StaticAbilityDisplay(abilityDisplay1_Image, abilityDisplay1_Position,abilityDisplayFadingSpeed);
-        abilityDisplay[1]=new StaticAbilityDisplay(abilityDisplay2_Image, abilityDisplay2_Position,abilityDisplayFadingSpeed);
-        abilityDisplay[2]=new StaticAbilityDisplay(abilityDisplay3_Image, abilityDisplay3_Position,abilityDisplayFadingSpeed);
+        abilityDisplay[0]=new StaticAbilityDisplay(abilityDisplay1_Image, abilityDisplay1_Position,staticAbilityDisplayFadingspeed);
+        abilityDisplay[1]=new StaticAbilityDisplay(abilityDisplay2_Image, abilityDisplay2_Position,staticAbilityDisplayFadingspeed);
+        abilityDisplay[2]=new StaticAbilityDisplay(abilityDisplay3_Image, abilityDisplay3_Position,staticAbilityDisplayFadingspeed);
         
+        /*
+        abilityDisplay[3]=new DynamicAbilityDisplay(abilityDisplay1_Image, abilityDisplay1_Position,dynamicAbilityDisplayFadingspeed);
+        abilityDisplay[4]=new DynamicAbilityDisplay(abilityDisplay2_Image, abilityDisplay2_Position,dynamicAbilityDisplayFadingspeed);
+        abilityDisplay[5]=new DynamicAbilityDisplay(abilityDisplay3_Image, abilityDisplay3_Position,dynamicAbilityDisplayFadingspeed);
+        */
         abilityDisplayManager.init(abilityDisplay, worldinstance);
         
         //Init quickselect
