@@ -39,8 +39,8 @@
   "pfad" : "gui/background"
 },
 {
-  "name" : "healthbar_rund_ganz",
-  "pfad" : "gui/healthbar_rund_ganz"
+  "name" : "healthbar",
+  "pfad" : "gui/healthbar"
 },
 { 
   "name" : "ability1",
@@ -97,5 +97,9 @@
 {
   "name" : "symbion",
   "pfad" : "symbion"
+},
+{
+  "name" : "healthbar",
+  "pfad" : "gui/lebensanzeige"
 }]
 

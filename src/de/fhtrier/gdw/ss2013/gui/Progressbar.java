@@ -23,17 +23,12 @@ public class Progressbar {
 	private Image frame;
 	private Image background;
 	private Image bar;
-	private boolean b = false;
-	
-	
 	
 	// Werte für konkreten Balken
 	private float maxValue; // gibt den Maximalwert an
 	private float currentValue; // gibt den aktuellen Wert an
 	private float currentPercentValue; // currentValue in Prozent in Bezug auf
 										// maxValue
-	private float filled; // gibt an wie weit der Balken gefüllt ist
-
 	private World worldinstance; 
 	
 	//private Image progress;
@@ -50,13 +45,8 @@ public class Progressbar {
 		this.font = font;
 		this.worldinstance = worldinstance;
 		this.maxValue=worldinstance.getAstronaut().getMaxOxygen();
-		
-		bar.setCenterOfRotation(0.f, bar.getHeight()/2);
-		
-		
 		this.size = new Vector2f(bar.getWidth(), bar.getHeight());
-		
-		b = false;
+		bar.setCenterOfRotation(0.f, bar.getHeight()/2);		
 	}
 
 	public void update(GameContainer container, StateBasedGame game, int delta) {
@@ -67,18 +57,8 @@ public class Progressbar {
 		if (currentPercentValue < 0)
 		    currentPercentValue = 0;
 		
-		filled = size.x * (currentPercentValue / 100);
-		
-		//Bar rotieren und adaptedBar aus Bar erzeugen
-		//angeleht an diese Website:
-		//http://ray3k.com/site/tutorials/slick-offscreen-rendering/
-		
 		bar.setRotation(90 * (100-currentPercentValue)/100);
-		
-
 	}
-	
-//	Image creatAdaptedBar(Image bar);
 
 	public void render(GameContainer container, StateBasedGame game, Graphics g) {
 	    
@@ -89,7 +69,5 @@ public class Progressbar {
 		
 		CenteredText.draw(position.x + size.x / 2 , position.y + size.y / 2, 
 		                  String.format("%.2f %%", currentPercentValue),font);
-	    
 	}
-
 }
