@@ -22,10 +22,10 @@ public class HUD {
 	private Crosshair crosshair;
 	private TooltipManager tooltipmanager;
 	private AbilityDisplayManager abilityDisplayManager;
-	private Quickselect_old quickselect; //old
 	private AssetLoader asset;
     private FpsCalculator fpsCalc = new FpsCalculator(100);
     private Font fpsFont;
+    private AbilityDisplay[] abilityDisplay;
 
 	public HUD(GameContainer container, World worldinstance) throws SlickException {
 	        
@@ -37,7 +37,6 @@ public class HUD {
 
 
 		final Vector2f position = new Vector2f(20, 20);
-		//final Vector2f size = new Vector2f(240, 40); /////////
 		final Vector2f size = new Vector2f(0,0);
 		
 		final Image frame = asset.getImage("healthBarFrame");
@@ -51,64 +50,38 @@ public class HUD {
 
 		abilityDisplayManager = new AbilityDisplayManager();
 
-		position.set(20, 20);
-
+		abilityDisplay = new AbilityDisplay[6];
 		
-		final Image abilityDisplay1_Image = asset.getImage("ability1");
-        final Image abilityDisplay2_Image = asset.getImage("ability2");
-        final Image abilityDisplay3_Image = asset.getImage("ability3");
+		//init staticAbilityDisplay
+		final Image staticAbilityDisplay1_Image = asset.getImage("ability1");
+        final Image staticAbilityDisplay2_Image = asset.getImage("ability2");
+        final Image staticAbilityDisplay3_Image = asset.getImage("ability3");
 
 		final Vector2f abilityDisplay1_Position = new Vector2f(100,20);
 		final Vector2f abilityDisplay2_Position = new Vector2f(70,70);
 		final Vector2f abilityDisplay3_Position = new Vector2f(80,120);
 		
-		final float staticAbilityDisplayFadingspeed = 1.f;
-		final float dynamicAbilityDisplayFadingspeed = 1.f;
-				
-		final StaticAbilityDisplay[] abilityDisplay;
-		abilityDisplay = new StaticAbilityDisplay[3];
-
-		//Image image, Vector2f position
-        abilityDisplay[0]=new StaticAbilityDisplay(abilityDisplay1_Image, abilityDisplay1_Position,staticAbilityDisplayFadingspeed);
-        abilityDisplay[1]=new StaticAbilityDisplay(abilityDisplay2_Image, abilityDisplay2_Position,staticAbilityDisplayFadingspeed);
-        abilityDisplay[2]=new StaticAbilityDisplay(abilityDisplay3_Image, abilityDisplay3_Position,staticAbilityDisplayFadingspeed);
+		final float staticAbilityDisplayFadingspeed = 0.5f;
+		
+		abilityDisplay[0]=new StaticAbilityDisplay(staticAbilityDisplay1_Image, abilityDisplay1_Position,staticAbilityDisplayFadingspeed);
+        abilityDisplay[1]=new StaticAbilityDisplay(staticAbilityDisplay2_Image, abilityDisplay2_Position,staticAbilityDisplayFadingspeed);
+        abilityDisplay[2]=new StaticAbilityDisplay(staticAbilityDisplay3_Image, abilityDisplay3_Position,staticAbilityDisplayFadingspeed);
         
-        /*
-        abilityDisplay[3]=new DynamicAbilityDisplay(abilityDisplay1_Image, abilityDisplay1_Position,dynamicAbilityDisplayFadingspeed);
-        abilityDisplay[4]=new DynamicAbilityDisplay(abilityDisplay2_Image, abilityDisplay2_Position,dynamicAbilityDisplayFadingspeed);
-        abilityDisplay[5]=new DynamicAbilityDisplay(abilityDisplay3_Image, abilityDisplay3_Position,dynamicAbilityDisplayFadingspeed);
-        */
+		
+		//init dynamicAbilityDisplay
+		final Image dynamicAbilityDisplay1_Image = asset.getImage("ability1");
+        final Image dynamicAbilityDisplay2_Image = asset.getImage("ability2");
+        final Image dynamicAbilityDisplay3_Image = asset.getImage("ability3");
+				
+		final float dynamicAbilityDisplayFadingspeed = 4.0f;
+		
+		abilityDisplay[3]=new DynamicAbilityDisplay(dynamicAbilityDisplay1_Image, dynamicAbilityDisplayFadingspeed, worldinstance);
+        abilityDisplay[4]=new DynamicAbilityDisplay(dynamicAbilityDisplay2_Image, dynamicAbilityDisplayFadingspeed, worldinstance);
+        abilityDisplay[5]=new DynamicAbilityDisplay(dynamicAbilityDisplay3_Image, dynamicAbilityDisplayFadingspeed, worldinstance);
+        
         abilityDisplayManager.init(abilityDisplay, worldinstance);
         
-        //Init quickselect
-
-        //Backup von alter Version
-        quickselect = new Quickselect_old();
-		
-                
-		final int selected = 1;
-		final int countdown_start = 500;
-	    
-	    quickselect.init(abilityDisplay1_Image, abilityDisplay2_Image, abilityDisplay3_Image, selected,
-	    countdown_start, worldinstance);
-	    
-       /* 
-        quickselect = new Quickselect();
-        
-        final int selected = 1;
-        final int countdown_start = 500;
-        final AbilityDisplay[] quickselectDisplay;
-        
-        quickselectDisplay=new AbilityDisplay[3];
-        
-        //noch zu ersetzen duch eventuell eigene Grafiken.
-        quickselectDisplay = abilityDisplay;
-        
-        
-        quickselect.init(quickselectDisplay, selected,
-        countdown_start, worldinstance);
-		*/
-		//init Crosshair
+    	//init Crosshair
 		final Image crosshairImage = asset.getImage("crosshair2");
 		crosshair = new Crosshair();
 		crosshair.init(worldinstance, crosshairImage);
@@ -129,14 +102,12 @@ public class HUD {
 
 		healthbar.update(container, game, delta);
 		abilityDisplayManager.update(container, game, delta);
-		quickselect.update(container, game, delta);
 		fpsCalc.update();
 	}
 
 	public void render(GameContainer container, StateBasedGame game, Graphics g) {
 		healthbar.render(container, game, g);
 		abilityDisplayManager.render(container, game, g);
-		quickselect.render(container, game, g);
 		tooltipmanager.render();
 		crosshair.render(container, game, g);
 		

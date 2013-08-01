@@ -24,7 +24,7 @@ public class StaticAbilityDisplay extends AbilityDisplay{
         
         alphaValue = 0;
         
-        float startAlphaValue = 0.5f;
+        startAlphaValue = 0.5f;
         
         
         while(alphaValue < startAlphaValue)
@@ -55,7 +55,17 @@ public class StaticAbilityDisplay extends AbilityDisplay{
             }
         }
     }
-     
+    
+    public void render(GameContainer container, StateBasedGame game, Graphics g) {
+        image.setAlpha(alphaValue);
+        image.draw(container.getWidth() - position.x,position.y);
+    }
+    
+    public void setActivated(boolean activated)
+    {
+        this.activated=activated;
+    }
+    
     protected float computeAlphaValue(float x)
     {
         if (x <= 0)
