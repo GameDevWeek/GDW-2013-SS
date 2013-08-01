@@ -322,8 +322,7 @@ public class LevelLoader {
 
         // The Nice Way
 
-        ArrayList<Entity> controller = entityManager.getEntitiesByFilter(
-                new Vector2f(), ObjectController.class);
+        ArrayList<Entity> controller = entityManager.getEntitiesByFilter(ObjectController.class);
 
         for (Entity e : controller) {
             ObjectController control = (ObjectController) e;

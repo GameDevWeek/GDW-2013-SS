@@ -15,6 +15,9 @@ import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.assetloader.infos.GameDataInfo;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.camera.Camera;
+import de.fhtrier.gdw.ss2013.game.camera.CameraInfo;
+import de.fhtrier.gdw.ss2013.game.camera.PointOfInterest;
+import de.fhtrier.gdw.ss2013.game.camera.ThreePointCamera;
 import de.fhtrier.gdw.ss2013.game.player.Alien;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.input.InputManager;
@@ -22,8 +25,8 @@ import de.fhtrier.gdw.ss2013.physix.PhysixBox;
 import de.fhtrier.gdw.ss2013.physix.PhysixBoxPlayer;
 import de.fhtrier.gdw.ss2013.physix.PhysixManager;
 import de.fhtrier.gdw.ss2013.physix.PhysixObject;
-import de.fhtrier.gdw.ss2013.renderer.MapRenderer;
 import de.fhtrier.gdw.ss2013.renderer.DynamicParticleSystem;
+import de.fhtrier.gdw.ss2013.renderer.MapRenderer;
 import de.fhtrier.gdw.ss2013.settings.DebugModeStatus;
 import de.fhtrier.gdw.ss2013.sound.SoundLocator;
 import de.fhtrier.gdw.ss2013.sound.services.DefaultSoundPlayer;
@@ -35,6 +38,7 @@ public class World {
     private TiledMap map;
     private MapRenderer mapRender;
     private Camera camera;
+    private ThreePointCamera tpCamera;
     private Astronaut astronaut;
     private Alien alien;
 
@@ -71,6 +75,13 @@ public class World {
 			mapRender = new MapRenderer(map);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
+		}
+		if(DebugModeStatus.isTPCamera()) {
+		    CameraInfo info = new CameraInfo(2, map);
+		    tpCamera = new ThreePointCamera(info);
+		    tpCamera.setZoom(-0.5f);
+		    
+		    tpCamera.addPointOfInterest(new PointOfInterest(1000, 500, 1, 1000));
 		}
 		camera = new Camera(map);
 
@@ -112,18 +123,27 @@ public class World {
 		// Background image TODO: translate
 		g.drawImage(AssetLoader.getInstance().getImage("world_background"), 0,
 				0);
+		if(DebugModeStatus.isTPCamera()) {
+		    tpCamera.pushViewMatrix(g);
+		    
+		    tpCamera.debugdraw(g, astronautPos.x, astronautPos.y);
+		    mapRender.render(g, 0, 0);
+//		    mapRender.renderTileLayers(g, x, y, sx, sy, width, height);
+		}
+		else {
+    		mapRender
+    				.renderTileLayers(g, -camera.getTileOverlapX(),
+    						-camera.getTileOverlapY(), camera.getTileX(),
+    						camera.getTileY(), camera.getNumTilesX(),
+    						camera.getNumTilesY());
+    
+    		g.pushTransform();
+    		g.translate(-camera.getOffsetX(), -camera.getOffsetY());
+    
 
-		mapRender
-				.renderTileLayers(g, -camera.getTileOverlapX(),
-						-camera.getTileOverlapY(), camera.getTileX(),
-						camera.getTileY(), camera.getNumTilesX(),
-						camera.getNumTilesY());
-
-		g.pushTransform();
-		g.translate(-camera.getOffsetX(), -camera.getOffsetY());
-
-		entityManager.render(container, g);
-
+		}
+		
+        entityManager.render(container, g);
 		for (DynamicParticleSystem p : particleList) {
 			p.render();
 		}
@@ -131,7 +151,7 @@ public class World {
 		if (debugDraw) {
 			physicsManager.render();
 		}
-
+		
 		g.popTransform();
 	}
 
@@ -145,7 +165,14 @@ public class World {
         physicsManager.update(delta);
      
         entityManager.update(container, delta);
-
+        
+        if(DebugModeStatus.isTPCamera()) {
+            tpCamera.update(delta, container.getWidth(), container.getHeight(), astronaut.getPosition().x, astronaut.getPosition().y);
+            
+            
+            
+        }
+        
 		for (DynamicParticleSystem p : particleList) {
 			p.update(delta);
 		}

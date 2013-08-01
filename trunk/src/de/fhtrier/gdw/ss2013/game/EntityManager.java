@@ -83,6 +83,7 @@ public class EntityManager {
                 System.err.println("Warning: Changed " + oldName + " to "
                         + e.getName() + " to prevent Name Duplication");
             }
+            e.initialize();
             entityList.put(e.getName(), e);
         }
     }
@@ -149,8 +150,7 @@ public class EntityManager {
         return entityList.get(name);
     }
 
-    public ArrayList<Entity> getEntitiesByFilter(Vector2f position,
-            Class<? extends EntityFilter> filter) {
+    public ArrayList<Entity> getEntitiesByFilter(Class<? extends EntityFilter> filter) {
         ArrayList<Entity> filteredList = new ArrayList<>();
         for (Entity e : entityList.values()) {
             if (filter.isAssignableFrom(e.getClass())) {
