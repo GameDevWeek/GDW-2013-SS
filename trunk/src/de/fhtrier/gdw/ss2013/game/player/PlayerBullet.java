@@ -6,8 +6,8 @@ import org.newdawn.slick.SlickException;
 
 import de.fhtrier.gdw.ss2013.constants.PlayerConstants;
 import de.fhtrier.gdw.ss2013.game.Entity;
+import de.fhtrier.gdw.ss2013.game.world.enemies.AbstractEnemy;
 import de.fhtrier.gdw.ss2013.game.world.enemies.EnemyBullet;
-import de.fhtrier.gdw.ss2013.game.world.enemies.FlyingEnemy;
 
 public class PlayerBullet extends EnemyBullet {
 	public PlayerBullet() {
@@ -21,6 +21,7 @@ public class PlayerBullet extends EnemyBullet {
 	protected void initialize() {
 		super.initialize();
 	    livetime = 60 * 10;
+	    setDamage(PlayerConstants.BULLET_DAMAGE);
 	}
 	
 	@Override
@@ -31,8 +32,8 @@ public class PlayerBullet extends EnemyBullet {
 	@Override
     public void beginContact(Contact contact) {
         Entity other = getOtherEntity(contact);
-        if (other instanceof FlyingEnemy) {
-            ((FlyingEnemy) other).reduceHealth(PlayerConstants.BULLET_DAMAGE);
+        if (other instanceof AbstractEnemy) {
+            ((AbstractEnemy) other).setHealth(((AbstractEnemy) other).getHealth() - PlayerConstants.BULLET_DAMAGE);
             this.livetime = 0;
         }
     }

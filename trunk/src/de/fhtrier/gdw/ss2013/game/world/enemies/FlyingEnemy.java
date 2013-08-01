@@ -1,6 +1,5 @@
 package de.fhtrier.gdw.ss2013.game.world.enemies;
 
-import de.fhtrier.gdw.ss2013.game.Entity;
 import org.jbox2d.dynamics.contacts.Contact;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
@@ -8,6 +7,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
+import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.player.Player;
@@ -21,7 +21,7 @@ import de.fhtrier.gdw.ss2013.game.world.World;
  */
 public abstract class FlyingEnemy extends AbstractEnemy {
 
-    private float health, flytime, bolttime;
+    private float flytime, bolttime;
     private float flyintelligence, boltintelligence;
     private float factor;
     private EntityManager m;
@@ -49,7 +49,6 @@ public abstract class FlyingEnemy extends AbstractEnemy {
     @Override
     protected void initialize() {
         super.initialize();
-        health = 100f; // FIXME: dummy value!
         flyintelligence = boltintelligence = (float) Math.random();
         if (boltintelligence >= 0.67) {
             factor = 100;
@@ -61,13 +60,9 @@ public abstract class FlyingEnemy extends AbstractEnemy {
             factor = 50;
         }
     }
-    
-    public void setHealth(float hp) {
-        health = hp;
-    }
 
     public void reduceHealth(float dmg) {
-        health -= dmg;
+        setHealth(getHealth() - dmg);
     }
 
     public void shoot(Player player, EntityManager m) {
@@ -91,6 +86,8 @@ public abstract class FlyingEnemy extends AbstractEnemy {
     }
 
     public void update(GameContainer container, int delta) throws SlickException {
+    	super.update(container, delta);
+    	
         // float dt = delta / 1000.f;
         flytime += delta;
         bolttime += delta;
@@ -105,9 +102,6 @@ public abstract class FlyingEnemy extends AbstractEnemy {
         if (bolttime >= 1000 && calcPlayerDistance(p) < 500) {
             this.shoot(p, m);
             bolttime = bolttime % 1000;
-        }
-        if (health <= 0) {
-            m.removeEntity(this);
         }
     }
 

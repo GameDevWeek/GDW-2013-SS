@@ -52,6 +52,8 @@ public abstract class GroundEnemy extends AbstractEnemy {
     @Override
     public void update(GameContainer container, int delta)
             throws SlickException {
+    	super.update(container, delta);
+    	
         p = w.getAstronaut();
 
         if (p != null) {

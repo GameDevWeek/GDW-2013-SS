@@ -36,5 +36,6 @@
     <property name="delay" value="400"/>
    </properties>
   </object>
+  <object gid="637" x="894" y="1589"/>
  </objectgroup>
 </map>
