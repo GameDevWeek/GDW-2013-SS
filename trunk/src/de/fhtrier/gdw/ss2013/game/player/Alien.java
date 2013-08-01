@@ -12,6 +12,7 @@ import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.camera.Camera;
 import de.fhtrier.gdw.ss2013.game.world.World;
+import de.fhtrier.gdw.ss2013.game.world.bullets.PlayerBullet;
 import de.fhtrier.gdw.ss2013.game.world.objects.Box;
 import de.fhtrier.gdw.ss2013.input.AlienController;
 
@@ -92,7 +93,7 @@ public class Alien extends Player implements AlienController {
 			// Create a meteorite entity
 			PlayerBullet entity = entityManager.createEntity(PlayerBullet.class);
 			entity.setSpawnXY(playerPos.x, playerPos.y);
-			entity.setShootDirection(shootDirection.scale(0.1f));
+			entity.setShootDirection(shootDirection);
 			
 
 			lastShotTime = System.currentTimeMillis();
