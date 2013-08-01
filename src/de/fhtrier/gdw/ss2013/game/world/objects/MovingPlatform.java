@@ -10,6 +10,7 @@ import org.newdawn.slick.geom.Vector2f;
 import de.fhtrier.gdw.commons.utils.SafeProperties;
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.Entity;
+import de.fhtrier.gdw.ss2013.game.filter.EntityFilter;
 import de.fhtrier.gdw.ss2013.game.filter.Interactable;
 import de.fhtrier.gdw.ss2013.physix.PhysixObject;
 
@@ -19,7 +20,7 @@ import de.fhtrier.gdw.ss2013.physix.PhysixObject;
  * @author Kevin, Georg
  * 
  */
-public class MovingPlatform extends Entity implements Interactable {
+public class MovingPlatform extends Entity implements Interactable, EntityFilter {
     private ArrayList<Point> line;
     private AssetLoader asset = AssetLoader.getInstance();
     private Point nextPoint;
@@ -28,6 +29,7 @@ public class MovingPlatform extends Entity implements Interactable {
     private boolean moveAround;
     private float speed;
     private boolean isActive;
+    private int indexmod;
 
     public MovingPlatform() {
         img = asset.getImage("MovingPlatform");
@@ -36,6 +38,7 @@ public class MovingPlatform extends Entity implements Interactable {
         setParticle(AssetLoader.getInstance().getParticle("plattform1"));
         isActive = true;
         moveAround = false;
+        indexmod = 1;
 
     }
 
@@ -46,8 +49,26 @@ public class MovingPlatform extends Entity implements Interactable {
             isActive = prop.getBoolean("isActive", true);
             moveAround = prop.getBoolean("moveAround", false);
         }
+        index = getClosestPoint();
+        getPhysicsObject().setPosition(line.get(index).x, line.get(index).y);
     }
-
+    
+    public int getClosestPoint() {
+        float dist[] = new float[line.size() - 1];
+        for (int i = 0; i < line.size() - 1; i++) {
+            dist[i] = getPosition().distanceSquared(new Vector2f(line.get(i).x, line.get(i).y));
+        }
+        float closestDist = Float.MAX_VALUE;
+        int closestPoint = 0;
+        for (int i = 0; i < line.size() - 1; i++) {
+            if (dist[i] < closestDist) {
+                closestDist = dist[i];
+                closestPoint = i;
+            }
+        }
+        return closestPoint;
+    }
+    
     @Override
     public void update(GameContainer container, int delta)
             throws SlickException {
@@ -55,8 +76,6 @@ public class MovingPlatform extends Entity implements Interactable {
         if (isActive)
             move();
     }
-
-    int indexmod = 1;
 
     public void move() {
         currentPoint = line.get(index);
@@ -85,12 +104,6 @@ public class MovingPlatform extends Entity implements Interactable {
     }
 
     @Override
-    public boolean isActive() {
-        // TODO Auto-generated method stub
-        return isActive;
-    }
-
-    @Override
     public void deactivate() {
         isActive = false;
         setVelocity(new Vector2f());
@@ -100,5 +113,11 @@ public class MovingPlatform extends Entity implements Interactable {
     public void setPhysicsObject(PhysixObject physicsObject) {
         physicsObject.setOwner(this);
         this.physicsObject = physicsObject;
+    }
+
+    @Override
+    public boolean isActive() {
+        // TODO Auto-generated method stub
+        return false;
     }
 }

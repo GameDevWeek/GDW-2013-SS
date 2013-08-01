@@ -14,11 +14,13 @@ import de.fhtrier.gdw.commons.tiled.TiledMap;
 import de.fhtrier.gdw.commons.utils.SafeProperties;
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.assetloader.infos.GameDataInfo;
+import de.fhtrier.gdw.ss2013.assetloader.infos.CreditsInfo.Path;
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.filter.Interactable;
 import de.fhtrier.gdw.ss2013.game.world.objects.MovingPlatform;
 import de.fhtrier.gdw.ss2013.game.world.objects.ObjectController;
+import de.fhtrier.gdw.ss2013.game.world.objects.PlatformPath;
 import de.fhtrier.gdw.ss2013.gui.TooltipManager;
 import de.fhtrier.gdw.ss2013.physix.PhysixBox;
 import de.fhtrier.gdw.ss2013.physix.PhysixManager;
@@ -37,9 +39,9 @@ public class LevelLoader {
 
     public static void load(TiledMap map, EntityManager entityManager,
             PhysixManager physicsManager) {
-        
+
         worldInfo = AssetLoader.getInstance().getGameData().world;
-        
+
         LevelLoader.entityManager = entityManager;
         LevelLoader.physicsManager = physicsManager;
         entityManager.reset();
@@ -53,6 +55,7 @@ public class LevelLoader {
 
         entityManager.initalUpdate();
         conntactInteractions();
+        bindPlatformsToPath();
     }
 
     private static void loadObjectLayer(Layer layer) {
@@ -75,7 +78,7 @@ public class LevelLoader {
             if (object.getPrimitive() == LayerObject.Primitive.TILE)
                 type = object.getProperty("type", null);
             if (type == null) {
-                System.err.println("Warning: type missing for object!");
+                System.out.println("Warning: type missing for object!");
                 continue;
             }
 
@@ -126,18 +129,13 @@ public class LevelLoader {
         Entity entity;
         switch (type) {
         case "solid":
-            new PhysixPolyline(physicsManager, points, BodyType.STATIC, worldInfo.density,
-                    worldInfo.friction, false);
+            new PhysixPolyline(physicsManager, points, BodyType.STATIC,
+                    worldInfo.density, worldInfo.friction, false);
             break;
-        case "platformLine":
-            entity = entityManager.createEntity("movingPlatform", properties,
-                    name);
-            entity.setPhysicsObject(new PhysixBox(physicsManager,
-                    points.get(0).x - 170 / 2, points.get(0).y - 36 / 2, 170,
-                    36, BodyType.KINEMATIC, worldInfo.density,
-                    worldInfo.friction, false));
-            ((MovingPlatform) entity).initLine(points, properties);
-
+        case "PlatformPath":
+            entity = entityManager.createEntity(type, properties, name);
+            ((PlatformPath)entity).setLine(points);
+            //entity.setPhysicsObject(null);
             break;
         }
     }
@@ -195,7 +193,8 @@ public class LevelLoader {
         case "deadzone":
             entity = entityManager.createEntity(type, properties);
             PhysixBox box = new PhysixBox(physicsManager, x, y, width, height,
-                    BodyType.STATIC, worldInfo.density, worldInfo.friction, true);
+                    BodyType.STATIC, worldInfo.density, worldInfo.friction,
+                    true);
             entity.setPhysicsObject(box);
             break;
         default:
@@ -244,26 +243,30 @@ public class LevelLoader {
             entity = entityManager.createEntity(type, properties, name);
             PhysixBox doorBox = new PhysixBox(physicsManager, x, y, width,
                     height, BodyType.STATIC, worldInfo.density,
-                    worldInfo.friction, true);
+                    worldInfo.friction, false);
             entity.setPhysicsObject(doorBox);
             break;
-        case "meteroid":
-        	entity = entityManager.createEntity("meteoritespawner", properties, name);
-            box = new PhysixBox(physicsManager, x, y, 0,
-                    0, BodyType.STATIC, 1, 0.5f, true);
-            entity.setPhysicsObject(box);
-        	break;
         case "start":
             startpos = new Vector2f(x, y);
             break;
-        case "end":
-        	break;
+        case "MovingPlatform":
+            entity = entityManager.createEntity(type, properties, name);
+            width = (int) entity.getImage().getWidth();
+            height = (int) entity.getImage().getHeight();
+            PhysixBox platformBox = new PhysixBox(physicsManager,
+                    x - width / 2, y - height / 2, width, height,
+                    BodyType.KINEMATIC, worldInfo.density, worldInfo.friction,
+                    false);
+            System.out.println(properties.getProperty("path"));
+            entity.setPhysicsObject(platformBox);
+            break;
         // WTF!!!
         // case "circle":
         // float radius = Math.max(width, height) / 2;
-        // PhysixCircle circle = new PhysixCircle(physicsManager, x, y, radius,
+        // PhysixCircle circle = new PhysixCircle(physicsManager, x, y,
+        // radius,
         // BodyType.DYNAMIC, worldInfo.density,
-        //          worldInfo.friction, false);
+        // worldInfo.friction, false);
         // entity.setPhysicsObject(circle);
         // break;
         case "particle":
@@ -278,8 +281,8 @@ public class LevelLoader {
         default:
             entity = entityManager.createEntity(type, properties, name);
             box = new PhysixBox(physicsManager, x, y, width, height,
-                    BodyType.DYNAMIC, worldInfo.density,
-                    worldInfo.friction, false);
+                    BodyType.DYNAMIC, worldInfo.density, worldInfo.friction,
+                    false);
             entity.setPhysicsObject(box);
             break;
         }
@@ -299,6 +302,29 @@ public class LevelLoader {
      */
     private static void createPoint(String type, int x, int y,
             SafeProperties properties) {
+    }
+
+    private static void bindPlatformsToPath() {
+        ArrayList<Entity> platforms = entityManager
+                .getEntitiesByFilter(MovingPlatform.class);
+        for (Entity e : platforms) {
+            MovingPlatform platform = (MovingPlatform)e;
+            if (platform.getProperties() != null) {
+                String prop = platform.getProperties().getProperty("path");
+                if (!prop.isEmpty()) {
+                    PlatformPath path = (PlatformPath)entityManager.getEntityByName(prop);
+                    if (path != null) {
+                        platform.initLine(path.getLine(), path.getProperties());
+                    } else {
+                        System.err.println("Didn't find path " + prop + "!");
+                    }
+                } else {
+                    System.err.println("Missing path option in " + platform.getName() + "!");
+                }
+            } else {
+                System.err.println("No options in " + platform.getName() + "!");
+            }
+        }
     }
 
     private static void conntactInteractions() {
@@ -454,10 +480,9 @@ public class LevelLoader {
                                     + imageName + ", but that doesn't exist.");
                     break;
                 }
-                String radius = trigger.getProperties().getProperty(
-                        "radius");
+                String radius = trigger.getProperties().getProperty("radius");
                 if (radius == null || radius.equals("")) {
-                     ttm.addTooltip(img_pos, img, trigger_pos);
+                    ttm.addTooltip(img_pos, img, trigger_pos);
                 } else {
                     try {
                         Integer iRadius = new Integer(radius);
