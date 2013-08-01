@@ -137,9 +137,10 @@ public abstract class Entity {
      * Override to provide destroy code for world objects (physic mostly)
      */
     protected void dispose() {
-        
+        if (physicsObject != null) {
         this.physicsObject.removeFromWorld();
         this.physicsObject = null;
+        }
     }
 
     public void setPhysicsObject(PhysixObject physicsObject) {

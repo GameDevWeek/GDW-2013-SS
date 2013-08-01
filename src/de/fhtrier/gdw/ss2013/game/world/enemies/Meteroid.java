@@ -59,9 +59,11 @@ public class Meteroid extends AbstractEnemy {
 			((Astronaut) other).setOxygen(((Astronaut) other).getOxygen() - this.getDamage());
 		}
 		
-		if (other == null) {
-			World.getInstance().getEntityManager().removeEntity(this); // doesnt work until dispose() works
-		}
+		World.getInstance().getEntityManager().removeEntity(this);
+		
+//		if (other == null) {
+//			World.getInstance().getEntityManager().removeEntity(this); // doesnt work until dispose() works
+//		}
 
 //		Fixture a = contact.m_fixtureA;
 //		Fixture b = contact.m_fixtureB;
