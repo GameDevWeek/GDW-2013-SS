@@ -25,5 +25,7 @@ public class EnemyBullet extends Bullet {
                     - this.getDamage());
             this.livetime = 0;
         }
+        
+        super.checkForUnwantedContacts(contact);
     }
 }

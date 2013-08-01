@@ -7,6 +7,6 @@ public class PlayerConstants {
 	 * After how many millisecs can you shoot again?
 	 */
 	public static final long SHOTDELAY = 250;
-	public static final float BULLET_SPEED = 1;
+	public static final float BULLET_SPEED = 300;
 	public static final float START_HEALTH = 1000f;
 }
