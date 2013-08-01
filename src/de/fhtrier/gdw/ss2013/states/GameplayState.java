@@ -48,6 +48,7 @@ public class GameplayState extends BasicGameState {
 
         menuManager = new MenuManager(container, game, MenuManager.Type.INGAME);
         music = AssetLoader.getInstance().getMusic("gameplay");
+        music.setVolume(0.25f);
     }
 
     @Override
