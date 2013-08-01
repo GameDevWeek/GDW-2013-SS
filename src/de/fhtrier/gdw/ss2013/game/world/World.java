@@ -20,7 +20,8 @@ import de.fhtrier.gdw.ss2013.game.camera.CameraInfo;
 import de.fhtrier.gdw.ss2013.game.camera.ThreePointCamera;
 import de.fhtrier.gdw.ss2013.game.player.Alien;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
-import de.fhtrier.gdw.ss2013.game.world.enemies.boss.Boss;
+import de.fhtrier.gdw.ss2013.game.world.enemies.boss.AbstractBoss;
+import de.fhtrier.gdw.ss2013.game.world.enemies.boss.ThaWhale;
 import de.fhtrier.gdw.ss2013.input.InputManager;
 import de.fhtrier.gdw.ss2013.physix.PhysixBox;
 import de.fhtrier.gdw.ss2013.physix.PhysixBoxPlayer;
@@ -117,7 +118,7 @@ public class World {
 		
 		// DEBUG >>>
 		if (DebugModeStatus.getLevelName().equals("bossmap")) {
-			Boss b = entityManager.createEntity(Boss.class);
+			ThaWhale b = entityManager.createEntity(ThaWhale.class);
 			PhysixBox bossPhysics = new PhysixBox(physicsManager, 2000, 100, 250, 100, BodyType.DYNAMIC, 1.f, 1.0f, false);
 			b.setPhysicsObject(bossPhysics);
 			b.getPosition().x = 100;
