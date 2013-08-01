@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="200" height="70" tilewidth="64" tileheight="64" backgroundcolor="#ffffff">
+ <tileset firstgid="1" source="tiledmap_final.tsx"/>
+ <tileset firstgid="626" source="entity_tileset.tsx"/>
+ <tileset firstgid="644" source="moving_platform.tsx"/>
+ <layer name="Tiles" width="200" height="70">
+  <data encoding="base64" compression="zlib">
+   eJzt3etx00AQwPH9BA4pAoVHDyG8WiAEAi0AgUALQAihBR4O0AOvJsKjIfbG3tHe+U7RxApnxv/fzI7PlmJpPFp7by0rIgAAAAAAAAAAAACA2s5qjDRWNFYr7wuwaBqNCxoXNZ7V3RVg4dzSuKpxTeN+5X0BFs0DjTsad4XPDyD1XOOxxhONN5X3BVg0jcYrjX3h8wNIhfnHWONQ41LdXQEWTph/fNP4LuQHkArzD+vv0r8CYo20/V3mH0AszD+sv0t9BcTC/MP6u+QHEAvzD+vvMv8AYvR3gTL6u0AZ/V2gjPN3gTLO3wXKOH8XKGuE3w8CJX7+Qf8KiPn5B/kBxPz8g/4VEAv1Fb8fBPJCfWXnl9C/AmKhvrLzS8gPIPZW453GJ43PlfcFAADgpPw1oc9prLu4kXlsfbq+LU+X9Vned53j1uuzHzeHe6mwhKzmf6/xQSa9I/sOYjdz38a5x0rLxz3XOW5bfZ/jozCPwbC+aHyVSf/IvoN4nbkfxuPMY13L+zyH9a261uv7HD8Gfm2AI42fGr8qxu+BnuPPwK8NAAAAAAAAAAAAAAAAgP+bnYdusSLxeenAMms0NqS9flq4zuCatNcbBJZZo7GpcVtjS9rrqG1r3Ku3W0A1vqa6ovFQ45HGjsS/C3paaweBihqJa6oXGi819iT+XdBBpf0Damqku6aivsKyydVUfh7uayrqKyybRmZrKn/f11TUV1g2jcS1lI1DjtC/wmkrfb9WGq/Oub0zEtdM6TbSa0+Fmsr3p5h/4F8K78PWA9qW9vgK9ctYZvtD8/4fivMyuW7/msTzCBvbbWnc1dNl/oGh+fywHLC88Pliy8L/Mbo85zbDdftL+WFzi/T7cBt39XSZf2BoW9LWKna7mYz9sXhd4utXjjpuR269tGYq5YevmzZk9nPFr5v7LLFbYAg70h5fduuPufBeHmoWy4/ccXrScW6ZP9b9ct+zSnMmlyfAEMIxFa4za9dq3Z/et7rqcBqWH/44nWdcyo+9wrZyuUB+4LSl89z0OEvnH7le60nGaxLnSHrcp+HX6fpb8gNDCseU5cCuzOZLyAv/nt41Pz4oPN71N7lc6MoHv5wcwWn7C6EAJEA=
+  </data>
+ </layer>
+ <objectgroup name="Entities" width="200" height="70">
+  <object name="p3" type="PlatformPath" x="706" y="3906">
+   <polyline points="0,0 2,-182 336,-414 1334,-132"/>
+  </object>
+  <object name="button1" gid="633" x="450" y="3985">
+   <properties>
+    <property name="trigger" value="mp1_4"/>
+   </properties>
+  </object>
+  <object gid="630" x="1946" y="3966"/>
+  <object gid="630" x="2012" y="3966"/>
+  <object gid="630" x="2078" y="3966"/>
+  <object gid="630" x="1988" y="3904"/>
+  <object gid="630" x="2050" y="3902"/>
+  <object gid="626" x="4911" y="2378"/>
+  <object gid="637" x="2350" y="3516"/>
+  <object name="p1" type="PlatformPath" x="3732" y="3548">
+   <polyline points="39,549 50,-1111"/>
+  </object>
+  <object gid="630" x="298" y="3944"/>
+  <object name="mp1_4" gid="644" x="683" y="3948">
+   <properties>
+    <property name="isActive" value="false"/>
+    <property name="path" value="p3"/>
+    <property name="speed" value="60"/>
+   </properties>
+  </object>
+  <object name="mp1_4" gid="644" x="4068" y="3787">
+   <properties>
+    <property name="path" value="p2"/>
+    <property name="speed" value="80"/>
+   </properties>
+  </object>
+  <object gid="628" x="6665" y="2356"/>
+  <object name="p5" type="PlatformPath" x="5045" y="2358">
+   <polyline points="0,0 12,-1270 455,-1527 1406,-1524"/>
+  </object>
+  <object gid="644" x="5026" y="2387">
+   <properties>
+    <property name="path" value="p5"/>
+    <property name="speed" value="80"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup name="Zones" width="200" height="70">
+  <object type="solid" x="0" y="3988" width="826" height="406"/>
+  <object type="solid" x="1869" y="3987" width="826" height="406"/>
+  <object type="solid" x="2954" y="3414" width="501" height="851"/>
+  <object type="solid" x="2572" y="3798" width="501" height="851"/>
+  <object type="solid" x="2759" y="3601" width="501" height="851"/>
+  <object type="deadzone" x="668" y="4113" width="1362" height="198"/>
+  <object type="deadzone" x="-60" y="4184" width="13040" height="404"/>
+  <object name="mp1_2" gid="644" x="3741" y="4094">
+   <properties>
+    <property name="path" value="p1"/>
+    <property name="speed" value="80"/>
+   </properties>
+  </object>
+  <object name="p2" type="PlatformPath" x="4155" y="4088">
+   <polyline points="-55,-301 -61,-1655"/>
+  </object>
+  <object type="solid" x="773" y="4173" width="1339" height="175"/>
+ </objectgroup>
+</map>
