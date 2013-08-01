@@ -59,7 +59,6 @@ public abstract class Bullet extends EntityCollidable {
 		
 		float x = physicsObject.getX();
 		float y = physicsObject.getY();
-		System.out.println((getVelocity().x * df) + " | " + (getVelocity().y * df));
 		physicsObject.setPosition(x + (getVelocity().x * df), y + (getVelocity().y * df));
 
 		if (livetime <= 0) {
