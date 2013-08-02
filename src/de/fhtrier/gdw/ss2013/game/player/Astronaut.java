@@ -132,19 +132,19 @@ public class Astronaut extends EntityCollidable implements AstronautController, 
 			if (isGrounded()) {
 				setState(PlayerState.superjump_end);
 			}
-			//Log.debug("superjump");
+			// Log.debug("superjump");
 			break;
 		case superjump_start:
 			if (animation.getFrame() + 1 == animation.getFrameCount()) {
 				setState(PlayerState.superjump);
 			}
-			//Log.debug("superjump start");
+			// Log.debug("superjump start");
 			break;
 		case superjump_end:
 			if (animation.getFrame() + 1 == animation.getFrameCount()) {
 				setState(PlayerState.standing);
 			}
-			//Log.debug("superjump end");
+			// Log.debug("superjump end");
 			break;
 		case falling:
 			if (isGrounded()) {
@@ -155,8 +155,8 @@ public class Astronaut extends EntityCollidable implements AstronautController, 
 			break;
 
 		}
-//		if (!oldState.equals(state)) Log.debug(state.toString());
-//		oldState = state;
+// if (!oldState.equals(state)) Log.debug(state.toString());
+// oldState = state;
 	}
 
 	public void preInput () {
@@ -167,7 +167,7 @@ public class Astronaut extends EntityCollidable implements AstronautController, 
 	public void moveRight () {
 		setVelocityX(speed);
 		if (!(state.equals(PlayerState.superjump) || state.equals(PlayerState.superjump_start) || state
-			.equals(PlayerState.superjump_end))) {
+			.equals(PlayerState.superjump_end)|| state.equals(PlayerState.jumping) || state.equals(PlayerState.falling))) {
 			setState(PlayerState.walking);
 		}
 		invertAnimation = false;
@@ -177,8 +177,8 @@ public class Astronaut extends EntityCollidable implements AstronautController, 
 	@Override
 	public void moveLeft () {
 		setVelocityX(-speed);
-		if (!(state.equals(PlayerState.superjump) || state.equals(PlayerState.superjump_start) || state
-			.equals(PlayerState.superjump_end))) {
+		if (!(state.equals(PlayerState.superjump) || state.equals(PlayerState.superjump_start)
+			|| state.equals(PlayerState.superjump_end) || state.equals(PlayerState.jumping) || state.equals(PlayerState.falling))) {
 			setState(PlayerState.walking);
 		}
 		invertAnimation = true;
@@ -259,9 +259,9 @@ public class Astronaut extends EntityCollidable implements AstronautController, 
 			animation.draw(position.x - animation.getWidth() / 2, position.y - animation.getHeight() / 2);
 		}
 
-//		Log.debug(animation.getFrame()+1 +"/" + animation.getFrameCount());
-//		if (!oldState.equals(state)) Log.debug(String.valueOf(state));
-//		oldState = state;
+// Log.debug(animation.getFrame()+1 +"/" + animation.getFrameCount());
+// if (!oldState.equals(state)) Log.debug(String.valueOf(state));
+// oldState = state;
 	}
 
 	public void setState (PlayerState state) {
@@ -464,5 +464,6 @@ public class Astronaut extends EntityCollidable implements AstronautController, 
 			jumpDelayTotal = gameData.combined.jumpDelay;
 		}
 	}
-    
+
+
 }
