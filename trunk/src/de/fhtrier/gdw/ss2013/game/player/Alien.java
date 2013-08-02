@@ -24,6 +24,7 @@ import org.jbox2d.dynamics.BodyType;
 
 public final class Alien extends Entity implements AlienController {
 
+    private Astronaut astronaut;
     private Animation animation;
 	private int selectedAbility;
 	private float mana;
@@ -33,7 +34,6 @@ public final class Alien extends Entity implements AlienController {
 
 	private EntityManager entityManager = World.getInstance().getEntityManager();
 	// telekinese values
-	private Camera camera = World.getInstance().getCamera();
 	private Box currentSelectedBox;
 	private float selectionRadius;
 	private final Vector2f dragDirection = new Vector2f();
@@ -51,6 +51,10 @@ public final class Alien extends Entity implements AlienController {
 	    selectedAbility = 1;
 	    maxMana = 0.0f;
 	    mana = maxMana;
+    }
+    
+    public void setAstronaut(Astronaut astronaut) {
+        this.astronaut = astronaut;
     }
     
 	/**
@@ -91,8 +95,8 @@ public final class Alien extends Entity implements AlienController {
 	public void shoot() {
 		if (System.currentTimeMillis() > lastShotTime + PlayerConstants.SHOTDELAY) {
 			Vector2f playerPos;
-			if (getAstronaut().isCarryAlien()) {
-				playerPos = getAstronaut().getPosition(); // notwendig, weil alienPos net stimmt
+			if (astronaut.isCarryAlien()) {
+				playerPos = astronaut.getPosition(); // notwendig, weil alienPos net stimmt
 			}
 			else {
 				playerPos = getPosition();
@@ -109,10 +113,6 @@ public final class Alien extends Entity implements AlienController {
 
 			lastShotTime = System.currentTimeMillis();
 		}
-	}
-
-	private Astronaut getAstronaut() {
-		return World.getInstance().getAstronaut();
 	}
 
 	@Override
@@ -163,7 +163,7 @@ public final class Alien extends Entity implements AlienController {
 			break;
 		case 2:
 			//großer sprung
-			getAstronaut().superjump();
+			astronaut.superjump();
 			break;
 		}
 	}
@@ -256,12 +256,10 @@ public final class Alien extends Entity implements AlienController {
 
     void setOnPlayer(boolean onPlayer) {
         this.onPlayer = onPlayer;
-        if(!onPlayer) {
-            Astronaut astronaut = World.getInstance().getAstronaut();
-            getPhysicsObject().setPosition(astronaut.getPosition());
-        }
-        
         if(physicsObject != null) {
+            if(!onPlayer) {
+               physicsObject.setPosition(astronaut.getPosition());
+            }
             physicsObject.setActive(!onPlayer);
         }
     }
