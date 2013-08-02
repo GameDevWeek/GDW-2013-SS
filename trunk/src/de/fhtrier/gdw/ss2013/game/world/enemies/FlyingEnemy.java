@@ -18,6 +18,7 @@ import de.fhtrier.gdw.ss2013.game.filter.EntityFilter;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.game.world.bullets.EnemyBullet;
+import de.fhtrier.gdw.ss2013.game.world.objects.FollowPath;
 import de.fhtrier.gdw.ss2013.physix.PhysixManager;
 import de.fhtrier.gdw.ss2013.physix.PhysixShape;
 import org.jbox2d.dynamics.BodyType;
@@ -42,6 +43,7 @@ public abstract class FlyingEnemy extends AbstractEnemy implements EntityFilter 
     private Point currentPoint;
     private Point nextPoint;
     private int indexmod;
+    private SafeProperties pathProperties;
     public static boolean burningWhip = false;
 
     public FlyingEnemy(Animation animation) {
@@ -51,6 +53,7 @@ public abstract class FlyingEnemy extends AbstractEnemy implements EntityFilter 
     @Override
     protected void initialize() {
         super.initialize();
+        
         this.player = World.getInstance().getAstronaut();
         this.interval = 0f;
         speed = 40.0f;
@@ -60,6 +63,17 @@ public abstract class FlyingEnemy extends AbstractEnemy implements EntityFilter 
         moveAround = false;
         pathEnabled = false;
         change = false;
+        
+        if (points == null) {
+            pathEnabled = false;
+        } else {
+            pathEnabled = true;
+            index = getClosestPoint();
+        }
+        if (pathProperties != null) {
+            speed = pathProperties.getFloat("speed", 20.0f);
+            moveAround = pathProperties.getBoolean("moveAround", false);
+        }
     }
 
     @Override
@@ -67,24 +81,6 @@ public abstract class FlyingEnemy extends AbstractEnemy implements EntityFilter 
         createPhysics(BodyType.DYNAMIC, origin.x, origin.y)
                 .density(PhysixManager.DENSITY).friction(PhysixManager.FRICTION)
                 .asBox(initialSize.x, initialSize.y);
-    }
-
-    public void initLine(ArrayList<Point> points, SafeProperties properties) {
-        if (points == null) {
-            pathEnabled = false;
-        } else {
-            this.points = points;
-            pathEnabled = true;
-        }
-        if (properties != null) {
-            speed = properties.getFloat("speed", 20.0f);
-            moveAround = properties.getBoolean("moveAround", false);
-        }
-        
-        index = getClosestPoint();
-        if(points != null) {
-            getPhysicsObject().setPosition(points.get(index).x, points.get(index).y);
-        }
     }
     
     public void reduceHealth(float dmg) {
@@ -136,6 +132,25 @@ public abstract class FlyingEnemy extends AbstractEnemy implements EntityFilter 
         }
     }
     
+    public void bindToPath() {
+        if (getProperties() != null) {
+            String pathName = getProperties().getProperty("path");
+            if (pathName != null) {
+                FollowPath path = FollowPath.paths.get(pathName);
+                if (path != null) {
+                    pathProperties = path.getProperties();
+                    points = path.getPoints();
+                } else {
+                    throw new NullPointerException("No path with this name found!" + getName());
+                }
+            } else {
+                throw new NullPointerException("No path set!" + getName());
+            }
+        } else {
+            throw new NullPointerException("No path option!" + getName());
+        }
+    }
+    
     public void move() {
         float distToSpawn = getPosition().sub(origin).length();
         if (distToSpawn < 200) {
@@ -153,7 +168,7 @@ public abstract class FlyingEnemy extends AbstractEnemy implements EntityFilter 
     public int getClosestPoint() {
         float dist[] = new float[points.size() - 1];
         for (int i = 0; i < points.size() - 1; i++) {
-            dist[i] = getPosition().distanceSquared(new Vector2f(points.get(i).x, points.get(i).y));
+            dist[i] = origin.distanceSquared(new Vector2f(points.get(i).x, points.get(i).y));
         }
         float closestDist = Float.MAX_VALUE;
         int closestPoint = 0;
