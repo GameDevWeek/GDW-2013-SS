@@ -28,7 +28,7 @@ import de.fhtrier.gdw.ss2013.physix.PhysixObject;
 
 public class OxygenBubble extends EntityCollidable implements Interactable {
 
-    private float oxygenLevel = 40;
+    private float oxygenLevel = 50;
     private OxygenFlower flower;
     // private AssetLoader a = AssetLoader.getInstance();
     // private Image img = a.getImage("bubble");
@@ -105,16 +105,16 @@ public class OxygenBubble extends EntityCollidable implements Interactable {
         if (!isUsed) {
             
             timer += delta*deltamod;
-            if(timer >= 2000)
+            if(timer >= 800)
             {
                 deltamod = -1;
             }
-            if(timer <= 1001)
+            if(timer <= 501)
             {
                 deltamod = 1;
             }
             
-            if (timer < 1000) {
+            if (timer < 500) {
                 setVelocity(initalDirection);
             } 
             else {
