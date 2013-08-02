@@ -19,7 +19,7 @@ import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.filter.Interactable;
 import de.fhtrier.gdw.ss2013.game.world.objects.MovingPlatform;
 import de.fhtrier.gdw.ss2013.game.world.objects.ObjectController;
-import de.fhtrier.gdw.ss2013.game.world.objects.PlatformPath;
+import de.fhtrier.gdw.ss2013.game.world.objects.FollowPath;
 import de.fhtrier.gdw.ss2013.game.world.objects.Teleporter;
 import de.fhtrier.gdw.ss2013.gui.TooltipManager;
 import de.fhtrier.gdw.ss2013.physix.PhysixBox;
@@ -36,13 +36,13 @@ public class LevelLoader {
 	private static PhysixManager physicsManager;
 	private static Vector2f startpos;
 	private static GameDataInfo.WorldInfo worldInfo;
-	private static HashMap<String, PlatformPath> platformPaths;
+	private static HashMap<String, FollowPath> followPaths;
 
 	public static void load(TiledMap map, EntityManager entityManager,
 			PhysixManager physicsManager) {
 
 		worldInfo = AssetLoader.getInstance().getGameData().world;
-		platformPaths = new HashMap<String, PlatformPath>();
+		followPaths = new HashMap<String, FollowPath>();
 
 		LevelLoader.entityManager = entityManager;
 		LevelLoader.physicsManager = physicsManager;
@@ -134,8 +134,8 @@ public class LevelLoader {
 			new PhysixPolyline(physicsManager, points, BodyType.STATIC,
 					worldInfo.density, worldInfo.friction, false);
 			break;
-		case "PlatformPath":
-			platformPaths.put(name, new PlatformPath(points, properties));
+		case "FollowPath":
+			followPaths.put(name, new FollowPath(points, properties));
 			break;
 		}
 	}
@@ -346,7 +346,7 @@ public class LevelLoader {
 			if (platform.getProperties() != null) {
 				String name = platform.getProperties().getProperty("path");
 				if (name != null) {
-					PlatformPath path = platformPaths.get(name);
+					FollowPath path = followPaths.get(name);
 					if (path != null) {
 						platform.initLine(path.getPoints(),
 								path.getProperties());

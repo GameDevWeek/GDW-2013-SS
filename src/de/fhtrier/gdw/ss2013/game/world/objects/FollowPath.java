@@ -5,11 +5,11 @@ import java.util.ArrayList;
 
 import de.fhtrier.gdw.commons.utils.SafeProperties;
 
-public class PlatformPath{
+public class FollowPath{
     private ArrayList<Point> points;
     private SafeProperties properties;
 
-    public PlatformPath(ArrayList<Point> points, SafeProperties properties) {
+    public FollowPath(ArrayList<Point> points, SafeProperties properties) {
         this.points = points;
         this.properties = properties;
     }
