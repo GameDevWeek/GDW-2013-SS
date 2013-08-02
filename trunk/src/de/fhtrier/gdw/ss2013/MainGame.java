@@ -104,11 +104,9 @@ public class MainGame extends StateBasedGame {
                 if (a.toLowerCase().equals("-physictest")) {
                     DebugModeStatus.setPhysicTest(true);
                 }
-                if(a.toLowerCase().equals("-tpcamera")) {
-                    DebugModeStatus.setTPCamera(true);
-                }
-                if(a.toLowerCase().startsWith("-level=")) {
-                	DebugModeStatus.setLevel(a.substring(7, a.length()));
+                String levelSelectionArgument = "-level=";
+				if(a.toLowerCase().startsWith(levelSelectionArgument)) {
+                	DebugModeStatus.setLevel(a.substring(levelSelectionArgument.length(), a.length()));
                 }
                 if(a.toLowerCase().startsWith("-win")) {
                 	DebugModeStatus.setWinMenuStatus(true);

@@ -5,8 +5,6 @@ public class DebugModeStatus {
 
     static protected boolean physicTestStatus = false;
     
-    static protected boolean tpCameraStatus = false;
-
     static protected boolean winMenuStatus = false;
 
 
@@ -25,19 +23,11 @@ public class DebugModeStatus {
         physicTestStatus = status;
     }
     
-    static public void setTPCamera(boolean status) {
-        tpCameraStatus = status;
-    }
-
     static public boolean isPhysicTest() {
         return physicTestStatus;
     }
 
     
-    static public boolean isTPCamera() {
-        return tpCameraStatus;
-    }
-
 	public static void setLevel(String levelname) {
 		levelName = levelname;
 	}

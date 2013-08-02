@@ -142,16 +142,13 @@ public class World {
 
 		entityManager.update(container, delta);
 
-		if (DebugModeStatus.isTPCamera()) {
-			camera.update(delta, container.getWidth(), container.getHeight());
+		camera.update(delta, container.getWidth(), container.getHeight());
 
-			if (container.getInput().isKeyDown(Input.KEY_1)) {
-				camera.zoom(0.01f);
-			}
-			if (container.getInput().isKeyDown(Input.KEY_2)) {
-				camera.zoom(-0.01f);
-			}
-
+		if (container.getInput().isKeyDown(Input.KEY_1)) {
+			camera.zoom(0.01f);
+		}
+		if (container.getInput().isKeyDown(Input.KEY_2)) {
+			camera.zoom(-0.01f);
 		}
 
 		for (DynamicParticleSystem p : particleList) {
