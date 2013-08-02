@@ -2,4 +2,6 @@
 <objecttypes>
  <objecttype name="solid" color="#262627"/>
  <objecttype name="deadzone" color="#ff0000"/>
+ <objecttype name="winningzone" color="#55ff00"/>
+ <objecttype name="FollowPath" color="#0723a4"/>
 </objecttypes>
