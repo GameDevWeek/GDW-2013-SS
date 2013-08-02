@@ -158,7 +158,7 @@ public class Astronaut extends Player implements AstronautController {
 			switches.add((Switch)objectA.getOwner());
 		}
 		if (objectB.getOwner() instanceof Switch) {
-			switches.add((Switch)objectA.getOwner());
+			switches.add((Switch)objectB.getOwner());
 		}
 
 		super.beginContact(contact);
