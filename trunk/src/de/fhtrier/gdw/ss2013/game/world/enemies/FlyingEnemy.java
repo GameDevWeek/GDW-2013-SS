@@ -64,15 +64,18 @@ public abstract class FlyingEnemy extends AbstractEnemy implements EntityFilter 
         pathEnabled = false;
         change = false;
         
+        if (getProperties() != null && getProperties().getBoolean("followPath", false)) {
+            bindToPath();
+        }
+        if (pathProperties != null) {
+            speed = pathProperties.getFloat("speed", 20.0f);
+            moveAround = pathProperties.getBoolean("moveAround", false);
+        }
         if (points == null) {
             pathEnabled = false;
         } else {
             pathEnabled = true;
             index = getClosestPoint();
-        }
-        if (pathProperties != null) {
-            speed = pathProperties.getFloat("speed", 20.0f);
-            moveAround = pathProperties.getBoolean("moveAround", false);
         }
     }
 
@@ -81,6 +84,9 @@ public abstract class FlyingEnemy extends AbstractEnemy implements EntityFilter 
         createPhysics(BodyType.DYNAMIC, origin.x, origin.y)
                 .density(PhysixManager.DENSITY).friction(PhysixManager.FRICTION)
                 .asBox(initialSize.x, initialSize.y);
+        if (points != null) {
+            getPhysicsObject().setPosition(points.get(index).x, points.get(index).y);
+        }
     }
     
     public void reduceHealth(float dmg) {

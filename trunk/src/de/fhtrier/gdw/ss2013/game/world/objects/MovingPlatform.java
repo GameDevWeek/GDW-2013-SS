@@ -96,11 +96,12 @@ public abstract class MovingPlatform extends Entity implements Interactable, Ent
 
     @Override
     public void initPhysics() {
-//        System.out.println(origin);
-//        System.out.println(points.get(index));
         createPhysics(BodyType.KINEMATIC, points.get(index).x, points.get(index).y)
                 .density(PhysixManager.DENSITY).friction(PhysixManager.FRICTION)
                 .asBox(initialSize.x, initialSize.y);
+        if (points != null) {
+            getPhysicsObject().setPosition(points.get(index).x, points.get(index).y);
+        }
     }
     
     @Override
@@ -109,7 +110,6 @@ public abstract class MovingPlatform extends Entity implements Interactable, Ent
         super.update(container, delta);
         if (isActive)
             move();
-//        System.out.println(World.getInstance().getAstronaut().getPosition());
     }
 
     public void move() {
