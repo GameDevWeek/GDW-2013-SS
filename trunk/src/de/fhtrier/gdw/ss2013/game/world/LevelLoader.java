@@ -17,6 +17,7 @@ import de.fhtrier.gdw.ss2013.assetloader.infos.GameDataInfo;
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.filter.Interactable;
+import de.fhtrier.gdw.ss2013.game.world.objects.Door;
 import de.fhtrier.gdw.ss2013.game.world.objects.MovingPlatform;
 import de.fhtrier.gdw.ss2013.game.world.objects.ObjectController;
 import de.fhtrier.gdw.ss2013.game.world.objects.FollowPath;
@@ -242,10 +243,8 @@ public class LevelLoader {
 			break;
 		case "door":
 			entity = entityManager.createEntity(type, properties, name);
-			PhysixBox doorBox = new PhysixBox(physicsManager, x, y, width,
-					height, BodyType.STATIC, worldInfo.density,
-					worldInfo.friction, false);
-			entity.setPhysicsObject(doorBox);
+			Door door = (Door) entity;
+			door.setStartPosition(x, y);
 			break;
 		case "start":
 			startpos = new Vector2f(x, y);
