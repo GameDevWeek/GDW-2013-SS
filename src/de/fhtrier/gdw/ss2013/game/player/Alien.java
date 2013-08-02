@@ -133,8 +133,6 @@ public class Alien extends Player implements AlienController {
 
 	@Override
 	public void useAbility() {
-		Log.debug("using ability");
-
 		switch (selectedAbility) {
 		case 1:
 			// telekinese

@@ -10,6 +10,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
+import org.newdawn.slick.util.Log;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.assetloader.infos.GameDataInfo;
@@ -37,7 +38,8 @@ public class Astronaut extends Player implements AstronautController {
 	protected PlayerState state;
 	private boolean invertAnimation;
 	private boolean walking;
-	private int superjumpDelay=0;
+	private int superjumpDelay = 0;
+	private boolean takeOff=true;
 
 	public Astronaut () {
 		initialize();
@@ -78,6 +80,8 @@ public class Astronaut extends Player implements AstronautController {
 		jumpSpeed = newJumpSpeed;
 	}
 
+	static PlayerState oldState = PlayerState.standing;
+
 	@Override
 	public void update (GameContainer container, int delta) throws SlickException {
 		super.update(container, delta);
@@ -87,15 +91,49 @@ public class Astronaut extends Player implements AstronautController {
 		else
 			die();
 
-		boolean grounded = isGrounded();
-		if (!grounded) {
-				if (getVelocity().y < 0)
-					setState(PlayerState.jumping);
-				else
-					setState(PlayerState.falling);
-		} else if (!walking) {
+// boolean grounded = isGrounded();
+// if (!grounded) {
+// if (getVelocity().y < 0)
+// setState(PlayerState.jumping);
+// else
+// setState(PlayerState.falling);
+// } else if (!walking) {
+// setState(PlayerState.standing);
+// }
+		if (getVelocity().x == 0 && getVelocity().y == 0) {
 			setState(PlayerState.standing);
 		}
+
+		switch (state) {
+		case jumping:
+			if (getVelocity().y > 0) setState(PlayerState.falling);
+			break;
+		case superjump:
+			if(isGrounded() && takeOff){
+				takeOff=false;
+				animation = AssetLoader.getInstance().getAnimation("astronaut_superjump_start");
+				
+				Log.debug("superjump start");
+			}else if (isGrounded() && !takeOff) {
+				animation = AssetLoader.getInstance().getAnimation("astronaut_superjump_end");
+				takeOff=true;
+				Log.debug("superjump end");
+			}else {
+				animation = AssetLoader.getInstance().getAnimation("astronaut_superjump");
+				Log.debug("superjump mid");
+			}
+			break;
+		case falling:
+			if(isGrounded()){
+				setState(PlayerState.standing);
+			}
+			break;
+		default:
+			break;
+
+		}
+		if (!oldState.equals(state)) Log.debug(state.toString());
+		oldState = state;
 	}
 
 	public void preInput () {
@@ -106,7 +144,9 @@ public class Astronaut extends Player implements AstronautController {
 	public void moveRight () {
 
 		setVelocityX(speed);
-		setState(PlayerState.walking);
+		if (!(state.equals(PlayerState.superjump) || state.equals(PlayerState.jumping)|| state.equals(PlayerState.falling))) {
+			setState(PlayerState.walking);
+		}
 		invertAnimation = false;
 		walking = true;
 
@@ -116,7 +156,9 @@ public class Astronaut extends Player implements AstronautController {
 	public void moveLeft () {
 
 		setVelocityX(-speed);
-		setState(PlayerState.walking);
+		if (!(state.equals(PlayerState.superjump) || state.equals(PlayerState.jumping)|| state.equals(PlayerState.falling))) {
+			setState(PlayerState.walking);
+		}
 		invertAnimation = true;
 		walking = true;
 
@@ -134,10 +176,10 @@ public class Astronaut extends Player implements AstronautController {
 	}
 
 	public void superjump () {
-		if (superjumpDelay <=0 && isGrounded()) {
+		if (superjumpDelay <= 0 && isGrounded()) {
 			jumpDelay = 0;
-			setVelocityY(-jumpSpeed*2);
-			physicsObject.applyImpulse(new Vector2f(0, -jumpSpeed));
+			setVelocityY(-jumpSpeed * 2);
+			physicsObject.applyImpulse(new Vector2f(0, -jumpSpeed * 2));
 			setState(PlayerState.superjump);
 			jumpDelay = jumpDelayTotal;
 		}
@@ -229,7 +271,7 @@ public class Astronaut extends Player implements AstronautController {
 	@Override
 	public void render (GameContainer container, Graphics g) throws SlickException {
 		Vector2f position = getPosition();
-
+		
 		if (invertAnimation) {
 			animation.draw(position.x + animation.getWidth() / 2, position.y - animation.getHeight() / 2, -animation.getWidth(),
 				animation.getHeight());
