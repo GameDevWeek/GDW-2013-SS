@@ -8,7 +8,17 @@ import org.newdawn.slick.state.StateBasedGame;
 
 
 
-public class StaticAbilityDisplay extends AbilityDisplay{
+public class StaticAbilityDisplay implements AbilityDisplay{
+    private Image image;
+    private Vector2f position;
+    
+    private boolean activated;
+    
+    private float startAlphaValue;
+    private float alphaValue;
+    private float alphaSeed;
+    private float fadingSpeed;
+    
     public StaticAbilityDisplay(Image image, Vector2f position, float fadingSpeed)
     {
         init(image, position, fadingSpeed);

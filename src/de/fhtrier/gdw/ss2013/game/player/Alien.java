@@ -41,9 +41,7 @@ public class Alien extends Player implements AlienController {
 	    lastShotTime = 0;
 	    selectedAbility = 1;
 	    maxMana = 0.0f;
-	    mana = maxMana;
-		initialize();
-	}
+	    mana = maxMana;	}
 	
 	/**
 	 * {@inheritDoc}
@@ -51,6 +49,12 @@ public class Alien extends Player implements AlienController {
 	@Override
 	protected void initialize() {
 	    super.initialize();
+	    currentSelectedBox = null;
+        selectionRadius = 50;
+        lastShotTime = 0;
+        selectedAbility = 1;
+        maxMana = 0.0f;
+        mana = maxMana;
 	}
 
 	public void setContainer(GameContainer container) {

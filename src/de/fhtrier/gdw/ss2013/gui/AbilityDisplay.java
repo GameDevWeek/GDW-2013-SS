@@ -6,31 +6,10 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
 
-public abstract class AbilityDisplay {
-    protected Image image;
-    protected Vector2f position;
+public interface AbilityDisplay {
+    public void update(GameContainer container, StateBasedGame game, int delta);
     
-    protected boolean activated;
+    public void render(GameContainer container, StateBasedGame game, Graphics g);
     
-    protected float startAlphaValue;
-    protected float alphaValue;
-    protected float alphaSeed;
-    protected float fadingSpeed;
-    
-    public void update(GameContainer container, StateBasedGame game, int delta) {
-        
-    }
-    
-    public void render(GameContainer container, StateBasedGame game, Graphics g) {
-        
-    }
-    
-    public void setActivated(boolean activated) {
-        
-    }
-     
-    public AbilityDisplay() {
-        // TODO Auto-generated constructor stub
-    }
-
+    public void setActivated(boolean activated);
 }
