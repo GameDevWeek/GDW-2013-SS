@@ -75,6 +75,7 @@ public class Astronaut extends EntityCollidable implements AstronautController, 
 	@Override
 	protected void initialize () {
 		super.initialize();
+		renderLayer = Integer.MAX_VALUE;
 		gameData = AssetLoader.getInstance().getGameData();
 		speed = gameData.combined.speed;
 		jumpSpeed = gameData.combined.jumpSpeed;
@@ -463,10 +464,5 @@ public class Astronaut extends EntityCollidable implements AstronautController, 
 			jumpDelayTotal = gameData.combined.jumpDelay;
 		}
 	}
-    
-    @Override
-    protected void setRenderLayer(int val) {
-        renderLayer = Integer.MAX_VALUE;
-    }
     
 }

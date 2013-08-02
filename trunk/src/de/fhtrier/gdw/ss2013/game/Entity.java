@@ -29,7 +29,7 @@ public abstract class Entity {
 	protected Image img;
 	protected String name;
 	protected SafeProperties properties;
-	protected int renderLayer;
+	protected int renderLayer = 0;
 
 	private static int entityId = 0;
 
@@ -234,7 +234,4 @@ public abstract class Entity {
     }
 
 
-    protected void setRenderLayer(int val) {
-        renderLayer = val;
-    }
 }
