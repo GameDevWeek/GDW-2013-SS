@@ -48,6 +48,7 @@ public class Meteroid extends EntityCollidable {
 
 		PhysixBox box = new PhysixBox(physicsManager, spawn_x, spawn_y, width, height, BodyType.DYNAMIC, 1, 0.5f, false);
 		this.setPhysicsObject(box);
+		box.setGravityScale(0.5f);
 	}
 
 	@Override
