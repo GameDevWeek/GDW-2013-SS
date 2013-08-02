@@ -12,9 +12,9 @@
   <object type="solid" x="-392" y="-744" width="13282" height="952"/>
   <object type="solid" x="12549" y="-230" width="336" height="2864"/>
   <object gid="626" x="3470" y="1792"/>
-  <object gid="630" x="3740" y="1782"/>
+  <object gid="630" x="3600" y="1776"/>
   <object gid="627" x="7518" y="1703"/>
-  <object gid="633" x="3962" y="1825">
+  <object gid="633" x="3799" y="1825">
    <properties>
     <property name="trigger" value="door"/>
    </properties>
@@ -91,7 +91,7 @@
     <property name="delay" value="1800"/>
    </properties>
   </object>
-  <object gid="633" x="4270" y="1506">
+  <object gid="633" x="4227" y="1501">
    <properties>
     <property name="trigger" value="door"/>
    </properties>
