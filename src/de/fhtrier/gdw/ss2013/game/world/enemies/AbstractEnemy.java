@@ -63,6 +63,7 @@ public abstract class AbstractEnemy extends EntityCollidable {
 		
         if (getHealth() <= 0) {
             World.getInstance().getEntityManager().removeEntity(this);
+			World.getScoreCounter().addScore(5);
         }
 	}
 
