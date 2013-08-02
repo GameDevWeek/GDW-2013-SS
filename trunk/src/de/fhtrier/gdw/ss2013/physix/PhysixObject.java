@@ -203,4 +203,8 @@ public abstract class PhysixObject {
 		
 	    associatedWorld.destroyBody(body);
 	}
+	
+	public BodyType getBodyType() {
+		return body.getType();
+	}
 }
