@@ -6,7 +6,24 @@ import de.fhtrier.gdw.ss2013.game.world.enemies.FlyingEnemy;
 public class SmallFlyingEnemy extends FlyingEnemy {
 
 	public SmallFlyingEnemy() {
-		super(AssetLoader.getInstance().getAnimation("flying_ememy_small"));
+		super(AssetLoader.getInstance().getAnimation(getRandomImage()));
+	}
+
+	private static String getRandomImage() {
+		String imgString;
+		int rand = (int) (Math.random() * 3);
+		switch (rand) {
+		case 1:
+			imgString = "flying_ememy_small_red";
+			break;
+		case 2:
+			imgString = "flying_ememy_small_green";
+			break;
+		default:
+			imgString = "flying_ememy_small_blue";
+			break;
+		}
+		return imgString;
 	}
 
 }
