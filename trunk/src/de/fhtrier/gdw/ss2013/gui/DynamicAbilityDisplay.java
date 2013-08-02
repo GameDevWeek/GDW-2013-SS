@@ -8,13 +8,25 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import de.fhtrier.gdw.ss2013.game.world.World;
 
-public class DynamicAbilityDisplay extends AbilityDisplay {
+public class DynamicAbilityDisplay implements AbilityDisplay {
 
     private int countdown_start;
     private int countdown_timer = 0;
     private World worldinstance;
     
+    private Image image;
+    private Vector2f position;
+    
+    private boolean activated;
+    
+    private float startAlphaValue;
+    private float alphaValue;
+    private float alphaSeed;
+    private float fadingSpeed;
+    
     public DynamicAbilityDisplay(Image image,float fadingSpeed, World worldinstance) {
+        
+        
         init(image, fadingSpeed, worldinstance);
     }
         
@@ -37,16 +49,6 @@ public class DynamicAbilityDisplay extends AbilityDisplay {
             this.image = image;
 
         }
-
-       //public void render(GameContainer container, StateBasedGame game, Graphics g) {
-            
-            /*
-            if (countdown_timer > 0) {
-                Vector2f p = worldinstance.worldToScreenPosition(worldinstance.getAstronaut().getPosition());
-                ability[selected - 1].draw(p.x   - ability[selected-1].getWidth()/2
-                                           ,p.y - worldinstance.getAstronaut().getAnimation().getHeight()/2);
-            }*/
-
 
         public void update(GameContainer container, StateBasedGame game, int delta) {
             if (activated)
@@ -94,13 +96,7 @@ public class DynamicAbilityDisplay extends AbilityDisplay {
             {
                 image.setAlpha(alphaValue);
                 Vector2f p = worldinstance.worldToScreenPosition(worldinstance.getAstronaut().getPosition());
-                
-                
-                //image.draw(p.x   - image.getWidth()/2
-                //                           ,p.y - worldinstance.getAstronaut().getAnimation().getHeight()/2);
-                
                 image.draw(p.x  - image.getWidth()/2,p.y- worldinstance.getAstronaut().getAnimation().getHeight()/2);                
-            
             }
             else
             {
@@ -124,13 +120,6 @@ public class DynamicAbilityDisplay extends AbilityDisplay {
                 countdown_timer=0;
             }
         }
-       /* public void setSelected(int selected) {
-            if (this.selected != selected) {
-                this.selected = selected;
-                countdown_timer = countdown_start; // counter zurücksetzen
-
-            }*/
-
   }
 
     
