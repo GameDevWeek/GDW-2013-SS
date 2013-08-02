@@ -34,7 +34,7 @@ public class Meteroid extends EntityCollidable {
 	public Meteroid() {
 		super();
 		this.ani = AssetLoader.getInstance().getAnimation("meteorite");
-		setParticle(AssetLoader.getInstance().getParticle("meteroid3"));
+		setParticle(AssetLoader.getInstance().getParticle("meteorid5"));
 	}
 
 	@Override
