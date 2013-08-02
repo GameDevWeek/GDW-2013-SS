@@ -12,6 +12,7 @@ import org.newdawn.slick.geom.Vector2f;
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.camera.PointOfInterest;
+import de.fhtrier.gdw.ss2013.game.camera.ThreePointCamera;
 import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.game.world.enemies.ground.SmallGroundEnemy;
 
@@ -31,7 +32,10 @@ public class CrabBoss extends AbstractBoss {
         
         setInitialSize( animation.getWidth() * scale - 2 * physicsObject_x_offset,
         animation.getHeight() * scale);
-        World.getInstance().getTPCamera().addPointOfInterest(new PointOfInterest(origin.x, origin.y, 1.5f, 5000.0f));
+        
+        ThreePointCamera tpCamera = World.getInstance().getTPCamera();
+        if(tpCamera != null)
+            tpCamera.addPointOfInterest(new PointOfInterest(origin.x, origin.y, 1.5f, 5000.0f));
 	}
 
     @Override
