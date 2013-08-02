@@ -12,11 +12,13 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.commons.utils.SafeProperties;
+import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.physix.PhysixManager;
 import de.fhtrier.gdw.ss2013.physix.PhysixShape;
 import de.fhtrier.gdw.ss2013.physix.PhysixShapeConfig;
 import de.fhtrier.gdw.ss2013.renderer.DynamicParticleSystem;
+
 import org.jbox2d.dynamics.BodyType;
 
 /**
@@ -231,4 +233,5 @@ public abstract class Entity {
     public boolean isBottomPositioned() {
         return false;
     }
+
 }
