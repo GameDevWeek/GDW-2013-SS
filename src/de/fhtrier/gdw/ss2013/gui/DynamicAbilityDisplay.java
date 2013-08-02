@@ -90,6 +90,7 @@ public class DynamicAbilityDisplay implements AbilityDisplay {
             }
         }
         
+    @Override
         public void render(GameContainer container, StateBasedGame game, Graphics g) {
             
             if(activated)
@@ -105,6 +106,7 @@ public class DynamicAbilityDisplay implements AbilityDisplay {
             
         }
 
+    @Override
         public void setActivated(boolean activated)
         {
             this.activated=activated;

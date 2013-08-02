@@ -19,8 +19,8 @@ public class Teleporter extends EntityCollidable implements Interactable {
     private boolean isActive = true;
     private Teleporter target;
 
-    private ArrayList<Entity> ignorList;
-    private ArrayList<Entity> toSet;
+    private final ArrayList<Entity> ignorList = new ArrayList<>();
+    private final ArrayList<Entity> toSet = new ArrayList<>();
 
     public Teleporter() {
         super(AssetLoader.getInstance().getImage("door_closed"));
@@ -29,8 +29,8 @@ public class Teleporter extends EntityCollidable implements Interactable {
     @Override
     protected void initialize() {
         super.initialize();
-        ignorList = new ArrayList<Entity>();
-        toSet = new ArrayList<Entity>();
+        ignorList.clear();
+        toSet.clear();
     }
 
     @Override

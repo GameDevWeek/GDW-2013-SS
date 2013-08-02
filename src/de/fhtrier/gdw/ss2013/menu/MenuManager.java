@@ -8,8 +8,6 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
-import de.fhtrier.gdw.ss2013.MainGame;
-import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.menu.pages.MenuPageGamePause;
 import de.fhtrier.gdw.ss2013.menu.pages.MenuPageRoot;
 import de.fhtrier.gdw.ss2013.settings.DebugModeStatus;

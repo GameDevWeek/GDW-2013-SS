@@ -42,7 +42,7 @@ public class AbilityDisplayManager {
 	    //dynamicAbilityDisplays aktivieren und deaktivieren
 	      abilityDisplay[3+(selectedOld-1)].setActivated(false);
           abilityDisplay[3+(selected-1)].setActivated(true);
-	    };
+	    }
 	    
 	    for(AbilityDisplay elem : abilityDisplay)
         {

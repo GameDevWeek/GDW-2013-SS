@@ -29,6 +29,7 @@ public class MenuPageCredits extends MenuPage {
 		
 		addCenteredButton("Zurück", 943, 680, font,
 				new IActionListener() {
+                    @Override
 					public void onAction() {
 						close();
 					}

@@ -1,14 +1,11 @@
 package de.fhtrier.gdw.ss2013.game.world.objects;
 
-import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.contacts.Contact;
 
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityCollidable;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
-import de.fhtrier.gdw.ss2013.game.world.World;
-import de.fhtrier.gdw.ss2013.physix.PhysixCircle;
 import de.fhtrier.gdw.ss2013.physix.PhysixShape;
 
 public class GrowPlant extends EntityCollidable {

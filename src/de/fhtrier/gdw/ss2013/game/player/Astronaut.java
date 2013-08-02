@@ -27,7 +27,7 @@ import de.fhtrier.gdw.ss2013.input.AstronautController;
 import de.fhtrier.gdw.ss2013.physix.InteractionManager;
 import de.fhtrier.gdw.ss2013.physix.PhysixShape;
 
-public class Astronaut extends EntityCollidable implements AstronautController, AlienController {
+public final class Astronaut extends EntityCollidable implements AstronautController, AlienController {
 
 	private float oxygen;
 	private float maxOxygen;
@@ -40,7 +40,7 @@ public class Astronaut extends EntityCollidable implements AstronautController, 
 	// set of entities, which can currently be activated with the action button
 	private InteractionManager interactionManager;
 
-	private Set<Switch> switches = new HashSet<Switch>();
+	private Set<Switch> switches = new HashSet<>();
 
 	private PlayerState state;
 	private boolean invertAnimation;
@@ -51,11 +51,14 @@ public class Astronaut extends EntityCollidable implements AstronautController, 
 	private Animation animation;
 	private int groundContacts;
 	private int superjumpDelay = 0;
-	private boolean takeOff = true;
-	private PlayerState oldState = PlayerState.standing;
 
 	public Astronaut () {
-		GameDataInfo info = AssetLoader.getInstance().getGameData();
+        AssetLoader al = AssetLoader.getInstance();
+        for(PlayerState s: PlayerState.values()) {
+            s.setAnimation(al.getAnimation("player_couple_" + s.toString()));
+        }
+        
+		GameDataInfo info = al.getGameData();
 		speed = info.combined.speed;
 		jumpSpeed = info.combined.jumpSpeed;
 		jumpDelayTotal = info.combined.jumpDelay;
@@ -257,11 +260,10 @@ public class Astronaut extends EntityCollidable implements AstronautController, 
 	}
 
 	private void updateStateAnimation () {
-		AssetLoader al = AssetLoader.getInstance();
 		if (isCarryAlien()) {
-			setAnimation(al.getAnimation("player_couple_" + state.toString()));
+			setAnimation(state.getAnimation());
 		} else {
-			setAnimation(al.getAnimation("astronaut_" + state.toString()));
+			setAnimation(state.getAnimation());
 		}
 	}
 
@@ -285,7 +287,10 @@ public class Astronaut extends EntityCollidable implements AstronautController, 
 	}
 
 	public void setAnimation (Animation animation) {
-		this.animation = animation;
+        if(this.animation != animation) {
+            this.animation = animation;
+            animation.restart();
+        }
 	}
 
 	public boolean isGrounded () {
@@ -326,7 +331,7 @@ public class Astronaut extends EntityCollidable implements AstronautController, 
 			if ((damageTakerPos.x + damageTakerDim.x > damageDealerPos.x - damageDealerDim.x) //
 				&& ((damageTakerPos.x - damageTakerDim.x < damageDealerPos.x + damageDealerDim.x))
 				&& (damageTakerPos.y + damageTakerDim.y < damageDealerPos.y)) { // player deals damage
-				World.getInstance().getScoreCounter().addScore(5);
+				World.getScoreCounter().addScore(5);
 				World.getInstance().getEntityManager().removeEntity(damageDealer);
 				if (damageTaker instanceof Astronaut) damageTaker.setVelocityY(-.50f * ((Astronaut)damageTaker).getJumpSpeed());
 			} else {

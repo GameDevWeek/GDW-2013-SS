@@ -34,11 +34,13 @@ public class ToggleButton extends Widget {
 	private ToggleButton() {
 	}
 
+    @Override
 	public void init(GameContainer container) throws SlickException {
 		if (font == null)
 			font = AssetLoader.getInstance().getFont("verdana_46");
 	}
 
+    @Override
 	public void render(Graphics g) {
 		g.setFont(font);
 		float w = font.getWidth(texts[state]);

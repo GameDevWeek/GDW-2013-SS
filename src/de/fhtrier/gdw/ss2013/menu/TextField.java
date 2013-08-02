@@ -41,6 +41,7 @@ public class TextField extends Widget {
 	private TextField() {
 	}
 
+    @Override
 	public void init(GameContainer container) throws SlickException {
 		if(font == null)
 			font = AssetLoader.getInstance().getFont("verdana_46");
@@ -48,6 +49,7 @@ public class TextField extends Widget {
 			color = Color.white;
 	}
 
+    @Override
 	public void render(Graphics g) {
 		g.setFont(font);
 		Image img = image;
@@ -93,6 +95,7 @@ public class TextField extends Widget {
 		}
 	}
 	
+    @Override
 	public void keyPressed(int key, char c, boolean repeated) {
 		int oldCursorPos = cursorPos;
 		if(key == Input.KEY_BACK) {
@@ -275,6 +278,7 @@ public class TextField extends Widget {
 	 * 
 	 * @return A new TextField with the same values as this
 	 */
+    @Override
 	public TextField clone() {
 		TextField b = TextField.create(text, rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight());
 

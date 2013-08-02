@@ -24,9 +24,11 @@ public class Animated extends Widget {
 	private Animated() {
 	}
 
+    @Override
 	public void init(GameContainer container) throws SlickException {
 	}
 
+    @Override
 	public void render(Graphics g) {
 		long currentTime = System.currentTimeMillis();
 		if(lastRenderTime == 0)
@@ -131,6 +133,7 @@ public class Animated extends Widget {
 	 * 
 	 * @return A new Animated with the same values as this
 	 */
+    @Override
 	public Animated clone() {
 		Animated b = Animated.create(animation, rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight());
 		return b;

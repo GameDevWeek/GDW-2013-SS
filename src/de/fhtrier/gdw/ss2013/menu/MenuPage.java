@@ -23,7 +23,7 @@ import org.newdawn.slick.state.StateBasedGame;
 public class MenuPage {
 
     protected Widget focus;
-    protected List<Widget> widgets = new ArrayList<Widget>();
+    protected List<Widget> widgets = new ArrayList<>();
     protected MenuPage parent;
     protected GameContainer container;
     private String type;

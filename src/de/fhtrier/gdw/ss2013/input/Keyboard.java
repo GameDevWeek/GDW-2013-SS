@@ -7,7 +7,6 @@ import java.util.Map;
 import java.util.Set;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;
-import org.newdawn.slick.util.Log;
 
 /*
  * Team Input
@@ -29,7 +28,7 @@ public class Keyboard extends InputDevice {
         Input input = container.getInput();
         Set<Map.Entry<InputAction, Integer>> entries = keyMap.entrySet();
         for (Map.Entry<InputAction, Integer> entry : entries) {
-            boolean down = false;
+            boolean down;
             switch(entry.getKey()) {
                 case JUMP:
                 case ACTION:

@@ -15,6 +15,7 @@ public class MenuPageAction implements IActionListener {
 		this.page = page;
 	}
 	
+    @Override
 	public void onAction() {
 		menuManager.setPage(page);
 	}

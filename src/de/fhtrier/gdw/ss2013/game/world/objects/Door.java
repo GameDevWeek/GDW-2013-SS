@@ -37,6 +37,7 @@ public class Door extends Entity implements Interactable {
         setInitialSize(width, height);
 	}
 
+    @Override
 	public void activate() {
 		opened++;
 		if (isOpen()) {
@@ -45,6 +46,7 @@ public class Door extends Entity implements Interactable {
 		}
 	}
 
+    @Override
 	public void deactivate() {
 		opened--;
 		if (!isOpen()) {

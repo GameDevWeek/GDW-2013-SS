@@ -44,6 +44,7 @@ public class StaticAbilityDisplay implements AbilityDisplay{
         }
     }
      
+    @Override
     public void update(GameContainer container, StateBasedGame game, int delta) {
       //wenn diese Anzeige aktiviert ist, soll die Transperenz soweit heruntergeregelt werden, bis es gar nicht mehr transperent ist.
         if (activated)
@@ -66,11 +67,13 @@ public class StaticAbilityDisplay implements AbilityDisplay{
         }
     }
     
+    @Override
     public void render(GameContainer container, StateBasedGame game, Graphics g) {
         image.setAlpha(alphaValue);
         image.draw(container.getWidth() - position.x,position.y);
     }
     
+    @Override
     public void setActivated(boolean activated)
     {
         this.activated=activated;

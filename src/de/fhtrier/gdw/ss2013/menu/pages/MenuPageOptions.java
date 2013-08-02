@@ -93,6 +93,7 @@ public class MenuPageOptions extends MenuPage {
         
         addCenteredButton("zurück", xCenter, MenuManager.MENU_HEIGHT - 1.5f * textHeight, font, 
                 new IActionListener() { 
+                    @Override
                     public void onAction() {
                         close();
                     }

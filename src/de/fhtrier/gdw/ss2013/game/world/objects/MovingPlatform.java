@@ -25,7 +25,6 @@ import org.jbox2d.dynamics.BodyType;
  */
 public abstract class MovingPlatform extends Entity implements Interactable, EntityFilter {
     private ArrayList<Point> points;
-    private AssetLoader asset = AssetLoader.getInstance();
     private Point nextPoint;
     private Point currentPoint;
     private int index;
