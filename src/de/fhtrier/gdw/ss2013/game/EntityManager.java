@@ -115,7 +115,7 @@ public class EntityManager {
         
         if(iR_listChanged || iI_listChanged) {
             sortEntityList();
-            System.out.println(entityList.get(0));
+//            System.out.println(entityList.getLast());
         }
         
         for (Entity e : entityList)
@@ -218,6 +218,7 @@ public class EntityManager {
     public <T extends Entity> T createEntity(Class<? extends Entity> entityClass) {
         T e = factory.createEntity(entityClass);
         addEntity(e);
+        e.renderLayer = 99;
         assert (e != null);
         return e;
     }
@@ -237,9 +238,9 @@ public class EntityManager {
         Entity e = factory.createEntity(entityClass);
         e.setName(name);
         if(properties!=null) {
-            e.setRenderLayer(properties.getInt("renderLayer", 0));
+            e.renderLayer =(properties.getInt("renderLayer", 0));
         } else {
-            e.setRenderLayer(99);
+            e.renderLayer =(0);
         }
         e.setProperties(properties);
         addEntity(e);
