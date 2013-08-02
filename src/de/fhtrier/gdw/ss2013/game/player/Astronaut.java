@@ -68,6 +68,7 @@ public final class Astronaut extends EntityCollidable implements AstronautContro
 		this.alien = alien;
 		carryAlien = true;
 		alien.setOnPlayer(true);
+        alien.setAstronaut(this);
 	}
 
 	/** {@inheritDoc} */
