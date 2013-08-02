@@ -71,13 +71,14 @@ public class OxygenBubble extends EntityCollidable implements Interactable {
         if (e instanceof Astronaut) {
             if (((Astronaut) e).getOxygen() + oxygenLevel < ((Astronaut) e)
                     .getMaxOxygen()) {
+                Astronaut astro = (Astronaut) e;
+                
                 ((Astronaut) e).setOxygen(((Astronaut) e).getOxygen()
                         + oxygenLevel);
                 man.removeEntity(this);
                 isUsed = true;
             } else {
                 ((Astronaut) e).setOxygen(((Astronaut) e).getMaxOxygen());
-
             }
         }
     }

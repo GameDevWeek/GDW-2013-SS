@@ -45,11 +45,11 @@ public class OxygenFlower extends EntityCollidable implements Interactable {
                 {
                     float x = this.getPosition().getX() + ((float) Math.random() * 100-50);
                     float y = this.getPosition().getY() - (float) Math.random() * 100-50;
-                    Entity entity = m.createEntity(OxygenBubble.class);
+                    OxygenBubble entity = m.createEntity(OxygenBubble.class);
                     // Bubble-Objekt
-                    ((OxygenBubble) entity).setFlower(this);
-                    ((OxygenBubble) entity).setPosition(new Vector2f(x,y));
-                    ((OxygenBubble) entity).setInitalDirection(new Vector2f(((float) Math.random() * 100-50),-(float) Math.random() * 100));
+                    entity.setFlower(this);
+                    entity.setPosition(new Vector2f(x,y));
+                    
 
                 }
             // bubbleCount

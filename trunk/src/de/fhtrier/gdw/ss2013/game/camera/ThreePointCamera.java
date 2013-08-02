@@ -7,8 +7,11 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.Vector2f;
 
-public class ThreePointCamera {
+import de.fhtrier.gdw.ss2013.constants.MathConstants;
 
+public class ThreePointCamera {
+    private final static float MIN_ZOOM = -0.5f;
+    private final static float MAX_ZOOM = 1.f;
     private final Vector2f cameraPosition;
     private final Vector2f focusPoint;
     private final Vector2f topLeftPoint;
@@ -18,8 +21,6 @@ public class ThreePointCamera {
     private final int mapTileHeight;
     private final Vector2f targetPos;
     private final float cameraSpeed;
-
-    private static final float CAM_ZOOM_EPSILON = 0.0001f;
 
     private float zoomFactor;
 
@@ -173,12 +174,12 @@ public class ThreePointCamera {
      *            ist nicht proportional)
      */
     public void setZoom(float zf) {
-        this.zoomFactor = Math.min(Math.max(zf, -1 + CAM_ZOOM_EPSILON), 1.f);
+        this.zoomFactor = Math.min(Math.max(zf, MIN_ZOOM + MathConstants.EPSILON_F), MAX_ZOOM);
     }
 
     public void zoom(float zf) {
         this.zoomFactor = Math.min(
-                Math.max(zoomFactor + zf, -1 + CAM_ZOOM_EPSILON), 1.f);
+                Math.max(zoomFactor + zf, -1 + MIN_ZOOM + MathConstants.EPSILON_F), MAX_ZOOM);
     }
 
     public void addPointOfInterest(PointOfInterest poi) {
