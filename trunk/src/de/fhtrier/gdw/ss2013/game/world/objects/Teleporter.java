@@ -20,6 +20,8 @@ public class Teleporter extends EntityCollidable implements Interactable {
     private boolean isActive = true;
     private Teleporter target;
 
+    private boolean firstUpdateDone = false;
+
     private final ArrayList<Entity> ignorList = new ArrayList<>();
     private final ArrayList<Entity> toSet = new ArrayList<>();
 
@@ -34,14 +36,6 @@ public class Teleporter extends EntityCollidable implements Interactable {
         toSet.clear();
 
         if (properties != null) {
-            String targetName = properties.getProperty("target");
-            Entity targetTeleporter = World.getInstance().getEntityManager()
-                    .getEntityByName(targetName);
-            if (targetTeleporter instanceof Teleporter) {
-                target = (Teleporter) targetTeleporter;
-            } else {
-                System.err.println(getName() + "can not find " + target);
-            }
 
             isActive = properties.getBoolean("isActive", true);
         }
@@ -62,6 +56,17 @@ public class Teleporter extends EntityCollidable implements Interactable {
             throws SlickException {
         for (Entity e : toSet) {
             e.getPhysicsObject().setPosition(target.getPosition());
+        }
+        if (!firstUpdateDone) {
+            String targetName = properties.getProperty("target");
+            Entity targetTeleporter = World.getInstance().getEntityManager()
+                    .getEntityByName(targetName);
+            if (targetTeleporter instanceof Teleporter) {
+                target = (Teleporter) targetTeleporter;
+            } else {
+                System.err.println(getName() + "can not find " + target);
+            }
+            firstUpdateDone = true;
         }
         toSet.clear();
         // TODO Auto-generated method stub

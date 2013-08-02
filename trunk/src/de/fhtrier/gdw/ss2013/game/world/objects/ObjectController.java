@@ -26,6 +26,8 @@ public abstract class ObjectController extends Entity implements Interactable {
     protected boolean isActivated;
     protected HashSet<Interactable> connectedEntities;
 
+    private boolean firstUpdateDone = false;
+
     protected ObjectController() {
         connectedEntities = new HashSet<Interactable>();
     }
@@ -40,22 +42,6 @@ public abstract class ObjectController extends Entity implements Interactable {
         connectedEntities = new HashSet<>();
 
         if (properties != null) {
-            if (!properties.getProperty("trigger", "").isEmpty()) {
-                String[] triggers = properties.getProperty("trigger", "")
-                        .split(",");
-
-                for (String triggerName : triggers) {
-                    Entity toTrigger = World.getInstance().getEntityManager()
-                            .getEntityByName(triggerName);
-                    if (toTrigger instanceof Interactable) {
-                        connectEntity((Interactable) toTrigger);
-                    } else {
-                        System.err.println(getName()
-                                + " trys to connect a Not Interactable Entity "
-                                + triggerName);
-                    }
-                }
-            }
             isActivated = properties.getBoolean("isActive", false);
         }
     }
@@ -63,8 +49,28 @@ public abstract class ObjectController extends Entity implements Interactable {
     @Override
     public void update(GameContainer container, int delta)
             throws SlickException {
-        for (Interactable ia : connectedEntities) {
-            ia.isActive();
+        if (!firstUpdateDone) {
+            if (properties != null) {
+                if (!properties.getProperty("trigger", "").isEmpty()) {
+                    String[] triggers = properties.getProperty("trigger", "")
+                            .split(",");
+                    System.out.println(properties.getProperty("trigger", ""));
+                    for (String triggerName : triggers) {
+                        Entity toTrigger = World.getInstance()
+                                .getEntityManager()
+                                .getEntityByName(triggerName);
+                        if (toTrigger instanceof Interactable) {
+                            connectEntity((Interactable) toTrigger);
+                        } else {
+                            System.err
+                                    .println(getName()
+                                            + " trys to connect a Not Interactable Entity "
+                                            + triggerName);
+                        }
+                    }
+                }
+            }
+            firstUpdateDone = true;
         }
         super.update(container, delta);
     }
