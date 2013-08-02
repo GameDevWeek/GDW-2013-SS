@@ -56,6 +56,7 @@ public class Cheats {
 			}
 		}
 
+		isGodmode = false;
 		for (Cheat cheat : cheatsThatNeedupdate) {
 			cheat.doCheat(container, game, delta, world);
 		}
