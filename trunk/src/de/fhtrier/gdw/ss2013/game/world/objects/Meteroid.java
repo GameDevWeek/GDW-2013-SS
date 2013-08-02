@@ -34,6 +34,7 @@ public class Meteroid extends EntityCollidable {
 	public Meteroid() {
 		super();
 		this.ani = AssetLoader.getInstance().getAnimation("meteorite");
+		setParticle(AssetLoader.getInstance().getParticle("meteroid3"));
 	}
 
 	@Override
@@ -51,6 +52,7 @@ public class Meteroid extends EntityCollidable {
 
 	@Override
 	public void render(GameContainer container, Graphics g) throws SlickException {
+		super.render(container, g);
 		ani.draw(this.getPosition().x - (ani.getWidth() / 2), this.getPosition().y - (ani.getHeight() / 2));
 	}
 
