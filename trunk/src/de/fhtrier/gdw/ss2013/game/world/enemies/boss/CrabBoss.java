@@ -11,7 +11,6 @@ import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.Entity;
-import de.fhtrier.gdw.ss2013.game.camera.PointOfInterest;
 import de.fhtrier.gdw.ss2013.game.camera.ThreePointCamera;
 import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.game.world.enemies.ground.SmallGroundEnemy;
