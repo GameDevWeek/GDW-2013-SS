@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="200" height="70" tilewidth="64" tileheight="64" backgroundcolor="#ffffff">
+<map version="1.0" orientation="orthogonal" width="300" height="70" tilewidth="64" tileheight="64" backgroundcolor="#ffffff">
  <tileset firstgid="1" source="tiledmap_final.tsx"/>
  <tileset firstgid="626" source="entity_tileset.tsx"/>
- <tileset firstgid="644" source="moving_platform.tsx"/>
- <layer name="Tiles" width="200" height="70">
+ <tileset firstgid="647" source="moving_platform.tsx"/>
+ <layer name="Tiles" width="300" height="70">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
- <objectgroup name="Entities" width="200" height="70">
-  <object name="p3" type="PlatformPath" x="706" y="3906">
-   <polyline points="0,0 2,-182 336,-414 1334,-132"/>
+ <objectgroup name="Entities" width="300" height="70">
+  <object name="p3" type="FollowPath" x="706" y="3906">
+   <properties>
+    <property name="isActive" value="false"/>
+    <property name="speed" value="90"/>
+   </properties>
+   <polyline points="-3,76 2,-182 336,-414 1334,-132"/>
   </object>
-  <object name="button1" gid="633" x="450" y="3985">
+  <object name="button1" gid="633" x="450" y="3991">
    <properties>
     <property name="trigger" value="mp1_4"/>
    </properties>
@@ -22,53 +26,189 @@
   <object gid="630" x="2078" y="3966"/>
   <object gid="630" x="1988" y="3904"/>
   <object gid="630" x="2050" y="3902"/>
-  <object gid="626" x="4911" y="2378"/>
+  <object gid="626" x="128" y="3968"/>
   <object gid="637" x="2350" y="3516"/>
-  <object name="p1" type="PlatformPath" x="3732" y="3548">
-   <polyline points="39,549 50,-1111"/>
+  <object name="p1" type="FollowPath" x="3732" y="3548">
+   <properties>
+    <property name="speed" value="80"/>
+   </properties>
+   <polyline points="45,191 50,-1111"/>
   </object>
   <object gid="630" x="298" y="3944"/>
-  <object name="mp1_4" gid="644" x="683" y="3948">
+  <object name="mp1_4" gid="647" x="675" y="4004">
    <properties>
     <property name="isActive" value="false"/>
     <property name="path" value="p3"/>
     <property name="speed" value="60"/>
    </properties>
   </object>
-  <object name="mp1_4" gid="644" x="4068" y="3787">
+  <object name="mp1_8" gid="647" x="4062" y="3580">
    <properties>
     <property name="path" value="p2"/>
-    <property name="speed" value="80"/>
    </properties>
   </object>
-  <object gid="628" x="6665" y="2356"/>
-  <object name="p5" type="PlatformPath" x="5045" y="2358">
-   <polyline points="0,0 12,-1270 455,-1527 1406,-1524"/>
+  <object name="door1" gid="628" x="6687" y="2409">
+   <properties>
+    <property name="isActive" value="false"/>
+   </properties>
   </object>
-  <object gid="644" x="5026" y="2387">
+  <object name="p5" type="FollowPath" x="5045" y="2358">
+   <polyline points="0,64 16,-1116 1355,-1657 1406,-1268"/>
+  </object>
+  <object gid="647" x="5016" y="2435">
    <properties>
     <property name="path" value="p5"/>
     <property name="speed" value="80"/>
    </properties>
   </object>
+  <object name="button7" gid="633" x="6870" y="2449">
+   <properties>
+    <property name="trigger" value="door1"/>
+   </properties>
+  </object>
+  <object gid="630" x="7013" y="905"/>
+  <object gid="630" x="7092" y="899"/>
+  <object gid="630" x="7041" y="826"/>
+  <object gid="630" x="7174" y="893"/>
+  <object gid="630" x="7132" y="829"/>
+  <object name="telesrc1" gid="643" x="7134" y="2230">
+   <properties>
+    <property name="target" value="teledest1"/>
+   </properties>
+  </object>
+  <object name="teledest1" gid="643" x="7203" y="1791">
+   <properties>
+    <property name="isActive" value="false"/>
+    <property name="target" value="telesrc1"/>
+   </properties>
+  </object>
+  <object gid="632" x="7377" y="2411"/>
+  <object gid="632" x="5607" y="2437"/>
+  <object gid="632" x="3138" y="3393"/>
+  <object gid="630" x="2013" y="3841"/>
+  <object gid="630" x="2132" y="3899"/>
+  <object gid="630" x="2165" y="3968"/>
+  <object gid="630" x="2247" y="3965"/>
+  <object gid="630" x="2332" y="3965"/>
+  <object gid="630" x="2404" y="3962"/>
+  <object gid="632" x="2329" y="3877"/>
+  <object gid="632" x="553" y="3947"/>
  </objectgroup>
- <objectgroup name="Zones" width="200" height="70">
+ <objectgroup name="Zones" width="300" height="70">
   <object type="solid" x="0" y="3988" width="826" height="406"/>
   <object type="solid" x="1869" y="3987" width="826" height="406"/>
   <object type="solid" x="2954" y="3414" width="501" height="851"/>
   <object type="solid" x="2572" y="3798" width="501" height="851"/>
   <object type="solid" x="2759" y="3601" width="501" height="851"/>
-  <object type="deadzone" x="668" y="4113" width="1362" height="198"/>
-  <object type="deadzone" x="-60" y="4184" width="13040" height="404"/>
-  <object name="mp1_2" gid="644" x="3741" y="4094">
+  <object type="deadzone" x="668" y="4141" width="1362" height="198"/>
+  <object type="deadzone" x="-60" y="4184" width="15616" height="396"/>
+  <object name="mp1_2" gid="647" x="3744" y="3761">
    <properties>
     <property name="path" value="p1"/>
     <property name="speed" value="80"/>
    </properties>
   </object>
-  <object name="p2" type="PlatformPath" x="4155" y="4088">
-   <polyline points="-55,-301 -61,-1655"/>
+  <object name="p2" type="FollowPath" x="4155" y="4088">
+   <properties>
+    <property name="speed" value="80"/>
+   </properties>
+   <polyline points="-58,-539 -55,-2013"/>
   </object>
-  <object type="solid" x="773" y="4173" width="1339" height="175"/>
+  <object type="solid" x="776" y="4166" width="1339" height="175"/>
+  <object type="solid" x="4362" y="2450" width="3627" height="81"/>
+  <object type="solid" x="4528" y="2488" width="3224" height="164"/>
+  <object type="solid" x="6602" y="86" width="237" height="2177"/>
+  <object type="solid" x="6984" y="914" width="488" height="396"/>
+  <object type="solid" x="6990" y="922" width="266" height="576"/>
+  <object type="solid" x="-432" y="-416" width="15880" height="600"/>
+  <object type="solid" x="713" y="4108" width="496" height="163"/>
+  <object name="roundtrip1" type="FollowPath" x="8404" y="2380">
+   <properties>
+    <property name="moveAround" value="true"/>
+    <property name="speed" value="80"/>
+   </properties>
+   <polyline points="-32,38 -578,-78 -882,-574 -692,-1048 -180,-1440 732,-1428 1102,-1012 1080,-360 480,-12 -24,34"/>
+  </object>
+  <object name="annie" gid="636" x="7952" y="1136">
+   <properties>
+    <property name="path" value="roundtrip1"/>
+   </properties>
+  </object>
+  <object name="hugo" gid="636" x="9200" y="2180">
+   <properties>
+    <property name="path" value="roundtrip1"/>
+   </properties>
+  </object>
+  <object name="rtmp_1" gid="647" x="7802" y="2320">
+   <properties>
+    <property name="path" value="roundtrip1"/>
+   </properties>
+  </object>
+  <object gid="647" x="9292" y="1180">
+   <properties>
+    <property name="path" value="roundtrip1"/>
+   </properties>
+  </object>
+  <object gid="648" x="8808" y="2400">
+   <properties>
+    <property name="path" value="roundtrip1"/>
+   </properties>
+  </object>
+  <object gid="648" x="8260" y="980">
+   <properties>
+    <property name="path" value="roundtrip1"/>
+   </properties>
+  </object>
+  <object gid="648" x="7604" y="1556">
+   <properties>
+    <property name="path" value="roundtrip1"/>
+   </properties>
+  </object>
+  <object gid="648" x="9460" y="1682">
+   <properties>
+    <property name="path" value="roundtrip1"/>
+   </properties>
+  </object>
+  <object name="sticky1" type="FollowPath" x="9839" y="1799">
+   <properties>
+    <property name="speed" value="50"/>
+   </properties>
+   <polyline points="0,0 80,-604"/>
+  </object>
+  <object name="sticky2" type="FollowPath" x="10112" y="1802">
+   <properties>
+    <property name="speed" value="60"/>
+   </properties>
+   <polyline points="0,0 88,-596"/>
+  </object>
+  <object name="sticky3" type="FollowPath" x="10388" y="1797">
+   <properties>
+    <property name="speed" value="70"/>
+   </properties>
+   <polyline points="0,0 76,-604"/>
+  </object>
+  <object name="a1" gid="647" x="9802" y="1834">
+   <properties>
+    <property name="path" value="sticky1"/>
+   </properties>
+  </object>
+  <object name="a2" gid="647" x="10072" y="1841">
+   <properties>
+    <property name="path" value="sticky2"/>
+   </properties>
+  </object>
+  <object name="a3" gid="647" x="10355" y="1831">
+   <properties>
+    <property name="path" value="sticky3"/>
+   </properties>
+  </object>
+  <object type="solid" x="9548" y="1426" width="172" height="142"/>
+  <object type="solid" x="10568" y="1433" width="618" height="144"/>
+  <object type="solid" x="10742" y="1489" width="270" height="906"/>
+  <object type="solid" x="10886" y="1779" width="170" height="624"/>
+  <object type="solid" x="11532" y="1354" width="296" height="154"/>
+  <object type="solid" x="12234" y="1363" width="296" height="154"/>
+  <object type="solid" x="12876" y="1365" width="296" height="154"/>
+  <object type="solid" x="13578" y="1365" width="810" height="154"/>
  </objectgroup>
 </map>

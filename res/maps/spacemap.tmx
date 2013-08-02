@@ -2,9 +2,10 @@
 <map version="1.0" orientation="orthogonal" width="200" height="70" tilewidth="64" tileheight="64" backgroundcolor="#ffffff">
  <tileset firstgid="1" source="tiledmap_final.tsx"/>
  <tileset firstgid="626" source="entity_tileset.tsx"/>
+ <tileset firstgid="644" source="moving_platform.tsx"/>
  <layer name="Tiles" width="200" height="70">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <objectgroup name="Zonen" width="200" height="70">
@@ -79,13 +80,13 @@
   <object x="14096" y="1888"/>
  </objectgroup>
  <objectgroup name="Entitys" width="200" height="70">
-  <object type="platformLine" x="1164" y="2145">
+  <object name="path1" type="FollowPath" x="1164" y="2145">
    <properties>
     <property name="speed" value="50"/>
    </properties>
    <polyline points="0,0 221,0"/>
   </object>
-  <object type="platformLine" x="2318" y="2193">
+  <object name="path2" type="FollowPath" x="2318" y="2193">
    <properties>
     <property name="speed" value="90"/>
    </properties>
@@ -96,18 +97,18 @@
   <object gid="630" x="1152" y="2816"/>
   <object gid="630" x="512" y="2816"/>
   <object gid="630" x="1952" y="3648"/>
-  <object name="p3" type="platformLine" x="1376" y="3232">
+  <object name="path3" type="FollowPath" x="1376" y="3232">
    <properties>
     <property name="speed" value="50"/>
    </properties>
    <polyline points="32,32 32,-416"/>
   </object>
-  <object gid="633" x="3072" y="3648">
+  <object name="switch1" gid="633" x="3072" y="3648">
    <properties>
-    <property name="trigger" value="p8"/>
+    <property name="trigger" value="mp1_x"/>
    </properties>
   </object>
-  <object name="p8" type="platformLine" x="3162" y="3456">
+  <object name="path4" type="FollowPath" x="3162" y="3456">
    <properties>
     <property name="isActive" value="false"/>
     <property name="speed" value="90"/>
@@ -115,25 +116,22 @@
    <polyline points="70,96 228,-1274"/>
   </object>
   <object gid="628" x="6036" y="2040"/>
-  <object name="p5" type="platformLine" x="5472" y="2436">
+  <object name="p5" type="FollowPath" x="5472" y="2436">
    <properties>
     <property name="speed" value="50"/>
    </properties>
    <polyline points="0,0 2,1032"/>
   </object>
-  <object name="p6" type="platformLine" x="6464" y="3520">
-   <properties>
-    <property name="isActive" value="true"/>
-   </properties>
+  <object name="p6" type="FollowPath" x="6464" y="3520">
    <polyline points="0,0 0,-1218"/>
   </object>
   <object gid="631" x="5156" y="780"/>
   <object gid="635" x="2528" y="2248"/>
   <object gid="636" x="2556" y="2580"/>
   <object gid="637" x="2576" y="2824"/>
-  <object gid="629" x="1376" y="3328">
+  <object name="abc" gid="629" x="1452" y="3329">
    <properties>
-    <property name="trigger" value="p3"/>
+    <property name="trigger" value="plate_sim"/>
    </properties>
   </object>
   <object gid="630" x="960" y="3648"/>
@@ -144,16 +142,46 @@
   <object gid="638" x="10688" y="2432"/>
   <object gid="631" x="10108" y="808"/>
   <object gid="629" x="768" y="3328"/>
-  <object type="platformLine" x="7872" y="2336">
+  <object type="FollowPath" x="7872" y="2336">
    <properties>
     <property name="speed" value="60"/>
    </properties>
    <polyline points="0,0 192,-224 512,-224"/>
   </object>
   <object gid="631" x="11488" y="812"/>
-  <object gid="626" x="8755" y="2268"/>
+  <object gid="626" x="2923" y="3640"/>
   <object gid="627" x="12672" y="2560"/>
   <object gid="630" x="2688" y="3648"/>
   <object gid="632" x="9674" y="2235"/>
+  <object name="platform1" gid="644" x="1132" y="2177">
+   <properties>
+    <property name="path" value="path1"/>
+   </properties>
+  </object>
+  <object gid="644" x="2279" y="3279">
+   <properties>
+    <property name="path" value="path2"/>
+   </properties>
+  </object>
+  <object name="plate_sim" gid="644" x="1376" y="3284">
+   <properties>
+    <property name="path" value="path3"/>
+   </properties>
+  </object>
+  <object name="mp1_x" gid="644" x="3199" y="3571">
+   <properties>
+    <property name="path" value="path4"/>
+   </properties>
+  </object>
+  <object name="platform1" gid="644" x="5445" y="3503">
+   <properties>
+    <property name="path" value="p5"/>
+   </properties>
+  </object>
+  <object name="platform2" gid="644" x="6435" y="3547">
+   <properties>
+    <property name="path" value="p6"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
