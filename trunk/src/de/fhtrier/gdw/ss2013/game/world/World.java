@@ -42,7 +42,7 @@ public class World {
     private ThreePointCamera tpCamera;
     private Astronaut astronaut;
     private Alien alien;
-    private ScoreCounter scoreCounter;
+    private static ScoreCounter scoreCounter;
 
     private static World instance;
 
@@ -263,12 +263,14 @@ public class World {
 		this.shallBeReseted = shallBeReseted;
 	}
 	
-	public ScoreCounter getScoreCounter() {
+	public static ScoreCounter getScoreCounter() {
 		return scoreCounter;
 	}
 	
 	public void setLevelName(String levelName) {
 		this.levelName = levelName;
 	}
+	
+	
 
 }
