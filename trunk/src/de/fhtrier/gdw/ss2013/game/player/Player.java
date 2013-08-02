@@ -78,7 +78,7 @@ public abstract class Player extends EntityCollidable {
         }
         
         if(damageDealer != null && damageTaker != null) {
-            // is above TODO(check for astronaut later..)
+
             Vector2f damageTakerPos = damageTaker.getPosition();
             Vector2f damageTakerDim = damageTaker.getPhysicsObject().getDimension();
 

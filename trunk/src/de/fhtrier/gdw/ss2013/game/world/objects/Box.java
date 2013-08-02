@@ -49,6 +49,8 @@ public class Box extends EntityCollidable {
     }
 
     public boolean isPlayerOnBox() {
+        
+        //FIXME: correct on me check
         return isPlayerOnMe > 0;
     }
 

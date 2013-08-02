@@ -1,5 +1,7 @@
 package de.fhtrier.gdw.ss2013.game.player;
 
+import java.util.ArrayList;
+
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -10,7 +12,6 @@ import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.constants.PlayerConstants;
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
-import de.fhtrier.gdw.ss2013.game.camera.Camera;
 import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.game.world.bullets.PlayerBullet;
 import de.fhtrier.gdw.ss2013.game.world.objects.Box;
@@ -26,7 +27,6 @@ public class Alien extends Player implements AlienController {
 
 	private EntityManager entityManager = World.getInstance().getEntityManager();
 	// telekinese values
-	private Camera camera = World.getInstance().getCamera();
 	private Box currentSelectedBox;
 	private float selectionRadius;
 	private final Vector2f dragDirection = new Vector2f();
@@ -137,15 +137,21 @@ public class Alien extends Player implements AlienController {
 		case 1:
 			// telekinese
 			if (currentSelectedBox == null) {
-				for (Entity e : entityManager.getClosestEntitiesAtPosition(
-						cursor.add(new Vector2f(camera.getOffsetX(), camera.getOffsetY())), selectionRadius)) {
+			    Vector2f cursorPos = World.getInstance().screenToWorldPosition(cursor);
+				ArrayList<Entity> closestEntitiesAtPosition = entityManager.getClosestEntitiesAtPosition(World.getInstance().screenToWorldPosition(cursor), selectionRadius);
+                for (Entity e : closestEntitiesAtPosition) {
 					if (e instanceof Box) {
 						currentSelectedBox = (Box) e;
+						currentSelectedBox.getPhysicsObject().setPosition(cursorPos);
+						return;
 					}
 				}
 
 			}
 			else {
+			    if(currentSelectedBox!=null) {
+			        currentSelectedBox.getPhysicsObject().setGravityScale(1.f);
+			    }
 				currentSelectedBox = null;
 			}
 			break;
@@ -182,10 +188,12 @@ public class Alien extends Player implements AlienController {
 		case 1:
 			// telekinese
 			if (currentSelectedBox != null) {
-				dragDirection.x = cursor.x + camera.getOffsetX() - currentSelectedBox.getPosition().x;
-				dragDirection.y = cursor.y + camera.getOffsetY() - currentSelectedBox.getPosition().y;
+				Vector2f screenToWorldPosition = World.getInstance().screenToWorldPosition(cursor);
+                dragDirection.x = screenToWorldPosition.x - currentSelectedBox.getPosition().x;
+				dragDirection.y = screenToWorldPosition.y - currentSelectedBox.getPosition().y;
 				currentSelectedBox.setVelocity(dragDirection);
 				if (currentSelectedBox.isPlayerOnBox()) {
+				    currentSelectedBox.getPhysicsObject().setGravityScale(0.f);
 					currentSelectedBox.setVelocity(new Vector2f(0, -10));
 					currentSelectedBox = null;
 				}
