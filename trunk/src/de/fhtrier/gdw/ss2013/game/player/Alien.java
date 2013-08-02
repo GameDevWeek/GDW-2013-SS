@@ -14,7 +14,6 @@ import de.fhtrier.gdw.ss2013.assetloader.infos.GameDataInfo;
 import de.fhtrier.gdw.ss2013.constants.PlayerConstants;
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
-import de.fhtrier.gdw.ss2013.game.camera.Camera;
 import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.game.world.bullets.PlayerBullet;
 import de.fhtrier.gdw.ss2013.game.world.objects.Box;
@@ -270,6 +269,7 @@ public final class Alien extends Entity implements AlienController {
         createPhysics(BodyType.DYNAMIC, origin.x, origin.y)
                 .density(info.alien.density).friction(info.alien.friction)
                 .category(PhysixConst.PLAYER).mask(PhysixConst.MASK_PLAYER)
+                .active(false)
                 .asPlayer(info.alien.width, info.alien.height);
         
         physicsObject.setActive(!onPlayer);
