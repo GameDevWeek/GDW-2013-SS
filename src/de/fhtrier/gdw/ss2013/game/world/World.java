@@ -21,7 +21,6 @@ import de.fhtrier.gdw.ss2013.game.camera.ThreePointCamera;
 import de.fhtrier.gdw.ss2013.game.player.Alien;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.score.ScoreCounter;
-import de.fhtrier.gdw.ss2013.game.world.enemies.boss.ThaWhale;
 import de.fhtrier.gdw.ss2013.input.InputManager;
 import de.fhtrier.gdw.ss2013.physix.PhysixBox;
 import de.fhtrier.gdw.ss2013.physix.PhysixBoxPlayer;
@@ -32,7 +31,6 @@ import de.fhtrier.gdw.ss2013.renderer.MapRenderer;
 import de.fhtrier.gdw.ss2013.settings.DebugModeStatus;
 import de.fhtrier.gdw.ss2013.sound.SoundLocator;
 import de.fhtrier.gdw.ss2013.sound.services.DefaultSoundPlayer;
-import org.newdawn.slick.Color;
 
 public class World {
 	
@@ -140,10 +138,11 @@ public class World {
             System.out.println(tpCamera.getNumTilesX()+ "/" + tpCamera.getNumTilesY());
             float ox = tpCamera.getTileX() * map.getTileWidth();
             float oy = tpCamera.getTileY() * map.getTileHeight();
-    		mapRender
-    				.renderTileLayers(g, (int)ox, (int)oy,
-                            tpCamera.getTileX(), tpCamera.getTileY(),
-                            map.getWidth(), map.getHeight());
+//    		mapRender
+//    				.renderTileLayers(g, (int)ox, (int)oy,
+//                            tpCamera.getTileX(), tpCamera.getTileY(),
+//                            map.getWidth(), map.getHeight());
+            mapRender.renderTileLayers(g, 0, 0, 0, 0, map.getWidth(), map.getHeight());
 		}
 		else {
             camera.update(container.getWidth(), container.getHeight(),

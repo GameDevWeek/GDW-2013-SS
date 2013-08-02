@@ -124,6 +124,7 @@ public class Alien extends Entity implements AlienController {
 		selectedAbility = (selectedAbility % 3) + 1;
 
 		Log.debug("rotate ability");
+		dropCurrentSelected(); // if current has selection
 	}
 
 	@Override
@@ -135,7 +136,7 @@ public class Alien extends Entity implements AlienController {
 		 */
 
 		selectedAbility = ((selectedAbility + 1) % 3) + 1;
-
+		dropCurrentSelected();
 	}
 
 	public int getselectedAbility() {
@@ -147,24 +148,21 @@ public class Alien extends Entity implements AlienController {
 		switch (selectedAbility) {
 		case 1:
 			// telekinese
-		    System.out.println("lsdidioga");
+//		    System.out.println("lsdidioga");
 			if (currentSelectedBox == null) {
 			    Vector2f cursorPos = World.getInstance().screenToWorldPosition(cursor);
 				ArrayList<Entity> closestEntitiesAtPosition = entityManager.getClosestEntitiesAtPosition(World.getInstance().screenToWorldPosition(cursor), selectionRadius);
                 for (Entity e : closestEntitiesAtPosition) {
 					if (e instanceof Box) {
 						currentSelectedBox = (Box) e;
-						currentSelectedBox.getPhysicsObject().setPosition(cursorPos);
+						currentSelectedBox.getPhysicsObject().setLinearVelocity(currentSelectedBox.getPosition().sub(cursorPos));
 						return;
 					}
 				}
 
 			}
 			else {
-			    if(currentSelectedBox!=null) {
-			        currentSelectedBox.getPhysicsObject().setGravityScale(1.f);
-			    }
-				currentSelectedBox = null;
+			    dropCurrentSelected();
 			}
 			break;
 		case 2:
@@ -205,14 +203,20 @@ public class Alien extends Entity implements AlienController {
 				dragDirection.y = screenToWorldPosition.y - currentSelectedBox.getPosition().y;
 				currentSelectedBox.setVelocity(dragDirection);
 				if (currentSelectedBox.isPlayerOnBox()) {
-				    currentSelectedBox.getPhysicsObject().setGravityScale(1.f);
-					currentSelectedBox.setVelocity(new Vector2f(0, -10));
-					
-					currentSelectedBox = null;
+				    dropCurrentSelected();
 				}
 			}
 		}
 	}
+
+
+    private void dropCurrentSelected() {
+        if(currentSelectedBox != null) {
+            currentSelectedBox.getPhysicsObject().setGravityScale(1.f);
+            
+            currentSelectedBox = null;
+        }
+    }
 
 	@Override
 	public void render(GameContainer container, Graphics g) throws SlickException {
