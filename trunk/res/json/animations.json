@@ -153,8 +153,15 @@
   "loop" : true
 },
 {
-  "name" : "ground_ememy_middle",
-  "pfad" : "enemies/ground/middle",
+  "name" : "ground_ememy_middle_duck",
+  "pfad" : "enemies/ground/middle_duck",
+  "anzBilder" : 5,
+  "animSpeed" : 150,
+  "loop" : true
+},
+{
+  "name" : "ground_ememy_middle_tall",
+  "pfad" : "enemies/ground/middle_tall",
   "anzBilder" : 11,
   "animSpeed" : 100,
   "loop" : true
