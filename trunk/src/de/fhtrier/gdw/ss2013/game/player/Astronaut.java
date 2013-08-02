@@ -335,7 +335,7 @@ public final class Astronaut extends EntityCollidable implements AstronautContro
 
         Entity other = getOtherEntity(contact);
 		if (other instanceof AbstractEnemy) {
-			AbstractEnemy damageDealer = (AbstractEnemy)objectA.getOwner();
+			AbstractEnemy damageDealer = (AbstractEnemy)other;
             
 			Vector2f damageTakerPos = getPosition();
 			Vector2f damageTakerDim = getPhysicsObject().getDimension();
