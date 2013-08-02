@@ -79,11 +79,7 @@ public class OxygenBubble extends EntityCollidable implements Interactable {
                 ((Astronaut) e).setOxygen(((Astronaut) e).getMaxOxygen());
 
             }
-        }// Collision von bubbles
-        if (e instanceof OxygenBubble) {
-            setVelocity(initalDirection);
         }
-
     }
 
     @Override
@@ -104,27 +100,27 @@ public class OxygenBubble extends EntityCollidable implements Interactable {
     
     @Override
     public void update(GameContainer container, int delta) {
-        // FIXME: procedural float animation
-//        
-//        if (!isUsed) {
-//            
-//            timer += delta*deltamod;
-//            if(timer >= 2000)
-//            {
-//                deltamod = -1;
-//            }
-//            if(timer <= 1001)
-//            {
-//                deltamod = 1;
-//            }
-//            
-//            if (timer < 1000) {
-//                setVelocity(initalDirection);
-//            } 
-//            else {
-//                setVelocity(new Vector2f(speed*deltamod,-speed*deltamod));
-//            }
-//        }
+         //FIXME: procedural float animation
+        
+        if (!isUsed) {
+            
+            timer += delta*deltamod;
+            if(timer >= 2000)
+            {
+                deltamod = -1;
+            }
+            if(timer <= 1001)
+            {
+                deltamod = 1;
+            }
+            
+            if (timer < 1000) {
+                setVelocity(initalDirection);
+            } 
+            else {
+                setVelocity(new Vector2f(speed*deltamod,-speed*deltamod));
+            }
+        }
     }
 
     public Vector2f getStartPosition() {
