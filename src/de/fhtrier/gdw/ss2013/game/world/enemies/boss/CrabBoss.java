@@ -11,6 +11,7 @@ import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.Entity;
+import de.fhtrier.gdw.ss2013.game.camera.PointOfInterest;
 import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.game.world.enemies.ground.SmallGroundEnemy;
 import de.fhtrier.gdw.ss2013.physix.PhysixBox;
@@ -32,6 +33,7 @@ public class CrabBoss extends AbstractBoss {
         
         setInitialSize( animation.getWidth() * scale - 2 * physicsObject_x_offset,
         animation.getHeight() * scale);
+        World.getInstance().getTPCamera().addPointOfInterest(new PointOfInterest(origin.x, origin.y, 1.5f, 5000.0f));
 	}
 
     @Override
@@ -135,9 +137,9 @@ public class CrabBoss extends AbstractBoss {
 		void update(int delta) {
 			enemy.setVelocityY(-300.0f);
 			if (facingRight) {
-				enemy.setVelocityX(300.0f + (float)Math.random()*150.0f);
+				enemy.setVelocityX(200.0f + (float)Math.random()*450.0f);
 			} else {
-				enemy.setVelocityX(-300.0f - (float)Math.random()*150.0f);
+				enemy.setVelocityX(-200.0f - (float)Math.random()*450.0f);
 			}
 			if (remainingFires == 0) {
 				setPhase(new TargetingPhase(new StompingPhase(), 1000));

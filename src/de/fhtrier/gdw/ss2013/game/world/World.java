@@ -84,7 +84,7 @@ public class World {
         if (DebugModeStatus.isTPCamera()) {
             CameraInfo info = new CameraInfo(2, map);
             tpCamera = new ThreePointCamera(info);
-            tpCamera.setZoom(-0.00f);
+            tpCamera.setZoom(-100.00f);
 
             // tpCamera.addPointOfInterest(new PointOfInterest(1000, 500, 1,
             // 1000));
@@ -129,8 +129,6 @@ public class World {
 
             tpCamera.debugdraw(g, astronaut.getPosition().x + astronaut.getPhysicsObject().getDimension().x/2, astronaut.getPosition().y+astronaut.getPhysicsObject().getDimension().y/2);
 
-            System.out.println(tpCamera.getNumTilesX() + "/"
-                    + tpCamera.getNumTilesY());
             float ox = tpCamera.getTileX() * map.getTileWidth();
             float oy = tpCamera.getTileY() * map.getTileHeight();
             // mapRender
@@ -237,6 +235,10 @@ public class World {
 
     public Camera getCamera() {
         return camera;
+    }
+    
+    public ThreePointCamera getTPCamera() {
+    	return tpCamera;
     }
 
     public EntityManager getEntityManager() {
