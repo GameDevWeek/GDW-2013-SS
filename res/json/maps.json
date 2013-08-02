@@ -11,6 +11,10 @@
   "pfad" : "res/maps/testmap_2.tmx"
 },
 {
+  "name" : "testmap2",
+  "pfad" : "res/maps/testmap_3.tmx"
+},
+{
   "name" : "run_or_die",
   "pfad" : "res/maps/run_or_die.tmx"
 },
@@ -21,6 +25,10 @@
 {
   "name" : "a1",
   "pfad" : "res/maps/map-a1.tmx"
+},
+{
+  "name" : "a2",
+  "pfad" : "res/maps/map-a2.tmx"
 },
 {
   "name" : "bossmap",
