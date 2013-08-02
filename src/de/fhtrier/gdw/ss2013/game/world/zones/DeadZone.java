@@ -8,20 +8,13 @@
 package de.fhtrier.gdw.ss2013.game.world.zones;
 
 import de.fhtrier.gdw.ss2013.game.Entity;
-import de.fhtrier.gdw.ss2013.game.EntityCollidable;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.contacts.Contact;
 
-public class DeadZone extends EntityCollidable {
+public class DeadZone extends AbstractZone {
 
     public DeadZone() {
-    }
-
-    @Override
-    public void initPhysics() {
-        createPhysics(BodyType.STATIC, origin.x, origin.y)
-                .sensor(true).asBox(initialSize.x, initialSize.y);
     }
 
     @Override
