@@ -113,21 +113,21 @@
 {
   "name" : "ground_ememy_small",
   "pfad" : "enemies/ground/small",
-  "anzBilder" : 1,
+  "anzBilder" : 11,
   "animSpeed" : 100,
   "loop" : true
 },
 {
   "name" : "ground_ememy_middle",
   "pfad" : "enemies/ground/middle",
-  "anzBilder" : 2,
+  "anzBilder" : 11,
   "animSpeed" : 100,
   "loop" : true
 },
 {
   "name" : "ground_ememy_big",
   "pfad" : "enemies/ground/big",
-  "anzBilder" : 1,
+  "anzBilder" : 11,
   "animSpeed" : 100,
   "loop" : true
 },
