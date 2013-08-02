@@ -12,6 +12,7 @@ import de.fhtrier.gdw.ss2013.MainGame;
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.menu.pages.MenuPageGamePause;
 import de.fhtrier.gdw.ss2013.menu.pages.MenuPageRoot;
+import de.fhtrier.gdw.ss2013.settings.DebugModeStatus;
 
 
 
@@ -79,7 +80,7 @@ public class MenuManager {
 			if (this.type == Type.INGAME) {
 			    g.setColor(screenDarken);
 			} else {
-			    g.setColor(this.mainMenuBgColor);
+			    g.setColor(Color.black);
 			}
 			
 			g.fillRect(0, 0, container.getWidth(), container.getHeight());
@@ -92,10 +93,11 @@ public class MenuManager {
 			g.translate(xOffset, yOffset);		
 			g.setWorldClip(0, 0, MenuManager.MENU_WIDTH, MenuManager.MENU_HEIGHT);
 			
-			g.setColor(Color.red);
-			g.drawRect(0, 0, MenuManager.MENU_WIDTH-1, MenuManager.MENU_HEIGHT-1);
-			//g.setColor(Color.white);
-            //g.fillRect(2, 2, MenuManager.MENU_WIDTH-2, MenuManager.MENU_HEIGHT-2);
+			if (DebugModeStatus.isTest()) {
+    			g.setColor(Color.red);
+    			g.drawRect(0, 0, MenuManager.MENU_WIDTH-1, MenuManager.MENU_HEIGHT-1);
+			}
+			
             
 			g.setColor(Color.white);
 			currentPage.render(g);

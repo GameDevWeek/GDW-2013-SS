@@ -21,7 +21,6 @@ public class MenuPageLevelSelect extends MenuPage {
     public MenuPageLevelSelect(GameContainer container, StateBasedGame game,
             MenuManager menuManager, MenuPage parent, String bgImage) throws SlickException {
         super(container, game, menuManager, parent, bgImage, "levelselect");
-        // TODO Auto-generated constructor stub
         
         Font font = AssetLoader.getInstance().getFont("verdana_46");
         
@@ -33,10 +32,10 @@ public class MenuPageLevelSelect extends MenuPage {
         Label lvlAuswahl = addLeftAlignedLabel("Levelauswahl:", 10, yCenter * 0.25f , font);
         
         
-        String[] levels = {"run_or_die", "not_yet_implemented"};
+        String[] levels = {"run_or_die", "not_yet_implemented", "you_dont_say"};
         
         float space = font.getWidth(lvlAuswahl.text);
-        addCenteredToggleButton(levels, 10 + space + 10, yCenter * 0.25f, font, Align.CENTER);
+        addLeftAlignedToggleButton(levels, 10 + space + 50, yCenter * 0.25f, font, Align.LEFT);
         
         addCenteredButton("GO!", xCenter, yCenter, font, 
                 new IActionListener() { 

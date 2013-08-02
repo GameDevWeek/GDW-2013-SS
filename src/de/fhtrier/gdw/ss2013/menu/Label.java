@@ -119,7 +119,7 @@ public class Label extends Widget {
 			}
 		}
 		if(image != null) {
-			image.draw(0, 0, rect.getWidth(), rect.getHeight());
+		image.draw(0, 0, rect.getWidth(), rect.getHeight());
 		}
 		
 		g.popTransform();

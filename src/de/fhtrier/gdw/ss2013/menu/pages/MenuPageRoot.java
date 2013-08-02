@@ -36,7 +36,7 @@ public class MenuPageRoot extends MenuPage {
 		throws SlickException {
 		super(container, _game, manager, null, null, "root");
 		
-		Font font = AssetLoader.getInstance().getFont("jabjai_light");
+		Font font = AssetLoader.getInstance().getFont("jabjai_heavy");
 				
 		float hText = font.getLineHeight() * 1.5f;
         
@@ -56,12 +56,9 @@ public class MenuPageRoot extends MenuPage {
 		    addCenteredButton("Spiel starten", xCenter, yCenter + hText * (buttonCount - i--), font, 
 		            new MenuPageAction(manager, levelSelect));
 		    
-		    addCenteredButton("Steuerung", xCenter, yCenter + hText * (buttonCount - i--), font, 
-                    new IActionListener() { 
-                        public void onAction() {
-                        }
-                    }
-            );
+		    MenuPageOptions options = new MenuPageOptions(container, _game, manager, this, null);
+		    addCenteredButton("Optionen", xCenter, yCenter + hText * (buttonCount - i--), font, 
+		            new MenuPageAction(manager, options));
 		    
 		    //MenuPageHighscore = new MenuPageHighscore(container, _game, manager, this, null)
 		    addCenteredButton("Highscore", xCenter, yCenter + hText * (buttonCount - i--), font, 
