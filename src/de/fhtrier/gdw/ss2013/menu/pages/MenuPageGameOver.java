@@ -35,7 +35,7 @@ public class MenuPageGameOver extends MenuPage {
 		throws SlickException {
 		super(container, _game, manager, null, null, "root");
 		
-		font = AssetLoader.getInstance().getFont("verdana_46");
+		font = AssetLoader.getInstance().getFont("jabjai_heavy");
         
         go = addCenteredTextField("Game Over", MenuManager.MENU_WIDTH/2, MenuManager.MENU_HEIGHT/2, font)
                 .color(Color.red);

@@ -25,14 +25,14 @@ public class MenuPageOptions extends MenuPage {
             MenuManager menuManager, MenuPage parent, String bgImage) throws SlickException {
         super(container, game, menuManager, parent, bgImage, "options");
         
-        Font font = AssetLoader.getInstance().getFont("verdana_46");
+        Font font = AssetLoader.getInstance().getFont("jabjai_heavy");
         
         float xCenter = MenuManager.MENU_WIDTH / 2.0f;
         float yCenter = MenuManager.MENU_HEIGHT / 2.0f;
         
         float hText = font.getLineHeight() * 1.5f;
                 
-        Label volumeLabel = addLeftAlignedLabel("Lautstärke", 25, yCenter * 0.25f , font);
+        Label volumeLabel = addLeftAlignedLabel("Lautstaerke", 25, yCenter * 0.25f , font);
         
         float volumeLabelLength = font.getWidth(volumeLabel.text);
         Slider volumeSlider = Slider.create(0.5f, true, volumeLabelLength + 50, yCenter * 0.25f + 7, 200, font.getLineHeight());
@@ -90,7 +90,7 @@ public class MenuPageOptions extends MenuPage {
                 }
         });
         
-        addCenteredButton("zurück", xCenter, MenuManager.MENU_HEIGHT - 1.5f * font.getLineHeight(), font, 
+        addCenteredButton("zurueck", xCenter, MenuManager.MENU_HEIGHT - 1.5f * font.getLineHeight(), font, 
                 new IActionListener() { 
                     @Override
                     public void onAction() {

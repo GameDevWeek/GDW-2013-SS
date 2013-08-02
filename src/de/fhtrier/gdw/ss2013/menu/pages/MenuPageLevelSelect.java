@@ -26,7 +26,7 @@ public class MenuPageLevelSelect extends MenuPage {
             MenuManager menuManager, MenuPage parent, String bgImage) throws SlickException {
         super(container, game, menuManager, parent, bgImage, "levelselect");
         
-        Font font = AssetLoader.getInstance().getFont("verdana_46");
+        Font font = AssetLoader.getInstance().getFont("jabjai_heavy");
         
         float spaceX = 300;
         float xCenter = MenuManager.MENU_WIDTH / 2.0f;
@@ -74,7 +74,7 @@ public class MenuPageLevelSelect extends MenuPage {
             }
         });
         
-        addCenteredButton("zurück", xCenter, MenuManager.MENU_HEIGHT - 1.5f * font.getLineHeight(), font, 
+        addCenteredButton("zurueck", xCenter, MenuManager.MENU_HEIGHT - 1.5f * font.getLineHeight(), font, 
                 new IActionListener() { 
                     public void onAction() {
                         close();
