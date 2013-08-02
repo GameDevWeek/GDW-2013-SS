@@ -1,11 +1,9 @@
 package de.fhtrier.gdw.ss2013.game;
 
-import org.jbox2d.dynamics.Fixture;
-import org.jbox2d.dynamics.contacts.Contact;
 import org.newdawn.slick.Image;
 
 import de.fhtrier.gdw.ss2013.physix.ICollisionListener;
-import de.fhtrier.gdw.ss2013.physix.PhysixObject;
+import de.fhtrier.gdw.ss2013.physix.PhysixShape;
 
 public abstract class EntityCollidable extends Entity implements ICollisionListener {
 
@@ -26,7 +24,7 @@ public abstract class EntityCollidable extends Entity implements ICollisionListe
     }
 
     @Override
-    public void setPhysicsObject(PhysixObject physicsObject) {
+    public void setPhysicsObject(PhysixShape physicsObject) {
         super.setPhysicsObject(physicsObject);
         this.physicsObject.addCollisionListener(this);
     }

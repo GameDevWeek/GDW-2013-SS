@@ -10,6 +10,7 @@ import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.util.Log;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
+import de.fhtrier.gdw.ss2013.assetloader.infos.GameDataInfo;
 import de.fhtrier.gdw.ss2013.constants.PlayerConstants;
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
@@ -18,6 +19,7 @@ import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.game.world.bullets.PlayerBullet;
 import de.fhtrier.gdw.ss2013.game.world.objects.Box;
 import de.fhtrier.gdw.ss2013.input.AlienController;
+import org.jbox2d.dynamics.BodyType;
 
 public class Alien extends Entity implements AlienController {
 
@@ -107,7 +109,7 @@ public class Alien extends Entity implements AlienController {
 
 			// Create a meteorite entity
 			PlayerBullet entity = entityManager.createEntity(PlayerBullet.class);
-			entity.setSpawnXY(playerPos.x, playerPos.y);
+			entity.setOrigin(playerPos.x, playerPos.y);
 			entity.setShootDirection(shootDirection);
 			
 
@@ -264,7 +266,19 @@ public class Alien extends Entity implements AlienController {
             Astronaut astronaut = World.getInstance().getAstronaut();
             getPhysicsObject().setPosition(astronaut.getPosition());
         }
-        getPhysicsObject().setActive(!onPlayer);
+        
+        if(physicsObject != null) {
+            physicsObject.setActive(!onPlayer);
+        }
     }
 
+    @Override
+    public void initPhysics() {
+        GameDataInfo info = AssetLoader.getInstance().getGameData();
+        createPhysics(BodyType.DYNAMIC, origin.x, origin.y)
+                .density(info.alien.density).friction(info.alien.friction)
+                .asPlayer(info.alien.width, info.alien.height);
+        
+        physicsObject.setActive(!onPlayer);
+    }
 }

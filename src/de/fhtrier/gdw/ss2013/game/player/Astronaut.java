@@ -24,7 +24,8 @@ import de.fhtrier.gdw.ss2013.game.world.objects.Switch;
 import de.fhtrier.gdw.ss2013.input.AlienController;
 import de.fhtrier.gdw.ss2013.input.AstronautController;
 import de.fhtrier.gdw.ss2013.physix.InteractionManager;
-import de.fhtrier.gdw.ss2013.physix.PhysixObject;
+import de.fhtrier.gdw.ss2013.physix.PhysixShape;
+import org.jbox2d.dynamics.BodyType;
 
 public class Astronaut extends EntityCollidable implements AstronautController, AlienController {
 
@@ -285,7 +286,7 @@ public class Astronaut extends EntityCollidable implements AstronautController, 
 	// and the Astronaut needs to know its InteractionManager, so it is done
 	// here
 	@Override
-	public void setPhysicsObject (PhysixObject physicsObject) {
+	public void setPhysicsObject (PhysixShape physicsObject) {
 		interactionManager = new InteractionManager();
 		physicsObject.addCollisionListener(interactionManager);
 		super.setPhysicsObject(physicsObject);
@@ -311,8 +312,8 @@ public class Astronaut extends EntityCollidable implements AstronautController, 
 	public void beginContact (Contact contact) {
 		Fixture a = contact.getFixtureA();
 		Fixture b = contact.getFixtureB();
-		PhysixObject objectA = (PhysixObject)a.getBody().getUserData();
-		PhysixObject objectB = (PhysixObject)b.getBody().getUserData();
+		PhysixShape objectA = (PhysixShape)a.getBody().getUserData();
+		PhysixShape objectB = (PhysixShape)b.getBody().getUserData();
 
 		AbstractEnemy damageDealer = null;
 		Astronaut damageTaker = null;
@@ -364,8 +365,8 @@ public class Astronaut extends EntityCollidable implements AstronautController, 
 	public void endContact (Contact contact) {
 		Fixture a = contact.getFixtureA();
 		Fixture b = contact.getFixtureB();
-		PhysixObject objectA = (PhysixObject)a.getBody().getUserData();
-		PhysixObject objectB = (PhysixObject)b.getBody().getUserData();
+		PhysixShape objectA = (PhysixShape)a.getBody().getUserData();
+		PhysixShape objectB = (PhysixShape)b.getBody().getUserData();
 		if (physicsObject == objectA && a.m_shape.getType() == ShapeType.CIRCLE && !b.m_isSensor) {
 			groundContacts--;
 		} else if (physicsObject == objectB && b.m_shape.getType() == ShapeType.CIRCLE && !a.m_isSensor) {
@@ -466,4 +467,12 @@ public class Astronaut extends EntityCollidable implements AstronautController, 
 	}
 
 
+
+    @Override
+    public void initPhysics() {
+        GameDataInfo info = AssetLoader.getInstance().getGameData();
+        createPhysics(BodyType.DYNAMIC, origin.x, origin.y)
+                .density(info.combined.density).friction(info.combined.friction)
+                .asPlayer(info.combined.width, info.combined.height);
+    }
 }

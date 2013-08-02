@@ -6,14 +6,10 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
-import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
-import de.fhtrier.gdw.ss2013.assetloader.infos.GameDataInfo.WorldInfo;
 import de.fhtrier.gdw.ss2013.constants.EnemyConstants;
 import de.fhtrier.gdw.ss2013.game.EntityCollidable;
 import de.fhtrier.gdw.ss2013.game.filter.EntityFilter;
 import de.fhtrier.gdw.ss2013.game.world.World;
-import de.fhtrier.gdw.ss2013.physix.PhysixBox;
-import de.fhtrier.gdw.ss2013.physix.PhysixObject;
 
 /**
  * Abstract Enemy Class for Enemys and Meteroids
@@ -36,25 +32,22 @@ public abstract class AbstractEnemy extends EntityCollidable {
 	/**
 	 * {@inheritDoc}
 	 */
+    @Override
 	protected void initialize() {
 	    super.initialize();
 	    current_ani = rightAnimation;
 	    damage = 0;
 	    setHealth(EnemyConstants.ENEMY_HEALTH);
-	    
-	    // hier existiert ein PhysixObject, das aber eine falsche Breite und Höhe hat!	
-		float x = physicsObject.getPosition().x;
-		float y = physicsObject.getPosition().y;
+	}
+
+    @Override
+    public void initPhysics() {
 		float width = current_ani.getWidth();
 		float height = current_ani.getHeight();
-		WorldInfo worldInfo = AssetLoader.getInstance().getGameData().world;
-	    
-		PhysixObject box = new PhysixBox(World.getInstance().getPhysicsManager(), x, y, width, height,
-				BodyType.DYNAMIC, worldInfo.density, worldInfo.friction,
-				false);
-		physicsObject.removeFromWorld(); // dirty way to remove old physix object
-		setPhysicsObject(box);
-	}
+        createPhysics(BodyType.DYNAMIC, origin.x, origin.y)
+                .density(1).friction(1)
+                .asBox(width, height);
+    }
 
 	public float getDamage() {
 		return damage;

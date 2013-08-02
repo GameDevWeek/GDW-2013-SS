@@ -14,7 +14,7 @@ import de.fhtrier.gdw.ss2013.constants.EnemyConstants;
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.world.World;
-import de.fhtrier.gdw.ss2013.physix.PhysixObject;
+import de.fhtrier.gdw.ss2013.physix.PhysixShape;
 
 /**
  * Ground Enemy Class
@@ -93,8 +93,8 @@ public abstract class GroundEnemy extends AbstractEnemy {
 		Body objectA = a.getBody();
 		Body objectB = b.getBody();
 
-		PhysixObject ap = (PhysixObject) objectA.getUserData();
-		PhysixObject bp = (PhysixObject) objectB.getUserData();
+		PhysixShape ap = (PhysixShape) objectA.getUserData();
+		PhysixShape bp = (PhysixShape) objectB.getUserData();
 
 		if (!(ap == null ^ bp == null)) // filter level<>level,
 										// non-level<>non-level collision

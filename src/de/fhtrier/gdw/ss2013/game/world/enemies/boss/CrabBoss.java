@@ -27,17 +27,19 @@ public class CrabBoss extends AbstractBoss {
 	@Override
 	protected void initialize() {
 		animation = AssetLoader.getInstance().getAnimation("crab_boss_idle");
-		PhysixManager physicsManager = World.getInstance().getPhysicsManager();
-		PhysixBox physicsBox = new PhysixBox(physicsManager,
-				physicsObject.getPosition().x, physicsObject.getPosition().y,
-				animation.getWidth() * scale - 2 * physicsObject_x_offset,
-				animation.getHeight() * scale, BodyType.DYNAMIC, 1.0f, 1.0f,
-				false);
-		physicsObject.removeFromWorld();
-		setPhysicsObject(physicsBox);
 		phase = new TargetingPhase(new StepForwardPhase(), 500);
 		animation.setAutoUpdate(false);
+        
+        setInitialSize( animation.getWidth() * scale - 2 * physicsObject_x_offset,
+        animation.getHeight() * scale);
 	}
+
+    @Override
+    public void initPhysics() {
+        createPhysics(BodyType.DYNAMIC, origin.x, origin.y)
+                .density(1).friction(1)
+                .asBox(initialSize.x, initialSize.y);
+    }
 
 	@Override
 	public void render(GameContainer container, Graphics g)
@@ -126,11 +128,7 @@ public class CrabBoss extends AbstractBoss {
 		void enter() {
 			enemy = World.getInstance().getEntityManager()
 					.createEntity(SmallGroundEnemy.class);
-			PhysixManager physicsManager = World.getInstance()
-					.getPhysicsManager();
-			enemy.setPhysicsObject(new PhysixBox(physicsManager,
-					getPosition().x - 100.0f, getPosition().y - 350.0f, 0.0f,
-					0.0f, BodyType.DYNAMIC, 0.0f, 0.0f, false));
+            enemy.setOrigin(getPosition().x - 100.0f, getPosition().y - 350.0f);
 		}
 
 		@Override

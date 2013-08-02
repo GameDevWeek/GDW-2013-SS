@@ -4,7 +4,6 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import org.jbox2d.dynamics.BodyType;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Vector2f;
 
@@ -26,7 +25,6 @@ import de.fhtrier.gdw.ss2013.game.world.objects.Teleporter;
 import de.fhtrier.gdw.ss2013.gui.TooltipManager;
 import de.fhtrier.gdw.ss2013.physix.PhysixBox;
 import de.fhtrier.gdw.ss2013.physix.PhysixManager;
-import de.fhtrier.gdw.ss2013.physix.PhysixPolyline;
 import de.fhtrier.gdw.ss2013.renderer.DynamicParticleSystem;
 
 /**
@@ -136,8 +134,7 @@ public class LevelLoader {
             SafeProperties properties, String name) {
         switch (type) {
         case "solid":
-            new PhysixPolyline(physicsManager, points, BodyType.STATIC,
-                    worldInfo.density, worldInfo.friction, false);
+            physicsManager.createSolid(0, 0).asPolyline(points);
             break;
         case "FollowPath":
             followPaths.put(name, new FollowPath(points, properties));
@@ -159,14 +156,11 @@ public class LevelLoader {
             SafeProperties properties) {
         switch (type) {
         case "solid":
-
-            // / TODO: create a solid (static) object
+            physicsManager.createSolid(0, 0).asPolygon(points);
             break;
         case "deadzone":
         case "winningzone":
             entityManager.createEntity(type, properties);
-
-            // TODO physix
             break;
         }
     }
@@ -189,19 +183,13 @@ public class LevelLoader {
      */
     private static void createRect(String type, int x, int y, int width,
             int height, SafeProperties properties) {
-        Entity entity;
         switch (type) {
         case "solid":
-            new PhysixBox(physicsManager, x, y, width, height, BodyType.STATIC,
-                    worldInfo.density, worldInfo.friction, false);
+            physicsManager.createSolid(x, y).asBox(width, height);
             break;
         case "deadzone":
         case "winningzone":
-            entity = entityManager.createEntity(type, properties);
-            PhysixBox box = new PhysixBox(physicsManager, x, y, width, height,
-                    BodyType.STATIC, worldInfo.density, worldInfo.friction,
-                    true);
-            entity.setPhysicsObject(box);
+            entityManager.createEntity(type, properties);
             break;
         default:
             System.err.println("Unknown Rect-Object in Map, type: " + type);
@@ -228,29 +216,8 @@ public class LevelLoader {
     private static void createTile(String type, int x, int y, int width,
             int height, SafeProperties properties, String name) {
 
-		PhysixBox box;
-		Entity entity;
+		Entity entity = null;
 		switch (type) {
-		case "button":
-			entity = entityManager.createEntity(type, properties, name);
-			PhysixBox buttonBox = new PhysixBox(physicsManager, x, y, width,
-					height, BodyType.STATIC, worldInfo.density,
-					worldInfo.friction, true);
-			entity.setPhysicsObject(buttonBox);
-			break;
-		case "switch":
-			entity = entityManager.createEntity(type, properties, name);
-			PhysixBox switchBox = new PhysixBox(physicsManager, x, y, width,
-					height, BodyType.STATIC, worldInfo.density,
-					worldInfo.friction, true);
-			entity.setPhysicsObject(switchBox);
-			break;
-		case "door":
-			entity = entityManager.createEntity(type, properties, name);
-			Door door = (Door) entity;
-			door.setSpawnX(x);
-			door.setSpawnY(y);
-			break;
 		case "start":
 			startpos = new Vector2f(x, y);
 			break;
@@ -263,55 +230,33 @@ public class LevelLoader {
 				System.err.println("You haven't choosen the boss name! Take default: "+name);
 			}
 			entity = entityManager.createEntity(n, properties, name);
-			box = new PhysixBox(physicsManager, x, y, width, height,
-					BodyType.DYNAMIC, worldInfo.density, worldInfo.friction,
-					false);
-			entity.setPhysicsObject(box);
 			break;
 		case "meteroid":
 			entity = entityManager.createEntity("meteoritespawner", properties,
 					name);
-			box = new PhysixBox(physicsManager, x, y, 0, 0, BodyType.STATIC, 1,
-					0.5f, true);
-			entity.setPhysicsObject(box);
 			break;
 		case "smallPlatform":
 			entity = entityManager.createEntity("smallmovingplatform", properties,
 					name);
-			PhysixBox platformBoxSmall = new PhysixBox(physicsManager, x
-					- width / 2, y - height / 2, width, height,
-					BodyType.KINEMATIC, worldInfo.density, worldInfo.friction,
-					false);
-			entity.setPhysicsObject(platformBoxSmall);
+			x += width / 2;
+            y += height / 2;
 			break;
 		case "bigPlatform":
 			entity = entityManager.createEntity("bigmovingplatform", properties,
 					name);
-			PhysixBox platformBoxBig = new PhysixBox(physicsManager, x - width
-					/ 2, y - height / 2, width, height, BodyType.KINEMATIC,
-					worldInfo.density, worldInfo.friction, false);
-			entity.setPhysicsObject(platformBoxBig);
+			x += width / 2;
+            y += height / 2;
 			break;
 		case "teleporter":
 			entity = entityManager.createEntity(type, properties, name);
-			box = new PhysixBox(physicsManager, x, y, 0, 0, BodyType.STATIC, 1,
-					0.5f, true);
-			entity.setPhysicsObject(box);
 			break;
 		case "oxygenflower":
 			entity = entityManager.createEntity(type, properties, name);
-			box = new PhysixBox(physicsManager, x, y, 0, 0, BodyType.STATIC, 1,
-					0.5f, true);
-			entity.setPhysicsObject(box);
 			break;
 		case "smallflyingenemy":
 		case "middleflyingenemy":
 		case "bigflyingenemy":
 			entity = entityManager.createEntity(type, properties, name);
-			box = new PhysixBox(physicsManager, x, y, width, height,
-					BodyType.KINEMATIC, worldInfo.density, worldInfo.friction,
-					false);
-			entity.setPhysicsObject(box);
 			break;
 		case "particle":
 			String pname = properties.getProperty("name");
@@ -324,12 +269,13 @@ public class LevelLoader {
 			break;
 		default:
 			entity = entityManager.createEntity(type, properties, name);
-			box = new PhysixBox(physicsManager, x, y, width, height,
-					BodyType.DYNAMIC, worldInfo.density, worldInfo.friction,
-					false);
-			entity.setPhysicsObject(box);
 			break;
 		}
+        
+        if(entity != null) {
+            entity.setOrigin(x, y);
+            entity.setInitialSize(width, height);
+        }
 	}
 
     /**

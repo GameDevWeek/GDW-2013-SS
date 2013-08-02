@@ -27,8 +27,6 @@ import de.fhtrier.gdw.ss2013.physix.PhysixManager;
 public class Meteroid extends EntityCollidable {
 
 	final static float DEBUG_ENTITY_HALFEXTEND = 5;
-	private float spawn_x;
-	private float spawn_y;
 	private Animation ani;
 
 	public Meteroid() {
@@ -43,13 +41,19 @@ public class Meteroid extends EntityCollidable {
 		PhysixManager physicsManager = World.getInstance().getPhysicsManager();
 		
 		// FIXME: Dirty hack to get width and height of an Meteorite
-		int width = AssetLoader.getInstance().getAnimation("meteorite").getWidth();
-		int height = AssetLoader.getInstance().getAnimation("meteorite").getHeight();
-
-		PhysixBox box = new PhysixBox(physicsManager, spawn_x, spawn_y, width, height, BodyType.DYNAMIC, 1, 0.5f, false);
-		this.setPhysicsObject(box);
-		box.setGravityScale(0.5f);
+        Animation anim = AssetLoader.getInstance().getAnimation("meteorite");
+		int width = anim.getWidth();
+		int height = anim.getHeight();
+        setInitialSize(width, height);
 	}
+
+    @Override
+    public void initPhysics() {
+        createPhysics(BodyType.DYNAMIC, origin.x, origin.y)
+                .density(PhysixManager.DENSITY).friction(PhysixManager.FRICTION)
+                .asBox(initialSize.x, initialSize.y);
+		physicsObject.setGravityScale(0.5f);
+    }
 
 	@Override
 	public void render(GameContainer container, Graphics g) throws SlickException {
@@ -92,10 +96,5 @@ public class Meteroid extends EntityCollidable {
 
 	@Override
 	public void endContact(Contact object) {
-	}
-
-	public void setSpawnPosition(float x, float y) {
-		this.spawn_x = x;
-		this.spawn_y = y;
 	}
 }

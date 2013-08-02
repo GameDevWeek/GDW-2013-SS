@@ -20,6 +20,7 @@ import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.filter.Interactable;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.world.World;
+import org.jbox2d.dynamics.BodyType;
 
 public class OxygenFlower extends EntityCollidable implements Interactable {
 
@@ -47,9 +48,8 @@ public class OxygenFlower extends EntityCollidable implements Interactable {
                     float y = this.getPosition().getY() - (float) Math.random() * 100-50;
                     OxygenBubble entity = m.createEntity(OxygenBubble.class);
                     // Bubble-Objekt
-                    entity.setFlower(this);
-                    entity.setPosition(new Vector2f(x,y));
-                    
+                    ((OxygenBubble) entity).setFlower(this);
+                    ((OxygenBubble) entity).setOrigin(x,y);
 
                 }
             // bubbleCount
@@ -66,6 +66,13 @@ public class OxygenFlower extends EntityCollidable implements Interactable {
         return maxBubble;
     }
 
+    @Override
+    public void initPhysics() {
+        createPhysics(BodyType.STATIC, origin.x, origin.y)
+                .sensor(true).asBox(initialSize.x, initialSize.y);
+    }
+
+    @Override
     public void update(GameContainer container, int delta)
             throws SlickException {
 

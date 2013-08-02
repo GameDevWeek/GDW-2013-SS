@@ -92,6 +92,7 @@ public class EntityManager {
                         + e.getName() + " to prevent Name Duplication");
             }
             e.initialize();
+            e.initPhysics();
             entityMap.put(e.getName(), e);
             entityList.add(e);
         }

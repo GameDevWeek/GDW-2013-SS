@@ -18,7 +18,9 @@ import de.fhtrier.gdw.ss2013.game.filter.EntityFilter;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.game.world.bullets.EnemyBullet;
-import de.fhtrier.gdw.ss2013.physix.PhysixObject;
+import de.fhtrier.gdw.ss2013.physix.PhysixManager;
+import de.fhtrier.gdw.ss2013.physix.PhysixShape;
+import org.jbox2d.dynamics.BodyType;
 
 /**
  * Flying Enemy Class
@@ -33,7 +35,6 @@ public abstract class FlyingEnemy extends AbstractEnemy implements EntityFilter 
     private float speed;
     private float rndX;
     private float rndY;
-    private Vector2f spawnPosition;
     private boolean moveAround;
     private boolean pathEnabled;
     private boolean change;
@@ -59,7 +60,13 @@ public abstract class FlyingEnemy extends AbstractEnemy implements EntityFilter 
         moveAround = false;
         pathEnabled = false;
         change = false;
-        spawnPosition = getPosition();
+    }
+
+    @Override
+    public void initPhysics() {
+        createPhysics(BodyType.KINEMATIC, origin.x, origin.y)
+                .density(PhysixManager.DENSITY).friction(PhysixManager.FRICTION)
+                .asBox(initialSize.x, initialSize.y);
     }
 
     public void initLine(ArrayList<Point> points, SafeProperties properties) {
@@ -93,7 +100,7 @@ public abstract class FlyingEnemy extends AbstractEnemy implements EntityFilter 
 
 		// Create a meteorite entity
 		EnemyBullet bullet = entityManager.createEntity(EnemyBullet.class);
-		bullet.setSpawnXY(getPosition().x, getPosition().y);
+		bullet.setOrigin(getPosition().x, getPosition().y);
 		bullet.setShootDirection(shootDirection);
     }
     
@@ -127,7 +134,7 @@ public abstract class FlyingEnemy extends AbstractEnemy implements EntityFilter 
     }
     
     public void move() {
-        float distToSpawn = getPosition().sub(spawnPosition).length();
+        float distToSpawn = getPosition().sub(origin).length();
         if (distToSpawn < 200) {
             setVelocity(new Vector2f(indexmod * rndX, indexmod * rndY).normalise().scale(speed));
             change = false;
@@ -135,7 +142,7 @@ public abstract class FlyingEnemy extends AbstractEnemy implements EntityFilter 
             rndX = (float)Math.random();
             rndY = (float)Math.random();
             indexmod *= -1;
-            setVelocity(spawnPosition.copy().sub(getPosition()).normalise().scale(speed));
+            setVelocity(origin.copy().sub(getPosition()).normalise().scale(speed));
             change = true;
         }
     }
@@ -178,7 +185,7 @@ public abstract class FlyingEnemy extends AbstractEnemy implements EntityFilter 
     }
     
     @Override
-    public void setPhysicsObject(PhysixObject physicsObject) {
+    public void setPhysicsObject(PhysixShape physicsObject) {
         physicsObject.setOwner(this);
         this.physicsObject = physicsObject;
         this.physicsObject.setGravityScale(0);

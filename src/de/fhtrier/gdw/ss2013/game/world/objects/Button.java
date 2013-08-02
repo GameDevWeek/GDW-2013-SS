@@ -10,7 +10,9 @@ import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.player.Alien;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.physix.ICollisionListener;
-import de.fhtrier.gdw.ss2013.physix.PhysixObject;
+import de.fhtrier.gdw.ss2013.physix.PhysixManager;
+import de.fhtrier.gdw.ss2013.physix.PhysixShape;
+import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.contacts.Contact;
 
 /**
@@ -36,7 +38,6 @@ public class Button extends ObjectController implements ICollisionListener {
     public Button() {
     	unpressedImg = AssetLoader.getInstance().getImage("button_unpressed");
         pressedImg = AssetLoader.getInstance().getImage("button_pressed");
-        initialize();
     }
     
     /**
@@ -47,6 +48,12 @@ public class Button extends ObjectController implements ICollisionListener {
         super.initialize();
         pressContacts = 0;
         setImage(unpressedImg);
+    }
+
+    @Override
+    public void initPhysics() {
+        createPhysics(BodyType.STATIC, origin.x, origin.y)
+                .sensor(true).asBox(initialSize.x, initialSize.y);
     }
 
     public void setActivated(boolean active) {
@@ -76,7 +83,7 @@ public class Button extends ObjectController implements ICollisionListener {
     }
 
     @Override
-    public void setPhysicsObject(PhysixObject physicsObject) {
+    public void setPhysicsObject(PhysixShape physicsObject) {
         super.setPhysicsObject(physicsObject);
         this.physicsObject.addCollisionListener(this);
     }

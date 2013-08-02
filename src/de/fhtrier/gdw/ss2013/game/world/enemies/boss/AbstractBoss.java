@@ -1,17 +1,11 @@
 package de.fhtrier.gdw.ss2013.game.world.enemies.boss;
 
-import org.jbox2d.dynamics.BodyType;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
-import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
-import de.fhtrier.gdw.ss2013.assetloader.infos.GameDataInfo.WorldInfo;
 import de.fhtrier.gdw.ss2013.game.Entity;
-import de.fhtrier.gdw.ss2013.game.world.World;
-import de.fhtrier.gdw.ss2013.physix.PhysixBox;
-import de.fhtrier.gdw.ss2013.physix.PhysixObject;
 
 public abstract class AbstractBoss extends Entity {
 
