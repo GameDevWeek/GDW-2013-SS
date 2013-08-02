@@ -32,6 +32,8 @@ public abstract class PhysixShape {
         fixtureDef.density = config.density;
         fixtureDef.friction = config.friction;
         fixtureDef.isSensor = config.sensor;
+        fixtureDef.filter.categoryBits = config.categoryBits;
+        fixtureDef.filter.maskBits = config.maskBits;
 
         dimension = new Vec2();
     }

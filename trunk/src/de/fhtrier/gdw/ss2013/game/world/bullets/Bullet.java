@@ -13,6 +13,7 @@ import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityCollidable;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.world.World;
+import de.fhtrier.gdw.ss2013.physix.PhysixConst;
 
 public abstract class Bullet extends EntityCollidable {
 	
@@ -39,6 +40,7 @@ public abstract class Bullet extends EntityCollidable {
 		int width = img.getWidth();
 		int height = img.getHeight();
         createPhysics(BodyType.DYNAMIC, origin.x, origin.y)
+                .category(getCategory()).mask(getMask())
                 .sensor(true).asBox(width, height);
         
 		setVelocity(shootDirection);
@@ -98,4 +100,7 @@ public abstract class Bullet extends EntityCollidable {
             World.getInstance().getEntityManager().removeEntity(this);
         }    
 	}
+
+    protected abstract short getCategory();
+    protected abstract short getMask();
 }

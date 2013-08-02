@@ -19,6 +19,7 @@ import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.game.world.bullets.PlayerBullet;
 import de.fhtrier.gdw.ss2013.game.world.objects.Box;
 import de.fhtrier.gdw.ss2013.input.AlienController;
+import de.fhtrier.gdw.ss2013.physix.PhysixConst;
 import org.jbox2d.dynamics.BodyType;
 
 public final class Alien extends Entity implements AlienController {
@@ -270,6 +271,7 @@ public final class Alien extends Entity implements AlienController {
         GameDataInfo info = AssetLoader.getInstance().getGameData();
         createPhysics(BodyType.DYNAMIC, origin.x, origin.y)
                 .density(info.alien.density).friction(info.alien.friction)
+                .category(PhysixConst.PLAYER).mask(PhysixConst.MASK_PLAYER)
                 .asPlayer(info.alien.width, info.alien.height);
         
         physicsObject.setActive(!onPlayer);

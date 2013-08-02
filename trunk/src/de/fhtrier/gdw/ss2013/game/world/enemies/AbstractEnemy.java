@@ -9,6 +9,7 @@ import org.newdawn.slick.SlickException;
 import de.fhtrier.gdw.ss2013.constants.EnemyConstants;
 import de.fhtrier.gdw.ss2013.game.EntityCollidable;
 import de.fhtrier.gdw.ss2013.game.world.World;
+import de.fhtrier.gdw.ss2013.physix.PhysixConst;
 
 /**
  * Abstract Enemy Class for Enemys and Meteroids
@@ -45,6 +46,7 @@ public abstract class AbstractEnemy extends EntityCollidable {
 		float height = current_ani.getHeight();
         createPhysics(BodyType.DYNAMIC, origin.x, origin.y)
                 .density(1).friction(1)
+                .category(PhysixConst.ENEMY).mask(PhysixConst.MASK_ENEMY)
                 .asBox(width, height);
     }
 

@@ -4,6 +4,7 @@ import org.jbox2d.dynamics.contacts.Contact;
 
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
+import de.fhtrier.gdw.ss2013.physix.PhysixConst;
 
 /**
  * Bullet Class
@@ -27,5 +28,15 @@ public class EnemyBullet extends Bullet {
         }
         
         super.checkForUnwantedContacts(contact);
+    }
+
+    @Override
+    protected short getCategory() {
+        return PhysixConst.BULLET_ENEMY;
+    }
+
+    @Override
+    protected short getMask() {
+        return PhysixConst.MASK_BULLET_ENEMY;
     }
 }

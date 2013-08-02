@@ -14,10 +14,10 @@ public class PhysixBoxPlayer extends PhysixBox {
         fixture.m_friction = 0;
         
         addFeet(0, config.halfHeight, (config.halfWidth - MathConstants.EPSILON_F)
-                - PhysixUtil.toBox2D(1), config.friction);
+                - PhysixUtil.toBox2D(1), config);
     }
 
-    private void addFeet(float posx, float posy, float radius, float friction) {
+    private void addFeet(float posx, float posy, float radius, PhysixShapeConfig config) {
         // TODO: sensor flag useless in physixsbox constructor
         CircleShape feetShape = new CircleShape();
         feetShape.m_radius = radius;
@@ -26,8 +26,10 @@ public class PhysixBoxPlayer extends PhysixBox {
         FixtureDef feetFixtureDef = new FixtureDef();
         feetFixtureDef.isSensor = false;
         feetFixtureDef.density = 0;
-        feetFixtureDef.friction = friction;
+        feetFixtureDef.friction = config.friction;
         feetFixtureDef.shape = feetShape;
+        feetFixtureDef.filter.categoryBits = config.categoryBits;
+        feetFixtureDef.filter.maskBits = config.maskBits;
 
         body.createFixture(feetFixtureDef);
     }

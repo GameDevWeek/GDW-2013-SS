@@ -18,6 +18,8 @@ public class PhysixShapeConfig {
     float friction;
     boolean sensor;
     boolean active = true;
+    short categoryBits = -1;
+    short maskBits = -1;
     Vec2[] points;
 
     public PhysixShapeConfig(PhysixManager manager, Entity entity, BodyType type, float x, float y) {
@@ -45,6 +47,23 @@ public class PhysixShapeConfig {
 
     public PhysixShapeConfig active(boolean value) {
         active = value;
+        return this;
+    }
+    
+    public PhysixShapeConfig category(short bits) {
+        if(categoryBits == -1)
+            categoryBits = bits;
+        else
+            categoryBits |= bits;
+        return this;
+    }
+    
+    public PhysixShapeConfig mask(short bits) {
+        if(maskBits == -1)
+            maskBits = bits;
+        else
+            maskBits |= bits;
+        maskBits |= bits;
         return this;
     }
 
