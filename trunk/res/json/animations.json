@@ -27,22 +27,22 @@
   "loop" : true
 },
 {
-  "name" : "astronaut_superjump",
-  "pfad" : "player/astronaut/superjump",
+  "name" : "player_couple_superjump",
+  "pfad" : "player/couple/superjump",
   "anzBilder" : 2,
   "animSpeed" : 100,
   "loop" : false
 },
 {
-  "name" : "astronaut_superjump_start",
-  "pfad" : "player/astronaut/superjump_start",
+  "name" : "player_couple_superjump_start",
+  "pfad" : "player/couple/superjump_start",
   "anzBilder" : 2,
   "animSpeed" : 100,
   "loop" : false
 },
 {
-  "name" : "astronaut_superjump_end",
-  "pfad" : "player/astronaut/superjump_end",
+  "name" : "player_couple_superjump_end",
+  "pfad" : "player/couple/superjump_end",
   "anzBilder" : 2,
   "animSpeed" : 100,
   "loop" : false
