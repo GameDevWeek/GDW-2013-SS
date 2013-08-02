@@ -13,10 +13,11 @@
   <object type="solid" x="9324" y="16" width="132" height="1616"/>
   <object type="solid" x="920" y="10" width="132" height="1616"/>
   <object gid="37" x="1132" y="1450"/>
-
   <object type="solid" x="4876" y="39" width="282" height="1497"/>
-
-  <object gid="38" x="1593" y="1383"/>
-
+  <object gid="38" x="3129" y="1316">
+   <properties>
+    <property name="name" value="CrabBoss"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

@@ -158,4 +158,11 @@
   "anzBilder" : 5,
   "animSpeed" : 250,
   "loop" : true
+},
+{
+  "name" : "crab_boss_idle",
+  "pfad" : "boss/crabbossidle",
+  "anzBilder" : 1,
+  "animSpeed" : 250,
+  "loop" : true
 }]

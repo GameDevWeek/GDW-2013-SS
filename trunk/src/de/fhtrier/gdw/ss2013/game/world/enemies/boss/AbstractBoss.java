@@ -17,6 +17,10 @@ public abstract class AbstractBoss extends Entity {
 
 	protected Phase phase;
 
+	public AbstractBoss() {
+		
+	}
+
 	public AbstractBoss(Image image) {
 		super(image);
 	}
@@ -46,7 +50,7 @@ public abstract class AbstractBoss extends Entity {
 
 		abstract void update(int delta);
 
-		abstract void render(Graphics g);
+		void render(Graphics g) {};
 
 		void leave() {
 		};
