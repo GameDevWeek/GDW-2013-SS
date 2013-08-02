@@ -6,7 +6,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 import de.fhtrier.gdw.ss2013.menu.CreditsAnimation;
-import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;import de.fhtrier.gdw.ss2013.menu.IActionListener;
+import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
+import de.fhtrier.gdw.ss2013.menu.IActionListener;
 import de.fhtrier.gdw.ss2013.menu.MenuManager;
 import de.fhtrier.gdw.ss2013.menu.MenuPage;
 ;
@@ -26,7 +27,7 @@ public class MenuPageCredits extends MenuPage {
 		animation = new CreditsAnimation();
 		addWidget(animation);
 		
-		addCenteredButton("Zurück", 943, 710, font,
+		addCenteredButton("Zurück", 943, 680, font,
 				new IActionListener() {
 					public void onAction() {
 						close();
