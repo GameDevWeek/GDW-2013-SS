@@ -2,6 +2,8 @@
 package de.fhtrier.gdw.ss2013.game.player;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.jbox2d.collision.shapes.ShapeType;
 import org.jbox2d.dynamics.Fixture;
@@ -40,7 +42,7 @@ public class Astronaut extends EntityCollidable implements AstronautController, 
 	// set of entities, which can currently be activated with the action button
 	private InteractionManager interactionManager;
 
-	private ArrayList<Switch> switches = new ArrayList<>();
+	private Set<Switch> switches = new HashSet<Switch>();
 
 	private PlayerState state;
 	private boolean invertAnimation;
@@ -222,7 +224,7 @@ public class Astronaut extends EntityCollidable implements AstronautController, 
 		// System.err
 		// .println("No InteractionManager registered to Astronaut!");
 		// }
-		interactionManager.activateAll();
+//		interactionManager.activateAll();
 		for (Switch s : switches) {
 			s.turnSwitch();
 		}

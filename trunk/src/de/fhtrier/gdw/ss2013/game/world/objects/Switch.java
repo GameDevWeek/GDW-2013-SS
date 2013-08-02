@@ -3,6 +3,7 @@ package de.fhtrier.gdw.ss2013.game.world.objects;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.util.Log;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.filter.ActivatableByAstronaut;
@@ -44,12 +45,13 @@ public class Switch extends ObjectController implements ActivatableByAstronaut {
     @Override
     public void update(GameContainer container, int delta)
             throws SlickException {
-        if (isActivated() && getImage().equals(unpressedImg)) {
+        if (!isActivated()) {
         	setImage(unpressedImg);
         }
-        else if (!isActivated() && getImage().equals(pressedImg)) {
+        else if (isActivated()) {
         	setImage(pressedImg);
         }
+        
     }
 
     public boolean getSwitch() {
@@ -67,4 +69,5 @@ public class Switch extends ObjectController implements ActivatableByAstronaut {
             activate();
         }
     }
+    
 }
