@@ -42,6 +42,8 @@ public class Teleporter extends EntityCollidable implements Interactable {
             } else {
                 System.err.println(getName() + "can not find " + target);
             }
+
+            isActive = properties.getBoolean("isActive", true);
         }
     }
 
