@@ -90,6 +90,7 @@ public class World {
         physicsManager.enableDebugDraw(container);
 
 		Vector2f startpos = LevelLoader.getStartPosition();
+        
 		astronaut = entityManager.createEntity(Astronaut.class);
         astronaut.setOrigin(startpos);
 		

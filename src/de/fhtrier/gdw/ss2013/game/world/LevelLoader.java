@@ -32,12 +32,12 @@ public class LevelLoader {
     private static EntityManager entityManager;
     private static PhysixManager physicsManager;
     private static Vector2f startpos;
-    private static GameDataInfo.WorldInfo worldInfo;
+    private static GameDataInfo gameInfo;
 
     public static void load(TiledMap map, EntityManager entityManager,
             PhysixManager physicsManager) {
 
-        worldInfo = AssetLoader.getInstance().getGameData().world;
+        gameInfo = AssetLoader.getInstance().getGameData();
 
         LevelLoader.entityManager = entityManager;
         LevelLoader.physicsManager = physicsManager;
@@ -217,10 +217,13 @@ public class LevelLoader {
     private static void createTile(String type, int x, int y, int width,
             int height, SafeProperties properties, String name) {
 
+        x += width / 2;
+        y += height / 2;
+        
 		Entity entity = null;
 		switch (type) {
 		case "start":
-			startpos = new Vector2f(x, y);
+			startpos = new Vector2f(x, y - height/2 - gameInfo.combined.height/2);
 			break;
 		case "boss":
 			String n = "thawhale";
@@ -239,14 +242,10 @@ public class LevelLoader {
 		case "smallPlatform":
 			entity = entityManager.createEntity("smallmovingplatform", properties,
 					name);
-			x += width / 2;
-            y += height / 2;
 			break;
 		case "bigPlatform":
 			entity = entityManager.createEntity("bigmovingplatform", properties,
 					name);
-			x += width / 2;
-            y += height / 2;
 			break;
 		case "teleporter":
 			entity = entityManager.createEntity(type, properties, name);
@@ -264,7 +263,7 @@ public class LevelLoader {
 			if (pname != null) {
 				DynamicParticleSystem p = AssetLoader.getInstance()
 						.getParticle(pname);
-				p.setPosition(x + (width / 2), y + (height / 2));
+				p.setPosition(x, y);
 				World.getInstance().addParticle(p);
 			}
 			break;
