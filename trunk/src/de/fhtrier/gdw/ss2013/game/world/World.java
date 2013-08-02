@@ -120,15 +120,6 @@ public class World {
 		InputManager.getInstance().setAlienController(alien);
 		
 		
-		// DEBUG >>>
-		if (DebugModeStatus.getLevelName().equals("bossmap")) {
-			ThaWhale b = entityManager.createEntity(ThaWhale.class);
-			PhysixBox bossPhysics = new PhysixBox(physicsManager, 2000, 100, 250, 100, BodyType.DYNAMIC, 1.f, 1.0f, false);
-			b.setPhysicsObject(bossPhysics);
-			b.getPosition().x = 100;
-			b.getPosition().y = 100;
-		}
-		// <<< DEBUG
 		scoreCounter.reset();
     }
 
