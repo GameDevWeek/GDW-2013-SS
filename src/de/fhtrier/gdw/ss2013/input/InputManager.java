@@ -5,6 +5,7 @@ import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.assetloader.infos.ControlsInfo;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.Set;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.util.Log;
@@ -41,6 +42,7 @@ public class InputManager {
 
 	private AlienController alienController = null;
 	private AstronautController astronautController = null;
+	Set<InputAction> actions = new HashSet<InputAction>();
 
 	private InputManager (GameContainer container) {
 		this.container = container;
@@ -62,8 +64,8 @@ public class InputManager {
 				}
 			}
 		}
-		
-		//Temporär!
+
+		// Temporär!
 		activeDevices.add(keyboard);
 		activeDevices.add(mouse);
 		for (Gamepad pad : gamepads) {
@@ -77,18 +79,25 @@ public class InputManager {
 		}
 		Log.info("InputDevice wurde bereits aktiviert!");
 	}
-	
-	public void deactivateDevice(InputDevice device){
+
+	public void deactivateDevice (InputDevice device) {
 		activeDevices.remove(device);
 	}
 
 	public void update (int delta) {
+		for (InputAction a : InputAction.values()) {
+			actions.add(a);
+		}
 		for (InputDevice device : activeDevices) {
 			device.update();
 		}
 	}
 
 	protected void doAction (InputAction action) {
+		if (!actions.contains(action)) {
+			return;
+		}
+
 		if (astronautController != null) {
 			switch (action) {
 			case MOVE_RIGHT:
@@ -103,8 +112,8 @@ public class InputManager {
 			case ACTION:
 				astronautController.action();
 				break;
-            case TOGGLE_ALIEN:
-                astronautController.toggleAlien();
+			case TOGGLE_ALIEN:
+				astronautController.toggleAlien();
 			default:
 				break;
 			}
@@ -139,6 +148,7 @@ public class InputManager {
 				break;
 			}
 		}
+		actions.remove(action);
 	}
 
 	protected void setCursor (InputAction action, int x, int y) {
@@ -214,23 +224,23 @@ public class InputManager {
 	}
 
 	public void printControllerInfo () {
-        HashSet<String> ignoreList = new HashSet<>();
-        ignoreList.add("Programmable Hotkeys");
-        ignoreList.add("USB Receiver");
-        ignoreList.add("Cordless Keyboard");
+		HashSet<String> ignoreList = new HashSet<>();
+		ignoreList.add("Programmable Hotkeys");
+		ignoreList.add("USB Receiver");
+		ignoreList.add("Cordless Keyboard");
 
 		int numControllers = org.lwjgl.input.Controllers.getControllerCount();
 		for (int i = 0; i < numControllers; i++) {
 			org.lwjgl.input.Controller c = org.lwjgl.input.Controllers.getController(i);
-            if(c.getButtonCount() > 0 && !ignoreList.contains(c.getName())) {
-                Log.debug("controller: " + c.getName());
-                for (int j = 0; j < c.getButtonCount(); j++) {
-                    Log.debug("Buttonindex: " + j + " Name: " + c.getButtonName(j));
-                }
-                for (int j = 0; j < c.getAxisCount(); j++) {
-                    Log.debug("Axisindex: " + j + " Name: " + c.getAxisName(j));
-                }
-            }
+			if (c.getButtonCount() > 0 && !ignoreList.contains(c.getName())) {
+				Log.debug("controller: " + c.getName());
+				for (int j = 0; j < c.getButtonCount(); j++) {
+					Log.debug("Buttonindex: " + j + " Name: " + c.getButtonName(j));
+				}
+				for (int j = 0; j < c.getAxisCount(); j++) {
+					Log.debug("Axisindex: " + j + " Name: " + c.getAxisName(j));
+				}
+			}
 		}
 	}
 }

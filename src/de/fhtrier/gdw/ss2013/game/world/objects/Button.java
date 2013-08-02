@@ -12,6 +12,7 @@ import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.physix.ICollisionListener;
 import de.fhtrier.gdw.ss2013.physix.PhysixManager;
 import de.fhtrier.gdw.ss2013.physix.PhysixShape;
+
 import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.contacts.Contact;
 
@@ -57,7 +58,8 @@ public class Button extends ObjectController implements ICollisionListener {
     }
 
     public void setActivated(boolean active) {
-        if (isActivated != active) {
+   	 //FIXME DAFUQ is that???
+   	 if (isActivated != active) {
             if (active) {
                 activate();
             } else {

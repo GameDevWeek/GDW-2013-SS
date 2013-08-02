@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Set;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.util.Log;
 
 /*
  * Team Input
