@@ -17,6 +17,7 @@ public class PhysixShapeConfig {
     float density;
     float friction;
     boolean sensor;
+    boolean active = true;
     Vec2[] points;
 
     public PhysixShapeConfig(PhysixManager manager, Entity entity, BodyType type, float x, float y) {
@@ -39,6 +40,11 @@ public class PhysixShapeConfig {
 
     public PhysixShapeConfig sensor(boolean value) {
         sensor = value;
+        return this;
+    }
+
+    public PhysixShapeConfig active(boolean value) {
+        active = value;
         return this;
     }
 
