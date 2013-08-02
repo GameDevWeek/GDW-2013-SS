@@ -37,5 +37,13 @@
   {
   	"name" : "error",
   "pfad" : "res/partikel/error.xml"
+  },
+  {
+  "name" : "meteorid1",
+  "pfad" : "res/partikel/meteorid1.xml"
+  },
+  {
+  "name" : "meteorid2",
+  "pfad" : "res/partikel/meteorid2.xml"
   }
   ]

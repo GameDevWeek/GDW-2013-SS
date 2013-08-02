@@ -22,6 +22,7 @@ public class Box extends EntityCollidable {
 
     public Box() {
         super(AssetLoader.getInstance().getImage("box"));
+        
     }
     
     @Override
