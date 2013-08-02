@@ -42,7 +42,16 @@ public class Astronaut extends Player implements AstronautController {
 	private boolean takeOff=true;
 
 	public Astronaut () {
-		initialize();
+	    setState(PlayerState.standing);
+        GameDataInfo info = AssetLoader.getInstance().getGameData();
+        speed = info.combined.speed;
+        jumpSpeed = info.combined.jumpSpeed;
+        jumpDelayTotal = info.combined.jumpDelay;
+        maxOxygen = 1000f;
+        oxygen = maxOxygen;
+        carryAlien = true;
+        invertAnimation = false;
+//		initialize();
 	}
 
 	/** {@inheritDoc} */
