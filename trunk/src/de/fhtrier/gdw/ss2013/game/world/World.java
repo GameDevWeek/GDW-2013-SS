@@ -25,7 +25,7 @@ import de.fhtrier.gdw.ss2013.input.InputManager;
 import de.fhtrier.gdw.ss2013.physix.PhysixBox;
 import de.fhtrier.gdw.ss2013.physix.PhysixBoxPlayer;
 import de.fhtrier.gdw.ss2013.physix.PhysixManager;
-import de.fhtrier.gdw.ss2013.physix.PhysixObject;
+import de.fhtrier.gdw.ss2013.physix.PhysixShape;
 import de.fhtrier.gdw.ss2013.renderer.DynamicParticleSystem;
 import de.fhtrier.gdw.ss2013.renderer.MapRenderer;
 import de.fhtrier.gdw.ss2013.settings.DebugModeStatus;
@@ -94,26 +94,17 @@ public class World {
         // physic debug stuff
         physicsManager.enableDebugDraw(container);
 
-        GameDataInfo info = AssetLoader.getInstance().getGameData();
-        astronaut = entityManager.createEntity(Astronaut.class);
-        Vector2f startpos = LevelLoader.getStartPosition();
-        PhysixObject physicsObject = new PhysixBoxPlayer(physicsManager,
-                startpos.x, startpos.y, info.combined.width,
-                info.combined.height, info.combined.density,
-                info.combined.friction);
+		Vector2f startpos = LevelLoader.getStartPosition();
+		astronaut = entityManager.createEntity(Astronaut.class);
+        astronaut.setOrigin(startpos);
+		
+		// astronaut.setPhysicsObject(new
+		// RectanglePhysicsObject(BodyType.DYNAMIC, new Vec2(95,105), new
+		// Vec2(astronaut.getPosition().x,astronaut.getPosition().y)));
 
-        astronaut.setPhysicsObject(physicsObject);
-
-        // astronaut.setPhysicsObject(new
-        // RectanglePhysicsObject(BodyType.DYNAMIC, new Vec2(95,105), new
-        // Vec2(astronaut.getPosition().x,astronaut.getPosition().y)));
-
-        alien = entityManager.createEntity(Alien.class);
-        physicsObject = new PhysixBox(physicsManager, startpos.x, startpos.y,
-                info.alien.width, info.alien.height, BodyType.DYNAMIC,
-                info.alien.density, info.alien.friction, false);
-        alien.setPhysicsObject(physicsObject);
-        alien.setContainer(container);
+		alien = entityManager.createEntity(Alien.class);
+        alien.setOrigin(startpos);
+		alien.setContainer(container);
         astronaut.setAlien(alien);
 
         SoundLocator.provide(new DefaultSoundPlayer(astronaut));
@@ -122,6 +113,8 @@ public class World {
         InputManager.getInstance().setAlienController(astronaut);
 
         scoreCounter.reset();
+        
+        entityManager.initalUpdate();
     }
 
     public void render(GameContainer container, Graphics g)

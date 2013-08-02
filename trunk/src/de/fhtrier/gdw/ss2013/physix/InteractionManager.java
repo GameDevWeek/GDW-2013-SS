@@ -33,8 +33,8 @@ public class InteractionManager implements ICollisionListener {
      */
     @Override
     public void beginContact(Contact contact) {
-        PhysixObject objectA = (PhysixObject) contact.getFixtureA().getBody().getUserData();
-        PhysixObject objectB = (PhysixObject) contact.getFixtureB().getBody().getUserData();
+        PhysixShape objectA = (PhysixShape) contact.getFixtureA().getBody().getUserData();
+        PhysixShape objectB = (PhysixShape) contact.getFixtureB().getBody().getUserData();
         
         //since not every Body seems to have its userData set, return, if it is null
         if(objectA == null || objectB == null) {
@@ -67,8 +67,8 @@ public class InteractionManager implements ICollisionListener {
      */
     @Override
     public void endContact(Contact contact) {
-        PhysixObject objectA = (PhysixObject) contact.getFixtureA().getBody().getUserData();
-        PhysixObject objectB = (PhysixObject) contact.getFixtureB().getBody().getUserData();
+        PhysixShape objectA = (PhysixShape) contact.getFixtureA().getBody().getUserData();
+        PhysixShape objectB = (PhysixShape) contact.getFixtureB().getBody().getUserData();
         
         //since not every Body seems to have its userData set, return, if it is null
         if(objectA == null || objectB == null) {

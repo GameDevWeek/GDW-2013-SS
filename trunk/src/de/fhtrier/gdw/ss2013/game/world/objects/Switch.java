@@ -6,6 +6,8 @@ import org.newdawn.slick.SlickException;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.filter.ActivatableByAstronaut;
+import de.fhtrier.gdw.ss2013.physix.PhysixManager;
+import org.jbox2d.dynamics.BodyType;
 
 /**
  * Switch Class
@@ -22,7 +24,6 @@ public class Switch extends ObjectController implements ActivatableByAstronaut {
         super();
         unpressedImg = AssetLoader.getInstance().getImage("switch_unpressed");
         pressedImg = AssetLoader.getInstance().getImage("switch_pressed");
-        initialize();
     }
     
     /**
@@ -32,6 +33,12 @@ public class Switch extends ObjectController implements ActivatableByAstronaut {
     protected void initialize() {
         super.initialize();
         setImage(unpressedImg);
+    }
+    
+    @Override
+    public void initPhysics() {
+        createPhysics(BodyType.STATIC, origin.x, origin.y).sensor(true)
+                .asBox(initialSize.x, initialSize.y);
     }
 
     @Override

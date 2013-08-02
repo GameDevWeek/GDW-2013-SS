@@ -12,6 +12,7 @@ import de.fhtrier.gdw.ss2013.game.EntityCollidable;
 import de.fhtrier.gdw.ss2013.game.filter.Interactable;
 import de.fhtrier.gdw.ss2013.game.player.Alien;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
+import org.jbox2d.dynamics.BodyType;
 
 public class Teleporter extends EntityCollidable implements Interactable {
 
@@ -27,9 +28,15 @@ public class Teleporter extends EntityCollidable implements Interactable {
 
     @Override
     protected void initialize() {
+        super.initialize();
         ignorList = new ArrayList<Entity>();
         toSet = new ArrayList<Entity>();
-        super.initialize();
+    }
+
+    @Override
+    public void initPhysics() {
+        createPhysics(BodyType.STATIC, origin.x, origin.y)
+                .sensor(true).asBox(initialSize.x, initialSize.y);
     }
 
     public void setTargetTeleporter(Teleporter target) {

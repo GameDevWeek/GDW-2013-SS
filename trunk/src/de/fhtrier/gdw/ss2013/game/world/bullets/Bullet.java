@@ -36,16 +36,18 @@ public abstract class Bullet extends EntityCollidable {
 		super.initialize();
 		livetime = 60 * 10;
 		setDamage(PlayerConstants.BULLET_DAMAGE);
+	}
 
+    @Override
+    public void initPhysics() {
 		int width = img.getWidth();
 		int height = img.getHeight();
-
-		PhysixBox box = new PhysixBox(World.getInstance().getPhysicsManager(), getSpawnX(), getSpawnY(), width, height,
-				BodyType.DYNAMIC, 1, 0.5f, true);
-		setPhysicsObject(box);
+        createPhysics(BodyType.DYNAMIC, origin.x, origin.y)
+                .sensor(true).asBox(width, height);
+        
 		setVelocity(shootDirection);
-		box.setGravityScale(0f);
-	}
+		physicsObject.setGravityScale(0f);
+    }
 
 	public void render(GameContainer container, Graphics g) throws SlickException {
 		img.draw(this.getPosition().x - (img.getWidth() / 2), this.getPosition().y - (img.getHeight() / 2));

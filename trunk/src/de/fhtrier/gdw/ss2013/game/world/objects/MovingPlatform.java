@@ -13,7 +13,9 @@ import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.filter.EntityFilter;
 import de.fhtrier.gdw.ss2013.game.filter.Interactable;
-import de.fhtrier.gdw.ss2013.physix.PhysixObject;
+import de.fhtrier.gdw.ss2013.physix.PhysixManager;
+import de.fhtrier.gdw.ss2013.physix.PhysixShape;
+import org.jbox2d.dynamics.BodyType;
 
 /**
  * Moving Platform class
@@ -69,6 +71,13 @@ public abstract class MovingPlatform extends Entity implements Interactable, Ent
         }
         return closestPoint;
     }
+
+    @Override
+    public void initPhysics() {
+        createPhysics(BodyType.KINEMATIC, origin.x, origin.y)
+                .density(PhysixManager.DENSITY).friction(PhysixManager.FRICTION)
+                .asBox(initialSize.x, initialSize.y);
+    }
     
     @Override
     public void update(GameContainer container, int delta)
@@ -111,7 +120,7 @@ public abstract class MovingPlatform extends Entity implements Interactable, Ent
     }
 
     @Override
-    public void setPhysicsObject(PhysixObject physicsObject) {
+    public void setPhysicsObject(PhysixShape physicsObject) {
         physicsObject.setOwner(this);
         this.physicsObject = physicsObject;
     }

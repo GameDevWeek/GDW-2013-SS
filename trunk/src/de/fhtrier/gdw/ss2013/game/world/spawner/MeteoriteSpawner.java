@@ -8,6 +8,7 @@ import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.game.world.objects.Meteroid;
+import org.jbox2d.dynamics.BodyType;
 
 public class MeteoriteSpawner extends Entity {
 	private int spawnDelay;
@@ -21,20 +22,26 @@ public class MeteoriteSpawner extends Entity {
 	public MeteoriteSpawner(int spawnDuration) {
 		super();
 		this.spawnDelay = spawnDuration;
-		initialize();
 	}
 	
 	public MeteoriteSpawner() {
 		this(SpawnerConstants.METEORIT_DEFAULT_SPAWN_DELAY);
-		initialize();
 	}
 	
 	/**
 	 * {@inheritDoc}
 	 */
+    @Override
 	protected void initialize() {
+        super.initialize();
 	    timeSinceLastSpawn = 0;
 	}
+
+    @Override
+    public void initPhysics() {
+        createPhysics(BodyType.STATIC, origin.x, origin.y)
+                .sensor(true).asCircle(0);
+    }
 	
 	@Override
 	public void update(GameContainer container, int delta) {
@@ -72,7 +79,7 @@ public class MeteoriteSpawner extends Entity {
 		
 		// Create a meteorite entity
 		Meteroid entity = entityManager.createEntity(Meteroid.class);
-        entity.setSpawnPosition(getPosition().x,getPosition().y);
+        entity.setOrigin(getPosition());
 
         timeSinceLastSpawn -= spawnDelay;
 	}

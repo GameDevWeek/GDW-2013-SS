@@ -11,7 +11,7 @@ import org.newdawn.slick.Graphics;
 class PhysixDebugDraw extends DebugDraw {
     private final Graphics graphics;
 
-    public PhysixDebugDraw(IViewportTransform viewportTransform, Graphics graphics) {
+    PhysixDebugDraw(IViewportTransform viewportTransform, Graphics graphics) {
         super(viewportTransform);
         this.graphics = graphics;
         this.setFlags(DebugDraw.e_aabbBit | DebugDraw.e_centerOfMassBit

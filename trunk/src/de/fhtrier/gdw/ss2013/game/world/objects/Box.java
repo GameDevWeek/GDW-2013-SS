@@ -1,6 +1,5 @@
 package de.fhtrier.gdw.ss2013.game.world.objects;
 
-import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.contacts.Contact;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
@@ -11,7 +10,8 @@ import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityCollidable;
 import de.fhtrier.gdw.ss2013.game.player.Alien;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
-import de.fhtrier.gdw.ss2013.physix.PhysixObject;
+import de.fhtrier.gdw.ss2013.physix.PhysixManager;
+import org.jbox2d.dynamics.BodyType;
 
 /**
  * Box class
@@ -40,7 +40,15 @@ public class Box extends EntityCollidable {
 
 	@Override
     protected void initialize() {
+        super.initialize();
         isPlayerOnMe = 0;
+    }
+
+    @Override
+    public void initPhysics() {
+        createPhysics(BodyType.DYNAMIC, origin.x, origin.y)
+                .density(PhysixManager.DENSITY).friction(PhysixManager.FRICTION)
+                .asBox(initialSize.x, initialSize.y);
     }
 
     public void onCollision(Entity e) {

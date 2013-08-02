@@ -26,7 +26,6 @@ public abstract class ObjectController extends Entity implements Interactable {
     protected HashSet<Interactable> connectedEntities;
 
     protected ObjectController() {
-        initialize();
     }
     
     /**
@@ -34,6 +33,7 @@ public abstract class ObjectController extends Entity implements Interactable {
      */
     @Override
     protected void initialize() {
+        super.initialize();
         isActivated = false;
         connectedEntities = new HashSet<Interactable>();
     }

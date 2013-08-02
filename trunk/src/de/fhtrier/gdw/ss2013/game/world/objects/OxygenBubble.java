@@ -21,8 +21,7 @@ import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.filter.Interactable;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.world.World;
-import de.fhtrier.gdw.ss2013.physix.PhysixCircle;
-import de.fhtrier.gdw.ss2013.physix.PhysixObject;
+import de.fhtrier.gdw.ss2013.physix.PhysixShape;
 
 //import org.newdawn.slick.Image;
 
@@ -36,8 +35,7 @@ public class OxygenBubble extends EntityCollidable implements Interactable {
     private float speed = 100;
     private int timer = 0;
     private boolean isUsed = false;
-    private Vector2f startPosition;
-    private Vector2f initalDirection;
+    private final Vector2f initalDirection = new Vector2f();
 
     public OxygenBubble() {
         super(AssetLoader.getInstance().getImage("bubble"));
@@ -46,23 +44,25 @@ public class OxygenBubble extends EntityCollidable implements Interactable {
 
     }
     
+    
     @Override
     protected void initialize() {
-        PhysixObject childPhysics = new PhysixCircle(World.getInstance()
-                .getPhysicsManager(), startPosition.x, startPosition.y,
-                (img.getWidth() / 2 + img.getHeight() / 2) / 4,
-                BodyType.KINEMATIC, 0, 0, true);
+        super.initialize();
         timer = (int)(Math.random()*100);
-        super.setPhysicsObject(childPhysics);
-        // super.initialize();
+    }
+    
+    @Override
+    public void initPhysics() {
+        createPhysics(BodyType.KINEMATIC, origin.x, origin.y).sensor(true)
+                .asCircle((img.getWidth() / 2 + img.getHeight() / 2) / 4);
     }
 
     @Override
     public void beginContact(Contact contact) {
         Fixture a = contact.getFixtureA();
         Fixture b = contact.getFixtureB();
-        PhysixObject objectA = (PhysixObject) a.getBody().getUserData();
-        PhysixObject objectB = (PhysixObject) b.getBody().getUserData();
+        PhysixShape objectA = (PhysixShape) a.getBody().getUserData();
+        PhysixShape objectB = (PhysixShape) b.getBody().getUserData();
         Entity e = objectA.getOwner();
         if (!(e instanceof Astronaut)) {
             e = objectB.getOwner();
@@ -89,8 +89,8 @@ public class OxygenBubble extends EntityCollidable implements Interactable {
 
     }
 
-    public void setInitalDirection(Vector2f initialDirection) {
-        this.initalDirection = initialDirection;
+    public void setInitalDirection(float x, float y) {
+        this.initalDirection.set(x, y);
     }
 
     public float getOxygenLevel() {
@@ -112,14 +112,6 @@ public class OxygenBubble extends EntityCollidable implements Interactable {
             setVelocity(new Vector2f(0, -speed*(delta/1000.f)));
 
         }
-    }
-
-    public Vector2f getStartPosition() {
-        return startPosition;
-    }
-
-    public void setPosition(Vector2f position) {
-        this.startPosition = position;
     }
 
     public OxygenFlower getFlower() {
