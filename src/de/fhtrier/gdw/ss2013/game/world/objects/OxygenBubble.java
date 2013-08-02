@@ -53,7 +53,7 @@ public class OxygenBubble extends EntityCollidable implements Interactable {
     
     @Override
     public void initPhysics() {
-        createPhysics(BodyType.KINEMATIC, origin.x, origin.y).sensor(true)
+        createPhysics(BodyType.STATIC, origin.x, origin.y).sensor(true)
                 .asCircle((img.getWidth() / 2 + img.getHeight() / 2) / 4);
     }
 

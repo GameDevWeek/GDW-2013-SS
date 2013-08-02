@@ -64,7 +64,7 @@ public abstract class FlyingEnemy extends AbstractEnemy implements EntityFilter 
 
     @Override
     public void initPhysics() {
-        createPhysics(BodyType.KINEMATIC, origin.x, origin.y)
+        createPhysics(BodyType.DYNAMIC, origin.x, origin.y)
                 .density(PhysixManager.DENSITY).friction(PhysixManager.FRICTION)
                 .asBox(initialSize.x, initialSize.y);
     }

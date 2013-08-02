@@ -11,8 +11,8 @@ import de.fhtrier.gdw.ss2013.constants.EnemyConstants;
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.player.Alien;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
+import org.jbox2d.dynamics.Fixture;
 
-import de.fhtrier.gdw.ss2013.physix.PhysixShape;
 
 /**
  * Ground Enemy Class
@@ -117,6 +117,11 @@ public abstract class GroundEnemy extends AbstractEnemy {
 
 	@Override
 	public void beginContact(Contact contact) {
+		Fixture a = contact.getFixtureA();
+		Fixture b = contact.getFixtureB();
+        if(a.m_isSensor || b.m_isSensor)
+            return;
+        
 		Entity other = getOtherEntity(contact);
 
 		if (other != null
@@ -127,12 +132,11 @@ public abstract class GroundEnemy extends AbstractEnemy {
 			else {
 				speed.x = -Math.abs(speed.x);
 			}
+            if (other instanceof Astronaut) {
+                ((Astronaut) other).setOxygen(((Astronaut) other).getOxygen() - this.getDamage());
+            }
 		}
-		if (other instanceof Astronaut) {
-			((Astronaut) other).setOxygen(((Astronaut) other).getOxygen() - this.getDamage());
-		}
-
-		if (other == null) {
+        else {
 //			isInLevel = true;
 			speed.x = -speed.x;
 		}

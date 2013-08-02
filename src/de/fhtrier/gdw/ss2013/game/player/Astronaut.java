@@ -17,6 +17,7 @@ import org.newdawn.slick.geom.Vector2f;
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.assetloader.infos.GameDataInfo;
 import de.fhtrier.gdw.ss2013.constants.PlayerConstants;
+import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityCollidable;
 import de.fhtrier.gdw.ss2013.game.cheats.Cheats;
 import de.fhtrier.gdw.ss2013.game.world.World;
@@ -58,15 +59,7 @@ public final class Astronaut extends EntityCollidable implements AstronautContro
             s.setAnimation(al.getAnimation("player_couple_" + s.toString()));
         }
         
-		GameDataInfo info = al.getGameData();
-		speed = info.combined.speed;
-		jumpSpeed = info.combined.jumpSpeed;
-		jumpDelayTotal = info.combined.jumpDelay;
-		maxOxygen = 1000f;
-		oxygen = maxOxygen;
-		carryAlien = true;
-		invertAnimation = false;
-		setState(PlayerState.standing);
+		gameData = AssetLoader.getInstance().getGameData();
 	}
 
 	public void setAlien (Alien alien) {
@@ -80,12 +73,11 @@ public final class Astronaut extends EntityCollidable implements AstronautContro
 	protected void initialize () {
 		super.initialize();
 		renderLayer = Integer.MAX_VALUE;
-		gameData = AssetLoader.getInstance().getGameData();
 		speed = gameData.combined.speed;
 		jumpSpeed = gameData.combined.jumpSpeed;
 		jumpDelayTotal = gameData.combined.jumpDelay;
 		pickupDistance = gameData.astronaut.pickupDistance;
-		maxOxygen = 1000f;
+		maxOxygen = gameData.astronaut.oxygen;
 		oxygen = maxOxygen;
 		carryAlien = true;
 		invertAnimation = false;
@@ -120,34 +112,27 @@ public final class Astronaut extends EntityCollidable implements AstronautContro
 			this.oxygen -= (this.maxOxygen * PlayerConstants.OXYGEN_PERCENTAGE_LOST_PER_SECOND) * (delta / 1000f);
 		else
 			die();
-		if (getVelocity().x == 0 && getVelocity().y == 0 || !(walking)) { 
-			if (!(state.equals(PlayerState.superjump) || state.equals(PlayerState.superjump_start) || state
-				.equals(PlayerState.superjump_end))) {
-				setState(PlayerState.standing);
-			}
-		}
-
+        
 		switch (state) {
 		case jumping:
-			if (getVelocity().y > 0) setState(PlayerState.falling);
+			if (getVelocity().y > 0) {
+                setState(PlayerState.falling);
+            }
 			break;
 		case superjump:
 			if (isGrounded()) {
 				setState(PlayerState.superjump_end);
 			}
-			// Log.debug("superjump");
 			break;
 		case superjump_start:
-			if (animation.getFrame() + 1 == animation.getFrameCount()) {
+			if (animation.isStopped()) {
 				setState(PlayerState.superjump);
 			}
-			// Log.debug("superjump start");
 			break;
 		case superjump_end:
-			if (animation.getFrame() + 1 == animation.getFrameCount()) {
+			if (animation.isStopped()) {
 				setState(PlayerState.standing);
 			}
-			// Log.debug("superjump end");
 			break;
 		case falling:
 			if (isGrounded()) {
@@ -155,6 +140,9 @@ public final class Astronaut extends EntityCollidable implements AstronautContro
 			}
 			break;
 		default:
+            if (getVelocity().x == 0 && getVelocity().y == 0 || !(walking)) {
+                setState(PlayerState.standing);
+            }
 			break;
 
 		}
@@ -304,26 +292,18 @@ public final class Astronaut extends EntityCollidable implements AstronautContro
 		PhysixShape objectA = (PhysixShape)a.getBody().getUserData();
 		PhysixShape objectB = (PhysixShape)b.getBody().getUserData();
 
-		AbstractEnemy damageDealer = null;
-		Astronaut damageTaker = null;
-		if (objectA.getOwner() instanceof AbstractEnemy && objectB.getOwner() instanceof Astronaut) {
-			damageTaker = (Astronaut)objectB.getOwner();
-			damageDealer = (AbstractEnemy)objectA.getOwner();
-		} else if (objectB.getOwner() instanceof AbstractEnemy && objectA.getOwner() instanceof Astronaut) {
-			damageTaker = (Astronaut)objectA.getOwner();
-			damageDealer = (AbstractEnemy)objectB.getOwner();
-		}
-
 		if (physicsObject == objectA && a.m_shape.getType() == ShapeType.CIRCLE && !b.m_isSensor) {
 			groundContacts++;
 		} else if (physicsObject == objectB && b.m_shape.getType() == ShapeType.CIRCLE && !a.m_isSensor) {
 			groundContacts++;
 		}
 
-		if (damageDealer != null && damageTaker != null) {
-
-			Vector2f damageTakerPos = damageTaker.getPosition();
-			Vector2f damageTakerDim = damageTaker.getPhysicsObject().getDimension();
+        Entity other = getOtherEntity(contact);
+		if (other instanceof AbstractEnemy) {
+			AbstractEnemy damageDealer = (AbstractEnemy)objectA.getOwner();
+            
+			Vector2f damageTakerPos = getPosition();
+			Vector2f damageTakerDim = getPhysicsObject().getDimension();
 
 			Vector2f damageDealerPos = damageDealer.getPosition();
 			Vector2f damageDealerDim = damageDealer.getPhysicsObject().getDimension();
@@ -333,7 +313,7 @@ public final class Astronaut extends EntityCollidable implements AstronautContro
 				&& (damageTakerPos.y + damageTakerDim.y < damageDealerPos.y)) { // player deals damage
 				World.getScoreCounter().addScore(5);
 				World.getInstance().getEntityManager().removeEntity(damageDealer);
-				if (damageTaker instanceof Astronaut) damageTaker.setVelocityY(-.50f * ((Astronaut)damageTaker).getJumpSpeed());
+				setVelocityY(-.50f * getJumpSpeed());
 			} else {
 				// Wird in Bullet-Klassen geregelt
 // if (damageTaker instanceof Astronaut && !(damageDealer instanceof PlayerBullet))
@@ -342,11 +322,8 @@ public final class Astronaut extends EntityCollidable implements AstronautContro
 			}
 		}
 
-		if (objectA.getOwner() instanceof Switch) {
-			switches.add((Switch)objectA.getOwner());
-		}
-		if (objectB.getOwner() instanceof Switch) {
-			switches.add((Switch)objectA.getOwner());
+		if (other instanceof Switch) {
+			switches.add((Switch)other);
 		}
 	}
 
@@ -363,11 +340,9 @@ public final class Astronaut extends EntityCollidable implements AstronautContro
 		}
 		assert (groundContacts >= 0);
 
-		if (objectA.getOwner() instanceof Switch) {
-			switches.remove((Switch)objectA.getOwner());
-		}
-		if (objectB.getOwner() instanceof Switch) {
-			switches.remove((Switch)objectA.getOwner());
+        Entity other = getOtherEntity(contact);
+		if (other instanceof Switch) {
+			switches.remove((Switch)other);
 		}
 	}
 
