@@ -78,6 +78,15 @@ public class ThreePointCamera {
 			g.drawString("target", target.x, target.y);
 		}
 	}
+	
+	public Vector2f screenToWorldCoordinates(Vector2f screenPosition) {
+		Vector2f position = new Vector2f();
+		position.set(screenPosition);
+		position.add(cameraPosition);
+		position.x -= screenWidth / 2.0f;
+		position.y -= screenHeight / 2.0f;
+		return position;
+	}
 
 	public void pushViewMatrix(Graphics g) {
 		g.pushTransform();
