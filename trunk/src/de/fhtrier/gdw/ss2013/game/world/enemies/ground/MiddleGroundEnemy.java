@@ -11,7 +11,6 @@ public class MiddleGroundEnemy extends GroundEnemy {
 
 	private static String getRandomImageString() {
 		int rand = (int) (Math.random() * 2);
-		System.out.println(rand);
 		
 		switch (rand) {
 		case 1:
