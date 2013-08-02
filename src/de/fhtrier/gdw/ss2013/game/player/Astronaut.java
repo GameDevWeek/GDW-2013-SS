@@ -131,19 +131,19 @@ public class Astronaut extends EntityCollidable implements AstronautController, 
 			if (animation.getFrame() + 1 == animation.getFrameCount() && isGrounded()) {
 				setState(PlayerState.superjump_end);
 			}
-			Log.debug("superjump");
+			//Log.debug("superjump");
 			break;
 		case superjump_start:
 			if (animation.getFrame() + 1 == animation.getFrameCount()) {
 				setState(PlayerState.superjump);
 			}
-			Log.debug("superjump start");
+			//Log.debug("superjump start");
 			break;
 		case superjump_end:
 			if (animation.getFrame() + 1 == animation.getFrameCount()) {
 				setState(PlayerState.standing);
 			}
-			Log.debug("superjump end");
+			//Log.debug("superjump end");
 			break;
 		case falling:
 			if (isGrounded()) {
@@ -258,9 +258,9 @@ public class Astronaut extends EntityCollidable implements AstronautController, 
 			animation.draw(position.x - animation.getWidth() / 2, position.y - animation.getHeight() / 2);
 		}
 
-		Log.debug(animation.getFrame()+1 +"/" + animation.getFrameCount());
-		if (!oldState.equals(state)) Log.debug(String.valueOf(state));
-		oldState = state;
+//		Log.debug(animation.getFrame()+1 +"/" + animation.getFrameCount());
+//		if (!oldState.equals(state)) Log.debug(String.valueOf(state));
+//		oldState = state;
 	}
 
 	public void setState (PlayerState state) {
