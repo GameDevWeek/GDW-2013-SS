@@ -59,6 +59,10 @@
   "pfad" : "gui/ability3"
 },
 {
+  "name" : "digits",
+  "pfad" : "gui/digits"
+},
+{
   "name" : "world_background",
   "pfad" : "background/background"
 },

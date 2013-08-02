@@ -96,6 +96,8 @@ public class HUD {
 		//tooltipmanager.addTooltip(new Vector2f (500,500), crosshairImage, new Vector2f (500,500), 500);
 		
         fpsFont = asset.getFont("quartz_40");
+        
+        
 	}
 
 	public void update(GameContainer container, StateBasedGame game, int delta) {
