@@ -13,5 +13,6 @@
   <object type="solid" x="9324" y="16" width="132" height="1616"/>
   <object type="solid" x="920" y="10" width="132" height="1616"/>
   <object gid="37" x="1132" y="1450"/>
+  <object gid="38" x="1593" y="1383"/>
  </objectgroup>
 </map>
