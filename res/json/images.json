@@ -117,5 +117,9 @@
 {
   "name" : "jump_tt",
   "pfad" : "tooltips/jump_tt"
+},
+{
+  "name" : "slider_thumb",
+  "pfad" : "menu/slider_thumb"
 }]
 
