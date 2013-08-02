@@ -17,9 +17,7 @@ import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.physix.PhysixBox;
 
 public abstract class Bullet extends EntityCollidable {
-
-	private float spawny;
-	private float spawnx;
+	
 	private Vector2f shootDirection;
 
 	private Image img;
@@ -42,7 +40,7 @@ public abstract class Bullet extends EntityCollidable {
 		int width = img.getWidth();
 		int height = img.getHeight();
 
-		PhysixBox box = new PhysixBox(World.getInstance().getPhysicsManager(), spawnx, spawny, width, height,
+		PhysixBox box = new PhysixBox(World.getInstance().getPhysicsManager(), getSpawnX(), getSpawnY(), width, height,
 				BodyType.DYNAMIC, 1, 0.5f, true);
 		setPhysicsObject(box);
 		setVelocity(shootDirection);
@@ -85,11 +83,6 @@ public abstract class Bullet extends EntityCollidable {
 
 	public void setDamage(float damage) {
 		this.damage = damage;
-	}
-
-	public void setSpawnXY(float x, float y) {
-		spawnx = x;
-		spawny = y;
 	}
 
 	public void setShootDirection(Vector2f shootDirection) {
