@@ -9,6 +9,7 @@ import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.contacts.Contact;
 import org.newdawn.slick.Animation;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -28,14 +29,12 @@ import de.fhtrier.gdw.ss2013.input.AstronautController;
 import de.fhtrier.gdw.ss2013.physix.InteractionManager;
 import de.fhtrier.gdw.ss2013.physix.PhysixConst;
 import de.fhtrier.gdw.ss2013.physix.PhysixShape;
-import de.fhtrier.gdw.ss2013.sound.SoundLocator;
 
 public final class Astronaut extends EntityCollidable implements AstronautController, AlienController {
 
 	private float oxygen;
 	private float maxOxygen;
 	private boolean carryAlien;
-	private Animation bewegungs_ani;
 	private float speed;
 	private float jumpSpeed;
 	private int jumpDelay = 0;
@@ -56,6 +55,8 @@ public final class Astronaut extends EntityCollidable implements AstronautContro
 	private int superjumpDelay = 0;
 	private boolean takeOff = true;
 	private PlayerState oldState = PlayerState.standing;
+	
+	private int restTimeBitenFilter;
 
 	public Astronaut () {
         AssetLoader al = AssetLoader.getInstance();
@@ -163,6 +164,12 @@ public final class Astronaut extends EntityCollidable implements AstronautContro
 			break;
 
 		}
+		if (restTimeBitenFilter > 0) {
+			restTimeBitenFilter -= delta;
+			if (restTimeBitenFilter < 0) {
+				restTimeBitenFilter =  0;
+			}
+		}
 // if (!oldState.equals(state)) Log.debug(state.toString());
 // oldState = state;
 	}
@@ -245,12 +252,18 @@ public final class Astronaut extends EntityCollidable implements AstronautContro
 	@Override
 	public void render (GameContainer container, Graphics g) throws SlickException {
 		Vector2f position = getPosition();
+		
+		Color filter = Color.white;
+		if (restTimeBitenFilter > 0) {
+			float filterStrength = (float) (Math.abs(Math.sin(restTimeBitenFilter/200f))); //200 ist smooth
+			filter = new Color(filterStrength, filterStrength, filterStrength);
+		}
 
 		if (invertAnimation) {
 			animation.draw(position.x + animation.getWidth() / 2, position.y - animation.getHeight() / 2, -animation.getWidth(),
-				animation.getHeight());
+				animation.getHeight(), filter);
 		} else {
-			animation.draw(position.x - animation.getWidth() / 2, position.y - animation.getHeight() / 2);
+			animation.draw(position.x - animation.getWidth() / 2, position.y - animation.getHeight() / 2, filter);
 		}
 
 // Log.debug(animation.getFrame()+1 +"/" + animation.getFrameCount());
@@ -466,4 +479,8 @@ public final class Astronaut extends EntityCollidable implements AstronautContro
                 .category(PhysixConst.PLAYER).mask(PhysixConst.MASK_PLAYER)
                 .asPlayer(info.combined.width, info.combined.height);
     }
+
+	public void gotBiten() {
+		restTimeBitenFilter = 1000;
+	}
 }
