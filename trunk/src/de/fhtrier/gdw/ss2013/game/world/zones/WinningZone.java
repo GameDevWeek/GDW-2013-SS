@@ -29,7 +29,7 @@ public class WinningZone extends EntityCollidable {
 		super.update(gc, delta);
 		
 		if (!init) {
-			if (getProperties().getProperty("target") != null) {
+			if (getProperties() != null && getProperties().getProperty("target") != null) {
 				newLevel = getProperties().getProperty("target");
 			}
 			init = true;
