@@ -7,7 +7,6 @@ import org.newdawn.slick.Sound;
 import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.game.Entity;
-import de.fhtrier.gdw.ss2013.game.player.Player;
 import de.fhtrier.gdw.ss2013.sound.SoundPlayer;
 
 /**
@@ -18,9 +17,9 @@ import de.fhtrier.gdw.ss2013.sound.SoundPlayer;
 public class DefaultSoundPlayer implements SoundPlayer {
 
     private HashMap<Entity, HashSet<Sound>> emitterSoundPlayingMap = new HashMap<>();
-    private final Player listener;
+    private final Entity listener;
 
-    public DefaultSoundPlayer(Player listener) {
+    public DefaultSoundPlayer(Entity listener) {
         this.listener = listener;
         playAtDirection = new Vector2f();
     }

@@ -7,7 +7,8 @@ import org.newdawn.slick.SlickException;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.Entity;
-import de.fhtrier.gdw.ss2013.game.player.Player;
+import de.fhtrier.gdw.ss2013.game.player.Alien;
+import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.physix.ICollisionListener;
 import de.fhtrier.gdw.ss2013.physix.PhysixObject;
 import org.jbox2d.dynamics.contacts.Contact;
@@ -82,25 +83,12 @@ public class Button extends ObjectController implements ICollisionListener {
 
     @Override
     public void beginContact(Contact contact) {
-        Fixture a = contact.getFixtureA();
-        Fixture b = contact.getFixtureB();
-        Entity entityA = ((PhysixObject) a.getBody().getUserData()).getOwner();
-        Entity entityB = ((PhysixObject) b.getBody().getUserData()).getOwner();
-
+        Entity other = getOtherEntity(contact);
+        
         //activate only if nothing relevant touched the button before
         boolean wasInactive = pressContacts == 0;
-
-        //save which entity is the button and
-        //activate Button after! adding the other entity to the set of colliding entities
-        //to avoid side effects
-        if (entityA instanceof Button) { // objectA is the Button
-            if (entityB instanceof Player || entityB instanceof Box) {
-                pressContacts++;
-            }
-        } else { // objectB is the Button
-            if (entityA instanceof Player || entityA instanceof Box) {
-                pressContacts++;
-            }
+        if (other instanceof Astronaut || other instanceof Alien || other instanceof Box) {
+            pressContacts++;
         }
 
         //activate the button, but only if nothing touched the button before, but does now
@@ -111,25 +99,12 @@ public class Button extends ObjectController implements ICollisionListener {
 
     @Override
     public void endContact(Contact contact) {
-        Fixture a = contact.getFixtureA();
-        Fixture b = contact.getFixtureB();
-        Entity entityA = ((PhysixObject) a.getBody().getUserData()).getOwner();
-        Entity entityB = ((PhysixObject) b.getBody().getUserData()).getOwner();
+        Entity other = getOtherEntity(contact);
         
-        //deactivate only if something relevant touched the button before
+        //activate only if nothing relevant touched the button before
         boolean wasActive = pressContacts > 0;
-        
-        //save which entity is the button and
-        //deactivate Button after! removing the other entity out of the set of colliding entities
-        //to avoid side effects
-        if (entityA instanceof Button) { // objectA is the Button
-            if(entityB instanceof Player || entityB instanceof Box) {
-                pressContacts--;
-            }
-        } else { // objectB is the Button
-            if(entityA instanceof Player || entityA instanceof Box) {
-                pressContacts--;
-            }
+        if (other instanceof Astronaut || other instanceof Alien || other instanceof Box) {
+            pressContacts--;
         }
         
         //activate the button, but only if nothing touched the button before, but does now

@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Input;
 
 /*
  * Team Input
@@ -24,9 +25,24 @@ public class Keyboard extends InputDevice {
     @Override
     public void update() {
         // für alle Actions
+        Input input = container.getInput();
         Set<Map.Entry<InputAction, Integer>> entries = keyMap.entrySet();
         for (Map.Entry<InputAction, Integer> entry : entries) {
-            if (container.getInput().isKeyDown(entry.getValue())) {
+            boolean down = false;
+            switch(entry.getKey()) {
+                case JUMP:
+                case ACTION:
+                case TOGGLE_ALIEN:
+                case PREV_ABILITY:
+                case NEXT_ABILITY:
+                case USE_ABILITY:
+                    down = input.isKeyPressed(entry.getValue());
+                    break;
+                default:
+                    down = input.isKeyDown(entry.getValue());
+                    break;
+            }
+            if (down) {
                 manager.doAction(entry.getKey());
             }
         }
@@ -41,6 +57,7 @@ public class Keyboard extends InputDevice {
                 setKey(InputAction.MOVE_RIGHT, controlsInfo.keyboard.astronaut.MOVE_RIGHT);
                 setKey(InputAction.JUMP, controlsInfo.keyboard.astronaut.JUMP);
                 setKey(InputAction.ACTION, controlsInfo.keyboard.astronaut.ACTION);
+                setKey(InputAction.TOGGLE_ALIEN, controlsInfo.keyboard.astronaut.TOGGLE_ALIEN);
             }
 
             if (controlsInfo.keyboard.alien != null) {

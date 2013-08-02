@@ -17,6 +17,8 @@ import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.physix.PhysixBox;
 import de.fhtrier.gdw.ss2013.physix.PhysixObject;
 import de.fhtrier.gdw.ss2013.renderer.DynamicParticleSystem;
+import org.jbox2d.dynamics.Fixture;
+import org.jbox2d.dynamics.contacts.Contact;
 
 /**
  * Entity base class
@@ -220,4 +222,14 @@ public abstract class Entity {
 		this.spawnX = x;
 		this.spawnY = y;
 	}
+    
+    public Entity getOtherEntity(Contact contact) {
+        Fixture a = contact.getFixtureA();
+        if (a.getBody().getUserData() != physicsObject) {
+            return ((PhysixObject) a.getBody().getUserData()).getOwner();
+        }
+        Fixture b = contact.getFixtureB();
+        return ((PhysixObject) b.getBody().getUserData()).getOwner();
+    }
+
 }

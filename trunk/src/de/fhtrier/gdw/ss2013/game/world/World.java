@@ -21,6 +21,7 @@ import de.fhtrier.gdw.ss2013.game.camera.ThreePointCamera;
 import de.fhtrier.gdw.ss2013.game.player.Alien;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.score.ScoreCounter;
+import de.fhtrier.gdw.ss2013.game.world.enemies.boss.ThaWhale;
 import de.fhtrier.gdw.ss2013.input.InputManager;
 import de.fhtrier.gdw.ss2013.physix.PhysixBox;
 import de.fhtrier.gdw.ss2013.physix.PhysixBoxPlayer;
@@ -31,6 +32,7 @@ import de.fhtrier.gdw.ss2013.renderer.MapRenderer;
 import de.fhtrier.gdw.ss2013.settings.DebugModeStatus;
 import de.fhtrier.gdw.ss2013.sound.SoundLocator;
 import de.fhtrier.gdw.ss2013.sound.services.DefaultSoundPlayer;
+import org.newdawn.slick.Color;
 
 public class World {
 	
@@ -46,7 +48,7 @@ public class World {
 
     private static World instance;
 
-    public boolean debugDraw = DebugModeStatus.isPhysicTest();
+    public boolean debugDraw = DebugModeStatus.isTest();
 
     private EntityManager entityManager;
     private final PhysixManager physicsManager;
@@ -109,14 +111,15 @@ public class World {
 		alien = entityManager.createEntity(Alien.class);
 		physicsObject = new PhysixBox(physicsManager, startpos.x,
 				startpos.y, info.alien.width, info.alien.height,
-				BodyType.DYNAMIC, info.alien.density, info.alien.friction, true);
+				BodyType.DYNAMIC, info.alien.density, info.alien.friction, false);
 		alien.setPhysicsObject(physicsObject);
 		alien.setContainer(container);
+        astronaut.setAlien(alien);
 		
 		SoundLocator.provide(new DefaultSoundPlayer(astronaut));
         
 		InputManager.getInstance().setAstronautController(astronaut);
-		InputManager.getInstance().setAlienController(alien);
+		InputManager.getInstance().setAlienController(astronaut);
 		
 		
 		scoreCounter.reset();
@@ -125,8 +128,6 @@ public class World {
 	public void render(GameContainer container, Graphics g)
 			throws SlickException {
 		Vector2f astronautPos = astronaut.getPosition();
-		camera.update(container.getWidth(), container.getHeight(),
-				astronautPos.x, astronautPos.y);
 
 		// Background image TODO: translate
 		g.drawImage(AssetLoader.getInstance().getImage("world_background"), 0,
@@ -135,15 +136,19 @@ public class World {
 		    tpCamera.pushViewMatrix(g);
 		    
 		    tpCamera.debugdraw(g, astronautPos.x, astronautPos.y);
-		    mapRender.render(g, 0, 0);
 
-//		    mapRender
-//            .renderTileLayers(g, -tpCamera.getTileOverlapX(),
-//                    -tpCamera.getTileOverlapY(), camera.getTileX(),
-//                    tpCamera.getTileY(), tpCamera.getNumTilesX(),
-//                    tpCamera.getNumTilesY());
+            System.out.println(tpCamera.getNumTilesX()+ "/" + tpCamera.getNumTilesY());
+            float ox = tpCamera.getTileX() * map.getTileWidth();
+            float oy = tpCamera.getTileY() * map.getTileHeight();
+    		mapRender
+    				.renderTileLayers(g, (int)ox, (int)oy,
+                            tpCamera.getTileX(), tpCamera.getTileY(),
+                            map.getWidth(), map.getHeight());
 		}
 		else {
+            camera.update(container.getWidth(), container.getHeight(),
+				astronautPos.x, astronautPos.y);
+        
     		mapRender
     				.renderTileLayers(g, -camera.getTileOverlapX(),
     						-camera.getTileOverlapY(), camera.getTileX(),
@@ -183,10 +188,10 @@ public class World {
         if(DebugModeStatus.isTPCamera()) {
             tpCamera.update(delta, container.getWidth(), container.getHeight(), astronaut.getPosition().x + astronaut.getPhysicsObject().getDimension().x/2, astronaut.getPosition().y+astronaut.getPhysicsObject().getDimension().y/2);
             
-            if(container.getInput().isKeyDown(Input.KEY_ADD)) {
+            if(container.getInput().isKeyDown(Input.KEY_1)) {
                 tpCamera.zoom(0.01f);
             }
-            if(container.getInput().isKeyDown(Input.KEY_SUBTRACT)) {
+            if(container.getInput().isKeyDown(Input.KEY_2)) {
                 tpCamera.zoom(-0.01f);
             }
             

@@ -34,6 +34,7 @@ public class Gamepad extends InputDevice {
 			actionMap.put(gamepadInfo.astronaut.MOVE_RIGHT, InputAction.MOVE_RIGHT);
 			actionMap.put(gamepadInfo.astronaut.JUMP, InputAction.JUMP);
 			actionMap.put(gamepadInfo.astronaut.ACTION, InputAction.ACTION);
+			actionMap.put(gamepadInfo.astronaut.TOGGLE_ALIEN, InputAction.TOGGLE_ALIEN);
 		}
 
 		if (gamepadInfo.alien != null) {
