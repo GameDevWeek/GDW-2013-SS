@@ -2,45 +2,7 @@
 <map version="1.0" orientation="orthogonal" width="200" height="40" tilewidth="64" tileheight="64">
  <tileset firstgid="1" source="tiledmap_final.tsx"/>
  <tileset firstgid="626" source="entity_tileset.tsx"/>
- <tileset firstgid="644" name="particle_tileset" tilewidth="64" tileheight="64">
-  <image source="particle_tileset.png" width="192" height="192"/>
-  <tile id="0">
-   <properties>
-    <property name="name" value="blumen_leuchten"/>
-    <property name="type" value="particle"/>
-   </properties>
-  </tile>
-  <tile id="1">
-   <properties>
-    <property name="name" value="pollen1"/>
-    <property name="type" value="particle"/>
-   </properties>
-  </tile>
-  <tile id="2">
-   <properties>
-    <property name="name" value="pollen2"/>
-    <property name="type" value="particle"/>
-   </properties>
-  </tile>
-  <tile id="3">
-   <properties>
-    <property name="name" value="lava_3"/>
-    <property name="type" value="particle"/>
-   </properties>
-  </tile>
-  <tile id="4">
-   <properties>
-    <property name="name" value="lava_4"/>
-    <property name="type" value="particle"/>
-   </properties>
-  </tile>
-  <tile id="5">
-   <properties>
-    <property name="name" value="lava_luft"/>
-    <property name="type" value="particle"/>
-   </properties>
-  </tile>
- </tileset>
+ <tileset firstgid="647" source="particle_tileset.tsx"/>
  <layer name="Kachelebene 1" width="200" height="40">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+1cbXLbNhDdf03cS1hy2ytkasnJFSRbUnIFWV/OFSxLsnOFdixNewjbt2h7ovKNdgcIBMokCITmzL6ZHdJL7AMXwtcChIkUCoVCoVAoFAqFQqFQKBQKhUKhaA5+yuRdJu8z+Tkh90kCfoUiNcaZTDKZZfItMvepxb3I5JfI/ApFavQyucykTfHrr819lYBfoUgN1GHp42PX31vS8UPRbKAOSx//NTL3mL4fP2LP3xSK1EAdXmUyoDTjh3BDvkTmVyhSA/OrdSZDil9/Ty3ubQJ+hSI10Mdj/nNO8evv2OJ+SsCvUKRGyvjcXjtGfK7xh6JpsNdgY9dfd31Xxw9F02DH5yn2BzU+VzQZKePzMX0fn+v+h6JpSBmf90jjc0WzcZpJl/b9PPr3XzP5LRJ3z+LekMbniubhlPYx9JzSjB/CnWJ/XqFIDdThz2TGj5gYW9yIP3T8UDQNqMPYm0D/fpHJR9qf1fgUgbtncd+TxueK5gF1GHsTiKGxzoT+HnOiGH392OIekcbniubhj0z+zOSvTP7N5D++/zsy9z+ROBWKtwqcl5WzsinO4yoUTQXaxu+ZTGk/D5N4JVUbQX5lz6y/ZZum44RMv/iOxfe36Nz49QMdxrUf2M7VufZ56Xx8PltfPC2cdn9/zEefnFgcaBtoEx3axxOy73fhsXnv8Pryf+25tMULT7q3ZFO2HKv8FlV/wyoc+D4I35kiPsU3p1h3QZyK74eu+XrHuiUdxpqyD/2tgK5bMF2oDpDYeMm+rAN8fOC/F0f0kyPP8tIvCuR3jHeSY/+jbHz+FC3H0N8ixm9YhQP6Pu3XWfpsP+f7OZl1/GsWtz726HCPDbqWR+dLV1TnnjOCbkP+9opyOLfKoqyPUj53R/QPgc9ey+813jL2Mfx/iMQTylFn3uBY8LONleaS04F/ynLFencvGP31wNFD1/Xozjy6R49u49FtPbpdzvssyXxfDq5nvhb1EfeoFze0L1/3WYiNPKtie1fSPpb/MXhCOerMG/cTS4/2NGLegZN2yM/c8UPOWn9xdO74cUuH/T10jx6d+80gdJ0C6YAxv/eIfZiwdFi2nOcZ2+M9X9jPFqeR725RHl3WPTPfKtBGvnWvYrsOsI/hfwyeUI468wbHPV9XXP43zCljEuranLl9/4tD6vhXR9fy6HYF0517dJ0C6QD5bgTvKvMZ2QNEWWz4uuXy2LGPbfZjw74/8f0L5y3+rwNtPvP7VLGdlLSP5X8MnlCOOvOekfnGFBx9MuPJkEz76fM90vjm+772sfPo3G/1ZOwp0mbcOZyPT/TyrgsuE/Fxx+865Dxm/Bx9JPrbDpn6v+Fy2PJzkVWgTdt6n1DbUUn7WP7H4AnlqDNvpJOxW+IwjB995pH1lgX/nbd+NaPDuY97bg4696xp3tzsrCCf72yTfFe1JFOXYSvjqcxZ8C5PfP/IPgxZ98zpxW5l2XUDbaZ8X8X2KsA+lv9VeUI56swbHOhnb/g3WJOJSSAjMvH8kNP51q9ajl7OB7k6d37Wo8P/f5unm3p0vrOxt/zeN2TO8ImPaHfSt57xM5Sb9LltLhPo0IfIOCtz0hbrQmxkrK5ie13SPpb/MXhCOerMW76fk7ovsfmQr7JWg3tpM771It9alTtHGtPhfGhMhzFEnu3Uo3PnXMAtmTY+5zS2j1J/ZH7Z5qusach3hQPWoXx3/AzXl0CbAZnzIKG2q5L2sfyPwRPKUWfeskeA+ZTsjwz5fsL3eD7lNBDf/MptH3kxhLu+mxeL+2zdNV8fn+iH/K6yf+HzEf4PyKz3XDGflOULp30hU0+kPwqxuef3qWI7KWkfy/8YPKEcdeY9ILNPckkmDpc1rSWZdV6Zz/vmM756X1Q3q2Cb1z7kXUN9lD22OZm1b/tZiI08q2I7LWkfy/8YPKEcdeYNjv8BTs31kQB9AAA=
@@ -150,13 +112,13 @@
     <property name="trigger" value="door2"/>
    </properties>
   </object>
-  <object gid="648" x="3201" y="2187"/>
-  <object gid="648" x="2848" y="2192"/>
-  <object gid="648" x="2525" y="2193"/>
-  <object gid="648" x="2192" y="2179"/>
-  <object gid="648" x="1901" y="2183"/>
-  <object gid="648" x="1572" y="2176"/>
-  <object gid="648" x="1245" y="2171"/>
-  <object gid="648" x="895" y="2181"/>
+  <object gid="651" x="3201" y="2187"/>
+  <object gid="651" x="2848" y="2192"/>
+  <object gid="651" x="2525" y="2193"/>
+  <object gid="651" x="2192" y="2179"/>
+  <object gid="651" x="1901" y="2183"/>
+  <object gid="651" x="1572" y="2176"/>
+  <object gid="651" x="1245" y="2171"/>
+  <object gid="651" x="895" y="2181"/>
  </objectgroup>
 </map>

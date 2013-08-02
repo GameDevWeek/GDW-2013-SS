@@ -250,7 +250,12 @@ public class LevelLoader {
 		case "start":
 			startpos = new Vector2f(x, y);
 			break;
-		case "end":
+		case "boss":
+			entity = entityManager.createEntity("thawhale", properties, name);
+			box = new PhysixBox(physicsManager, x, y, width, height,
+					BodyType.DYNAMIC, worldInfo.density, worldInfo.friction,
+					false);
+			entity.setPhysicsObject(box);
 			break;
 		case "meteroid":
 			entity = entityManager.createEntity("meteoritespawner", properties,
