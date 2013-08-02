@@ -7,7 +7,8 @@
    "jumpDelay": 500,
    "density": 1,
    "friction": 0.5,
-   "pickupDistance": 100
+   "pickupDistance": 100,
+   "oxygen": 1000
  },
  "alien": {
    "width": 70,
