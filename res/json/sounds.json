@@ -29,5 +29,81 @@
 {
  "name" : "fluegelschlag",
  "pfad" : "res/sounds/fluegelschlag.ogg"
+},
+{
+ "name" : "absprung",
+ "pfad" : "res/sounds/absprung.ogg"
+},
+{
+ "name" : "alienabsetzen",
+ "pfad" : "res/sounds/alienabsetzen.ogg"
+},
+{
+ "name" : "aliennukeln",
+ "pfad" : "res/sounds/aliennukeln.ogg"
+},fantfliegegegnertot
+{
+ "name" : "alienschuss",
+ "pfad" : "res/sounds/alienschuss.ogg"
+},
+{
+ "name" : "bosstot",
+ "pfad" : "res/sounds/bosstot.ogg"
+},
+{
+ "name" : "fantfliegegegnertot",
+ "pfad" : "res/sounds/fantfliegegegnertot.ogg"
+},
+{
+ "name" : "fliegengegnertot",
+ "pfad" : "res/sounds/fliegengegnertot.ogg"
+},
+{
+ "name" : "fluegelschlag",
+ "pfad" : "res/sounds/fluegelschlag.ogg"
+},
+{
+ "name" : "grossgegnertot",
+ "pfad" : "res/sounds/grossgegnertot.ogg"
+},
+{
+ "name" : "kristallschrittfuss1",
+ "pfad" : "res/sounds/kristallschrittfuss1.ogg"
+},
+{
+ "name" : "kristallschrittfuss2",
+ "pfad" : "res/sounds/kristallschrittfuss2.ogg"
+},
+{
+ "name" : "maulwurfgegnertot",
+ "pfad" : "res/sounds/maulwurfgegnertot.ogg"
+},
+{
+ "name" : "metallschrittfuss1",
+ "pfad" : "res/sounds/metallschrittfuss1.ogg"
+},
+{
+ "name" : "metallschrittfuss2",
+ "pfad" : "res/sounds/metallschrittfuss2.ogg"
+},
+{
+ "name" : "schritt1",
+ "pfad" : "res/sounds/schritt1.ogg"
+},
+{
+ "name" : "schritt2",
+ "pfad" : "res/sounds/schritt2.ogg"
+},
+{
+ "name" : "spielergetroffen",
+ "pfad" : "res/sounds/spielergetroffen.ogg"
+},
+{
+ "name" : "spielertot",
+ "pfad" : "res/sounds/spielertot.ogg"
+},
+{
+ "name" : "tapiralientot",
+ "pfad" : "res/sounds/tapiralientot.ogg"
 }
 ]

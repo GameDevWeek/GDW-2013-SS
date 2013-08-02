@@ -25,4 +25,6 @@ public interface SoundPlayer {
 
     public void playMusic(Sound music);
 
+	public void playSound(String string);
+
 }

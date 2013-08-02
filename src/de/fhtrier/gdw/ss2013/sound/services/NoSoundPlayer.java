@@ -32,4 +32,9 @@ public class NoSoundPlayer implements SoundPlayer {
 
     }
 
+	@Override
+	public void playSound(String string) {
+				
+	}
+
 }

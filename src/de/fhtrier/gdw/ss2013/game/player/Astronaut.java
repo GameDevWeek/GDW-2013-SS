@@ -28,6 +28,7 @@ import de.fhtrier.gdw.ss2013.input.AstronautController;
 import de.fhtrier.gdw.ss2013.physix.InteractionManager;
 import de.fhtrier.gdw.ss2013.physix.PhysixConst;
 import de.fhtrier.gdw.ss2013.physix.PhysixShape;
+import de.fhtrier.gdw.ss2013.sound.SoundLocator;
 
 public final class Astronaut extends EntityCollidable implements AstronautController, AlienController {
 
@@ -187,6 +188,7 @@ public final class Astronaut extends EntityCollidable implements AstronautContro
 			physicsObject.applyImpulse(new Vector2f(0, -jumpSpeed));
 			setState(PlayerState.jumping);
 			jumpDelay = jumpDelayTotal;
+//			SoundLocator.getPlayer().playSound("absprung");
 		}
 	}
 

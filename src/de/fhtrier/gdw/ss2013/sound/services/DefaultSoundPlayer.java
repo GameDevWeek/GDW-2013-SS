@@ -6,6 +6,7 @@ import java.util.HashSet;
 import org.newdawn.slick.Sound;
 import org.newdawn.slick.geom.Vector2f;
 
+import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.sound.SoundPlayer;
 
@@ -114,5 +115,10 @@ public class DefaultSoundPlayer implements SoundPlayer {
     public void stopAllSounds() {
 
     }
+
+	@Override
+	public void playSound(String name) {
+		playSound(AssetLoader.getInstance().getSound(name));
+	}
 
 }
