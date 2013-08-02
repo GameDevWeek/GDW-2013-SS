@@ -56,14 +56,13 @@ public class ToggleButton extends Widget {
 		
 		switch (align) {
 		case LEFT:
-			g.drawString(texts[state], rect.getX(), rect.getCenterY() - h / 2);
+			g.drawString(texts[state], rect.getX(), rect.getY());
 			break;
 		case RIGHT:
-			g.drawString(texts[state], rect.getMaxX() - w, rect.getCenterY() - h / 2);
+			g.drawString(texts[state], rect.getX() - w, rect.getY());
 			break;
 		case CENTER:
-			g.drawString(texts[state], rect.getCenterX() - w / 2,
-					rect.getCenterY() - h / 2);
+			g.drawString(texts[state], rect.getX() - w / 2, rect.getY() - h / 2);
 			break;
 		}
 	}
