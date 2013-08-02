@@ -27,6 +27,27 @@
   "loop" : true
 },
 {
+  "name" : "astronaut_superjump",
+  "pfad" : "player/astronaut/superjump",
+  "anzBilder" : 2,
+  "animSpeed" : 100,
+  "loop" : false
+},
+{
+  "name" : "astronaut_superjump_start",
+  "pfad" : "player/astronaut/superjump_start",
+  "anzBilder" : 2,
+  "animSpeed" : 100,
+  "loop" : false
+},
+{
+  "name" : "astronaut_superjump_end",
+  "pfad" : "player/astronaut/superjump_end",
+  "anzBilder" : 2,
+  "animSpeed" : 100,
+  "loop" : false
+},
+{
   "name" : "astronaut_falling",
   "pfad" : "player/astronaut/falling",
   "anzBilder" : 1,
