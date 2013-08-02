@@ -130,4 +130,11 @@
   "anzBilder" : 1,
   "animSpeed" : 100,
   "loop" : true
+},
+{
+  "name" : "box",
+  "pfad" : "entities/box",
+  "anzBilder" : 5,
+  "animSpeed" : 250,
+  "loop" : true
 }]
