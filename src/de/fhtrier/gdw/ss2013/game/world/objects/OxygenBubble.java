@@ -23,6 +23,7 @@ import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.physix.PhysixConst;
 import de.fhtrier.gdw.ss2013.physix.PhysixShape;
+import org.newdawn.slick.SlickException;
 
 //import org.newdawn.slick.Image;
 
@@ -54,7 +55,7 @@ public class OxygenBubble extends EntityCollidable implements Interactable {
     
     @Override
     public void initPhysics() {
-        createPhysics(BodyType.STATIC, origin.x, origin.y).sensor(true)
+        createPhysics(BodyType.KINEMATIC, origin.x, origin.y).sensor(true)
                 .category(PhysixConst.ITEM).mask(PhysixConst.MASK_ITEM)
                 .asCircle((img.getWidth() / 2 + img.getHeight() / 2) / 4);
     }
@@ -103,8 +104,8 @@ public class OxygenBubble extends EntityCollidable implements Interactable {
     private int deltamod = 1;
 
     @Override
-    public void update(GameContainer container, int delta) {
-
+    public void update(GameContainer container, int delta) throws SlickException {
+        super.update(container, delta);
         
         if (!isUsed) {
             timer+=delta;
@@ -112,8 +113,7 @@ public class OxygenBubble extends EntityCollidable implements Interactable {
                 speed *=-1;
                 timer -= 1000;
             }
-            setVelocity(new Vector2f(0, -speed*(delta/1000.f)));
-
+            setVelocity(0, -speed*(delta/1000.f));
         }
     }
 

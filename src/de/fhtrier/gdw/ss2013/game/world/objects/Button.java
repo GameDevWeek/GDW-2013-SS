@@ -70,6 +70,7 @@ public class Button extends ObjectController implements ICollisionListener {
     @Override
     public void update(GameContainer container, int delta)
             throws SlickException {
+        super.update(container, delta);
     	if (isActivated() && getImage().equals(unpressedImg)) {
     		setImage(pressedImg);
     	}

@@ -56,6 +56,7 @@ public abstract class Bullet extends EntityCollidable {
 
     @Override
 	public void update(GameContainer container, int delta) throws SlickException {
+        super.update(container, delta);
 		float df = delta / 1000f;
 		
 		float x = physicsObject.getX();

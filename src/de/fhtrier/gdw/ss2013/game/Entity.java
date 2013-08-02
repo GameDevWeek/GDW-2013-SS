@@ -113,6 +113,13 @@ public abstract class Entity {
         physicsObject.setLinearVelocity(velocity);
     }
 
+    public void setVelocity(float x, float y) {
+        if (physicsObject == null) {
+            throw new NullPointerException("Physics object does not exist.");
+        }
+        physicsObject.setLinearVelocity(x, y);
+    }
+
     public void setVelocityX(float x) {
         if (physicsObject == null) {
             throw new NullPointerException("Physics object does not exist.");

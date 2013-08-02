@@ -9,6 +9,7 @@ import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.game.world.objects.Meteroid;
 import org.jbox2d.dynamics.BodyType;
+import org.newdawn.slick.SlickException;
 
 public class MeteoriteSpawner extends Entity {
 	private int spawnDelay;
@@ -44,7 +45,8 @@ public class MeteoriteSpawner extends Entity {
     }
 	
 	@Override
-	public void update(GameContainer container, int delta) {
+	public void update(GameContainer container, int delta) throws SlickException {
+        super.update(container, delta);
 		if (!init) {
 			if (getProperties().getProperty("delay") != null) {
 				String newDelay = getProperties().getProperty("delay");
