@@ -4,6 +4,8 @@
 
 package de.fhtrier.gdw.ss2013.game;
 
+import org.jbox2d.dynamics.Fixture;
+import org.jbox2d.dynamics.contacts.Contact;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -17,8 +19,6 @@ import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.physix.PhysixBox;
 import de.fhtrier.gdw.ss2013.physix.PhysixObject;
 import de.fhtrier.gdw.ss2013.renderer.DynamicParticleSystem;
-import org.jbox2d.dynamics.Fixture;
-import org.jbox2d.dynamics.contacts.Contact;
 
 /**
  * Entity base class
@@ -29,6 +29,7 @@ public abstract class Entity {
 	protected Image img;
 	protected String name;
 	protected SafeProperties properties;
+	protected int renderLayer;
 
 	private static int entityId = 0;
 
@@ -232,4 +233,8 @@ public abstract class Entity {
         return ((PhysixObject) b.getBody().getUserData()).getOwner();
     }
 
+
+    protected void setRenderLayer(int val) {
+        renderLayer = val;
+    }
 }
