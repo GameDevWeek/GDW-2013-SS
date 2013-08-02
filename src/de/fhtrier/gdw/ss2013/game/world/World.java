@@ -187,9 +187,9 @@ public class World {
     }
 
     public Vector2f screenToWorldPosition(Vector2f screenPosition) {
-//        if (DebugModeStatus.isTPCamera()) {
-//            return tpCamera.screenToWorldPositionFromTarget(screenPosition);
-//        }
+        if (DebugModeStatus.isTPCamera()) {
+            return tpCamera.screenToWorldCoordinates(screenPosition);
+        }
         /**
          * Top-left (0,0) / Bottom-right (width,height)
          */

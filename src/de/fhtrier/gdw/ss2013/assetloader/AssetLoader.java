@@ -215,7 +215,9 @@ public class AssetLoader {
 			List<ParticleInfo> particleInfos = JacksonReader.readList(filename, ParticleInfo.class);
 			for (ParticleInfo particleInfo : particleInfos) {
 				checkForBackslashes(particleInfo.pfad);
-				particleMap.put(particleInfo.name, new DynamicParticleSystem(particleInfo.pfad, true));
+				if (!particleMap.containsKey(particleInfo.name)) {
+					particleMap.put(particleInfo.name, new DynamicParticleSystem(particleInfo.pfad, true));
+				}
 			}
 
 		} catch (Exception e) {
@@ -341,7 +343,7 @@ public class AssetLoader {
 			Log.warn("AssetLoader: Particleanimation '" + name + "' existiert nicht.");
 			return particleMap.get("error");
 		} else {
-			return particleMap.get(name).clone();
+			return particleMap.get(name);
 		}
 	}
 
