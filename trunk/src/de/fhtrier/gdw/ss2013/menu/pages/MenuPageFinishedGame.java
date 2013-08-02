@@ -45,7 +45,7 @@ public class MenuPageFinishedGame extends MenuPage {
             final boolean ingame) throws SlickException {
         super(container, _game, manager, null, null, "root");
 
-        font = AssetLoader.getInstance().getFont("verdana_46");
+        font = AssetLoader.getInstance().getFont("jabjai_heavy");
         xOffset = font.getWidth("Enemies killed:") + 25;
         h = font.getLineHeight() * 1.2f;
 

@@ -22,12 +22,12 @@ public class MenuPageCredits extends MenuPage {
 			throws SlickException {
 		super(container, game, menuManager, parent, "bg_credits", "credits");
 
-		Font font = AssetLoader.getInstance().getFont("verdana_46");
+		Font font = AssetLoader.getInstance().getFont("jabjai_heavy");
 
 		animation = new CreditsAnimation();
 		addWidget(animation);
 		
-		addCenteredButton("Zurück", 943, 680, font,
+		addCenteredButton("Zurueck", 943, 680, font,
 				new IActionListener() {
                     @Override
 					public void onAction() {

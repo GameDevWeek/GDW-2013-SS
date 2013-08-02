@@ -19,7 +19,7 @@ public class MenuPageGamePause extends MenuPage {
             MenuManager menuManager) throws SlickException {
         super(container, game, menuManager, null, null, "pause");
         
-        Font font = AssetLoader.getInstance().getFont("verdana_46");
+        Font font = AssetLoader.getInstance().getFont("jabjai_heavy");
         
         float x = 100;
         float y = 200;
@@ -48,7 +48,7 @@ public class MenuPageGamePause extends MenuPage {
                 }
         );
         
-        addLeftAlignedButton("Zurück zum Hauptmenü", x, y + h * (buttonCount - i--), font, 
+        addLeftAlignedButton("Zurueck zum Hauptmenue", x, y + h * (buttonCount - i--), font, 
                 new IActionListener() {
                     @Override
                     public void onAction() {
