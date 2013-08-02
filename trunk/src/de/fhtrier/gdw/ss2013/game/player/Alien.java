@@ -21,7 +21,7 @@ import de.fhtrier.gdw.ss2013.game.world.objects.Box;
 import de.fhtrier.gdw.ss2013.input.AlienController;
 import org.jbox2d.dynamics.BodyType;
 
-public class Alien extends Entity implements AlienController {
+public final class Alien extends Entity implements AlienController {
 
     private Animation animation;
 	private int selectedAbility;
@@ -42,18 +42,14 @@ public class Alien extends Entity implements AlienController {
     private boolean invertAnimation;
 
 	public Alien() {
-		setAnimation(AssetLoader.getInstance().getAnimation("alien_standing"));
+		animation = AssetLoader.getInstance().getAnimation("alien_standing");
 		// Alien does NOT have different movestates! byRobin
 		currentSelectedBox = null;
 	    selectionRadius = 50;
 	    lastShotTime = 0;
 	    selectedAbility = 1;
 	    maxMana = 0.0f;
-	    mana = maxMana;	}
-	
-    
-    public void setAnimation(Animation animation) {
-        this.animation = animation;
+	    mana = maxMana;
     }
     
 	/**
@@ -105,13 +101,10 @@ public class Alien extends Entity implements AlienController {
 			
 			shootDirection = shootDirection.normalise().scale(PlayerConstants.BULLET_SPEED);
 
-			EntityManager entityManager = World.getInstance().getEntityManager();
-
 			// Create a meteorite entity
 			PlayerBullet entity = entityManager.createEntity(PlayerBullet.class);
 			entity.setOrigin(playerPos.x, playerPos.y);
 			entity.setShootDirection(shootDirection);
-			
 
 			lastShotTime = System.currentTimeMillis();
 		}

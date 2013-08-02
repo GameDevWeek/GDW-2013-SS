@@ -38,6 +38,7 @@ public class Label extends Widget {
 	private Label() {
 	}
 
+    @Override
 	public void init(GameContainer container) throws SlickException {
 		if(font == null)
 			font = AssetLoader.getInstance().getFont("verdana_46");
@@ -45,6 +46,7 @@ public class Label extends Widget {
 			color = Color.white;
 	}
 
+    @Override
 	public void render(Graphics g) {
 		long currentTime = System.currentTimeMillis();
 		if(lastRenderTime == 0)
@@ -276,6 +278,7 @@ public class Label extends Widget {
 	 * 
 	 * @return A new Label with the same values as this
 	 */
+    @Override
 	public Label clone() {
 		Label b = Label.create(text, rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight());
 

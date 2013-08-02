@@ -14,7 +14,6 @@ import de.fhtrier.gdw.ss2013.game.EntityCollidable;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.game.world.spawner.MeteoriteSpawner;
-import de.fhtrier.gdw.ss2013.physix.PhysixBox;
 import de.fhtrier.gdw.ss2013.physix.PhysixManager;
 
 /**
@@ -38,12 +37,8 @@ public class Meteroid extends EntityCollidable {
 	@Override
 	protected void initialize() {
 		super.initialize();
-		PhysixManager physicsManager = World.getInstance().getPhysicsManager();
-		
-		// FIXME: Dirty hack to get width and height of an Meteorite
-        Animation anim = AssetLoader.getInstance().getAnimation("meteorite");
-		int width = anim.getWidth();
-		int height = anim.getHeight();
+		int width = ani.getWidth();
+		int height = ani.getHeight();
         setInitialSize(width, height);
 	}
 

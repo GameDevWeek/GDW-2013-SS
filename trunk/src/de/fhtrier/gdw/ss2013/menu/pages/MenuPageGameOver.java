@@ -42,6 +42,7 @@ public class MenuPageGameOver extends MenuPage {
         
         addCenteredButton("Exit", MenuManager.MENU_WIDTH-font.getWidth("Exit")-50, MenuManager.MENU_HEIGHT-font.getHeight("Exit")-50, font,
 			new IActionListener() {
+                @Override
 				public void onAction() {
 					System.exit(0); // todo
 				}

@@ -1,6 +1,5 @@
 package de.fhtrier.gdw.ss2013.menu.pages;
 
-import org.newdawn.slick.Color;
 import org.newdawn.slick.Font;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
@@ -12,9 +11,7 @@ import de.fhtrier.gdw.ss2013.menu.IActionListener;
 import de.fhtrier.gdw.ss2013.menu.Label;
 import de.fhtrier.gdw.ss2013.menu.MenuManager;
 import de.fhtrier.gdw.ss2013.menu.MenuPage;
-import de.fhtrier.gdw.ss2013.menu.ToggleButton;
 import de.fhtrier.gdw.ss2013.menu.Widget.Align;
-import de.fhtrier.gdw.ss2013.states.GameplayState;
 
 public class MenuPageLevelSelect extends MenuPage {
 
@@ -39,6 +36,7 @@ public class MenuPageLevelSelect extends MenuPage {
         
         addCenteredButton("GO!", xCenter, yCenter, font, 
                 new IActionListener() { 
+                    @Override
                     public void onAction() {
                         MainGame.changeState(MainGame.GAMEPLAYSTATE);
                     }
@@ -48,6 +46,7 @@ public class MenuPageLevelSelect extends MenuPage {
         float textHeight = font.getLineHeight();
         addCenteredButton("zurück", xCenter, MenuManager.MENU_HEIGHT - 1.5f * textHeight, font, 
                 new IActionListener() { 
+                    @Override
                     public void onAction() {
                         close();
                     }

@@ -12,8 +12,6 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.commons.utils.SafeProperties;
-import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
-import de.fhtrier.gdw.ss2013.assetloader.infos.GameDataInfo.WorldInfo;
 import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.physix.PhysixManager;
 import de.fhtrier.gdw.ss2013.physix.PhysixShape;
@@ -35,7 +33,6 @@ public abstract class Entity {
     private static int entityId = 0;
     final static float DEBUG_ENTITY_HALFEXTEND = 5;
     protected DynamicParticleSystem particle;
-    protected AssetLoader asset;
 
     /* every Entity-class needs a constructor without any parameters! */
     public Entity() {

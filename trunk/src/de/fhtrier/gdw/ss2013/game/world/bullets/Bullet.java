@@ -4,7 +4,6 @@ import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.contacts.Contact;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
@@ -14,20 +13,17 @@ import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityCollidable;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.world.World;
-import de.fhtrier.gdw.ss2013.physix.PhysixBox;
 
 public abstract class Bullet extends EntityCollidable {
 	
 	private Vector2f shootDirection;
 
-	private Image img;
 	protected int livetime;
 	private EntityManager m;
 	private float damage;
 
 	public Bullet() {
-		super();
-		img = AssetLoader.getInstance().getImage("bullet");
+		super(AssetLoader.getInstance().getImage("bullet"));
 		m = World.getInstance().getEntityManager();
 	}
 
@@ -49,12 +45,14 @@ public abstract class Bullet extends EntityCollidable {
 		physicsObject.setGravityScale(0f);
     }
 
+    @Override
 	public void render(GameContainer container, Graphics g) throws SlickException {
 		img.draw(this.getPosition().x - (img.getWidth() / 2), this.getPosition().y - (img.getHeight() / 2));
 
 		// g.drawString(this.hashCode(), position.x, position.y);
 	}
 
+    @Override
 	public void update(GameContainer container, int delta) throws SlickException {
 		float df = delta / 1000f;
 		

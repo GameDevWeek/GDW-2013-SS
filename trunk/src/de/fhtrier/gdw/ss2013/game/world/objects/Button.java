@@ -1,6 +1,5 @@
 package de.fhtrier.gdw.ss2013.game.world.objects;
 
-import org.jbox2d.dynamics.Fixture;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
@@ -10,7 +9,6 @@ import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.player.Alien;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.physix.ICollisionListener;
-import de.fhtrier.gdw.ss2013.physix.PhysixManager;
 import de.fhtrier.gdw.ss2013.physix.PhysixShape;
 
 import org.jbox2d.dynamics.BodyType;

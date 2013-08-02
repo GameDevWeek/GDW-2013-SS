@@ -47,11 +47,13 @@ public class Button extends Widget {
 		images = new Image[numStates];
 	}
 
+    @Override
 	public void init(GameContainer container) throws SlickException {
 		if(font == null)
 			font = AssetLoader.getInstance().getFont("verdana_46");
 	}
 
+    @Override
 	public void render(Graphics g) {
 		g.setFont(font);
 		float w = font.getWidth(text);
@@ -275,6 +277,7 @@ public class Button extends Widget {
 	 * 
 	 * @return A new Button with the same values as this
 	 */
+    @Override
 	public Button clone() {
 		Button b = Button.create(text, rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight());
 
@@ -324,6 +327,7 @@ public class Button extends Widget {
 			.pressedImage(null)
 			.action(
 				new IActionListener() {
+                    @Override
 					public void onAction() {
 						
 					}
@@ -335,6 +339,7 @@ public class Button extends Widget {
 			.size(w,h)
 			.action(
 				new IActionListener() {
+                    @Override
 					public void onAction() {
 			
 					}

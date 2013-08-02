@@ -1,11 +1,6 @@
 
 package de.fhtrier.gdw.ss2013.menu.pages;
 
-import javax.swing.text.AttributeSet.FontAttribute;
-
-import de.fhtrier.gdw.ss2013.MainGame;
-
-import org.newdawn.slick.AngelCodeFont;
 import org.newdawn.slick.Font;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;
@@ -13,14 +8,12 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
-import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.menu.Button;
 import de.fhtrier.gdw.ss2013.menu.IActionListener;
 import de.fhtrier.gdw.ss2013.menu.Label;
 import de.fhtrier.gdw.ss2013.menu.MenuManager;
 import de.fhtrier.gdw.ss2013.menu.MenuPage;
 import de.fhtrier.gdw.ss2013.menu.MenuPageAction;
-import de.fhtrier.gdw.ss2013.states.GameplayState;
 
 
 public class MenuPageRoot extends MenuPage {
@@ -63,6 +56,7 @@ public class MenuPageRoot extends MenuPage {
 		    //MenuPageHighscore = new MenuPageHighscore(container, _game, manager, this, null)
 		    addCenteredButton("Highscore", xCenter, yCenter + hText * (buttonCount - i--), font, 
                     new IActionListener() { 
+                        @Override
                         public void onAction() {
                         }
                     }
@@ -70,6 +64,7 @@ public class MenuPageRoot extends MenuPage {
 		    
 		    addCenteredButton("Credits", xCenter, yCenter + hText * (buttonCount - i--), font, 
                     new IActionListener() { 
+                        @Override
                         public void onAction() {
                         }
                     }
@@ -77,6 +72,7 @@ public class MenuPageRoot extends MenuPage {
 		    
 		    addCenteredButton("Beenden", xCenter, yCenter + hText * (buttonCount - i--), font, 
                     new IActionListener() { 
+                        @Override
                         public void onAction() {
                             System.exit(0);
                         }

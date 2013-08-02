@@ -24,7 +24,7 @@ public class InteractionManager implements ICollisionListener {
     HashSet<ActivatableByAstronaut> interactables;
     
     public InteractionManager() {
-        interactables = new HashSet<ActivatableByAstronaut>();
+        interactables = new HashSet<>();
     }
 
     /**

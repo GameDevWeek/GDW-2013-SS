@@ -17,13 +17,11 @@ import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.filter.Interactable;
 import de.fhtrier.gdw.ss2013.game.world.enemies.FlyingEnemy;
-import de.fhtrier.gdw.ss2013.game.world.objects.Door;
 import de.fhtrier.gdw.ss2013.game.world.objects.FollowPath;
 import de.fhtrier.gdw.ss2013.game.world.objects.MovingPlatform;
 import de.fhtrier.gdw.ss2013.game.world.objects.ObjectController;
 import de.fhtrier.gdw.ss2013.game.world.objects.Teleporter;
 import de.fhtrier.gdw.ss2013.gui.TooltipManager;
-import de.fhtrier.gdw.ss2013.physix.PhysixBox;
 import de.fhtrier.gdw.ss2013.physix.PhysixManager;
 import de.fhtrier.gdw.ss2013.renderer.DynamicParticleSystem;
 
@@ -42,7 +40,7 @@ public class LevelLoader {
             PhysixManager physicsManager) {
 
         worldInfo = AssetLoader.getInstance().getGameData().world;
-        followPaths = new HashMap<String, FollowPath>();
+        followPaths = new HashMap<>();
 
         LevelLoader.entityManager = entityManager;
         LevelLoader.physicsManager = physicsManager;

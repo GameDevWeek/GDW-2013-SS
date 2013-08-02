@@ -77,7 +77,7 @@ public class CreditsAnimation extends Widget implements IActionListener {
 		widgets.clear();
 		numMovers = 0;
 		
-		PathMover mover = null;
+		PathMover mover;
 		int delay = 0;
 		for(CreditsInfo.Text text:  credits.texts) {
 			Style style = styles.get(text.style);

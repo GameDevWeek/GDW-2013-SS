@@ -8,7 +8,6 @@ import org.newdawn.slick.SlickException;
 
 import de.fhtrier.gdw.ss2013.constants.EnemyConstants;
 import de.fhtrier.gdw.ss2013.game.EntityCollidable;
-import de.fhtrier.gdw.ss2013.game.filter.EntityFilter;
 import de.fhtrier.gdw.ss2013.game.world.World;
 
 /**

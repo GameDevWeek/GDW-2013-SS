@@ -35,7 +35,7 @@ public abstract class ObjectController extends Entity implements Interactable {
     protected void initialize() {
         super.initialize();
         isActivated = false;
-        connectedEntities = new HashSet<Interactable>();
+        connectedEntities = new HashSet<>();
     }
 
     @Override

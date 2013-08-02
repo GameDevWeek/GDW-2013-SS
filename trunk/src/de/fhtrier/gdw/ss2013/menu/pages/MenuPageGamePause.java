@@ -30,6 +30,7 @@ public class MenuPageGamePause extends MenuPage {
         
         addLeftAlignedButton("Fortsetzen", x, y + h * (buttonCount - i--), font, 
                 new IActionListener() {
+                    @Override
                     public void onAction() {
                         GameplayState.hideMenu();
                     }
@@ -38,6 +39,7 @@ public class MenuPageGamePause extends MenuPage {
         
         addLeftAlignedButton("Reset", x, y + h * (buttonCount - i--), font, 
                 new IActionListener() {
+                    @Override
                     public void onAction() {
                         World.getInstance().shallBeReseted(true);
                         GameplayState.hideMenu();
@@ -47,6 +49,7 @@ public class MenuPageGamePause extends MenuPage {
         
         addLeftAlignedButton("Exit", x, MenuManager.MENU_HEIGHT - h, font, 
                 new IActionListener() {
+                    @Override
                     public void onAction() {
                         System.exit(0);
                     }

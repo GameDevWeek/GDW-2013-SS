@@ -80,8 +80,11 @@ public abstract class FlyingEnemy extends AbstractEnemy implements EntityFilter 
             speed = properties.getFloat("speed", 20.0f);
             moveAround = properties.getBoolean("moveAround", false);
         }
+        
         index = getClosestPoint();
-        getPhysicsObject().setPosition(points.get(index).x, points.get(index).y);
+        if(points != null) {
+            getPhysicsObject().setPosition(points.get(index).x, points.get(index).y);
+        }
     }
     
     public void reduceHealth(float dmg) {
@@ -93,8 +96,8 @@ public abstract class FlyingEnemy extends AbstractEnemy implements EntityFilter 
      * @param shootDirection The direction from the flying enemy towards the player
      */
     public void shoot(Astronaut player) {
-    	Vector2f shootDirection = new Vector2f();
-    	shootDirection = player.getPosition().sub(getPosition()).normalise().scale(PlayerConstants.BULLET_SPEED);
+    	Vector2f shootDirection = player.getPosition().sub(getPosition())
+                .normalise().scale(PlayerConstants.BULLET_SPEED);
 
 		EntityManager entityManager = World.getInstance().getEntityManager();
 
@@ -163,6 +166,7 @@ public abstract class FlyingEnemy extends AbstractEnemy implements EntityFilter 
         return closestPoint;
     }
     
+    @Override
     public void update(GameContainer container, int delta) throws SlickException {
     	super.update(container, delta);
     	interval += delta;

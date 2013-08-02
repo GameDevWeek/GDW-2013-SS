@@ -27,9 +27,11 @@ public class Slider extends Widget {
 		this.horizontal = horizontal;
 	}
 
+    @Override
 	public void init(GameContainer container) throws SlickException {
 	}
 
+    @Override
 	public void render(Graphics g) {
 		if(thumbImage != null) {
 			if(horizontal)
@@ -149,6 +151,7 @@ public class Slider extends Widget {
 	 * 
 	 * @return A new Slider with the same values as this
 	 */
+    @Override
 	public Slider clone() {
 		Slider b = Slider.create(value, horizontal, rect.getX(), rect.getY(), rect.getWidth(), rect.getHeight());
 

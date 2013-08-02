@@ -2,7 +2,6 @@ package de.fhtrier.gdw.ss2013.game.world;
 
 import java.util.ArrayList;
 
-import org.jbox2d.dynamics.BodyType;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -13,7 +12,6 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import de.fhtrier.gdw.commons.tiled.TiledMap;
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
-import de.fhtrier.gdw.ss2013.assetloader.infos.GameDataInfo;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.camera.Camera;
 import de.fhtrier.gdw.ss2013.game.camera.CameraInfo;
@@ -22,10 +20,7 @@ import de.fhtrier.gdw.ss2013.game.player.Alien;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.score.ScoreCounter;
 import de.fhtrier.gdw.ss2013.input.InputManager;
-import de.fhtrier.gdw.ss2013.physix.PhysixBox;
-import de.fhtrier.gdw.ss2013.physix.PhysixBoxPlayer;
 import de.fhtrier.gdw.ss2013.physix.PhysixManager;
-import de.fhtrier.gdw.ss2013.physix.PhysixShape;
 import de.fhtrier.gdw.ss2013.renderer.DynamicParticleSystem;
 import de.fhtrier.gdw.ss2013.renderer.MapRenderer;
 import de.fhtrier.gdw.ss2013.settings.DebugModeStatus;
@@ -63,7 +58,7 @@ public class World {
         map = null;
         entityManager = new EntityManager();
         physicsManager = new PhysixManager(container);
-        particleList = new ArrayList<DynamicParticleSystem>();
+        particleList = new ArrayList<>();
         scoreCounter = new ScoreCounter();
         reset();
     }
@@ -257,7 +252,7 @@ public class World {
         particleList.add(p);
     }
 
-    public void removeParticle(ParticleSystem p) {
+    public void removeParticle(DynamicParticleSystem p) {
         particleList.remove(p);
     }
 

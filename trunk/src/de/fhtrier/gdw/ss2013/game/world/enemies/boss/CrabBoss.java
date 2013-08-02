@@ -14,8 +14,6 @@ import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.camera.PointOfInterest;
 import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.game.world.enemies.ground.SmallGroundEnemy;
-import de.fhtrier.gdw.ss2013.physix.PhysixBox;
-import de.fhtrier.gdw.ss2013.physix.PhysixManager;
 
 public class CrabBoss extends AbstractBoss {
 

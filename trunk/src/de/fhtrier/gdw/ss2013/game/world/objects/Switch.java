@@ -3,11 +3,9 @@ package de.fhtrier.gdw.ss2013.game.world.objects;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.util.Log;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.filter.ActivatableByAstronaut;
-import de.fhtrier.gdw.ss2013.physix.PhysixManager;
 import org.jbox2d.dynamics.BodyType;
 
 /**

@@ -26,12 +26,8 @@ public class Box extends EntityCollidable {
 
     public Box() {
         super();
-        setAnimation(AssetLoader.getInstance().getAnimation("box"));
+        animation = AssetLoader.getInstance().getAnimation("box");
     }
-    
-    private void setAnimation(Animation animation) {
-		this.animation = animation;
-	}
     
     @Override
     public void render(GameContainer gc, Graphics g) {

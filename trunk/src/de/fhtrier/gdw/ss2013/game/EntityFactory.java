@@ -26,16 +26,7 @@ public class EntityFactory {
 			assert (entityClass.getConstructor() != null);
 			e = entityClass.newInstance();
 		}
-		catch (NoSuchMethodException ex) {
-			ex.printStackTrace();
-		}
-		catch (SecurityException ex) {
-			ex.printStackTrace();
-		}
-		catch (InstantiationException ex) {
-			ex.printStackTrace();
-		}
-		catch (IllegalAccessException ex) {
+		catch (Exception ex) {
 			ex.printStackTrace();
 		}
 		return e;

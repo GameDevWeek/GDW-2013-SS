@@ -218,9 +218,9 @@ public class EntityManager {
 
     public <T extends Entity> T createEntity(Class<? extends Entity> entityClass) {
         T e = factory.createEntity(entityClass);
+        assert (e != null);
         addEntity(e);
         e.renderLayer = 99;
-        assert (e != null);
         return e;
     }
 
