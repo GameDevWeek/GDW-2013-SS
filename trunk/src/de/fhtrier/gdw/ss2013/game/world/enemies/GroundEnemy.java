@@ -61,7 +61,6 @@ public abstract class GroundEnemy extends AbstractEnemy {
 			hunt(delta);
 			break;
 		}
-//		System.out.println("Speed: " + speed + " | State: " + state + " | stuck: " + (isInLevel) + " | pos: "+getPosition());
 	}
 
 	private void hunt(int delta) {

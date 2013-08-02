@@ -75,7 +75,7 @@ public class LevelLoader {
             if (object.getPrimitive() == LayerObject.Primitive.TILE)
                 type = object.getProperty("type", null);
             if (type == null) {
-                System.out.println("Warning: type missing for object!");
+                System.err.println("Warning: type missing for object!");
                 continue;
             }
             if(object.getProperties() != null) {
