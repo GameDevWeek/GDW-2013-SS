@@ -99,7 +99,7 @@ public class MainGame extends StateBasedGame {
 
             for (String a : args) {
                 if (a.toLowerCase().equals("-testmode")) {
-                    DebugModeStatus.setStatus(false);
+                    DebugModeStatus.setStatus(true);
                 }
                 if (a.toLowerCase().equals("-physictest")) {
                     DebugModeStatus.setPhysicTest(true);
