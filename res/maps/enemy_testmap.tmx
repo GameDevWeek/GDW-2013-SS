@@ -124,5 +124,13 @@
     <property name="path" value="p1"/>
    </properties>
   </object>
+  <object name="p2" type="FollowPath" x="1216" y="5952">
+   <polyline points="0,0 576,0"/>
+  </object>
+  <object name="f1" gid="743" x="1183" y="5984">
+   <properties>
+    <property name="path" value="p2"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

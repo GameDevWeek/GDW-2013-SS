@@ -131,11 +131,13 @@
   </object>
   <object name="annie" gid="636" x="7952" y="1136">
    <properties>
+    <property name="followPath" value="true"/>
     <property name="path" value="roundtrip1"/>
    </properties>
   </object>
   <object name="hugo" gid="636" x="9200" y="2180">
    <properties>
+    <property name="followPath" value="true"/>
     <property name="path" value="roundtrip1"/>
    </properties>
   </object>
