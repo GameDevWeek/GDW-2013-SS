@@ -1,20 +1,31 @@
 package de.fhtrier.gdw.ss2013.game.world.enemies.boss;
 
+import org.jbox2d.dynamics.BodyType;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.world.World;
-
+import de.fhtrier.gdw.ss2013.physix.PhysixBox;
+import de.fhtrier.gdw.ss2013.physix.PhysixManager;
 
 public class ThaWhale extends AbstractBoss {
 
-	public ThaWhale () {
+	public ThaWhale() {
 		super(AssetLoader.getInstance().getImage("whale"));
-		phase = new IdlePhase();	
+		phase = new IdlePhase();
+	}
+	
+	@Override
+	protected void initialize() {
+		if (physicsObject != null) {
+			physicsObject.removeFromWorld();
 		}
-
+		PhysixManager physicsManager = World.getInstance().getPhysicsManager();
+		PhysixBox bossPhysics = new PhysixBox(physicsManager, 2000, 100, 250, 100, BodyType.DYNAMIC, 1.f, 1.0f, false);
+		setPhysicsObject(bossPhysics);
+	}
 
 	private class IdlePhase extends Phase {
 		private int timer = 3000;
