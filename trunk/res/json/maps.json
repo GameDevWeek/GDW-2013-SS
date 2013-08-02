@@ -35,6 +35,10 @@
   "pfad" : "res/maps/bossmap.tmx"
 },
 {
+  "name" : "robomap",
+  "pfad" : "res/maps/robomap.tmx"
+},
+{
   "name" : "featureTestMap",
   "pfad" : "res/maps/featureTestMap.tmx"
 },
