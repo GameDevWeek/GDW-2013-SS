@@ -44,10 +44,10 @@ public abstract class GroundEnemy extends AbstractEnemy {
 		contacts = new ArrayList<>();
 	}
 
-    @Override
-    public boolean isBottomPositioned() {
-        return true;
-    }
+	@Override
+	public boolean isBottomPositioned() {
+		return true;
+	}
 
 	@Override
 	protected void initialize() {
@@ -55,7 +55,8 @@ public abstract class GroundEnemy extends AbstractEnemy {
 	}
 
 	@Override
-	public void update(GameContainer container, int delta) throws SlickException {
+	public void update(GameContainer container, int delta)
+			throws SlickException {
 		super.update(container, delta);
 
 		if (groundContacts > 0) {
@@ -79,7 +80,8 @@ public abstract class GroundEnemy extends AbstractEnemy {
 		}
 
 		playerDirection.y = 0;
-		setVelocity(playerDirection.normalise().scale(EnemyConstants.ENEMY_SPEED).copy());
+		setVelocity(playerDirection.normalise()
+				.scale(EnemyConstants.ENEMY_SPEED).copy());
 	}
 
 	private void patrol(int delta) {
@@ -106,8 +108,7 @@ public abstract class GroundEnemy extends AbstractEnemy {
 			}
 
 			setVelocity(speed.copy());
-		}
-		else {
+		} else {
 			chillTime -= delta;
 			if (chillTime < 0)
 				chillTime = 0;
@@ -139,37 +140,58 @@ public abstract class GroundEnemy extends AbstractEnemy {
 		PhysixShape objectA = (PhysixShape) a.getBody().getUserData();
 		PhysixShape objectB = (PhysixShape) b.getBody().getUserData();
 
-		if (physicsObject == objectA && objectB.getOwner() == null && !b.m_isSensor) {
+		if (physicsObject == objectA && objectB.getOwner() == null
+				&& !b.m_isSensor) {
+			groundContacts++;
+		} else if (physicsObject == objectB && objectA.getOwner() == null
+				&& !a.m_isSensor) {
 			groundContacts++;
 		}
-		else if (physicsObject == objectB && objectA.getOwner() == null && !a.m_isSensor) {
-			groundContacts++;
-		}
-		
+
 		if (a.m_isSensor || b.m_isSensor)
 			return;
 
 		Entity other = getOtherEntity(contact);
 
 		if (other != null) {
-			if (other.getPhysicsObject().getBodyType() == BodyType.DYNAMIC && !(other instanceof Alien)
+			if (other.getPhysicsObject().getBodyType() == BodyType.DYNAMIC
+					&& !(other instanceof Alien)
 					&& !(other instanceof Astronaut)) {
 				if (other.getPosition().x < getPosition().x) {
 					speed.x = Math.abs(speed.x);
-				}
-				else {
+				} else {
 					speed.x = -Math.abs(speed.x);
 				}
 			}
 			if (other instanceof Astronaut) {
-				((Astronaut) other).setOxygen(((Astronaut) other).getOxygen() - this.getDamage());
-				((Astronaut) other).gotBiten();
+
+				Astronaut astro = (Astronaut) other;
+				Vector2f damageTakerPos = other.getPosition();
+				Vector2f damageTakerDim = other.getPhysicsObject()
+						.getDimension();
+
+				Vector2f damageDealerPos = this.getPosition();
+				Vector2f damageDealerDim = this.getPhysicsObject()
+						.getDimension();
+				
+				boolean checkPlayerOnTopOfEnemy = (damageTakerPos.x + damageTakerDim.x > damageDealerPos.x
+						- damageDealerDim.x) //
+						&& ((damageTakerPos.x - damageTakerDim.x < damageDealerPos.x
+								+ damageDealerDim.x))
+						&& (damageTakerPos.y + damageTakerDim.y < damageDealerPos.y);
+				if (!checkPlayerOnTopOfEnemy) {
+
+					astro.setOxygen(((Astronaut) other).getOxygen()
+							- this.getDamage());
+					astro.gotBiten();
+
+				}
 			}
-		}
-		else {
+		} else {
 			speed.x = -speed.x;
 
-			getPhysicsObject().setPosition(getPosition().x - speed.x, getPosition().y);
+			getPhysicsObject().setPosition(getPosition().x - speed.x,
+					getPosition().y);
 		}
 
 		contacts.add(contact);

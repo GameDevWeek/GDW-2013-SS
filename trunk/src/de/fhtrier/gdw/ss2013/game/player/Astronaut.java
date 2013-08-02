@@ -55,35 +55,36 @@ public final class Astronaut extends EntityCollidable implements AstronautContro
 	private int superJumpDelay = 0;
     private float superJumpSpeed;
     private float superJumpGravityScale;
-	
+
 	private int restTimeBitenFilter;
 
-	public Astronaut () {
-        AssetLoader al = AssetLoader.getInstance();
-        for(PlayerState s: PlayerState.values()) {
-            s.setAnimations(al.getAnimation("player_couple_" + s.toString()),
-                    al.getAnimation("astronaut_" + s.toString()));
-        }
-        
+	public Astronaut() {
+		AssetLoader al = AssetLoader.getInstance();
+		for (PlayerState s : PlayerState.values()) {
+			s.setAnimations(al.getAnimation("player_couple_" + s.toString()),
+					al.getAnimation("astronaut_" + s.toString()));
+		}
+
 		gameData = AssetLoader.getInstance().getGameData();
 	}
 
-    @Override
-    public boolean isBottomPositioned() {
-        return true;
-    }
+	@Override
+	public boolean isBottomPositioned() {
+		return true;
+	}
 
-	public void setAlien (Alien alien) {
+	public void setAlien(Alien alien) {
 		this.alien = alien;
 		carryAlien = true;
 		alien.setOnPlayer(true);
-        alien.setAstronaut(this);
+		alien.setAstronaut(this);
 	}
 
 	private Vector2f dynamicTarget = new Vector2f();
+
 	/** {@inheritDoc} */
 	@Override
-	protected void initialize () {
+	protected void initialize() {
 		super.initialize();
 		renderLayer = Integer.MAX_VALUE;
 		speed = gameData.combined.speed;
@@ -100,44 +101,54 @@ public final class Astronaut extends EntityCollidable implements AstronautContro
 		World.getInstance().getTPCamera().addDynamicTarget(dynamicTarget);
 	}
 
-	public float getOxygen () {
+	public float getOxygen() {
 		return oxygen;
 	}
 
-	public void setOxygen (float oxygen) {
+	public void setOxygen(float oxygen) {
 		this.oxygen = oxygen;
 	}
 
-	public float getMaxOxygen () {
+	public float getMaxOxygen() {
 		return maxOxygen;
 	}
 
-	public void setMaxOxygen (float maxOxygen) {
+	public void setMaxOxygen(float maxOxygen) {
 		this.maxOxygen = maxOxygen;
 	}
 
-	public void setJumpSpeed (float newJumpSpeed) {
+	public void setJumpSpeed(float newJumpSpeed) {
 		jumpSpeed = newJumpSpeed;
 	}
 
 	@Override
-	public void update (GameContainer container, int delta) throws SlickException {
+	public void update(GameContainer container, int delta)
+			throws SlickException {
 		super.update(container, delta);
-		if (jumpDelay > 0) jumpDelay -= delta;
+		if (jumpDelay > 0)
+			jumpDelay -= delta;
 		if (superJumpDelay > 0) superJumpDelay -= delta;
 		if (oxygen > 0)
-			this.oxygen -= (this.maxOxygen * PlayerConstants.OXYGEN_PERCENTAGE_LOST_PER_SECOND) * (delta / 1000f);
+			this.oxygen -= (this.maxOxygen * PlayerConstants.OXYGEN_PERCENTAGE_LOST_PER_SECOND)
+					* (delta / 1000f);
 		else
 			die();
-        
+		if (getVelocity().x == 0 && getVelocity().y == 0 || !(walking)) {
+			if (!(state.equals(PlayerState.superjump)
+					|| state.equals(PlayerState.superjump_start) || state
+						.equals(PlayerState.superjump_end))) {
+				setState(PlayerState.standing);
+			}
+		}
+
 		Vector2f pos = this.getPosition();
-		dynamicTarget.set(pos.x,pos.y);
-		
+		dynamicTarget.set(pos.x, pos.y);
+
 		switch (state) {
 		case jumping:
 			if (getVelocity().y > 0) {
-                setState(PlayerState.falling);
-            }
+				setState(PlayerState.falling);
+			}
 			break;
 		case superjump:
 			if (isGrounded()) {
@@ -161,31 +172,34 @@ public final class Astronaut extends EntityCollidable implements AstronautContro
 			}
 			break;
 		default:
-            if (getVelocity().x == 0 && getVelocity().y == 0 || !(walking)) {
-                setState(PlayerState.standing);
-            }
+			if (getVelocity().x == 0 && getVelocity().y == 0 || !(walking)) {
+				setState(PlayerState.standing);
+			}
 			break;
 
 		}
 		if (restTimeBitenFilter > 0) {
 			restTimeBitenFilter -= delta;
 			if (restTimeBitenFilter < 0) {
-				restTimeBitenFilter =  0;
+				restTimeBitenFilter = 0;
 			}
 		}
-// if (!oldState.equals(state)) Log.debug(state.toString());
-// oldState = state;
+		// if (!oldState.equals(state)) Log.debug(state.toString());
+		// oldState = state;
 	}
 
-	public void preInput () {
+	public void preInput() {
 		walking = false;
 	}
 
 	@Override
-	public void moveRight () {
+	public void moveRight() {
 		setVelocityX(speed);
-		if (!(state.equals(PlayerState.superjump) || state.equals(PlayerState.superjump_start) || state
-			.equals(PlayerState.superjump_end)|| state.equals(PlayerState.jumping) || state.equals(PlayerState.falling))) {
+		if (!(state.equals(PlayerState.superjump)
+				|| state.equals(PlayerState.superjump_start)
+				|| state.equals(PlayerState.superjump_end)
+				|| state.equals(PlayerState.jumping) || state
+					.equals(PlayerState.falling))) {
 			setState(PlayerState.walking);
 		}
 		invertAnimation = false;
@@ -193,10 +207,13 @@ public final class Astronaut extends EntityCollidable implements AstronautContro
 	}
 
 	@Override
-	public void moveLeft () {
+	public void moveLeft() {
 		setVelocityX(-speed);
-		if (!(state.equals(PlayerState.superjump) || state.equals(PlayerState.superjump_start)
-			|| state.equals(PlayerState.superjump_end) || state.equals(PlayerState.jumping) || state.equals(PlayerState.falling))) {
+		if (!(state.equals(PlayerState.superjump)
+				|| state.equals(PlayerState.superjump_start)
+				|| state.equals(PlayerState.superjump_end)
+				|| state.equals(PlayerState.jumping) || state
+					.equals(PlayerState.falling))) {
 			setState(PlayerState.walking);
 		}
 		invertAnimation = true;
@@ -204,18 +221,18 @@ public final class Astronaut extends EntityCollidable implements AstronautContro
 	}
 
 	@Override
-	public void jump () {
+	public void jump() {
 		if (jumpDelay <= 0 && isGrounded()) {
 			jumpDelay = 0;
 			setVelocityY(-jumpSpeed);
 			physicsObject.applyImpulse(new Vector2f(0, -jumpSpeed));
 			setState(PlayerState.jumping);
 			jumpDelay = jumpDelayTotal;
-//			SoundLocator.getPlayer().playSound("absprung");
+			// SoundLocator.getPlayer().playSound("absprung");
 		}
 	}
 
-	public void superjump () {
+	public void superjump() {
 		if (superJumpDelay <= 0 && isGrounded() && isCarryAlien()) {
 			jumpDelay = 0;
 			setVelocityY(-superJumpSpeed);
@@ -227,62 +244,66 @@ public final class Astronaut extends EntityCollidable implements AstronautContro
 	}
 
 	@Override
-	public void action () {
+	public void action() {
 		for (Switch s : switches) {
 			s.turnSwitch();
 		}
 	}
 
-	public boolean isCarryAlien () {
+	public boolean isCarryAlien() {
 		return carryAlien;
 	}
 
-	public float getJumpSpeed () {
+	public float getJumpSpeed() {
 		return jumpSpeed;
 	}
 
-	public PlayerState getState () {
+	public PlayerState getState() {
 		return state;
 	}
 
-	public float getSpeed () {
+	public float getSpeed() {
 		return speed;
 	}
 
-	public void setSpeed (float newSpeed) {
+	public void setSpeed(float newSpeed) {
 		speed = newSpeed;
 	}
 
 	@Override
-	public void render (GameContainer container, Graphics g) throws SlickException {
+	public void render(GameContainer container, Graphics g)
+			throws SlickException {
 		Vector2f position = getPosition();
-		
+
 		Color filter = Color.white;
 		if (restTimeBitenFilter > 0) {
-			float filterStrength = (float) (Math.abs(Math.sin(restTimeBitenFilter/200f))); //200 ist smooth
+			float filterStrength = (float) (Math.abs(Math
+					.sin(restTimeBitenFilter / 200f))); // 200 ist smooth
 			filter = new Color(filterStrength, filterStrength, filterStrength);
 		}
 
 		if (invertAnimation) {
-			animation.draw(position.x + animation.getWidth() / 2, position.y - animation.getHeight() / 2, -animation.getWidth(),
-				animation.getHeight(), filter);
+			animation.draw(position.x + animation.getWidth() / 2, position.y
+					- animation.getHeight() / 2, -animation.getWidth(),
+					animation.getHeight(), filter);
 		} else {
-			animation.draw(position.x - animation.getWidth() / 2, position.y - animation.getHeight() / 2, filter);
+			animation.draw(position.x - animation.getWidth() / 2, position.y
+					- animation.getHeight() / 2, filter);
 		}
 
-// Log.debug(animation.getFrame()+1 +"/" + animation.getFrameCount());
-// if (!oldState.equals(state)) Log.debug(String.valueOf(state));
-// oldState = state;
+		// Log.debug(animation.getFrame()+1 +"/" + animation.getFrameCount());
+		// if (!oldState.equals(state)) Log.debug(String.valueOf(state));
+		// oldState = state;
 	}
 
-	public void setState (PlayerState state) {
+	public void setState(PlayerState state) {
 		if (this.state == null || !this.state.equals(state)) {
 			this.state = state;
 			updateStateAnimation();
 		}
 	}
 
-	private void updateStateAnimation () {
+	private void updateStateAnimation() {
 		if (isCarryAlien()) {
 			setAnimation(state.getCombinedAnimation());
 		} else {
@@ -295,94 +316,118 @@ public final class Astronaut extends EntityCollidable implements AstronautContro
 	// and the Astronaut needs to know its InteractionManager, so it is done
 	// here
 	@Override
-	public void setPhysicsObject (PhysixShape physicsObject) {
+	public void setPhysicsObject(PhysixShape physicsObject) {
 		interactionManager = new InteractionManager();
 		physicsObject.addCollisionListener(interactionManager);
 		super.setPhysicsObject(physicsObject);
 	}
 
-	public Animation getAnimation () {
+	public Animation getAnimation() {
 		return animation;
 	}
 
-	public void die () {
-		if (!Cheats.isGodmode) World.getInstance().shallBeReseted(true);
+	public void die() {
+		if (!Cheats.isGodmode)
+			World.getInstance().shallBeReseted(true);
 	}
 
-	public void setAnimation (Animation animation) {
-        if(this.animation != animation) {
-            this.animation = animation;
-            animation.restart();
-        }
+	public void setAnimation(Animation animation) {
+		if (this.animation != animation) {
+			this.animation = animation;
+			animation.restart();
+		}
 	}
 
-	public boolean isGrounded () {
+	public boolean isGrounded() {
 		return groundContacts > 0;
 	}
 
 	@Override
-	public void beginContact (Contact contact) {
+	public void beginContact(Contact contact) {
 		Fixture a = contact.getFixtureA();
 		Fixture b = contact.getFixtureB();
-		PhysixShape objectA = (PhysixShape)a.getBody().getUserData();
-		PhysixShape objectB = (PhysixShape)b.getBody().getUserData();
+		PhysixShape objectA = (PhysixShape) a.getBody().getUserData();
+		PhysixShape objectB = (PhysixShape) b.getBody().getUserData();
 
-		if (physicsObject == objectA && a.m_shape.getType() == ShapeType.CIRCLE && !b.m_isSensor) {
+		AbstractEnemy damageDealer = null;
+		Astronaut damageTaker = null;
+		if (objectA.getOwner() instanceof AbstractEnemy
+				&& objectB.getOwner() instanceof Astronaut) {
+			damageTaker = (Astronaut) objectB.getOwner();
+			damageDealer = (AbstractEnemy) objectA.getOwner();
+		} else if (objectB.getOwner() instanceof AbstractEnemy
+				&& objectA.getOwner() instanceof Astronaut) {
+			damageTaker = (Astronaut) objectA.getOwner();
+			damageDealer = (AbstractEnemy) objectB.getOwner();
+		}
+
+		if (physicsObject == objectA && a.m_shape.getType() == ShapeType.CIRCLE
+				&& !b.m_isSensor) {
 			groundContacts++;
-		} else if (physicsObject == objectB && b.m_shape.getType() == ShapeType.CIRCLE && !a.m_isSensor) {
+		} else if (physicsObject == objectB
+				&& b.m_shape.getType() == ShapeType.CIRCLE && !a.m_isSensor) {
 			groundContacts++;
 		}
 
-        Entity other = getOtherEntity(contact);
-		if (other instanceof AbstractEnemy) {
-			AbstractEnemy damageDealer = (AbstractEnemy)other;
-            
-			Vector2f damageTakerPos = getPosition();
-			Vector2f damageTakerDim = getPhysicsObject().getDimension();
+		if (damageDealer != null && damageTaker != null) {
+
+			Vector2f damageTakerPos = damageTaker.getPosition();
+			Vector2f damageTakerDim = damageTaker.getPhysicsObject()
+					.getDimension();
 
 			Vector2f damageDealerPos = damageDealer.getPosition();
-			Vector2f damageDealerDim = damageDealer.getPhysicsObject().getDimension();
+			Vector2f damageDealerDim = damageDealer.getPhysicsObject()
+					.getDimension();
 
-			if ((damageTakerPos.x + damageTakerDim.x > damageDealerPos.x - damageDealerDim.x) //
-				&& ((damageTakerPos.x - damageTakerDim.x < damageDealerPos.x + damageDealerDim.x))
-				&& (damageTakerPos.y + damageTakerDim.y < damageDealerPos.y)) { // player deals damage
-				World.getScoreCounter().addScore(5);
-				World.getInstance().getEntityManager().removeEntity(damageDealer);
-				setVelocityY(-.50f * getJumpSpeed());
+			if ((damageTakerPos.x + damageTakerDim.x > damageDealerPos.x
+					- damageDealerDim.x) //
+					&& ((damageTakerPos.x - damageTakerDim.x < damageDealerPos.x
+							+ damageDealerDim.x))
+					&& (damageTakerPos.y + damageTakerDim.y < damageDealerPos.y)) { // player
+																					// deals
+																					// damage
+				World.getInstance().getScoreCounter().addScore(5);
+				World.getInstance().getEntityManager()
+						.removeEntity(damageDealer);
+				if (damageTaker instanceof Astronaut)
+					damageTaker.setVelocityY(-.50f
+							* ((Astronaut) damageTaker).getJumpSpeed());
+
 			} else {
-				// Wird in Bullet-Klassen geregelt
-// if (damageTaker instanceof Astronaut && !(damageDealer instanceof PlayerBullet))
-// ((Astronaut) damageTaker).setOxygen(0);
 
 			}
 		}
-
+		Entity other = getOtherEntity(contact);
 		if (other instanceof Switch) {
-			switches.add((Switch)other);
+			switches.add((Switch) other);
 		}
 	}
 
 	@Override
-	public void endContact (Contact contact) {
+	public void endContact(Contact contact) {
 		Fixture a = contact.getFixtureA();
 		Fixture b = contact.getFixtureB();
-		PhysixShape objectA = (PhysixShape)a.getBody().getUserData();
-		PhysixShape objectB = (PhysixShape)b.getBody().getUserData();
-		if (physicsObject == objectA && a.m_shape.getType() == ShapeType.CIRCLE && !b.m_isSensor) {
+		PhysixShape objectA = (PhysixShape) a.getBody().getUserData();
+		PhysixShape objectB = (PhysixShape) b.getBody().getUserData();
+		if (physicsObject == objectA && a.m_shape.getType() == ShapeType.CIRCLE
+				&& !b.m_isSensor) {
 			groundContacts--;
-		} else if (physicsObject == objectB && b.m_shape.getType() == ShapeType.CIRCLE && !a.m_isSensor) {
+
+		} else if (physicsObject == objectB
+				&& b.m_shape.getType() == ShapeType.CIRCLE && !a.m_isSensor) {
 			groundContacts--;
+
 		}
 		assert (groundContacts >= 0);
 
-        Entity other = getOtherEntity(contact);
+		Entity other = getOtherEntity(contact);
 		if (other instanceof Switch) {
-			switches.remove((Switch)other);
+			switches.remove((Switch) other);
 		}
 	}
 
 	@Override
-	public void shoot () {
+	public void shoot() {
 		assert (alien != null);
 		if (carryAlien) {
 			alien.shoot();
@@ -393,19 +438,19 @@ public final class Astronaut extends EntityCollidable implements AstronautContro
 	}
 
 	@Override
-	public void nextAbility () {
+	public void nextAbility() {
 		assert (alien != null);
 		alien.nextAbility();
 	}
 
 	@Override
-	public void previousAbility () {
+	public void previousAbility() {
 		assert (alien != null);
 		alien.previousAbility();
 	}
 
 	@Override
-	public void useAbility () {
+	public void useAbility() {
 		assert (alien != null);
 		if (carryAlien) {
 			alien.useAbility();
@@ -415,37 +460,37 @@ public final class Astronaut extends EntityCollidable implements AstronautContro
 	}
 
 	@Override
-	public void setCursor (int x, int y) {
+	public void setCursor(int x, int y) {
 		assert (alien != null);
 		alien.setCursor(x, y);
 	}
 
 	@Override
-	public void cursorRight (float scale) {
+	public void cursorRight(float scale) {
 		assert (alien != null);
 		alien.cursorRight(scale);
 	}
 
 	@Override
-	public void cursorLeft (float scale) {
+	public void cursorLeft(float scale) {
 		assert (alien != null);
 		alien.cursorLeft(scale);
 	}
 
 	@Override
-	public void cursorUp (float scale) {
+	public void cursorUp(float scale) {
 		assert (alien != null);
 		alien.cursorUp(scale);
 	}
 
 	@Override
-	public void cursorDown (float scale) {
+	public void cursorDown(float scale) {
 		assert (alien != null);
 		alien.cursorDown(scale);
 	}
 
 	@Override
-	public void toggleAlien () {
+	public void toggleAlien() {
 		if (carryAlien) {
 			carryAlien = false;
 			alien.setOnPlayer(false);
@@ -463,23 +508,20 @@ public final class Astronaut extends EntityCollidable implements AstronautContro
 			jumpSpeed = gameData.combined.jumpSpeed;
 			jumpDelayTotal = gameData.combined.jumpDelay;
 		}
-        
-        superJumpGravityScale = gameData.combined.superJumpGravityScale;
-        superJumpSpeed = gameData.combined.superJumpSpeed;
 	}
 
-
-
-    @Override
-    public void initPhysics() {
-        GameDataInfo info = AssetLoader.getInstance().getGameData();
-        createPhysics(BodyType.DYNAMIC, origin.x, origin.y)
-                .density(info.combined.density).friction(info.combined.friction)
-                .category(PhysixConst.PLAYER).mask(PhysixConst.MASK_PLAYER)
-                .asPlayer(info.combined.width, info.combined.height);
-    }
+	@Override
+	public void initPhysics() {
+		GameDataInfo info = AssetLoader.getInstance().getGameData();
+		createPhysics(BodyType.DYNAMIC, origin.x, origin.y)
+				.density(info.combined.density)
+				.friction(info.combined.friction).category(PhysixConst.PLAYER)
+				.mask(PhysixConst.MASK_PLAYER)
+				.asPlayer(info.combined.width, info.combined.height);
+	}
 
 	public void gotBiten() {
 		restTimeBitenFilter = 1000;
 	}
+
 }
