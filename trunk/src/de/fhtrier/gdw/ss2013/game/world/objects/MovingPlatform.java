@@ -34,7 +34,7 @@ public class MovingPlatform extends Entity implements Interactable, EntityFilter
     public MovingPlatform() {
         img = asset.getImage("bigPlatform");
         index = 0;
-        speed = 80;
+        speed = 20;
         setParticle(AssetLoader.getInstance().getParticle("plattform1"));
         isActive = true;
         moveAround = false;
