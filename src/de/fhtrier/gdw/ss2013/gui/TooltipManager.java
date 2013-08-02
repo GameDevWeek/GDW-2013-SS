@@ -53,7 +53,7 @@ public class TooltipManager {
 
     public void render() {
         
-        drawGeneralTooltip(Switch.class, "Setz Alien hier drauf \n zum Umlegen");
+        drawGeneralTooltip(Switch.class, "Drücke [Aktivieren]");
        // drawGeneralTooltip(Door.class, "Drücke \"Aktivieren\" zum aktivieren.");
         
           for (Tooltip elem : tooltipList)
