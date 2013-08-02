@@ -3,8 +3,8 @@
   "pfad" : "error"
 },
 {
-  "name" : "boltEnemy",
-  "pfad" : "GeschossAlien"
+  "name" : "bullet",
+  "pfad" : "entities/bullet"
 },
 {
   "name" : "groundEnemy",

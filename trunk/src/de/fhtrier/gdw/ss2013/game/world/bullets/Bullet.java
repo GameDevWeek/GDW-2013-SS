@@ -29,7 +29,7 @@ public abstract class Bullet extends EntityCollidable {
 
 	public Bullet() {
 		super();
-		img = AssetLoader.getInstance().getImage("boltEnemy");
+		img = AssetLoader.getInstance().getImage("bullet");
 		m = World.getInstance().getEntityManager();
 	}
 
