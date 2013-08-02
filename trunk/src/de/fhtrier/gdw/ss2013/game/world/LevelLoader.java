@@ -214,9 +214,9 @@ public class LevelLoader {
 	 * @param y
 	 *            the distance from top in pixels
 	 * @param width
-	 *            width in pixels
+	 *            width in pixels, NOT ACCURATE!!
 	 * @param height
-	 *            height in pixels
+	 *            height in pixels, NOT ACCURATE!!
 	 * @param properties
 	 *            the object properties
 	 */
