@@ -7,6 +7,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
+import de.fhtrier.gdw.ss2013.constants.EnemyConstants;
 import de.fhtrier.gdw.ss2013.constants.PlayerConstants;
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
@@ -23,38 +24,18 @@ import de.fhtrier.gdw.ss2013.game.world.bullets.PlayerBullet;
  * 
  */
 public abstract class FlyingEnemy extends AbstractEnemy {
-
-    private float flytime, bolttime;
-    private float flyintelligence, boltintelligence;
-    private float factor;
-    private Astronaut p;
-    final static float DEBUG_ENTITY_HALFEXTEND = 5;
+    private Astronaut player;
+    private float interval;
 
     public FlyingEnemy(Animation animation) {
     	super(animation);
-        this.p = World.getInstance().getAstronaut();
-        // FIXME: Player will never be set!
-        // Don't use Velocity in the constructor!
-        // if(flyintelligence > 0.5f) {
-        // this.getVelocity().y = 0.0f;
-        // } else {
-        // this.getVelocity().x = 0.0f;
-        // }
     }
 
     @Override
     protected void initialize() {
         super.initialize();
-        flyintelligence = boltintelligence = (float) Math.random();
-        if (boltintelligence >= 0.67) {
-            factor = 100;
-        }
-        else if (boltintelligence <= 0.33) {
-            factor = 0;
-        }
-        else {
-            factor = 50;
-        }
+        this.player = World.getInstance().getAstronaut();
+        this.interval = 0f;
     }
 
     public void reduceHealth(float dmg) {
@@ -66,8 +47,10 @@ public abstract class FlyingEnemy extends AbstractEnemy {
      * @param shootDirection The direction from the flying enemy towards the player
      */
     public void shoot(Player player) {
-    	Vector2f shootDirection = new Vector2f(getPosition());
-    	shootDirection.sub(player.getPosition().normalise().scale(PlayerConstants.BULLET_SPEED));
+    	Vector2f shootDirection = new Vector2f();
+    	shootDirection = player.getPosition().sub(getPosition()).normalise().scale(PlayerConstants.BULLET_SPEED);
+//    	System.out.println(player.getPosition().sub(getPosition()));
+//    	System.out.println(player.getPosition());
 
 		EntityManager entityManager = World.getInstance().getEntityManager();
 
@@ -76,47 +59,30 @@ public abstract class FlyingEnemy extends AbstractEnemy {
 		bullet.setSpawnXY(getPosition().x, getPosition().y);
 		bullet.setShootDirection(shootDirection);
     }
+    
+    public boolean enterAttackZone(float value) {
+        float distance = player.getPosition().sub(getPosition()).length();
+        
+        if (distance < value) {
+            return true;
+        }
+        return false;
+    }
 
     public void update(GameContainer container, int delta) throws SlickException {
     	super.update(container, delta);
-    	
-        // float dt = delta / 1000.f;
-        flytime += delta;
-        bolttime += delta;
-        // TODO clamp dt if dt > 1/60.f ?
-        this.getPosition().x += this.getVelocity().x;
-        this.getPosition().y += this.getVelocity().y;
-        if (flytime >= 3000) {
-            this.getVelocity().x = -this.getVelocity().x;
-            this.getVelocity().y = -this.getVelocity().y;
-            flytime = flytime % 3000;
-        }
-        if (bolttime >= 1000 && calcPlayerDistance(p) < 500) {
-            this.shoot(p);
-            bolttime = bolttime % 1000;
-        }
+    	interval += delta;
+    	if (player == null || player.getOxygen() <= 0) {
+    	    player = World.getInstance().getAstronaut();
+    	}
+    	if (interval >= EnemyConstants.ENEMY_SHOOTING_INTERVAL) {
+    	    if (enterAttackZone(EnemyConstants.ENEMY_SHOOTING_DISTANCE)) {
+    	        shoot(player);
+    	        interval %= EnemyConstants.ENEMY_SHOOTING_INTERVAL;
+    	    }
+    	}
     }
-
-    private float calcPlayerDistance(Player player) {
-        Vector2f direction = new Vector2f();
-        direction = calcPlayerPosition(player);
-        if (direction == null) {
-            return Float.MAX_VALUE;
-        }
-        return (float) Math.sqrt((direction.x * direction.x) + (direction.y * direction.y));
-    }
-
-    private Vector2f calcPlayerPosition(Player player) {
-        Vector2f direction = new Vector2f();
-        Vector2f position = getPosition();
-        if (player != null && player.getPosition() != null) {
-            direction.x = player.getPosition().x - position.x + ((float) Math.random() * factor);
-            direction.y = player.getPosition().y - position.y;
-            return direction;
-        }
-        return null;
-    }
-
+    
     @Override
     public void beginContact(Contact contact) {
         Entity other = getOtherEntity(contact);
