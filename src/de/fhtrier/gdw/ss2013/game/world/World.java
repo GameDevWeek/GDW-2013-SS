@@ -201,9 +201,9 @@ public class World {
     }
 
     public Vector2f worldToScreenPosition(Vector2f worldPosition) {
-//        if (DebugModeStatus.isTPCamera()) {
-//            return tpCamera.worldToScreenPosition(worldPosition);
-//        }
+        if (DebugModeStatus.isTPCamera()) {
+            return tpCamera.worldToScreenCoordinates(worldPosition);
+        }
 
         Vector2f screenPos = new Vector2f(-camera.getOffsetX(),
                 -camera.getOffsetY());
