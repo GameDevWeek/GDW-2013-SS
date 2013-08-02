@@ -12,8 +12,6 @@ import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.contacts.Contact;
 import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
@@ -53,7 +51,7 @@ public class OxygenBubble extends EntityCollidable implements Interactable {
         PhysixObject childPhysics = new PhysixCircle(World.getInstance()
                 .getPhysicsManager(), startPosition.x, startPosition.y,
                 (img.getWidth() / 2 + img.getHeight() / 2) / 4,
-                BodyType.DYNAMIC, 0, 0, true);
+                BodyType.KINEMATIC, 0, 0, true);
 
         super.setPhysicsObject(childPhysics);
         // super.initialize();
@@ -106,27 +104,27 @@ public class OxygenBubble extends EntityCollidable implements Interactable {
     
     @Override
     public void update(GameContainer container, int delta) {
-        
-        
-        if (!isUsed) {
-            
-            timer += delta*deltamod;
-            if(timer >= 2000)
-            {
-                deltamod = -1;
-            }
-            if(timer <= 1001)
-            {
-                deltamod = 1;
-            }
-            
-            if (timer < 1000) {
-                setVelocity(initalDirection);
-            } 
-            else {
-                setVelocity(new Vector2f(speed*deltamod,-speed*deltamod));
-            }
-        }
+        // FIXME: procedural float animation
+//        
+//        if (!isUsed) {
+//            
+//            timer += delta*deltamod;
+//            if(timer >= 2000)
+//            {
+//                deltamod = -1;
+//            }
+//            if(timer <= 1001)
+//            {
+//                deltamod = 1;
+//            }
+//            
+//            if (timer < 1000) {
+//                setVelocity(initalDirection);
+//            } 
+//            else {
+//                setVelocity(new Vector2f(speed*deltamod,-speed*deltamod));
+//            }
+//        }
     }
 
     public Vector2f getStartPosition() {
