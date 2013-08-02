@@ -63,12 +63,8 @@
   "pfad" : "background/background"
 },
 {
-  "name" : "crosshair1",
-  "pfad" : "gui/crosshair1"
-},
-{
-  "name" : "crosshair2",
-  "pfad" : "gui/crosshair2"
+  "name" : "crosshair",
+  "pfad" : "gui/crosshair"
 },
 {
   "name" : "big_platform",
