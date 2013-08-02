@@ -13,7 +13,7 @@
   <object type="solid" x="-400" y="-432" width="496" height="3080"/>
   <object type="solid" x="-392" y="-744" width="13282" height="952"/>
   <object type="solid" x="14537" y="-230" width="336" height="2864"/>
-  <object gid="626" x="7855" y="1778"/>
+  <object gid="626" x="155" y="1760"/>
   <object gid="630" x="3666" y="1798"/>
   <object gid="633" x="3799" y="1825">
    <properties>
@@ -31,7 +31,7 @@
   <object type="solid" x="1669" y="1812" width="172" height="730"/>
   <object type="solid" x="2629" y="1812" width="175" height="717"/>
   <object type="solid" x="3336" y="1812" width="8165" height="795"/>
-  <object type="deadzone" x="704" y="2416" width="2684" height="104"/>
+  <object type="deadzone" x="694" y="2342" width="2684" height="104"/>
   <object gid="631" x="1403" y="1026">
    <properties>
     <property name="delay" value="1800"/>
@@ -50,7 +50,7 @@
   <object type="solid" x="10890" y="1747" width="173" height="121"/>
   <object gid="632" x="4802" y="1682"/>
   <object gid="632" x="610" y="1802"/>
-  <object type="winningzone" x="13938" y="1143" width="1052" height="982">
+  <object type="winningzone" x="10923" y="996" width="1052" height="982">
    <properties>
     <property name="target" value="bossmap"/>
    </properties>
@@ -148,5 +148,13 @@
   <object gid="635" x="3595" y="1547"/>
   <object gid="638" x="8742" y="1752"/>
   <object gid="638" x="8936" y="1755"/>
+  <object gid="638" x="9069" y="1759"/>
+  <object gid="638" x="8641" y="1754"/>
+  <object gid="639" x="9525" y="1766"/>
+  <object gid="639" x="9724" y="1784"/>
+  <object gid="639" x="9917" y="1769"/>
+  <object gid="640" x="10373" y="1787"/>
+  <object gid="640" x="10606" y="1782"/>
+  <object gid="640" x="10723" y="1780"/>
  </objectgroup>
 </map>

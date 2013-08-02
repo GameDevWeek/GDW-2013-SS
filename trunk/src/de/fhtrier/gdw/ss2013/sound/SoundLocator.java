@@ -7,11 +7,12 @@ package de.fhtrier.gdw.ss2013.sound;
 import org.newdawn.slick.Sound;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
+import de.fhtrier.gdw.ss2013.sound.services.DefaultSoundPlayer;
 import de.fhtrier.gdw.ss2013.sound.services.NoSoundPlayer;
 
 public class SoundLocator {
 
-    static private SoundPlayer _service = new NoSoundPlayer();
+    static private SoundPlayer _service = new DefaultSoundPlayer(null);
 
     static private AssetLoader soundLoader;
 

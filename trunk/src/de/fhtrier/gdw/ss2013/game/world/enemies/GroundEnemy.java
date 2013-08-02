@@ -1,5 +1,7 @@
 package de.fhtrier.gdw.ss2013.game.world.enemies;
 
+import java.util.ArrayList;
+
 import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.contacts.Contact;
 import org.newdawn.slick.Animation;
@@ -11,6 +13,7 @@ import de.fhtrier.gdw.ss2013.constants.EnemyConstants;
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.player.Alien;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
+import de.fhtrier.gdw.ss2013.game.world.World;
 import org.jbox2d.dynamics.Fixture;
 
 
@@ -26,16 +29,19 @@ public abstract class GroundEnemy extends AbstractEnemy {
 	}
 
 	private GroundEnemyState state;
-//	private Entity huntedPlayer;
 	private Vector2f speed;
-//	private boolean isInLevel;
-//	private PhysixObject collidingLevelObject;
+	private ArrayList<Contact> contacts;
+	private Entity huntedPlayer;
+	private boolean isInLevel;
+	private int chillTime;
 
 	public GroundEnemy(Animation animation) {
 		super(animation);
 		speed = new Vector2f(EnemyConstants.ENEMY_SPEED, 0);
 		state = GroundEnemyState.patrol;
 		setDamage(EnemyConstants.GROUND_DAMAGE);
+		
+		contacts = new ArrayList<>();
 	}
 
 	@Override
@@ -49,74 +55,77 @@ public abstract class GroundEnemy extends AbstractEnemy {
 
 		switch (state) {
 		case patrol:
-			patrol();
+			patrol(delta);
 			break;
 		case huntPlayer:
-			hunt();
+			hunt(delta);
 			break;
 		}
 //		System.out.println("Speed: " + speed + " | State: " + state + " | stuck: " + (isInLevel) + " | pos: "+getPosition());
 	}
 
-	private void hunt() {
-//		Vector2f playerDirection = getPlayerDirection(huntedPlayer);
-//		if (playerDirection.y > EnemyConstants.ENEMY_MAX_HEIGHT_DIFFERENCE
-//				|| getDistanceToPlayer(huntedPlayer) > EnemyConstants.ENEMY_MAX_RANGE) {
-//			state = GroundEnemyState.patrol;
-//			return;
-//		}
-//
-//		playerDirection.y = 0;
-//		setVelocity(playerDirection.normalise().scale(EnemyConstants.ENEMY_SPEED).copy());
+	private void hunt(int delta) {
+		Vector2f playerDirection = getPlayerDirection(huntedPlayer);
+		if (playerDirection.y > EnemyConstants.ENEMY_MAX_HEIGHT_DIFFERENCE
+				|| getDistanceToPlayer(huntedPlayer) > EnemyConstants.ENEMY_MAX_RANGE) {
+			state = GroundEnemyState.patrol;
+			return;
+		}
+
+		playerDirection.y = 0;
+		setVelocity(playerDirection.normalise().scale(EnemyConstants.ENEMY_SPEED).copy());
 	}
 
-	private void patrol() {
-//		World world = World.getInstance();
+	private void patrol(int delta) {
+		World world = World.getInstance();
+
+		if (!world.getAstronaut().isCarryAlien()
+				&& getDistanceToPlayer(world.getAlien()) < EnemyConstants.ENEMY_MAX_RANGE
+				&& !isPlayerTooHigh(world.getAlien())) {
+			state = GroundEnemyState.huntPlayer;
+			huntedPlayer = world.getAlien();
+			return;
+		}
+
+		if (getDistanceToPlayer(world.getAstronaut()) < EnemyConstants.ENEMY_MAX_RANGE
+				&& !isPlayerTooHigh(world.getAlien())) {
+			state = GroundEnemyState.huntPlayer;
+			huntedPlayer = world.getAstronaut();
+			return;
+		}
 		
-//		if (isInLevel) {
-//			float myX = getPosition().x;
-//			float levelX = collidingLevelObject.getPosition().x;
-//			if (myX > levelX) {
-//				speed.x = EnemyConstants.ENEMY_SPEED;
-//			}
-//			else {
-//				speed.x = -EnemyConstants.ENEMY_SPEED;
-//			}
+		if (chillTime <= 0) {
+			if (Math.random() < 0.15f * (delta / 1000f)) {
+				chillTime = (int) ((Math.random() * 2000f) + 1000); 
+			}	
+			setVelocity(speed.copy());
+		}
+		else {
+			chillTime -= delta;
+			if (chillTime < 0) chillTime = 0;
+		}
+//		for (Contact c : contacts) {
+//			
 //		}
 
-//		if (!world.getAstronaut().isCarryAlien()
-//				&& getDistanceToPlayer(world.getAlien()) < EnemyConstants.ENEMY_MAX_RANGE
-//				&& !isPlayerTooHigh(world.getAlien())) {
-//			state = GroundEnemyState.huntPlayer;
-//			huntedPlayer = world.getAlien();
-//			return;
-//		}
-//
-//		if (getDistanceToPlayer(world.getAstronaut()) < EnemyConstants.ENEMY_MAX_RANGE
-//				&& !isPlayerTooHigh(world.getAlien())) {
-//			state = GroundEnemyState.huntPlayer;
-//			huntedPlayer = world.getAstronaut();
-//			return;
-//		}
-
-		setVelocity(speed.copy());
 	}
 
-//	private boolean isPlayerTooHigh(Entity e) {
-//		Vector2f playerDirection = getPlayerDirection(e);
-//		return (playerDirection.y > EnemyConstants.ENEMY_MAX_HEIGHT_DIFFERENCE);
-//	}
+	private boolean isPlayerTooHigh(Entity e) {
+		Vector2f playerDirection = getPlayerDirection(e);
+		return (playerDirection.y > EnemyConstants.ENEMY_MAX_HEIGHT_DIFFERENCE);
+	}
 
-//	private Vector2f getPlayerDirection(Entity e) {
-//		return e.getPosition().sub(getPosition());
-//	}
+	private Vector2f getPlayerDirection(Entity e) {
+		return e.getPosition().sub(getPosition());
+	}
 
-//	private float getDistanceToPlayer(Entity e) {
-//		return getPlayerDirection(e).length();
-//	}
+	private float getDistanceToPlayer(Entity e) {
+		return getPlayerDirection(e).length();
+	}
 
 	@Override
 	public void beginContact(Contact contact) {
+		System.out.println("collision");
 		Fixture a = contact.getFixtureA();
 		Fixture b = contact.getFixtureB();
         if(a.m_isSensor || b.m_isSensor)
@@ -137,9 +146,13 @@ public abstract class GroundEnemy extends AbstractEnemy {
             }
 		}
         else {
-//			isInLevel = true;
+			isInLevel = true;
 			speed.x = -speed.x;
+			
+			getPhysicsObject().setPosition(getPosition().x-speed.x, getPosition().y);
 		}
+		
+		contacts.add(contact);
 
 //		Fixture a = contact.getFixtureA();
 //		Fixture b = contact.getFixtureB();
@@ -165,10 +178,9 @@ public abstract class GroundEnemy extends AbstractEnemy {
 
 	@Override
 	public void endContact(Contact contact) {
-		Entity other = getOtherEntity(contact);
-		if (other == null) {
-//			isInLevel = false;
-//			collidingLevelObject = null;
+		if (getOtherEntity(contact) == null) {
+			isInLevel = false;
 		}
+		contacts.remove(contact);
 	}
 }
