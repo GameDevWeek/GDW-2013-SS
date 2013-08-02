@@ -1,7 +1,7 @@
 /**
  * 
  * Door class
- * @author Justin, andra
+ * @author Justin, Sandra
  *
  * erzeugt Tür-Objekt mit Zustand I|O 
  */
@@ -31,7 +31,6 @@ public class Door extends Entity implements Interactable {
 		openImg = AssetLoader.getInstance().getImage("door_open");
 		setImage(closedImg);
 		opened = 0;
-		// TODO: mach den Tooltip bitte weg
 	}
 	
 	@Override
