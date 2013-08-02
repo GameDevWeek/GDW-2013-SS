@@ -2,6 +2,7 @@ package de.fhtrier.gdw.ss2013.game.player;
 
 import java.util.ArrayList;
 
+import org.jbox2d.collision.shapes.ShapeType;
 import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.contacts.Contact;
 import org.newdawn.slick.Animation;
@@ -24,7 +25,6 @@ import de.fhtrier.gdw.ss2013.input.AlienController;
 import de.fhtrier.gdw.ss2013.input.AstronautController;
 import de.fhtrier.gdw.ss2013.physix.InteractionManager;
 import de.fhtrier.gdw.ss2013.physix.PhysixObject;
-import org.jbox2d.collision.shapes.ShapeType;
 
 public class Astronaut extends EntityCollidable implements AstronautController, AlienController {
 
@@ -403,7 +403,7 @@ public class Astronaut extends EntityCollidable implements AstronautController, 
     public void useAbility() {
         assert(alien != null);
         if(carryAlien) {
-            //
+            alien.useAbility();
         } else {
             alien.useAbility();
         }
