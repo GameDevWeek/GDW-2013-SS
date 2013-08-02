@@ -33,6 +33,10 @@
 {
   "name" : "spacemap_second",
   "pfad" : "res/maps/spacemap_second.tmx"
+},
+{
+  "name" : "enemy_test",
+  "pfad" : "res/maps/enemy_testmap.tmx"
 }]
 
 
