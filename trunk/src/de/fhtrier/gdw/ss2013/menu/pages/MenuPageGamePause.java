@@ -6,6 +6,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
+import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.menu.IActionListener;
 import de.fhtrier.gdw.ss2013.menu.MenuManager;
 import de.fhtrier.gdw.ss2013.menu.MenuPage;
@@ -20,14 +21,34 @@ public class MenuPageGamePause extends MenuPage {
         Font font = AssetLoader.getInstance().getFont("verdana_46");
         
         float x = 100;
-        float y = 480;
-        float h = font.getLineHeight() * 1.2f;
-        int i=1;
+        float y = 200;
+        float h = font.getLineHeight() * 1.5f;
         
-        addLeftAlignedButton("Fortsetzen", x, y -h * (i--), font, 
+        
+        int buttonCount, i;
+        buttonCount = i = 2;
+        
+        addLeftAlignedButton("Fortsetzen", x, y + h * (buttonCount - i--), font, 
                 new IActionListener() {
                     public void onAction() {
                         GameplayState.hideMenu();
+                    }
+                }
+        );
+        
+        addLeftAlignedButton("Reset", x, y + h * (buttonCount - i--), font, 
+                new IActionListener() {
+                    public void onAction() {
+                        World.getInstance().shallBeReseted(true);
+                        GameplayState.hideMenu();
+                    }
+                }
+        );
+        
+        addLeftAlignedButton("Exit", x, MenuManager.MENU_HEIGHT - h, font, 
+                new IActionListener() {
+                    public void onAction() {
+                        System.exit(0);
                     }
                 }
         );
