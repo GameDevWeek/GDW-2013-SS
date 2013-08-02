@@ -9,7 +9,7 @@ public class DebugModeStatus {
     
     static protected boolean winMenuStatus = false;
     
-    static String levelName = "run_or_die";
+    static String levelName = "a1";
 
     static public boolean isTest() {
         return testModeStatus;
