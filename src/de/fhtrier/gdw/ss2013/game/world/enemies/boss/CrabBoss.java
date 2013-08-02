@@ -23,6 +23,7 @@ public class CrabBoss extends AbstractBoss {
 	private float physicsObject_x_offset = 80.0f;
 	private boolean facingRight;
 	public int stompCount;
+	private Vector2f cameraTarget;
 
 	@Override
 	protected void initialize() {
@@ -32,10 +33,20 @@ public class CrabBoss extends AbstractBoss {
         
         setInitialSize( animation.getWidth() * scale - 2 * physicsObject_x_offset,
         animation.getHeight() * scale);
-        
+
+        cameraTarget = new Vector2f();
         ThreePointCamera tpCamera = World.getInstance().getTPCamera();
         if(tpCamera != null)
-            tpCamera.addPointOfInterest(new PointOfInterest(origin.x, origin.y, 1.5f, 5000.0f));
+        	World.getInstance().getTPCamera().addDynamicTarget(cameraTarget);
+	}
+
+	private void recalculateCameraTargetPosition() {
+		Vector2f playerPos = World.getInstance().getAstronaut().getPosition();
+        cameraTarget.set(getPosition().sub(playerPos));
+        float distancePlayerToBoss = cameraTarget.length();
+        cameraTarget.normalise();
+        cameraTarget.scale((1/3f)*distancePlayerToBoss);
+        cameraTarget.add(playerPos);
 	}
 
     @Override
@@ -44,10 +55,18 @@ public class CrabBoss extends AbstractBoss {
                 .density(1).friction(1)
                 .asBox(initialSize.x, initialSize.y);
     }
+    
+    @Override
+    public void update(GameContainer container, int delta)
+    		throws SlickException {
+    	super.update(container, delta);
+    	recalculateCameraTargetPosition();
+    }
 
 	@Override
 	public void render(GameContainer container, Graphics g)
 			throws SlickException {
+		
 		float x = physicsObject.getPosition().x;
 		float y = physicsObject.getPosition().y;
 		float halfheight = physicsObject.getDimension().y;
