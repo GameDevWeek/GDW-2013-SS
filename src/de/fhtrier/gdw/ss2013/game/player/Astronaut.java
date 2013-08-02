@@ -209,26 +209,11 @@ public class Astronaut extends EntityCollidable implements AstronautController, 
 		}
 	}
 
-	/** activate all activatable Entities in range
-	 * 
-	 * @see InteractionManager */
 	@Override
 	public void action () {
-		// getVelocity().y = 2;
-		// physicsObject.applyImpulse(this.getVelocity());
-		//
-		// setState(PlayerState.action);
-		// if (interactionManager != null) {
-		// interactionManager.activateAll();
-		// } else {
-		// System.err
-		// .println("No InteractionManager registered to Astronaut!");
-		// }
-//		interactionManager.activateAll();
 		for (Switch s : switches) {
 			s.turnSwitch();
 		}
-
 	}
 
 	public boolean isCarryAlien () {
