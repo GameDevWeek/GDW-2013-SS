@@ -38,6 +38,11 @@ public class Button extends ObjectController implements ICollisionListener {
     	unpressedImg = AssetLoader.getInstance().getImage("button_unpressed");
         pressedImg = AssetLoader.getInstance().getImage("button_pressed");
     }
+
+    @Override
+    public boolean isBottomPositioned() {
+        return true;
+    }
     
     /**
      * {@inheritDoc}
@@ -47,6 +52,7 @@ public class Button extends ObjectController implements ICollisionListener {
         super.initialize();
         pressContacts = 0;
         setImage(unpressedImg);
+        setInitialSize(unpressedImg.getWidth(), unpressedImg.getHeight());
     }
 
     @Override

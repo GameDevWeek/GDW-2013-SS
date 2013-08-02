@@ -44,6 +44,11 @@ public abstract class GroundEnemy extends AbstractEnemy {
 		contacts = new ArrayList<>();
 	}
 
+    @Override
+    public boolean isBottomPositioned() {
+        return true;
+    }
+
 	@Override
 	protected void initialize() {
 		super.initialize();

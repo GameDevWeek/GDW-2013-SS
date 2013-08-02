@@ -30,6 +30,11 @@ public class Teleporter extends EntityCollidable implements Interactable {
     }
 
     @Override
+    public boolean isBottomPositioned() {
+        return true;
+    }
+
+    @Override
     protected void initialize() {
         super.initialize();
         ignorList.clear();

@@ -24,6 +24,11 @@ public class Switch extends ObjectController implements ActivatableByAstronaut {
         unpressedImg = AssetLoader.getInstance().getImage("switch_unpressed");
         pressedImg = AssetLoader.getInstance().getImage("switch_pressed");
     }
+
+    @Override
+    public boolean isBottomPositioned() {
+        return true;
+    }
     
     /**
      * {@inheritDoc}
@@ -32,6 +37,7 @@ public class Switch extends ObjectController implements ActivatableByAstronaut {
     protected void initialize() {
         super.initialize();
         setImage(unpressedImg);
+        setInitialSize(unpressedImg.getWidth(), unpressedImg.getHeight());
     }
     
     @Override

@@ -178,6 +178,9 @@ public class LevelLoader {
      */
     private static void createRect(String type, int x, int y, int width,
             int height, SafeProperties properties) {
+        x += width/2;
+        y += height/2;
+        
         Entity entity = null;
         switch (type) {
         case "solid":
@@ -273,6 +276,9 @@ public class LevelLoader {
 		}
         
         if(entity != null) {
+            if(entity.isBottomPositioned()) {
+                y += height/2;
+            }
             entity.setOrigin(x, y);
             entity.setInitialSize(width, height);
         }

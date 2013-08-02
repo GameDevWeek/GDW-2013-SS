@@ -19,6 +19,11 @@ public class GrowPlant extends EntityCollidable {
     }
 
     @Override
+    public boolean isBottomPositioned() {
+        return true;
+    }
+
+    @Override
     public void beginContact(Contact contact) {
         Fixture a = contact.getFixtureA();
         Fixture b = contact.getFixtureB();

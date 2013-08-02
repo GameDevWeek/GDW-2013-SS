@@ -35,7 +35,7 @@ public class PhysixManager implements ContactListener {
     }
 
     public void update(int delta) {
-        world.step(1/30.0f, 10, 10);
+        world.step(1/30.0f, 8, 3);
         world.clearForces();
     }
 

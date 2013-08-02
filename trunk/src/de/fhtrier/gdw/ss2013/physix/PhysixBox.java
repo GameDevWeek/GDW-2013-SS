@@ -11,6 +11,6 @@ public class PhysixBox extends PhysixShape {
         shape.setAsBox(config.halfWidth, config.halfHeight);
         this.dimension.set(config.halfWidth, config.halfHeight);
         
-        init(config, shape, config.x + config.halfWidth, config.y + config.halfHeight);
+        init(config, shape, config.x, config.y);
     }
 }

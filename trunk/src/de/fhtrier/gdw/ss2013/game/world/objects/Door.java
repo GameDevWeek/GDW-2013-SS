@@ -27,6 +27,11 @@ public class Door extends Entity implements Interactable {
 		setImage(closedImg);
 		opened = 0;
 	}
+
+    @Override
+    public boolean isBottomPositioned() {
+        return true;
+    }
 	
 	@Override
 	protected void initialize() {
