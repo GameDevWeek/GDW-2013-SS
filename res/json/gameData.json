@@ -16,8 +16,9 @@
    "speed": 0,
    "jumpSpeed": 0,
    "jumpDelay": 500,
-   "density": 1,
-   "friction": 0.5
+   "density": 50,
+   "friction": 0.5,
+   "maxDistance": 1200
  },
  "combined": {
    "width": 50,

@@ -12,6 +12,7 @@ import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.World;
 import org.jbox2d.dynamics.contacts.Contact;
+import org.jbox2d.dynamics.joints.RopeJointDef;
 import org.newdawn.slick.GameContainer;
 
 public class PhysixManager implements ContactListener {
@@ -100,5 +101,14 @@ public class PhysixManager implements ContactListener {
     public PhysixShapeConfig createSolid(float x, float y) {
         return new PhysixShapeConfig(this, null, BodyType.STATIC, x, y)
                 .density(worldInfo.density).friction(worldInfo.friction);
+    }
+    
+    public void ropeConnect(PhysixShape a, PhysixShape b, float length) {
+        RopeJointDef ropeJointDef = new RopeJointDef();
+        ropeJointDef.bodyA = a.body;
+        ropeJointDef.bodyB = b.body;
+        ropeJointDef.maxLength = PhysixUtil.toBox2D(length);
+        ropeJointDef.collideConnected = true;
+        world.createJoint(ropeJointDef);
     }
 }
