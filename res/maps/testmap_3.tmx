@@ -113,7 +113,7 @@
   <object type="solid" x="6093" y="5976" width="344" height="69"/>
   <object type="solid" x="6285" y="5940" width="67" height="172"/>
   <object type="solid" x="6263" y="6051" width="27" height="55"/>
-  <object type="solid" x="333" y="5719" width="253" height="66"/>
+  <object type="solid" x="406" y="5719" width="190" height="66"/>
   <object type="solid" x="69" y="5914" width="236" height="81"/>
   <object type="solid" x="96" y="5848" width="147" height="73"/>
   <object type="solid" x="-8" y="5809" width="121" height="109"/>
@@ -188,11 +188,8 @@
   <object gid="637" x="4589" y="5469"/>
   <object gid="640" x="5819" y="5545"/>
   <object gid="640" x="6216" y="5556"/>
-  <object gid="639" x="5881" y="5539"/>
   <object gid="639" x="5952" y="5540"/>
-  <object gid="639" x="6013" y="5544"/>
   <object gid="639" x="6084" y="5553"/>
-  <object gid="639" x="6156" y="5559"/>
   <object gid="636" x="5107" y="5073"/>
   <object gid="636" x="4363" y="4936"/>
   <object gid="636" x="3575" y="4907"/>
@@ -208,7 +205,7 @@
   <object gid="638" x="5070" y="473"/>
   <object gid="638" x="1957" y="454"/>
   <object gid="632" x="5683" y="6291"/>
-  <object gid="632" x="443" y="5980"/>
+  <object gid="632" x="444" y="5967"/>
   <object gid="632" x="713" y="5659"/>
   <object gid="632" x="5137" y="5523"/>
   <object gid="632" x="1505" y="3919"/>
@@ -219,20 +216,6 @@
   <object type="solid" x="5838" y="6232" width="293" height="76"/>
   <object type="solid" x="5973" y="6168" width="234" height="73"/>
   <object type="solid" x="6028" y="6105" width="105" height="92"/>
-  <object name="line1" type="FollowPath" x="5875" y="5421">
-   <properties>
-    <property name="isAktive" value="false"/>
-    <property name="speed" value="100"/>
-   </properties>
-   <polyline points="0,0 -407,64"/>
-  </object>
-  <object name="line2" type="FollowPath" x="6159" y="5429">
-   <properties>
-    <property name="isAktive" value="false"/>
-    <property name="speed" value="100"/>
-   </properties>
-   <polyline points="0,0 200,77 205,244"/>
-  </object>
   <object name="p1" gid="647" x="5837" y="5453">
    <properties>
     <property name="path" value="line1"/>
@@ -245,7 +228,7 @@
   </object>
   <object gid="629" x="6273" y="5367">
    <properties>
-    <property name="trigger" value="p1, p2"/>
+    <property name="trigger" value="line1,line2"/>
    </properties>
   </object>
   <object name="line3" type="FollowPath" x="3476" y="5017">
@@ -413,7 +396,7 @@
     <property name="path" value="line11"/>
    </properties>
   </object>
-  <object gid="626" x="188" y="6161"/>
+  <object gid="626" x="5536" y="5351"/>
   <object name="p11-1" gid="647" x="1379" y="1183">
    <properties>
     <property name="path" value="line11"/>
@@ -554,9 +537,13 @@
     <property name="target" value="port2"/>
    </properties>
   </object>
-  <object name="port2" gid="643" x="4345" y="3904"/>
+  <object name="port2" gid="643" x="4337" y="3887">
+   <properties>
+    <property name="target" value="port1"/>
+   </properties>
+  </object>
   <object gid="632" x="2265" y="5902"/>
-  <object gid="632" x="3228" y="5644"/>
+  <object gid="632" x="3229" y="5648"/>
   <object gid="632" x="2839" y="5027"/>
   <object gid="632" x="3880" y="3929"/>
   <object gid="632" x="3857" y="474"/>
@@ -570,5 +557,20 @@
    </properties>
   </object>
   <object gid="632" x="3879" y="5920"/>
+  <object type="solid" x="331" y="5718" width="77" height="21"/>
+  <object name="line1" type="FollowPath" x="5841" y="5449">
+   <properties>
+    <property name="isActive" value="false"/>
+    <property name="speed" value="100"/>
+   </properties>
+   <polyline points="0,0 -515,3"/>
+  </object>
+  <object name="line2" type="FollowPath" x="6185" y="5449">
+   <properties>
+    <property name="isActive" value="false"/>
+    <property name="speed" value="200"/>
+   </properties>
+   <polyline points="0,0 335,-1"/>
+  </object>
  </objectgroup>
 </map>
