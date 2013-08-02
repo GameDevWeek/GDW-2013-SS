@@ -54,7 +54,6 @@ public abstract class ObjectController extends Entity implements Interactable {
                 if (!properties.getProperty("trigger", "").isEmpty()) {
                     String[] triggers = properties.getProperty("trigger", "")
                             .split(",");
-                    System.out.println(properties.getProperty("trigger", ""));
                     for (String triggerName : triggers) {
                         Entity toTrigger = World.getInstance()
                                 .getEntityManager()
