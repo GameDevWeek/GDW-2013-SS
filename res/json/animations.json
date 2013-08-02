@@ -111,9 +111,23 @@
   "loop" : true
 },
 {
-  "name" : "flying_ememy_small",
-  "pfad" : "enemies/flying/small",
-  "anzBilder" : 1,
+  "name" : "flying_ememy_small_blue",
+  "pfad" : "enemies/flying/small_blue",
+  "anzBilder" : 12,
+  "animSpeed" : 100,
+  "loop" : true
+},
+{
+  "name" : "flying_ememy_small_red",
+  "pfad" : "enemies/flying/small_red",
+  "anzBilder" : 12,
+  "animSpeed" : 100,
+  "loop" : true
+},
+{
+  "name" : "flying_ememy_small_green",
+  "pfad" : "enemies/flying/small_green",
+  "anzBilder" : 12,
   "animSpeed" : 100,
   "loop" : true
 },

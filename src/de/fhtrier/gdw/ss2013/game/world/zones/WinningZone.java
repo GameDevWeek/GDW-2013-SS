@@ -48,7 +48,7 @@ public class WinningZone extends EntityCollidable {
 	
 	private void handleWin() {
 		if (newLevel == null) {
-			MainGame.changeState(MainGame.WINSTATE);
+			MainGame.changeState(MainGame.MAINMENUSTATE);
 		}
 		else {
 			World.getInstance().setLevelName(newLevel);

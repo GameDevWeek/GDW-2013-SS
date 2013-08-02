@@ -13,7 +13,7 @@
   <object type="solid" x="-400" y="-432" width="496" height="3080"/>
   <object type="solid" x="-392" y="-744" width="13282" height="952"/>
   <object type="solid" x="14537" y="-230" width="336" height="2864"/>
-  <object gid="626" x="3439" y="1781"/>
+  <object gid="626" x="3422" y="1750"/>
   <object gid="630" x="3666" y="1798"/>
   <object gid="633" x="3799" y="1825">
    <properties>
@@ -188,5 +188,20 @@
     <property name="trigger" value="tt_jump"/>
    </properties>
   </object>
+  <object name="tele1" gid="643" x="5432" y="836">
+   <properties>
+    <property name="target" value="tele2"/>
+   </properties>
+  </object>
+  <object name="tele2" gid="643" x="5688" y="842">
+   <properties>
+    <property name="target" value="tele1"/>
+   </properties>
+  </object>
+  <object gid="636" x="4528" y="1252"/>
+  <object gid="636" x="5019" y="1385"/>
+  <object gid="637" x="6371" y="1039"/>
+  <object gid="637" x="6176" y="1449"/>
+  <object gid="635" x="3774" y="1692"/>
  </objectgroup>
 </map>
