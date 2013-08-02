@@ -224,108 +224,115 @@ public class LevelLoader {
     private static void createTile(String type, int x, int y, int width,
             int height, SafeProperties properties, String name) {
 
-        PhysixBox box;
-        Entity entity;
-        switch (type) {
-        case "button":
-            entity = entityManager.createEntity(type, properties, name);
-            PhysixBox buttonBox = new PhysixBox(physicsManager, x, y, width,
-                    height, BodyType.STATIC, worldInfo.density,
-                    worldInfo.friction, true);
-            entity.setPhysicsObject(buttonBox);
-            break;
-        case "switch":
-            entity = entityManager.createEntity(type, properties, name);
-            PhysixBox switchBox = new PhysixBox(physicsManager, x, y, width,
-                    height, BodyType.STATIC, worldInfo.density,
-                    worldInfo.friction, true);
-            entity.setPhysicsObject(switchBox);
-            break;
-        case "door":
-            entity = entityManager.createEntity(type, properties, name);
-            Door door = (Door) entity;
-            door.setSpawnX(x);
-            door.setSpawnY(y);
-            break;
-        case "start":
-            startpos = new Vector2f(x, y);
-            break;
-        case "boss":
-            entity = entityManager.createEntity("thawhale", properties, name);
-            box = new PhysixBox(physicsManager, x, y, width, height,
-                    BodyType.DYNAMIC, worldInfo.density, worldInfo.friction,
-                    false);
-            entity.setPhysicsObject(box);
-            break;
-        case "meteroid":
-            entity = entityManager.createEntity("meteoritespawner", properties,
-                    name);
-            box = new PhysixBox(physicsManager, x, y, 0, 0, BodyType.STATIC, 1,
-                    0.5f, true);
-            entity.setPhysicsObject(box);
-            break;
-        case "smallPlatform":
-            entity = entityManager.createEntity("MovingPlatform", properties,
-                    name);
-            entity.setImage(AssetLoader.getInstance().getImage("PlatformSmall"));
-            width = (int) entity.getImage().getWidth();
-            height = (int) entity.getImage().getHeight();
-            PhysixBox platformBoxSmall = new PhysixBox(physicsManager, x
-                    - width / 2, y - height / 2, width, height,
-                    BodyType.KINEMATIC, worldInfo.density, worldInfo.friction,
-                    false);
-            entity.setPhysicsObject(platformBoxSmall);
-            break;
-        case "bigPlatform":
-            entity = entityManager.createEntity("MovingPlatform", properties,
-                    name);
-            entity.setImage(AssetLoader.getInstance().getImage("PlatformBig"));
-            width = (int) entity.getImage().getWidth();
-            height = (int) entity.getImage().getHeight();
-            PhysixBox platformBoxBig = new PhysixBox(physicsManager, x - width
-                    / 2, y - height / 2, width, height, BodyType.KINEMATIC,
-                    worldInfo.density, worldInfo.friction, false);
-            entity.setPhysicsObject(platformBoxBig);
-            break;
-        case "teleporter":
-            entity = entityManager.createEntity(type, properties, name);
-            box = new PhysixBox(physicsManager, x, y, 0, 0, BodyType.STATIC, 1,
-                    0.5f, true);
-            entity.setPhysicsObject(box);
-            break;
-        case "oxygenflower":
-            entity = entityManager.createEntity(type, properties, name);
-            box = new PhysixBox(physicsManager, x, y, 0, 0, BodyType.STATIC, 1,
-                    0.5f, true);
-            entity.setPhysicsObject(box);
-            break;
-        case "smallflyingenemy":
-        case "middleflyingenemy":
-        case "bigflyingenemy":
-            entity = entityManager.createEntity(type, properties, name);
-            box = new PhysixBox(physicsManager, x, y, width, height,
-                    BodyType.KINEMATIC, worldInfo.density, worldInfo.friction,
-                    false);
-            entity.setPhysicsObject(box);
-            break;
-        case "particle":
-            String pname = properties.getProperty("name");
-            if (pname != null) {
-                DynamicParticleSystem p = AssetLoader.getInstance()
-                        .getParticle(pname);
-                p.setPosition(x + (width / 2), y + (height / 2));
-                World.getInstance().addParticle(p);
-            }
-            break;
-        default:
-            entity = entityManager.createEntity(type, properties, name);
-            box = new PhysixBox(physicsManager, x, y, width, height,
-                    BodyType.DYNAMIC, worldInfo.density, worldInfo.friction,
-                    false);
-            entity.setPhysicsObject(box);
-            break;
-        }
-    }
+		PhysixBox box;
+		Entity entity;
+		switch (type) {
+		case "button":
+			entity = entityManager.createEntity(type, properties, name);
+			PhysixBox buttonBox = new PhysixBox(physicsManager, x, y, width,
+					height, BodyType.STATIC, worldInfo.density,
+					worldInfo.friction, true);
+			entity.setPhysicsObject(buttonBox);
+			break;
+		case "switch":
+			entity = entityManager.createEntity(type, properties, name);
+			PhysixBox switchBox = new PhysixBox(physicsManager, x, y, width,
+					height, BodyType.STATIC, worldInfo.density,
+					worldInfo.friction, true);
+			entity.setPhysicsObject(switchBox);
+			break;
+		case "door":
+			entity = entityManager.createEntity(type, properties, name);
+			Door door = (Door) entity;
+			door.setSpawnX(x);
+			door.setSpawnY(y);
+			break;
+		case "start":
+			startpos = new Vector2f(x, y);
+			break;
+		case "boss":
+			String n = "thawahle";
+			if (properties.getProperty("name") != null) {
+				n = properties.getProperty("name");
+			}
+			else {
+				System.err.println("You haven't choosen the boss name! Take default: "+name);
+			}
+			entity = entityManager.createEntity(n, properties, name);
+			box = new PhysixBox(physicsManager, x, y, width, height,
+					BodyType.DYNAMIC, worldInfo.density, worldInfo.friction,
+					false);
+			entity.setPhysicsObject(box);
+			break;
+		case "meteroid":
+			entity = entityManager.createEntity("meteoritespawner", properties,
+					name);
+			box = new PhysixBox(physicsManager, x, y, 0, 0, BodyType.STATIC, 1,
+					0.5f, true);
+			entity.setPhysicsObject(box);
+			break;
+		case "smallPlatform":
+			entity = entityManager.createEntity("MovingPlatform", properties,
+					name);
+			entity.setImage(AssetLoader.getInstance().getImage("PlatformSmall"));
+			width = (int) entity.getImage().getWidth();
+			height = (int) entity.getImage().getHeight();
+			PhysixBox platformBoxSmall = new PhysixBox(physicsManager, x
+					- width / 2, y - height / 2, width, height,
+					BodyType.KINEMATIC, worldInfo.density, worldInfo.friction,
+					false);
+			entity.setPhysicsObject(platformBoxSmall);
+			break;
+		case "bigPlatform":
+			entity = entityManager.createEntity("MovingPlatform", properties,
+					name);
+			entity.setImage(AssetLoader.getInstance().getImage("PlatformBig"));
+			width = (int) entity.getImage().getWidth();
+			height = (int) entity.getImage().getHeight();
+			PhysixBox platformBoxBig = new PhysixBox(physicsManager, x - width
+					/ 2, y - height / 2, width, height, BodyType.KINEMATIC,
+					worldInfo.density, worldInfo.friction, false);
+			entity.setPhysicsObject(platformBoxBig);
+			break;
+		case "teleporter":
+			entity = entityManager.createEntity(type, properties, name);
+			box = new PhysixBox(physicsManager, x, y, 0, 0, BodyType.STATIC, 1,
+					0.5f, true);
+			entity.setPhysicsObject(box);
+			break;
+		case "oxygenflower":
+			entity = entityManager.createEntity(type, properties, name);
+			box = new PhysixBox(physicsManager, x, y, 0, 0, BodyType.STATIC, 1,
+					0.5f, true);
+			entity.setPhysicsObject(box);
+			break;
+		case "smallflyingenemy":
+		case "middleflyingenemy":
+		case "bigflyingenemy":
+			entity = entityManager.createEntity(type, properties, name);
+			box = new PhysixBox(physicsManager, x, y, width, height,
+					BodyType.KINEMATIC, worldInfo.density, worldInfo.friction,
+					false);
+			entity.setPhysicsObject(box);
+			break;
+		case "particle":
+			String pname = properties.getProperty("name");
+			if (pname != null) {
+				DynamicParticleSystem p = AssetLoader.getInstance()
+						.getParticle(pname);
+				p.setPosition(x + (width / 2), y + (height / 2));
+				World.getInstance().addParticle(p);
+			}
+			break;
+		default:
+			entity = entityManager.createEntity(type, properties, name);
+			box = new PhysixBox(physicsManager, x, y, width, height,
+					BodyType.DYNAMIC, worldInfo.density, worldInfo.friction,
+					false);
+			entity.setPhysicsObject(box);
+			break;
+		}
+	}
 
     /**
      * Currently no plan for use
