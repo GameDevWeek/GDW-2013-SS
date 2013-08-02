@@ -47,6 +47,7 @@ public abstract class PhysixShape {
         associatedWorld = config.manager.getWorld();
 
         body = associatedWorld.createBody(bodyDef);
+        body.setActive(config.active);
         body.setUserData(this);
         fixture = body.createFixture(fixtureDef);
     }
