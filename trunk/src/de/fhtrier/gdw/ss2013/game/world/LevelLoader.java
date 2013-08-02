@@ -55,7 +55,7 @@ public class LevelLoader {
             }
         }
 
-        entityManager.initalUpdate();
+//        entityManager.initalUpdate();
         conntactInteractions();
         bindEntityToPath();
         setTeleporterTargets();
