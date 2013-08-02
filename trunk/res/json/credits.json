@@ -93,25 +93,14 @@
            ]
 		},
 		
-		
-		
-		{ "name": "player",
-           "destinations": [
-			{"x": -60, "y": 200, "speed": -1 },
-			{"x": 550, "y": 200, "speed": 250 },
-			{"x": 60, "y": 650, "speed": 250 },
-			{"x": -60, "y": 650, "speed": 250 }
-           ]
-		},
-		
-		{ "name": "player_reverse",
-           "destinations": [
-			{"x": -60, "y": 650, "speed": -1 },
-			{"x": 60, "y": 650, "speed": 250 },
-			{"x": 650, "y": 100, "speed": 250 },
-			{"x": 810, "y": -100, "speed": 1500 }
+		{ "name": "enemy_test",
+           "destinations": [   
+           	{"x": 250, "y": -130, "speed": -1},
+			{"x": 250, "y": 700, "speed": 300}
            ]
 		}
+		
+		
 		
 	],
     
@@ -175,7 +164,8 @@
 		{ "name": "PlatformSmall", "x": 0, "y": 0, "width": 170, "height": 36, "path": "platform_moving", "angle": 0, "delay": 0, "oriented": false, "animation": false },
 		{ "name": "PlatformSmall", "x": 0, "y": 0, "width": 170, "height": 36, "path": "platform_steady", "angle": 0, "delay": 0, "oriented": false, "animation": false },
 		{ "name": "switch_unpressed", "x": 0, "y": 0, "width": 67, "height": 51, "path": "switch_up", "angle": 0, "delay": 0, "oriented": false, "animation": false },
-		{ "name": "astronaut_standing", "x": 0, "y": 0, "width": 228, "height": 191, "path": "player_test", "angle": 0, "delay": 0, "oriented": false, "animation": true }
+		{ "name": "astronaut_standing", "x": 0, "y": 0, "width": 228, "height": 191, "path": "player_test", "angle": 0, "delay": 0, "oriented": false, "animation": true },
+		{ "name": "ground_ememy_middle", "x": 0, "y": 0, "width": 98, "height": 87, "path": "enemy_test", "angle": 0, "delay": 0, "oriented": false, "animation": true }
 	]
 }
 
