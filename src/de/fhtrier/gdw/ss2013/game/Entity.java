@@ -228,4 +228,7 @@ public abstract class Entity {
         return ((PhysixShape) b.getBody().getUserData()).getOwner();
     }
 
+    public boolean isBottomPositioned() {
+        return false;
+    }
 }

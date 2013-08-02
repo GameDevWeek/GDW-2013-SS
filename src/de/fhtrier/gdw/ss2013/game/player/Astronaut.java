@@ -68,6 +68,11 @@ public final class Astronaut extends EntityCollidable implements AstronautContro
 		gameData = AssetLoader.getInstance().getGameData();
 	}
 
+    @Override
+    public boolean isBottomPositioned() {
+        return true;
+    }
+
 	public void setAlien (Alien alien) {
 		this.alien = alien;
 		carryAlien = true;

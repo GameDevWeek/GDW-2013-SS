@@ -37,6 +37,11 @@ public class OxygenFlower extends EntityCollidable {
         m = w.getEntityManager();
     }
 
+    @Override
+    public boolean isBottomPositioned() {
+        return true;
+    }
+
     public void createBubbles() {
         if (count != getMaxBubble()) {
             

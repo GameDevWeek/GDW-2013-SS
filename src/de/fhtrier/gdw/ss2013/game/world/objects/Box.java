@@ -28,6 +28,11 @@ public class Box extends EntityCollidable {
         super();
         animation = AssetLoader.getInstance().getAnimation("box");
     }
+
+    @Override
+    public boolean isBottomPositioned() {
+        return true;
+    }
     
     @Override
     public void render(GameContainer gc, Graphics g) {
@@ -38,6 +43,7 @@ public class Box extends EntityCollidable {
     protected void initialize() {
         super.initialize();
         isPlayerOnMe = 0;
+        setInitialSize(animation.getWidth(), animation.getHeight());
     }
 
     @Override

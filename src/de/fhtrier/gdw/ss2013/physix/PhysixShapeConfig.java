@@ -1,6 +1,8 @@
 package de.fhtrier.gdw.ss2013.physix;
 
 import de.fhtrier.gdw.ss2013.game.Entity;
+import de.fhtrier.gdw.ss2013.game.world.objects.Button;
+import de.fhtrier.gdw.ss2013.game.world.objects.OxygenFlower;
 import java.awt.Point;
 import java.util.List;
 import org.jbox2d.common.Vec2;
@@ -10,8 +12,8 @@ public class PhysixShapeConfig {
     final Entity entity;
     final PhysixManager manager;
     final BodyType bodyType;
-    final float x;
-    final float y;
+    float x;
+    float y;
     float halfWidth;
     float halfHeight;
     float density;
@@ -70,6 +72,11 @@ public class PhysixShapeConfig {
     public void asBox(float width, float height) {
         halfWidth = PhysixUtil.toBox2D(width) * 0.5f;
         halfHeight = PhysixUtil.toBox2D(height) * 0.5f;
+        
+        if(entity != null && entity.isBottomPositioned() ){
+            y -= halfHeight;
+        }
+        
         PhysixShape object = new PhysixBox(this);
         if(entity != null)
             entity.setPhysicsObject(object);

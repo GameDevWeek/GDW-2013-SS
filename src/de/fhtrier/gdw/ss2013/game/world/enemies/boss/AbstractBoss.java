@@ -19,6 +19,11 @@ public abstract class AbstractBoss extends Entity {
 		super(image);
 	}
 
+    @Override
+    public boolean isBottomPositioned() {
+        return true;
+    }
+
 	@Override
 	public void render(GameContainer container, Graphics g)
 			throws SlickException {
