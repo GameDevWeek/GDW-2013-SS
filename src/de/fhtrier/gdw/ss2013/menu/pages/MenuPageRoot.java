@@ -49,8 +49,8 @@ public class MenuPageRoot extends MenuPage {
 		    
 		    addCenteredLabel(img, xCenter, yCenter * 0.5f);
 		    
-		    int buttonCount = 5;
-		    int i = 5;
+		    int buttonCount, i;
+		    buttonCount = i = 5;
 		    
 		    MenuPageLevelSelect levelSelect = new MenuPageLevelSelect(container, _game, manager, this, null);
 		    addCenteredButton("Spiel starten", xCenter, yCenter + hText * (buttonCount - i--), font, 
