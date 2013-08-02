@@ -55,7 +55,7 @@ public class OxygenBubble extends EntityCollidable implements Interactable {
                 BodyType.KINEMATIC, 0, 0, true);
 
         super.setPhysicsObject(childPhysics);
-        super.initialize();
+        // super.initialize();
     }
 
     @Override
