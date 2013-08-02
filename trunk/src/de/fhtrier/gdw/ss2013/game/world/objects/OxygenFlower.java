@@ -16,12 +16,11 @@ import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityCollidable;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
-import de.fhtrier.gdw.ss2013.game.filter.Interactable;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.world.World;
 import org.jbox2d.dynamics.BodyType;
 
-public class OxygenFlower extends EntityCollidable implements Interactable {
+public class OxygenFlower extends EntityCollidable {
 
     private float bubbleTime;
     private int maxBubble;
@@ -74,29 +73,12 @@ public class OxygenFlower extends EntityCollidable implements Interactable {
     @Override
     public void update(GameContainer container, int delta)
             throws SlickException {
+        super.update(container, delta);
 
         bubbleTime += delta;
         if (bubbleTime >= 800) {
-
             this.createBubbles();
-            
         }
-    }
-
-    @Override
-    public boolean isActive() {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    @Override
-    public void activate() {
-        // TODO Auto-generated method stub
-    }
-
-    @Override
-    public void deactivate() {
-        // TODO Auto-generated method stub
     }
 
     @Override

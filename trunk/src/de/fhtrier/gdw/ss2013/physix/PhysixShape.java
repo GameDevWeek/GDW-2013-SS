@@ -118,6 +118,12 @@ public abstract class PhysixShape {
         body.setLinearVelocity(PhysixUtil.toBox2D(v));
     }
 
+    public void setLinearVelocity(float x, float y) {
+        body.getLinearVelocity().x = PhysixUtil.toBox2D(x);
+        body.getLinearVelocity().y = PhysixUtil.toBox2D(y);
+        body.setAwake(true);
+    }
+
     public void setLinearVelocityX(float x) {
         body.getLinearVelocity().x = PhysixUtil.toBox2D(x);
         body.setAwake(true);

@@ -43,6 +43,7 @@ public class Switch extends ObjectController implements ActivatableByAstronaut {
     @Override
     public void update(GameContainer container, int delta)
             throws SlickException {
+        super.update(container, delta);
         if (!isActivated()) {
         	setImage(unpressedImg);
         }
