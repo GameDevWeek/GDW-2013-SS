@@ -1,8 +1,6 @@
 package de.fhtrier.gdw.ss2013.game.world.enemies;
 
-import org.jbox2d.dynamics.Body;
 import org.jbox2d.dynamics.BodyType;
-import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.contacts.Contact;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
@@ -11,7 +9,9 @@ import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.constants.EnemyConstants;
 import de.fhtrier.gdw.ss2013.game.Entity;
+import de.fhtrier.gdw.ss2013.game.player.Alien;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
+
 import de.fhtrier.gdw.ss2013.physix.PhysixShape;
 
 /**
@@ -22,16 +22,20 @@ import de.fhtrier.gdw.ss2013.physix.PhysixShape;
  */
 public abstract class GroundEnemy extends AbstractEnemy {
 	private enum GroundEnemyState {
-		patrol
+		patrol, huntPlayer
 	}
 
 	private GroundEnemyState state;
-	private boolean walksRight;
+//	private Entity huntedPlayer;
+	private Vector2f speed;
+//	private boolean isInLevel;
+//	private PhysixObject collidingLevelObject;
 
 	public GroundEnemy(Animation animation) {
 		super(animation);
+		speed = new Vector2f(EnemyConstants.ENEMY_SPEED, 0);
 		state = GroundEnemyState.patrol;
-		walksRight = true;
+		setDamage(EnemyConstants.GROUND_DAMAGE);
 	}
 
 	@Override
@@ -42,73 +46,125 @@ public abstract class GroundEnemy extends AbstractEnemy {
 	@Override
 	public void update(GameContainer container, int delta) throws SlickException {
 		super.update(container, delta);
-		
+
 		switch (state) {
 		case patrol:
-			//patrol();
-			break;		
+			patrol();
+			break;
+		case huntPlayer:
+			hunt();
+			break;
 		}
+//		System.out.println("Speed: " + speed + " | State: " + state + " | stuck: " + (isInLevel) + " | pos: "+getPosition());
+	}
+
+	private void hunt() {
+//		Vector2f playerDirection = getPlayerDirection(huntedPlayer);
+//		if (playerDirection.y > EnemyConstants.ENEMY_MAX_HEIGHT_DIFFERENCE
+//				|| getDistanceToPlayer(huntedPlayer) > EnemyConstants.ENEMY_MAX_RANGE) {
+//			state = GroundEnemyState.patrol;
+//			return;
+//		}
+//
+//		playerDirection.y = 0;
+//		setVelocity(playerDirection.normalise().scale(EnemyConstants.ENEMY_SPEED).copy());
 	}
 
 	private void patrol() {
-		if (walksRight)
-			setVelocityX(EnemyConstants.ENEMY_SPEED);
-		else
-			setVelocityX(-EnemyConstants.ENEMY_SPEED);
+//		World world = World.getInstance();
+		
+//		if (isInLevel) {
+//			float myX = getPosition().x;
+//			float levelX = collidingLevelObject.getPosition().x;
+//			if (myX > levelX) {
+//				speed.x = EnemyConstants.ENEMY_SPEED;
+//			}
+//			else {
+//				speed.x = -EnemyConstants.ENEMY_SPEED;
+//			}
+//		}
+
+//		if (!world.getAstronaut().isCarryAlien()
+//				&& getDistanceToPlayer(world.getAlien()) < EnemyConstants.ENEMY_MAX_RANGE
+//				&& !isPlayerTooHigh(world.getAlien())) {
+//			state = GroundEnemyState.huntPlayer;
+//			huntedPlayer = world.getAlien();
+//			return;
+//		}
+//
+//		if (getDistanceToPlayer(world.getAstronaut()) < EnemyConstants.ENEMY_MAX_RANGE
+//				&& !isPlayerTooHigh(world.getAlien())) {
+//			state = GroundEnemyState.huntPlayer;
+//			huntedPlayer = world.getAstronaut();
+//			return;
+//		}
+
+		setVelocity(speed.copy());
 	}
 
-	private Vector2f calcPlayerDirection(Astronaut player) {
-		Vector2f direction = calcPlayerPosition(player);
-		direction.normalise();
-		return direction;
-	}
+//	private boolean isPlayerTooHigh(Entity e) {
+//		Vector2f playerDirection = getPlayerDirection(e);
+//		return (playerDirection.y > EnemyConstants.ENEMY_MAX_HEIGHT_DIFFERENCE);
+//	}
 
-	private float calcPlayerDistance(Astronaut player) {
-		Vector2f direction = calcPlayerPosition(player);
-		return (float) Math.sqrt((direction.x * direction.x) + (direction.y * direction.y));
-	}
+//	private Vector2f getPlayerDirection(Entity e) {
+//		return e.getPosition().sub(getPosition());
+//	}
 
-	private Vector2f calcPlayerPosition(Astronaut player) {
-		Vector2f direction = new Vector2f();
-		direction.x = player.getPosition().x - this.getPosition().x;
-		direction.y = player.getPosition().y - this.getPosition().y;
-		return direction;
-	}
+//	private float getDistanceToPlayer(Entity e) {
+//		return getPlayerDirection(e).length();
+//	}
 
 	@Override
 	public void beginContact(Contact contact) {
 		Entity other = getOtherEntity(contact);
-		if (other == null || other.getPhysicsObject().getBodyType() == BodyType.DYNAMIC) {
-			walksRight = !walksRight;
-			return;
+
+		if (other != null
+				&& (other.getPhysicsObject().getBodyType() == BodyType.DYNAMIC && !(other instanceof Alien) && !(other instanceof Astronaut))) {
+			if (other.getPosition().x < getPosition().x) {
+				speed.x = Math.abs(speed.x);
+			}
+			else {
+				speed.x = -Math.abs(speed.x);
+			}
 		}
 		if (other instanceof Astronaut) {
 			((Astronaut) other).setOxygen(((Astronaut) other).getOxygen() - this.getDamage());
 		}
-		Fixture a = contact.getFixtureA();
-		Fixture b = contact.getFixtureB();
 
-		Body objectA = a.getBody();
-		Body objectB = b.getBody();
-
-		PhysixShape ap = (PhysixShape) objectA.getUserData();
-		PhysixShape bp = (PhysixShape) objectB.getUserData();
-
-		if (!(ap == null ^ bp == null)) // filter level<>level,
-										// non-level<>non-level collision
-			return;
-
-		if (ap == null) // ap is level
-		{
-			bp.setLinearVelocity(bp.getLinearVelocity().scale(-1));
-		}
-		else { // bp is level
-			ap.setLinearVelocity(bp.getLinearVelocity().scale(-1));
+		if (other == null) {
+//			isInLevel = true;
+			speed.x = -speed.x;
 		}
 
+//		Fixture a = contact.getFixtureA();
+//		Fixture b = contact.getFixtureB();
+//
+//		Body objectA = a.getBody();
+//		Body objectB = b.getBody();
+//
+//		PhysixObject ap = (PhysixObject) objectA.getUserData();
+//		PhysixObject bp = (PhysixObject) objectB.getUserData();
+//
+//		if (ap == null || bp == null) // filter level<>level,
+//										// non-level<>non-level collision
+//			return;
+//
+//		if (ap.getOwner() == null) // ap is level
+//		{
+//			collidingLevelObject = ap;
+//		}
+//		else if (bp.getOwner() == null) { // bp is level
+//			collidingLevelObject = bp;
+//		}
 	}
 
 	@Override
-	public void endContact(Contact object) {
+	public void endContact(Contact contact) {
+		Entity other = getOtherEntity(contact);
+		if (other == null) {
+//			isInLevel = false;
+//			collidingLevelObject = null;
+		}
 	}
 }

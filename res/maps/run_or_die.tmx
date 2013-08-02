@@ -13,7 +13,7 @@
   <object type="solid" x="-400" y="-432" width="496" height="3080"/>
   <object type="solid" x="-392" y="-744" width="13282" height="952"/>
   <object type="solid" x="14537" y="-230" width="336" height="2864"/>
-  <object gid="626" x="8422" y="1660"/>
+  <object gid="626" x="7855" y="1778"/>
   <object gid="630" x="3666" y="1798"/>
   <object gid="633" x="3799" y="1825">
    <properties>
@@ -45,16 +45,6 @@
   <object type="solid" x="3982" y="470" width="226" height="1156"/>
   <object gid="636" x="584" y="1528"/>
   <object type="solid" x="8397" y="1747" width="173" height="121"/>
-  <object gid="640" x="10607" y="1793"/>
-  <object gid="640" x="10275" y="1799"/>
-  <object gid="640" x="10749" y="1794"/>
-  <object gid="639" x="9447" y="1785"/>
-  <object gid="639" x="9595" y="1783"/>
-  <object gid="639" x="9755" y="1785"/>
-  <object gid="639" x="9912" y="1787"/>
-  <object gid="638" x="8595" y="1796"/>
-  <object gid="638" x="9119" y="1796"/>
-  <object gid="640" x="10423" y="1795"/>
   <object type="solid" x="9229" y="1747" width="173" height="121"/>
   <object type="solid" x="10060" y="1742" width="173" height="121"/>
   <object type="solid" x="10890" y="1747" width="173" height="121"/>
@@ -121,51 +111,7 @@
   <object gid="651" x="1572" y="2176"/>
   <object gid="651" x="1245" y="2171"/>
   <object gid="651" x="895" y="2181"/>
-  <object name="line1" type="FollowPath" x="11591" y="1793">
-   <properties>
-    <property name="speed" value="60"/>
-   </properties>
-   <polyline points="0,0 443,0"/>
-  </object>
-  <object gid="656" x="11576" y="1820">
-   <properties>
-    <property name="path" value="line1"/>
-   </properties>
-  </object>
-  <object gid="656" x="12075" y="1819">
-   <properties>
-    <property name="path" value="line2"/>
-   </properties>
-  </object>
-  <object name="line2" type="FollowPath" x="12090" y="1792">
-   <properties>
-    <property name="speed" value="80"/>
-   </properties>
-   <polyline points="0,0 443,0"/>
-  </object>
-  <object gid="656" x="12567" y="1820">
-   <properties>
-    <property name="path" value="line3"/>
-   </properties>
-  </object>
-  <object name="line3" type="FollowPath" x="12582" y="1793">
-   <properties>
-    <property name="speed" value="100"/>
-   </properties>
-   <polyline points="0,0 443,0"/>
-  </object>
   <object type="deadzone" x="11414" y="2202" width="2188" height="312"/>
-  <object gid="656" x="13069" y="1823">
-   <properties>
-    <property name="path" value="line4"/>
-   </properties>
-  </object>
-  <object name="line4" type="FollowPath" x="13084" y="1796">
-   <properties>
-    <property name="speed" value="120"/>
-   </properties>
-   <polyline points="0,0 443,0"/>
-  </object>
   <object type="solid" x="13580" y="1812" width="1104" height="670"/>
   <object name="door3" gid="628" x="7100" y="1806"/>
   <object type="solid" x="6983" y="468" width="301" height="1167"/>
@@ -200,5 +146,7 @@
   <object gid="637" x="6371" y="1039"/>
   <object gid="637" x="6176" y="1449"/>
   <object gid="635" x="3595" y="1547"/>
+  <object gid="638" x="8742" y="1752"/>
+  <object gid="638" x="8936" y="1755"/>
  </objectgroup>
 </map>
