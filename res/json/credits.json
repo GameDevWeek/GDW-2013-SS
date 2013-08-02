@@ -1,31 +1,6 @@
 {
     "paths" : [
-		{ "name": "left",
-           "destinations": [
-			{"x": -1200, "y": 750, "speed": 0 },
-			{"x": 312, "y": 700, "speed": 1500 },
-			{"x": 780, "y": 200, "speed": 100 },
-			{"x": 810, "y": -100, "speed": 1500 }
-           ]
-		},
-		{ "name": "right",
-           "destinations": [
-			{"x": 1800, "y": 750, "speed": 0 },
-			{"x": 312, "y": 700, "speed": 1500 },
-			{"x": 780, "y": 200, "speed": 100 },
-			{"x": 810, "y": -100, "speed": 1500 }
-           ]
-		},
-		{ "name": "middle",
-           "destinations": [
-			{"x": 312, "y": 1150, "speed": 0 },
-			{"x": 312, "y": 700, "speed": 450 },
-			{"x": 780, "y": 200, "speed": 100 },
-			{"x": 810, "y": -100, "speed": 1500 }
-           ]
-		},
-		
-		{ "name": "middle_straight",
+		{ "name": "middle_path",
            "destinations": [
 			{"x": 500, "y": 800, "speed": -1 },
 			{"x": 500, "y": -100, "speed": 100 }
@@ -33,22 +8,21 @@
 		},
 			
 				
-		{ "name": "platform_steady",
+		{ "name": "platform_steady_path",
            "destinations": [
             {"x": 900, "y": 708, "speed": -1 },
             {"x": 900, "y": 708, "speed": -1 }
            ]
 		},
 		
-		{ "name": "switch_up",
+		{ "name": "switch_up_path",
            "destinations": [
             {"x": 700, "y": 680, "speed": -1 },
             {"x": 700, "y": 680, "speed": -1 }
            ]
 		},
-		
-		
-		{ "name": "platform_moving",
+			
+		{ "name": "platform_moving_path",
            "destinations": [
             {"x": -60, "y": 748, "speed": -1 },
             {"x": 250, "y": 748, "speed": 500 },
@@ -71,7 +45,7 @@
            ]
 		},
 		
-		{ "name": "player_test",
+		{ "name": "both_players_path",
            "destinations": [  
            
             {"x": -60, "y": 638, "speed": -1 },
@@ -93,21 +67,38 @@
            ]
 		},
 		
-		{ "name": "enemy_test",
+		{ "name": "enemy_test_path",
            "destinations": [   
            	{"x": 250, "y": -130, "speed": -1},
 			{"x": 250, "y": 700, "speed": 300}
            ]
+		},
+		
+		{ "name": "enemy_lava_stamm_right_path",
+           "destinations": [   
+           ]
+		},
+		
+		
+		{ "name": "enemy_lava_stamm_left_path",
+           "destinations": [   
+           ]
+		},
+		
+		
+		{ "name": "enemy_ducklord_path",
+           "destinations": [   
+           ]
 		}
-		
-		
-		
 	],
     
+    
+    
     "styles" : [
-        { "name": "title", "path": "middle_straight", "color": "F8BB08", "font": "jabjai_heavy" },
-        { "name": "name", "path": "middle_straight", "color": "FFA500", "font": "jabjai_light" }
+        { "name": "title", "path": "middle_path", "color": "F8BB08", "font": "jabjai_heavy" },
+        { "name": "name", "path": "middle_path", "color": "FFA500", "font": "jabjai_light" }
     ],
+    
     
     
     "texts" : [
@@ -118,30 +109,31 @@
 		{ "style" : "name", "delay": 750, "value": "Johannes Strack" },
 		{ "style" : "name", "delay": 750, "value": "Torsten Scholer" },
 		{ "style" : "name", "delay": 750, "value": "Annalena Weber" },
-		{ "style" : "name", "delay": 750, "value": "..." },
 		
 		{ "style" : "title", "delay": 1150, "value": "Game Design" },
 		{ "style" : "name", "delay": 750, "value": "Annalena Weber" },
 		{ "style" : "name", "delay": 750, "value": "Tobias Borns" },
 		{ "style" : "name", "delay": 750, "value": "Julia Goerke" },
 		{ "style" : "name", "delay": 750, "value": "Maxine Hammen" },
-		{ "style" : "name", "delay": 750, "value": "..." },
+		{ "style" : "name", "delay": 750, "value": "Julia Wolf" },
+		{ "style" : "name", "delay": 750, "value": "Yasmin Schraven" },
 		
 		{ "style" : "title", "delay": 1150, "value": "Level Design" },
+		{ "style" : "name", "delay": 750, "value": "Wendelin Lehr" },
 		{ "style" : "name", "delay": 750, "value": "Janina Noell" },
 		{ "style" : "name", "delay": 750, "value": "Benjamin Albsmeier" },
-		{ "style" : "name", "delay": 750, "value": "..." },
 		
 		{ "style" : "title", "delay": 1150, "value": "Interface Design" },
 		{ "style" : "name", "delay": 750, "value": "Tobias Borns" },
 		
+		{ "style" : "title", "delay": 1150, "value": "Sound Design" },
+		{ "style" : "name", "delay": 750, "value": "Andreas Kuster" },
+		
 		{ "style" : "title", "delay": 1150, "value": "Animation" },
 		{ "style" : "name", "delay": 750, "value": "Annalena Weber" },
 		{ "style" : "name", "delay": 750, "value": "Anton Krapp" },
+		{ "style" : "name", "delay": 750, "value": "Mira Lorenz" },
 		{ "style" : "name", "delay": 750, "value": "Maxine Hammen" },
-		{ "style" : "name", "delay": 750, "value": "..." },
-		
-		{ "style" : "title", "delay": 1150, "value": "Sounds & Musik" },
 		{ "style" : "name", "delay": 750, "value": "..." },
 		
 		{ "style" : "title", "delay": 1150, "value": "Programmierung" },
@@ -150,22 +142,28 @@
 		{ "style" : "name", "delay": 750, "value": "Robin Dick" },
 		{ "style" : "name", "delay": 750, "value": "Jeremias Boos" },
 		{ "style" : "name", "delay": 750, "value": "Mira Lorenz" },
+		{ "style" : "name", "delay": 750, "value": "Sebastian Krause" },
 		{ "style" : "name", "delay": 750, "value": "Benjamin Albsmeier" },
 		{ "style" : "name", "delay": 750, "value": "Janina Noell" },
 		{ "style" : "name", "delay": 750, "value": "Justin Weinberg" },
 		{ "style" : "name", "delay": 750, "value": "Valentin Kaechele" },
-		{ "style" : "name", "delay": 750, "value": "..." },
+		{ "style" : "name", "delay": 750, "value": "Thomas Eppers" },
+		{ "style" : "name", "delay": 750, "value": "Daniel Biskup" },
+		{ "style" : "name", "delay": 750, "value": "David Wichter" },
+		{ "style" : "name", "delay": 750, "value": "Arnold Oberzeiser" },
 		
 		{ "style" : "title", "delay": 1150, "value": "Bitte in Google Docs eintragen!" }
+		
     ],
     
     
+    
     "animations" : [
-		{ "name": "PlatformSmall", "x": 0, "y": 0, "width": 170, "height": 36, "path": "platform_moving", "angle": 0, "delay": 0, "oriented": false, "animation": false },
-		{ "name": "PlatformSmall", "x": 0, "y": 0, "width": 170, "height": 36, "path": "platform_steady", "angle": 0, "delay": 0, "oriented": false, "animation": false },
-		{ "name": "switch_unpressed", "x": 0, "y": 0, "width": 67, "height": 51, "path": "switch_up", "angle": 0, "delay": 0, "oriented": false, "animation": false },
-		{ "name": "astronaut_standing", "x": 0, "y": 0, "width": 228, "height": 191, "path": "player_test", "angle": 0, "delay": 0, "oriented": false, "animation": true },
-		{ "name": "ground_ememy_middle", "x": 0, "y": 0, "width": 98, "height": 87, "path": "enemy_test", "angle": 0, "delay": 0, "oriented": false, "animation": true }
+		{ "name": "PlatformSmall", "x": 0, "y": 0, "width": 170, "height": 36, "path": "platform_moving_path", "angle": 0, "delay": 0, "oriented": false, "animation": false },
+		{ "name": "PlatformSmall", "x": 0, "y": 0, "width": 170, "height": 36, "path": "platform_steady_path", "angle": 0, "delay": 0, "oriented": false, "animation": false },
+		{ "name": "switch_unpressed", "x": 0, "y": 0, "width": 67, "height": 51, "path": "switch_up_path", "angle": 0, "delay": 0, "oriented": false, "animation": false },
+		{ "name": "astronaut_standing", "x": 0, "y": 0, "width": 228, "height": 191, "path": "both_players_path", "angle": 0, "delay": 0, "oriented": false, "animation": true },
+		{ "name": "ground_ememy_middle", "x": 0, "y": 0, "width": 98, "height": 87, "path": "enemy_test_path", "angle": 0, "delay": 0, "oriented": false, "animation": true }
 	]
 }
 
