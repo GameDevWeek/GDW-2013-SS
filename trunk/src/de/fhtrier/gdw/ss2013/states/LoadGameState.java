@@ -2,6 +2,7 @@ package de.fhtrier.gdw.ss2013.states;
 
 import java.io.IOException;
 
+import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -17,8 +18,6 @@ import de.fhtrier.gdw.ss2013.MainGame;
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.settings.DebugModeStatus;
 import de.fhtrier.gdw.ss2013.sound.SoundLocator;
-
-import org.newdawn.slick.AppGameContainer;
 
 /**
  * Loading state
@@ -79,7 +78,7 @@ public class LoadGameState extends BasicGameState {
 			try {
 				long time = System.currentTimeMillis();
 				nextResource.load();
-				Log.debug("Loading " + nextResource.getDescription()
+				Log.debug("Loading " + nextResource.getDescription() + "[" + nextResource.getClass().getSimpleName() + "]"
 						+ " (Time: " + (System.currentTimeMillis() - time)
 						+ ")");
 			} catch (IOException e) {

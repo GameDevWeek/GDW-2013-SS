@@ -90,6 +90,8 @@ public abstract class Player extends EntityCollidable {
                     && (damageTakerPos.y + damageTakerDim.y < damageDealerPos.y)) { // player deals damage
                 World.getInstance().getScoreCounter().addScore(5);
                 World.getInstance().getEntityManager().removeEntity(damageDealer);
+                if(damageTaker instanceof Astronaut)
+                    damageTaker.setVelocityY(-.50f*((Astronaut)damageTaker).getJumpSpeed());
             }
             else {
             	// Wird in Bullet-Klassen geregelt
