@@ -113,5 +113,9 @@
 {
   "name" : "winning",
   "pfad" : "menu/win/troll"
+},
+{
+  "name" : "jump_tt",
+  "pfad" : "tooltips/jump_tt"
 }]
 
