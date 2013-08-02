@@ -50,9 +50,10 @@ public class Teleporter extends EntityCollidable implements Interactable {
     @Override
     public void beginContact(Contact contact) {
 
-        if (isActive) {
+        if (isActive && target != null) {
             Entity other = getOtherEntity(contact);
-            if (other instanceof Astronaut || other instanceof Alien || other instanceof Box) {
+            if (other instanceof Astronaut || other instanceof Alien
+                    || other instanceof Box) {
                 if (!ignorList.contains(other)) {
                     target.ignorList.add(other);
                     toSet.add(other);
@@ -64,9 +65,10 @@ public class Teleporter extends EntityCollidable implements Interactable {
 
     @Override
     public void endContact(Contact contact) {
-        if (isActive) {
+        if (isActive && target != null) {
             Entity other = getOtherEntity(contact);
-            if (other instanceof Astronaut || other instanceof Alien || other instanceof Box) {
+            if (other instanceof Astronaut || other instanceof Alien
+                    || other instanceof Box) {
                 if (ignorList.contains(other)) {
                     ignorList.remove(other);
                 }
