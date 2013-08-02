@@ -1,8 +1,4 @@
 [{
-  "name" : "demo",
-  "pfad" : "res/maps/demo.tmx"
-},
-{
   "name" : "demo_sidescroller",
   "pfad" : "res/maps/sidescroller_demo.tmx"
 },
@@ -17,10 +13,6 @@
 {
   "name" : "a3",
   "pfad" : "res/maps/map-a3.tmx"
-},
-{
-  "name" : "testmap",
-  "pfad" : "res/maps/testmap_2.tmx"
 },
 {
   "name" : "testmap2",
