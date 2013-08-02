@@ -113,4 +113,8 @@ public class OxygenFlower extends EntityCollidable implements Interactable {
     @Override
     public void endContact(Contact object) {
     }
+    
+    public void decreaseBubbleCount() {
+    	count--;
+    }
 }
