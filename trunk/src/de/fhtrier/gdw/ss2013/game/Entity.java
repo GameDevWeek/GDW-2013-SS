@@ -4,7 +4,6 @@
 
 package de.fhtrier.gdw.ss2013.game;
 
-import org.jbox2d.dynamics.BodyType;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -132,10 +131,22 @@ public abstract class Entity {
 
 	/**
 	 * provide default values:<br>
-	 * - called in constructor<br>
+	 * - called by entitymanager<br>
 	 * - called when recycled<br>
+	 * - DO NOT CALL SELF
 	 */
 	protected void initialize() {
+	    
+	    StackTraceElement[] err = Thread.currentThread().getStackTrace();
+	    for(int i=1;i<err.length;++i) {
+	        if(!err[i].getMethodName().equals("initialize")) {
+//	            System.out.println(err[i].getMethodName());
+				if(err[i].getMethodName().equals("<init>")) {
+	                throw new UnsupportedOperationException("initialize() called in constructor! Invalid behaviour! ");
+	            }
+	            break;
+	        }
+	    }
 		if (img != null && physicsObject != null) {
 				// hier existiert ein PhysixObject, das aber eine falsche Breite und Höhe hat!
 				// UND ich kanns hier besser erstellen
@@ -151,6 +162,7 @@ public abstract class Entity {
 			physicsObject.removeFromWorld(); // dirty way to remove old physix object
 			setPhysicsObject(box);
 		}
+	            
 	}
 
 	/**

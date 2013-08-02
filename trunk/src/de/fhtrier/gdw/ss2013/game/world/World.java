@@ -21,7 +21,6 @@ import de.fhtrier.gdw.ss2013.game.camera.ThreePointCamera;
 import de.fhtrier.gdw.ss2013.game.player.Alien;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.score.ScoreCounter;
-import de.fhtrier.gdw.ss2013.game.world.enemies.boss.ThaWhale;
 import de.fhtrier.gdw.ss2013.input.InputManager;
 import de.fhtrier.gdw.ss2013.physix.PhysixBox;
 import de.fhtrier.gdw.ss2013.physix.PhysixBoxPlayer;
@@ -47,7 +46,7 @@ public class World {
 
     private static World instance;
 
-    public boolean debugDraw = DebugModeStatus.isTest();
+    public boolean debugDraw = DebugModeStatus.isPhysicTest();
 
     private EntityManager entityManager;
     private final PhysixManager physicsManager;
