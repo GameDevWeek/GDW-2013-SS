@@ -4,7 +4,7 @@
  <tileset firstgid="37" source="entity_tileset.tsx"/>
  <layer name="Kachelebene 1" width="300" height="50">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3UMQqAMAAEwSBIwP8/2MrazmRlBq6/ascAAACAb132+80NPlhnO5urDwDbOFcfeKFXwEOvgAq9Air0CqjQK6BCr4AKvQIq9Aqo0CugQq+ACr0CKvQKqNAroEKvgAq9Air0CqjQK6BCr4AKvQIq9Aqo0CugQq+ACr0CKvQKqNAroEKvgAq9Air0CqjQK6BCr4AKvQIq9Aqo0CugQq+ACr0CKvQKqNAroEKvgAq9Air0CqjQK6BCr4CKQq8OM7Oxf68AAP7oBsd9UCRg6gAA
+   H4sIAAAAAAAAC+3UQQrCABAEwSAEwf8/WHxETGXogr3voZnjSJIkSZLkvz7d/J3AD91zTva++4Fc7rz7gTyG3kp7tU9vMA69lfZqn95gHHor7dU+vcE49Fbaq316g3HorbRX+/QG49Bbaa/26Q3GobfSXu3TG4xDb6W92qc3GIfeSnu1T28wDr2V9mqf3mAceivt1T69wTj0VtqrfXqDceittFf79Abj0Ftpr/bpDcaht9Je7dMbjENvpb3apzcYh95Ke7VPbzAOvZX2ap/eYBx6K+3VPr3BOPRW2qt9eoNx6K20V/v0BuPQW2mv9ukNxqG30l7t0xuMQ2+lvdqnNxiH3kp7tU9vMA69lfZqn95gHHor7dU+vcE49Fbaq316g3HorbRX+/QG49Bbaa/26Q3GobfSXu3TG4xDb6W92qc3GIfeSnu1T28wDr2V9mqf3mAceivt1T69wTj0VtqrfXqDceittFf79Abj0Ftpr/bpDcaht9Je7dMbjENvpb3apzcYh95Ke7VPbzAOvZX2ap/eYBx6K7+9enXTdwI/dM84fa+SJEkWfQFNP36JYOoAAA==
   </data>
  </layer>
  <objectgroup name="Objektebene 1" width="300" height="50">
@@ -13,6 +13,10 @@
   <object type="solid" x="9324" y="16" width="132" height="1616"/>
   <object type="solid" x="920" y="10" width="132" height="1616"/>
   <object gid="37" x="1132" y="1450"/>
+
+  <object type="solid" x="4876" y="39" width="282" height="1497"/>
+
   <object gid="38" x="1593" y="1383"/>
+
  </objectgroup>
 </map>
