@@ -12,9 +12,8 @@
   <object type="solid" x="-400" y="-432" width="496" height="3080"/>
   <object type="solid" x="-392" y="-744" width="13282" height="952"/>
   <object type="solid" x="12549" y="-230" width="336" height="2864"/>
-  <object gid="626" x="3422" y="1787"/>
+  <object gid="626" x="5972" y="1749"/>
   <object gid="630" x="3600" y="1776"/>
-  <object gid="627" x="7518" y="1703"/>
   <object gid="633" x="3799" y="1825">
    <properties>
     <property name="trigger" value="door"/>
@@ -63,7 +62,11 @@
   <object type="solid" x="8902" y="1747" width="173" height="121"/>
   <object gid="632" x="4802" y="1682"/>
   <object gid="632" x="610" y="1802"/>
-  <object type="winningzone" x="11649" y="1045" width="1052" height="982"/>
+  <object type="winningzone" x="11649" y="1045" width="1052" height="982">
+   <properties>
+    <property name="target" value="bossmap"/>
+   </properties>
+  </object>
   <object gid="631" x="1722" y="1028">
    <properties>
     <property name="delay" value="1800"/>

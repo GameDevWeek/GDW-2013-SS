@@ -48,7 +48,7 @@ public class MenuPageRoot extends MenuPage {
             addLeftAlignedButton("Reset Game", x, y - h * (i--), font, 
                 new IActionListener() {
                     public void onAction() {
-                        World.getInstance().reset();
+                        World.getInstance().shallBeReseted(true);
                     }
                 });
 		}

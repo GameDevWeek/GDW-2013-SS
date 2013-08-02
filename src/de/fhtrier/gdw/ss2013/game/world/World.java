@@ -54,10 +54,13 @@ public class World {
     
     private ArrayList<DynamicParticleSystem> particleList; 
     private final GameContainer container;
+    
+    private String levelName;
 
 	public World(GameContainer container, StateBasedGame game) {
         this.container = container;
 		instance = this;
+		levelName = DebugModeStatus.getLevelName();
 		map = null;
 		entityManager = new EntityManager();
 		physicsManager = new PhysixManager(container);
@@ -66,13 +69,13 @@ public class World {
         reset();
 	}
     
-    public void reset() {
+    private void reset() {
         entityManager.reset();
         physicsManager.reset();
         particleList.clear();
         
 		try {
-			map = AssetLoader.getInstance().loadMap(DebugModeStatus.getLevelName());
+			map = AssetLoader.getInstance().loadMap(levelName);
 			LevelLoader.load(map, entityManager, physicsManager);
 
 			mapRender = new MapRenderer(map);
@@ -268,6 +271,10 @@ public class World {
 	
 	public ScoreCounter getScoreCounter() {
 		return scoreCounter;
+	}
+	
+	public void setLevelName(String levelName) {
+		this.levelName = levelName;
 	}
 
 }
