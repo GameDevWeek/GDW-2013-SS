@@ -5,4 +5,5 @@ public class EnemyConstants {
 	public static final float ENEMY_BULLET_DAMAGE = 20f;
 	public static final float ENEMY_SHOOTING_DISTANCE = 1000f;
 	public static final float ENEMY_SHOOTING_INTERVAL = 1500f;
+	public static float ENEMY_SPEED = 50f;
 }
