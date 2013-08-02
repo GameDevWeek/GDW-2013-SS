@@ -1,231 +1,508 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
-<map version="1.0" orientation="orthogonal" width="20" height="100" tilewidth="64" tileheight="64">
+<map version="1.0" orientation="orthogonal" width="40" height="120" tilewidth="64" tileheight="64" backgroundcolor="#737373">
  <tileset firstgid="1" source="tiledmap_final.tsx"/>
  <tileset firstgid="626" source="entity_tileset.tsx"/>
  <tileset firstgid="644" source="moving_platform.tsx"/>
- <layer name="Kachelebene 1" width="20" height="100">
+ <layer name="fluid" width="40" height="120">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+1ZbU7DMAz1Pwa7RAbcgfEHrjCJH3ANrgASIK4wxCY4BNdgOxG22qdmUVvlw+lStic9rduqJLafE7sl2sWS+cH8pv+JOXPCPGWe1dfThPE+mSvmmnnH/GE+Joy3YX4xf6mKw5b0Y3FCje3yKT65Yd5Gjmdo1w/ig3vmQz1XqH+hQfHBpv6EH5Y0Lm2K/bbeUiH2wy9bhfF84doxbfk9JM6IMexATA1zxjxnXqYuup7HncNGzNr7oLl2gaxb9oOxaD5WD10wpK8H5I/t0y59a8yTYw+3gbVradhQtZdrabjEmsKNN65j4cYb53jMWjS0h9ph337X1qbYNqb9MBSaOhAMtQdpIUcuwP4Q3WAdvpD7++rnJ+ZzwHhy/3vP/8hxX+Sum924pda7hppz/4KqnmKVMF7b/jxk/dyFmP6oDyX1R1dU9ZbQQmx/CSCGufriGMDGUs63lD6+DejjtTCWs/uQ65ZcZ7DYX0re+kByW6sOEyxIv69y+1hAYjhXmgdzhdQbQ6DEnr2080AT2v42zBfmK/ON0vMCGi2pPjjiiCEh9Z9mjkoeDfEMAe+k0C9o9Aro8/b9DMwXuZ4DHvp+CG3huYTdk8LfE2reg9o5hO/2e+Nrat53/gHlq00wQB8AAA==
+   H4sIAAAAAAAAC+3BMQEAAADCoPVPbQsvoAAAAAAAAAAAAAAAAAAAAAAAAOBn+4+38gBLAAA=
   </data>
  </layer>
- <objectgroup name="Objektebene 1" width="20" height="100">
-  <object name="b" type="solid" x="0" y="6356" width="1304" height="82"/>
-  <object name="p1" type="solid" x="1098" y="6292" width="200" height="64"/>
-  <object name="p2" type="solid" x="714" y="6036" width="298" height="72"/>
-  <object name="p3" type="solid" x="394" y="5844" width="298" height="74"/>
-  <object name="p4" type="solid" x="-6" y="5714" width="314" height="78"/>
-  <object name="p5" type="solid" x="458" y="4948" width="298" height="138"/>
-  <object name="p6" type="solid" x="778" y="4754" width="170" height="72"/>
-  <object name="p7" type="solid" x="970" y="4626" width="300" height="76"/>
-  <object name="p8" type="solid" x="714" y="4306" width="170" height="138"/>
-  <object name="p9" type="solid" x="330" y="4114" width="296" height="74"/>
-  <object name="p10" type="solid" x="138" y="3922" width="170" height="72"/>
-  <object name="p11" type="solid" x="-4" y="3666" width="120" height="140"/>
-  <object name="p12" type="solid" x="266" y="3540" width="168" height="72"/>
-  <object name="p13" type="solid" x="460" y="3346" width="296" height="76"/>
-  <object name="p14" type="solid" x="778" y="3154" width="106" height="76"/>
-  <object name="p15" type="solid" x="906" y="2900" width="384" height="140"/>
-  <object name="p16" type="solid" x="650" y="2706" width="106" height="140"/>
-  <object name="p17" type="solid" x="266" y="2578" width="298" height="74"/>
-  <object name="p18" type="solid" x="-2" y="2388" width="246" height="74"/>
-  <object name="p19" type="solid" x="266" y="2130" width="170" height="76"/>
-  <object name="p20" type="solid" x="586" y="1942" width="300" height="72"/>
-  <object name="p21" type="solid" x="908" y="1812" width="378" height="76"/>
-  <object name="p22" type="solid" x="1100" y="1558" width="168" height="136"/>
-  <object name="p23" type="solid" x="652" y="1426" width="296" height="74"/>
-  <object name="p24" type="solid" x="266" y="1298" width="232" height="138"/>
-  <object name="p25" type="solid" x="0" y="1042" width="182" height="138"/>
-  <object name="p26" type="solid" x="394" y="852" width="296" height="74"/>
-  <object name="p27" type="solid" x="778" y="852" width="234" height="136"/>
-  <object name="p28" type="solid" x="1036" y="662" width="244" height="74"/>
-  <object name="p29" type="solid" x="780" y="468" width="104" height="74"/>
-  <object name="p30" type="solid" x="330" y="402" width="426" height="138"/>
-  <object name="p31" type="solid" x="-2" y="212" width="372" height="136"/>
-  <object name="ziel" x="-4" y="66" width="270" height="152"/>
-  <object name="r" type="solid" x="1276" y="2" width="152" height="6424"/>
-  <object name="l" type="solid" x="-102" y="0" width="104" height="6416"/>
-  <object name="t" type="solid" x="-140" y="-112" width="1636" height="116"/>
-  <object name="path1" type="FollowPath" x="66" y="5696">
+ <layer name="main" width="40" height="120">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC9VcfW4VRwz3f1B6iaVwh4KQ0itQFYlcAaRK7RVAKpQrgEiVHKJwC5ITMdY+6zmux2N7PI/yk0ZJ3tuZ3fHX+GsDcMSdNu628SP8P/G+jQ9tXA2u+7mNe9DfB+7zl+TcCjxt4+823nW+x3329jia64Hcv+Q73v9SPINFMw5trnXv3hpX4u8R319BnCbas8h7V+mExdMePHvy6kQPXr727p29L2GkbxoN5Bzi0Q+DtTK8lPom6UU04GvLObiH1218Yp9r++7x0qKR1DfteeTa2hz87pp9HrEz1rU9+ZqVW7kHS44tm5SxGxlk71OhYxpQph61cQY73eR9SOZGa5DePYLbOjhrM/F5rg9D2z/JnAW85l/Y9e5jGxdt/NPGb4fP/5x4vpEtIZmzgNd8geM+Lw9/o17cwBzfZ/WLYOkVfke8xp9cnjzrev0sy/5ZerXBbb4jz5+3cX64v3Xv7TDnXDyzxnPN/hHdLP0lHpEM4E/i+0jvcd+fxT17PNfs3yq7wteflWHEiE+Rdbh9qvLxq84PbgtuoG/3JKK+9Klh0cZjA3q+Hf9cm6/ZLe0zK8bZYD87rD1w34nLO86938ZPbTxU5mlyM+JVJi6y1pLPHHmWCLifUBVXE/+zsQsH2m+LVxlshzXPle+iMRfZUiuujsLy2aVszsSIWVg+u6YH0XzDyH6cCr1n32BOJnF/Xl8sA35eafmSUSyO8ke+GEfP19N8r0yuTp6zI9+MYmmiY09vNFtckavj6PmfXF9H+TeOyLUeSJrx3MO39EE0VPhtK/PlFTSriAGlPtPvXrsir6vOr2t+cyR3LWVAy/d5n9Vr+yQsXo9iuQ385wPJww2M5WJ0bnr3tiq/1qNZVOZ765y6FmbRu5c/nbHdUT206L3CtlefndXo0T/jK2ftRmbNjD56fabomlrcHJGnlToaWbunS5YtmuV5xM5ldInnByJ2ZnRe9mquPV2K8nekf7w+1rOrkbMj6l959a/i3MzGR97YYdYOVPUycD2y/NRRLUPKWkV8tMExjn8Aew0C6xGYV5T5e4vnVfUcbV3pP/OfszWDVbmjqrpAVs9G94/QalTfz+Z3rXlWnkXyq6enK89fK8/iqW/R595+Maxdku2o6HPywtsPFa0LE28itS7tWTbQc9izoJ6YB4fhiWF7vNfoQTzNymbP563sB5uRH29fjSf/jfJRnSue9SM2uH1uarniGczyUcpHZR4VscG+/9l6VNU5KYH2+VfYeaL1441kqdcfUaVfL9p4CXuPj9aP5+mr7OU7KnhN9u+dsmY0Bl7hX2X8Tc2nsGi9Iu9hQfMpRv05lE+O5j0yfKmux1jQ+JLNXUXneOLSyFlvITMH5QRjNM32fotauATJ5Sn6NlbpZbSuotF8ZY7YoqOky+qzIuqrRehSIc/R3rUIXbLx+cj/p/6IWb93Jj63aID7fg663zt6f+cUIP9A24PkWc+X8PYAZ/yEipwK7sMTm25t/NXGmzbeOq5HVNiuV841iP6R/MGM7eK+/Sn8maj8c/6vzE/SM83kblfVz1H+/oC5dyAQq+q/XLazPFrdn0OyPXMGrMjpIyI0s2zlqvxBRK4tW7lK/qy8ovbe3qnithGi5wr1Zp9BbSxu1cQj7wfzOnRlD0L2/OVy631/gd6NivTNZWWKy63HvlBv+bXjWo6qc3Nl/qqiVpl9r3ykS5mzqTInMvIHtzaewFz+eWX+APX3GczVBFbmDzD//Dv8178a9SBI21d5rnB7tcEes0TeQerlDPk7wLL/4i4c3wvlZwz9zd8bfgz7+5pIM6TfhXI/Cz394LVTOkMu4XiW8O/o+w/KNTwPXO27Re1g5n+cVP+vB2u9zP84qY51Rv00Ud2K+IQEy86f6r2Ikf/sqRdXYdZ/jtJMo/+M3GYR6REd1aRWxBrfa7/1LL4CBYBhXQBLAAA=
+  </data>
+ </layer>
+ <objectgroup name="object" width="40" height="120">
+  <object name="b" type="solid" x="608" y="6996" width="1462" height="80"/>
+  <object name="p1" type="solid" x="1738" y="6932" width="200" height="64"/>
+  <object name="p2" type="solid" x="1354" y="6676" width="298" height="72"/>
+  <object name="p3" type="solid" x="1034" y="6484" width="298" height="74"/>
+  <object name="p4" type="solid" x="620" y="6354" width="328" height="78"/>
+  <object name="p5" type="solid" x="1098" y="5588" width="298" height="138"/>
+  <object name="p6" type="solid" x="1418" y="5394" width="170" height="72"/>
+  <object name="p7" type="solid" x="1610" y="5266" width="332" height="74"/>
+  <object name="p8" type="solid" x="1354" y="4946" width="170" height="138"/>
+  <object name="p9" type="solid" x="970" y="4754" width="296" height="74"/>
+  <object name="p10" type="solid" x="778" y="4562" width="170" height="72"/>
+  <object name="p11" type="solid" x="622" y="4306" width="130" height="142"/>
+  <object name="p12" type="solid" x="906" y="4180" width="168" height="72"/>
+  <object name="p13" type="solid" x="1100" y="3986" width="296" height="76"/>
+  <object name="p14" type="solid" x="1418" y="3794" width="106" height="76"/>
+  <object name="p15" type="solid" x="1546" y="3540" width="384" height="140"/>
+  <object name="p16" type="solid" x="1290" y="3346" width="106" height="140"/>
+  <object name="p17" type="solid" x="906" y="3218" width="298" height="74"/>
+  <object name="p18" type="solid" x="616" y="3028" width="266" height="72"/>
+  <object name="p19" type="solid" x="906" y="2770" width="170" height="76"/>
+  <object name="p20" type="solid" x="1226" y="2582" width="300" height="72"/>
+  <object name="p21" type="solid" x="1548" y="2452" width="378" height="76"/>
+  <object name="p22" type="solid" x="1740" y="2198" width="198" height="72"/>
+  <object name="p23" type="solid" x="1292" y="2066" width="296" height="74"/>
+  <object name="p24" type="solid" x="906" y="1938" width="232" height="138"/>
+  <object name="p25" type="solid" x="626" y="1682" width="192" height="138"/>
+  <object name="p26" type="solid" x="1034" y="1492" width="296" height="74"/>
+  <object name="p27" type="solid" x="1418" y="1492" width="234" height="136"/>
+  <object name="p28" type="solid" x="1676" y="1302" width="256" height="74"/>
+  <object name="p29" type="solid" x="1420" y="1108" width="104" height="74"/>
+  <object name="p30" type="solid" x="970" y="1042" width="426" height="138"/>
+  <object name="p31" type="solid" x="638" y="852" width="372" height="136"/>
+  <object name="ziel" type="winningzone" x="618" y="586" width="154" height="272"/>
+  <object name="r" type="solid" x="1932" y="602" width="142" height="6464"/>
+  <object name="l" type="solid" x="522" y="616" width="104" height="6448"/>
+  <object name="t" type="solid" x="510" y="490" width="1560" height="116"/>
+  <object name="path1" type="FollowPath" x="706" y="6336">
    <properties>
     <property name="speed" value="40"/>
    </properties>
    <polyline points="0,0 124,-768"/>
   </object>
-  <object name="m1" gid="644" x="32" y="5730">
+  <object name="m1" gid="644" x="672" y="6370">
    <properties>
     <property name="path" value="path1"/>
    </properties>
   </object>
-  <object name="start" gid="626" x="448" y="6270"/>
-  <object name="bx1" gid="630" x="64" y="6348"/>
-  <object name="bx2" gid="630" x="56" y="5566"/>
-  <object name="bx3" gid="630" x="1200" y="2632"/>
-  <object name="bx4" gid="630" x="1210" y="1550"/>
-  <object name="bx5" gid="630" x="298" y="1292"/>
-  <object name="bx6" gid="630" x="864" y="848"/>
-  <object name="o1" gid="632" x="1196" y="6290"/>
-  <object name="o2" gid="632" x="566" y="5840"/>
-  <object name="o3" gid="632" x="650" y="4942"/>
-  <object name="o4" gid="632" x="766" y="4302"/>
-  <object name="o5" gid="632" x="6" y="3662"/>
-  <object name="o6" gid="632" x="800" y="3150"/>
-  <object name="o7" gid="632" x="450" y="2576"/>
-  <object name="o8" gid="632" x="674" y="1940"/>
-  <object name="o9" gid="632" x="1134" y="1552"/>
-  <object name="o10" gid="632" x="446" y="848"/>
-  <object name="o11" gid="632" x="778" y="464"/>
-  <object name="k22" gid="631" x="1028" y="4774">
+  <object name="start" gid="626" x="768" y="6914"/>
+  <object name="bx2" gid="630" x="1024" y="6972"/>
+  <object name="bx3" gid="630" x="700" y="3006"/>
+  <object name="bx5" gid="630" x="1846" y="1280"/>
+  <object name="o1" gid="632" x="1830" y="6912"/>
+  <object name="o2" gid="632" x="1210" y="6464"/>
+  <object name="o3" gid="632" x="1280" y="5570"/>
+  <object name="o4" gid="632" x="1408" y="4926"/>
+  <object name="o5" gid="632" x="672" y="4288"/>
+  <object name="o6" gid="632" x="1440" y="3778"/>
+  <object name="o7" gid="632" x="1024" y="3202"/>
+  <object name="o8" gid="632" x="1430" y="2560"/>
+  <object name="o9" gid="632" x="1758" y="2178"/>
+  <object name="o10" gid="632" x="1068" y="1472"/>
+  <object name="o11" gid="632" x="1422" y="1090"/>
+  <object name="k22" gid="631" x="1668" y="5414">
    <properties>
     <property name="delay" value="3000"/>
     <property name="startdelay" value="500"/>
    </properties>
   </object>
-  <object name="k17" gid="631" x="1124" y="3110">
+  <object name="k17" gid="631" x="1764" y="3750">
    <properties>
     <property name="delay" value="4000"/>
     <property name="startdelay" value="300"/>
    </properties>
   </object>
-  <object name="k11" gid="631" x="1120" y="1962">
+  <object name="k11" gid="631" x="1760" y="2602">
    <properties>
     <property name="delay" value="3500"/>
     <property name="startdelay" value="100"/>
    </properties>
   </object>
-  <object name="k9" gid="631" x="272" y="1516">
+  <object name="k9" gid="631" x="912" y="2156">
    <properties>
     <property name="delay" value="3000"/>
     <property name="startdelay" value="300"/>
    </properties>
   </object>
-  <object name="k1" gid="631" x="548" y="72">
+  <object name="k1" gid="631" x="1188" y="712">
    <properties>
     <property name="delay" value="1900"/>
     <property name="startdelay" value="50"/>
    </properties>
   </object>
-  <object name="k2" gid="631" x="1130" y="72">
+  <object name="k2" gid="631" x="1770" y="712">
    <properties>
     <property name="delay" value="4800"/>
     <property name="startdelay" value="500"/>
    </properties>
   </object>
-  <object name="k3" gid="631" x="50" y="420">
+  <object name="k3" gid="631" x="690" y="1060">
    <properties>
     <property name="delay" value="1000"/>
     <property name="startdelay" value="100"/>
    </properties>
   </object>
-  <object name="k24" gid="631" x="502" y="5156">
+  <object name="k24" gid="631" x="1142" y="5796">
    <properties>
     <property name="delay" value="2000"/>
     <property name="startdelay" value="1000"/>
    </properties>
   </object>
-  <object name="k20" gid="631" x="446" y="4256">
+  <object name="k20" gid="631" x="1086" y="4896">
    <properties>
     <property name="delay" value="5000"/>
     <property name="startdelay" value="700"/>
    </properties>
   </object>
-  <object name="k15" gid="631" x="454" y="2726">
+  <object name="k15" gid="631" x="1094" y="3366">
    <properties>
     <property name="delay" value="2500"/>
     <property name="startdelay" value="900"/>
    </properties>
   </object>
-  <object name="k6" gid="631" x="540" y="1002">
+  <object name="k6" gid="631" x="1180" y="1642">
    <properties>
     <property name="delay" value="2800"/>
     <property name="startdelay" value="1250"/>
    </properties>
   </object>
-  <object name="g1" gid="638" x="872" y="6028"/>
-  <object name="g3" gid="638" x="566" y="4944"/>
-  <object name="g4" gid="638" x="830" y="4732"/>
-  <object name="g5" gid="638" x="430" y="4110"/>
-  <object name="g7" gid="638" x="504" y="3348"/>
-  <object name="g10" gid="638" x="958" y="1802"/>
-  <object name="g11" gid="638" x="808" y="1424"/>
-  <object name="g13" gid="638" x="1176" y="654"/>
-  <object name="g14" gid="638" x="474" y="396"/>
-  <object name="g2" gid="639" x="216" y="5704"/>
-  <object name="g6" gid="639" x="188" y="3912"/>
-  <object name="g8" gid="639" x="980" y="2896"/>
-  <object name="g9" gid="639" x="320" y="2124"/>
-  <object name="g12" gid="639" x="56" y="1036"/>
-  <object name="f3" gid="635" x="116" y="4692"/>
-  <object name="f1" gid="635" x="1024" y="5776"/>
-  <object name="f5" gid="635" x="924" y="4086"/>
-  <object name="f6" gid="635" x="574" y="3810"/>
-  <object name="f9" gid="635" x="930" y="2514"/>
-  <object name="f10" gid="635" x="106" y="1848"/>
-  <object name="f11" gid="635" x="392" y="1778"/>
-  <object name="f12" gid="635" x="746" y="1708"/>
-  <object name="f8" gid="635" x="436" y="3068"/>
-  <object name="f4" gid="635" x="500" y="4630"/>
-  <object name="f2" gid="635" x="462" y="5426"/>
-  <object name="f14" gid="635" x="652" y="1174"/>
-  <object name="f16" gid="635" x="696" y="712"/>
-  <object name="f17" gid="635" x="1096" y="324"/>
-  <object name="f18" gid="636" x="756" y="180"/>
-  <object name="f15" gid="636" x="120" y="672"/>
-  <object name="f13" gid="636" x="1060" y="1200"/>
-  <object name="f7" gid="636" x="46" y="3246"/>
-  <object name="k13" gid="631" x="602" y="2090">
+  <object name="f3" gid="635" x="792" y="5388">
+   <properties>
+    <property name="path" value="fl3"/>
+   </properties>
+  </object>
+  <object name="f1" gid="635" x="1506" y="6050">
+   <properties>
+    <property name="path" value="fl1"/>
+   </properties>
+  </object>
+  <object name="f5" gid="635" x="1538" y="4566">
+   <properties>
+    <property name="path" value="fl5"/>
+   </properties>
+  </object>
+  <object name="f6" gid="635" x="1064" y="4454">
+   <properties>
+    <property name="path" value="fl6"/>
+   </properties>
+  </object>
+  <object name="f9" gid="635" x="1556" y="3164">
+   <properties>
+    <property name="path" value="fl9"/>
+   </properties>
+  </object>
+  <object name="f10" gid="635" x="784" y="2552">
+   <properties>
+    <property name="path" value="fl10"/>
+   </properties>
+  </object>
+  <object name="f11" gid="635" x="884" y="2268">
+   <properties>
+    <property name="path" value="fl10"/>
+   </properties>
+  </object>
+  <object name="f12" gid="635" x="1414" y="2386">
+   <properties>
+    <property name="path" value="fl10"/>
+   </properties>
+  </object>
+  <object name="f8" gid="635" x="1076" y="3708">
+   <properties>
+    <property name="path" value="fl8"/>
+   </properties>
+  </object>
+  <object name="f4" gid="635" x="1162" y="5294">
+   <properties>
+    <property name="path" value="fl4"/>
+   </properties>
+  </object>
+  <object name="f2" gid="635" x="980" y="6164">
+   <properties>
+    <property name="path" value="fl2"/>
+   </properties>
+  </object>
+  <object name="f14" gid="635" x="1178" y="1850">
+   <properties>
+    <property name="path" value="fl11"/>
+   </properties>
+  </object>
+  <object name="f16" gid="635" x="1310" y="1374">
+   <properties>
+    <property name="path" value="fl13"/>
+   </properties>
+  </object>
+  <object name="f17" gid="635" x="1736" y="964">
+   <properties>
+    <property name="path" value="fl14"/>
+   </properties>
+  </object>
+  <object name="f18" gid="636" x="1396" y="820">
+   <properties>
+    <property name="path" value="f15"/>
+   </properties>
+  </object>
+  <object name="f15" gid="636" x="772" y="1248">
+   <properties>
+    <property name="path" value="fl12"/>
+   </properties>
+  </object>
+  <object name="f13" gid="636" x="1704" y="1970">
+   <properties>
+    <property name="path" value="fl11"/>
+   </properties>
+  </object>
+  <object name="f7" gid="636" x="686" y="3886">
+   <properties>
+    <property name="path" value="fl7"/>
+   </properties>
+  </object>
+  <object name="k13" gid="631" x="1242" y="2730">
    <properties>
     <property name="delay" value="6000"/>
    </properties>
   </object>
-  <object name="k5" gid="631" x="1164" y="806">
+  <object name="k5" gid="631" x="1804" y="1446">
    <properties>
     <property name="delay" value="2300"/>
     <property name="startdelay" value="1300"/>
    </properties>
   </object>
-  <object name="door1" gid="628" x="274" y="188">
+  <object name="door1" gid="628" x="908" y="848">
    <properties>
     <property name="isActive" value="false"/>
    </properties>
   </object>
-  <object name="p32" type="solid" x="266" y="4" width="170" height="30"/>
-  <object name="bt1" gid="633" x="1202" y="1812">
+  <object name="p32" type="solid" x="906" y="602" width="170" height="66"/>
+  <object name="bt1" gid="633" x="1844" y="2468">
    <properties>
     <property name="trigger" value="door1"/>
    </properties>
   </object>
-  <object name="door2" gid="628" x="1092" y="1788">
+  <object name="door2" gid="628" x="1732" y="2448">
    <properties>
     <property name="isActive" value="false"/>
    </properties>
   </object>
-  <object name="door3" gid="628" x="1144" y="2878">
+  <object name="door3" gid="628" x="1788" y="3536">
    <properties>
     <property name="isActive" value="false"/>
    </properties>
   </object>
-  <object name="bt2" gid="633" x="1214" y="2898">
+  <object name="bt2" gid="633" x="1856" y="3556">
    <properties>
     <property name="trigger" value="door2"/>
    </properties>
   </object>
-  <object name="p33" type="solid" x="1160" y="2640" width="226" height="140"/>
-  <object name="p34" type="solid" x="1164" y="4434" width="146" height="78"/>
-  <object name="door4" gid="628" x="1138" y="4602">
+  <object name="p33" type="solid" x="1800" y="3280" width="148" height="78"/>
+  <object name="p34" type="solid" x="1802" y="5010" width="146" height="78"/>
+  <object name="door4" gid="628" x="1784" y="5262">
    <properties>
     <property name="isActive" value="false"/>
    </properties>
   </object>
-  <object name="bt3" gid="633" x="1210" y="4622">
+  <object name="bt3" gid="633" x="1856" y="5282">
    <properties>
     <property name="trigger" value="door3"/>
    </properties>
   </object>
-  <object name="bt4" gid="633" x="434" y="5842">
+  <object name="bt4" gid="633" x="1074" y="6498">
    <properties>
     <property name="trigger" value="door4"/>
    </properties>
+  </object>
+  <object name="fl6" type="FollowPath" x="1256" y="4506">
+   <properties>
+    <property name="moveAround" value="true"/>
+    <property name="speed" value="190"/>
+   </properties>
+   <polyline points="0,0 232,-4 376,-134 216,-236 34,-326 -52,-170 -160,-82 2,2"/>
+  </object>
+  <object name="fl7" type="FollowPath" x="708" y="3860">
+   <properties>
+    <property name="moveAround" value="true"/>
+    <property name="speed" value="90"/>
+   </properties>
+   <polyline points="0,0 12,146 228,192 330,20 146,-18 178,-180 -10,-146 0,2"/>
+  </object>
+  <object name="fl8" type="FollowPath" x="1108" y="3686">
+   <properties>
+    <property name="moveAround" value="true"/>
+    <property name="speed" value="130"/>
+   </properties>
+   <polyline points="0,0 10,92 192,90 242,-58 84,-64 68,-198 -68,-156 -98,4 -4,2"/>
+  </object>
+  <object name="fl9" type="FollowPath" x="1580" y="3130">
+   <properties>
+    <property name="moveAround" value="true"/>
+    <property name="speed" value="200"/>
+   </properties>
+   <polyline points="0,0 8,156 248,-26 222,-296 0,-362 -312,-266 -406,-84 -138,-78 -118,68 -2,-2"/>
+  </object>
+  <object name="fl11" type="FollowPath" x="1042" y="1714">
+   <properties>
+    <property name="speed" value="140"/>
+   </properties>
+   <polyline points="0,0 164,28 170,106 354,140 434,44 538,70 638,174 698,230 752,128"/>
+  </object>
+  <object name="fl15" type="FollowPath" x="1212" y="776">
+   <properties>
+    <property name="speed" value="170"/>
+   </properties>
+   <polyline points="0,0 138,-34 212,16 262,102 370,6"/>
+  </object>
+  <object name="fl14" type="FollowPath" x="1666" y="792">
+   <properties>
+    <property name="speed" value="200"/>
+   </properties>
+   <polyline points="0,0 78,58 -20,128 96,144 96,246 172,274"/>
+  </object>
+  <object name="x1" gid="630" x="104" y="336"/>
+  <object name="x2" gid="630" x="218" y="1550"/>
+  <object name="x3" gid="630" x="126" y="2832"/>
+  <object name="x4" gid="630" x="348" y="2512"/>
+  <object name="x5" gid="630" x="228" y="3594"/>
+  <object name="x6" gid="630" x="416" y="4300"/>
+  <object name="x7" gid="630" x="88" y="5198"/>
+  <object name="x8" gid="630" x="138" y="6158"/>
+  <object name="x9" gid="630" x="444" y="6798"/>
+  <object name="x10" gid="630" x="580" y="7314"/>
+  <object name="x10" gid="630" x="1582" y="7442"/>
+  <object name="x11" gid="630" x="2268" y="7124"/>
+  <object name="x12" gid="630" x="2338" y="6224"/>
+  <object name="x13" gid="630" x="2402" y="5454"/>
+  <object name="x14" gid="630" x="2258" y="4876"/>
+  <object name="x15" gid="630" x="2394" y="4176"/>
+  <object name="x16" gid="630" x="2268" y="3534"/>
+  <object name="x17" gid="630" x="2336" y="2958"/>
+  <object name="x18" gid="630" x="2132" y="2126"/>
+  <object name="x19" gid="630" x="2328" y="1106"/>
+  <object name="x20" gid="630" x="2308" y="464"/>
+  <object name="x21" gid="630" x="1802" y="462"/>
+  <object name="x22" gid="630" x="1176" y="206"/>
+  <object name="o1" type="solid" x="8" y="338" width="180" height="82"/>
+  <object name="o2" type="solid" x="202" y="1554" width="108" height="76"/>
+  <object name="o3" type="solid" x="270" y="2516" width="166" height="70"/>
+  <object name="o4" type="solid" x="114" y="2836" width="130" height="72"/>
+  <object name="o5" type="solid" x="140" y="3598" width="170" height="74"/>
+  <object name="o6" type="solid" x="396" y="4302" width="138" height="144"/>
+  <object name="o8" type="solid" x="74" y="5200" width="104" height="80"/>
+  <object name="o9" type="solid" x="76" y="6162" width="164" height="140"/>
+  <object name="o10" type="solid" x="458" y="6802" width="94" height="138"/>
+  <object name="o11" type="solid" x="522" y="7316" width="174" height="72"/>
+  <object name="o12" type="solid" x="1548" y="7444" width="168" height="76"/>
+  <object name="o13" type="solid" x="2252" y="7126" width="102" height="136"/>
+  <object name="o14" type="solid" x="2316" y="6226" width="190" height="136"/>
+  <object name="o15" type="solid" x="2376" y="5458" width="106" height="140"/>
+  <object name="o16" type="solid" x="2252" y="4880" width="102" height="80"/>
+  <object name="o17" type="solid" x="2316" y="4180" width="168" height="74"/>
+  <object name="o18" type="solid" x="2252" y="3538" width="106" height="142"/>
+  <object name="o19" type="solid" x="2314" y="2960" width="112" height="140"/>
+  <object name="o20" type="solid" x="2120" y="2126" width="116" height="146"/>
+  <object name="o21" type="solid" x="2254" y="1108" width="172" height="76"/>
+  <object name="o22" type="solid" x="2252" y="468" width="168" height="70"/>
+  <object name="o23" type="solid" x="1610" y="466" width="296" height="82"/>
+  <object name="o24" type="solid" x="1166" y="210" width="100" height="140"/>
+  <object type="solid" x="182" y="336">
+   <polyline points="0,0 0,-78 -88,-74 -92,0"/>
+  </object>
+  <object type="solid" x="292" y="1548">
+   <polyline points="0,0 6,-90 -74,-82 -86,0"/>
+  </object>
+  <object type="solid" x="422" y="2508">
+   <polyline points="0,0 2,-80 -76,-74 -96,4"/>
+  </object>
+  <object type="solid" x="202" y="2828">
+   <polyline points="0,0 -4,-88 -88,-80 -88,2"/>
+  </object>
+  <object type="solid" x="302" y="3592">
+   <polyline points="0,0 0,-80 -82,-72 -96,4"/>
+  </object>
+  <object type="solid" x="494" y="4290">
+   <polyline points="0,0 -2,-70 -80,-72 -90,4"/>
+  </object>
+  <object type="solid" x="164" y="5194">
+   <polyline points="0,0 0,-70 -80,-76 -92,2"/>
+  </object>
+  <object type="solid" x="218" y="6156">
+   <polyline points="0,0 -2,-72 -80,-84 -108,-2"/>
+  </object>
+  <object type="solid" x="458" y="6808">
+   <polyline points="0,0 -40,-6 -20,-110 56,-92 68,-12"/>
+  </object>
+  <object type="solid" x="562" y="7314">
+   <polyline points="0,0 6,-84 92,-80 102,0"/>
+  </object>
+  <object type="solid" x="1570" y="7436">
+   <polyline points="0,0 6,-78 82,-76 98,4"/>
+  </object>
+  <object type="solid" x="2258" y="7122">
+   <polyline points="0,0 0,-78 88,-78 88,2"/>
+  </object>
+  <object type="solid" x="2326" y="6218">
+   <polyline points="0,0 -2,-74 84,-76 90,6"/>
+  </object>
+  <object type="solid" x="2388" y="5450">
+   <polyline points="0,0 2,-74 100,-74 88,4"/>
+  </object>
+  <object type="solid" x="2250" y="4876">
+   <polyline points="0,0 0,-70 80,-76 94,4"/>
+  </object>
+  <object type="solid" x="2376" y="4172">
+   <polyline points="0,0 4,-72 100,-78 92,6"/>
+  </object>
+  <object type="solid" x="2252" y="3532">
+   <polyline points="0,0 2,-68 96,-74 94,4"/>
+  </object>
+  <object type="solid" x="2324" y="2956">
+   <polyline points="0,0 -6,-76 90,-78 98,-2"/>
+  </object>
+  <object type="solid" x="2122" y="2124">
+   <polyline points="0,0 0,-76 92,-74 92,2"/>
+  </object>
+  <object type="solid" x="2320" y="1104">
+   <polyline points="0,0 -4,-68 84,-68 94,2"/>
+  </object>
+  <object type="solid" x="2290" y="458">
+   <polyline points="0,0 4,-66 108,-66 108,12"/>
+  </object>
+  <object type="solid" x="1780" y="460">
+   <polyline points="0,0 14,-80 118,-74 112,0"/>
+  </object>
+  <object type="solid" x="1164" y="204">
+   <polyline points="0,0 -4,-74 94,-72 94,-2"/>
+  </object>
+  <object name="bx6" gid="630" x="990" y="4736"/>
+  <object name="fl5" type="FollowPath" x="1564" y="4524">
+   <properties>
+    <property name="moveAround" value="true"/>
+    <property name="speed" value="130"/>
+   </properties>
+   <polyline points="0,0 -114,90 -64,222 124,272 268,142 256,-54 126,-82 -2,0"/>
+  </object>
+  <object name="fl3" type="FollowPath" x="818" y="5370">
+   <properties>
+    <property name="moveAround" value="true"/>
+    <property name="speed" value="100"/>
+   </properties>
+   <polyline points="0,0 154,18 192,-68 102,-188 -24,-234 -112,-88 -110,14 2,0"/>
+  </object>
+  <object name="fl4" type="FollowPath" x="1082" y="5004">
+   <properties>
+    <property name="moveAround" value="true"/>
+    <property name="speed" value="130"/>
+   </properties>
+   <polyline points="0,0 150,0 194,94 178,200 112,272 -14,224 -66,64 0,-2"/>
+  </object>
+  <object name="fl2" type="FollowPath" x="1094" y="6212">
+   <properties>
+    <property name="moveAround" value="true"/>
+    <property name="speed" value="80"/>
+   </properties>
+   <polyline points="0,0 252,-10 332,-184 338,-322 186,-302 -16,-298 -150,-226 -96,-84 -2,-2"/>
+  </object>
+  <object name="fl1" type="FollowPath" x="1528" y="6022">
+   <properties>
+    <property name="moveAround" value="true"/>
+    <property name="speed" value="120"/>
+   </properties>
+   <polyline points="0,0 -66,140 -18,294 194,362 296,188 316,-8 286,-138 154,-112 0,0"/>
+  </object>
+  <object name="fl10" type="FollowPath" x="740" y="2314">
+   <properties>
+    <property name="moveAround" value="true"/>
+    <property name="speed" value="80"/>
+   </properties>
+   <polyline points="0,0 178,-66 408,-54 668,-24 710,42 522,116 364,90 218,216 70,212 8,76 2,0"/>
+  </object>
+  <object name="fl13" type="FollowPath" x="1544" y="1306">
+   <properties>
+    <property name="speed" value="100"/>
+   </properties>
+   <polyline points="0,0 -194,38 -390,-18"/>
+  </object>
+  <object name="fl12" type="FollowPath" x="722" y="1314">
+   <properties>
+    <property name="moveAround" value="true"/>
+    <property name="speed" value="80"/>
+   </properties>
+   <polyline points="0,0 78,-110 168,-20 210,72 148,178 50,220 0,-4"/>
   </object>
  </objectgroup>
 </map>
