@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.util.ArrayList;
 
 import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
@@ -20,7 +21,7 @@ import de.fhtrier.gdw.ss2013.physix.PhysixObject;
  * @author Kevin, Georg
  * 
  */
-public class MovingPlatform extends Entity implements Interactable, EntityFilter {
+public abstract class MovingPlatform extends Entity implements Interactable, EntityFilter {
     private ArrayList<Point> points;
     private AssetLoader asset = AssetLoader.getInstance();
     private Point nextPoint;
@@ -31,8 +32,8 @@ public class MovingPlatform extends Entity implements Interactable, EntityFilter
     private boolean isActive;
     private int indexmod;
 
-    public MovingPlatform() {
-        img = asset.getImage("bigPlatform");
+    public MovingPlatform(Image img) {
+        this.img = img;
         index = 0;
         speed = 20;
         setParticle(AssetLoader.getInstance().getParticle("plattform1"));

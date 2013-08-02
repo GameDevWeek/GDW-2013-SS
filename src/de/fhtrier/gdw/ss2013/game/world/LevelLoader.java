@@ -17,6 +17,7 @@ import de.fhtrier.gdw.ss2013.assetloader.infos.GameDataInfo;
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.filter.Interactable;
+import de.fhtrier.gdw.ss2013.game.world.enemies.FlyingEnemy;
 import de.fhtrier.gdw.ss2013.game.world.objects.Door;
 import de.fhtrier.gdw.ss2013.game.world.objects.FollowPath;
 import de.fhtrier.gdw.ss2013.game.world.objects.MovingPlatform;
@@ -58,7 +59,7 @@ public class LevelLoader {
 
         entityManager.initalUpdate();
         conntactInteractions();
-        bindPlatformsToPath();
+        bindEntityToPath();
         setTeleporterTargets();
     }
 
@@ -272,11 +273,8 @@ public class LevelLoader {
 			entity.setPhysicsObject(box);
 			break;
 		case "smallPlatform":
-			entity = entityManager.createEntity("MovingPlatform", properties,
+			entity = entityManager.createEntity("smallmovingplatform", properties,
 					name);
-			entity.setImage(AssetLoader.getInstance().getImage("PlatformSmall"));
-			width = (int) entity.getImage().getWidth();
-			height = (int) entity.getImage().getHeight();
 			PhysixBox platformBoxSmall = new PhysixBox(physicsManager, x
 					- width / 2, y - height / 2, width, height,
 					BodyType.KINEMATIC, worldInfo.density, worldInfo.friction,
@@ -284,11 +282,8 @@ public class LevelLoader {
 			entity.setPhysicsObject(platformBoxSmall);
 			break;
 		case "bigPlatform":
-			entity = entityManager.createEntity("MovingPlatform", properties,
+			entity = entityManager.createEntity("bigmovingplatform", properties,
 					name);
-			entity.setImage(AssetLoader.getInstance().getImage("PlatformBig"));
-			width = (int) entity.getImage().getWidth();
-			height = (int) entity.getImage().getHeight();
 			PhysixBox platformBoxBig = new PhysixBox(physicsManager, x - width
 					/ 2, y - height / 2, width, height, BodyType.KINEMATIC,
 					worldInfo.density, worldInfo.friction, false);
@@ -350,27 +345,31 @@ public class LevelLoader {
             SafeProperties properties) {
     }
 
-    private static void bindPlatformsToPath() {
-        ArrayList<Entity> platforms = entityManager
+    private static void bindEntityToPath() {
+        ArrayList<Entity> followingEntities = entityManager
                 .getEntitiesByFilter(MovingPlatform.class);
-        for (Entity e : platforms) {
-            MovingPlatform platform = (MovingPlatform) e;
-            if (platform.getProperties() != null) {
-                String name = platform.getProperties().getProperty("path");
+        followingEntities.addAll(entityManager.getEntitiesByFilter(FlyingEnemy.class));
+        
+        for (Entity e : followingEntities) {
+            if (e.getProperties() != null) {
+                String name = e.getProperties().getProperty("path");
                 if (name != null) {
                     FollowPath path = followPaths.get(name);
                     if (path != null) {
-                        platform.initLine(path.getPoints(),
-                                path.getProperties());
+                        if (e instanceof FlyingEnemy) {
+                            ((FlyingEnemy)e).initLine(path.getPoints(), path.getProperties());
+                        } else {
+                            ((MovingPlatform)e).initLine(path.getPoints(), path.getProperties());
+                        }
                     } else {
                         System.err.println("Didn't find path " + name + "!");
                     }
                 } else {
                     System.err.println("Missing path option in "
-                            + platform.getName() + "!");
+                            + e.getName() + "!");
                 }
             } else {
-                System.err.println("No options in " + platform.getName() + "!");
+                System.err.println("No options in " + e.getName() + "!");
             }
         }
     }

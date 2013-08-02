@@ -71,11 +71,11 @@
   "pfad" : "gui/crosshair2"
 },
 {
-  "name" : "PlatformBig",
+  "name" : "big_platform",
   "pfad" : "entities/platform_big"
 },
 {
-  "name" : "PlatformSmall",
+  "name" : "small_platform",
   "pfad" : "entities/platform_small"
 },
 {

@@ -123,9 +123,6 @@
   <object gid="748" x="3039" y="6335"/>
   <object gid="748" x="3744" y="6324"/>
   <object gid="743" x="2660" y="5857"/>
-  <object name="p1" type="FollowPath" x="1216" y="6144">
-   <polyline points="0,0 512,0"/>
-  </object>
   <object name="mp1" gid="755" x="1184" y="6176">
    <properties>
     <property name="path" value="p1"/>
@@ -133,6 +130,14 @@
   </object>
   <object name="p2" type="FollowPath" x="2688" y="5824">
    <polyline points="0,0 576,0"/>
+  </object>
+  <object gid="756" x="1760" y="6173">
+   <properties>
+    <property name="path" value="p1"/>
+   </properties>
+  </object>
+  <object name="p1" type="FollowPath" x="1216" y="6144">
+   <polyline points="0,0 576,0 576,-576 0,-576 0,0"/>
   </object>
  </objectgroup>
 </map>
