@@ -43,9 +43,10 @@ public abstract class Bullet extends EntityCollidable {
 		int height = img.getHeight();
 
 		PhysixBox box = new PhysixBox(World.getInstance().getPhysicsManager(), spawnx, spawny, width, height,
-				BodyType.KINEMATIC, 1, 0.5f, true);
+				BodyType.DYNAMIC, 1, 0.5f, true);
 		setPhysicsObject(box);
 		setVelocity(shootDirection);
+		box.setGravityScale(0f);
 	}
 
 	public void render(GameContainer container, Graphics g) throws SlickException {
