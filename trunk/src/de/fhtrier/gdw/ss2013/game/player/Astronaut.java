@@ -15,7 +15,6 @@ import org.newdawn.slick.util.Log;
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.assetloader.infos.GameDataInfo;
 import de.fhtrier.gdw.ss2013.constants.PlayerConstants;
-import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityCollidable;
 import de.fhtrier.gdw.ss2013.game.cheats.Cheats;
 import de.fhtrier.gdw.ss2013.game.world.World;
@@ -317,6 +316,19 @@ public class Astronaut extends EntityCollidable implements AstronautController, 
         PhysixObject objectA = (PhysixObject) a.getBody().getUserData();
         PhysixObject objectB = (PhysixObject) b.getBody().getUserData();
         
+        
+        AbstractEnemy damageDealer = null;
+        Astronaut damageTaker = null;
+        if (objectA.getOwner() instanceof AbstractEnemy && objectB.getOwner() instanceof Astronaut) {
+            damageTaker = (Astronaut) objectB.getOwner();
+            damageDealer = (AbstractEnemy) objectA.getOwner();
+        }
+        else if (objectB.getOwner() instanceof AbstractEnemy && objectA.getOwner() instanceof Astronaut) {
+            damageTaker = (Astronaut) objectA.getOwner();
+            damageDealer = (AbstractEnemy) objectB.getOwner();
+        }
+
+        
         if (physicsObject == objectA && a.m_shape.getType() == ShapeType.CIRCLE && !b.m_isSensor) {
             groundContacts++;
         }
@@ -324,12 +336,10 @@ public class Astronaut extends EntityCollidable implements AstronautController, 
             groundContacts++;
         }
         
-        Entity other = getOtherEntity(contact);
-        if (other instanceof AbstractEnemy) {
-            AbstractEnemy damageDealer = (AbstractEnemy) other;
-            // is above TODO(check for astronaut later..)
-            Vector2f damageTakerPos = getPosition();
-            Vector2f damageTakerDim = getPhysicsObject().getDimension();
+        if(damageDealer != null && damageTaker != null) {
+
+            Vector2f damageTakerPos = damageTaker.getPosition();
+            Vector2f damageTakerDim = damageTaker.getPhysicsObject().getDimension();
 
             Vector2f damageDealerPos = damageDealer.getPosition();
             Vector2f damageDealerDim = damageDealer.getPhysicsObject().getDimension();
@@ -337,15 +347,19 @@ public class Astronaut extends EntityCollidable implements AstronautController, 
             if( (damageTakerPos.x + damageTakerDim.x > damageDealerPos.x - damageDealerDim.x  ) //  
                     && ((damageTakerPos.x - damageTakerDim.x < damageDealerPos.x + damageDealerDim.x  ))
                     && (damageTakerPos.y + damageTakerDim.y < damageDealerPos.y)) { // player deals damage
-                System.out.println(this+" hit by "+damageDealer);
+                World.getInstance().getScoreCounter().addScore(5);
+                World.getInstance().getEntityManager().removeEntity(damageDealer);
+                if(damageTaker instanceof Astronaut)
+                    damageTaker.setVelocityY(-.50f*((Astronaut)damageTaker).getJumpSpeed());
             }
             else {
-            	// Wird in Bullet-Klassen geregelt
+                // Wird in Bullet-Klassen geregelt
 //                if (damageTaker instanceof Astronaut && !(damageDealer instanceof PlayerBullet))
 //                    ((Astronaut) damageTaker).setOxygen(0);
-                
+               
             }
         }
+
 
         if (objectA.getOwner() instanceof Switch) {
             switches.add((Switch) objectA.getOwner());
