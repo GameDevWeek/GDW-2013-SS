@@ -108,6 +108,19 @@ public class MenuPage {
         return label;
     }
     
+    public Label addCenteredLabel(final String text, float x, float y, Font font) throws SlickException {
+        float w = font.getWidth(text);
+        float h = font.getLineHeight();
+
+        Label label = Label.create(text, x - w / 2, y - h / 2, w, h)
+                .color(Color.gray);
+        label.font(font);
+        label.init(container);
+        addWidget(label);
+
+        return label;
+    }
+    
     public ToggleButton addLeftAlignedToggleButton(final String[] text, float x, float y, Font font, Align textAlign) throws SlickException {
         float maxW = 0;
         float h = font.getLineHeight();

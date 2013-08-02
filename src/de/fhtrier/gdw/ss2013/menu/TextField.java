@@ -97,7 +97,10 @@ public class TextField extends Widget {
 	
     @Override
 	public void keyPressed(int key, char c, boolean repeated) {
-		int oldCursorPos = cursorPos;
+		if (!this.focus)
+		    return;
+		
+	    int oldCursorPos = cursorPos;
 		if(key == Input.KEY_BACK) {
 			if(!text.isEmpty() && cursorPos > 0) {
 				if(cursorPos == text.length())
@@ -123,6 +126,8 @@ public class TextField extends Widget {
 			cursorPos = text.length();
 		} else if(key == Input.KEY_HOME) {
 			cursorPos = 0;
+		} else if(key == Input.KEY_ENTER) {
+            this.setFocus(false);
 		} else if(c != '\0') {
 			if(cursorPos == text.length())
 				text += c;

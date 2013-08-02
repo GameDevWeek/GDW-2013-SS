@@ -117,5 +117,13 @@
 {
   "name" : "slider_thumb",
   "pfad" : "menu/slider_thumb"
+},
+{
+  "name" : "text_bg",
+  "pfad" : "menu/text_bg"
+},
+{
+  "name" : "text_focus",
+  "pfad" : "menu/text_focus"
 }]
 
