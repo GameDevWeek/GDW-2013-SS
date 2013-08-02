@@ -215,7 +215,7 @@ public class LevelLoader {
 			startpos = new Vector2f(x, y);
 			break;
 		case "boss":
-			String n = "thawahle";
+			String n = "thawhale";
 			if (properties.getProperty("name") != null) {
 				n = properties.getProperty("name");
 			}
