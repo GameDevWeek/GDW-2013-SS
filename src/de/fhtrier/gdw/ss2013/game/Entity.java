@@ -160,7 +160,7 @@ public abstract class Entity {
 		    
 			PhysixObject box = new PhysixBox(World.getInstance().getPhysicsManager(), x, y, width, height,
 					physicsObject.getBodyType(), worldInfo.density, worldInfo.friction,
-					false);
+					physicsObject.isSensor());
 			physicsObject.removeFromWorld(); // dirty way to remove old physix object
 			setPhysicsObject(box);
 		}

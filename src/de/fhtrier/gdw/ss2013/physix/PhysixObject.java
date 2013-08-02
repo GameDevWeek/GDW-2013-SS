@@ -207,4 +207,8 @@ public abstract class PhysixObject {
 	public BodyType getBodyType() {
 		return body.getType();
 	}
+
+	public boolean isSensor() {
+		return fixtureDef.isSensor;
+	}
 }

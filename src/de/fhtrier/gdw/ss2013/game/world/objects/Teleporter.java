@@ -23,7 +23,6 @@ public class Teleporter extends EntityCollidable implements Interactable {
 
     public Teleporter() {
         super(AssetLoader.getInstance().getImage("door_closed"));
-        initialize();
     }
 
     @Override
