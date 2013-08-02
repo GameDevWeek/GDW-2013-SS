@@ -7,6 +7,7 @@ import org.newdawn.slick.SlickException;
 
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.filter.Interactable;
+import de.fhtrier.gdw.ss2013.game.world.World;
 
 /**
  * {@link Entity}, which de/activates connected interactable Entities,<br>
@@ -26,16 +27,37 @@ public abstract class ObjectController extends Entity implements Interactable {
     protected HashSet<Interactable> connectedEntities;
 
     protected ObjectController() {
+        connectedEntities = new HashSet<Interactable>();
     }
-    
+
     /**
      * {@inheritDoc}
      */
     @Override
     protected void initialize() {
         super.initialize();
-        isActivated = false;
+
         connectedEntities = new HashSet<>();
+
+        if (properties != null) {
+            if (!properties.getProperty("trigger", "").isEmpty()) {
+                String[] triggers = properties.getProperty("trigger", "")
+                        .split(",");
+
+                for (String triggerName : triggers) {
+                    Entity toTrigger = World.getInstance().getEntityManager()
+                            .getEntityByName(triggerName);
+                    if (toTrigger instanceof Interactable) {
+                        connectEntity((Interactable) toTrigger);
+                    } else {
+                        System.err.println(getName()
+                                + " trys to connect a Not Interactable Entity "
+                                + triggerName);
+                    }
+                }
+            }
+            isActivated = properties.getBoolean("isActive", false);
+        }
     }
 
     @Override
