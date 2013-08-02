@@ -3,7 +3,6 @@
  */
 package de.fhtrier.gdw.ss2013.gui;
 
-import de.fhtrier.gdw.commons.utils.FpsCalculator;
 import org.newdawn.slick.Font;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -12,6 +11,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
 
+import de.fhtrier.gdw.commons.utils.FpsCalculator;
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.gui.utils.CenteredText;
@@ -82,7 +82,7 @@ public class HUD {
         abilityDisplayManager.init(abilityDisplay, worldinstance);
         
     	//init Crosshair
-		final Image crosshairImage = asset.getImage("crosshair2");
+		final Image crosshairImage = asset.getImage("crosshair");
 		crosshair = new Crosshair();
 		crosshair.init(worldinstance, crosshairImage);
 		

@@ -33,8 +33,8 @@ import de.fhtrier.gdw.ss2013.sound.SoundLocator;
 import de.fhtrier.gdw.ss2013.sound.services.DefaultSoundPlayer;
 
 public class World {
-	
-	private boolean shallBeReseted;
+
+    private boolean shallBeReseted;
 
     private TiledMap map;
     private MapRenderer mapRender;
@@ -50,160 +50,167 @@ public class World {
 
     private EntityManager entityManager;
     private final PhysixManager physicsManager;
-    
-    private ArrayList<DynamicParticleSystem> particleList; 
+
+    private ArrayList<DynamicParticleSystem> particleList;
     private final GameContainer container;
-    
+
     private String levelName;
 
-	public World(GameContainer container, StateBasedGame game) {
+    public World(GameContainer container, StateBasedGame game) {
         this.container = container;
-		instance = this;
-		levelName = DebugModeStatus.getLevelName();
-		map = null;
-		entityManager = new EntityManager();
-		physicsManager = new PhysixManager(container);
-		particleList = new ArrayList<DynamicParticleSystem>();
+        instance = this;
+        levelName = DebugModeStatus.getLevelName();
+        map = null;
+        entityManager = new EntityManager();
+        physicsManager = new PhysixManager(container);
+        particleList = new ArrayList<DynamicParticleSystem>();
         scoreCounter = new ScoreCounter();
         reset();
-	}
-    
+    }
+
     private void reset() {
         entityManager.reset();
         physicsManager.reset();
         particleList.clear();
-        
-		try {
-			map = AssetLoader.getInstance().loadMap(levelName);
-			LevelLoader.load(map, entityManager, physicsManager);
 
-			mapRender = new MapRenderer(map);
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-		if(DebugModeStatus.isTPCamera()) {
-		    CameraInfo info = new CameraInfo(2, map);
-		    tpCamera = new ThreePointCamera(info);
-		    tpCamera.setZoom(-0.00f);
-		    
-//		    tpCamera.addPointOfInterest(new PointOfInterest(1000, 500, 1, 1000));
-		}
-		camera = new Camera(map);
+        try {
+            map = AssetLoader.getInstance().loadMap(levelName);
+            LevelLoader.load(map, entityManager, physicsManager);
 
-		// physic debug stuff
-		physicsManager.enableDebugDraw(container);
+            mapRender = new MapRenderer(map);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        if (DebugModeStatus.isTPCamera()) {
+            CameraInfo info = new CameraInfo(2, map);
+            tpCamera = new ThreePointCamera(info);
+            tpCamera.setZoom(-0.00f);
+
+            // tpCamera.addPointOfInterest(new PointOfInterest(1000, 500, 1,
+            // 1000));
+        }
+        camera = new Camera(map);
+
+        // physic debug stuff
+        physicsManager.enableDebugDraw(container);
 
         GameDataInfo info = AssetLoader.getInstance().getGameData();
-		astronaut = entityManager.createEntity(Astronaut.class);
-		Vector2f startpos = LevelLoader.getStartPosition();
-		PhysixObject physicsObject = new PhysixBoxPlayer(physicsManager, startpos.x,
-				startpos.y, info.combined.width, info.combined.height,
-                info.combined.density, info.combined.friction);
+        astronaut = entityManager.createEntity(Astronaut.class);
+        Vector2f startpos = LevelLoader.getStartPosition();
+        PhysixObject physicsObject = new PhysixBoxPlayer(physicsManager,
+                startpos.x, startpos.y, info.combined.width,
+                info.combined.height, info.combined.density,
+                info.combined.friction);
 
-		astronaut.setPhysicsObject(physicsObject);
-		
-		// astronaut.setPhysicsObject(new
-		// RectanglePhysicsObject(BodyType.DYNAMIC, new Vec2(95,105), new
-		// Vec2(astronaut.getPosition().x,astronaut.getPosition().y)));
+        astronaut.setPhysicsObject(physicsObject);
 
-		alien = entityManager.createEntity(Alien.class);
-		physicsObject = new PhysixBox(physicsManager, startpos.x,
-				startpos.y, info.alien.width, info.alien.height,
-				BodyType.DYNAMIC, info.alien.density, info.alien.friction, false);
-		alien.setPhysicsObject(physicsObject);
-		alien.setContainer(container);
+        // astronaut.setPhysicsObject(new
+        // RectanglePhysicsObject(BodyType.DYNAMIC, new Vec2(95,105), new
+        // Vec2(astronaut.getPosition().x,astronaut.getPosition().y)));
+
+        alien = entityManager.createEntity(Alien.class);
+        physicsObject = new PhysixBox(physicsManager, startpos.x, startpos.y,
+                info.alien.width, info.alien.height, BodyType.DYNAMIC,
+                info.alien.density, info.alien.friction, false);
+        alien.setPhysicsObject(physicsObject);
+        alien.setContainer(container);
         astronaut.setAlien(alien);
-		
-		SoundLocator.provide(new DefaultSoundPlayer(astronaut));
-        
-		InputManager.getInstance().setAstronautController(astronaut);
-		InputManager.getInstance().setAlienController(astronaut);
-		
-		
-		scoreCounter.reset();
+
+        SoundLocator.provide(new DefaultSoundPlayer(astronaut));
+
+        InputManager.getInstance().setAstronautController(astronaut);
+        InputManager.getInstance().setAlienController(astronaut);
+
+        scoreCounter.reset();
     }
 
-	public void render(GameContainer container, Graphics g)
-			throws SlickException {
-		Vector2f astronautPos = astronaut.getPosition();
+    public void render(GameContainer container, Graphics g)
+            throws SlickException {
+        Vector2f astronautPos = astronaut.getPosition();
 
-		// Background image TODO: translate
-		g.drawImage(AssetLoader.getInstance().getImage("world_background"), 0,
-				0);
-		if(DebugModeStatus.isTPCamera()) {
-		    tpCamera.pushViewMatrix(g);
-		    
-		    tpCamera.debugdraw(g, astronautPos.x, astronautPos.y);
+        // Background image TODO: translate
+        g.drawImage(AssetLoader.getInstance().getImage("world_background"), 0,
+                0);
+        if (DebugModeStatus.isTPCamera()) {
+            tpCamera.pushViewMatrix(g);
 
-            System.out.println(tpCamera.getNumTilesX()+ "/" + tpCamera.getNumTilesY());
+            tpCamera.debugdraw(g, astronaut.getPosition().x + astronaut.getPhysicsObject().getDimension().x/2, astronaut.getPosition().y+astronaut.getPhysicsObject().getDimension().y/2);
+
+            System.out.println(tpCamera.getNumTilesX() + "/"
+                    + tpCamera.getNumTilesY());
             float ox = tpCamera.getTileX() * map.getTileWidth();
             float oy = tpCamera.getTileY() * map.getTileHeight();
-//    		mapRender
-//    				.renderTileLayers(g, (int)ox, (int)oy,
-//                            tpCamera.getTileX(), tpCamera.getTileY(),
-//                            map.getWidth(), map.getHeight());
-            mapRender.renderTileLayers(g, 0, 0, 0, 0, map.getWidth(), map.getHeight());
-		}
-		else {
+            // mapRender
+            // .renderTileLayers(g, (int)ox, (int)oy,
+            // tpCamera.getTileX(), tpCamera.getTileY(),
+            // map.getWidth(), map.getHeight());
+            mapRender.renderTileLayers(g, 0, 0, 0, 0, map.getWidth(),
+                    map.getHeight());
+        } else {
             camera.update(container.getWidth(), container.getHeight(),
-				astronautPos.x, astronautPos.y);
-        
-    		mapRender
-    				.renderTileLayers(g, -camera.getTileOverlapX(),
-    						-camera.getTileOverlapY(), camera.getTileX(),
-    						camera.getTileY(), camera.getNumTilesX(),
-    						camera.getNumTilesY());
-    
-    		g.pushTransform();
-    		g.translate(-camera.getOffsetX(), -camera.getOffsetY());
-    
+                    astronautPos.x, astronautPos.y);
 
-		}
-		
+            mapRender.renderTileLayers(g, -camera.getTileOverlapX(),
+                    -camera.getTileOverlapY(), camera.getTileX(),
+                    camera.getTileY(), camera.getNumTilesX(),
+                    camera.getNumTilesY());
+
+            g.pushTransform();
+            g.translate(-camera.getOffsetX(), -camera.getOffsetY());
+
+        }
+
         entityManager.render(container, g);
-		for (DynamicParticleSystem p : particleList) {
-			p.render();
-		}
+        for (DynamicParticleSystem p : particleList) {
+            p.render();
+        }
 
-		if (debugDraw) {
-			physicsManager.render();
-		}
-		
-		g.popTransform();
-		scoreCounter.render(g);
-	}
+        if (debugDraw) {
+            physicsManager.render();
+        }
+
+        g.popTransform();
+        scoreCounter.render(g);
+    }
 
     public void update(GameContainer container, int delta)
-            throws SlickException {		
-		if (shallBeReseted) {
-			reset();
-			shallBeReseted = false;
-		}
-		
+            throws SlickException {
+        if (shallBeReseted) {
+            reset();
+            shallBeReseted = false;
+        }
+
         physicsManager.update(delta);
-     
+
         entityManager.update(container, delta);
-        
-        if(DebugModeStatus.isTPCamera()) {
-            tpCamera.update(delta, container.getWidth(), container.getHeight(), astronaut.getPosition().x + astronaut.getPhysicsObject().getDimension().x/2, astronaut.getPosition().y+astronaut.getPhysicsObject().getDimension().y/2);
-            
-            if(container.getInput().isKeyDown(Input.KEY_1)) {
+
+        if (DebugModeStatus.isTPCamera()) {
+            tpCamera.update(
+                    delta,
+                    container.getWidth(),
+                    container.getHeight(),
+                    astronaut.getPosition().x
+                            + astronaut.getPhysicsObject().getDimension().x / 2,
+                    astronaut.getPosition().y
+                            + astronaut.getPhysicsObject().getDimension().y / 2);
+
+            if (container.getInput().isKeyDown(Input.KEY_1)) {
                 tpCamera.zoom(0.01f);
             }
-            if(container.getInput().isKeyDown(Input.KEY_2)) {
+            if (container.getInput().isKeyDown(Input.KEY_2)) {
                 tpCamera.zoom(-0.01f);
             }
-            
+
         }
-        
-		for (DynamicParticleSystem p : particleList) {
-			p.update(delta);
-		}
-		
+
+        for (DynamicParticleSystem p : particleList) {
+            p.update(delta);
+        }
+
     }
-    
+
     public Vector2f screenToWorldPosition(Vector2f screenPosition) {
-        if(DebugModeStatus.isTPCamera()) {
+        if (DebugModeStatus.isTPCamera()) {
             return tpCamera.screenToWorldPositionFromTarget(screenPosition);
         }
         /**
@@ -211,53 +218,56 @@ public class World {
          */
         Vector2f worldPos = new Vector2f(camera.getOffsetX(),
                 camera.getOffsetY());
-        
-		return worldPos.add(screenPosition);
 
-	}
+        return worldPos.add(screenPosition);
 
-	public Vector2f worldToScreenPosition(Vector2f worldPosition) {
-	    if(DebugModeStatus.isTPCamera()) {
+    }
+
+    public Vector2f worldToScreenPosition(Vector2f worldPosition) {
+        if (DebugModeStatus.isTPCamera()) {
             return tpCamera.worldToScreenPosition(worldPosition);
         }
-	    
-	    Vector2f screenPos = new Vector2f(-camera.getOffsetX(),
-				-camera.getOffsetY());
-		
-		return screenPos.add(worldPosition);
-	}
 
-	public Astronaut getAstronaut() {
-		return astronaut;
-	}
+        Vector2f screenPos = new Vector2f(-camera.getOffsetX(),
+                -camera.getOffsetY());
 
-	public Alien getAlien() {
-		return alien;
-	}
+        return screenPos.add(worldPosition);
+    }
 
-	public Camera getCamera() {
-		return camera;
-	}
+    public Astronaut getAstronaut() {
+        return astronaut;
+    }
 
-	public EntityManager getEntityManager() {
-		return entityManager;
-	}
+    public Alien getAlien() {
+        return alien;
+    }
 
-	public PhysixManager getPhysicsManager() {
-		return physicsManager;
-	}
+    public Camera getCamera() {
+        return camera;
+    }
 
-	public static World getInstance() {
-		return instance;
-	}
+    public EntityManager getEntityManager() {
+        return entityManager;
+    }
 
-	public void addParticle(DynamicParticleSystem p) {
-		particleList.add(p);
-	}
+    public PhysixManager getPhysicsManager() {
+        return physicsManager;
+    }
 
-	public void removeParticle(ParticleSystem p) {
-		particleList.remove(p);
-	}
+    public static World getInstance() {
+        return instance;
+    }
+
+    public void addParticle(DynamicParticleSystem p) {
+        particleList.add(p);
+    }
+
+    public void removeParticle(ParticleSystem p) {
+        particleList.remove(p);
+    }
+
+
+
 
 	public void shallBeReseted(boolean shallBeReseted) {
 		this.shallBeReseted = shallBeReseted;
@@ -270,7 +280,5 @@ public class World {
 	public void setLevelName(String levelName) {
 		this.levelName = levelName;
 	}
-	
-	
 
 }
