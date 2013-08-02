@@ -125,7 +125,6 @@ public abstract class GroundEnemy extends AbstractEnemy {
 
 	@Override
 	public void beginContact(Contact contact) {
-		System.out.println("collision");
 		Fixture a = contact.getFixtureA();
 		Fixture b = contact.getFixtureB();
         if(a.m_isSensor || b.m_isSensor)
