@@ -13,7 +13,7 @@
   <object type="solid" x="-400" y="-432" width="496" height="3080"/>
   <object type="solid" x="-392" y="-744" width="13282" height="952"/>
   <object type="solid" x="14537" y="-230" width="336" height="2864"/>
-  <object gid="626" x="3469" y="1793"/>
+  <object gid="626" x="3439" y="1781"/>
   <object gid="630" x="3666" y="1798"/>
   <object gid="633" x="3799" y="1825">
    <properties>
@@ -177,5 +177,16 @@
   <object type="solid" x="6961" y="1372" width="98" height="256"/>
   <object type="solid" x="5448" y="1494" width="299" height="137"/>
   <object gid="632" x="7454" y="1814"/>
+  <object name="tt_jump" gid="641" x="6564" y="1716">
+   <properties>
+    <property name="image" value="jump_tt"/>
+   </properties>
+  </object>
+  <object gid="642" x="6562" y="1842">
+   <properties>
+    <property name="radius" value="220"/>
+    <property name="trigger" value="tt_jump"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
