@@ -108,7 +108,7 @@
 },
 {
   "name" : "healthbar",
-  "pfad" : "gui/lebensanzeige"
+  "pfad" : "gui/lebensanzeige_klein"
 },
 {
   "name" : "winning",
