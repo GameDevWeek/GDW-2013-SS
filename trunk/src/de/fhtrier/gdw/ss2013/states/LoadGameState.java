@@ -105,19 +105,17 @@ public class LoadGameState extends BasicGameState {
 			gamewonState = new GameWonState();
 			gamewonState.init(container, game);
 			game.addState(gamewonState);
-
-
-//			if (DebugModeStatus.isTest()) {
+			
 			if (DebugModeStatus.isWinMenuStatus()) {
 				MainGame.changeState(MainGame.WINSTATE);
 			}
-			else {
-				MainGame.changeState(MainGame.GAMEPLAYSTATE);
+			else if (DebugModeStatus.isTest()) {
+			    MainGame.changeState(MainGame.GAMEPLAYSTATE);
 			}
-//			} else {
-//                container.setMouseGrabbed(false);
-//				MainGame.changeState(MainGame.MAINMENUSTATE);
-//			}
+			else {
+			    container.setMouseGrabbed(false);
+			    MainGame.changeState(MainGame.MAINMENUSTATE);
+			}
 		}
 	}
 
