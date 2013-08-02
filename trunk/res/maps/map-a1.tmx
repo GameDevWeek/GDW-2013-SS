@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" orientation="orthogonal" width="120" height="100" tilewidth="64" tileheight="64">
  <tileset firstgid="1" source="tiledmap_final.tsx"/>
  <tileset firstgid="626" source="entity_tileset.tsx"/>
- <tileset firstgid="644" source="moving_platform.tsx"/>
+ <tileset firstgid="647" source="moving_platform.tsx"/>
  <layer name="fluid" width="120" height="100">
   <data encoding="base64" compression="zlib">
    eJztwTEBAAAAwqD1T+1pCaAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA4Aa7gAAB
@@ -98,22 +97,22 @@
   <object gid="635" x="2560" y="2620"/>
   <object gid="635" x="492" y="1268"/>
   <object type="solid" x="971" y="3802" width="105" height="122"/>
-  <object name="mp1" gid="644" x="194" y="1528">
+  <object name="mp1" gid="647" x="194" y="1528">
    <properties>
     <property name="path" value="mpline1"/>
    </properties>
   </object>
-  <object name="mp2" gid="644" x="1568" y="2874">
+  <object name="mp2" gid="647" x="1568" y="2874">
    <properties>
     <property name="path" value="mpline2"/>
    </properties>
   </object>
-  <object name="mp3" gid="645" x="533" y="2914">
+  <object name="mp3" gid="648" x="533" y="2914">
    <properties>
     <property name="path" value="mpline3"/>
    </properties>
   </object>
-  <object name="mp4" type="FollowPath" gid="645" x="1502" y="3678">
+  <object name="mp4" type="FollowPath" gid="648" x="1502" y="3678">
    <properties>
     <property name="path" value="mpline4"/>
    </properties>
@@ -139,22 +138,22 @@
    </properties>
    <polyline points="0,0 0,215 9,248 42,270 230,261 594,194 1042,-170 1148,-491 1091,-782 942,-952 679,-1027 345,-930 145,-752 -3,0"/>
   </object>
-  <object name="mp5-1" gid="644" x="1568" y="5942">
+  <object name="mp5-1" gid="647" x="1568" y="5942">
    <properties>
     <property name="path" value="mpline5"/>
    </properties>
   </object>
-  <object name="mp5-2" gid="645" x="2612" y="5558">
+  <object name="mp5-2" gid="648" x="2612" y="5558">
    <properties>
     <property name="path" value="mpline5"/>
    </properties>
   </object>
-  <object name="mp5-3" gid="644" x="2660" y="4950">
+  <object name="mp5-3" gid="647" x="2660" y="4950">
    <properties>
     <property name="path" value="mpline5"/>
    </properties>
   </object>
-  <object name="mp5-4" gid="645" x="1710" y="4978">
+  <object name="mp5-4" gid="648" x="1710" y="4978">
    <properties>
     <property name="path" value="mpline5"/>
    </properties>
@@ -182,7 +181,7 @@
     <property name="trigger" value="mp6"/>
    </properties>
   </object>
-  <object name="mp6" gid="644" x="3268" y="4694">
+  <object name="mp6" gid="647" x="3268" y="4694">
    <properties>
     <property name="path" value="mpline6"/>
    </properties>
@@ -270,32 +269,32 @@
    </properties>
    <polyline points="0,0 -260,-126 -452,-448 -452,-834 -188,-964 318,-968 576,-828 962,-806 946,-14 10,2 2,1"/>
   </object>
-  <object name="mp7-1" gid="644" x="6943" y="6047">
+  <object name="mp7-1" gid="647" x="6943" y="6047">
    <properties>
     <property name="path" value="mpline7"/>
    </properties>
   </object>
-  <object name="mp7-3" gid="644" x="6749" y="5083">
+  <object name="mp7-3" gid="647" x="6749" y="5083">
    <properties>
     <property name="path" value="mpline7"/>
    </properties>
   </object>
-  <object name="mp7-5" gid="644" x="7517" y="5219">
+  <object name="mp7-5" gid="647" x="7517" y="5219">
    <properties>
     <property name="path" value="mpline7"/>
    </properties>
   </object>
-  <object name="mp7-4" gid="644" x="7255" y="5076">
+  <object name="mp7-4" gid="647" x="7255" y="5076">
    <properties>
     <property name="path" value="mpline7"/>
    </properties>
   </object>
-  <object name="mp7-2" gid="644" x="6685" y="5920">
+  <object name="mp7-2" gid="647" x="6685" y="5920">
    <properties>
     <property name="path" value="mpline7"/>
    </properties>
   </object>
-  <object name="mp7-6" gid="644" x="7880" y="6024">
+  <object name="mp7-6" gid="647" x="7880" y="6024">
    <properties>
     <property name="path" value="mpline7"/>
    </properties>
@@ -377,7 +376,7 @@
    </properties>
    <polyline points="0,0 -167,-107 -256,-325 -332,-445 -415,-493 -639,-493"/>
   </object>
-  <object name="mp8" gid="644" x="5920" y="5528">
+  <object name="mp8" gid="647" x="5920" y="5528">
    <properties>
     <property name="path" value="mpline8"/>
    </properties>
@@ -388,7 +387,7 @@
    </properties>
    <polyline points="0,0 -451,1"/>
   </object>
-  <object name="mp9" gid="644" x="5283" y="5069">
+  <object name="mp9" gid="647" x="5283" y="5069">
    <properties>
     <property name="path" value="mpline9"/>
    </properties>
@@ -406,12 +405,12 @@
    </properties>
    <polyline points="0,0 -1,-767"/>
   </object>
-  <object name="mp10" gid="644" x="4541" y="5019">
+  <object name="mp10" gid="647" x="4541" y="5019">
    <properties>
     <property name="path" value="mpline10"/>
    </properties>
   </object>
-  <object name="mp11" gid="644" x="4064" y="4321">
+  <object name="mp11" gid="647" x="4064" y="4321">
    <properties>
     <property name="path" value="mpline11"/>
    </properties>
@@ -455,7 +454,7 @@
    </properties>
    <polyline points="0,0 -2,-850"/>
   </object>
-  <object name="mp12" gid="644" x="2658" y="4332">
+  <object name="mp12" gid="647" x="2658" y="4332">
    <properties>
     <property name="path" value="mpline12"/>
    </properties>
@@ -477,18 +476,18 @@
   <object type="solid" x="5770" y="3730" width="104" height="76"/>
   <object type="deadzone" x="5034" y="4130" width="1010" height="136"/>
   <object type="solid" x="6474" y="3728" width="234" height="142"/>
-  <object name="mp13" gid="644" x="5249" y="3884">
+  <object name="mp13" gid="647" x="5249" y="3884">
    <properties>
     <property name="path" value="mpline13"/>
    </properties>
   </object>
-  <object name="mp14" gid="644" x="6029" y="3853">
+  <object name="mp14" gid="647" x="6029" y="3853">
    <properties>
     <property name="path" value="mpline14"/>
    </properties>
   </object>
   <object type="solid" x="6474" y="4244" width="364" height="74"/>
-  <object gid="626" x="2832" y="3356"/>
+  <object gid="626" x="335" y="977"/>
   <object type="solid" x="6858" y="4176" width="233" height="76"/>
   <object type="solid" x="7242" y="4178" width="496" height="142"/>
   <object name="mpline15" type="FollowPath" x="7632" y="4288">
@@ -498,27 +497,27 @@
    </properties>
    <polyline points="0,0 0,-448 4,-894 -2,-1282 208,-1616 640,-1584 816,-1248 736,-240 400,48 -8,0"/>
   </object>
-  <object name="mp15-1" gid="644" x="7600" y="4317">
+  <object name="mp15-1" gid="647" x="7600" y="4317">
    <properties>
     <property name="path" value="mpline15"/>
    </properties>
   </object>
-  <object name="mp15-2" gid="644" x="7603" y="3803">
+  <object name="mp15-2" gid="647" x="7603" y="3803">
    <properties>
     <property name="path" value="mpline15"/>
    </properties>
   </object>
-  <object name="mp15-3" gid="644" x="7808" y="2704">
+  <object name="mp15-3" gid="647" x="7808" y="2704">
    <properties>
     <property name="path" value="mpline15"/>
    </properties>
   </object>
-  <object name="mp15-4" gid="644" x="8224" y="2736">
+  <object name="mp15-4" gid="647" x="8224" y="2736">
    <properties>
     <property name="path" value="mpline15"/>
    </properties>
   </object>
-  <object name="mp15-5" gid="644" x="8336" y="4048">
+  <object name="mp15-5" gid="647" x="8336" y="4048">
    <properties>
     <property name="path" value="mpline15"/>
    </properties>
@@ -542,12 +541,12 @@
    </properties>
    <polyline points="0,0 -406,0 -724,152 -1180,208 -1564,76 -1886,-40"/>
   </object>
-  <object name="mp16-1" gid="644" x="6970" y="3080">
+  <object name="mp16-1" gid="647" x="6970" y="3080">
    <properties>
     <property name="path" value="mpline16"/>
    </properties>
   </object>
-  <object name="mp16-2" gid="644" x="5786" y="3284">
+  <object name="mp16-2" gid="647" x="5786" y="3284">
    <properties>
     <property name="path" value="mpline16"/>
    </properties>
@@ -603,7 +602,7 @@
    </properties>
    <polyline points="0,0 -23,-521"/>
   </object>
-  <object name="mp17" gid="644" x="1747" y="1139">
+  <object name="mp17" gid="647" x="1747" y="1139">
    <properties>
     <property name="path" value="mpline17"/>
    </properties>
@@ -637,7 +636,7 @@
   <object type="solid" x="1080" y="915" width="124" height="75"/>
   <object type="solid" x="330" y="400" width="104" height="76"/>
   <object type="solid" x="650" y="660" width="296" height="74"/>
-  <object name="mp18" gid="644" x="806" y="232">
+  <object name="mp18" gid="647" x="806" y="232">
    <properties>
     <property name="path" value="mpline18"/>
    </properties>
@@ -669,27 +668,27 @@
    </properties>
    <polyline points="0,0 172,-132 408,-198 520,-146 580,8 520,398 330,642 200,764 -14,782 -164,626 2,-4"/>
   </object>
-  <object name="mp19-1" gid="644" x="3456" y="334">
+  <object name="mp19-1" gid="647" x="3456" y="334">
    <properties>
     <property name="path" value="mpline19"/>
    </properties>
   </object>
-  <object name="mp19-4" gid="644" x="3486" y="1228">
+  <object name="mp19-4" gid="647" x="3486" y="1228">
    <properties>
     <property name="path" value="mpline19"/>
    </properties>
   </object>
-  <object name="mp19-3" gid="645" x="3808" y="860">
+  <object name="mp19-3" gid="648" x="3808" y="860">
    <properties>
     <property name="path" value="mpline19"/>
    </properties>
   </object>
-  <object name="mp19-2" gid="645" x="3870" y="478">
+  <object name="mp19-2" gid="648" x="3870" y="478">
    <properties>
     <property name="path" value="mpline19"/>
    </properties>
   </object>
-  <object name="mp19-5" gid="645" x="3122" y="1084">
+  <object name="mp19-5" gid="648" x="3122" y="1084">
    <properties>
     <property name="path" value="mpline19"/>
    </properties>

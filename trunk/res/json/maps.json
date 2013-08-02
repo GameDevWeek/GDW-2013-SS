@@ -7,6 +7,18 @@
   "pfad" : "res/maps/sidescroller_demo.tmx"
 },
 {
+  "name" : "a1",
+  "pfad" : "res/maps/map-a1.tmx"
+},
+{
+  "name" : "a2",
+  "pfad" : "res/maps/map-a2.tmx"
+},
+{
+  "name" : "a3",
+  "pfad" : "res/maps/map-a3.tmx"
+},
+{
   "name" : "testmap",
   "pfad" : "res/maps/testmap_2.tmx"
 },
@@ -21,14 +33,6 @@
 {
   "name" : "spacemap",
   "pfad" : "res/maps/spacemap.tmx"
-},
-{
-  "name" : "a1",
-  "pfad" : "res/maps/map-a1.tmx"
-},
-{
-  "name" : "a2",
-  "pfad" : "res/maps/map-a2.tmx"
 },
 {
   "name" : "bossmap",
