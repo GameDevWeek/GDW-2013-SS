@@ -16,9 +16,7 @@ import de.fhtrier.gdw.ss2013.assetloader.infos.GameDataInfo;
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.filter.Interactable;
-import de.fhtrier.gdw.ss2013.game.world.enemies.FlyingEnemy;
 import de.fhtrier.gdw.ss2013.game.world.objects.FollowPath;
-import de.fhtrier.gdw.ss2013.game.world.objects.MovingPlatform;
 import de.fhtrier.gdw.ss2013.game.world.objects.ObjectController;
 import de.fhtrier.gdw.ss2013.game.world.objects.Teleporter;
 import de.fhtrier.gdw.ss2013.gui.TooltipManager;
@@ -34,13 +32,11 @@ public class LevelLoader {
     private static PhysixManager physicsManager;
     private static Vector2f startpos;
     private static GameDataInfo.WorldInfo worldInfo;
-    private static HashMap<String, FollowPath> followPaths;
 
     public static void load(TiledMap map, EntityManager entityManager,
             PhysixManager physicsManager) {
 
         worldInfo = AssetLoader.getInstance().getGameData().world;
-        followPaths = new HashMap<>();
 
         LevelLoader.entityManager = entityManager;
         LevelLoader.physicsManager = physicsManager;
@@ -53,9 +49,8 @@ public class LevelLoader {
             }
         }
 
-//        entityManager.initalUpdate();
+        //entityManager.initalUpdate();
         conntactInteractions();
-        bindEntityToPath();
         setTeleporterTargets();
     }
 
@@ -135,7 +130,7 @@ public class LevelLoader {
             physicsManager.createSolid(0, 0).asPolyline(points);
             break;
         case "FollowPath":
-            followPaths.put(name, new FollowPath(points, properties));
+            new FollowPath(points, properties, name);
             break;
         }
     }
@@ -290,37 +285,6 @@ public class LevelLoader {
      */
     private static void createPoint(String type, int x, int y,
             SafeProperties properties) {
-    }
-
-    private static void bindEntityToPath() {
-        ArrayList<Entity> followingEntities = entityManager
-                .getEntitiesByFilter(MovingPlatform.class);
-        followingEntities.addAll(entityManager.getEntitiesByFilter(FlyingEnemy.class));
-        
-        for (Entity e : followingEntities) {
-            if (e.getProperties() != null) {
-                String name = e.getProperties().getProperty("path");
-                if (name != null) {
-                    FollowPath path = followPaths.get(name);
-                    if (path != null) {
-                        if (e instanceof FlyingEnemy) {
-                            ((FlyingEnemy)e).initLine(path.getPoints(), path.getProperties());
-                        } else {
-                            ((MovingPlatform)e).initLine(path.getPoints(), path.getProperties());
-                        }
-                    } else {
-                        System.err.println("Didn't find path " + name + "!");
-                    }
-                } else {
-                    if (e instanceof MovingPlatform) {
-                        System.err.println("Missing path option in "
-                                + e.getName() + "!");
-                    }
-                }
-            } else {
-                System.err.println("No options in " + e.getName() + "!");
-            }
-        }
     }
 
     private static void setTeleporterTargets() {

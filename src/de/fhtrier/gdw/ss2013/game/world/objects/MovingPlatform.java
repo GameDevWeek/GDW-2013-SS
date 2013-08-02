@@ -1,6 +1,7 @@
 package de.fhtrier.gdw.ss2013.game.world.objects;
 
 import java.awt.Point;
+import java.io.PrintStream;
 import java.util.ArrayList;
 
 import org.newdawn.slick.GameContainer;
@@ -27,11 +28,13 @@ public abstract class MovingPlatform extends Entity implements Interactable, Ent
     private ArrayList<Point> points;
     private Point nextPoint;
     private Point currentPoint;
+    private SafeProperties pathProperties;
     private int index;
     private boolean moveAround;
     private float speed;
     private boolean isActive;
     private int indexmod;
+    
 
     public MovingPlatform(Image img) {
         this.img = img;
@@ -41,24 +44,44 @@ public abstract class MovingPlatform extends Entity implements Interactable, Ent
         isActive = true;
         moveAround = false;
         indexmod = 1;
-
     }
 
-    public void initLine(ArrayList<Point> points, SafeProperties properties) {
-        this.points = points;
-        if (properties != null) {
-            speed = properties.getFloat("speed", 20.0f);
-            isActive = properties.getBoolean("isActive", true);
-            moveAround = properties.getBoolean("moveAround", false);
+    public void bindToPath() {
+        if (getProperties() != null) {
+            String pathName = getProperties().getProperty("path");
+            if (pathName != null) {
+                FollowPath path = FollowPath.paths.get(pathName);
+                if (path != null) {
+                    pathProperties = path.getProperties();
+                    points = path.getPoints();
+                } else {
+                    throw new NullPointerException("No path with this name found!" + getName());
+                }
+            } else {
+                throw new NullPointerException("No path set!" + getName());
+            }
+        } else {
+            throw new NullPointerException("No path option!" + getName());
+        }
+    }
+    
+    @Override
+    public void initialize() {
+        super.initialize();
+        bindToPath();
+        if (pathProperties != null) {
+            speed = pathProperties.getFloat("speed", 20.0f);
+            isActive = pathProperties.getBoolean("isActive", true);
+            moveAround = pathProperties.getBoolean("moveAround", false);
         }
         index = getClosestPoint();
-        getPhysicsObject().setPosition(points.get(index).x, points.get(index).y);
+        //getPhysicsObject().setPosition(points.get(index).x, points.get(index).y);
     }
     
     public int getClosestPoint() {
         float dist[] = new float[points.size() - 1];
         for (int i = 0; i < points.size() - 1; i++) {
-            dist[i] = getPosition().distanceSquared(new Vector2f(points.get(i).x, points.get(i).y));
+            dist[i] = origin.distanceSquared(new Vector2f(points.get(i).x, points.get(i).y));
         }
         float closestDist = Float.MAX_VALUE;
         int closestPoint = 0;
@@ -73,7 +96,9 @@ public abstract class MovingPlatform extends Entity implements Interactable, Ent
 
     @Override
     public void initPhysics() {
-        createPhysics(BodyType.KINEMATIC, origin.x, origin.y)
+//        System.out.println(origin);
+//        System.out.println(points.get(index));
+        createPhysics(BodyType.KINEMATIC, points.get(index).x, points.get(index).y)
                 .density(PhysixManager.DENSITY).friction(PhysixManager.FRICTION)
                 .asBox(initialSize.x, initialSize.y);
     }
@@ -84,6 +109,7 @@ public abstract class MovingPlatform extends Entity implements Interactable, Ent
         super.update(container, delta);
         if (isActive)
             move();
+//        System.out.println(World.getInstance().getAstronaut().getPosition());
     }
 
     public void move() {
