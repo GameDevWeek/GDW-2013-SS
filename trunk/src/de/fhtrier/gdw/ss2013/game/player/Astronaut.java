@@ -395,7 +395,8 @@ public class Astronaut extends EntityCollidable implements AstronautController, 
     public void shoot() {
         assert(alien != null);
         if(carryAlien) {
-            //
+            alien.shoot();
+            //FIXME: if carry do other shoot
         } else {
             alien.shoot();
         }
