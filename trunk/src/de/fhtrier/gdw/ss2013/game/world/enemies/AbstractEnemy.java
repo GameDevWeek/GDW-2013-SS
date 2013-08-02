@@ -26,6 +26,9 @@ public abstract class AbstractEnemy extends EntityCollidable {
 	public AbstractEnemy(Animation moveToRightAnimation) {
 		this.rightAnimation = moveToRightAnimation;
 		leftAnimation = rightAnimation; // FIXME: flip me, baby!
+	    current_ani = rightAnimation;
+	    damage = 0;
+	    setHealth(EnemyConstants.ENEMY_HEALTH);
 	}
 	
 	/**
@@ -34,9 +37,6 @@ public abstract class AbstractEnemy extends EntityCollidable {
     @Override
 	protected void initialize() {
 	    super.initialize();
-	    current_ani = rightAnimation;
-	    damage = 0;
-	    setHealth(EnemyConstants.ENEMY_HEALTH);
 	}
 
     @Override
