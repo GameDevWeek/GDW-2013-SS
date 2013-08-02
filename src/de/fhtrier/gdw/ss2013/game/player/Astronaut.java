@@ -1,11 +1,11 @@
 
 package de.fhtrier.gdw.ss2013.game.player;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
 import org.jbox2d.collision.shapes.ShapeType;
+import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.contacts.Contact;
 import org.newdawn.slick.Animation;
@@ -13,7 +13,6 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
-import org.newdawn.slick.util.Log;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.assetloader.infos.GameDataInfo;
@@ -27,7 +26,6 @@ import de.fhtrier.gdw.ss2013.input.AlienController;
 import de.fhtrier.gdw.ss2013.input.AstronautController;
 import de.fhtrier.gdw.ss2013.physix.InteractionManager;
 import de.fhtrier.gdw.ss2013.physix.PhysixShape;
-import org.jbox2d.dynamics.BodyType;
 
 public class Astronaut extends EntityCollidable implements AstronautController, AlienController {
 
@@ -119,8 +117,7 @@ public class Astronaut extends EntityCollidable implements AstronautController, 
 			this.oxygen -= (this.maxOxygen * PlayerConstants.OXYGEN_PERCENTAGE_LOST_PER_SECOND) * (delta / 1000f);
 		else
 			die();
-
-		if (getVelocity().x == 0 && getVelocity().y == 0) {
+		if (getVelocity().x == 0 && getVelocity().y == 0 || !(walking)) { 
 			if (!(state.equals(PlayerState.superjump) || state.equals(PlayerState.superjump_start) || state
 				.equals(PlayerState.superjump_end))) {
 				setState(PlayerState.standing);
