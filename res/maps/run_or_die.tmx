@@ -4,30 +4,25 @@
  <tileset firstgid="626" source="entity_tileset.tsx"/>
  <layer name="Kachelebene 1" width="200" height="40">
   <data encoding="base64" compression="gzip">
-   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
+   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
   </data>
  </layer>
  <objectgroup name="Objektebene 1" width="200" height="40">
   <object type="solid" x="-400" y="-432" width="496" height="3080"/>
   <object type="solid" x="-392" y="-744" width="13282" height="952"/>
   <object type="solid" x="12549" y="-230" width="336" height="2864"/>
-  <object gid="626" x="3393" y="1788"/>
-  <object gid="630" x="3491" y="1791"/>
+  <object gid="626" x="3470" y="1792"/>
+  <object gid="630" x="3740" y="1782"/>
   <object gid="627" x="7518" y="1703"/>
-  <object gid="629" x="4362" y="1811">
+  <object gid="633" x="3962" y="1825">
    <properties>
     <property name="trigger" value="door"/>
    </properties>
   </object>
-  <object gid="633" x="3632" y="1809">
+  <object gid="631" x="1084" y="1024">
    <properties>
-    <property name="trigger" value="door"/>
-   </properties>
-  </object>
-  <object gid="631" x="1086" y="1250">
-   <properties>
-    <property name="delay" value="2000"/>
-    <property name="startDelay" value="1000"/>
+    <property name="delay" value="1800"/>
+    <property name="startDelay" value="900"/>
    </properties>
   </object>
   <object type="solid" x="1028" y="1811" width="178" height="708"/>
@@ -36,65 +31,80 @@
   <object type="solid" x="2629" y="1812" width="175" height="717"/>
   <object type="solid" x="3333" y="1812" width="9263" height="582"/>
   <object type="deadzone" x="704" y="2416" width="2684" height="104"/>
-  <object gid="631" x="1405" y="1252">
+  <object gid="631" x="1403" y="1026">
    <properties>
-    <property name="delay" value="2000"/>
-   </properties>
-  </object>
-  <object gid="631" x="2046" y="1258">
-   <properties>
-    <property name="delay" value="2000"/>
-   </properties>
-  </object>
-  <object gid="631" x="1726" y="1250">
-   <properties>
-    <property name="delay" value="2000"/>
-    <property name="startDelay" value="1000"/>
+    <property name="delay" value="1800"/>
    </properties>
   </object>
   <object type="solid" x="77" y="1811" width="749" height="756"/>
-  <object gid="631" x="2691" y="1259">
-   <properties>
-    <property name="delay" value="2000"/>
-   </properties>
-  </object>
-  <object gid="631" x="2365" y="1259">
-   <properties>
-    <property name="delay" value="2000"/>
-    <property name="startDelay" value="1000"/>
-   </properties>
-  </object>
   <object type="solid" x="1994" y="1811" width="177" height="739"/>
   <object type="solid" x="2309" y="1808" width="173" height="737"/>
-  <object name="door" gid="628" x="4082" y="1762"/>
+  <object name="door" gid="628" x="4159" y="1759"/>
   <object type="solid" x="2948" y="1815" width="179" height="717"/>
-  <object gid="631" x="3006" y="1252">
-   <properties>
-    <property name="delay" value="2000"/>
-    <property name="startDelay" value="1000"/>
-   </properties>
-  </object>
-  <object type="solid" x="3974" y="914" width="300" height="726"/>
+  <object type="solid" x="3976" y="594" width="235" height="1038"/>
   <object gid="636" x="584" y="1528"/>
-  <object type="solid" x="4745" y="1748" width="173" height="121"/>
-  <object gid="640" x="6961" y="1795"/>
-  <object gid="640" x="6629" y="1801"/>
-  <object gid="640" x="7103" y="1796"/>
-  <object gid="639" x="5795" y="1785"/>
-  <object gid="639" x="5943" y="1783"/>
-  <object gid="639" x="6103" y="1785"/>
-  <object gid="639" x="6260" y="1787"/>
-  <object gid="638" x="4943" y="1800"/>
-  <object gid="638" x="5057" y="1800"/>
-  <object gid="638" x="5177" y="1801"/>
-  <object gid="638" x="5319" y="1799"/>
-  <object gid="638" x="5467" y="1800"/>
-  <object gid="640" x="6777" y="1797"/>
-  <object type="solid" x="5579" y="1749" width="173" height="121"/>
-  <object type="solid" x="6408" y="1742" width="173" height="121"/>
-  <object type="solid" x="7244" y="1749" width="173" height="121"/>
-  <object gid="632" x="4535" y="1805"/>
+  <object type="solid" x="6409" y="1744" width="173" height="121"/>
+  <object gid="640" x="8619" y="1793"/>
+  <object gid="640" x="8287" y="1799"/>
+  <object gid="640" x="8761" y="1794"/>
+  <object gid="639" x="7459" y="1785"/>
+  <object gid="639" x="7607" y="1783"/>
+  <object gid="639" x="7767" y="1785"/>
+  <object gid="639" x="7924" y="1787"/>
+  <object gid="638" x="6607" y="1796"/>
+  <object gid="638" x="6721" y="1796"/>
+  <object gid="638" x="6841" y="1797"/>
+  <object gid="638" x="6983" y="1795"/>
+  <object gid="638" x="7131" y="1796"/>
+  <object gid="640" x="8435" y="1795"/>
+  <object type="solid" x="7241" y="1747" width="173" height="121"/>
+  <object type="solid" x="8072" y="1742" width="173" height="121"/>
+  <object type="solid" x="8902" y="1747" width="173" height="121"/>
+  <object gid="632" x="4802" y="1682"/>
   <object gid="632" x="610" y="1802"/>
   <object type="winningzone" x="11649" y="1045" width="1052" height="982"/>
+  <object gid="631" x="1722" y="1028">
+   <properties>
+    <property name="delay" value="1800"/>
+    <property name="startDelay" value="900"/>
+   </properties>
+  </object>
+  <object gid="631" x="2366" y="1020">
+   <properties>
+    <property name="delay" value="1800"/>
+    <property name="startDelay" value="900"/>
+   </properties>
+  </object>
+  <object gid="631" x="3008" y="1028">
+   <properties>
+    <property name="delay" value="1800"/>
+    <property name="startDelay" value="900"/>
+   </properties>
+  </object>
+  <object gid="631" x="2046" y="1022">
+   <properties>
+    <property name="delay" value="1800"/>
+   </properties>
+  </object>
+  <object gid="631" x="2684" y="1022">
+   <properties>
+    <property name="delay" value="1800"/>
+   </properties>
+  </object>
+  <object gid="633" x="4270" y="1506">
+   <properties>
+    <property name="trigger" value="door"/>
+   </properties>
+  </object>
+  <object type="solid" x="5449" y="591" width="298" height="1034"/>
+  <object name="door2" gid="628" x="5568" y="1760"/>
+  <object gid="633" x="5094" y="1816">
+   <properties>
+    <property name="trigger" value="door2"/>
+   </properties>
+  </object>
+  <object type="solid" x="4184" y="1491" width="219" height="141"/>
+  <object type="solid" x="4680" y="1682" width="298" height="96"/>
+  <object type="solid" x="4617" y="1748" width="424" height="102"/>
  </objectgroup>
 </map>
