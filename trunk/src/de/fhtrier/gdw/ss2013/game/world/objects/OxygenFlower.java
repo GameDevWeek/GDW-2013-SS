@@ -40,13 +40,18 @@ public class OxygenFlower extends EntityCollidable implements Interactable {
 
     public void createBubbles() {
         if (count != getMaxBubble()) {
-            float x = this.getPosition().getX() + (float) Math.random() * 100;
-            float y = this.getPosition().getY() - (float) Math.random() * 100;
-            Entity entity = m.createEntity(OxygenBubble.class);
-            // Bubble-Objekt
+            
+            if(count <= 5)
+                {
+                    float x = this.getPosition().getX() + ((float) Math.random() * 100-50);
+                    float y = this.getPosition().getY() - (float) Math.random() * 100-50;
+                    Entity entity = m.createEntity(OxygenBubble.class);
+                    // Bubble-Objekt
+                    ((OxygenBubble) entity).setFlower(this);
+                    ((OxygenBubble) entity).setPosition(new Vector2f(x,y));
+                    ((OxygenBubble) entity).setInitalDirection(new Vector2f(((float) Math.random() * 100-50),-(float) Math.random() * 100));
 
-            ((OxygenBubble) entity).setFlower(this);
-            ((OxygenBubble) entity).setPosition(new Vector2f(x, y));
+                }
             // bubbleCount
             count++;
             bubbleTime = 0;
@@ -61,16 +66,14 @@ public class OxygenFlower extends EntityCollidable implements Interactable {
         return maxBubble;
     }
 
-    public void bubbleLost() {
-        count--;
-    }
-
     public void update(GameContainer container, int delta)
             throws SlickException {
 
         bubbleTime += delta;
-        if (bubbleTime >= 500) {
+        if (bubbleTime >= 800) {
+
             this.createBubbles();
+            
         }
     }
 
