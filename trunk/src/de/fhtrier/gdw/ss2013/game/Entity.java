@@ -31,6 +31,8 @@ public abstract class Entity {
 
 	protected DynamicParticleSystem particle;
 	protected AssetLoader asset;
+	
+	private float spawnX, spawnY;
 
 	/* every Entity-class needs a constructor without any parameters! */
 	public Entity() {
@@ -166,5 +168,26 @@ public abstract class Entity {
 
 	public Image getImage() {
 		return img;
+	}
+
+	public float getSpawnX() {
+		return spawnX;
+	}
+
+	public void setSpawnX(float startX) {
+		this.spawnX = startX;
+	}
+
+	public float getSpawnY() {
+		return spawnY;
+	}
+
+	public void setSpawnY(float startY) {
+		this.spawnY = startY;
+	}
+	
+	public void setSpawnXY(float x, float y) {
+		this.spawnX = x;
+		this.spawnY = y;
 	}
 }

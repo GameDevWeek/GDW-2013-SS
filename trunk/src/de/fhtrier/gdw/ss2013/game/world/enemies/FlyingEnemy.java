@@ -3,7 +3,6 @@ package de.fhtrier.gdw.ss2013.game.world.enemies;
 import org.jbox2d.dynamics.contacts.Contact;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
@@ -15,7 +14,6 @@ import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.player.Player;
 import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.game.world.bullets.EnemyBullet;
-import de.fhtrier.gdw.ss2013.game.world.bullets.PlayerBullet;
 
 /**
  * Flying Enemy Class

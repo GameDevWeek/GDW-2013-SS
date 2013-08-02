@@ -244,7 +244,8 @@ public class LevelLoader {
 		case "door":
 			entity = entityManager.createEntity(type, properties, name);
 			Door door = (Door) entity;
-			door.setStartPosition(x, y);
+			door.setSpawnX(x);
+			door.setSpawnY(y);
 			break;
 		case "start":
 			startpos = new Vector2f(x, y);
