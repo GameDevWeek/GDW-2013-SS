@@ -12,6 +12,8 @@ import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.contacts.Contact;
 import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
@@ -28,30 +30,31 @@ import de.fhtrier.gdw.ss2013.physix.PhysixObject;
 
 public class OxygenBubble extends EntityCollidable implements Interactable {
 
-    private float oxygenLevel = 20;
+    private float oxygenLevel = 40;
     private OxygenFlower flower;
     // private AssetLoader a = AssetLoader.getInstance();
     // private Image img = a.getImage("bubble");
     private EntityManager man;
-    private float speed = 20;
+    private float speed = 5;
     private int timer = 10;
     private boolean isUsed = false;
-    private Vector2f position;
+    private Vector2f startPosition;
+    private Vector2f initalDirection;
 
     public OxygenBubble() {
         super(AssetLoader.getInstance().getImage("bubble"));
         this.oxygenLevel = getOxygenLevel();
         man = World.getInstance().getEntityManager();
     }
-
+    
     @Override
     protected void initialize() {
         PhysixObject childPhysics = new PhysixCircle(World.getInstance()
-                .getPhysicsManager(), position.x, position.y,
-                (img.getWidth() / 2 + img.getHeight() / 2) / 6,
+                .getPhysicsManager(), startPosition.x, startPosition.y,
+                (img.getWidth() / 2 + img.getHeight() / 2) / 4,
                 BodyType.KINEMATIC, 0, 0, true);
 
-        setPhysicsObject(childPhysics);
+        super.setPhysicsObject(childPhysics);
         super.initialize();
     }
 
@@ -73,15 +76,13 @@ public class OxygenBubble extends EntityCollidable implements Interactable {
                         + oxygenLevel);
                 man.removeEntity(this);
                 isUsed = true;
-                flower.bubbleLost();
             } else {
                 ((Astronaut) e).setOxygen(((Astronaut) e).getMaxOxygen());
 
             }
         }// Collision von bubbles
         if (e instanceof OxygenBubble) {
-            setVelocityX(-speed);
-            setVelocityY(speed);
+            setVelocity(initalDirection);
         }
 
     }
@@ -92,30 +93,47 @@ public class OxygenBubble extends EntityCollidable implements Interactable {
 
     }
 
+    public void setInitalDirection(Vector2f initialDirection) {
+        this.initalDirection = initialDirection;
+    }
+
     public float getOxygenLevel() {
         return oxygenLevel;
     }
 
+    private int deltamod = 1;
+    
     @Override
     public void update(GameContainer container, int delta) {
+        
+        
         if (!isUsed) {
-            timer += delta;
-            if (timer >= 400) {
-                setVelocityY(0);
-                setVelocityX(0);
-            } else {
-                setVelocityX(-speed);
-                setVelocityY(-speed);
+            
+            timer += delta*deltamod;
+            if(timer >= 2000)
+            {
+                deltamod = -1;
+            }
+            if(timer <= 1001)
+            {
+                deltamod = 1;
+            }
+            
+            if (timer < 1000) {
+                setVelocity(initalDirection);
+            } 
+            else {
+                setVelocity(new Vector2f(speed*deltamod,-speed*deltamod));
             }
         }
     }
 
-    public Vector2f getPosition() {
-        return position;
+    public Vector2f getStartPosition() {
+        return startPosition;
     }
 
     public void setPosition(Vector2f position) {
-        this.position = position;
+        this.startPosition = position;
     }
 
     public OxygenFlower getFlower() {
@@ -129,11 +147,6 @@ public class OxygenBubble extends EntityCollidable implements Interactable {
     public void setOxygenLevel(float oxygenLevel) {
         this.oxygenLevel = oxygenLevel;
     }
-
-    // public void render(GameContainer container, Graphics g)
-    // throws SlickException {
-    // img.draw(this.getPosition().x, this.getPosition().y);
-    // }
 
     public void setReferences(OxygenFlower flower) {
         this.flower = flower;
