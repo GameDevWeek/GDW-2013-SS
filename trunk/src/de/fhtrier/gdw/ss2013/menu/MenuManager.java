@@ -10,6 +10,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import de.fhtrier.gdw.ss2013.MainGame;
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
+import de.fhtrier.gdw.ss2013.menu.pages.MenuPageGamePause;
 import de.fhtrier.gdw.ss2013.menu.pages.MenuPageRoot;
 
 
@@ -39,11 +40,13 @@ public class MenuManager {
 	/** The input we're responding to */
 	protected Input input;
 	protected Image foregroundBorder;
+	protected Type type;
 
 	float xOffset = 0;
 	float yOffset = 0;
 	
 	private Color screenDarken = new Color(0, 0, 0, 0.75f);
+	private Color mainMenuBgColor = new Color(1.0f, 1.0f, 1.0f, 0.0f);
 
 	public enum Type {
 		MAINMENU,
@@ -53,12 +56,15 @@ public class MenuManager {
 	public MenuManager(final GameContainer container, final StateBasedGame game, Type type)
 			throws SlickException {
 		input = container.getInput();
+		
+		this.type = type;
+		
 		switch(type) {
 		case MAINMENU:
 			rootPage = currentPage = new MenuPageRoot(container, game, this, false);
 			break;
 		case INGAME:
-			rootPage = currentPage = new MenuPageRoot(container, game, this, true);
+			rootPage = currentPage = new MenuPageGamePause(container, game, this);
 			break;
 		}
 		//foregroundBorder = new Image("res/menu/fg_border.png");
@@ -70,9 +76,13 @@ public class MenuManager {
 			// g.clear();
 			// g.setBackground(Color.black);
 
-			g.setColor(screenDarken);
+			if (this.type == Type.INGAME) {
+			    g.setColor(screenDarken);
+			} else {
+			    g.setColor(this.mainMenuBgColor);
+			}
+			
 			g.fillRect(0, 0, container.getWidth(), container.getHeight());
-			g.setColor(Color.white);
 			
 			//Image i = AssetLoader.getInstance().getImage("menu_ref_image");
 			xOffset = (container.getWidth() - MenuManager.MENU_WIDTH) / 2.0f;
@@ -82,6 +92,12 @@ public class MenuManager {
 			g.translate(xOffset, yOffset);		
 			g.setWorldClip(0, 0, MenuManager.MENU_WIDTH, MenuManager.MENU_HEIGHT);
 			
+			g.setColor(Color.red);
+			g.drawRect(0, 0, MenuManager.MENU_WIDTH-1, MenuManager.MENU_HEIGHT-1);
+			//g.setColor(Color.white);
+            //g.fillRect(2, 2, MenuManager.MENU_WIDTH-2, MenuManager.MENU_HEIGHT-2);
+            
+			g.setColor(Color.white);
 			currentPage.render(g);
 			//foregroundBorder.draw();
 			
