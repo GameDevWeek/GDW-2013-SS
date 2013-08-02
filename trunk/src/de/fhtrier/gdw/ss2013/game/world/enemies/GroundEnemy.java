@@ -16,7 +16,6 @@ import de.fhtrier.gdw.ss2013.game.player.Alien;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.world.World;
 
-
 /**
  * Ground Enemy Class
  * 
@@ -39,7 +38,7 @@ public abstract class GroundEnemy extends AbstractEnemy {
 		speed = new Vector2f(EnemyConstants.ENEMY_SPEED, 0);
 		state = GroundEnemyState.patrol;
 		setDamage(EnemyConstants.GROUND_DAMAGE);
-		
+
 		contacts = new ArrayList<>();
 	}
 
@@ -91,20 +90,21 @@ public abstract class GroundEnemy extends AbstractEnemy {
 			huntedPlayer = world.getAstronaut();
 			return;
 		}
-		
+
 		if (chillTime <= 0) {
 			if (Math.random() < 0.15f * (delta / 1000f)) {
-				chillTime = (int) ((Math.random() * 2000f) + 1000); 
-			}	
+				chillTime = (int) ((Math.random() * 2000f) + 1000);
+			}
 			setVelocity(speed.copy());
 		}
 		else {
 			chillTime -= delta;
-			if (chillTime < 0) chillTime = 0;
+			if (chillTime < 0)
+				chillTime = 0;
 		}
-//		for (Contact c : contacts) {
-//			
-//		}
+		// for (Contact c : contacts) {
+		//
+		// }
 
 	}
 
@@ -125,51 +125,54 @@ public abstract class GroundEnemy extends AbstractEnemy {
 	public void beginContact(Contact contact) {
 		Fixture a = contact.getFixtureA();
 		Fixture b = contact.getFixtureB();
-        if(a.m_isSensor || b.m_isSensor)
-            return;
-        
+		if (a.m_isSensor || b.m_isSensor)
+			return;
+
 		Entity other = getOtherEntity(contact);
 
-		if (other != null
-				&& (other.getPhysicsObject().getBodyType() == BodyType.DYNAMIC && !(other instanceof Alien) && !(other instanceof Astronaut))) {
-			if (other.getPosition().x < getPosition().x) {
-				speed.x = Math.abs(speed.x);
+		if (other != null) {
+			if (other.getPhysicsObject().getBodyType() == BodyType.DYNAMIC && !(other instanceof Alien)
+					&& !(other instanceof Astronaut)) {
+				if (other.getPosition().x < getPosition().x) {
+					speed.x = Math.abs(speed.x);
+				}
+				else {
+					speed.x = -Math.abs(speed.x);
+				}
 			}
-			else {
-				speed.x = -Math.abs(speed.x);
+			if (other instanceof Astronaut) {
+				((Astronaut) other).setOxygen(((Astronaut) other).getOxygen() - this.getDamage());
+				((Astronaut) other).gotBiten();
 			}
-            if (other instanceof Astronaut) {
-                ((Astronaut) other).setOxygen(((Astronaut) other).getOxygen() - this.getDamage());
-            }
 		}
-        else {
+		else {
 			speed.x = -speed.x;
-			
-			getPhysicsObject().setPosition(getPosition().x-speed.x, getPosition().y);
+
+			getPhysicsObject().setPosition(getPosition().x - speed.x, getPosition().y);
 		}
-		
+
 		contacts.add(contact);
 
-//		Fixture a = contact.getFixtureA();
-//		Fixture b = contact.getFixtureB();
-//
-//		Body objectA = a.getBody();
-//		Body objectB = b.getBody();
-//
-//		PhysixObject ap = (PhysixObject) objectA.getUserData();
-//		PhysixObject bp = (PhysixObject) objectB.getUserData();
-//
-//		if (ap == null || bp == null) // filter level<>level,
-//										// non-level<>non-level collision
-//			return;
-//
-//		if (ap.getOwner() == null) // ap is level
-//		{
-//			collidingLevelObject = ap;
-//		}
-//		else if (bp.getOwner() == null) { // bp is level
-//			collidingLevelObject = bp;
-//		}
+		// Fixture a = contact.getFixtureA();
+		// Fixture b = contact.getFixtureB();
+		//
+		// Body objectA = a.getBody();
+		// Body objectB = b.getBody();
+		//
+		// PhysixObject ap = (PhysixObject) objectA.getUserData();
+		// PhysixObject bp = (PhysixObject) objectB.getUserData();
+		//
+		// if (ap == null || bp == null) // filter level<>level,
+		// // non-level<>non-level collision
+		// return;
+		//
+		// if (ap.getOwner() == null) // ap is level
+		// {
+		// collidingLevelObject = ap;
+		// }
+		// else if (bp.getOwner() == null) { // bp is level
+		// collidingLevelObject = bp;
+		// }
 	}
 
 	@Override

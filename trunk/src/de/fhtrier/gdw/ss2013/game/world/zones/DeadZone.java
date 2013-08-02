@@ -7,10 +7,10 @@
  */
 package de.fhtrier.gdw.ss2013.game.world.zones;
 
+import org.jbox2d.dynamics.contacts.Contact;
+
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
-import org.jbox2d.dynamics.BodyType;
-import org.jbox2d.dynamics.contacts.Contact;
 
 public class DeadZone extends AbstractZone {
 

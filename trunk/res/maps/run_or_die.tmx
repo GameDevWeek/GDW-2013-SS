@@ -13,7 +13,7 @@
   <object type="solid" x="-400" y="-432" width="496" height="3080"/>
   <object type="solid" x="-392" y="-744" width="13282" height="952"/>
   <object type="solid" x="14537" y="-230" width="336" height="2864"/>
-  <object gid="626" x="3463" y="1752"/>
+  <object gid="626" x="8271" y="1776"/>
   <object gid="630" x="3666" y="1798"/>
   <object gid="633" x="3799" y="1825">
    <properties>
@@ -50,7 +50,7 @@
   <object type="solid" x="10890" y="1747" width="173" height="121"/>
   <object gid="632" x="4802" y="1682"/>
   <object gid="632" x="610" y="1802"/>
-  <object type="winningzone" x="10923" y="996" width="1052" height="982">
+  <object type="winningzone" x="13788" y="885" width="1052" height="982">
    <properties>
     <property name="target" value="bossmap"/>
    </properties>
@@ -156,5 +156,49 @@
   <object gid="640" x="10373" y="1787"/>
   <object gid="640" x="10606" y="1782"/>
   <object gid="640" x="10723" y="1780"/>
+  <object name="line1" type="FollowPath" x="11584" y="1823">
+   <properties>
+    <property name="speed" value="60"/>
+   </properties>
+   <polyline points="0,0 471,1"/>
+  </object>
+  <object gid="656" x="11592" y="1849">
+   <properties>
+    <property name="path" value="line1"/>
+   </properties>
+  </object>
+  <object gid="656" x="12078" y="1851">
+   <properties>
+    <property name="path" value="line2"/>
+   </properties>
+  </object>
+  <object name="line2" type="FollowPath" x="12070" y="1825">
+   <properties>
+    <property name="speed" value="80"/>
+   </properties>
+   <polyline points="0,0 471,1"/>
+  </object>
+  <object gid="656" x="12575" y="1852">
+   <properties>
+    <property name="path" value="line3"/>
+   </properties>
+  </object>
+  <object name="line3" type="FollowPath" x="12567" y="1826">
+   <properties>
+    <property name="speed" value="100"/>
+   </properties>
+   <polyline points="0,0 471,1"/>
+  </object>
+  <object gid="656" x="13076" y="1855">
+   <properties>
+    <property name="path" value="line4"/>
+   </properties>
+  </object>
+  <object name="line4" type="FollowPath" x="13068" y="1829">
+   <properties>
+    <property name="speed" value="110"/>
+   </properties>
+   <polyline points="0,0 471,1"/>
+  </object>
  </objectgroup>
 </map>
