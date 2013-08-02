@@ -197,7 +197,7 @@ public class Astronaut extends EntityCollidable implements AstronautController, 
 	}
 
 	public void superjump () {
-		if (superjumpDelay <= 0 && isGrounded()) {
+		if (superjumpDelay <= 0 && isGrounded() && isCarryAlien()) {
 			jumpDelay = 0;
 			setVelocityY(-jumpSpeed * 2);
 			physicsObject.applyImpulse(new Vector2f(0, -jumpSpeed * 2));
