@@ -463,4 +463,10 @@ public class Astronaut extends EntityCollidable implements AstronautController, 
 			jumpDelayTotal = gameData.combined.jumpDelay;
 		}
 	}
+    
+    @Override
+    protected void setRenderLayer(int val) {
+        renderLayer = Integer.MAX_VALUE;
+    }
+    
 }

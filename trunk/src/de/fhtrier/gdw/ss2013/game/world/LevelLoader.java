@@ -77,7 +77,7 @@ public class LevelLoader {
                                                                                     // to
                                                                                     // a
                                                                                     // trigger
-
+        
         for (LayerObject object : layer.getObjects()) {
             String type = object.getType();
             if (object.getPrimitive() == LayerObject.Primitive.TILE)
@@ -86,7 +86,10 @@ public class LevelLoader {
                 System.out.println("Warning: type missing for object!");
                 continue;
             }
-
+            if(object.getProperties() != null) {
+                object.getProperties().setProperty("renderLayer", String.valueOf(layer.getIndex()));
+            }
+//            object.getProperties().setProperty("renderLayer", String.valueOf());
             switch (object.getPrimitive()) {
             case POINT:
                 createPoint(type, object.getX(), object.getY(),
