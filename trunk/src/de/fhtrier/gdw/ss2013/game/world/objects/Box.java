@@ -22,12 +22,8 @@ public class Box extends EntityCollidable {
 
     public Box() {
         super(AssetLoader.getInstance().getImage("box"));
-        initialize();
     }
     
-    /**
-     * {@inheritDoc}
-     */
     @Override
     protected void initialize() {
         isPlayerOnMe = 0;
