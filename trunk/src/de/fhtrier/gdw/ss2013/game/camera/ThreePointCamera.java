@@ -100,4 +100,13 @@ public class ThreePointCamera {
 		g.popTransform();
 	}
 
+	public Vector2f worldToScreenCoordinates(Vector2f worldPosition) {
+		Vector2f position = new Vector2f();
+		position.set(worldPosition);
+		position.sub(cameraPosition);
+		position.x += screenWidth / 2.0f;
+		position.y += screenHeight / 2.0f;
+		return position;
+	}
+
 }
