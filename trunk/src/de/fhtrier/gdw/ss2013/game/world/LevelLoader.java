@@ -19,6 +19,7 @@ import de.fhtrier.gdw.ss2013.game.filter.Interactable;
 import de.fhtrier.gdw.ss2013.game.world.objects.FollowPath;
 import de.fhtrier.gdw.ss2013.game.world.objects.ObjectController;
 import de.fhtrier.gdw.ss2013.game.world.objects.Teleporter;
+import de.fhtrier.gdw.ss2013.game.world.zones.AbstractZone;
 import de.fhtrier.gdw.ss2013.gui.TooltipManager;
 import de.fhtrier.gdw.ss2013.physix.PhysixManager;
 import de.fhtrier.gdw.ss2013.renderer.DynamicParticleSystem;
@@ -153,7 +154,8 @@ public class LevelLoader {
             break;
         case "deadzone":
         case "winningzone":
-            entityManager.createEntity(type, properties);
+            AbstractZone zone = (AbstractZone)entityManager.createEntity(type, properties);
+            zone.setPoints(points);
             break;
         }
     }
@@ -176,17 +178,23 @@ public class LevelLoader {
      */
     private static void createRect(String type, int x, int y, int width,
             int height, SafeProperties properties) {
+        Entity entity = null;
         switch (type) {
         case "solid":
             physicsManager.createSolid(x, y).asBox(width, height);
             break;
         case "deadzone":
         case "winningzone":
-            entityManager.createEntity(type, properties);
+            entity = entityManager.createEntity(type, properties);
             break;
         default:
             System.err.println("Unknown Rect-Object in Map, type: " + type);
             break;
+        }
+        
+        if(entity != null) {
+            entity.setOrigin(x, y);
+            entity.setInitialSize(width, height);
         }
     }
 
