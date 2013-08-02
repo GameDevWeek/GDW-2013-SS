@@ -12,7 +12,7 @@
   <object type="solid" x="-400" y="-432" width="496" height="3080"/>
   <object type="solid" x="-392" y="-744" width="13282" height="952"/>
   <object type="solid" x="12549" y="-230" width="336" height="2864"/>
-  <object gid="626" x="5972" y="1749"/>
+  <object gid="626" x="3685" y="1679"/>
   <object gid="630" x="3600" y="1776"/>
   <object gid="633" x="3799" y="1825">
    <properties>
