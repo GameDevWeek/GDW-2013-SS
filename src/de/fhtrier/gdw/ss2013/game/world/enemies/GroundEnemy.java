@@ -3,6 +3,7 @@ package de.fhtrier.gdw.ss2013.game.world.enemies;
 import java.util.ArrayList;
 
 import org.jbox2d.dynamics.BodyType;
+import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.contacts.Contact;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
@@ -14,7 +15,6 @@ import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.player.Alien;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.world.World;
-import org.jbox2d.dynamics.Fixture;
 
 
 /**
@@ -32,7 +32,6 @@ public abstract class GroundEnemy extends AbstractEnemy {
 	private Vector2f speed;
 	private ArrayList<Contact> contacts;
 	private Entity huntedPlayer;
-	private boolean isInLevel;
 	private int chillTime;
 
 	public GroundEnemy(Animation animation) {
@@ -144,7 +143,6 @@ public abstract class GroundEnemy extends AbstractEnemy {
             }
 		}
         else {
-			isInLevel = true;
 			speed.x = -speed.x;
 			
 			getPhysicsObject().setPosition(getPosition().x-speed.x, getPosition().y);
@@ -177,7 +175,6 @@ public abstract class GroundEnemy extends AbstractEnemy {
 	@Override
 	public void endContact(Contact contact) {
 		if (getOtherEntity(contact) == null) {
-			isInLevel = false;
 		}
 		contacts.remove(contact);
 	}
