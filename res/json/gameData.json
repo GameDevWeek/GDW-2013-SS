@@ -26,7 +26,9 @@
    "jumpSpeed": 350,
    "jumpDelay": 500,
    "density": 1,
-   "friction": 0.5
+   "friction": 0.5,
+   "superJumpSpeed": 350,
+   "superJumpGravityScale": 0.4
  },
  "world": {
    "gravity": 12,

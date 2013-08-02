@@ -52,9 +52,9 @@ public final class Astronaut extends EntityCollidable implements AstronautContro
 	private GameDataInfo gameData;
 	private Animation animation;
 	private int groundContacts;
-	private int superjumpDelay = 0;
-	private boolean takeOff = true;
-	private PlayerState oldState = PlayerState.standing;
+	private int superJumpDelay = 0;
+    private float superJumpSpeed;
+    private float superJumpGravityScale;
 	
 	private int restTimeBitenFilter;
 
@@ -91,6 +91,8 @@ public final class Astronaut extends EntityCollidable implements AstronautContro
 		jumpDelayTotal = gameData.combined.jumpDelay;
 		pickupDistance = gameData.astronaut.pickupDistance;
 		maxOxygen = gameData.astronaut.oxygen;
+        superJumpGravityScale = gameData.combined.superJumpGravityScale;
+        superJumpSpeed = gameData.combined.superJumpSpeed;
 		oxygen = maxOxygen;
 		carryAlien = true;
 		invertAnimation = false;
@@ -122,17 +124,12 @@ public final class Astronaut extends EntityCollidable implements AstronautContro
 	public void update (GameContainer container, int delta) throws SlickException {
 		super.update(container, delta);
 		if (jumpDelay > 0) jumpDelay -= delta;
+		if (superJumpDelay > 0) superJumpDelay -= delta;
 		if (oxygen > 0)
 			this.oxygen -= (this.maxOxygen * PlayerConstants.OXYGEN_PERCENTAGE_LOST_PER_SECOND) * (delta / 1000f);
 		else
 			die();
-		if (getVelocity().x == 0 && getVelocity().y == 0 || !(walking)) { 
-			if (!(state.equals(PlayerState.superjump) || state.equals(PlayerState.superjump_start) || state
-				.equals(PlayerState.superjump_end))) {
-				setState(PlayerState.standing);
-			}
-		}
-		
+        
 		Vector2f pos = this.getPosition();
 		dynamicTarget.set(pos.x,pos.y);
 		
@@ -145,6 +142,7 @@ public final class Astronaut extends EntityCollidable implements AstronautContro
 		case superjump:
 			if (isGrounded()) {
 				setState(PlayerState.superjump_end);
+                physicsObject.setGravityScale(1);
 			}
 			break;
 		case superjump_start:
@@ -218,12 +216,13 @@ public final class Astronaut extends EntityCollidable implements AstronautContro
 	}
 
 	public void superjump () {
-		if (superjumpDelay <= 0 && isGrounded() && isCarryAlien()) {
+		if (superJumpDelay <= 0 && isGrounded() && isCarryAlien()) {
 			jumpDelay = 0;
-			setVelocityY(-jumpSpeed * 2);
-			physicsObject.applyImpulse(new Vector2f(0, -jumpSpeed * 2));
+			setVelocityY(-superJumpSpeed);
+			physicsObject.applyImpulse(new Vector2f(0, -superJumpSpeed));
 			setState(PlayerState.superjump_start);
-			jumpDelay = jumpDelayTotal;
+            physicsObject.setGravityScale(superJumpGravityScale);
+			superJumpDelay = jumpDelayTotal;
 		}
 	}
 
@@ -328,26 +327,18 @@ public final class Astronaut extends EntityCollidable implements AstronautContro
 		PhysixShape objectA = (PhysixShape)a.getBody().getUserData();
 		PhysixShape objectB = (PhysixShape)b.getBody().getUserData();
 
-		AbstractEnemy damageDealer = null;
-		Astronaut damageTaker = null;
-		if (objectA.getOwner() instanceof AbstractEnemy && objectB.getOwner() instanceof Astronaut) {
-			damageTaker = (Astronaut)objectB.getOwner();
-			damageDealer = (AbstractEnemy)objectA.getOwner();
-		} else if (objectB.getOwner() instanceof AbstractEnemy && objectA.getOwner() instanceof Astronaut) {
-			damageTaker = (Astronaut)objectA.getOwner();
-			damageDealer = (AbstractEnemy)objectB.getOwner();
-		}
-
 		if (physicsObject == objectA && a.m_shape.getType() == ShapeType.CIRCLE && !b.m_isSensor) {
 			groundContacts++;
 		} else if (physicsObject == objectB && b.m_shape.getType() == ShapeType.CIRCLE && !a.m_isSensor) {
 			groundContacts++;
 		}
 
-		if (damageDealer != null && damageTaker != null) {
-
-			Vector2f damageTakerPos = damageTaker.getPosition();
-			Vector2f damageTakerDim = damageTaker.getPhysicsObject().getDimension();
+        Entity other = getOtherEntity(contact);
+		if (other instanceof AbstractEnemy) {
+			AbstractEnemy damageDealer = (AbstractEnemy)objectA.getOwner();
+            
+			Vector2f damageTakerPos = getPosition();
+			Vector2f damageTakerDim = getPhysicsObject().getDimension();
 
 			Vector2f damageDealerPos = damageDealer.getPosition();
 			Vector2f damageDealerDim = damageDealer.getPhysicsObject().getDimension();
@@ -355,9 +346,9 @@ public final class Astronaut extends EntityCollidable implements AstronautContro
 			if ((damageTakerPos.x + damageTakerDim.x > damageDealerPos.x - damageDealerDim.x) //
 				&& ((damageTakerPos.x - damageTakerDim.x < damageDealerPos.x + damageDealerDim.x))
 				&& (damageTakerPos.y + damageTakerDim.y < damageDealerPos.y)) { // player deals damage
-				World.getInstance().getScoreCounter().addScore(5);
+				World.getScoreCounter().addScore(5);
 				World.getInstance().getEntityManager().removeEntity(damageDealer);
-				if (damageTaker instanceof Astronaut) damageTaker.setVelocityY(-.50f * ((Astronaut)damageTaker).getJumpSpeed());
+				setVelocityY(-.50f * getJumpSpeed());
 			} else {
 				// Wird in Bullet-Klassen geregelt
 // if (damageTaker instanceof Astronaut && !(damageDealer instanceof PlayerBullet))
@@ -365,7 +356,7 @@ public final class Astronaut extends EntityCollidable implements AstronautContro
 
 			}
 		}
-		Entity other = getOtherEntity(contact);
+
 		if (other instanceof Switch) {
 			switches.add((Switch)other);
 		}
@@ -472,6 +463,9 @@ public final class Astronaut extends EntityCollidable implements AstronautContro
 			jumpSpeed = gameData.combined.jumpSpeed;
 			jumpDelayTotal = gameData.combined.jumpDelay;
 		}
+        
+        superJumpGravityScale = gameData.combined.superJumpGravityScale;
+        superJumpSpeed = gameData.combined.superJumpSpeed;
 	}
 
 

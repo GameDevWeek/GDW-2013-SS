@@ -11,6 +11,8 @@ public class GameDataInfo {
         public Float friction;
         public Float pickupDistance;
         public Float oxygen;
+        public Float superJumpSpeed;
+        public Float superJumpGravityScale;
     }
     public static class WorldInfo {
         public Float gravity;
