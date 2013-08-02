@@ -54,6 +54,8 @@ public final class Astronaut extends EntityCollidable implements AstronautContro
 	private Animation animation;
 	private int groundContacts;
 	private int superjumpDelay = 0;
+	private boolean takeOff = true;
+	private PlayerState oldState = PlayerState.standing;
 
 	public Astronaut () {
         AssetLoader al = AssetLoader.getInstance();
@@ -72,6 +74,7 @@ public final class Astronaut extends EntityCollidable implements AstronautContro
         alien.setAstronaut(this);
 	}
 
+	private Vector2f dynamicTarget = new Vector2f();
 	/** {@inheritDoc} */
 	@Override
 	protected void initialize () {
@@ -86,6 +89,7 @@ public final class Astronaut extends EntityCollidable implements AstronautContro
 		carryAlien = true;
 		invertAnimation = false;
 		setState(PlayerState.standing);
+		World.getInstance().getTPCamera().addDynamicTarget(dynamicTarget);
 	}
 
 	public float getOxygen () {
@@ -116,7 +120,16 @@ public final class Astronaut extends EntityCollidable implements AstronautContro
 			this.oxygen -= (this.maxOxygen * PlayerConstants.OXYGEN_PERCENTAGE_LOST_PER_SECOND) * (delta / 1000f);
 		else
 			die();
-        
+		if (getVelocity().x == 0 && getVelocity().y == 0 || !(walking)) { 
+			if (!(state.equals(PlayerState.superjump) || state.equals(PlayerState.superjump_start) || state
+				.equals(PlayerState.superjump_end))) {
+				setState(PlayerState.standing);
+			}
+		}
+		
+		Vector2f pos = this.getPosition();
+		dynamicTarget.set(pos.x,pos.y);
+		
 		switch (state) {
 		case jumping:
 			if (getVelocity().y > 0) {
@@ -297,18 +310,26 @@ public final class Astronaut extends EntityCollidable implements AstronautContro
 		PhysixShape objectA = (PhysixShape)a.getBody().getUserData();
 		PhysixShape objectB = (PhysixShape)b.getBody().getUserData();
 
+		AbstractEnemy damageDealer = null;
+		Astronaut damageTaker = null;
+		if (objectA.getOwner() instanceof AbstractEnemy && objectB.getOwner() instanceof Astronaut) {
+			damageTaker = (Astronaut)objectB.getOwner();
+			damageDealer = (AbstractEnemy)objectA.getOwner();
+		} else if (objectB.getOwner() instanceof AbstractEnemy && objectA.getOwner() instanceof Astronaut) {
+			damageTaker = (Astronaut)objectA.getOwner();
+			damageDealer = (AbstractEnemy)objectB.getOwner();
+		}
+
 		if (physicsObject == objectA && a.m_shape.getType() == ShapeType.CIRCLE && !b.m_isSensor) {
 			groundContacts++;
 		} else if (physicsObject == objectB && b.m_shape.getType() == ShapeType.CIRCLE && !a.m_isSensor) {
 			groundContacts++;
 		}
 
-        Entity other = getOtherEntity(contact);
-		if (other instanceof AbstractEnemy) {
-			AbstractEnemy damageDealer = (AbstractEnemy)objectA.getOwner();
-            
-			Vector2f damageTakerPos = getPosition();
-			Vector2f damageTakerDim = getPhysicsObject().getDimension();
+		if (damageDealer != null && damageTaker != null) {
+
+			Vector2f damageTakerPos = damageTaker.getPosition();
+			Vector2f damageTakerDim = damageTaker.getPhysicsObject().getDimension();
 
 			Vector2f damageDealerPos = damageDealer.getPosition();
 			Vector2f damageDealerDim = damageDealer.getPhysicsObject().getDimension();
@@ -316,9 +337,9 @@ public final class Astronaut extends EntityCollidable implements AstronautContro
 			if ((damageTakerPos.x + damageTakerDim.x > damageDealerPos.x - damageDealerDim.x) //
 				&& ((damageTakerPos.x - damageTakerDim.x < damageDealerPos.x + damageDealerDim.x))
 				&& (damageTakerPos.y + damageTakerDim.y < damageDealerPos.y)) { // player deals damage
-				World.getScoreCounter().addScore(5);
+				World.getInstance().getScoreCounter().addScore(5);
 				World.getInstance().getEntityManager().removeEntity(damageDealer);
-				setVelocityY(-.50f * getJumpSpeed());
+				if (damageTaker instanceof Astronaut) damageTaker.setVelocityY(-.50f * ((Astronaut)damageTaker).getJumpSpeed());
 			} else {
 				// Wird in Bullet-Klassen geregelt
 // if (damageTaker instanceof Astronaut && !(damageDealer instanceof PlayerBullet))
@@ -326,7 +347,7 @@ public final class Astronaut extends EntityCollidable implements AstronautContro
 
 			}
 		}
-
+		Entity other = getOtherEntity(contact);
 		if (other instanceof Switch) {
 			switches.add((Switch)other);
 		}

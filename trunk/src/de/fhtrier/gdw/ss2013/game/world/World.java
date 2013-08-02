@@ -77,7 +77,7 @@ public class World {
             throw new RuntimeException(e);
         }
         if (DebugModeStatus.isTPCamera()) {
-            CameraInfo info = new CameraInfo(2, map);
+            CameraInfo info = new CameraInfo(5, map);
             tpCamera = new ThreePointCamera(info);
             tpCamera.setZoom(-100.00f);
 
@@ -123,14 +123,8 @@ public class World {
         if (DebugModeStatus.isTPCamera()) {
             tpCamera.pushViewMatrix(g);
 
-            tpCamera.debugdraw(g, astronaut.getPosition().x + astronaut.getPhysicsObject().getDimension().x/2, astronaut.getPosition().y+astronaut.getPhysicsObject().getDimension().y/2);
+            tpCamera.debugdraw(g);
 
-            float ox = tpCamera.getTileX() * map.getTileWidth();
-            float oy = tpCamera.getTileY() * map.getTileHeight();
-            // mapRender
-            // .renderTileLayers(g, (int)ox, (int)oy,
-            // tpCamera.getTileX(), tpCamera.getTileY(),
-            // map.getWidth(), map.getHeight());
             mapRender.renderTileLayers(g, 0, 0, 0, 0, map.getWidth(),
                     map.getHeight());
         } else {
@@ -175,11 +169,7 @@ public class World {
             tpCamera.update(
                     delta,
                     container.getWidth(),
-                    container.getHeight(),
-                    astronaut.getPosition().x
-                            + astronaut.getPhysicsObject().getDimension().x / 2,
-                    astronaut.getPosition().y
-                            + astronaut.getPhysicsObject().getDimension().y / 2);
+                    container.getHeight());
 
             if (container.getInput().isKeyDown(Input.KEY_1)) {
                 tpCamera.zoom(0.01f);
@@ -197,9 +187,9 @@ public class World {
     }
 
     public Vector2f screenToWorldPosition(Vector2f screenPosition) {
-        if (DebugModeStatus.isTPCamera()) {
-            return tpCamera.screenToWorldPositionFromTarget(screenPosition);
-        }
+//        if (DebugModeStatus.isTPCamera()) {
+//            return tpCamera.screenToWorldPositionFromTarget(screenPosition);
+//        }
         /**
          * Top-left (0,0) / Bottom-right (width,height)
          */
@@ -211,9 +201,9 @@ public class World {
     }
 
     public Vector2f worldToScreenPosition(Vector2f worldPosition) {
-        if (DebugModeStatus.isTPCamera()) {
-            return tpCamera.worldToScreenPosition(worldPosition);
-        }
+//        if (DebugModeStatus.isTPCamera()) {
+//            return tpCamera.worldToScreenPosition(worldPosition);
+//        }
 
         Vector2f screenPos = new Vector2f(-camera.getOffsetX(),
                 -camera.getOffsetY());
