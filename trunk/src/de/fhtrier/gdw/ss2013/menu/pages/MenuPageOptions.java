@@ -31,12 +31,11 @@ public class MenuPageOptions extends MenuPage {
         float yCenter = MenuManager.MENU_HEIGHT / 2.0f;
         
         float hText = font.getLineHeight() * 1.5f;
-        float textHeight = font.getLineHeight();
                 
         Label volumeLabel = addLeftAlignedLabel("Lautstärke", 25, yCenter * 0.25f , font);
         
         float volumeLabelLength = font.getWidth(volumeLabel.text);
-        Slider volumeSlider = Slider.create(0.5f, true, volumeLabelLength + 50, yCenter * 0.25f + 7, 200, textHeight);
+        Slider volumeSlider = Slider.create(0.5f, true, volumeLabelLength + 50, yCenter * 0.25f + 7, 200, font.getLineHeight());
         volumeSlider.thumbImage(AssetLoader.getInstance().getImage("slider_thumb"));
         
         Rectangle vsRect = volumeSlider.getRect();
@@ -58,7 +57,7 @@ public class MenuPageOptions extends MenuPage {
         addWidget(volumeSlider);
         
         String []fsTexts = {"Zum Vollbildmodus wechseln", "Zum Fenstermodus Wechseln"};
-        ToggleButton fullscreenToggle = ToggleButton.create(fsTexts, Color.gray, 25, yCenter *0.25f + (hText * 1), 510, textHeight).align(Align.LEFT)
+        ToggleButton fullscreenToggle = ToggleButton.create(fsTexts, Color.gray, 25, yCenter *0.25f + (hText * 1), 510, font.getLineHeight()).align(Align.LEFT)
                         .font(font).state(container.isFullscreen() ? 1 : 0).hoverColor(Color.white);
        
         fullscreenToggle.update(new IUpdateListener() {
@@ -91,7 +90,7 @@ public class MenuPageOptions extends MenuPage {
                 }
         });
         
-        addCenteredButton("zurück", xCenter, MenuManager.MENU_HEIGHT - 1.5f * textHeight, font, 
+        addCenteredButton("zurück", xCenter, MenuManager.MENU_HEIGHT - 1.5f * font.getLineHeight(), font, 
                 new IActionListener() { 
                     @Override
                     public void onAction() {

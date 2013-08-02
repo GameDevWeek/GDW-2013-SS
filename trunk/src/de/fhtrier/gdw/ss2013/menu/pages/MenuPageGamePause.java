@@ -10,6 +10,7 @@ import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.menu.IActionListener;
 import de.fhtrier.gdw.ss2013.menu.MenuManager;
 import de.fhtrier.gdw.ss2013.menu.MenuPage;
+import de.fhtrier.gdw.ss2013.menu.MenuPageAction;
 import de.fhtrier.gdw.ss2013.states.GameplayState;
 
 public class MenuPageGamePause extends MenuPage {
@@ -26,7 +27,7 @@ public class MenuPageGamePause extends MenuPage {
         
         
         int buttonCount, i;
-        buttonCount = i = 2;
+        buttonCount = i = 4;
         
         addLeftAlignedButton("Fortsetzen", x, y + h * (buttonCount - i--), font, 
                 new IActionListener() {
@@ -37,7 +38,7 @@ public class MenuPageGamePause extends MenuPage {
                 }
         );
         
-        addLeftAlignedButton("Reset", x, y + h * (buttonCount - i--), font, 
+        addLeftAlignedButton("Neustarten", x, y + h * (buttonCount - i--), font, 
                 new IActionListener() {
                     @Override
                     public void onAction() {
@@ -47,7 +48,19 @@ public class MenuPageGamePause extends MenuPage {
                 }
         );
         
-        addLeftAlignedButton("Exit", x, MenuManager.MENU_HEIGHT - h, font, 
+        addLeftAlignedButton("Zurück zum Hauptmenü", x, y + h * (buttonCount - i--), font, 
+                new IActionListener() {
+                    @Override
+                    public void onAction() {
+                    }
+                }
+        );
+        
+        MenuPageHighscore highscore = new MenuPageHighscore(container, game, menuManager, this, null);
+        addLeftAlignedButton("Highscore", x, y + h * (buttonCount - i--), font, 
+                new MenuPageAction(menuManager, highscore));
+        
+        addLeftAlignedButton("Beenden", x, MenuManager.MENU_HEIGHT - h, font, 
                 new IActionListener() {
                     @Override
                     public void onAction() {
