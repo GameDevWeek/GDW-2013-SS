@@ -10,6 +10,7 @@ public class GameDataInfo {
         public Float density;
         public Float friction;
         public Float pickupDistance;
+        public Float oxygen;
     }
     public static class WorldInfo {
         public Float gravity;
