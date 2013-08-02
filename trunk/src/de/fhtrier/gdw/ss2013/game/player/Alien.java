@@ -36,6 +36,12 @@ public class Alien extends Player implements AlienController {
 	public Alien() {
 		setAnimation(AssetLoader.getInstance().getAnimation("alien_standing"));
 		// Alien does NOT have different movestates! byRobin
+		currentSelectedBox = null;
+	    selectionRadius = 50;
+	    lastShotTime = 0;
+	    selectedAbility = 1;
+	    maxMana = 0.0f;
+	    mana = maxMana;
 		initialize();
 	}
 	
@@ -45,12 +51,6 @@ public class Alien extends Player implements AlienController {
 	@Override
 	protected void initialize() {
 	    super.initialize();
-	    currentSelectedBox = null;
-	    selectionRadius = 50;
-	    lastShotTime = 0;
-	    selectedAbility = 1;
-        maxMana = 0.0f;
-        mana = maxMana;
 	}
 
 	public void setContainer(GameContainer container) {
