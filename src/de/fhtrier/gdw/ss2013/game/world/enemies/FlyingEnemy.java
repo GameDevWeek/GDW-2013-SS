@@ -41,6 +41,7 @@ public abstract class FlyingEnemy extends AbstractEnemy implements EntityFilter 
     private Point currentPoint;
     private Point nextPoint;
     private int indexmod;
+    public static boolean burningWhip = false;
 
     public FlyingEnemy(Animation animation) {
     	super(animation);

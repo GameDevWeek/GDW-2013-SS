@@ -368,8 +368,10 @@ public class LevelLoader {
                         System.err.println("Didn't find path " + name + "!");
                     }
                 } else {
-                    System.err.println("Missing path option in "
-                            + e.getName() + "!");
+                    if (e instanceof MovingPlatform) {
+                        System.err.println("Missing path option in "
+                                + e.getName() + "!");
+                    }
                 }
             } else {
                 System.err.println("No options in " + e.getName() + "!");
