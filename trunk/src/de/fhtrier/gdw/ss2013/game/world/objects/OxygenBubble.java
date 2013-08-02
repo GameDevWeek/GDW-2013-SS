@@ -33,8 +33,8 @@ public class OxygenBubble extends EntityCollidable implements Interactable {
     // private AssetLoader a = AssetLoader.getInstance();
     // private Image img = a.getImage("bubble");
     private EntityManager man;
-    private float speed = 5;
-    private int timer = 10;
+    private float speed = 100;
+    private int timer = 0;
     private boolean isUsed = false;
     private Vector2f startPosition;
     private Vector2f initalDirection;
@@ -52,7 +52,7 @@ public class OxygenBubble extends EntityCollidable implements Interactable {
                 .getPhysicsManager(), startPosition.x, startPosition.y,
                 (img.getWidth() / 2 + img.getHeight() / 2) / 4,
                 BodyType.KINEMATIC, 0, 0, true);
-
+        timer = (int)(Math.random()*100);
         super.setPhysicsObject(childPhysics);
         // super.initialize();
     }
@@ -97,29 +97,19 @@ public class OxygenBubble extends EntityCollidable implements Interactable {
     }
 
     private int deltamod = 1;
-    
+
     @Override
     public void update(GameContainer container, int delta) {
-         //FIXME: procedural float animation
+
         
         if (!isUsed) {
-            
-            timer += delta*deltamod;
-            if(timer >= 800)
-            {
-                deltamod = -1;
+            timer+=delta;
+            if(timer >= 1000) {
+                speed *=-1;
+                timer -= 1000;
             }
-            if(timer <= 501)
-            {
-                deltamod = 1;
-            }
-            
-            if (timer < 500) {
-                setVelocity(initalDirection);
-            } 
-            else {
-                setVelocity(new Vector2f(speed*deltamod,-speed*deltamod));
-            }
+            setVelocity(new Vector2f(0, -speed*(delta/1000.f)));
+
         }
     }
 
