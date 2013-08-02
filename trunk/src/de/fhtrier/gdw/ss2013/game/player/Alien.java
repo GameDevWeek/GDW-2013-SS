@@ -1,5 +1,8 @@
 package de.fhtrier.gdw.ss2013.game.player;
 
+import java.util.ArrayList;
+
+import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -15,8 +18,6 @@ import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.game.world.bullets.PlayerBullet;
 import de.fhtrier.gdw.ss2013.game.world.objects.Box;
 import de.fhtrier.gdw.ss2013.input.AlienController;
-import java.util.ArrayList;
-import org.newdawn.slick.Animation;
 
 public class Alien extends Entity implements AlienController {
 
@@ -146,6 +147,7 @@ public class Alien extends Entity implements AlienController {
 		switch (selectedAbility) {
 		case 1:
 			// telekinese
+		    System.out.println("lsdidioga");
 			if (currentSelectedBox == null) {
 			    Vector2f cursorPos = World.getInstance().screenToWorldPosition(cursor);
 				ArrayList<Entity> closestEntitiesAtPosition = entityManager.getClosestEntitiesAtPosition(World.getInstance().screenToWorldPosition(cursor), selectionRadius);
@@ -203,8 +205,9 @@ public class Alien extends Entity implements AlienController {
 				dragDirection.y = screenToWorldPosition.y - currentSelectedBox.getPosition().y;
 				currentSelectedBox.setVelocity(dragDirection);
 				if (currentSelectedBox.isPlayerOnBox()) {
-				    currentSelectedBox.getPhysicsObject().setGravityScale(0.f);
+				    currentSelectedBox.getPhysicsObject().setGravityScale(1.f);
 					currentSelectedBox.setVelocity(new Vector2f(0, -10));
+					
 					currentSelectedBox = null;
 				}
 			}
