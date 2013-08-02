@@ -45,6 +45,7 @@ public class OxygenBubble extends EntityCollidable implements Interactable {
         super(AssetLoader.getInstance().getImage("bubble"));
         this.oxygenLevel = getOxygenLevel();
         man = World.getInstance().getEntityManager();
+
     }
     
     @Override
@@ -52,7 +53,7 @@ public class OxygenBubble extends EntityCollidable implements Interactable {
         PhysixObject childPhysics = new PhysixCircle(World.getInstance()
                 .getPhysicsManager(), startPosition.x, startPosition.y,
                 (img.getWidth() / 2 + img.getHeight() / 2) / 4,
-                BodyType.KINEMATIC, 0, 0, true);
+                BodyType.DYNAMIC, 0, 0, true);
 
         super.setPhysicsObject(childPhysics);
         // super.initialize();

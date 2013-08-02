@@ -59,12 +59,19 @@ public abstract class Player extends EntityCollidable {
         PhysixObject objectA = (PhysixObject) a.getBody().getUserData();
         PhysixObject objectB = (PhysixObject) b.getBody().getUserData();
         
-        if (physicsObject == objectA && a.m_shape.getType() == ShapeType.CIRCLE) {
+//        if((a.isSensor() ^ b.isSensor())) {
+//            System.out.println(a + " sensor or b " +b);
+//            return;
+//        }
+        
+        if (physicsObject == objectA && a.m_shape.getType() == ShapeType.CIRCLE && !b.isSensor()) {
             groundContacts++;
         }
-        else if (physicsObject == objectB && b.m_shape.getType() == ShapeType.CIRCLE) {
+        else if (physicsObject == objectB && b.m_shape.getType() == ShapeType.CIRCLE && !a.isSensor()) {
             groundContacts++;
         }
+        
+        
         
         AbstractEnemy damageDealer = null;
         Player damageTaker = null;
@@ -108,10 +115,10 @@ public abstract class Player extends EntityCollidable {
         Fixture b = contact.getFixtureB();
         PhysixObject objectA = (PhysixObject) a.getBody().getUserData();
         PhysixObject objectB = (PhysixObject) b.getBody().getUserData();
-        if (physicsObject == objectA && a.m_shape.getType() == ShapeType.CIRCLE) {
+        if (physicsObject == objectA && a.m_shape.getType() == ShapeType.CIRCLE && !b.isSensor()) {
             groundContacts--;
         }
-        else if (physicsObject == objectB && b.m_shape.getType() == ShapeType.CIRCLE) {
+        else if (physicsObject == objectB && b.m_shape.getType() == ShapeType.CIRCLE && !a.isSensor()) {
             groundContacts--;
         }
         assert(groundContacts >= 0);
