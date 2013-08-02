@@ -21,6 +21,7 @@ import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.filter.Interactable;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.world.World;
+import de.fhtrier.gdw.ss2013.physix.PhysixConst;
 import de.fhtrier.gdw.ss2013.physix.PhysixShape;
 
 //import org.newdawn.slick.Image;
@@ -54,6 +55,7 @@ public class OxygenBubble extends EntityCollidable implements Interactable {
     @Override
     public void initPhysics() {
         createPhysics(BodyType.STATIC, origin.x, origin.y).sensor(true)
+                .category(PhysixConst.ITEM).mask(PhysixConst.MASK_ITEM)
                 .asCircle((img.getWidth() / 2 + img.getHeight() / 2) / 4);
     }
 

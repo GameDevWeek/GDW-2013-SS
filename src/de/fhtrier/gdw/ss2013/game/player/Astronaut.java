@@ -26,6 +26,7 @@ import de.fhtrier.gdw.ss2013.game.world.objects.Switch;
 import de.fhtrier.gdw.ss2013.input.AlienController;
 import de.fhtrier.gdw.ss2013.input.AstronautController;
 import de.fhtrier.gdw.ss2013.physix.InteractionManager;
+import de.fhtrier.gdw.ss2013.physix.PhysixConst;
 import de.fhtrier.gdw.ss2013.physix.PhysixShape;
 
 public final class Astronaut extends EntityCollidable implements AstronautController, AlienController {
@@ -56,7 +57,8 @@ public final class Astronaut extends EntityCollidable implements AstronautContro
 	public Astronaut () {
         AssetLoader al = AssetLoader.getInstance();
         for(PlayerState s: PlayerState.values()) {
-            s.setAnimation(al.getAnimation("player_couple_" + s.toString()));
+            s.setAnimations(al.getAnimation("player_couple_" + s.toString()),
+                    al.getAnimation("astronaut_" + s.toString()));
         }
         
 		gameData = AssetLoader.getInstance().getGameData();
@@ -249,9 +251,9 @@ public final class Astronaut extends EntityCollidable implements AstronautContro
 
 	private void updateStateAnimation () {
 		if (isCarryAlien()) {
-			setAnimation(state.getAnimation());
+			setAnimation(state.getCombinedAnimation());
 		} else {
-			setAnimation(state.getAnimation());
+			setAnimation(state.getAstronautAnimation());
 		}
 	}
 
@@ -437,6 +439,7 @@ public final class Astronaut extends EntityCollidable implements AstronautContro
         GameDataInfo info = AssetLoader.getInstance().getGameData();
         createPhysics(BodyType.DYNAMIC, origin.x, origin.y)
                 .density(info.combined.density).friction(info.combined.friction)
+                .category(PhysixConst.PLAYER).mask(PhysixConst.MASK_PLAYER)
                 .asPlayer(info.combined.width, info.combined.height);
     }
 }
