@@ -7,6 +7,9 @@ public class SmallGroundEnemy extends GroundEnemy {
 
 	public SmallGroundEnemy() {
 		super(AssetLoader.getInstance().getAnimation("ground_ememy_small"));
+		
 	}
+	
+	
 
 }
