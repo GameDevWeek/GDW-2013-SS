@@ -1,6 +1,8 @@
 package de.fhtrier.gdw.ss2013.menu;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
+import de.fhtrier.gdw.ss2013.menu.Widget.Align;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -91,6 +93,57 @@ public class MenuPage {
         button.init(container);
 
         return button;
+    }
+    
+    public Label addCenteredLabel(final Image img, float x, float y) throws SlickException {
+        float w = img.getWidth();
+        float h = img.getHeight();
+
+        Label label = Label.create("", x - w / 2, y - h / 2, w, h)
+                .color(Color.gray);
+        label.image(img);
+        label.init(container);
+        addWidget(label);
+
+        return label;
+    }
+    
+    public ToggleButton addLeftAlignedToggleButton(final String[] text, float x, float y, Font font, Align textAlign) throws SlickException {
+        float maxW = 0;
+        float h = font.getLineHeight();
+        
+        for (String t : text) {
+            if (font.getWidth(t) > maxW)
+                maxW = font.getWidth(t);
+        }
+        
+        ToggleButton tb = ToggleButton.create(text, Color.gray, x, y, maxW, h);
+        tb.font(font);
+        tb.align(textAlign);
+        tb.useTextSize(true);
+        tb.init(container);
+        addWidget(tb);
+
+        return tb;
+    }
+    
+    public ToggleButton addCenteredToggleButton(final String[] text, float x, float y, Font font, Align textAlign) throws SlickException {
+        float maxW = 0;
+        float h = font.getLineHeight();
+        
+        for (String t : text) {
+            if (font.getWidth(t) > maxW)
+                maxW = font.getWidth(t);
+        }
+        
+        ToggleButton tb = ToggleButton.create(text, Color.gray, x - maxW / 2, y - h / 2, maxW, h);
+        tb.font(font);
+        tb.align(textAlign);
+        tb.useTextSize(true);
+        tb.init(container);
+        addWidget(tb);
+
+        return tb;
     }
     
     public TextField addLeftAlignedTextField(final String text, float x, float y, Font font) throws SlickException {
