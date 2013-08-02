@@ -82,13 +82,13 @@ public class GameplayState extends BasicGameState {
             throws SlickException {
         ((MainGame) game).checkFullscreenToggle();
         world.getAstronaut().preInput();
-        if(!menuOpened)
+        if(!menuOpened) {
             inputManager.update(delta);
         // world.getPhysicsManager().update(container, delta);
         world.update(container, delta);
         hud.update(container, game, delta);
         cheats.update(container, game, delta);
-    
+        }
         if(menuOpened)
 			menuManager.update(container, game, delta);
     }
