@@ -44,6 +44,7 @@ public abstract class FlyingEnemy extends AbstractEnemy implements EntityFilter 
     private Point nextPoint;
     private int indexmod;
     private SafeProperties pathProperties;
+    private float speed_mod;
     public static boolean burningWhip = false;
 
     public FlyingEnemy(Animation animation) {
@@ -157,14 +158,29 @@ public abstract class FlyingEnemy extends AbstractEnemy implements EntityFilter 
         }
     }
     
+    // margin = 10
+    // margin = 1f
+    // disinmargin = ?
+    // 
+    
     public void move() {
         float distToSpawn = getPosition().sub(origin).length();
-        if (distToSpawn < 200) {
-            setVelocity(new Vector2f(indexmod * rndX, indexmod * rndY).normalise().scale(speed));
+        float margin = 35;
+        float disinMargin = 0;
+        float speed_mod = 1f;
+        if (distToSpawn < 150) {
+            if(distToSpawn > 150 - margin)
+            {
+                disinMargin = 150 - distToSpawn;
+                speed_mod = Math.min((disinMargin/margin) + 0.1f, 1f);
+            } else {
+                speed_mod = 1f;
+            }
+            setVelocity(new Vector2f(indexmod * rndX, indexmod * rndY).normalise().scale(speed*speed_mod));
             change = false;
         } else if (!change) {
-            rndX = (float)Math.random();
-            rndY = (float)Math.random();
+            rndX = origin.copy().sub(getPosition()).normalise().x + (float)(Math.random()*0.2-0.1);
+            rndY = origin.copy().sub(getPosition()).normalise().y + (float)(Math.random()*0.2-0.1);
             indexmod *= -1;
             setVelocity(origin.copy().sub(getPosition()).normalise().scale(speed));
             change = true;
