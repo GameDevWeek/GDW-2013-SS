@@ -1,7 +1,5 @@
 package de.fhtrier.gdw.ss2013.game.player;
 
-import java.util.ArrayList;
-
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -12,13 +10,17 @@ import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.constants.PlayerConstants;
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
+import de.fhtrier.gdw.ss2013.game.camera.Camera;
 import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.game.world.bullets.PlayerBullet;
 import de.fhtrier.gdw.ss2013.game.world.objects.Box;
 import de.fhtrier.gdw.ss2013.input.AlienController;
+import java.util.ArrayList;
+import org.newdawn.slick.Animation;
 
-public class Alien extends Player implements AlienController {
+public class Alien extends Entity implements AlienController {
 
+    private Animation animation;
 	private int selectedAbility;
 	private float mana;
 	private float maxMana;
@@ -27,11 +29,14 @@ public class Alien extends Player implements AlienController {
 
 	private EntityManager entityManager = World.getInstance().getEntityManager();
 	// telekinese values
+	private Camera camera = World.getInstance().getCamera();
 	private Box currentSelectedBox;
 	private float selectionRadius;
 	private final Vector2f dragDirection = new Vector2f();
 
 	private long lastShotTime;
+    private boolean onPlayer;
+    private boolean invertAnimation;
 
 	public Alien() {
 		setAnimation(AssetLoader.getInstance().getAnimation("alien_standing"));
@@ -43,6 +48,11 @@ public class Alien extends Player implements AlienController {
 	    maxMana = 0.0f;
 	    mana = maxMana;	}
 	
+    
+    public void setAnimation(Animation animation) {
+        this.animation = animation;
+    }
+    
 	/**
 	 * {@inheritDoc}
 	 */
@@ -203,10 +213,17 @@ public class Alien extends Player implements AlienController {
 
 	@Override
 	public void render(GameContainer container, Graphics g) throws SlickException {
-		Astronaut astronaut = getAstronaut();
-		// Just render alien if astronaut does not carry the alien
-		if (astronaut != null && !astronaut.isCarryAlien()) {
-			super.render(container, g);
+		if (!onPlayer) {
+            Vector2f position = getPosition();
+
+            if (invertAnimation) {
+                animation.draw(position.x + animation.getWidth() / 2, position.y
+                        - animation.getHeight() / 2, -animation.getWidth(),
+                        animation.getHeight());
+            } else {
+                animation.draw(position.x - animation.getWidth() / 2, position.y
+                        - animation.getHeight() / 2);
+            }
 		}
 	}
 
@@ -233,5 +250,14 @@ public class Alien extends Player implements AlienController {
 	public Vector2f getCursor() {
 		return cursor.copy();
 	}
+
+    void setOnPlayer(boolean onPlayer) {
+        this.onPlayer = onPlayer;
+        if(!onPlayer) {
+            Astronaut astronaut = World.getInstance().getAstronaut();
+            getPhysicsObject().setPosition(astronaut.getPosition());
+        }
+        getPhysicsObject().setActive(!onPlayer);
+    }
 
 }

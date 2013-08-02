@@ -11,7 +11,6 @@ import org.newdawn.slick.geom.Vector2f;
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
-import de.fhtrier.gdw.ss2013.game.player.Player;
 import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.physix.PhysixObject;
 
@@ -150,19 +149,19 @@ public abstract class GroundEnemy extends AbstractEnemy {
         }
     }
 
-    private Vector2f calcPlayerDirection(Player player) {
+    private Vector2f calcPlayerDirection(Astronaut player) {
         Vector2f direction = calcPlayerPosition(player);
         direction.normalise();
         return direction;
     }
 
-    private float calcPlayerDistance(Player player) {
+    private float calcPlayerDistance(Astronaut player) {
         Vector2f direction = calcPlayerPosition(player);
         return (float) Math.sqrt((direction.x * direction.x)
                 + (direction.y * direction.y));
     }
 
-    private Vector2f calcPlayerPosition(Player player) {
+    private Vector2f calcPlayerPosition(Astronaut player) {
         Vector2f direction = new Vector2f();
         direction.x = player.getPosition().x - this.getPosition().x;
         direction.y = player.getPosition().y - this.getPosition().y;

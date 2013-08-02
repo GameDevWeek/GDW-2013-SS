@@ -2,7 +2,6 @@ package de.fhtrier.gdw.ss2013.game.world.objects;
 
 import java.util.ArrayList;
 
-import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.contacts.Contact;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
@@ -11,8 +10,8 @@ import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityCollidable;
 import de.fhtrier.gdw.ss2013.game.filter.Interactable;
-import de.fhtrier.gdw.ss2013.game.player.Player;
-import de.fhtrier.gdw.ss2013.physix.PhysixObject;
+import de.fhtrier.gdw.ss2013.game.player.Alien;
+import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 
 public class Teleporter extends EntityCollidable implements Interactable {
 
@@ -53,51 +52,25 @@ public class Teleporter extends EntityCollidable implements Interactable {
     public void beginContact(Contact contact) {
 
         if (isActive) {
-            Fixture a = contact.getFixtureA();
-            Fixture b = contact.getFixtureB();
-            PhysixObject objectA = (PhysixObject) a.getBody().getUserData();
-            PhysixObject objectB = (PhysixObject) b.getBody().getUserData();
-
-            if (objectA.getOwner() instanceof Player
-                    || objectA.getOwner() instanceof Box) {
-                if (!ignorList.contains(objectA.getOwner())) {
-                    target.ignorList.add(objectA.getOwner());
-                    toSet.add(objectA.getOwner());
+            Entity other = getOtherEntity(contact);
+            if (other instanceof Astronaut || other instanceof Alien || other instanceof Box) {
+                if (!ignorList.contains(other)) {
+                    target.ignorList.add(other);
+                    toSet.add(other);
                     // objectA.setPosition(target.getPosition());
                 }
             }
-            if (objectB.getOwner() instanceof Player
-                    || objectB.getOwner() instanceof Box) {
-                if (!ignorList.contains(objectB.getOwner())) {
-                    target.ignorList.add(objectB.getOwner());
-                    toSet.add(objectB.getOwner());
-                }
-
-            }
-
         }
     }
 
     @Override
     public void endContact(Contact contact) {
         if (isActive) {
-            Fixture a = contact.getFixtureA();
-            Fixture b = contact.getFixtureB();
-            PhysixObject objectA = (PhysixObject) a.getBody().getUserData();
-            PhysixObject objectB = (PhysixObject) b.getBody().getUserData();
-
-            if (objectA.getOwner() instanceof Player
-                    || objectA.getOwner() instanceof Box) {
-                if (ignorList.contains(objectA.getOwner())) {
-                    ignorList.remove(objectA.getOwner());
+            Entity other = getOtherEntity(contact);
+            if (other instanceof Astronaut || other instanceof Alien || other instanceof Box) {
+                if (ignorList.contains(other)) {
+                    ignorList.remove(other);
                 }
-            }
-            if (objectB.getOwner() instanceof Player
-                    || objectB.getOwner() instanceof Box) {
-                if (ignorList.contains(objectB.getOwner())) {
-                    ignorList.remove(objectB.getOwner());
-                }
-
             }
         }
 

@@ -21,6 +21,7 @@ public class ControlsInfo {
             public String MOVE_RIGHT;
             public String JUMP;
             public String ACTION;
+            public String TOGGLE_ALIEN;
         }
 
         public static class AlienInfo {
@@ -61,6 +62,7 @@ public class ControlsInfo {
             public String MOVE_RIGHT;
             public String JUMP;
             public String ACTION;
+            public String TOGGLE_ALIEN;
         }
 
         public static class AlienInfo {

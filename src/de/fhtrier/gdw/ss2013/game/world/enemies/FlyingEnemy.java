@@ -11,7 +11,6 @@ import de.fhtrier.gdw.ss2013.constants.PlayerConstants;
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
-import de.fhtrier.gdw.ss2013.game.player.Player;
 import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.game.world.bullets.EnemyBullet;
 
@@ -44,7 +43,7 @@ public abstract class FlyingEnemy extends AbstractEnemy {
      * Creates an enemy shot to attack the player
      * @param shootDirection The direction from the flying enemy towards the player
      */
-    public void shoot(Player player) {
+    public void shoot(Astronaut player) {
     	Vector2f shootDirection = new Vector2f();
     	shootDirection = player.getPosition().sub(getPosition()).normalise().scale(PlayerConstants.BULLET_SPEED);
 //    	System.out.println(player.getPosition().sub(getPosition()));

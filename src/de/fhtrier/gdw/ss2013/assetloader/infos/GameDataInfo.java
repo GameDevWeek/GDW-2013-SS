@@ -9,6 +9,7 @@ public class GameDataInfo {
         public Integer jumpDelay;
         public Float density;
         public Float friction;
+        public Float pickupDistance;
     }
     public static class WorldInfo {
         public Float gravity;

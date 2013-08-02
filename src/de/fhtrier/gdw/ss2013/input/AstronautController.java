@@ -17,4 +17,6 @@ public interface AstronautController {
 
 	public void action();
 
+    public void toggleAlien();
+
 }

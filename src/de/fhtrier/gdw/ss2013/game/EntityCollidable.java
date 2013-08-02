@@ -30,14 +30,4 @@ public abstract class EntityCollidable extends Entity implements ICollisionListe
         super.setPhysicsObject(physicsObject);
         this.physicsObject.addCollisionListener(this);
     }
-
-    public Entity getOtherEntity(Contact contact) {
-        
-        Fixture a = contact.getFixtureA();
-        if (a.getBody().getUserData() != physicsObject) {
-            return ((PhysixObject) a.getBody().getUserData()).getOwner();
-        }
-        Fixture b = contact.getFixtureB();
-        return ((PhysixObject) b.getBody().getUserData()).getOwner();
-    }
 }

@@ -4,7 +4,8 @@
             "MOVE_RIGHT": "D",
             "MOVE_LEFT": "A",
             "JUMP": "W",
-            "ACTION": "SPACE"
+            "ACTION": "SPACE",
+            "TOGGLE_ALIEN": "E"
         },
         
         "alien": {
@@ -34,7 +35,8 @@
                 "MOVE_LEFT": "+POV_X",
                 "MOVE_RIGHT": "-POV_X",
                 "JUMP": "+POV_Y",
-                "ACTION": "Y"
+                "ACTION": "Y",
+                "TOGGLE_ALIEN": "X"
             },
             
             "alien":  {
@@ -54,7 +56,8 @@
                 "MOVE_LEFT": "+POV_X",
                 "MOVE_RIGHT": "-POV_X",
                 "JUMP": "+POV_Y",
-                "ACTION": "Y"
+                "ACTION": "Y",
+                "TOGGLE_ALIEN": "X"
             },
             
             "alien":  {
@@ -74,7 +77,8 @@
                 "MOVE_LEFT": "-POV_X",
                 "MOVE_RIGHT": "+POV_X",
                 "JUMP": "-POV_Y",
-                "ACTION": "RB"
+                "ACTION": "RB",
+                "TOGGLE_ALIEN": "Button 1"
             },
             
             "alien":  {

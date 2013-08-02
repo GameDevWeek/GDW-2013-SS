@@ -238,29 +238,17 @@ public class ThreePointCamera {
 
     public void updateTiled(int windowWidth, int windowHeight, float playerX,
             float playerY) {
-        numTilesX = windowWidth / mapTileWidth + 2;
-        numTilesY = windowHeight / mapTileHeight + 2;
-        
-        
+        float tileSizeX = mapTileWidth * scaleX();
+        float tileSizeY = mapTileHeight * scaleY();
+        numTilesX = (int)((windowWidth /scaleX())/tileSizeX) + 2;
+        numTilesY = (int)((windowHeight/ scaleY())/tileSizeY) + 2;
+        tileX = tileY = 0;
 
-        tileX = tileY = offsetX = offsetY = 0;
-        tileOverlapX = tileOverlapY = 0;
-
-        if (windowWidth > mapPixelWidth) {
-            // Center in window
-            offsetX = (int) Math.floor((windowWidth - mapPixelWidth) * 0.5);
-        } else if (windowWidth < mapPixelWidth) {
-//            offsetX = limit(playerX, windowWidth, mapPixelWidth);
-            tileX = (int) Math.floor(focusPoint.x / (float) mapTileWidth);
-            tileOverlapX = getOffsetX() % mapTileWidth;
+        if(topLeftPoint.x > 0) {
+            tileX = (int)Math.floor(topLeftPoint.x  / tileSizeX);
         }
-        if (windowHeight > mapPixelHeight) {
-            // Center in window
-            offsetY = (int) Math.floor((windowHeight - mapPixelHeight) * 0.5);
-        } else if (windowHeight < mapPixelHeight) {
-//            offsetY = limit(playerY, windowHeight, mapPixelHeight);
-            tileY = (int) Math.floor(focusPoint.y / (float) mapTileHeight);
-            tileOverlapY = getOffsetY() % mapTileHeight;
+        if(topLeftPoint.y > 0) {
+            tileY = (int)Math.floor(topLeftPoint.y / tileSizeY);
         }
     }
     
@@ -268,10 +256,6 @@ public class ThreePointCamera {
     private int numTilesY; // y tiles renderd
     private int tileX;
     private int tileY;
-    private int tileOverlapX;
-    private int tileOverlapY;
-    private int offsetY;
-    private int offsetX;
 
     public int getNumTilesX() {
         return numTilesX;
@@ -287,14 +271,6 @@ public class ThreePointCamera {
 
     public int getTileY() {
         return tileY;
-    }
-
-    public int getTileOverlapX() {
-        return tileOverlapX;
-    }
-
-    public int getTileOverlapY() {
-        return tileOverlapY;
     }
 
     public int getOffsetY() {

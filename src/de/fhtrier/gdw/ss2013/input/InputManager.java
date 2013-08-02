@@ -6,9 +6,6 @@ import de.fhtrier.gdw.ss2013.assetloader.infos.ControlsInfo;
 import java.util.HashSet;
 import java.util.LinkedList;
 
-import org.lwjgl.input.Controller;
-import org.lwjgl.input.Controllers;
-import org.newdawn.slick.Game;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.util.Log;
 
@@ -106,6 +103,8 @@ public class InputManager {
 			case ACTION:
 				astronautController.action();
 				break;
+            case TOGGLE_ALIEN:
+                astronautController.toggleAlien();
 			default:
 				break;
 			}

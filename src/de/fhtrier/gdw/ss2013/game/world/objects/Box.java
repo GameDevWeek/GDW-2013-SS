@@ -9,8 +9,8 @@ import org.newdawn.slick.Graphics;
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityCollidable;
+import de.fhtrier.gdw.ss2013.game.player.Alien;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
-import de.fhtrier.gdw.ss2013.game.player.Player;
 import de.fhtrier.gdw.ss2013.physix.PhysixObject;
 
 /**
@@ -49,40 +49,22 @@ public class Box extends EntityCollidable {
     }
 
     public boolean isPlayerOnBox() {
-        
-        //FIXME: correct on me check
         return isPlayerOnMe > 0;
     }
 
     @Override
     public void beginContact(Contact contact) {
-        Fixture a = contact.getFixtureA();
-        Fixture b = contact.getFixtureB();
-        PhysixObject objectA = (PhysixObject) a.getBody().getUserData();
-        PhysixObject objectB = (PhysixObject) b.getBody().getUserData();
-
-        if (objectA.getOwner() instanceof Player) {
+        Entity other = getOtherEntity(contact);
+        if (other instanceof Astronaut || other instanceof Alien) {
             isPlayerOnMe++;
         }
-        if (objectB.getOwner() instanceof Player) {
-            isPlayerOnMe++;
-        }
-
     }
 
     @Override
     public void endContact(Contact contact) {
-        Fixture a = contact.getFixtureA();
-        Fixture b = contact.getFixtureB();
-        PhysixObject objectA = (PhysixObject) a.getBody().getUserData();
-        PhysixObject objectB = (PhysixObject) b.getBody().getUserData();
-
-        if (objectA.getOwner() instanceof Player) {
+        Entity other = getOtherEntity(contact);
+        if (other instanceof Astronaut || other instanceof Alien) {
             isPlayerOnMe--;
         }
-        if (objectB.getOwner() instanceof Player) {
-            isPlayerOnMe--;
-        }
-
     }
 }
