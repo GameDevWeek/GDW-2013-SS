@@ -1,6 +1,7 @@
 package de.fhtrier.gdw.ss2013.game.world.enemies;
 
 import org.jbox2d.dynamics.Body;
+import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.contacts.Contact;
 import org.newdawn.slick.Animation;
@@ -27,10 +28,12 @@ public abstract class GroundEnemy extends AbstractEnemy {
 	}
 
 	private GroundEnemyState state;
+	private boolean walksRight;
 
 	public GroundEnemy(Animation animation) {
 		super(animation);
 		state = GroundEnemyState.patrol;
+		walksRight = true;
 	}
 
 	@Override
@@ -44,13 +47,16 @@ public abstract class GroundEnemy extends AbstractEnemy {
 		
 		switch (state) {
 		case patrol:
-			patrol();
+			//patrol();
 			break;		
 		}
 	}
 
 	private void patrol() {
-		//setVelocityX(EnemyConstants.ENEMY_SPEED);
+		if (walksRight)
+			setVelocityX(EnemyConstants.ENEMY_SPEED);
+		else
+			setVelocityX(-EnemyConstants.ENEMY_SPEED);
 	}
 
 	private Vector2f calcPlayerDirection(Astronaut player) {
@@ -74,6 +80,10 @@ public abstract class GroundEnemy extends AbstractEnemy {
 	@Override
 	public void beginContact(Contact contact) {
 		Entity other = getOtherEntity(contact);
+		if (other == null || other.getPhysicsObject().getBodyType() == BodyType.DYNAMIC) {
+			walksRight = !walksRight;
+			return;
+		}
 		if (other instanceof Astronaut) {
 			((Astronaut) other).setOxygen(((Astronaut) other).getOxygen() - this.getDamage());
 		}
