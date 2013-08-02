@@ -15,6 +15,7 @@ import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.player.Alien;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.world.World;
+import de.fhtrier.gdw.ss2013.physix.PhysixShape;
 
 /**
  * Ground Enemy Class
@@ -32,6 +33,7 @@ public abstract class GroundEnemy extends AbstractEnemy {
 	private ArrayList<Contact> contacts;
 	private Entity huntedPlayer;
 	private int chillTime;
+	private int groundContacts;
 
 	public GroundEnemy(Animation animation) {
 		super(animation);
@@ -51,13 +53,15 @@ public abstract class GroundEnemy extends AbstractEnemy {
 	public void update(GameContainer container, int delta) throws SlickException {
 		super.update(container, delta);
 
-		switch (state) {
-		case patrol:
-			patrol(delta);
-			break;
-		case huntPlayer:
-			hunt(delta);
-			break;
+		if (groundContacts > 0) {
+			switch (state) {
+			case patrol:
+				patrol(delta);
+				break;
+			case huntPlayer:
+				hunt(delta);
+				break;
+			}
 		}
 	}
 
@@ -95,6 +99,7 @@ public abstract class GroundEnemy extends AbstractEnemy {
 			if (Math.random() < 0.15f * (delta / 1000f)) {
 				chillTime = (int) ((Math.random() * 2000f) + 1000);
 			}
+
 			setVelocity(speed.copy());
 		}
 		else {
@@ -125,6 +130,17 @@ public abstract class GroundEnemy extends AbstractEnemy {
 	public void beginContact(Contact contact) {
 		Fixture a = contact.getFixtureA();
 		Fixture b = contact.getFixtureB();
+
+		PhysixShape objectA = (PhysixShape) a.getBody().getUserData();
+		PhysixShape objectB = (PhysixShape) b.getBody().getUserData();
+
+		if (physicsObject == objectA && objectB.getOwner() == null && !b.m_isSensor) {
+			groundContacts++;
+		}
+		else if (physicsObject == objectB && objectA.getOwner() == null && !a.m_isSensor) {
+			groundContacts++;
+		}
+		
 		if (a.m_isSensor || b.m_isSensor)
 			return;
 
