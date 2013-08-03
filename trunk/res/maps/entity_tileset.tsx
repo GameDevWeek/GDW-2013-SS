@@ -41,6 +41,11 @@
    <property name="type" value="button"/>
   </properties>
  </tile>
+ <tile id="8">
+  <properties>
+   <property name="type" value="accelerator"/>
+  </properties>
+ </tile>
  <tile id="9">
   <properties>
    <property name="type" value="smallflyingenemy"/>
