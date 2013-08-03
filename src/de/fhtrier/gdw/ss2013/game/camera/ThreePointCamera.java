@@ -26,7 +26,7 @@ public class ThreePointCamera {
 		targets = new ArrayList<>();
 		targets.add(new Vector2f());
 		cameraSpeed = info.cameraSpeed;
-		zoomFactor = 0.0f;
+		zoomFactor = 1f;
 	}
 
 	public void update(int deltaTime, int width, int height) {
@@ -56,15 +56,12 @@ public class ThreePointCamera {
 		targets.add(target);
 	}
 
-	public void setZoom(float zf) {
-		this.zoomFactor = Math.min(
-				Math.max(zf, MIN_ZOOM + MathConstants.EPSILON_F), MAX_ZOOM);
+	public void zoomOut(float factor) {
+		this.zoomFactor /= factor;
 	}
 
-	public void zoom(float zf) {
-		this.zoomFactor = Math.min(
-				Math.max(zoomFactor + zf, -1 + MIN_ZOOM
-						+ MathConstants.EPSILON_F), MAX_ZOOM);
+	public void zoomIn(float factor) {
+		this.zoomFactor *= factor;
 	}
 
 	public void debugdraw(Graphics g) {
@@ -78,22 +75,28 @@ public class ThreePointCamera {
 			g.drawString("target", target.x, target.y);
 		}
 	}
-	
+
 	public Vector2f screenToWorldCoordinates(Vector2f screenPosition) {
 		Vector2f position = new Vector2f();
 		position.set(screenPosition);
+		position.scale(1.0f/zoomFactor);
 		position.add(cameraPosition);
-		position.x -= screenWidth / 2.0f;
-		position.y -= screenHeight / 2.0f;
+		position.x -= screenWidth * (1.0f/zoomFactor) / 2.0f;
+		position.y -= screenHeight * (1.0f/zoomFactor) / 2.0f;
 		return position;
 	}
 
 	public void pushViewMatrix(Graphics g) {
 		g.pushTransform();
+		g.translate(screenWidth * (1 - zoomFactor) / 2.0f, screenHeight
+				* (1 - zoomFactor) / 2.0f);
+		g.scale(zoomFactor, zoomFactor);
 		g.translate(-cameraPosition.x + screenWidth / 2.0f, -cameraPosition.y
 				+ screenHeight / 2.0f);
-		// g.scale(this.scaleX(), this.scaleY());
-		// g.translate(-this.topLeftPoint.x, -this.topLeftPoint.y);
+		// g.translate(cameraPosition.x * 1/zoomFactor, cameraPosition.y *
+		// 1/zoomFactor);
+		// g.translate(cameraPosition.x - screenWidth / 2.0f, cameraPosition.y -
+		// screenHeight / 2.0f);
 	}
 
 	public void popViewMatrix(Graphics g) {
@@ -104,6 +107,7 @@ public class ThreePointCamera {
 		Vector2f position = new Vector2f();
 		position.set(worldPosition);
 		position.sub(cameraPosition);
+		position.scale(zoomFactor);
 		position.x += screenWidth / 2.0f;
 		position.y += screenHeight / 2.0f;
 		return position;
