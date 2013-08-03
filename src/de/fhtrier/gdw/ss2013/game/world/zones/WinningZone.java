@@ -42,7 +42,7 @@ public class WinningZone extends AbstractZone {
 	
 	private void handleWin() {
 		if (newLevel == null) {
-			MainGame.changeState(MainGame.MAINMENUSTATE);
+			MainGame.changeState(MainGame.WINSTATE);
 		}
 		else {
 			World.getInstance().setLevelName(newLevel);
