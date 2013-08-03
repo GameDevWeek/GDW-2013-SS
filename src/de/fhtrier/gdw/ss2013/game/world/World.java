@@ -217,5 +217,8 @@ public class World {
         this.levelName = levelName;
         loadNewMap = true;
     }
-
+    
+    public String getLevelName() {
+        return this.levelName;
+    }
 }
