@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="100" height="100" tilewidth="64" tileheight="64">
- <tileset firstgid="1" source="tiledmap_final.tsx"/>
+ <tileset firstgid="1" source="robotileset.tsx"/>
  <tileset firstgid="626" source="entity_tileset.tsx"/>
  <tileset firstgid="647" source="moving_platform.tsx"/>
  <layer name="Kachelebene 1" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt0TkOgDAMRUF3bJfypbkfrgEhQCihmJFelSbyjwDuypP2b/STF9FOxvHmGfZoLav1QRm2aS3Dzf8iwxYAAAAAAAAAAAAAAAC8N1RjNVVztfT9DgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH9kAi/8OtQ==
+   eJzt10tuwjAUBdBMUIHuARi0e4ABq4BBFwFILKk7oqwIW8SRVSkhExw+50hXzucNnFgvkasKAAAAAAAAAAAAAAAAAAAAAAB4N/sCORR7mueX3ldX+tTcCv1sWrKt9McQdiG/IaeQv2w8txz3uZafp5F+Yi/8DD0JGrE/jkNPgkbsD+vxOOJ6fA09CRrxe7UOGYdMQqYhn/9qPrL7s6Kzez9xPfb1mBL75TurWWR13Fe+39jWx7FfJnWWIaushvtKPZH2bruO6I/yRtX1HzFvCWXNOmI9AAAAAAAAAAAAAAAAAAAAeBUX8udGTg==
   </data>
  </layer>
  <objectgroup name="Objektebene 1" width="100" height="100">
-  <object gid="626" x="3107" y="2449"/>
+  <object type="solid" x="2684" y="3474">
+   <polyline points="0,0 250,2 250,122 462,124 462,0 646,0"/>
+  </object>
+  <object gid="626" x="2768" y="3392"/>
+  <object type="solid" x="2670" y="3472">
+   <polyline points="0,0 0,-308 1548,-308"/>
+  </object>
+  <object gid="630" x="2870" y="3473"/>
+  <object gid="630" x="2804" y="3473"/>
+  <object gid="630" x="2871" y="3407"/>
  </objectgroup>
 </map>
