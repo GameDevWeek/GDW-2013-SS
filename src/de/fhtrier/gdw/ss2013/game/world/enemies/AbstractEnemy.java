@@ -26,7 +26,7 @@ public abstract class AbstractEnemy extends EntityCollidable {
     private float health;
     protected Animation current_ani;
     private boolean invertAni;
-    protected SoundPlayer soundPlayer = SoundLocator.getPlayer();
+    protected SoundPlayer soundPlayer;
     protected Sound dieSound;
     protected Sound hitSound;
 
@@ -42,6 +42,7 @@ public abstract class AbstractEnemy extends EntityCollidable {
     @Override
     protected void initialize() {
         super.initialize();
+        soundPlayer = SoundLocator.getPlayer();
     }
 
     @Override
