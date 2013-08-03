@@ -16,10 +16,19 @@
            ]
 		},
 		
+				
+		{ "name": "dummy_path",
+           "destinations": [
+            {"x": 1200, "y": 200, "speed": -1 },
+            {"x": -200, "y": 200, "speed": 100 }
+           ]
+		},
+		
+		
 		{ "name": "astronaut_path",
            "destinations": [
             {"x": -200, "y": 500, "speed": -1 },
-            {"x": 1100, "y": 500, "speed": 165 }
+            {"x": 1100, "y": 500, "speed": 170 }
            ]
 		},
 		
@@ -38,6 +47,12 @@
            ]
 		},
 		
+		{ "name": "enemy_duck_path",
+           "destinations": [
+            {"x": 780, "y": 2650, "speed": -1 },
+            {"x": 790, "y": -120, "speed": 80 }
+           ]
+		},
 		
 		{ "name": "couple_superjump_path",
            "destinations": [
@@ -47,7 +62,7 @@
 		},
 		
 		
-		{ "name": "enemy_trunk_path",
+		{ "name": "enemy_trunk_purple_path",
            "destinations": [
             {"x": 775, "y": 3400, "speed": -1 },
             {"x": 775, "y": -120, "speed": 80 }
@@ -55,7 +70,7 @@
 		},
 		
 		
-		{ "name": "enemy_trunk_path_2",
+		{ "name": "enemy_trunk_path",
            "destinations": [
             {"x": 200, "y": 3900, "speed": -1 },
             {"x": 200, "y": -120, "speed": 80 }
@@ -154,8 +169,10 @@
 		{ "name": "alien_standing", "x": 0, "y": 0, "width": 114, "height": 107, "path": "alien_path", "angle": 0, "delay": 0, "oriented": false, "animation": true },
 		{ "name": "plant", "x": 0, "y": 0, "width": 92, "height": 92, "path": "plant_path", "angle": 0, "delay": 0, "oriented": false, "animation": false },
 		{ "name": "player_couple_superjump", "x": 0, "y": 0, "width": 236, "height": 191, "path": "couple_superjump_path", "angle": 0, "delay": 0, "oriented": false, "animation": true },
+		{ "name": "ground_ememy_trunk_purple", "x": 0, "y": 0, "width": 110, "height": 195, "path": "enemy_trunk_purple_path", "angle": 0, "delay": 0, "oriented": false, "animation": true },
 		{ "name": "ground_ememy_trunk", "x": 0, "y": 0, "width": 110, "height": 195, "path": "enemy_trunk_path", "angle": 0, "delay": 0, "oriented": false, "animation": true },
-		{ "name": "ground_ememy_trunk", "x": 0, "y": 0, "width": 110, "height": 195, "path": "enemy_trunk_path_2", "angle": 0, "delay": 0, "oriented": false, "animation": true }
+		{ "name": "mother_walk", "x": 0, "y": 0, "width": 352, "height": 291, "path": "mother_path", "angle": 0, "delay": 0, "oriented": false, "animation": true },
+		{ "name": "ground_ememy_middle_duck", "x": 0, "y": 0, "width": 172, "height": 172, "path": "enemy_duck_path", "angle": 0, "delay": 0, "oriented": false, "animation": true }
 	]
 }
 

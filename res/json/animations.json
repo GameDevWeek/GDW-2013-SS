@@ -181,6 +181,13 @@
   "loop" : true
 },
 {
+  "name" : "ground_ememy_trunk_purple",
+  "pfad" : "enemies/ground/middle_trunk_purple",
+  "anzBilder" : 4,
+  "animSpeed" : 100,
+  "loop" : true
+},
+{
   "name" : "ground_ememy_big",
   "pfad" : "enemies/ground/big",
   "anzBilder" : 11,
@@ -206,5 +213,12 @@
   "pfad" : "boss/crabbossidle",
   "anzBilder" : 1,
   "animSpeed" : 250,
+  "loop" : true
+},
+{
+  "name" : "mother_walk",
+  "pfad" : "boss/mother_walk",
+  "anzBilder" : 8,
+  "animSpeed" : 100,
   "loop" : true
 }]
