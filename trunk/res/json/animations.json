@@ -174,8 +174,8 @@
   "loop" : true
 },
 {
-  "name" : "ground_ememy_stamm",
-  "pfad" : "enemies/ground/middle_stamm",
+  "name" : "ground_ememy_trunk",
+  "pfad" : "enemies/ground/middle_trunk",
   "anzBilder" : 11,
   "animSpeed" : 100,
   "loop" : true
