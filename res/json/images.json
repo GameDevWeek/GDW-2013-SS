@@ -104,8 +104,12 @@
   "pfad" : "dummies/boss2"
 },
 {
-  "name" : "squid",
-  "pfad" : "dummies/squid"
+  "name" : "squid_1",
+  "pfad" : "entities/squid_1"
+},
+{
+  "name" : "squid_2",
+  "pfad" : "entities/squid_2"
 },
 {
   "name" : "symbion_logo_menu",

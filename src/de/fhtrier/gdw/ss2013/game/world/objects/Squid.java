@@ -7,6 +7,7 @@ import org.jbox2d.dynamics.BodyType;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.util.Log;
@@ -32,7 +33,12 @@ public class Squid extends Entity {
 	private static Random random = new Random(System.currentTimeMillis());
 
 	public Squid () {
-		super(AssetLoader.getInstance().getImage("squid"));
+		super(getRandomImage());
+	}
+
+	private static Image getRandomImage() {
+		int rand = (int) (Math.random()*2);//can be 1 or 0
+		return AssetLoader.getInstance().getImage("squid_"+(rand+1));
 	}
 
 	@Override
