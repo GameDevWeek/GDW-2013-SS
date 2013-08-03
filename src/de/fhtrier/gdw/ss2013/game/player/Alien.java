@@ -23,6 +23,7 @@ import de.fhtrier.gdw.ss2013.input.AlienController;
 import de.fhtrier.gdw.ss2013.physix.PhysixConst;
 import de.fhtrier.gdw.ss2013.sound.SoundLocator;
 import de.fhtrier.gdw.ss2013.sound.SoundPlayer;
+import org.jbox2d.dynamics.BodyType;
 
 public final class Alien extends Entity implements AlienController {
 
@@ -133,7 +134,7 @@ public final class Alien extends Entity implements AlienController {
 
     @Override
     public void nextAbility() {
-        selectedAbility = (selectedAbility % 3) + 1;
+        selectedAbility = (selectedAbility % 2) + 1;
 
         Log.debug("rotate ability");
         dropCurrentSelected(); // if current has selection
@@ -141,13 +142,8 @@ public final class Alien extends Entity implements AlienController {
 
     @Override
     public void previousAbility() {
-
-        /*
-         * if (selectedAbility > 0){ selectedAbility--; }else{ selectedAbility =
-         * 3; }
-         */
-
-        selectedAbility = ((selectedAbility + 1) % 3) + 1;
+        //selectedAbility = ((selectedAbility + 1) % 3) + 1;
+        selectedAbility = (selectedAbility % 2) + 1;
         dropCurrentSelected();
     }
 

@@ -1,4 +1,4 @@
-package de.fhtrier.gdw.ss2013.gui;
+package de.fhtrier.gdw.ss2013.gui.AbilityDisplay;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;

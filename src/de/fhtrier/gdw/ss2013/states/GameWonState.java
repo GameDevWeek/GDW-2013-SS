@@ -11,43 +11,37 @@ import org.newdawn.slick.state.StateBasedGame;
 import de.fhtrier.gdw.ss2013.MainGame;
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.world.World;
+import de.fhtrier.gdw.ss2013.gui.counter.AutonomousRollerCounter;
+import de.fhtrier.gdw.ss2013.gui.counter.MechanicalCounter;
+import de.fhtrier.gdw.ss2013.gui.counter.RollerCounter;
+import de.fhtrier.gdw.ss2013.gui.counter.ScoreCounter;
+import de.fhtrier.gdw.ss2013.gui.counter.WinScreenCounter;
 import de.fhtrier.gdw.ss2013.gui.utils.CenteredText;
-import de.fhtrier.gdw.ss2013.gui.MechanicalCounter;
-import de.fhtrier.gdw.ss2013.gui.RollerCounter;
-import de.fhtrier.gdw.ss2013.gui.ScoreCounter;
 
 public class GameWonState extends BasicGameState {
 
-    private boolean RunUpdateAtLeastOneTime = false;
+    private boolean runUpdateAtLeastOneTime = false;
     
     AssetLoader asset;
 
     int timer = 0;
     int i = 0;
-    int score = 500; //500 nur zum testen
     float seed = 1;
 	
 	
-	ScoreCounter counter;
-	
-	
-
-	
+    WinScreenCounter counter;
+    
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 	    
 	    i = 0;
 	    
-	    asset = AssetLoader.getInstance();
-	    
-	    Image img = asset.getImage("digits");
-	    
-	    //score = World.getScoreCounter().getScore();
-	    
-	    
-	    counter = new ScoreCounter(img, new Vector2f(gc.getWidth()/2-img.getWidth()/2, gc.getHeight()/2 - img.getHeight()/2), score, 4, 1f);
-	    
-	    counter.setDesiredValue(0);
+	    Image digits = AssetLoader.getInstance().getImage("digits");
+	    Vector2f centerPosition = new Vector2f(gc.getWidth()/2,gc.getHeight()/2);
+
+	    int score = 1337; //500 nur zum testen
+        counter = new WinScreenCounter(digits, centerPosition,score, 4);
+        counter.start();
 	}
 
 	@Override
@@ -58,21 +52,14 @@ public class GameWonState extends BasicGameState {
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
 	  
-	  
-	   timer += delta + (i*i);
-	   
-	   if (counter.speed < 3.0f)
-	       counter.speed = 0.1f * i;
-	   
-	   counter.update(gc, sbg, delta);
-	       
-	   if (timer >= 200 && i <= score){
-	       
-	       counter.setDesiredValue(i);
-	       timer = 0;
-	       i++;
-	    }
-	    
+	  if (runUpdateAtLeastOneTime)
+	  {    
+	      counter.update(gc, sbg, delta);
+	  }
+	  else
+	  {
+	      runUpdateAtLeastOneTime = true;
+	  }
 	}
 
 	@Override
