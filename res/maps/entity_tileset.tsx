@@ -23,6 +23,7 @@
  </tile>
  <tile id="4">
   <properties>
+   <property name="animation" value="box"/>
    <property name="type" value="box"/>
   </properties>
  </tile>
@@ -89,6 +90,13 @@
  <tile id="17">
   <properties>
    <property name="type" value="teleporter"/>
+  </properties>
+ </tile>
+ <tile id="19">
+  <properties>
+   <property name="animation" value="rock"/>
+   <property name="round" value="true"/>
+   <property name="type" value="box"/>
   </properties>
  </tile>
 </tileset>

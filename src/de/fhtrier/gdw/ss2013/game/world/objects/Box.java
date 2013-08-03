@@ -13,13 +13,14 @@ import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.game.world.zones.DeadZone;
 import de.fhtrier.gdw.ss2013.physix.PhysixManager;
+import de.fhtrier.gdw.ss2013.physix.PhysixShapeConfig;
 import org.jbox2d.dynamics.BodyType;
 
 /**
  * Box class
- * 
+ *
  * @author Kevin, Georg
- * 
+ *
  */
 public class Box extends EntityCollidable {
 
@@ -28,39 +29,44 @@ public class Box extends EntityCollidable {
 
     public Box() {
         super();
-        animation = AssetLoader.getInstance().getAnimation("box");
     }
 
     @Override
     public boolean isBottomPositioned() {
         return true;
     }
-    
+
     @Override
     public void render(GameContainer gc, Graphics g) {
         g.pushTransform();
         g.translate(getPosition().x, getPosition().y);
-        g.rotate(0,0, (float)(physicsObject.getAngle()/ Math.PI * 180.0));
-        g.translate(-animation.getWidth() / 2.0f, -animation.getHeight()/2.0f);
-    	animation.draw();
+        g.rotate(0, 0, (float) (physicsObject.getAngle() / Math.PI * 180.0));
+        g.translate(-animation.getWidth() / 2.0f, -animation.getHeight() / 2.0f);
+        animation.draw();
         g.popTransform();
     }
 
-	@Override
+    @Override
     protected void initialize() {
         super.initialize();
+        animation = AssetLoader.getInstance().getAnimation(properties.getProperty("animation"));
         isPlayerOnMe = 0;
         setInitialSize(animation.getWidth(), animation.getHeight());
     }
 
     @Override
     public void initPhysics() {
-        createPhysics(BodyType.DYNAMIC, origin.x, origin.y)
+        PhysixShapeConfig config = createPhysics(BodyType.DYNAMIC, origin.x, origin.y)
                 .density(PhysixManager.DENSITY).friction(PhysixManager.FRICTION)
                 .fixedRotation(false)
                 .linearDamping(0.1f)
-                .angularDamping(0.8f)
-                .asCircle(initialSize.x/2);
+                .angularDamping(0.8f);
+
+        if (properties.getBoolean("round", false)) {
+            config.asCircle(initialSize.x / 2);
+        } else {
+            config.asBox(initialSize.x, initialSize.y);
+        }
     }
 
     public void onCollision(Entity e) {
@@ -79,9 +85,10 @@ public class Box extends EntityCollidable {
             isPlayerOnMe++;
         }
         if (other instanceof DeadZone) {
-        	DeadZone zone = (DeadZone) other;
-        	if (zone.isRemoveBox())
-        		World.getInstance().getEntityManager().removeEntity(this);
+            DeadZone zone = (DeadZone) other;
+            if (zone.isRemoveBox()) {
+                World.getInstance().getEntityManager().removeEntity(this);
+            }
         }
     }
 

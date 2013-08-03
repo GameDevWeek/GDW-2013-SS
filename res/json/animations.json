@@ -183,6 +183,13 @@
 {
   "name" : "box",
   "pfad" : "entities/box",
+  "anzBilder" : 1,
+  "animSpeed" : 250,
+  "loop" : false
+},
+{
+  "name" : "rock",
+  "pfad" : "entities/rock",
   "anzBilder" : 5,
   "animSpeed" : 250,
   "loop" : true
