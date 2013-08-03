@@ -63,6 +63,10 @@
   "pfad" : "gui/digits"
 },
 {
+	"name" : "Checkpoint",
+	"pfad" : "gui/checkpoint"
+},
+{
   "name" : "world_background",
   "pfad" : "background/background"
 },

@@ -99,4 +99,9 @@
    <property name="type" value="box"/>
   </properties>
  </tile>
+ <tile id="20">
+  <properties>
+   <property name="type" value="checkpoint"/>
+  </properties>
+ </tile>
 </tileset>
