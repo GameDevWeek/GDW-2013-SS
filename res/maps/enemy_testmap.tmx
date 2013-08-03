@@ -117,5 +117,22 @@
   <object type="solid" x="743" y="5084" width="128" height="1363"/>
   <object gid="734" x="1964" y="6248"/>
   <object name="f1" gid="743" x="1472" y="6208"/>
+  <object name="mp1" gid="755" x="2592" y="6297">
+   <properties>
+    <property name="path" value="path1"/>
+   </properties>
+  </object>
+  <object name="button1" gid="741" x="2059" y="6290">
+   <properties>
+    <property name="trigger" value="mp1"/>
+   </properties>
+  </object>
+  <object name="path1" type="FollowPath" x="2240" y="6272">
+   <properties>
+    <property name="goHome" value="false"/>
+    <property name="isActive" value="false"/>
+   </properties>
+   <polyline points="0,0 384,0 384,-320 0,-320 0,0"/>
+  </object>
  </objectgroup>
 </map>
