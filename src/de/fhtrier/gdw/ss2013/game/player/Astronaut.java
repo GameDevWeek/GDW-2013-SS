@@ -225,7 +225,7 @@ public final class Astronaut extends EntityCollidable implements AstronautContro
 		if (jumpDelay <= 0 && isGrounded()) {
 			jumpDelay = 0;
 			setVelocityY(-jumpSpeed);
-			physicsObject.applyImpulse(new Vector2f(0, -jumpSpeed));
+			physicsObject.applyImpulse(0, -jumpSpeed);
 			setState(PlayerState.jumping);
 			jumpDelay = jumpDelayTotal;
 			// SoundLocator.getPlayer().playSound("absprung");
@@ -236,7 +236,7 @@ public final class Astronaut extends EntityCollidable implements AstronautContro
 		if (superJumpDelay <= 0 && (isGrounded() || jumpDelay>0) && isCarryAlien()) {
 			jumpDelay = 0;
 			setVelocityY(-superJumpSpeed);
-			physicsObject.applyImpulse(new Vector2f(0, -superJumpSpeed));
+			physicsObject.applyImpulse(0, -superJumpSpeed);
 			setState(PlayerState.superjump_start);
             physicsObject.setGravityScale(superJumpGravityScale);
 			superJumpDelay = jumpDelayTotal;

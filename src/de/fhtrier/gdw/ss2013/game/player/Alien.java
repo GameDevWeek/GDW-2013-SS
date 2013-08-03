@@ -210,12 +210,16 @@ public final class Alien extends Entity implements AlienController {
         }
     }
 
-    private void dropCurrentSelected() {
+    public void dropCurrentSelected() {
         if (currentSelectedBox != null) {
             currentSelectedBox.getPhysicsObject().setGravityScale(1.f);
 
             currentSelectedBox = null;
         }
+    }
+    
+    public Box getCurrentSelectedBox() {
+        return currentSelectedBox;
     }
 
     @Override

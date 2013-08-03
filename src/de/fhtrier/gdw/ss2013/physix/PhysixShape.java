@@ -106,6 +106,10 @@ public abstract class PhysixShape {
         body.applyLinearImpulse(PhysixUtil.toBox2D(speed), body.getWorldCenter());
     }
 
+    public void applyImpulse(float x, float y) {
+        body.applyLinearImpulse(new Vec2(PhysixUtil.toBox2D(x), PhysixUtil.toBox2D(y)), body.getWorldCenter());
+    }
+
     public float getAngle() {
         return body.getAngle();
     }
