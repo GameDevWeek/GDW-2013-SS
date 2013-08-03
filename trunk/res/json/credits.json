@@ -3,9 +3,50 @@
 		{ "name": "middle_path",
            "destinations": [
 			{"x": 500, "y": 800, "speed": -1 },
-			{"x": 500, "y": -100, "speed": 100 }
+			{"x": 500, "y": -100, "speed": 80 }
            ]
 		},
+		
+		{ "name": "middle_path_sideways",
+           "destinations": [
+			{"x": 500, "y": 800, "speed": -1 },
+			{"x": 500, "y": 500, "speed": 80 },
+			{"x": 1100, "y": 500, "speed": 165 }
+			
+           ]
+		},
+
+		
+		{ "name": "astronaut_path",
+           "destinations": [
+            {"x": -200, "y": 500, "speed": -1 },
+            {"x": 1100, "y": 500, "speed": 165 }
+           ]
+		},
+		
+		{ "name": "alien_path",
+           "destinations": [
+            {"x": 240, "y": 1500, "speed": -1 },
+            {"x": 240, "y": -120, "speed": 80 }
+           ]
+		},
+		
+		
+		{ "name": "plant_path",
+           "destinations": [
+            {"x": 775, "y": 2000, "speed": -1 },
+            {"x": 775, "y": -120, "speed": 80 }
+           ]
+		},
+		
+		
+		{ "name": "couple_superjump_path",
+           "destinations": [
+            {"x": 240, "y": 2900, "speed": -1 },
+            {"x": 240, "y": -120, "speed": 80 }
+           ]
+		},
+		
 			
 				
 		{ "name": "platform_steady_path",
@@ -95,14 +136,18 @@
     
     
     "styles" : [
+    	{ "name": "credit_titel", "path": "middle_path_sideways", "color": "F8BB08", "font": "jabjai_heavy" },
         { "name": "title", "path": "middle_path", "color": "F8BB08", "font": "jabjai_heavy" },
-        { "name": "name", "path": "middle_path", "color": "FFA500", "font": "jabjai_light" }
+        { "name": "name", "path": "middle_path", "color": "FFFFFF", "font": "jabjai_heavy" }
     ],
     
     
     
     "texts" : [
-		{ "style" : "title", "delay": 100, "value": "Organisation" },
+    	{ "style" : "credit_titel", "delay": 0, "value": "Credits" },
+    
+    
+		{ "style" : "title", "delay": 3750, "value": "Organisation" },
 		{ "style" : "name", "delay": 750, "value": "Santo Pfingsten" },
 		{ "style" : "name", "delay": 750, "value": "Tobias Krumholz" },
 		{ "style" : "name", "delay": 750, "value": "Robin Dick" },
@@ -110,7 +155,7 @@
 		{ "style" : "name", "delay": 750, "value": "Torsten Scholer" },
 		{ "style" : "name", "delay": 750, "value": "Annalena Weber" },
 		
-		{ "style" : "title", "delay": 1150, "value": "Game Design" },
+		{ "style" : "title", "delay": 1350, "value": "Game Design" },
 		{ "style" : "name", "delay": 750, "value": "Annalena Weber" },
 		{ "style" : "name", "delay": 750, "value": "Tobias Borns" },
 		{ "style" : "name", "delay": 750, "value": "Julia Goerke" },
@@ -118,25 +163,26 @@
 		{ "style" : "name", "delay": 750, "value": "Julia Wolf" },
 		{ "style" : "name", "delay": 750, "value": "Yasmin Schraven" },
 		
-		{ "style" : "title", "delay": 1150, "value": "Level Design" },
+		{ "style" : "title", "delay": 1350, "value": "Level Design" },
 		{ "style" : "name", "delay": 750, "value": "Wendelin Lehr" },
 		{ "style" : "name", "delay": 750, "value": "Janina Noell" },
 		{ "style" : "name", "delay": 750, "value": "Benjamin Albsmeier" },
 		
-		{ "style" : "title", "delay": 1150, "value": "Interface Design" },
+		{ "style" : "title", "delay": 1350, "value": "Interface Design" },
 		{ "style" : "name", "delay": 750, "value": "Tobias Borns" },
+		{ "style" : "name", "delay": 750, "value": "Yasmin Schraven" },
+		{ "style" : "name", "delay": 750, "value": "Natalie Carl" },
 		
-		{ "style" : "title", "delay": 1150, "value": "Sound Design" },
+		{ "style" : "title", "delay": 1350, "value": "Sound Design" },
 		{ "style" : "name", "delay": 750, "value": "Andreas Kuster" },
 		
-		{ "style" : "title", "delay": 1150, "value": "Animation" },
+		{ "style" : "title", "delay": 1350, "value": "Animation" },
 		{ "style" : "name", "delay": 750, "value": "Annalena Weber" },
 		{ "style" : "name", "delay": 750, "value": "Anton Krapp" },
 		{ "style" : "name", "delay": 750, "value": "Mira Lorenz" },
 		{ "style" : "name", "delay": 750, "value": "Maxine Hammen" },
-		{ "style" : "name", "delay": 750, "value": "..." },
 		
-		{ "style" : "title", "delay": 1150, "value": "Programmierung" },
+		{ "style" : "title", "delay": 1350, "value": "Programmierung" },
 		{ "style" : "name", "delay": 750, "value": "Santo Pfingsten" },
 		{ "style" : "name", "delay": 750, "value": "Thomas Milde" },		
 		{ "style" : "name", "delay": 750, "value": "Robin Dick" },
@@ -151,19 +197,17 @@
 		{ "style" : "name", "delay": 750, "value": "Daniel Biskup" },
 		{ "style" : "name", "delay": 750, "value": "David Wichter" },
 		{ "style" : "name", "delay": 750, "value": "Arnold Oberzeiser" },
-		
-		{ "style" : "title", "delay": 1150, "value": "Bitte in Google Docs eintragen!" }
+		{ "style" : "name", "delay": 750, "value": "Torsten Scholer" }
 		
     ],
     
     
     
     "animations" : [
-		{ "name": "PlatformSmall", "x": 0, "y": 0, "width": 170, "height": 36, "path": "platform_moving_path", "angle": 0, "delay": 0, "oriented": false, "animation": false },
-		{ "name": "PlatformSmall", "x": 0, "y": 0, "width": 170, "height": 36, "path": "platform_steady_path", "angle": 0, "delay": 0, "oriented": false, "animation": false },
-		{ "name": "switch_unpressed", "x": 0, "y": 0, "width": 67, "height": 51, "path": "switch_up_path", "angle": 0, "delay": 0, "oriented": false, "animation": false },
-		{ "name": "astronaut_standing", "x": 0, "y": 0, "width": 228, "height": 191, "path": "both_players_path", "angle": 0, "delay": 0, "oriented": false, "animation": true },
-		{ "name": "ground_ememy_middle", "x": 0, "y": 0, "width": 98, "height": 87, "path": "enemy_test_path", "angle": 0, "delay": 0, "oriented": false, "animation": true }
+		{ "name": "astronaut_walking", "x": 0, "y": 0, "width": 220, "height": 191, "path": "astronaut_path", "angle": 0, "delay": 500, "oriented": false, "animation": true },
+		{ "name": "alien_standing", "x": 0, "y": 0, "width": 114, "height": 107, "path": "alien_path", "angle": 0, "delay": 0, "oriented": false, "animation": true },
+		{ "name": "plant", "x": 0, "y": 0, "width": 92, "height": 92, "path": "plant_path", "angle": 0, "delay": 0, "oriented": false, "animation": false },
+		{ "name": "player_couple_superjump", "x": 0, "y": 0, "width": 236, "height": 191, "path": "couple_superjump_path", "angle": 0, "delay": 0, "oriented": false, "animation": true }
 	]
 }
 
