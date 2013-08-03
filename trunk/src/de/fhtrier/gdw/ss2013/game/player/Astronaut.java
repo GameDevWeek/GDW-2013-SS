@@ -184,14 +184,7 @@ public final class Astronaut extends EntityCollidable implements
                         * (delta / 1000f);
             else
                 die();
-            if (getVelocity().x == 0 && getVelocity().y == 0 || !(walking)) {
-                if (!(state.equals(PlayerState.superjump)
-                        || state.equals(PlayerState.superjump_start) || state
-                            .equals(PlayerState.superjump_end))) {
-                    setState(PlayerState.standing);
-                }
-            }
-
+            
             Vector2f pos = this.getPosition();
             dynamicTarget.set(pos.x, pos.y);
         }
