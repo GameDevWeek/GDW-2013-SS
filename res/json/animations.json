@@ -176,7 +176,7 @@
 {
   "name" : "ground_ememy_trunk",
   "pfad" : "enemies/ground/middle_trunk",
-  "anzBilder" : 11,
+  "anzBilder" : 4,
   "animSpeed" : 100,
   "loop" : true
 },
