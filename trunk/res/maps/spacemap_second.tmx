@@ -26,7 +26,7 @@
   <object gid="630" x="2078" y="3966"/>
   <object gid="630" x="1988" y="3904"/>
   <object gid="630" x="2050" y="3902"/>
-  <object gid="626" x="178" y="3958"/>
+  <object gid="626" x="278" y="3947"/>
   <object gid="637" x="2350" y="3516"/>
   <object name="p1" type="FollowPath" x="3732" y="3548">
    <properties>
@@ -155,7 +155,7 @@
   </object>
   <object type="solid" x="5449" y="1037" width="174" height="152"/>
   <object type="solid" x="12234" y="1358" width="296" height="154"/>
-  <object gid="627" x="13916" y="1256"/>
+  <object type="winningzone" x="13212" y="596" width="1328" height="1384"/>
  </objectgroup>
  <objectgroup name="Zones" width="230" height="70">
   <object type="solid" x="0" y="3988" width="826" height="406"/>

@@ -62,7 +62,7 @@
   <object type="solid" x="9571" y="871" width="1156" height="1474"/>
   <object type="solid" x="7188" y="2600" width="281" height="162"/>
   <object type="solid" x="10590" y="1999" width="1156" height="1474"/>
-  <object type="solid" x="8622" y="3223" width="2336" height="626"/>
+  <object type="solid" x="8622" y="3199" width="2336" height="626"/>
  </objectgroup>
  <objectgroup name="Entitys" width="200" height="150">
   <object gid="630" x="1664" y="4160"/>
@@ -298,13 +298,14 @@
     <property name="trigger" value="deprec"/>
    </properties>
   </object>
-  <object name="dpa" x="6234" y="1804">
+  <object name="dpa" type="FollowPath" x="6234" y="1804">
    <polyline points="0,0 208,-108 382,12"/>
   </object>
-  <object gid="647" x="6204" y="1826">
+  <object name="muih" gid="647" x="6204" y="1826">
    <properties>
     <property name="path" value="dpa"/>
    </properties>
   </object>
+  <object type="winningzone" x="8704" y="2928" width="1952" height="708"/>
  </objectgroup>
 </map>
