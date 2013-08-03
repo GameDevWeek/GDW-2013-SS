@@ -145,5 +145,10 @@
 {
   "name" : "boss_image",
   "pfad" : "boss/boss"
-}]
+},
+{
+  "name" : "scribble_kristall",
+  "pfad" : "ScribbleKristall_transparent"
+}
+]
 
