@@ -10,6 +10,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import de.fhtrier.gdw.ss2013.MainGame;
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
+import de.fhtrier.gdw.ss2013.assetloader.infos.SettingsInfo;
 import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.menu.IActionListener;
 import de.fhtrier.gdw.ss2013.menu.Label;
@@ -63,12 +64,31 @@ public class MenuPageLevelSelect extends MenuPage {
         
         
         Set<String> levels = AssetLoader.getInstance().getMapInfos();
+        
         final String[] lvls = levels.toArray(new String[levels.size()]);
-        final ToggleButton tb=addLeftAlignedToggleButton(lvls, spaceX, yCenter * 0.25f + (hText * 3), font, Align.LEFT);
+        final ToggleButton tb = addLeftAlignedToggleButton(lvls, spaceX, yCenter * 0.25f + (hText * 3), font, Align.LEFT);
+        
+        SettingsInfo settings = AssetLoader.getInstance().getSettings();
+        int lvlIndex = 0;
+        
+        if (settings.lastLoadedMap != null) {
+            for(int i = 0; i < lvls.length; i++) {
+                String s = lvls[i];
+                if (s.equals(settings.lastLoadedMap)) {
+                    lvlIndex = i;
+                    break;
+                }
+            }
+        }
+        
+        tb.state(lvlIndex);
         
         addCenteredButton("Los geht's!", xCenter, yCenter * 1.5f, font, new IActionListener() {
             public void onAction () {
                 World.getInstance().setLevelName(lvls[tb.getState()]);
+                SettingsInfo settings = AssetLoader.getInstance().getSettings();
+                settings.lastLoadedMap = lvls[tb.getState()];
+                AssetLoader.getInstance().writeSettings(settings);
                 World.getInstance().shallBeReseted(true);
                 MainGame.changeState(MainGame.GAMEPLAYSTATE);
             }

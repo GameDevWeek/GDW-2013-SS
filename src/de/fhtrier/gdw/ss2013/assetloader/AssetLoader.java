@@ -5,6 +5,8 @@
 package de.fhtrier.gdw.ss2013.assetloader;
 
 import de.fhtrier.gdw.ss2013.assetloader.infos.CreditsInfo;
+
+import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
@@ -229,13 +231,10 @@ public class AssetLoader {
 		List<ScoreInfo> scoreInfos = null;
 		try {
 			scoreInfos = JacksonReader.readList(filename, ScoreInfo.class);
+		} catch (FileNotFoundException e) {
+		    // Do nothing: Nicht jedes Level besitzt eine Highscore von Anfang an.
 		} catch (Exception e) {
-			try {
-				scoreInfos = JacksonReader.readList("res/json/scores/default.json", ScoreInfo.class);
-			} catch (Exception e1) {
-				e1.printStackTrace();
-				e.printStackTrace();
-			}
+			e.printStackTrace();
 		}
 		return scoreInfos;
 	}

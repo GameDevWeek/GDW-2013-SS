@@ -99,8 +99,8 @@
   "pfad" : "dummies/squid"
 },
 {
-  "name" : "symbion",
-  "pfad" : "symbion"
+  "name" : "symbion_logo_menu",
+  "pfad" : "menu/logo"
 },
 {
   "name" : "winning",

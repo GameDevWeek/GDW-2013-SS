@@ -32,7 +32,8 @@ public class MenuPage {
     protected Color hoverColor = new Color(Integer.parseInt("F8BB08", 16));
     protected Color standardColor = Color.white;
     protected Color pressedColor = Color.cyan;
-
+    protected Font standardFont;
+    
     public MenuPage(GameContainer container, StateBasedGame game, MenuManager menuManager, MenuPage parent, String bgImage, String type) throws SlickException {
         this.container = container;
 
@@ -71,7 +72,11 @@ public class MenuPage {
     public void addWidget(Widget w) {
         widgets.add(w);
     }
-
+    
+    public void removeWidget(Widget w) {
+        widgets.remove(w);
+    }
+    
     public void render(Graphics g) {
         if (bgImage != null) {
             bgImage.draw(0, 0);

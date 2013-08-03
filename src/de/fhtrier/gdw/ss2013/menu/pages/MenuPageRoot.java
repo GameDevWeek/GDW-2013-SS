@@ -1,6 +1,9 @@
 
 package de.fhtrier.gdw.ss2013.menu.pages;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.text.AttributeSet.FontAttribute;
 
 import de.fhtrier.gdw.ss2013.MainGame;
@@ -13,6 +16,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
+import de.fhtrier.gdw.ss2013.assetloader.infos.ScoreInfo;
+import de.fhtrier.gdw.ss2013.game.score.HighscoreManager;
 import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.menu.Button;
 import de.fhtrier.gdw.ss2013.menu.IActionListener;
@@ -45,7 +50,7 @@ public class MenuPageRoot extends MenuPage {
 		
 		if(!ingame) {
 		    
-		    Image img = AssetLoader.getInstance().getImage("symbion");
+		    Image img = AssetLoader.getInstance().getImage("symbion_logo_menu");
 		    
 		    addCenteredLabel(img, xCenter, yCenter * 0.5f);
 		    
@@ -78,5 +83,7 @@ public class MenuPageRoot extends MenuPage {
                     }
             );
 		}
+		
+		System.out.println(HighscoreManager.getHighscoreRank("test", 54));
 	}
 }
