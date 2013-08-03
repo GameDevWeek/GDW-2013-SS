@@ -20,7 +20,7 @@ public class MenuPageCredits extends MenuPage {
 	
 	public MenuPageCredits(final GameContainer container, final StateBasedGame game, final MenuManager menuManager, MenuPage parent)
 			throws SlickException {
-		super(container, game, menuManager, parent, "bg_credits", "credits");
+		super(container, game, menuManager, parent, null, "credits");
 
 		Font font = AssetLoader.getInstance().getFont("jabjai_heavy");
 
