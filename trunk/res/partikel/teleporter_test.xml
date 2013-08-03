@@ -36,8 +36,10 @@
 </scaleY>
 <color>
 <step b="0.6" g="0.8" offset="0.0" r="0.0"/>
-<step b="1.0" g="0.8" offset="0.18" r="1.0"/>
+<step b="1.0" g="0.2" offset="0.18" r="1.0"/>
 <step b="1.0" g="1.0" offset="0.468" r="0.0"/>
+<step b="1.0" g="0.4" offset="0.632" r="1.0"/>
+<step b="1.0" g="0.4" offset="0.632" r="1.0"/>
 <step b="1.0" g="0.4" offset="0.632" r="1.0"/>
 <step b="0.8" g="1.0" offset="1.0" r="0.2"/>
 </color>
