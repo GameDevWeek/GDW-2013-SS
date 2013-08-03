@@ -12,7 +12,7 @@
   <object type="solid" x="994" y="3664" width="3302" height="601"/>
   <object type="solid" x="603" y="421" width="799" height="2305"/>
   <object type="solid" x="3899" y="306" width="850" height="2411"/>
-  <object gid="627" x="2324" y="4639">
+  <object gid="627" x="3489" y="3027">
    <properties>
     <property name="name" value="crabboss"/>
    </properties>
@@ -20,7 +20,6 @@
   <object type="solid" x="1085" y="-108" width="3302" height="601"/>
   <object type="solid" x="1285" y="2836" width="109" height="389"/>
   <object type="solid" x="1055" y="2704" width="114" height="728"/>
-  <object type="solid" x="3135" y="1763" width="325" height="859"/>
   <object gid="630" x="1632" y="3023"/>
   <object type="solid" x="3911" y="2833" width="109" height="319"/>
   <object type="solid" x="1287" y="3092" width="1324" height="129"/>
