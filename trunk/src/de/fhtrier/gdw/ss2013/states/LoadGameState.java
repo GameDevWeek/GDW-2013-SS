@@ -40,8 +40,8 @@ public class LoadGameState extends BasicGameState {
 
 		assetLoader = AssetLoader.getInstance();
 		SoundLocator.provideAssetLoader(assetLoader);
-
-		if (container.isFullscreen()) {
+		
+		if (container.isFullscreen() || assetLoader.getSettings().fullscreen) {
 			MainGame.toggleFullscreen();
 		}
 	}

@@ -13,6 +13,8 @@ import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 import org.newdawn.slick.state.transition.Transition;
 
+import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
+import de.fhtrier.gdw.ss2013.assetloader.infos.SettingsInfo;
 import de.fhtrier.gdw.ss2013.settings.DebugModeStatus;
 import de.fhtrier.gdw.ss2013.states.LoadGameState;
 
@@ -64,6 +66,9 @@ public class MainGame extends StateBasedGame {
                         instance.container.getScreenWidth(),
                         instance.container.getScreenHeight(), true);
             }
+            SettingsInfo settings = AssetLoader.getInstance().getSettings();
+            settings.fullscreen = instance.container.isFullscreen();
+            AssetLoader.getInstance().writeSettings(settings);
         } catch (SlickException e) {
             e.printStackTrace();
         }
