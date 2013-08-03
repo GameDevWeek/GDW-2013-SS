@@ -1,8 +1,6 @@
 package de.fhtrier.gdw.ss2013.physix;
 
 import de.fhtrier.gdw.ss2013.game.Entity;
-import de.fhtrier.gdw.ss2013.game.world.objects.Button;
-import de.fhtrier.gdw.ss2013.game.world.objects.OxygenFlower;
 import java.awt.Point;
 import java.util.List;
 import org.jbox2d.common.Vec2;
