@@ -64,6 +64,8 @@ public abstract class FlyingEnemy extends AbstractEnemy implements EntityFilter 
     private Sound wingSound;
     private Sound shootSound;
 
+
+
     public FlyingEnemy(Animation animation) {
         super(animation);
 
@@ -114,6 +116,7 @@ public abstract class FlyingEnemy extends AbstractEnemy implements EntityFilter 
         if (pathProperties != null) {
             speed = pathProperties.getFloat("speed", 20.0f);
             moveAround = pathProperties.getBoolean("moveAround", false);
+            range = pathProperties.getFloat("range", 300);
         }
         if (points == null) {
             pathEnabled = false;
@@ -125,7 +128,7 @@ public abstract class FlyingEnemy extends AbstractEnemy implements EntityFilter 
 
     @Override
     public void initPhysics() {
-        createPhysics(BodyType.DYNAMIC, origin.x, origin.y).density(500.0f)
+        createPhysics(BodyType.DYNAMIC, origin.x, origin.y).density(5000.0f)
                 .friction(PhysixManager.FRICTION)
                 .category(PhysixConst.ENEMY).mask(PhysixConst.MASK_ENEMY)
                 .asBox(initialSize.x, initialSize.y);
@@ -273,7 +276,7 @@ public abstract class FlyingEnemy extends AbstractEnemy implements EntityFilter 
     public void update(GameContainer container, int delta)
             throws SlickException {
         super.update(container, delta);
-        interval += delta;
+        interval += delta * Math.random();
         if (player == null || player.getOxygen() <= 0) {
             player = World.getInstance().getAstronaut();
         }
@@ -294,17 +297,39 @@ public abstract class FlyingEnemy extends AbstractEnemy implements EntityFilter 
 
     @Override
     public void setPhysicsObject(PhysixShape physicsObject) {
-        physicsObject.setOwner(this);
-        this.physicsObject = physicsObject;
+        super.setPhysicsObject(physicsObject);
         this.physicsObject.setGravityScale(0);
+        
+        if (points != null) {
+            getPhysicsObject().setPosition(points.get(index).x, points.get(index).y);
+        }
     }
 
     @Override
     public void beginContact(Contact contact) {
         Entity other = getOtherEntity(contact);
         if (other instanceof Astronaut) {
-            ((Astronaut) other).setOxygen(((Astronaut) other).getOxygen()
-                    - this.getDamage());
+            Astronaut astro = (Astronaut) other;
+            Vector2f damageTakerPos = other.getPosition();
+            Vector2f damageTakerDim = other.getPhysicsObject()
+                    .getDimension();
+
+            Vector2f damageDealerPos = this.getPosition();
+            Vector2f damageDealerDim = this.getPhysicsObject()
+                    .getDimension();
+            
+            boolean checkPlayerOnTopOfEnemy = (damageTakerPos.x + damageTakerDim.x > damageDealerPos.x
+                    - damageDealerDim.x) //
+                    && ((damageTakerPos.x - damageTakerDim.x < damageDealerPos.x
+                            + damageDealerDim.x))
+                    && (damageTakerPos.y + damageTakerDim.y < damageDealerPos.y);
+            if (!checkPlayerOnTopOfEnemy) {
+
+                astro.setOxygen(((Astronaut) other).getOxygen()
+                        - this.getDamage());
+                astro.gotBiten();
+            }
+
         }
     }
 
