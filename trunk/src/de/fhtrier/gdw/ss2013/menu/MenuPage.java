@@ -29,9 +29,9 @@ public class MenuPage {
     private String type;
     MenuManager menuManager;
     protected Image bgImage;
-    Color hoverColor = new Color(Integer.parseInt("F8BB08", 16));
-    Color standardColor = Color.white;
-    Color pressedColor = Color.cyan;
+    protected Color hoverColor = new Color(Integer.parseInt("F8BB08", 16));
+    protected Color standardColor = Color.white;
+    protected Color pressedColor = Color.cyan;
 
     public MenuPage(GameContainer container, StateBasedGame game, MenuManager menuManager, MenuPage parent, String bgImage, String type) throws SlickException {
         this.container = container;
