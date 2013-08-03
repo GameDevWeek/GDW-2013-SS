@@ -5,6 +5,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
+import de.fhtrier.gdw.ss2013.MainGame;
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.menu.IActionListener;
@@ -52,6 +53,8 @@ public class MenuPageGamePause extends MenuPage {
                 new IActionListener() {
                     @Override
                     public void onAction() {
+                        GameplayState.hideMenu();
+                        MainGame.changeState(MainGame.MAINMENUSTATE);
                     }
                 }
         );
@@ -64,6 +67,7 @@ public class MenuPageGamePause extends MenuPage {
                 new IActionListener() {
                     @Override
                     public void onAction() {
+                        // ToDo: Spiel korrekt entladen!
                         System.exit(0);
                     }
                 }
