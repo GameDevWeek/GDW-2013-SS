@@ -234,7 +234,7 @@ public class LevelLoader {
 				n = properties.getProperty("name");
 			}
 			else {
-				System.err.println("You haven't choosen the boss name! Take default: "+name);
+				System.err.println("You haven't choosen the boss name! Take default: "+n);
 			}
 			entity = entityManager.createEntity(n, properties, name);
 			break;

@@ -126,6 +126,7 @@ public class Cheats {
 		cheats.put("iddqd", new Invincibility());
 		cheats.put("god", new Invincibility());
 		cheats.put("idkfa", new FullPower());
+		cheats.put("full", new FullPower());
 		cheats.put("jumpjump", new MegaJump());
 		cheats.put("flash", new SpeedMode());
 	}

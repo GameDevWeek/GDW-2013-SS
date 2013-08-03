@@ -23,6 +23,10 @@
   "pfad" : "res/maps/run_or_die.tmx"
 },
 {
+  "name" : "run_or_die_boss",
+  "pfad" : "res/maps/run_or_die_boss.tmx"
+},
+{
   "name" : "spacemap",
   "pfad" : "res/maps/spacemap.tmx"
 },
