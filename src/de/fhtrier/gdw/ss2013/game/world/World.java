@@ -123,10 +123,10 @@ public class World {
 
         camera.debugdraw(g);
 
-        mapRender.renderTileLayers(g, 0, 0, 0, 0, map.getWidth(),
-                map.getHeight());
+//        mapRender.renderTileLayers(g, 0, 0, 0, 0, map.getWidth(),
+//                map.getHeight());
 
-        entityManager.render(container, g);
+        entityManager.render(container, g, mapRender, map);
         for (DynamicParticleSystem p : particleList) {
             p.render();
         }

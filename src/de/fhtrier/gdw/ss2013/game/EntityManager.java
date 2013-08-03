@@ -16,10 +16,12 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
+import de.fhtrier.gdw.commons.tiled.TiledMap;
 import de.fhtrier.gdw.commons.utils.ClassUtils;
 import de.fhtrier.gdw.commons.utils.SafeProperties;
 import de.fhtrier.gdw.ss2013.constants.MathConstants;
 import de.fhtrier.gdw.ss2013.game.filter.EntityFilter;
+import de.fhtrier.gdw.ss2013.renderer.MapRenderer;
 
 public class EntityManager {
     // static protected EntityManager managerInstance;
@@ -140,10 +142,16 @@ public class EntityManager {
         });
     }
 
-    public void render(GameContainer container, Graphics g)
+    public void render(GameContainer container, Graphics g, MapRenderer mapRender, TiledMap map)
             throws SlickException {
-        for (Entity e : entityList)
+        boolean renderedMap = false;
+        for (Entity e : entityList) {
+            if(!renderedMap && e.renderLayer >= 0) {
+                mapRender.renderTileLayers(g, 0, 0, 0, 0, map.getWidth(), map.getHeight());
+                renderedMap = true;
+            }
             e.render(container, g);
+        }
     }
 
     /**
