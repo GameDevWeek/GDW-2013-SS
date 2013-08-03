@@ -26,7 +26,7 @@
   <object gid="630" x="2078" y="3966"/>
   <object gid="630" x="1988" y="3904"/>
   <object gid="630" x="2050" y="3902"/>
-  <object gid="626" x="3285" y="3345"/>
+  <object gid="626" x="178" y="3958"/>
   <object gid="637" x="2350" y="3516"/>
   <object name="p1" type="FollowPath" x="3732" y="3548">
    <properties>
@@ -161,7 +161,11 @@
   <object type="solid" x="2954" y="3414" width="501" height="851"/>
   <object type="solid" x="2572" y="3798" width="501" height="851"/>
   <object type="solid" x="2759" y="3601" width="501" height="851"/>
-  <object type="deadzone" x="668" y="4141" width="1362" height="198"/>
+  <object type="deadzone" x="668" y="4141" width="1362" height="198">
+   <properties>
+    <property name="removeBox" value="false"/>
+   </properties>
+  </object>
   <object type="deadzone" x="-60" y="4184" width="15616" height="396"/>
   <object name="mp1_2" gid="647" x="3744" y="3761">
    <properties>
@@ -181,7 +185,7 @@
   <object type="solid" x="6602" y="86" width="237" height="2177"/>
   <object type="solid" x="6984" y="914" width="488" height="396"/>
   <object type="solid" x="6990" y="922" width="266" height="576"/>
-  <object type="solid" x="-432" y="-416" width="15880" height="600"/>
+  <object type="solid" x="-336" y="-464" width="15880" height="600"/>
   <object type="solid" x="713" y="4108" width="496" height="163"/>
   <object name="cap1" type="FollowPath" x="8183" y="2355">
    <properties>
