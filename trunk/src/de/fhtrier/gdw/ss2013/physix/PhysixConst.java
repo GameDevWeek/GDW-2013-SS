@@ -6,6 +6,7 @@ public class PhysixConst {
     public static final short BULLET_PLAYER = 4;
     public static final short BULLET_ENEMY = 8;
     public static final short ITEM = 16;
+    public static final short DECORATION = 32;
     
     public static final short MASK_PLAYER = PLAYER | ENEMY | BULLET_ENEMY | ITEM;
     public static final short MASK_ENEMY = PLAYER | BULLET_PLAYER;
