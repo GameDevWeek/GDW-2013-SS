@@ -45,5 +45,10 @@
   {
   "name" : "meteorid4",
   "pfad" : "res/partikel/meteorid4.xml"
+  },
+  {
+   "name" : "teleporter_test",
+  "pfad" : "res/partikel/teleporter_test.xml"
   }
+  
   ]

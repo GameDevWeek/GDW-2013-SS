@@ -32,7 +32,7 @@
    "superJumpGravityScale": 0.4
  },
  "world": {
-   "gravity": 12,
+   "gravity":12,
    "density": 1,
    "friction": 0.5
  }
