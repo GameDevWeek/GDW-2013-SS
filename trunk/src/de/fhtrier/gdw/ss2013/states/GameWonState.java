@@ -19,67 +19,60 @@ import de.fhtrier.gdw.ss2013.gui.ScoreCounter;
 public class GameWonState extends BasicGameState {
 
     private boolean RunUpdateAtLeastOneTime = false;
+    
+    AssetLoader asset;
 
-    //?
-    int stellen = 6;
-	int counter = 0;
-	int zehnerpotenz = 10;
-	int score = 123;
-	int timer = 0;
-	boolean ready = false;
-	//?
+    int timer = 0;
+    int i = 0;
+    int score = 500; //500 nur zum testen
+    float seed = 1;
 	
-	//MechanicalCounter
-	MechanicalCounter mechanicalCounter;
+	
+	ScoreCounter counter;
+	
 	
 
 	
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
 	    
+	    i = 0;
+	    
+	    asset = AssetLoader.getInstance();
+	    
+	    Image img = asset.getImage("digits");
+	    
+	    //score = World.getScoreCounter().getScore();
+	    
+	    
+	    counter = new ScoreCounter(img, new Vector2f(gc.getWidth()/2-img.getWidth()/2, gc.getHeight()/2 - img.getHeight()/2), score, 4, 1f);
+	    
+	    counter.setDesiredValue(0);
 	}
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
-	    
+	    counter.render(gc, sbg, g);
 	}
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
-	    if(RunUpdateAtLeastOneTime)
-	    {
-	        
-	    }
-	    else
-	    {
-	        RunUpdateAtLeastOneTime = true;
+	  
+	  
+	   timer += delta + (i*i);
+	   
+	   if (counter.speed < 3.0f)
+	       counter.speed = 0.1f * i;
+	   
+	   counter.update(gc, sbg, delta);
+	       
+	   if (timer >= 200 && i <= score){
+	       
+	       counter.setDesiredValue(i);
+	       timer = 0;
+	       i++;
 	    }
 	    
-	       /* DO NOT DELETE! FOR FUTURE USE
-         * 
-         * 
-        timer += delta;
-        
-        if (timer >= 100 && counter < score){
-           
-            System.out.println("zaehler[0].up");
-            counter++;
-            timer = 0;
-            
-            for (int j = 1; j <= stellen; j++){
-                
-                if (counter % zehnerpotenz == 0){
-                            System.out.println("zaehler["+ j +"].up");
-                }
-               
-                zehnerpotenz *= 10;
-            }
-            
-            
-        }
-        zehnerpotenz = 10;
-        initTime += delta;
-        */
 	}
 
 	@Override
