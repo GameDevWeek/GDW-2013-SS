@@ -113,4 +113,8 @@ public class ThreePointCamera {
 		return position;
 	}
 
+	public void setZoom(float zoomFactor) {
+		this.zoomFactor = zoomFactor;
+	}
+
 }
