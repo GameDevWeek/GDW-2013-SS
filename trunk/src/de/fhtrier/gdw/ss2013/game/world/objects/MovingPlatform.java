@@ -30,10 +30,13 @@ public abstract class MovingPlatform extends Entity implements Interactable, Ent
     private Point currentPoint;
     private SafeProperties pathProperties;
     private int index;
+    private int startIndex;
     private boolean moveAround;
     private float speed;
     private boolean isActive;
+    private boolean goHome;
     private int indexmod;
+    private int oldindexmod;
     
 
     public MovingPlatform(Image img) {
@@ -44,6 +47,9 @@ public abstract class MovingPlatform extends Entity implements Interactable, Ent
         isActive = true;
         moveAround = false;
         indexmod = 1;
+        oldindexmod = 0;
+        isActive = true;
+        goHome = true;
     }
 
     public void bindToPath() {
@@ -73,15 +79,15 @@ public abstract class MovingPlatform extends Entity implements Interactable, Ent
             speed = pathProperties.getFloat("speed", 20.0f);
             isActive = pathProperties.getBoolean("isActive", true);
             moveAround = pathProperties.getBoolean("moveAround", false);
+            goHome = pathProperties.getBoolean("goHome", true);
         }
-        index = getClosestPoint();
-        //getPhysicsObject().setPosition(points.get(index).x, points.get(index).y);
+        startIndex = index = getClosestPoint();
     }
     
     public int getClosestPoint() {
         float dist[] = new float[points.size() - 1];
         for (int i = 0; i < points.size() - 1; i++) {
-            dist[i] = origin.distanceSquared(new Vector2f(points.get(i).x, points.get(i).y));
+            dist[i] = origin.distance(new Vector2f(points.get(i).x, points.get(i).y));
         }
         float closestDist = Float.MAX_VALUE;
         int closestPoint = 0;
@@ -108,8 +114,13 @@ public abstract class MovingPlatform extends Entity implements Interactable, Ent
     public void update(GameContainer container, int delta)
             throws SlickException {
         super.update(container, delta);
-        if (isActive)
+        if (isActive || index != startIndex) {
             move();
+        } else {
+            indexmod = 1;
+            oldindexmod = 0;
+            setVelocity(new Vector2f());
+        }
     }
 
     public void move() {
@@ -135,13 +146,26 @@ public abstract class MovingPlatform extends Entity implements Interactable, Ent
     @Override
     public void activate() {
         isActive = true;
-
+        if (!moveAround && goHome) {
+            if(oldindexmod == 1 && index + oldindexmod != startIndex || 
+                    index + oldindexmod < startIndex) {
+                index += indexmod;
+                indexmod = oldindexmod;
+            }
+        }
     }
 
     @Override
     public void deactivate() {
         isActive = false;
-        setVelocity(new Vector2f());
+        if (!moveAround && goHome) {
+            oldindexmod = indexmod;
+            if(indexmod == 1 && index + indexmod != startIndex || 
+                    index + indexmod < startIndex) {
+                index += indexmod;
+                indexmod *= -1;
+            }
+        }
     }
 
     @Override
