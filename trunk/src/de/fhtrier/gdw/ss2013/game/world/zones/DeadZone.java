@@ -15,8 +15,16 @@ import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.world.World;
 
 public class DeadZone extends AbstractZone {
+	
+	private boolean removeBox;
 
     public DeadZone() {
+    	removeBox = true;
+    	if (getProperties() != null && getProperties().getProperty("removeBox") != null) {
+    		if (getProperties().getProperty("removeBox").equals("false")) {
+    			removeBox = false;
+    		}
+    	}
     }
 
     @Override
@@ -33,4 +41,8 @@ public class DeadZone extends AbstractZone {
     @Override
     public void endContact(Contact object) {
     }
+
+	public boolean isRemoveBox() {
+		return removeBox;
+	}
 }

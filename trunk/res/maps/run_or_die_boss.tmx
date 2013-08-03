@@ -46,7 +46,6 @@
   <object type="solid" x="1936" y="4827" width="800" height="241"/>
   <object type="solid" x="2661" y="4072" width="315" height="971"/>
   <object gid="630" x="3630" y="3033"/>
-  <object type="solid" x="2698" y="3089" width="1324" height="129"/>
   <object type="solid" x="2700" y="3145" width="646" height="211"/>
   <object gid="634" x="2625" y="3152">
    <properties>
@@ -56,5 +55,6 @@
   <object type="deadzone" x="1636" y="3413" width="189" height="71"/>
   <object type="deadzone" x="3492" y="3427" width="189" height="71"/>
   <object type="deadzone" x="2361" y="3552" width="586" height="148"/>
+  <object type="solid" x="2699" y="3092" width="1324" height="129"/>
  </objectgroup>
 </map>
