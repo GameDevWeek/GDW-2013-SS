@@ -184,7 +184,7 @@ public final class Astronaut extends EntityCollidable implements
                         * (delta / 1000f);
             else
                 die();
-            
+
             Vector2f pos = this.getPosition();
             dynamicTarget.set(pos.x, pos.y);
         }
@@ -296,7 +296,7 @@ public final class Astronaut extends EntityCollidable implements
 
     public void superjump() {
         if (!state.equals(PlayerState.dead)) {
-            if (superJumpDelay <= 0 && isGrounded() && isCarryAlien()) {
+            if (superJumpDelay <= 0 && (isGrounded() || state==PlayerState.jumping) && isCarryAlien()) {
                 jumpDelay = 0;
                 setVelocityY(-superJumpSpeed);
                 physicsObject.applyImpulse(new Vector2f(0, -superJumpSpeed));
