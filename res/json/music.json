@@ -9,5 +9,9 @@
 {
  "name" : "bossmap",
  "pfad" : "res/music/bosskampf.ogg"
+},
+{
+ "name" : "credits",
+ "pfad" : "res/music/credits.ogg"
 }
 ]

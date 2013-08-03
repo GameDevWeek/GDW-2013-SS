@@ -97,6 +97,13 @@
   "loop" : true
 },
 {
+  "name" : "player_couple_dead",
+  "pfad" : "player/couple/dead",
+  "anzBilder" : 1,
+  "animSpeed" : 100,
+  "loop" : true
+},
+{
   "name" : "alien_standing",
   "pfad" : "player/alien/standing",
   "anzBilder" : 1,
