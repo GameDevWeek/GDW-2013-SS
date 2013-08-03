@@ -3,15 +3,15 @@
   "pfad" : "res/maps/sidescroller_demo.tmx"
 },
 {
-  "name" : "a1",
-  "pfad" : "res/maps/map-a1.tmx"
+  "name" : "beginner1",
+  "pfad" : "res/maps/beginner1.tmx"
 },
 {
-  "name" : "a2",
+  "name" : "Albsis WayUp",
   "pfad" : "res/maps/map-a2.tmx"
 },
 {
-  "name" : "a3",
+  "name" : "Albsis Teleporter Spass",
   "pfad" : "res/maps/map-a3.tmx"
 },
 {

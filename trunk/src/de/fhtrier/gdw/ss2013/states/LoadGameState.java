@@ -6,6 +6,7 @@ import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.loading.DeferredResource;
 import org.newdawn.slick.loading.LoadingList;
@@ -24,7 +25,7 @@ import de.fhtrier.gdw.ss2013.sound.SoundLocator;
  */
 public class LoadGameState extends BasicGameState {
 
-    // private Image loadscreen;
+    private Image loadscreen;
     private MainMenuState mainMenuState;
     private GameplayState gameplayState;
     private GameWonState gamewonState;
@@ -35,7 +36,7 @@ public class LoadGameState extends BasicGameState {
     public void init(GameContainer container, StateBasedGame game)
             throws SlickException {
         ((AppGameContainer) container).setVSync(false);
-        // loadscreen = new Image("/res/images/testbild.png");
+        loadscreen = new Image("/res/images/ladescreen.png");
         LoadingList.setDeferredLoading(true);
 
         assetLoader = AssetLoader.getInstance();
@@ -54,19 +55,15 @@ public class LoadGameState extends BasicGameState {
         int remainingResources = LoadingList.get().getRemainingResources();
         int loadedResources = totalResources - remainingResources;
 
-        g.setColor(Color.red);
+        g.setColor(new Color(0, 177, 141));
 
         g.fillRect(
                 container.getWidth() / 8,
-                container.getHeight() / 8 * 6,
+                container.getHeight() / 8 * 6.1f,
                 container.getWidth() / 8 * 6 / totalResources * loadedResources,
-                50);
+                100);
 
-        // g.fillRect(container.getWidth() / 2 - 245,
-        // container.getHeight() / 2 - 70, (int) (5.5f * (100 / total)),
-        // 100);
-        // loadscreen.draw((container.getWidth() - loadscreen.getWidth()) / 2,
-        // (container.getHeight() - loadscreen.getHeight()) / 2);
+        loadscreen.draw((container.getWidth() - loadscreen.getWidth()) / 2,(container.getHeight() - loadscreen.getHeight()) / 2);
     }
 
     @Override
