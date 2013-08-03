@@ -106,7 +106,7 @@ public final class Alien extends Entity implements AlienController {
     public void shoot() {
         if (System.currentTimeMillis() > lastShotTime
                 + PlayerConstants.SHOTDELAY) {
-            soundPlayer.playSound(shootSound);
+            soundPlayer.playSoundAt(shootSound, this);
             Vector2f playerPos;
             if (astronaut.isCarryAlien()) {
                 playerPos = astronaut.getPosition(); // notwendig, weil alienPos
@@ -307,8 +307,6 @@ public final class Alien extends Entity implements AlienController {
     public float getMaxDistance() {
         return maxDistance;
     }
-    
-    
 
     public void setCurrentSelectedBox(Box currentSelectedBox) {
         this.currentSelectedBox = currentSelectedBox;
