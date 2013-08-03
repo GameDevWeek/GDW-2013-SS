@@ -68,9 +68,9 @@ public class World {
 
         try {
             map = AssetLoader.getInstance().loadMap(levelName);
+            mapRender = new MapRenderer(map);
             LevelLoader.load(map, entityManager, physicsManager);
 
-            mapRender = new MapRenderer(map);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

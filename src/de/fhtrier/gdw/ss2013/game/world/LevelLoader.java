@@ -9,6 +9,7 @@ import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.commons.tiled.Layer;
 import de.fhtrier.gdw.commons.tiled.LayerObject;
+import de.fhtrier.gdw.commons.tiled.TileSet;
 import de.fhtrier.gdw.commons.tiled.TiledMap;
 import de.fhtrier.gdw.commons.utils.SafeProperties;
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
@@ -16,6 +17,7 @@ import de.fhtrier.gdw.ss2013.assetloader.infos.GameDataInfo;
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.filter.Interactable;
+import de.fhtrier.gdw.ss2013.game.world.objects.DecorationTile;
 import de.fhtrier.gdw.ss2013.game.world.objects.FollowPath;
 import de.fhtrier.gdw.ss2013.game.world.objects.ObjectController;
 import de.fhtrier.gdw.ss2013.game.world.objects.Teleporter;
@@ -23,6 +25,7 @@ import de.fhtrier.gdw.ss2013.game.world.zones.AbstractZone;
 import de.fhtrier.gdw.ss2013.gui.TooltipManager;
 import de.fhtrier.gdw.ss2013.physix.PhysixManager;
 import de.fhtrier.gdw.ss2013.renderer.DynamicParticleSystem;
+import de.fhtrier.gdw.ss2013.renderer.TiledImage;
 
 /**
  * 
@@ -33,9 +36,11 @@ public class LevelLoader {
     private static PhysixManager physicsManager;
     private static Vector2f startpos;
     private static GameDataInfo gameInfo;
+    private static TiledMap map;
 
     public static void load(TiledMap map, EntityManager entityManager,
             PhysixManager physicsManager) {
+        LevelLoader.map = map;
 
         gameInfo = AssetLoader.getInstance().getGameData();
 
@@ -96,7 +101,7 @@ public class LevelLoader {
                 if (!isTooltipObject(object)) {
                     createTile(type, object.getX(), object.getLowestY(),
                             object.getWidth(), object.getHeight(),
-                            object.getProperties(), object.getName());
+                            object.getProperties(), object.getName(), object.getGid());
                 } else {
                     handleTooltipObject(object, tooltipTrigger,
                             tooltipImagesMap);
@@ -217,14 +222,27 @@ public class LevelLoader {
      * @param properties
      *            the object properties
      */
-    private static void createTile(String type, int x, int y, int width,
-            int height, SafeProperties properties, String name) {
+    private static void createTile(String type, int x, int y, int width, int height, SafeProperties properties, String name, int gid) {
 
         x += width / 2;
         y += height / 2;
         
 		Entity entity = null;
 		switch (type) {
+            case "decoration":
+                String animation = properties.getProperty("animation");
+                if(animation == null) {
+                    entity = entityManager.createEntity("decorationtile", properties, name);
+                    TileSet tileset = map.findTileSet(gid);
+                    int id = gid - tileset.getFirstGID();
+                    int srcX = tileset.getTileX(id);
+                    int srcY = tileset.getTileY(id);
+                    ((DecorationTile)entity).setTiledImage((TiledImage)tileset.getAttachment());
+                    ((DecorationTile)entity).setSrcPos(srcX, srcY);
+                } else {
+                    entity = entityManager.createEntity("decorationanimation", properties, name);
+                }
+                break;
 		case "start":
 			startpos = new Vector2f(x, y - height/2 - gameInfo.combined.height/2);
 			break;
