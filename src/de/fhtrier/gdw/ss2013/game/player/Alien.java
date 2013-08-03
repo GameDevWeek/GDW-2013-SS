@@ -57,6 +57,7 @@ public final class Alien extends Entity implements AlienController {
         selectedAbility = 1;
         maxMana = 0.0f;
         mana = maxMana;
+        shootSound = AssetLoader.getInstance().getSound("alienschuss");
     }
 
     public void setAstronaut(Astronaut astronaut) {
