@@ -34,20 +34,19 @@
 		
 		{ "name": "alien_path",
            "destinations": [
-            {"x": 200, "y": 1700, "speed": -1 },
-            {"x": 200, "y": -120, "speed": 80 }
-           ]
-		},
-		
-		
-		{ "name": "plant_path",
-           "destinations": [
-            {"x": 780, "y": 2150, "speed": -1 },
+	 		{"x": 780, "y": 2150, "speed": -1 },
             {"x": 790, "y": -120, "speed": 80 }
            ]
 		},
 		
 		{ "name": "enemy_duck_path",
+           "destinations": [
+            {"x": 200, "y": 1700, "speed": -1 },
+            {"x": 200, "y": -120, "speed": 80 }
+           ]
+		},
+		
+		{ "name": "plant_path",
            "destinations": [
             {"x": 780, "y": 2650, "speed": -1 },
             {"x": 790, "y": -120, "speed": 80 }
@@ -78,10 +77,10 @@
 		},
 		
 		
-		{ "name": "flag_path",
+		{ "name": "scribble_kristall_path",
            "destinations": [
-            {"x": 400, "y": 4500, "speed": -1 },
-            {"x": 400, "y": -120, "speed": 80 }
+            {"x": 500, "y": 4350, "speed": -1 },
+            {"x": 500, "y": -120, "speed": 80 }
            ]
 		},
 		
@@ -171,8 +170,8 @@
 		{ "name": "player_couple_superjump", "x": 0, "y": 0, "width": 236, "height": 191, "path": "couple_superjump_path", "angle": 0, "delay": 0, "oriented": false, "animation": true },
 		{ "name": "ground_ememy_trunk_purple", "x": 0, "y": 0, "width": 110, "height": 195, "path": "enemy_trunk_purple_path", "angle": 0, "delay": 0, "oriented": false, "animation": true },
 		{ "name": "ground_ememy_trunk", "x": 0, "y": 0, "width": 110, "height": 195, "path": "enemy_trunk_path", "angle": 0, "delay": 0, "oriented": false, "animation": true },
-		{ "name": "mother_walk", "x": 0, "y": 0, "width": 352, "height": 291, "path": "mother_path", "angle": 0, "delay": 0, "oriented": false, "animation": true },
-		{ "name": "ground_ememy_middle_duck", "x": 0, "y": 0, "width": 172, "height": 172, "path": "enemy_duck_path", "angle": 0, "delay": 0, "oriented": false, "animation": true }
+		{ "name": "ground_ememy_middle_duck", "x": 0, "y": 0, "width": 172, "height": 172, "path": "enemy_duck_path", "angle": 0, "delay": 0, "oriented": false, "animation": true },
+		{ "name": "scribble_kristall", "x": 0, "y": 0, "width": 468, "height": 301, "path": "scribble_kristall_path", "angle": 0, "delay": 0, "oriented": false, "animation": false }
 	]
 }
 

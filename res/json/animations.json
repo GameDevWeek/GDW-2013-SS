@@ -214,11 +214,4 @@
   "anzBilder" : 1,
   "animSpeed" : 250,
   "loop" : true
-},
-{
-  "name" : "mother_walk",
-  "pfad" : "boss/mother_walk",
-  "anzBilder" : 8,
-  "animSpeed" : 100,
-  "loop" : true
 }]
