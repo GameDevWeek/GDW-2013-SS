@@ -77,7 +77,6 @@ public final class Alien extends Entity implements AlienController {
         mana = maxMana;
         GameDataInfo info = AssetLoader.getInstance().getGameData();
         maxDistance = info.alien.maxDistance;
-        shootSound = SoundLocator.loadSound("alienschuss");
         World.getInstance().getTPCamera().addDynamicTarget(dynamicTarget);
     }
 
@@ -187,7 +186,6 @@ public final class Alien extends Entity implements AlienController {
             break;
         }
     }
-
     Vector2f screenCursor = new Vector2f();
 
     @Override
@@ -207,8 +205,11 @@ public final class Alien extends Entity implements AlienController {
             dynamicTarget.set(this.getPosition());
 
             if (astronaut.getPosition().distance(getPosition()) >= maxDistance) {
-                astronaut.toggleAlien();
+               
+               astronaut.setParticle(AssetLoader.getInstance().getParticle("teleporter_alien").clone());
+               astronaut.toggleAlien();
             }
+            
         }
 
         switch (selectedAbility) {
@@ -257,6 +258,7 @@ public final class Alien extends Entity implements AlienController {
                         position.y - animation.getHeight() / 2);
             }
         }
+        super.render(container, g);
     }
 
     @Override
@@ -292,9 +294,14 @@ public final class Alien extends Entity implements AlienController {
         if (physicsObject != null) {
             if (!onPlayer) {
                 physicsObject.setPosition(astronaut.getPosition());
+                
             }
             physicsObject.setActive(!onPlayer);
         }
+    }
+
+    public float getMaxDistance() {
+        return maxDistance;
     }
 
     @Override

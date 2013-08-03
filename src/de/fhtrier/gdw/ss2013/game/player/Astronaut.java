@@ -386,8 +386,10 @@ public final class Astronaut extends EntityCollidable implements
         // Log.debug(animation.getFrame()+1 +"/" + animation.getFrameCount());
         // if (!oldState.equals(state)) Log.debug(String.valueOf(state));
         // oldState = state;
+        super.render(container, g);
     }
-
+		
+		
     public void setState(PlayerState state) {
         if (this.state != PlayerState.dead
                 && (this.state == null || !this.state.equals(state))) {
@@ -521,6 +523,7 @@ public final class Astronaut extends EntityCollidable implements
         }
     }
 
+
     @Override
     public void shoot() {
         if (!state.equals(PlayerState.dead)) {
@@ -587,8 +590,9 @@ public final class Astronaut extends EntityCollidable implements
 
     public void teleportAlienback() {
         if (!carryAlien) {
-            toggleAlien();
-
+		    
+           setParticle(AssetLoader.getInstance().getParticle("teleporter_alien"));
+           toggleAlien();
         }
     }
 
@@ -604,22 +608,22 @@ public final class Astronaut extends EntityCollidable implements
                 soundPlayer.playSound(dropAlienSound);
                 carryAlien = false;
                 alien.setOnPlayer(false);
-
-                speed = gameData.astronaut.speed;
-                jumpSpeed = gameData.astronaut.jumpSpeed;
-                jumpDelayTotal = gameData.astronaut.jumpDelay;
-                updateStateAnimation();
-            } else {
-                carryAlien = true;
-                alien.setOnPlayer(true);
-                updateStateAnimation();
-
-                speed = gameData.combined.speed;
-                jumpSpeed = gameData.combined.jumpSpeed;
-                jumpDelayTotal = gameData.combined.jumpDelay;
-            }
-        }
-    }
+			
+			speed = gameData.astronaut.speed;
+			jumpSpeed = gameData.astronaut.jumpSpeed;
+			jumpDelayTotal = gameData.astronaut.jumpDelay;
+			updateStateAnimation();
+		} else {
+		    
+			carryAlien = true;
+			alien.setOnPlayer(true);
+			updateStateAnimation();
+			speed = gameData.combined.speed;
+			jumpSpeed = gameData.combined.jumpSpeed;
+			jumpDelayTotal = gameData.combined.jumpDelay;
+		    }
+		}
+	}
 
     @Override
     public void initPhysics() {
