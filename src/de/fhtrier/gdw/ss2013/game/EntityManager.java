@@ -21,7 +21,6 @@ import de.fhtrier.gdw.commons.utils.SafeProperties;
 import de.fhtrier.gdw.ss2013.constants.MathConstants;
 import de.fhtrier.gdw.ss2013.game.filter.EntityFilter;
 
-//TODO filter für getEntities
 public class EntityManager {
     // static protected EntityManager managerInstance;
     protected LinkedList<Entity> entityList;
