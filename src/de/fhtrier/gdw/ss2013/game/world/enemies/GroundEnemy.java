@@ -1,7 +1,5 @@
 package de.fhtrier.gdw.ss2013.game.world.enemies;
 
-import java.util.ArrayList;
-
 import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.contacts.Contact;
@@ -15,6 +13,7 @@ import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.player.Alien;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.world.World;
+import de.fhtrier.gdw.ss2013.game.world.zones.DeadZone;
 import de.fhtrier.gdw.ss2013.physix.PhysixShape;
 
 /**
@@ -30,7 +29,6 @@ public abstract class GroundEnemy extends AbstractEnemy {
 
 	private GroundEnemyState state;
 	private Vector2f speed;
-	private ArrayList<Contact> contacts;
 	private Entity huntedPlayer;
 	private int chillTime;
 	private int groundContacts;
@@ -40,8 +38,6 @@ public abstract class GroundEnemy extends AbstractEnemy {
 		speed = new Vector2f(EnemyConstants.ENEMY_SPEED, 0);
 		state = GroundEnemyState.patrol;
 		setDamage(EnemyConstants.GROUND_DAMAGE);
-
-		contacts = new ArrayList<>();
 	}
 
 	@Override
@@ -157,13 +153,17 @@ public abstract class GroundEnemy extends AbstractEnemy {
 			if (other.getPhysicsObject().getBodyType() == BodyType.DYNAMIC
 					&& !(other instanceof Alien)
 					&& !(other instanceof Astronaut)) {
+				if (other instanceof DeadZone) {
+					World.getInstance().getEntityManager().removeEntity(this);
+					return;
+				}
 				if (other.getPosition().x < getPosition().x) {
 					speed.x = Math.abs(speed.x);
 				} else {
 					speed.x = -Math.abs(speed.x);
 				}
 			}
-			if (other instanceof Astronaut) {
+			else if (other instanceof Astronaut) {
 
 				Astronaut astro = (Astronaut) other;
 				Vector2f damageTakerPos = other.getPosition();
@@ -193,35 +193,11 @@ public abstract class GroundEnemy extends AbstractEnemy {
 			getPhysicsObject().setPosition(getPosition().x - speed.x,
 					getPosition().y);
 		}
-
-		contacts.add(contact);
-
-		// Fixture a = contact.getFixtureA();
-		// Fixture b = contact.getFixtureB();
-		//
-		// Body objectA = a.getBody();
-		// Body objectB = b.getBody();
-		//
-		// PhysixObject ap = (PhysixObject) objectA.getUserData();
-		// PhysixObject bp = (PhysixObject) objectB.getUserData();
-		//
-		// if (ap == null || bp == null) // filter level<>level,
-		// // non-level<>non-level collision
-		// return;
-		//
-		// if (ap.getOwner() == null) // ap is level
-		// {
-		// collidingLevelObject = ap;
-		// }
-		// else if (bp.getOwner() == null) { // bp is level
-		// collidingLevelObject = bp;
-		// }
 	}
 
 	@Override
 	public void endContact(Contact contact) {
 		if (getOtherEntity(contact) == null) {
 		}
-		contacts.remove(contact);
 	}
 }

@@ -198,7 +198,7 @@ public final class Alien extends Entity implements AlienController {
         switch (selectedAbility) {
             case 1:
                 // telekinese
-                if (currentSelectedBox != null) {
+                if (currentSelectedBox != null && currentSelectedBox.getPhysicsObject() != null) {
                     Vector2f screenToWorldPosition = World.getInstance().screenToWorldPosition(cursor);
                     dragDirection.x = screenToWorldPosition.x - currentSelectedBox.getPosition().x;
                     dragDirection.y = screenToWorldPosition.y - currentSelectedBox.getPosition().y;

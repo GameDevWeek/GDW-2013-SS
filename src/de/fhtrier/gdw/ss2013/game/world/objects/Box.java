@@ -10,6 +10,8 @@ import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityCollidable;
 import de.fhtrier.gdw.ss2013.game.player.Alien;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
+import de.fhtrier.gdw.ss2013.game.world.World;
+import de.fhtrier.gdw.ss2013.game.world.zones.DeadZone;
 import de.fhtrier.gdw.ss2013.physix.PhysixManager;
 import org.jbox2d.dynamics.BodyType;
 
@@ -67,6 +69,9 @@ public class Box extends EntityCollidable {
         Entity other = getOtherEntity(contact);
         if (other instanceof Astronaut || other instanceof Alien) {
             isPlayerOnMe++;
+        }
+        if (other instanceof DeadZone) {
+        	World.getInstance().getEntityManager().removeEntity(this);
         }
     }
 
