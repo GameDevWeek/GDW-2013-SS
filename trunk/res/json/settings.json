@@ -1,4 +1,5 @@
 {
   "volume" : 10,
-  "fullscreen" : true
+  "fullscreen" : false,
+  "lastLoadedMap" : "enemy_test"
 }

@@ -4,6 +4,7 @@ import org.jbox2d.dynamics.contacts.Contact;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Sound;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.Entity;
@@ -11,9 +12,13 @@ import de.fhtrier.gdw.ss2013.game.EntityCollidable;
 import de.fhtrier.gdw.ss2013.game.player.Alien;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.world.World;
+import de.fhtrier.gdw.ss2013.game.world.enemies.AbstractEnemy;
 import de.fhtrier.gdw.ss2013.game.world.zones.DeadZone;
 import de.fhtrier.gdw.ss2013.physix.PhysixManager;
 import de.fhtrier.gdw.ss2013.physix.PhysixShapeConfig;
+import de.fhtrier.gdw.ss2013.sound.SoundLocator;
+import de.fhtrier.gdw.ss2013.sound.SoundPlayer;
+
 import org.jbox2d.dynamics.BodyType;
 
 /**
@@ -26,6 +31,9 @@ public class Box extends EntityCollidable {
 
     private int isPlayerOnMe;
     private Animation animation;
+    private SoundPlayer soundPlayer;
+    private Sound boxSoundWeak;
+    private Sound boxSoundHard;
 
     public Box() {
         super();
@@ -52,6 +60,9 @@ public class Box extends EntityCollidable {
         animation = AssetLoader.getInstance().getAnimation(properties.getProperty("animation"));
         isPlayerOnMe = 0;
         setInitialSize(animation.getWidth(), animation.getHeight());
+        soundPlayer = SoundLocator.getPlayer();
+        boxSoundWeak = SoundLocator.loadSound("box_hit_weak");
+        boxSoundHard = SoundLocator.loadSound("box_hit_hard");
     }
 
     @Override
@@ -90,6 +101,11 @@ public class Box extends EntityCollidable {
                 World.getInstance().getEntityManager().removeEntity(this);
                 World.getInstance().getAlien().setCurrentSelectedBox(null);
             }
+        }
+        if (other == null || other instanceof Button) {
+            soundPlayer.playSoundAt(boxSoundHard, this);
+        } else {
+            soundPlayer.playSoundAt(boxSoundWeak, this);
         }
     }
 

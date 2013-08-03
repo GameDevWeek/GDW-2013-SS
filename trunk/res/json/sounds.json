@@ -97,5 +97,12 @@
 {
  "name" : "meteorit",
  "pfad" : "res/sounds/meteorit.ogg"
-}
-]
+},
+{
+ "name" : "box_hit_weak",
+ "pfad" : "res/sounds/box_hit_weak.wav"
+},
+{
+ "name" : "box_hit_hard",
+ "pfad" : "res/sounds/box_hit_hard.wav"
+}]

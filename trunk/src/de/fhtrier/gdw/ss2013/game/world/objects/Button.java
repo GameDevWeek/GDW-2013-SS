@@ -82,12 +82,14 @@ public class Button extends ObjectController implements ICollisionListener {
 
     @Override
     public void activate() {
+        buttonSound.stop();
         soundPlayer.playSoundAt(buttonSound, this);
         super.activate();
     }
 
     @Override
     public void deactivate() {
+        buttonSound.stop();
         soundPlayer.playSoundAt(buttonSound, this);
         super.deactivate();
     }
