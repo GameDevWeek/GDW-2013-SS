@@ -11,14 +11,14 @@
    "oxygen": 1000
  },
  "alien": {
-   "width": 70,
-   "height": 70,
+   "width": 90,
+   "height": 34,
    "speed": 0,
    "jumpSpeed": 0,
    "jumpDelay": 500,
    "density": 50,
    "friction": 0.5,
-   "maxDistance": 1200
+   "maxDistance": 1000
  },
  "combined": {
    "width": 50,

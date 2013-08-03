@@ -83,8 +83,10 @@ public class Teleporter extends EntityCollidable implements Interactable {
 
         if (isActive && target != null) {
             Entity other = getOtherEntity(contact);
-            if (other instanceof Astronaut || other instanceof Alien
-                    || other instanceof Box) {
+            if(other instanceof Alien || other instanceof Astronaut) {
+                World.getInstance().getAstronaut().teleportAlienback();
+            }
+            if (other instanceof Astronaut || other instanceof Box) {
                 if (!ignorList.contains(other)) {
                     target.ignorList.add(other);
                     toSet.add(other);

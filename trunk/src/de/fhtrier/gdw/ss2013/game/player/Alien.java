@@ -39,6 +39,7 @@ public final class Alien extends Entity implements AlienController {
     private boolean onPlayer;
     private boolean invertAnimation;
     private Vector2f dynamicTarget = new Vector2f();
+    private float maxDistance;
 
     public Alien() {
         animation = AssetLoader.getInstance().getAnimation("alien_standing");
@@ -67,6 +68,8 @@ public final class Alien extends Entity implements AlienController {
         selectedAbility = 1;
         maxMana = 0.0f;
         mana = maxMana;
+        GameDataInfo info = AssetLoader.getInstance().getGameData();
+        maxDistance = info.alien.maxDistance;
         World.getInstance().getTPCamera().addDynamicTarget(dynamicTarget);
     }
 
@@ -182,17 +185,15 @@ public final class Alien extends Entity implements AlienController {
         // TODO Auto-generated method stub
         super.update(container, delta);
 
-        // if (World.getInstance().getAstronaut().isCarryAlien() == true) {
-        // this.setPosition(World.getInstance().getAstronaut().getPosition().x,
-        // (World.getInstance().getAstronaut().getPosition().y));
-        // }
-        Vector2f pos;
         if (onPlayer) {
-            pos = astronaut.getPosition();
+            dynamicTarget.set(astronaut.getPosition());
         } else {
-            pos = this.getPosition();
+            dynamicTarget.set(this.getPosition());
+            
+            if(astronaut.getPosition().distance(getPosition()) >= maxDistance) {
+                astronaut.toggleAlien();
+            }
         }
-        dynamicTarget.set(pos.x, pos.y);
         
         switch (selectedAbility) {
             case 1:
@@ -276,7 +277,7 @@ public final class Alien extends Entity implements AlienController {
                 .active(false)
                 .asPlayer(info.alien.width, info.alien.height);
 
-        World.getInstance().getPhysicsManager().ropeConnect(astronaut.getPhysicsObject(), getPhysicsObject(), info.alien.maxDistance);
+//        World.getInstance().getPhysicsManager().ropeConnect(astronaut.getPhysicsObject(), getPhysicsObject(), info.alien.maxDistance);
         physicsObject.setActive(!onPlayer);
     }
 }
