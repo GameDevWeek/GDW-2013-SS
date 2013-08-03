@@ -64,12 +64,11 @@ public class MenuPageRoot extends MenuPage {
 		    addCenteredButton("Highscore", xCenter, yCenter + hText * (buttonCount - i--), font,
 		            new MenuPageAction(manager, highscore));
 		    
+		    
+		    MenuPageCredits credits = new MenuPageCredits(container, _game, manager, this);
 		    addCenteredButton("Credits", xCenter, yCenter + hText * (buttonCount - i--), font, 
-                    new IActionListener() { 
-                        public void onAction() {
-                        }
-                    }
-            );
+		    		new MenuPageAction(manager, credits));
+
 		    
 		    addCenteredButton("Beenden", xCenter, yCenter + hText * (buttonCount - i--), font, 
                     new IActionListener() { 
