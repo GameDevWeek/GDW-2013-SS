@@ -492,6 +492,7 @@ public final class Astronaut extends EntityCollidable implements AstronautContro
     public void teleportAlienback() {
 		if (!carryAlien) {
             toggleAlien();
+           
         }
     }
 
