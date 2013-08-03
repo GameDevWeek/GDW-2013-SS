@@ -32,16 +32,25 @@
 },
 {
   "name" : "healthbar",
-  "pfad" : "gui/Sauerstoff"
+  "pfad" : "gui/lebensanzeige_150x300"
 },
 { 
-  "name" : "ability1",
-  "pfad" : "gui/SymbolMaterie"
+  "name" : "ability1_static",
+  "pfad" : "gui/Symbol_Materie_gross"
 },
 {
-  "name" : "ability2",
-  "pfad" : "gui/SymbolFliegen"
+  "name" : "ability2_static",
+  "pfad" : "gui/Symbol_Fluegel_gross"
 },
+{ 
+  "name" : "ability1_dynamic",
+  "pfad" : "gui/Symbol_Materie_mittel"
+},
+{
+  "name" : "ability2_dynamic",
+  "pfad" : "gui/Symbol_Fluegel_mittel"
+},
+
 {
   "name" : "digits",
   "pfad" : "gui/digits"

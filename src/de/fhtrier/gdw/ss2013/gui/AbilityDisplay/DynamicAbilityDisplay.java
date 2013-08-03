@@ -95,9 +95,12 @@ public class DynamicAbilityDisplay implements AbilityDisplay {
             
             if(activated)
             {
+                Vector2f astronaut = new Vector2f(0.0f,0.0f);
+            	astronaut.x = worldinstance.getAstronaut().getAnimation().getHeight();
+            	astronaut.y = worldinstance.getAstronaut().getAnimation().getWidth();
                 image.setAlpha(alphaValue);
                 Vector2f p = worldinstance.worldToScreenPosition(worldinstance.getAstronaut().getPosition());
-                image.draw(p.x  - image.getWidth()/2,p.y- worldinstance.getAstronaut().getAnimation().getHeight()/2);                
+                image.draw(p.x - image.getWidth() / 2, p.y- astronaut.y/2 - image.getHeight());
             }
             else
             {
