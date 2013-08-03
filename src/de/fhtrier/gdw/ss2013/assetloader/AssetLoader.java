@@ -382,7 +382,8 @@ public class AssetLoader {
 
 	public void writeSettings (SettingsInfo settings) {
 		try {
-			JacksonWriter.write("res/json/settings.json", settings);
+			this.settings = settings;
+		    JacksonWriter.write("res/json/settings.json", settings);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
