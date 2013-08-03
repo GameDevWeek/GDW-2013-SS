@@ -116,13 +116,6 @@
   <object type="solid" x="3869" y="5184" width="115" height="1241"/>
   <object type="solid" x="743" y="5084" width="128" height="1363"/>
   <object gid="734" x="1964" y="6248"/>
-  <object name="p2" type="FollowPath" x="1216" y="5952">
-   <polyline points="0,0 576,0"/>
-  </object>
-  <object name="f1" gid="743" x="1183" y="5984">
-   <properties>
-    <property name="path" value="p2"/>
-   </properties>
-  </object>
+  <object name="f1" gid="743" x="1472" y="6208"/>
  </objectgroup>
 </map>
