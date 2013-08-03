@@ -2,7 +2,7 @@
 <map version="1.0" orientation="orthogonal" width="100" height="100" tilewidth="64" tileheight="64">
  <tileset firstgid="1" source="tiledmap_final.tsx"/>
  <tileset firstgid="626" name="entity_tileset" tilewidth="64" tileheight="64">
-  <image source="entity_tileset.png" width="192" height="384"/>
+  <image source="entity_tileset.png" width="192" height="448"/>
   <tile id="0">
    <properties>
     <property name="type" value="start"/>
@@ -83,8 +83,13 @@
     <property name="type" value="tt_trigger"/>
    </properties>
   </tile>
+  <tile id="18">
+   <properties>
+    <property name="type" value="squid"/>
+   </properties>
+  </tile>
  </tileset>
- <tileset firstgid="644" source="moving_platform.tsx"/>
+ <tileset firstgid="647" source="moving_platform.tsx"/>
  <layer name="Kachelebene 1" width="100" height="100">
   <data encoding="base64" compression="zlib">
    eJztmult1VAUhOcfWxMToAi20ANreghrD0BCigBCFZQBhIY4Rz5XGCvJIwFzBjGfNIolL7q+4/di+307AD5GvkS+Ro68fOblP3Gsd5GXlesw3TByUHEf/TByr+I++mFkt+I++mHkVcV99MPItYr76IeROxX30Q8jjyruox9GnlfcRz+M7FfcRz+MHFbcRz+MXK24j34YuV1xH/0w8rDiPvph5FnFffTDyF7FffTDyIeK++iHka2K++iHkVsV99EPIw8q7qMfRp5W3Ec/jLypuI9+GHlfcR/9MPKp4j76YWSn4j76IezDKUHYh1OCsA+nBGEfTgnCPpwShH04JQj7cEoQ9uGUIOzDKUHYh1OCsA+nBGEfTgnCPpwShH04JQj7cEoQ9uGUIOzDKUHYh1OCsA+nBGEfTgnCPpwShH04JQj7cEoQ9uGUIOzDKUHYh1OCsA+nBGEfTgnCPpwShH04JQj7cEoQ9uGUIOzDKUHYh1OCsA+nBGEfTgnCPpwShH04JQj7cEoQ9uGUIOzDKUHYh1OCsA+nBGEfTgnCPpwShH04JQj7cEoQ9uGUIOzDKUHYh1OCsA+nBGEfTgnCPpwShH04JQj7cEoQ9uGUIHR9uAuRS5HLs79XWke0PoSuD/c5crTIt9YRrQ9hH04Jwj6cEoR9OCUI+3BKEPbhlCDswylB6Ppw/+vzh6oPt+n547x9zfdT65f4d3248z4vzvc7bvvsq6snwj7cnOziJvrmgrAPNxhddL47Itb14fIcL2L6vlb7rl5CTPPQea+ZY/hdH+60Oc/j5/kpvq9M5mPPz0bOQ+e9JvFrPtymOT/pusp1L7D5feXf/B+67CDPPe8v857mEL2/BRE/fLhtTPeAY6xj+QZ+Hndud7e2GevGdbW92DfXPcH0vvKk4495We671vL8XMZ1lJ/fx5i8p7c1ljXHcNrYhg933Nh2az7HfOd1ntd7+kH5G+/r2bnt17kcVL/z6+2+j3+m438HAxYNhA==
@@ -153,12 +158,12 @@
   <object gid="638" x="2645" y="6272"/>
   <object gid="639" x="3321" y="6263"/>
   <object gid="640" x="4095" y="6141"/>
-  <object name="mp1" gid="644" x="3259" y="5909">
+  <object name="mp1" gid="647" x="3259" y="5909">
    <properties>
     <property name="path" value="p1"/>
    </properties>
   </object>
-  <object name="mp2" gid="644" x="2248" y="5307">
+  <object name="mp2" gid="647" x="2248" y="5307">
    <properties>
     <property name="path" value="p2"/>
    </properties>
@@ -170,12 +175,12 @@
    </properties>
    <polyline points="0,0 768,0 768,-512 0,-512 0,0"/>
   </object>
-  <object name="mp13" gid="645" x="542" y="6114">
+  <object name="mp13" gid="648" x="542" y="6114">
    <properties>
     <property name="path" value="p3"/>
    </properties>
   </object>
-  <object name="mp14" gid="645" x="1310" y="5599">
+  <object name="mp14" gid="648" x="1310" y="5599">
    <properties>
     <property name="path" value="p3"/>
    </properties>
