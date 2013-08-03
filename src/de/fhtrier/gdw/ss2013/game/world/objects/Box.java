@@ -79,7 +79,9 @@ public class Box extends EntityCollidable {
             isPlayerOnMe++;
         }
         if (other instanceof DeadZone) {
-        	World.getInstance().getEntityManager().removeEntity(this);
+        	DeadZone zone = (DeadZone) other;
+        	if (zone.isRemoveBox())
+        		World.getInstance().getEntityManager().removeEntity(this);
         }
     }
 
