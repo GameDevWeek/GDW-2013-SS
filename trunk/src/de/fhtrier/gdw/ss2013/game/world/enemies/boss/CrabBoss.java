@@ -9,11 +9,14 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
+import de.fhtrier.gdw.commons.utils.SafeProperties;
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.Entity;
+import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.camera.ThreePointCamera;
 import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.game.world.enemies.ground.SmallGroundEnemy;
+import de.fhtrier.gdw.ss2013.game.world.objects.Box;
 import de.fhtrier.gdw.ss2013.game.world.objects.Meteroid;
 
 public class CrabBoss extends AbstractBoss {
@@ -24,6 +27,8 @@ public class CrabBoss extends AbstractBoss {
 	private boolean facingRight;
 	public int stompCount;
 	private Vector2f cameraTarget;
+
+	private int FiringStoneCount = 2;
 
 	@Override
 	protected void initialize() {
@@ -59,6 +64,12 @@ public class CrabBoss extends AbstractBoss {
 	@Override
 	public void update(GameContainer container, int delta)
 			throws SlickException {
+		if (World.getInstance().getAstronaut().getOxygen() <= 0) { // disable
+																	// update on
+																	// player
+																	// dead
+			return;
+		}
 		super.update(container, delta);
 		recalculateCameraTargetPosition();
 	}
@@ -126,7 +137,8 @@ public class CrabBoss extends AbstractBoss {
 				setPhase(new TargetingPhase(new FiringEnemies(
 						new Random().nextInt(21) + 10), 1000));
 			}
-			float speed = (float) (MAX_SPEED * Math.pow(1 - ((float) timer / PHASE_DURATION), 2.0));
+			float speed = (float) (MAX_SPEED * Math.pow(
+					1 - ((float) timer / PHASE_DURATION), 2.0));
 			if (!facingRight) {
 				speed *= -1;
 			}
@@ -166,8 +178,25 @@ public class CrabBoss extends AbstractBoss {
 
 		@Override
 		void enter() {
-			enemy = World.getInstance().getEntityManager()
-					.createEntity(Meteroid.class);
+
+			boolean isRandomStone = Math.random() < 0.10;
+
+			EntityManager entityManager = World.getInstance()
+					.getEntityManager();
+
+			Class<? extends Entity> classId = null;
+			SafeProperties enemyProperties = new SafeProperties();
+			if (isRandomStone && FiringStoneCount > 0) {
+				classId = Box.class;
+				FiringStoneCount--;
+				enemyProperties.setProperty("animation", "box");
+			} else {
+				classId = Meteroid.class;
+				enemyProperties.setProperty("animation", "rock");
+			}
+
+			enemy = entityManager.createEntity(classId);
+			enemy.setProperties(enemyProperties);
 			float offsetX = getPhysicsObject().getDimension().x;
 			if (!facingRight) {
 				offsetX *= -1;
@@ -177,16 +206,21 @@ public class CrabBoss extends AbstractBoss {
 
 		@Override
 		void update(int delta) {
-			float distanceToPlayer = getPosition().distance(World.getInstance().getAstronaut().getPosition());
-			float playerSpeed = World.getInstance().getAstronaut().getVelocity().x;
-			float velocity = distanceToPlayer/5.0f + (float) Math.random() * 150.0f - 75f;
+
+			float distanceToPlayer = getPosition().distance(
+					World.getInstance().getAstronaut().getPosition());
+			float playerSpeed = World.getInstance().getAstronaut()
+					.getVelocity().x;
+			float velocity = distanceToPlayer / 5.0f + (float) Math.random()
+					* 150.0f - 75f;
 			if (!facingRight) {
 				velocity *= -1;
 			}
-			velocity += playerSpeed/2.0f;
+			velocity += playerSpeed / 2.0f;
 
 			enemy.setVelocityX(velocity);
-			enemy.setVelocityY(-(float)Math.random() * 200 - distanceToPlayer/3.0f);
+			enemy.setVelocityY(-(float) Math.random() * 200 - distanceToPlayer
+					/ 3.0f);
 			if (remainingFires == 0) {
 				setPhase(new TargetingPhase(new StepForwardPhase(), 1000));
 			} else {
