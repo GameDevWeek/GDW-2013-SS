@@ -9,7 +9,7 @@
  <tileset firstgid="647" source="moving_platform.tsx"/>
  <layer name="main" width="40" height="120">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC81caZIdNQwWvxLCJQzhDqwJVwgQCFcAwpIrhJ0rEGDI3IHtEoTJQbgCVnV/9TRCliXbPUFVrjevX7fbtj6tlofoRNdqu17bC/T/pB9qe1Tbeee+V2q7Qe158DzfGnx2Bd2p7bvavm/8zvNszbH3bIT0/DXf+f2P1Ri8NZNkPeu9u9XHufre4/tDyq+JNRb97lUy4fG0RZE5RWWiRVG+tt49+l4Q5I3X+Pn979vi+2v03zXQMnpNPe/JfZaXkLdfaMP1j7W9W9vd2j7Zr5+Lvm/sY5Yyynz8orbf9+u39jnqsbZ46emkO2IMsg8e59e1PVDXeQ5/02UZxW+4juejesbTSR82rs/iVusZD8eeThrRGyM0+h5evwfdu/LEmHqVNhzyumlZBuZ6fTDWb+19SRmc1Zk8HsagxLYkYM4jvuc32uTup9p+ru2MNvnl6zPrynizdBMImPOI73lCm9xB9vg7z/tebR9MjG9WvkCWXEGfMd/Ba/6UeIr0G/WzPP1nyZXUgZLvzPN7dNK/3rvL/ozkQct+WPoP6+bZSIzzifhkHFyQ70Mx8bz/UO9s8dzSfytst0eF2rKbIV7HFb649hE82c3QKvshdcHF/hlZu6wvfdXkrU1EB2i+WX9bz1t6y7rmxTiFNtvhzUH6TpBb6J4Xa3uptpeN51p6y+PVSFzk9YUxW8+vxA3rb49XIwRcjMYuklh/e7waobL3adnwbMzFvIjYhAx5PrvG5kyMOErw/6z1s+Qgm2+QemUUkyt889bYC81hsuefzpK0V1a+pBeLM/4sH7fl61m+10iuTtvZFm4KXY7tgaGW3Fi6eEWuTpJcW+YtsCfltZd/k5S5N0JYA9g/OaZn6YNYtMJvOzJfztiZif+YVsSALf8LcX9PzrXuXZ1ft/zmx3TK1XGe7j1q61CNAS2zmfgjqvtAhbYc4qfGOEC9WI77iNoH4OGC+riA/eAYU8ZxWcwflV/DOvBcnqrrGcy3dBPPE3w8ej8I72v5KdZ1zF/ncqOUlcPWOh2l2yGHszrwKIJ/qv2/jK8s9UVGb0T7ho6WfWbksdDmg7L8R3ymDDF/7+59yz4zeEIe8oj8OPv2rJsj+GvJkqeLsrZCU0bPjfihMj/AOI/aGKk3o3mZlh8atTU8P+mLePInc8MWbjL4i/LgLzrleKVf7NEKuzkaH0XmX2g+V7KqlkHKkczvMiZ0nUMLGxbWVsRHhU5x/E3a9iB4P4Lzijp/7/F81X6O1a/2nyHzn9NlGRmx9Ufljgqtia1H5cyLC2B7v6E5+8FUaEzOPF5xn4zJM4r5Ly05xTxX21/4Vq08S2R/S/bTGx/2wiP2o/fOLP1a25+Be1hvaF/JI1mPErUBFu8L9TFc9rE97dwnCb7bzb1FMN7ivbUe4ClsQRajqKvRPu/KerCZ+I39Uws32k5E8t+ouVqpp6O2IpL/ZnzM1kNomuUjr//rtb1R25u1vU9r9WChbf6jPhbLF+rUOP/1Ga3Nw7B8vE12LVvE5vPz9+mU/zoTfa3YK2T+fFTbt7TZEV2PF6mrZNlEDRL2dZFbjO7Ptwj6D33rerxo34X69mOERvxNy4/x1no2Bs6S5cf06nOgnxkHwGe0vimrT2d8CvYRzijuE1t8GRlz9BngnWtSdU7KoiLuQ/8j8UfGDkG+mdcco1m6F/kN9ik+pk2HXXWOErhs5WORZ/iytq9o3C4deRaC8cpY4Biph9cWxlbvr0oqtMmTVcOm18XLja+IESxfDXszlu7PrMuK+LyVQ9B7M/L+6LqMxufw/70Y/TbN+72j+x+F/PpInvc9sv3e3vmdFcTy6ekNqS/1HDTPWr5EtAbYyvH1als83RXlGc8jEpsWOuky9jfh03nvWKG7Hgb7kHUZ0fzBjO6Stc8r60u892XwL/l/VH5Sjmkmd3vU/jnjT+d3R6gs6MMiYDvjc2tCfnJVTaek2fwN+ojuB2Upg2tPV0bykyOUwbWnK4+qP/Dyita5vavQcxHK2hXUZsu8ywqf39sTj54Phvxybu0dupzPelZ7jxK3RYwJsSDyWYhdsZ7YX4jKJPc9cn5G4hb6BX4JzrGyzpL+Onz2jI1aoRdwfhD7GqtrUWf3KhkjzN+Rc+U9WRrx2fWcOMd5f2B8EX+w0JbbnpEz5GCP8A9QPzSTezkyf4D6oUx9mP4N8rvKf0G8xbhjueOYJXMGybLZrAdQeyP3UGVdG86FShuD7/LcMI+Jz2uyPkAOLluzZO0Povbmgk56D77bhfoNvz8y7kG96Tmtr8fIxiEj/+Nk9f968Pob+R8nq2OdXj1N1t6M2pSWnr+KcxHXnzs163t0v3gVadz+oz6p8R2UXTNr/TO47a1flDI1or09KYlbvX6tdevRUbZQrhs+R9bvqBjrXxFuKfoASwAA
+   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
   </data>
  </layer>
  <objectgroup name="object" width="40" height="120">
@@ -45,7 +45,7 @@
   <object name="p29" type="solid" x="1383" y="1105" width="137" height="87"/>
   <object name="p30" type="solid" x="978" y="1042" width="405" height="146"/>
   <object name="p31" type="solid" x="626" y="852" width="380" height="151"/>
-  <object name="ziel" type="winningzone" x="618" y="586" width="284" height="263"/>
+  <object name="ziel" type="winningzone" x="641" y="659" width="248" height="167"/>
   <object name="r" type="solid" x="1939" y="602" width="142" height="6464"/>
   <object name="l" type="solid" x="515" y="620" width="104" height="6448"/>
   <object name="t" type="solid" x="510" y="490" width="1555" height="129"/>
@@ -74,55 +74,55 @@
   <object name="o11" gid="632" x="1430" y="1103"/>
   <object name="k22" gid="631" x="1728" y="5419">
    <properties>
-    <property name="delay" value="3000"/>
+    <property name="delay" value="3400"/>
     <property name="startdelay" value="500"/>
    </properties>
   </object>
   <object name="k17" gid="631" x="1764" y="3750">
    <properties>
-    <property name="delay" value="4000"/>
+    <property name="delay" value="2300"/>
     <property name="startdelay" value="300"/>
    </properties>
   </object>
-  <object name="k11" gid="631" x="1760" y="2602">
+  <object name="k11" gid="631" x="1759" y="2609">
    <properties>
     <property name="delay" value="3500"/>
     <property name="startdelay" value="100"/>
    </properties>
   </object>
-  <object name="k9" gid="631" x="929" y="2161">
+  <object name="k9" gid="631" x="936" y="2156">
    <properties>
     <property name="delay" value="3000"/>
     <property name="startdelay" value="300"/>
    </properties>
   </object>
-  <object name="k1" gid="631" x="1188" y="712">
+  <object name="k1" gid="631" x="1209" y="689">
    <properties>
-    <property name="delay" value="1900"/>
+    <property name="delay" value="2100"/>
     <property name="startdelay" value="50"/>
    </properties>
   </object>
-  <object name="k2" gid="631" x="1770" y="712">
+  <object name="k2" gid="631" x="1770" y="691">
    <properties>
-    <property name="delay" value="4800"/>
+    <property name="delay" value="3800"/>
     <property name="startdelay" value="500"/>
    </properties>
   </object>
   <object name="k3" gid="631" x="705" y="1076">
    <properties>
-    <property name="delay" value="1000"/>
+    <property name="delay" value="2000"/>
     <property name="startdelay" value="100"/>
    </properties>
   </object>
   <object name="k24" gid="631" x="1171" y="5809">
    <properties>
-    <property name="delay" value="2000"/>
+    <property name="delay" value="2200"/>
     <property name="startdelay" value="1000"/>
    </properties>
   </object>
   <object name="k20" gid="631" x="1035" y="4905">
    <properties>
-    <property name="delay" value="5000"/>
+    <property name="delay" value="3700"/>
     <property name="startdelay" value="700"/>
    </properties>
   </object>
@@ -132,18 +132,18 @@
     <property name="startdelay" value="900"/>
    </properties>
   </object>
-  <object name="k6" gid="631" x="1180" y="1654">
+  <object name="k6" gid="631" x="1177" y="1646">
    <properties>
     <property name="delay" value="2800"/>
     <property name="startdelay" value="1250"/>
    </properties>
   </object>
-  <object name="k13" gid="631" x="1242" y="2730">
+  <object name="k13" gid="631" x="1251" y="2737">
    <properties>
-    <property name="delay" value="6000"/>
+    <property name="delay" value="4000"/>
    </properties>
   </object>
-  <object name="k5" gid="631" x="1803" y="1457">
+  <object name="k5" gid="631" x="1808" y="1448">
    <properties>
     <property name="delay" value="2300"/>
     <property name="startdelay" value="1300"/>
@@ -182,7 +182,7 @@
     <property name="isActive" value="false"/>
    </properties>
   </object>
-  <object name="bt3" gid="633" x="1869" y="5262">
+  <object name="bt3" gid="633" x="1872" y="5265">
    <properties>
     <property name="trigger" value="door3"/>
    </properties>
@@ -312,7 +312,7 @@
   <object name="p6y" type="solid" x="1379" y="5591" width="100" height="83"/>
   <object name="p2x" type="solid" x="528" y="6549" width="286" height="84"/>
   <object gid="645" x="1525" y="1489"/>
-  <object gid="645" x="725" y="3021"/>
+  <object gid="645" x="741" y="3024"/>
   <object gid="645" x="1088" y="4757"/>
   <object gid="645" x="1181" y="6989"/>
   <object gid="645" x="197" y="6661"/>
@@ -338,5 +338,11 @@
   <object gid="645" x="419" y="4292"/>
   <object gid="645" x="91" y="5191"/>
   <object gid="645" x="143" y="6153"/>
+  <object type="solid" x="1084" y="6467" width="27" height="24"/>
+  <object type="solid" x="1008" y="6465" width="27" height="24"/>
+  <object type="solid" x="1854" y="5247" width="27" height="24"/>
+  <object type="solid" x="1844" y="3523" width="27" height="24"/>
+  <object type="solid" x="1816" y="2435" width="27" height="24"/>
+  <object type="solid" x="1909" y="2433" width="27" height="24"/>
  </objectgroup>
 </map>

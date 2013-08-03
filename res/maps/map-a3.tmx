@@ -234,7 +234,11 @@
   <object gid="635" x="4999" y="935"/>
   <object gid="635" x="6691" y="916"/>
   <object name="bottom" type="solid" x="172" y="2516" width="8039" height="647"/>
-  <object name="bottomdead" type="deadzone" x="-79" y="2411" width="8023" height="991"/>
+  <object name="bottomdead" type="deadzone" x="-79" y="2411" width="8023" height="991">
+   <properties>
+    <property name="removeBox" value="false"/>
+   </properties>
+  </object>
   <object type="solid" x="2706" y="1003" width="93" height="44"/>
   <object type="solid" x="2834" y="1318" width="93" height="48"/>
   <object type="solid" x="3985" y="1197" width="94" height="42"/>
@@ -270,5 +274,8 @@
   <object gid="632" x="1312" y="1168"/>
   <object gid="636" x="1228" y="944"/>
   <object gid="645" x="4284" y="1874"/>
+  <object type="solid" x="6370" y="1677" width="11" height="11"/>
+  <object type="solid" x="1548" y="1098" width="11" height="11"/>
+  <object type="solid" x="1625" y="1099" width="11" height="11"/>
  </objectgroup>
 </map>
