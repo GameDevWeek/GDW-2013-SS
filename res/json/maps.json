@@ -49,7 +49,7 @@
 {
   "name" : "enemy_test",
   "pfad" : "res/maps/enemy_testmap.tmx"
-}
+},
 {
   "name" : "testmap8",
   "pfad" : "res/maps/testmap8.tmx"
