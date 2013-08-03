@@ -133,7 +133,6 @@ public class MenuPage {
         ToggleButton tb = ToggleButton.create(text, Color.gray, x, y, maxW, h);
         tb.font(font);
         tb.align(textAlign);
-        tb.useTextSize(true);
         tb.init(container);
         addWidget(tb);
 
@@ -152,7 +151,6 @@ public class MenuPage {
         ToggleButton tb = ToggleButton.create(text, Color.gray, x - maxW / 2, y - h / 2, maxW, h);
         tb.font(font);
         tb.align(textAlign);
-        tb.useTextSize(true);
         tb.init(container);
         addWidget(tb);
 
