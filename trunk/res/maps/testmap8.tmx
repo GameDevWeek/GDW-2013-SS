@@ -5,7 +5,7 @@
  <tileset firstgid="647" source="moving_platform.tsx"/>
  <layer name="Kachelebene 1" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt10tuwjAUBdBMUIHuARi0e4ABq4BBFwFILKk7oqwIW8SRVSkhExw+50hXzucNnFgvkasKAAAAAAAAAAAAAAAAAAAAAAB4N/sCORR7mueX3ldX+tTcCv1sWrKt9McQdiG/IaeQv2w8txz3uZafp5F+Yi/8DD0JGrE/jkNPgkbsD+vxOOJ6fA09CRrxe7UOGYdMQqYhn/9qPrL7s6Kzez9xPfb1mBL75TurWWR13Fe+39jWx7FfJnWWIaushvtKPZH2bruO6I/yRtX1HzFvCWXNOmI9AAAAAAAAAAAAAAAAAAAAeBUX8udGTg==
+   eJzt2UtOG0EQxvHKCgxnAHuR3IHwyhWQQqRcIQoPcQXEQ3AGWCS5ArDgDkFJDhGOQboyXaam6R5GwNiA/z/p0xi7LQ1Tru5pWwQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEyazRFka2T/zctn16spbcbcF7TzsZB1oT/GYSPkW8ivkN/u+KfwuM1z/m87oh3thc/jPgkMaX/sjPskMKT9QT2eD63H23GfBIZ0vloJmQ7phcyEzCZjpuLrH0LmR3p2k0frsRmPFu2Xd27MID7Put89v99Yj4+1X3oxCyHvpTyvzcVjX/K903/i833trCds77bREK3TqlTzlppz0Tmt514zuhdcbAjqmq5/Lkchx/G9VgvtgUHIntyd00r1WApZ7uZfetF0b/5dqj10057c/taxP+J7fW/onKb1SO+dfT1sbqQeZY9Zo9Pe0Gt9nIzx9bAeox5lj9kLpr2h9bhMxqzJbT32Y6hHmf889xuSyvVG7ruwL5JfN6hHnv88t703tVqkvWH3xLZ30TG7kq+HBXXp3jz3OPec35do7HcnuydedWNy9fgk1CNn38X/DmL3Wychp1L/reqrNO8pfNL7XavHllAP70yq/bS/Vjp3pXPWeciF1OeYZWlfDx/7HkB74zAeUdXiZ4y/Xjb3p2v5QJ6mHvY9gPbGofA7rtE6/I3ZdrG539YKja0BftxDamH3uwdS1cKCqg43MfLmbq6lHnTrppBcbf4HI1GqwZVUOXdBt3RNL/WIzVNXLuiW3V/ZWnLfOoJu2f1V63UEnSqt6cW6AAAAAAAAAAAAAAAAAAAm2j+dLNYq
   </data>
  </layer>
  <objectgroup name="Objektebene 1" width="100" height="100">
@@ -19,5 +19,7 @@
   <object gid="630" x="2870" y="3473"/>
   <object gid="630" x="2804" y="3473"/>
   <object gid="630" x="2871" y="3407"/>
+  <object gid="645" x="3063" y="4349"/>
+  <object gid="633" x="2857" y="4349"/>
  </objectgroup>
 </map>

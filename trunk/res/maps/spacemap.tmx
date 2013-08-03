@@ -172,7 +172,7 @@
    <polyline points="0,0 192,-224 512,-224"/>
   </object>
   <object gid="631" x="12128" y="812"/>
-  <object gid="626" x="801" y="2106"/>
+  <object gid="626" x="4305" y="2090"/>
   <object gid="630" x="3328" y="3648"/>
   <object gid="632" x="10314" y="2235"/>
   <object name="platform1" gid="647" x="1772" y="2177">
@@ -217,6 +217,29 @@
   <object gid="647" x="8478" y="2359">
    <properties>
     <property name="path" value="jump1"/>
+   </properties>
+  </object>
+  <object name="rtt1" type="FollowPath" x="4545" y="1688">
+   <polyline points="0,0 109,55 167,79 276,97 342,97 491,91 570,48 639,3 794,-55 815,-88 818,-136 855,-242 848,-315 824,-348 815,-373 770,-479 579,-579 461,-594 121,-603 76,-545 39,-479 -6,-430 -115,-358 -94,-273 -103,-227 -73,-115 -39,-70 -3,-6"/>
+  </object>
+  <object name="dfg" gid="635" x="4671" y="1771">
+   <properties>
+    <property name="path" value="rtt1"/>
+   </properties>
+  </object>
+  <object name="asd" gid="635" x="5241" y="1196">
+   <properties>
+    <property name="path" value="rtt1"/>
+   </properties>
+  </object>
+  <object name="sdf" gid="636" x="5310" y="1659">
+   <properties>
+    <property name="path" value="rtt1"/>
+   </properties>
+  </object>
+  <object name="fgh" gid="636" x="4456" y="1332">
+   <properties>
+    <property name="path" value="rtt1"/>
    </properties>
   </object>
  </objectgroup>
