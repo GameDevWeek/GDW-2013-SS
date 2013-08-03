@@ -38,7 +38,12 @@ public class Box extends EntityCollidable {
     
     @Override
     public void render(GameContainer gc, Graphics g) {
-    	animation.draw(getPosition().x-(animation.getWidth()/2), getPosition().y-(animation.getHeight()/2));
+        g.pushTransform();
+        g.translate(getPosition().x, getPosition().y);
+        g.rotate(0,0, (float)(physicsObject.getAngle()/ Math.PI * 180.0));
+        g.translate(-animation.getWidth() / 2.0f, -animation.getHeight()/2.0f);
+    	animation.draw();
+        g.popTransform();
     }
 
 	@Override
@@ -52,7 +57,10 @@ public class Box extends EntityCollidable {
     public void initPhysics() {
         createPhysics(BodyType.DYNAMIC, origin.x, origin.y)
                 .density(PhysixManager.DENSITY).friction(PhysixManager.FRICTION)
-                .asBox(initialSize.x, initialSize.y);
+                .fixedRotation(false)
+                .linearDamping(0.1f)
+                .angularDamping(0.8f)
+                .asCircle(initialSize.x/2);
     }
 
     public void onCollision(Entity e) {

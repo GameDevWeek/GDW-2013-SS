@@ -41,7 +41,9 @@ public abstract class PhysixShape {
     protected void init(PhysixShapeConfig config, Shape shape, float x, float y) {
         bodyDef = new BodyDef();
         bodyDef.linearDamping = 0.0f;
-        bodyDef.fixedRotation = true;
+        bodyDef.fixedRotation = config.fixedRotation;
+        bodyDef.angularDamping = config.angularDamping;
+        bodyDef.linearDamping = config.linearDamping;
         bodyDef.type = config.bodyType;
         bodyDef.position.set(x, y);
         fixtureDef.shape = shape;

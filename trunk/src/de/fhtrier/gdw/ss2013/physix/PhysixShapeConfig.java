@@ -23,6 +23,9 @@ public class PhysixShapeConfig {
     short categoryBits = -1;
     short maskBits = -1;
     Vec2[] points;
+    boolean fixedRotation = true;
+    float linearDamping;
+    float angularDamping;
 
     public PhysixShapeConfig(PhysixManager manager, Entity entity, BodyType type, float x, float y) {
         this.manager = manager;
@@ -66,6 +69,21 @@ public class PhysixShapeConfig {
         else
             maskBits |= bits;
         maskBits |= bits;
+        return this;
+    }
+    
+    public PhysixShapeConfig fixedRotation(boolean value) {
+        fixedRotation = value;
+        return this;
+    }
+    
+    public PhysixShapeConfig linearDamping(float value) {
+        linearDamping = value;
+        return this;
+    }
+    
+    public PhysixShapeConfig angularDamping(float value) {
+        angularDamping = value;
         return this;
     }
 
