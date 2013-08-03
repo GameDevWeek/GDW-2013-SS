@@ -18,6 +18,12 @@ public class ScoreCounter extends MechanicalCounter {
     public void setDesiredValue(int desiredValue)
     {
         this.desiredValue = desiredValue;
+        
+        if(desiredValue  <= value)
+        {
+            this.setDisplayTo(desiredValue);
+            this.setValue(desiredValue);
+        }
     }
     
     public void update(GameContainer container, StateBasedGame game, int delta)
@@ -27,7 +33,6 @@ public class ScoreCounter extends MechanicalCounter {
         if(desiredValue > this.getValue())
         {
             this.up(speed);
-        }
-        
+        }       
     }
 }

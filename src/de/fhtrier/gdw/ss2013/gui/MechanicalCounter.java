@@ -7,14 +7,13 @@ import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class MechanicalCounter {
-    private int n = 4; //number of digits the MechanicalCounter consists of.
+    private int n; //number of digits the MechanicalCounter consists of.
     private RollerCounter[] rollerCounter;
     private boolean moving; //indicates whether the RollerCounters of the MechanicalCounter are still moving.
-    private int value;
+    protected int value;
     
     public MechanicalCounter(Image digits, Vector2f position, int value, int numberOfDigits)
-    {
-        
+    {        
         init(digits, position, value, numberOfDigits);
     }
     
@@ -60,6 +59,25 @@ public class MechanicalCounter {
             //System.out.println("tmpValue-=rollerCounterValue :" + tmpValue);
             tmpValue=tmpValue/10;
             //System.out.println("tmpValue=tmpValue/10 :" + tmpValue);            
+        }
+    }
+    
+    public void setValue(int toSetTo)
+    {
+        this.value = toSetTo;
+    }
+    
+    public void setDisplayTo(int toSetTo)
+    {
+        int tmpValue = toSetTo;
+        int rollerCounterValue = 0;
+        
+        for(int i=0;i<n;i++)
+        {
+            rollerCounterValue = tmpValue % 10;
+            rollerCounter[i].setValue(rollerCounterValue);
+            tmpValue-=rollerCounterValue;
+            tmpValue=tmpValue/10;
         }
     }
     
