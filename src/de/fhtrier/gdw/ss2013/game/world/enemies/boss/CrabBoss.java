@@ -15,15 +15,14 @@ import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.camera.ThreePointCamera;
 import de.fhtrier.gdw.ss2013.game.world.World;
-import de.fhtrier.gdw.ss2013.game.world.enemies.ground.SmallGroundEnemy;
 import de.fhtrier.gdw.ss2013.game.world.objects.Box;
 import de.fhtrier.gdw.ss2013.game.world.objects.Meteroid;
 
 public class CrabBoss extends AbstractBoss {
 
 	private Animation animation;
-	private float scale = 2.0f;
-	private float physicsObject_x_offset = 80.0f;
+	private float physicsObject_x_offset = 20.0f;
+	private float physicsObject_y_offset = 80.0f;
 	private boolean facingRight;
 	public int stompCount;
 	private Vector2f cameraTarget;
@@ -33,12 +32,13 @@ public class CrabBoss extends AbstractBoss {
 	@Override
 	protected void initialize() {
 		animation = AssetLoader.getInstance().getAnimation("crab_boss_idle");
+		img = AssetLoader.getInstance().getImage("boss_image");
 		phase = new InitialPhase();
 		phase.enter();
 		animation.setAutoUpdate(false);
 
-		setInitialSize(animation.getWidth() * scale - 2
-				* physicsObject_x_offset, animation.getHeight() * scale);
+		setInitialSize(img.getWidth() - physicsObject_x_offset, img.getHeight()
+				- physicsObject_y_offset);
 
 		cameraTarget = new Vector2f();
 		ThreePointCamera tpCamera = World.getInstance().getTPCamera();
@@ -84,13 +84,17 @@ public class CrabBoss extends AbstractBoss {
 		float halfwidth = physicsObject.getDimension().x;
 
 		if (facingRight) {
-			animation.draw(x - halfwidth - physicsObject_x_offset, y
-					- halfheight, 2 * halfwidth + 2 * physicsObject_x_offset,
-					2 * halfheight);
+			// animation.draw(x - halfwidth - physicsObject_x_offset, y
+			// - halfheight, 2 * halfwidth + 2 * physicsObject_x_offset,
+			// 2 * halfheight);
+			img.draw(x - halfwidth, y - halfheight,
+					2 * halfwidth, 2 * halfheight);
 		} else {
-			animation.draw(x + halfwidth + physicsObject_x_offset, y
-					- halfheight, -2 * halfwidth - 2 * physicsObject_x_offset,
-					2 * halfheight);
+//			animation.draw(x + halfwidth + physicsObject_x_offset, y
+//					- halfheight, -2 * halfwidth - 2 * physicsObject_x_offset,
+//					2 * halfheight);
+			img.draw(x + halfwidth, y - halfheight,
+					-2 * halfwidth, 2 * halfheight);
 		}
 	}
 
