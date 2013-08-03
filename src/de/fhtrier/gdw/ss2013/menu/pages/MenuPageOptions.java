@@ -10,6 +10,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import de.fhtrier.gdw.ss2013.MainGame;
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
+import de.fhtrier.gdw.ss2013.assetloader.infos.SettingsInfo;
 import de.fhtrier.gdw.ss2013.menu.IActionListener;
 import de.fhtrier.gdw.ss2013.menu.IUpdateListener;
 import de.fhtrier.gdw.ss2013.menu.Label;
@@ -20,11 +21,14 @@ import de.fhtrier.gdw.ss2013.menu.ToggleButton;
 import de.fhtrier.gdw.ss2013.menu.Widget.Align;
 
 public class MenuPageOptions extends MenuPage {
-
+    
+    private ToggleButton fullscreenToggle;
+    
     public MenuPageOptions(final GameContainer container, StateBasedGame game,
             MenuManager menuManager, MenuPage parent, String bgImage) throws SlickException {
         super(container, game, menuManager, parent, bgImage, "options");
         
+        SettingsInfo settings = AssetLoader.getInstance().getSettings();
         Font font = AssetLoader.getInstance().getFont("jabjai_heavy");
         
         float xCenter = MenuManager.MENU_WIDTH / 2.0f;
@@ -35,7 +39,7 @@ public class MenuPageOptions extends MenuPage {
         Label volumeLabel = addLeftAlignedLabel("Lautstaerke", 25, yCenter * 0.25f , font);
         
         float volumeLabelLength = font.getWidth(volumeLabel.text);
-        Slider volumeSlider = Slider.create(0.5f, true, volumeLabelLength + 50, yCenter * 0.25f + 7, 200, font.getLineHeight());
+        Slider volumeSlider = Slider.create(0.5f, true, volumeLabelLength + 50, yCenter * 0.25f - 5, 200, font.getLineHeight());
         volumeSlider.thumbImage(AssetLoader.getInstance().getImage("slider_thumb"));
         
         Rectangle vsRect = volumeSlider.getRect();
@@ -57,24 +61,17 @@ public class MenuPageOptions extends MenuPage {
         addWidget(volumeSlider);
         
         String []fsTexts = {"Zum Vollbildmodus wechseln", "Zum Fenstermodus Wechseln"};
-        ToggleButton fullscreenToggle = ToggleButton.create(fsTexts, Color.gray, 25, yCenter *0.25f + (hText * 1), 510, font.getLineHeight()).align(Align.LEFT)
-                        .font(font).state(container.isFullscreen() ? 1 : 0).hoverColor(Color.white);
+        this.fullscreenToggle = ToggleButton.create(fsTexts, this.standardColor, 25, yCenter *0.25f + (hText * 1), 510, font.getLineHeight()).align(Align.LEFT)
+                        .font(font).state(container.isFullscreen() ? 1 : 0).hoverColor(this.hoverColor);
        
         fullscreenToggle.update(new IUpdateListener() {
                
                 @Override
                 public void onUpdate(Object value) {
-                        boolean fullscreen = ((Integer)value).intValue() == 1;
-                if(fullscreen != container.isFullscreen()) {
-                        try {
-                                if(container.isFullscreen())
-                                        ((AppGameContainer)container).setDisplayMode(MainGame.WINDOW_WIDTH, MainGame.WINDOW_HEIGHT, false);
-                                else
-                                        ((AppGameContainer)container).setDisplayMode(container.getScreenWidth(), container.getScreenHeight(), true);
-                        } catch(SlickException e) {
-                                e.printStackTrace();
-                        }
-                }
+                    boolean fullscreen = ((Integer)value).intValue() == 1;
+                    if(fullscreen != container.isFullscreen()) {
+                        MainGame.toggleFullscreen();
+                    }
                 }
         });
 
@@ -97,6 +94,12 @@ public class MenuPageOptions extends MenuPage {
                     }
                 }
         );
+    }
+    
+    @Override
+    public void activate() {
+        super.activate();
+        this.fullscreenToggle.state(this.container.isFullscreen() ? 1 : 0);
     }
 
 }

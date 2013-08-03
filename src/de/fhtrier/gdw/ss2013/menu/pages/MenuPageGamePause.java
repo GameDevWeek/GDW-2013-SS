@@ -25,12 +25,8 @@ public class MenuPageGamePause extends MenuPage {
         float x = 100;
         float y = 200;
         float h = font.getLineHeight() * 1.5f;
-        
-        
-        int buttonCount, i;
-        buttonCount = i = 4;
-        
-        addLeftAlignedButton("Fortsetzen", x, y + h * (buttonCount - i--), font, 
+                
+        addLeftAlignedButton("Fortsetzen", x, y + h * 0, font, 
                 new IActionListener() {
                     @Override
                     public void onAction() {
@@ -39,7 +35,7 @@ public class MenuPageGamePause extends MenuPage {
                 }
         );
         
-        addLeftAlignedButton("Neustarten", x, y + h * (buttonCount - i--), font, 
+        addLeftAlignedButton("Neustarten", x, y + h * 2, font, 
                 new IActionListener() {
                     @Override
                     public void onAction() {
@@ -49,7 +45,7 @@ public class MenuPageGamePause extends MenuPage {
                 }
         );
         
-        addLeftAlignedButton("Zurueck zum Hauptmenue", x, y + h * (buttonCount - i--), font, 
+        addLeftAlignedButton("Zurueck zum Hauptmenue", x, y + h * 3, font, 
                 new IActionListener() {
                     @Override
                     public void onAction() {
@@ -60,14 +56,18 @@ public class MenuPageGamePause extends MenuPage {
         );
         
         MenuPageHighscore highscore = new MenuPageHighscore(container, game, menuManager, this, null);
-        addLeftAlignedButton("Highscore", x, y + h * (buttonCount - i--), font, 
+        addLeftAlignedButton("Highscore", x, y + h * 5, font, 
                 new MenuPageAction(menuManager, highscore));
         
-        addLeftAlignedButton("Beenden", x, MenuManager.MENU_HEIGHT - h, font, 
+
+        MenuPageOptions options = new MenuPageOptions(container, game, menuManager, this, null);
+        addLeftAlignedButton("Einstellungen", x, y + h * 6, font, 
+                new MenuPageAction(menuManager, options));
+        
+        addLeftAlignedButton("Beenden", x, MenuManager.MENU_HEIGHT - h * 2, font, 
                 new IActionListener() {
                     @Override
                     public void onAction() {
-                        // ToDo: Spiel korrekt entladen!
                         System.exit(0);
                     }
                 }

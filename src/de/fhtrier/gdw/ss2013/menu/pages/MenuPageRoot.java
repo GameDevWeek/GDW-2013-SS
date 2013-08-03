@@ -57,7 +57,7 @@ public class MenuPageRoot extends MenuPage {
 		            new MenuPageAction(manager, levelSelect));
 		    
 		    MenuPageOptions options = new MenuPageOptions(container, _game, manager, this, null);
-		    addCenteredButton("Optionen", xCenter, yCenter + hText * (buttonCount - i--), font, 
+		    addCenteredButton("Einstellungen", xCenter, yCenter + hText * (buttonCount - i--), font, 
 		            new MenuPageAction(manager, options));
 		    
 		    MenuPageHighscore highscore = new MenuPageHighscore(container, _game, manager, this, null);
