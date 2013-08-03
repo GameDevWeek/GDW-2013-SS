@@ -111,6 +111,10 @@
   "pfad" : "dummies/boss2"
 },
 {
+  "name" : "squid",
+  "pfad" : "dummies/squid"
+},
+{
   "name" : "symbion",
   "pfad" : "symbion"
 },

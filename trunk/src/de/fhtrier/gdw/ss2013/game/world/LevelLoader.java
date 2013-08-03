@@ -270,6 +270,9 @@ public class LevelLoader {
 				World.getInstance().addParticle(p);
 			}
 			break;
+		case "squid":
+			entity = entityManager.createEntity(type, properties,name);
+			break;
 		default:
 			entity = entityManager.createEntity(type, properties, name);
 			break;
