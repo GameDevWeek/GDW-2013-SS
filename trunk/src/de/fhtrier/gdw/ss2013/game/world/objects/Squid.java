@@ -2,22 +2,18 @@
 package de.fhtrier.gdw.ss2013.game.world.objects;
 
 import java.util.Random;
-import java.util.Vector;
 
 import org.jbox2d.dynamics.BodyType;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.geom.Vector2f;
-import org.newdawn.slick.state.transition.RotateTransition;
 import org.newdawn.slick.util.Log;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.world.World;
-import de.fhtrier.gdw.ss2013.physix.PhysixManager;
 
 public class Squid extends Entity {
 
@@ -39,6 +35,12 @@ public class Squid extends Entity {
 		super(AssetLoader.getInstance().getImage("squid"));
 	}
 
+	@Override
+	protected void initialize() {
+	    super.initialize();
+	    renderLayer = -1;
+	}
+	
 	@Override
 	public void update (GameContainer container, int delta) throws SlickException {
 		super.update(container, delta);
