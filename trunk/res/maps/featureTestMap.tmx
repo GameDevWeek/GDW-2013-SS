@@ -89,6 +89,14 @@
    </properties>
   </tile>
  </tileset>
+ <objectgroup name="Objektebene 3" width="100" height="100"/>
+ <objectgroup name="Objektebene 2" width="100" height="100">
+  <object gid="644" x="1329" y="5955"/>
+  <object gid="644" x="1229" y="6085"/>
+  <object gid="644" x="851" y="5908"/>
+  <object gid="644" x="727" y="6041"/>
+  <object gid="644" x="953" y="6034"/>
+ </objectgroup>
  <layer name="Kachelebene 1" width="100" height="100">
   <data encoding="base64" compression="zlib">
    eJzt0UEKABAABEBHz/ANBx/0ak7upIiZ2uPW1oYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADvqAudtHsEgz/u4o+7lJ44mXxkKQD8pwFV8ALV
@@ -99,12 +107,5 @@
   <object type="solid" x="1479" y="5886" width="55" height="258"/>
   <object type="solid" x="640" y="5888" width="53" height="255"/>
   <object gid="626" x="716" y="6104"/>
- </objectgroup>
- <objectgroup name="Objektebene 2" width="100" height="100">
-  <object gid="644" x="1076" y="6001"/>
-  <object gid="644" x="1329" y="5955"/>
-  <object gid="644" x="1229" y="6085"/>
-  <object gid="644" x="851" y="5908"/>
-  <object gid="644" x="727" y="6041"/>
  </objectgroup>
 </map>
