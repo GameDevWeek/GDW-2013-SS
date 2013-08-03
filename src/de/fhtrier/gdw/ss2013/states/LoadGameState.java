@@ -31,15 +31,19 @@ public class LoadGameState extends BasicGameState {
     private GameWonState gamewonState;
     private DeferredResource nextResource;
     private AssetLoader assetLoader;
+    private float aspectRatio, loadWidth, loadHeight;
 
     @Override
     public void init(GameContainer container, StateBasedGame game)
             throws SlickException {
         ((AppGameContainer) container).setVSync(false);
-        loadscreen = new Image("/res/images/ladescreen.png");
+        
         LoadingList.setDeferredLoading(true);
 
         assetLoader = AssetLoader.getInstance();
+        
+        loadscreen = new Image("/res/images/ladescreen.png");
+        
         SoundLocator.provideAssetLoader(assetLoader);
 
         if (container.isFullscreen() || assetLoader.getSettings().fullscreen) {
@@ -55,15 +59,27 @@ public class LoadGameState extends BasicGameState {
         int remainingResources = LoadingList.get().getRemainingResources();
         int loadedResources = totalResources - remainingResources;
 
+        
+        aspectRatio = (float) container.getWidth() / (float) container.getHeight();
+        if(aspectRatio < (16.0f/9.0f)) {
+            loadWidth = container.getWidth();
+            loadHeight = container.getWidth() / (16.0f/9.0f);
+        }else{
+            loadWidth =  container.getHeight() * (16.0f/9.0f);
+            loadHeight = container.getHeight();
+        }
+
         g.setColor(new Color(0, 177, 141));
-
+        float x = (container.getWidth() - loadWidth) / 2;
+        float y = (container.getHeight() - loadHeight) / 2;
+        
         g.fillRect(
-                container.getWidth() / 8,
-                container.getHeight() / 8 * 6.1f,
-                container.getWidth() / 8 * 6 / totalResources * loadedResources,
-                100);
-
-        loadscreen.draw((container.getWidth() - loadscreen.getWidth()) / 2,(container.getHeight() - loadscreen.getHeight()) / 2);
+                loadWidth * 0.141f + x,
+                loadHeight * 0.791f + y,
+                loadWidth * 0.72f / totalResources * loadedResources,
+                loadHeight * 0.094f);
+        
+        loadscreen.draw(x, y, loadWidth, loadHeight);
     }
 
     @Override
