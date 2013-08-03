@@ -71,6 +71,10 @@
   "pfad" : "background/background"
 },
 {
+  "name" : "welcome_tt",
+  "pfad" : "tooltips/welcome_tt"
+},
+{
   "name" : "crosshair",
   "pfad" : "gui/crosshair"
 },

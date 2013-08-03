@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="260" height="40" tilewidth="64" tileheight="64">
+ <tileset firstgid="1" source="tiledmap_final.tsx"/>
+ <tileset firstgid="626" source="entity_tileset.tsx"/>
+ <tileset firstgid="647" source="particle_tileset.tsx"/>
+ <tileset firstgid="656" source="moving_platform.tsx"/>
+ <tileset firstgid="659" source="moving_platform.tsx"/>
+ <tileset firstgid="662" source="shadow_tileset.tsx"/>
+ <layer name="Kachelebene 1" width="260" height="40">
+  <data encoding="base64" compression="gzip">
+   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
+  </data>
+ </layer>
+ <objectgroup name="Objektebene 1" width="260" height="40">
+  <object type="solid" x="-400" y="-432" width="496" height="3080"/>
+  <object type="solid" x="-392" y="-744" width="13282" height="952"/>
+  <object type="solid" x="14537" y="-230" width="336" height="2864"/>
+  <object gid="630" x="3358" y="1810"/>
+  <object gid="633" x="3799" y="1825">
+   <properties>
+    <property name="trigger" value="door"/>
+   </properties>
+  </object>
+  <object type="solid" x="1028" y="1811" width="180" height="760"/>
+  <object type="solid" x="1353" y="1943" width="168" height="625"/>
+  <object type="solid" x="1671" y="2006" width="172" height="574"/>
+  <object type="solid" x="2948" y="1890" width="8555" height="663"/>
+  <object type="deadzone" x="694" y="2408" width="2684" height="104"/>
+  <object gid="631" x="899" y="966">
+   <properties>
+    <property name="delay" value="1800"/>
+   </properties>
+  </object>
+  <object type="solid" x="77" y="1811" width="749" height="756"/>
+  <object type="solid" x="1992" y="2071" width="181" height="511"/>
+  <object type="solid" x="2317" y="2134" width="173" height="443"/>
+  <object name="door" gid="628" x="4162" y="1770"/>
+  <object type="solid" x="2954" y="1496" width="1450" height="132"/>
+  <object type="solid" x="8397" y="1747" width="173" height="121"/>
+  <object type="solid" x="9229" y="1747" width="173" height="121"/>
+  <object type="solid" x="10060" y="1742" width="173" height="121"/>
+  <object type="solid" x="10890" y="1747" width="173" height="121"/>
+  <object gid="632" x="4802" y="1682"/>
+  <object gid="632" x="610" y="1802"/>
+  <object type="winningzone" x="13788" y="885" width="1052" height="982">
+   <properties>
+    <property name="target" value="bossmap"/>
+   </properties>
+  </object>
+  <object gid="631" x="1254" y="800">
+   <properties>
+    <property name="delay" value="1800"/>
+    <property name="startDelay" value="900"/>
+   </properties>
+  </object>
+  <object gid="631" x="2848" y="418">
+   <properties>
+    <property name="delay" value="1800"/>
+    <property name="startDelay" value="900"/>
+   </properties>
+  </object>
+  <object gid="631" x="1568" y="682">
+   <properties>
+    <property name="delay" value="1800"/>
+    <property name="startDelay" value="900"/>
+   </properties>
+  </object>
+  <object gid="631" x="1900" y="476">
+   <properties>
+    <property name="delay" value="1800"/>
+   </properties>
+  </object>
+  <object gid="631" x="2534" y="912">
+   <properties>
+    <property name="delay" value="1800"/>
+   </properties>
+  </object>
+  <object type="solid" x="5385" y="472" width="425" height="907"/>
+  <object name="door2" gid="628" x="5570" y="1726"/>
+  <object gid="633" x="4284" y="1500">
+   <properties>
+    <property name="trigger" value="door2"/>
+   </properties>
+  </object>
+  <object type="solid" x="4680" y="1682" width="298" height="96"/>
+  <object gid="629" x="6905" y="977">
+   <properties>
+    <property name="trigger" value="door3"/>
+   </properties>
+  </object>
+  <object type="deadzone" x="11414" y="2202" width="2188" height="312"/>
+  <object type="solid" x="13580" y="1812" width="1104" height="670"/>
+  <object name="door3" gid="628" x="7102" y="1752"/>
+  <object type="solid" x="6983" y="468" width="301" height="1167"/>
+  <object type="solid" x="6788" y="980" width="270" height="204"/>
+  <object type="solid" x="6895" y="1180" width="98" height="256"/>
+  <object type="solid" x="6961" y="1372" width="98" height="256"/>
+  <object type="solid" x="5448" y="1494" width="299" height="137"/>
+  <object gid="632" x="7454" y="1814"/>
+  <object name="tele1" gid="643" x="5432" y="836">
+   <properties>
+    <property name="target" value="tele2"/>
+   </properties>
+  </object>
+  <object name="tele2" gid="643" x="5688" y="842">
+   <properties>
+    <property name="target" value="tele1"/>
+   </properties>
+  </object>
+  <object gid="636" x="4528" y="1252"/>
+  <object gid="636" x="5019" y="1385"/>
+  <object gid="637" x="6371" y="1039"/>
+  <object gid="637" x="6176" y="1449"/>
+  <object gid="635" x="2259" y="1813"/>
+  <object gid="638" x="8742" y="1752"/>
+  <object gid="638" x="8936" y="1755"/>
+  <object gid="638" x="9069" y="1759"/>
+  <object gid="638" x="8641" y="1754"/>
+  <object gid="639" x="9525" y="1766"/>
+  <object gid="639" x="9724" y="1784"/>
+  <object gid="639" x="9917" y="1769"/>
+  <object gid="640" x="10373" y="1787"/>
+  <object gid="640" x="10606" y="1782"/>
+  <object gid="640" x="10723" y="1780"/>
+  <object name="line1" type="FollowPath" x="11584" y="1823">
+   <properties>
+    <property name="speed" value="60"/>
+   </properties>
+   <polyline points="0,0 471,1"/>
+  </object>
+  <object gid="656" x="11592" y="1849">
+   <properties>
+    <property name="path" value="line1"/>
+   </properties>
+  </object>
+  <object gid="656" x="12078" y="1851">
+   <properties>
+    <property name="path" value="line2"/>
+   </properties>
+  </object>
+  <object name="line2" type="FollowPath" x="12070" y="1825">
+   <properties>
+    <property name="speed" value="80"/>
+   </properties>
+   <polyline points="0,0 471,1"/>
+  </object>
+  <object gid="656" x="12575" y="1852">
+   <properties>
+    <property name="path" value="line3"/>
+   </properties>
+  </object>
+  <object name="line3" type="FollowPath" x="12567" y="1826">
+   <properties>
+    <property name="speed" value="100"/>
+   </properties>
+   <polyline points="0,0 471,1"/>
+  </object>
+  <object gid="656" x="13076" y="1855">
+   <properties>
+    <property name="path" value="line4"/>
+   </properties>
+  </object>
+  <object name="line4" type="FollowPath" x="13068" y="1829">
+   <properties>
+    <property name="speed" value="110"/>
+   </properties>
+   <polyline points="0,0 471,1"/>
+  </object>
+  <object gid="642" x="369" y="1762">
+   <properties>
+    <property name="radius" value="220"/>
+    <property name="trigger" value="welcome_tt"/>
+   </properties>
+  </object>
+  <object type="solid" x="2634" y="2071" width="173" height="507"/>
+  <object name="welcome_tt" gid="641" x="310" y="1508">
+   <properties>
+    <property name="image" value="welcome_tt"/>
+   </properties>
+  </object>
+  <object gid="626" x="314" y="1668"/>
+  <object type="solid" x="2957" y="1812" width="677" height="75"/>
+  <object type="solid" x="3718" y="1809" width="903" height="81"/>
+ </objectgroup>
+</map>
