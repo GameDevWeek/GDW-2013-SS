@@ -30,6 +30,8 @@ public class MenuPage {
     MenuManager menuManager;
     protected Image bgImage;
     Color hoverColor = new Color(Integer.parseInt("F8BB08", 16));
+    Color standardColor = Color.white;
+    Color pressedColor = Color.cyan;
 
     public MenuPage(GameContainer container, StateBasedGame game, MenuManager menuManager, MenuPage parent, String bgImage, String type) throws SlickException {
         this.container = container;
@@ -41,7 +43,31 @@ public class MenuPage {
         }
         this.setType(type);
     }
-
+    
+    public void setStandardColor(Color color) {
+        this.standardColor = color;
+    }
+    
+    public Color getStandardColor() {
+        return this.standardColor;
+    }
+    
+    public void setPressedColor(Color color) {
+        this.pressedColor = color;
+    }
+    
+    public Color getPressedColor() {
+        return this.pressedColor;
+    }
+    
+    public void setHoverColor(Color color) {
+        this.hoverColor = color;
+    }
+    
+    public Color getHoverColor() {
+        return this.hoverColor;
+    }
+    
     public void addWidget(Widget w) {
         widgets.add(w);
     }
@@ -67,9 +93,9 @@ public class MenuPage {
 
         Button button = Button.create(text, x - w / 2, y - h / 2, w, h)
                 .font(font)
-                .color(Color.gray)
-                .hoverColor(hoverColor)
-                .pressedColor(Color.cyan)
+                .color(this.standardColor)
+                .hoverColor(this.hoverColor)
+                .pressedColor(this.pressedColor)
                 .action(listener)
                 .useTextSize(true);
         addWidget(button);
@@ -84,9 +110,9 @@ public class MenuPage {
 
         Button button = Button.create(text, x, y, w, h)
                 .font(font)
-                .color(Color.gray)
-                .hoverColor(hoverColor)
-                .pressedColor(Color.cyan)
+                .color(this.standardColor)
+                .hoverColor(this.hoverColor)
+                .pressedColor(this.pressedColor)
                 .action(listener)
                 .useTextSize(true);
         addWidget(button);
@@ -100,7 +126,7 @@ public class MenuPage {
         float h = img.getHeight();
 
         Label label = Label.create("", x - w / 2, y - h / 2, w, h)
-                .color(Color.gray);
+                .color(this.standardColor);
         label.image(img);
         label.init(container);
         addWidget(label);
@@ -113,7 +139,7 @@ public class MenuPage {
         float h = font.getLineHeight();
 
         Label label = Label.create(text, x - w / 2, y - h / 2, w, h)
-                .color(Color.gray);
+                .color(this.standardColor);
         label.font(font);
         label.init(container);
         addWidget(label);
@@ -130,7 +156,7 @@ public class MenuPage {
                 maxW = font.getWidth(t);
         }
         
-        ToggleButton tb = ToggleButton.create(text, Color.gray, x, y, maxW, h);
+        ToggleButton tb = ToggleButton.create(text, this.standardColor, x, y, maxW, h);
         tb.font(font);
         tb.align(textAlign);
         tb.init(container);
@@ -148,7 +174,7 @@ public class MenuPage {
                 maxW = font.getWidth(t);
         }
         
-        ToggleButton tb = ToggleButton.create(text, Color.gray, x - maxW / 2, y - h / 2, maxW, h);
+        ToggleButton tb = ToggleButton.create(text, this.standardColor, x - maxW / 2, y - h / 2, maxW, h);
         tb.font(font);
         tb.align(textAlign);
         tb.init(container);
@@ -163,7 +189,7 @@ public class MenuPage {
 
         TextField textField = TextField.create(text, x, y, w, h)
                 .font(font)
-                .color(Color.gray);
+                .color(this.standardColor);
         addWidget(textField);
         textField.init(container);
 
@@ -176,7 +202,7 @@ public class MenuPage {
 
         TextField textField = TextField.create(text, x - w / 2, y - h / 2, w, h)
                 .font(font)
-                .color(Color.gray);
+                .color(this.standardColor);
         addWidget(textField);
         textField.init(container);
 
@@ -189,7 +215,7 @@ public class MenuPage {
         
         Label label = Label.create(text, x, y, w, h)
                 .font(font)
-                .color(Color.gray);
+                .color(this.standardColor);
         addWidget(label);
         
         return label;
