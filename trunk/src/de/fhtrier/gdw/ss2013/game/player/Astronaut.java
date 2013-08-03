@@ -498,6 +498,11 @@ public final class Astronaut extends EntityCollidable implements AstronautContro
 	@Override
 	public void toggleAlien() {
 		if (carryAlien) {
+            if(state == PlayerState.superjump
+                    || state == PlayerState.superjump_start
+                    || state == PlayerState.superjump_end) {
+                return;
+            }
 			carryAlien = false;
 			alien.setOnPlayer(false);
 
