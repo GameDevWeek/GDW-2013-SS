@@ -40,7 +40,7 @@ public abstract class MovingPlatform extends Entity implements Interactable, Ent
         this.img = img;
         index = 0;
         speed = 20;
-        setParticle(AssetLoader.getInstance().getParticle("plattform1"));
+        setParticle(AssetLoader.getInstance().getParticle("plattform1").clone());
         isActive = true;
         moveAround = false;
         indexmod = 1;
