@@ -49,6 +49,10 @@
   {
    "name" : "teleporter_test",
   "pfad" : "res/partikel/teleporter_test.xml"
+  },
+  {
+   "name" : "teleporter_alien",
+  "pfad" : "res/partikel/teleporter_alien.xml"
   }
   
   ]
