@@ -13,95 +13,99 @@ import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityCollidable;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.world.World;
-import de.fhtrier.gdw.ss2013.physix.PhysixConst;
 
 public abstract class Bullet extends EntityCollidable {
-	
-	private Vector2f shootDirection;
 
-	protected int livetime;
-	private EntityManager m;
-	private float damage;
+    private Vector2f shootDirection;
 
-	public Bullet() {
-		super(AssetLoader.getInstance().getImage("bullet"));
-		m = World.getInstance().getEntityManager();
-	}
+    protected int livetime;
+    private EntityManager m;
+    private float damage;
 
-	@Override
-	protected void initialize() {
-		super.initialize();
-		livetime = 60 * 10;
-		setDamage(PlayerConstants.BULLET_DAMAGE);
-	}
-
-    @Override
-    public void initPhysics() {
-		int width = img.getWidth();
-		int height = img.getHeight();
-        createPhysics(BodyType.DYNAMIC, origin.x, origin.y)
-                .category(getCategory()).mask(getMask())
-                .sensor(true).asBox(width, height);
-        
-		setVelocity(shootDirection);
-		physicsObject.setGravityScale(0f);
+    public Bullet() {
+        super(AssetLoader.getInstance().getImage("bullet"));
+        m = World.getInstance().getEntityManager();
     }
 
     @Override
-	public void render(GameContainer container, Graphics g) throws SlickException {
-		img.draw(this.getPosition().x - (img.getWidth() / 2), this.getPosition().y - (img.getHeight() / 2));
-
-		// g.drawString(this.hashCode(), position.x, position.y);
-	}
+    protected void initialize() {
+        super.initialize();
+        livetime = 60 * 10;
+        setDamage(PlayerConstants.BULLET_DAMAGE);
+    }
 
     @Override
-	public void update(GameContainer container, int delta) throws SlickException {
+    public void initPhysics() {
+        int width = img.getWidth();
+        int height = img.getHeight();
+        createPhysics(BodyType.DYNAMIC, origin.x, origin.y)
+                .category(getCategory()).mask(getMask()).sensor(true)
+                .asBox(width, height);
+
+        setVelocity(shootDirection);
+        physicsObject.setGravityScale(0f);
+    }
+
+    @Override
+    public void render(GameContainer container, Graphics g)
+            throws SlickException {
+        img.draw(this.getPosition().x - (img.getWidth() / 2),
+                this.getPosition().y - (img.getHeight() / 2));
+
+        // g.drawString(this.hashCode(), position.x, position.y);
+    }
+
+    @Override
+    public void update(GameContainer container, int delta)
+            throws SlickException {
         super.update(container, delta);
-		float df = delta / 1000f;
-		
-		float x = physicsObject.getX();
-		float y = physicsObject.getY();
-		physicsObject.setPosition(x + (getVelocity().x * df), y + (getVelocity().y * df));
+        float df = delta / 1000f;
 
-		if (livetime <= 0) {
-			m.removeEntity(this);
-		}
-		livetime--;
-	}
+        float x = physicsObject.getX();
+        float y = physicsObject.getY();
+        physicsObject.setPosition(x + (getVelocity().x * df), y
+                + (getVelocity().y * df));
 
-	public void setReferences(EntityManager m) {
-		this.m = m;
-	}
+        if (livetime <= 0) {
+            m.removeEntity(this);
+        }
+        livetime--;
+    }
 
-	@Override
-	public abstract void beginContact(Contact contact);
+    public void setReferences(EntityManager m) {
+        this.m = m;
+    }
 
-	@Override
-	public void endContact(Contact object) {
-	}
+    @Override
+    public abstract void beginContact(Contact contact);
 
-	public float getDamage() {
-		return damage;
-	}
+    @Override
+    public void endContact(Contact object) {
+    }
 
-	public void setDamage(float damage) {
-		this.damage = damage;
-	}
+    public float getDamage() {
+        return damage;
+    }
 
-	public void setShootDirection(Vector2f shootDirection) {
-		this.shootDirection = shootDirection.copy();
-	}
+    public void setDamage(float damage) {
+        this.damage = damage;
+    }
 
-	/**
-	 * use this for level collision ect.
-	 */
-	public void checkForUnwantedContacts(Contact contact) {
-		Entity other = getOtherEntity(contact);
-        if(other == null) {
+    public void setShootDirection(Vector2f shootDirection) {
+        this.shootDirection = shootDirection.copy();
+    }
+
+    /**
+     * use this for level collision ect.
+     */
+    public void checkForUnwantedContacts(Contact contact) {
+        Entity other = getOtherEntity(contact);
+        if (other == null) {
             World.getInstance().getEntityManager().removeEntity(this);
-        }    
-	}
+        }
+    }
 
     protected abstract short getCategory();
+
     protected abstract short getMask();
 }

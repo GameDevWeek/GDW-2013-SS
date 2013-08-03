@@ -4,16 +4,17 @@ import org.newdawn.slick.Animation;
 
 /**
  * Contains all movement states from the astronaut.
- *
+ * 
  * @author Robin
  */
 public enum PlayerState {
 
-    standing, walking, jumping, falling, action, superjump_start, superjump, superjump_end;
+    standing, walking, jumping, falling, action, superjump_start, superjump, superjump_end, dead;
     private Animation combinedAnimation;
     private Animation astronautAnimation;
 
-    public void setAnimations(Animation combinedAnimation, Animation astronautAnimation) {
+    public void setAnimations(Animation combinedAnimation,
+            Animation astronautAnimation) {
         this.combinedAnimation = combinedAnimation;
         this.astronautAnimation = astronautAnimation;
     }

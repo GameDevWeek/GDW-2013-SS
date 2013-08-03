@@ -2,10 +2,12 @@ package de.fhtrier.gdw.ss2013.game.player;
 
 import java.util.ArrayList;
 
+import org.jbox2d.dynamics.BodyType;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.util.Log;
 
@@ -19,7 +21,8 @@ import de.fhtrier.gdw.ss2013.game.world.bullets.PlayerBullet;
 import de.fhtrier.gdw.ss2013.game.world.objects.Box;
 import de.fhtrier.gdw.ss2013.input.AlienController;
 import de.fhtrier.gdw.ss2013.physix.PhysixConst;
-import org.jbox2d.dynamics.BodyType;
+import de.fhtrier.gdw.ss2013.sound.SoundLocator;
+import de.fhtrier.gdw.ss2013.sound.SoundPlayer;
 
 public final class Alien extends Entity implements AlienController {
 
@@ -30,7 +33,8 @@ public final class Alien extends Entity implements AlienController {
     private float maxMana;
     private final Vector2f cursor = new Vector2f();
     private GameContainer container;
-    private EntityManager entityManager = World.getInstance().getEntityManager();
+    private EntityManager entityManager = World.getInstance()
+            .getEntityManager();
     // telekinese values
     private Box currentSelectedBox;
     private float selectionRadius;
@@ -40,6 +44,9 @@ public final class Alien extends Entity implements AlienController {
     private boolean invertAnimation;
     private Vector2f dynamicTarget = new Vector2f();
     private float maxDistance;
+
+    private SoundPlayer soundPlayer = SoundLocator.getPlayer();
+    private Sound shootSound;
 
     public Alien() {
         animation = AssetLoader.getInstance().getAnimation("alien_standing");
@@ -70,6 +77,7 @@ public final class Alien extends Entity implements AlienController {
         mana = maxMana;
         GameDataInfo info = AssetLoader.getInstance().getGameData();
         maxDistance = info.alien.maxDistance;
+        shootSound = SoundLocator.loadSound("alienschuss");
         World.getInstance().getTPCamera().addDynamicTarget(dynamicTarget);
     }
 
@@ -95,20 +103,26 @@ public final class Alien extends Entity implements AlienController {
 
     @Override
     public void shoot() {
-        if (System.currentTimeMillis() > lastShotTime + PlayerConstants.SHOTDELAY) {
+        if (System.currentTimeMillis() > lastShotTime
+                + PlayerConstants.SHOTDELAY) {
+            soundPlayer.playSound(shootSound);
             Vector2f playerPos;
             if (astronaut.isCarryAlien()) {
-                playerPos = astronaut.getPosition(); // notwendig, weil alienPos net stimmt
+                playerPos = astronaut.getPosition(); // notwendig, weil alienPos
+                                                     // net stimmt
             } else {
                 playerPos = getPosition();
             }
-            Vector2f shootDirection = new Vector2f(World.getInstance().screenToWorldPosition(getCursor()));
+            Vector2f shootDirection = new Vector2f(World.getInstance()
+                    .screenToWorldPosition(getCursor()));
             shootDirection.sub(playerPos);
 
-            shootDirection = shootDirection.normalise().scale(PlayerConstants.BULLET_SPEED);
+            shootDirection = shootDirection.normalise().scale(
+                    PlayerConstants.BULLET_SPEED);
 
             // Create a meteorite entity
-            PlayerBullet entity = entityManager.createEntity(PlayerBullet.class);
+            PlayerBullet entity = entityManager
+                    .createEntity(PlayerBullet.class);
             entity.setOrigin(playerPos.x, playerPos.y);
             entity.setShootDirection(shootDirection);
 
@@ -143,45 +157,55 @@ public final class Alien extends Entity implements AlienController {
     @Override
     public void useAbility() {
         switch (selectedAbility) {
-            case 1:
-                // telekinese
-//		    System.out.println("lsdidioga");
-                if (currentSelectedBox == null) {
-                    Vector2f cursorPos = World.getInstance().screenToWorldPosition(cursor);
-                    ArrayList<Entity> closestEntitiesAtPosition = entityManager.getClosestEntitiesAtPosition(World.getInstance().screenToWorldPosition(cursor), selectionRadius);
-                    for (Entity e : closestEntitiesAtPosition) {
-                        if (e instanceof Box) {
-                            currentSelectedBox = (Box) e;
-                            currentSelectedBox.getPhysicsObject().setLinearVelocity(currentSelectedBox.getPosition().sub(cursorPos));
-                            return;
-                        }
+        case 1:
+            // telekinese
+            // System.out.println("lsdidioga");
+            if (currentSelectedBox == null) {
+                Vector2f cursorPos = World.getInstance().screenToWorldPosition(
+                        cursor);
+                ArrayList<Entity> closestEntitiesAtPosition = entityManager
+                        .getClosestEntitiesAtPosition(World.getInstance()
+                                .screenToWorldPosition(cursor), selectionRadius);
+                for (Entity e : closestEntitiesAtPosition) {
+                    if (e instanceof Box) {
+                        currentSelectedBox = (Box) e;
+                        currentSelectedBox.getPhysicsObject()
+                                .setLinearVelocity(
+                                        currentSelectedBox.getPosition().sub(
+                                                cursorPos));
+                        return;
                     }
-
-                } else {
-                    dropCurrentSelected();
                 }
-                break;
-            case 2:
-                //großer sprung
-                astronaut.superjump();
-                break;
+
+            } else {
+                dropCurrentSelected();
+            }
+            break;
+        case 2:
+            // großer sprung
+            astronaut.superjump();
+            break;
         }
     }
+
     Vector2f screenCursor = new Vector2f();
 
     @Override
     public void setCursor(int x, int y) {
-//	    screenCursor.set(x, y);
-//	    Vector2f worldSpace = World.getInstance().screenToWorldPosition(screenCursor);
-//	    cursor.set(worldSpace.x, worldSpace.y);
-        cursor.set(Math.min(container.getWidth(), Math.max(0, x)), Math.min(container.getHeight(), Math.max(0, y)));
+        // screenCursor.set(x, y);
+        // Vector2f worldSpace =
+        // World.getInstance().screenToWorldPosition(screenCursor);
+        // cursor.set(worldSpace.x, worldSpace.y);
+        cursor.set(Math.min(container.getWidth(), Math.max(0, x)),
+                Math.min(container.getHeight(), Math.max(0, y)));
         // TODO Auto-generated method stub
         // Log.debug("target direction");
         // setZustand("animtest");
     }
 
     @Override
-    public void update(GameContainer container, int delta) throws SlickException {
+    public void update(GameContainer container, int delta)
+            throws SlickException {
         // TODO Auto-generated method stub
         super.update(container, delta);
 
@@ -189,24 +213,28 @@ public final class Alien extends Entity implements AlienController {
             dynamicTarget.set(astronaut.getPosition());
         } else {
             dynamicTarget.set(this.getPosition());
-            
-            if(astronaut.getPosition().distance(getPosition()) >= maxDistance) {
+
+            if (astronaut.getPosition().distance(getPosition()) >= maxDistance) {
                 astronaut.toggleAlien();
             }
         }
-        
+
         switch (selectedAbility) {
-            case 1:
-                // telekinese
-                if (currentSelectedBox != null && currentSelectedBox.getPhysicsObject() != null) {
-                    Vector2f screenToWorldPosition = World.getInstance().screenToWorldPosition(cursor);
-                    dragDirection.x = screenToWorldPosition.x - currentSelectedBox.getPosition().x;
-                    dragDirection.y = screenToWorldPosition.y - currentSelectedBox.getPosition().y;
-                    currentSelectedBox.setVelocity(dragDirection);
-                    if (currentSelectedBox.isPlayerOnBox()) {
-                        dropCurrentSelected();
-                    }
+        case 1:
+            // telekinese
+            if (currentSelectedBox != null
+                    && currentSelectedBox.getPhysicsObject() != null) {
+                Vector2f screenToWorldPosition = World.getInstance()
+                        .screenToWorldPosition(cursor);
+                dragDirection.x = screenToWorldPosition.x
+                        - currentSelectedBox.getPosition().x;
+                dragDirection.y = screenToWorldPosition.y
+                        - currentSelectedBox.getPosition().y;
+                currentSelectedBox.setVelocity(dragDirection);
+                if (currentSelectedBox.isPlayerOnBox()) {
+                    dropCurrentSelected();
                 }
+            }
         }
     }
 
@@ -217,45 +245,50 @@ public final class Alien extends Entity implements AlienController {
             currentSelectedBox = null;
         }
     }
-    
+
     public Box getCurrentSelectedBox() {
         return currentSelectedBox;
     }
 
     @Override
-    public void render(GameContainer container, Graphics g) throws SlickException {
+    public void render(GameContainer container, Graphics g)
+            throws SlickException {
         if (!onPlayer) {
             Vector2f position = getPosition();
 
             if (invertAnimation) {
-                animation.draw(position.x + animation.getWidth() / 2, position.y
-                        - animation.getHeight() / 2, -animation.getWidth(),
-                        animation.getHeight());
+                animation.draw(position.x + animation.getWidth() / 2,
+                        position.y - animation.getHeight() / 2,
+                        -animation.getWidth(), animation.getHeight());
             } else {
-                animation.draw(position.x - animation.getWidth() / 2, position.y
-                        - animation.getHeight() / 2);
+                animation.draw(position.x - animation.getWidth() / 2,
+                        position.y - animation.getHeight() / 2);
             }
         }
     }
 
     @Override
     public void cursorLeft(float scale) {
-        cursor.x = Math.min(container.getWidth(), Math.max(0, cursor.x - 10.0f * scale));
+        cursor.x = Math.min(container.getWidth(),
+                Math.max(0, cursor.x - 10.0f * scale));
     }
 
     @Override
     public void cursorRight(float scale) {
-        cursor.x = Math.min(container.getWidth(), Math.max(0, cursor.x + 10.0f * scale));
+        cursor.x = Math.min(container.getWidth(),
+                Math.max(0, cursor.x + 10.0f * scale));
     }
 
     @Override
     public void cursorUp(float scale) {
-        cursor.y = Math.min(container.getHeight(), Math.max(0, cursor.y - 10.0f * scale));
+        cursor.y = Math.min(container.getHeight(),
+                Math.max(0, cursor.y - 10.0f * scale));
     }
 
     @Override
     public void cursorDown(float scale) {
-        cursor.y = Math.min(container.getHeight(), Math.max(0, cursor.y + 10.0f * scale));
+        cursor.y = Math.min(container.getHeight(),
+                Math.max(0, cursor.y + 10.0f * scale));
     }
 
     public Vector2f getCursor() {
@@ -278,10 +311,10 @@ public final class Alien extends Entity implements AlienController {
         createPhysics(BodyType.DYNAMIC, origin.x, origin.y)
                 .density(info.alien.density).friction(info.alien.friction)
                 .category(PhysixConst.PLAYER).mask(PhysixConst.MASK_PLAYER)
-                .active(false)
-                .asPlayer(info.alien.width, info.alien.height);
+                .active(false).asPlayer(info.alien.width, info.alien.height);
 
-//        World.getInstance().getPhysicsManager().ropeConnect(astronaut.getPhysicsObject(), getPhysicsObject(), info.alien.maxDistance);
+        // World.getInstance().getPhysicsManager().ropeConnect(astronaut.getPhysicsObject(),
+        // getPhysicsObject(), info.alien.maxDistance);
         physicsObject.setActive(!onPlayer);
     }
 }

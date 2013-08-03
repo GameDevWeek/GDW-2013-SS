@@ -15,18 +15,17 @@ import de.fhtrier.gdw.ss2013.physix.PhysixConst;
 public class EnemyBullet extends Bullet {
 
     public EnemyBullet() {
-    	super();
+        super();
     }
 
     @Override
     public void beginContact(Contact contact) {
         Entity other = getOtherEntity(contact);
         if (other instanceof Astronaut) {
-            ((Astronaut) other).setOxygen(((Astronaut) other).getOxygen()
-                    - this.getDamage());
+            ((Astronaut) other).setDamage(this.getDamage());
             this.livetime = 0;
         }
-        
+
         super.checkForUnwantedContacts(contact);
     }
 
