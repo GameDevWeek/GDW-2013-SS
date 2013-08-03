@@ -194,7 +194,6 @@
   <object type="solid" x="3953" y="1107" width="125" height="89"/>
   <object type="solid" x="5719" y="659" width="145" height="213"/>
   <object type="solid" x="5138" y="2327" width="282" height="191"/>
-  <object gid="630" x="4268" y="1874"/>
   <object gid="632" x="6463" y="1813"/>
   <object type="solid" x="5268" y="663" width="152" height="148"/>
   <object type="solid" x="2323" y="1559" width="158" height="274"/>
@@ -270,5 +269,6 @@
   <object gid="643" x="7912" y="1778"/>
   <object gid="632" x="1312" y="1168"/>
   <object gid="636" x="1228" y="944"/>
+  <object gid="645" x="4284" y="1874"/>
  </objectgroup>
 </map>
