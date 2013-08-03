@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="120" height="50" tilewidth="64" tileheight="64">
- <tileset firstgid="1" source="tiledmap_final.tsx"/>
+ <properties>
+  <property name="made_by" value="Benjamin_'Albsi'_Albsmeier"/>
+  <property name="name" value="a3"/>
+ </properties>
+ <tileset firstgid="1" source="robotileset.tsx"/>
  <tileset firstgid="626" source="entity_tileset.tsx"/>
  <tileset firstgid="647" source="moving_platform.tsx"/>
  <tileset firstgid="650" source="particle_tileset.tsx"/>
+ <layer name="fluid" width="120" height="50">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3TsQ2AMAxFQaeC/XeDMZIVSIkiSpp83UnWk9NGrgIAAAAAAAAAAAAAAAAAAAAAyHTNuTW2fc7Q2B6t6myaWgAA/tVf87Wzt750fWdv7jeb+822/q/7zfIAtHVA+8BdAAA=
+  </data>
+ </layer>
  <layer name="main" width="120" height="50" opacity="0.9">
   <data encoding="base64" compression="gzip">
-   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
+   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
   </data>
  </layer>
  <objectgroup name="object" width="120" height="50">
@@ -19,58 +28,57 @@
    </properties>
    <polyline points="0,0 710,-118"/>
   </object>
-  <object type="solid" x="1738" y="852" width="106" height="138"/>
-  <object type="solid" x="1484" y="1110" width="230" height="136"/>
-  <object type="solid" x="1160" y="1170" width="236" height="74"/>
-  <object type="solid" x="1034" y="1044" width="106" height="74"/>
-  <object type="solid" x="841" y="1427" width="106" height="74"/>
-  <object type="solid" x="1801" y="1361" width="106" height="74"/>
-  <object type="solid" x="2761" y="1683" width="106" height="74"/>
-  <object type="solid" x="843" y="2133" width="106" height="74"/>
-  <object type="solid" x="3467" y="1299" width="106" height="74"/>
-  <object type="solid" x="3913" y="1491" width="106" height="74"/>
-  <object type="solid" x="3915" y="2132" width="106" height="74"/>
-  <object type="solid" x="5065" y="1041" width="427" height="77"/>
-  <object type="solid" x="5195" y="2131" width="106" height="74"/>
-  <object type="solid" x="6281" y="979" width="106" height="74"/>
-  <object type="solid" x="6281" y="1685" width="106" height="74"/>
-  <object type="solid" x="5642" y="2323" width="170" height="75"/>
-  <object type="solid" x="6729" y="1749" width="106" height="74"/>
-  <object type="solid" x="2763" y="1171" width="106" height="138"/>
-  <object type="solid" x="971" y="1235" width="106" height="138"/>
-  <object type="solid" x="905" y="1941" width="106" height="138"/>
-  <object type="solid" x="1355" y="2065" width="106" height="138"/>
-  <object type="solid" x="1867" y="2197" width="232" height="74"/>
-  <object type="solid" x="2187" y="1107" width="232" height="74"/>
-  <object type="solid" x="2633" y="1043" width="170" height="74"/>
-  <object type="solid" x="2313" y="1749" width="170" height="74"/>
-  <object type="solid" x="6409" y="1811" width="170" height="74"/>
-  <object type="solid" x="6412" y="1044" width="297" height="73"/>
-  <object type="solid" x="6028" y="1554" width="230" height="136"/>
-  <object type="solid" x="5513" y="1235" width="170" height="138"/>
-  <object type="solid" x="5643" y="917" width="102" height="262"/>
-  <object type="solid" x="5707" y="1429" width="300" height="200"/>
-  <object type="solid" x="5323" y="2068" width="295" height="73"/>
-  <object type="solid" x="4489" y="2002" width="299" height="78"/>
-  <object type="solid" x="2506" y="1619" width="232" height="74"/>
-  <object type="solid" x="2956" y="2003" width="232" height="74"/>
-  <object type="solid" x="1290" y="1877" width="256" height="74"/>
-  <object type="solid" x="1655" y="1876" width="253" height="75"/>
-  <object type="solid" x="1994" y="1745" width="172" height="140"/>
-  <object type="solid" x="1930" y="1493" width="104" height="202"/>
-  <object type="solid" x="776" y="1553" width="172" height="140"/>
-  <object type="solid" x="970" y="1749" width="296" height="134"/>
-  <object type="solid" x="972" y="2259" width="360" height="74"/>
-  <object type="solid" x="2828" y="1365" width="168" height="200"/>
-  <object type="solid" x="2696" y="785" width="168" height="204"/>
-  <object type="solid" x="3338" y="915" width="238" height="138"/>
-  <object type="solid" x="2122" y="2323" width="296" height="76"/>
-  <object type="solid" x="3783" y="915" width="174" height="266"/>
-  <object type="solid" x="3978" y="1235" width="172" height="204"/>
-  <object type="solid" x="4425" y="1170" width="233" height="139"/>
-  <object type="solid" x="4812" y="2195" width="296" height="80"/>
-  <object type="solid" x="4168" y="1873" width="300" height="142"/>
-  <object type="solid" x="6028" y="2261" width="294" height="74"/>
+  <object type="solid" x="1746" y="855" width="92" height="149"/>
+  <object type="solid" x="1490" y="1107" width="221" height="153"/>
+  <object type="solid" x="1171" y="1169" width="320" height="88"/>
+  <object type="solid" x="1041" y="1046" width="94" height="86"/>
+  <object type="solid" x="850" y="1425" width="85" height="136"/>
+  <object type="solid" x="1809" y="1360" width="87" height="92"/>
+  <object type="solid" x="2738" y="1682" width="125" height="89"/>
+  <object type="solid" x="850" y="1942" width="92" height="277"/>
+  <object type="solid" x="3474" y="1298" width="87" height="90"/>
+  <object type="solid" x="3921" y="1490" width="89" height="90"/>
+  <object type="solid" x="3922" y="2134" width="92" height="85"/>
+  <object type="solid" x="5074" y="1046" width="412" height="86"/>
+  <object type="solid" x="5202" y="2136" width="91" height="83"/>
+  <object type="solid" x="6290" y="983" width="92" height="82"/>
+  <object type="solid" x="6290" y="1687" width="93" height="85"/>
+  <object type="solid" x="5649" y="2326" width="158" height="84"/>
+  <object type="solid" x="6745" y="1748" width="85" height="86"/>
+  <object type="solid" x="2769" y="1174" width="157" height="144"/>
+  <object type="solid" x="977" y="1238" width="94" height="149"/>
+  <object type="solid" x="942" y="1943" width="65" height="149"/>
+  <object type="solid" x="1361" y="2070" width="94" height="150"/>
+  <object type="solid" x="1881" y="2197" width="215" height="85"/>
+  <object type="solid" x="2194" y="1110" width="259" height="86"/>
+  <object type="solid" x="2649" y="1044" width="151" height="88"/>
+  <object type="solid" x="2322" y="1747" width="158" height="89"/>
+  <object type="solid" x="6417" y="1814" width="158" height="85"/>
+  <object type="solid" x="6427" y="1045" width="276" height="86"/>
+  <object type="solid" x="6037" y="1559" width="215" height="148"/>
+  <object type="solid" x="5530" y="1236" width="147" height="150"/>
+  <object type="solid" x="5651" y="914" width="85" height="410"/>
+  <object type="solid" x="5714" y="1430" width="285" height="213"/>
+  <object type="solid" x="5330" y="2071" width="286" height="81"/>
+  <object type="solid" x="4498" y="2000" width="277" height="92"/>
+  <object type="solid" x="2481" y="1622" width="255" height="145"/>
+  <object type="solid" x="2929" y="2003" width="253" height="88"/>
+  <object type="solid" x="1297" y="1877" width="605" height="88"/>
+  <object type="solid" x="2002" y="1751" width="155" height="148"/>
+  <object type="solid" x="1946" y="1494" width="82" height="212"/>
+  <object type="solid" x="786" y="1556" width="155" height="152"/>
+  <object type="solid" x="977" y="1750" width="286" height="149"/>
+  <object type="solid" x="977" y="2258" width="349" height="90"/>
+  <object type="solid" x="2834" y="1360" width="157" height="219"/>
+  <object type="solid" x="2706" y="787" width="158" height="217"/>
+  <object type="solid" x="3345" y="918" width="220" height="151"/>
+  <object type="solid" x="2129" y="2327" width="287" height="82"/>
+  <object type="solid" x="3794" y="917" width="157" height="279"/>
+  <object type="solid" x="3994" y="1239" width="143" height="212"/>
+  <object type="solid" x="4434" y="1174" width="222" height="149"/>
+  <object type="solid" x="4819" y="2199" width="284" height="85"/>
+  <object type="solid" x="4179" y="1877" width="283" height="149"/>
+  <object type="solid" x="6033" y="2261" width="285" height="87"/>
   <object gid="626" x="1088" y="1666"/>
   <object name="tp2-2" gid="643" x="1183" y="2144">
    <properties>
@@ -115,7 +123,7 @@
    </properties>
    <polyline points="0,0 204,-8 314,-122 318,-368 234,-632 -38,-808"/>
   </object>
-  <object type="solid" x="4684" y="1363" width="359" height="75"/>
+  <object type="solid" x="4691" y="1362" width="348" height="88"/>
   <object gid="632" x="4610" y="1986"/>
   <object gid="632" x="6142" y="1536"/>
   <object gid="632" x="6082" y="2242"/>
@@ -127,8 +135,8 @@
     <property name="target" value="tp3-1"/>
    </properties>
   </object>
-  <object type="solid" x="4169" y="1235" width="234" height="76"/>
-  <object type="solid" x="2442" y="1108" width="172" height="140"/>
+  <object type="solid" x="4074" y="1236" width="362" height="81"/>
+  <object type="solid" x="2452" y="1111" width="155" height="149"/>
   <object name="tp1-2" gid="643" x="2525" y="990">
    <properties>
     <property name="target" value="tp1-1"/>
@@ -146,16 +154,16 @@
    </properties>
   </object>
   <object gid="632" x="1984" y="2174"/>
-  <object type="solid" x="3977" y="2003" width="170" height="75"/>
-  <object type="solid" x="5771" y="1107" width="232" height="138"/>
+  <object type="solid" x="3985" y="2007" width="157" height="84"/>
+  <object type="solid" x="5737" y="1107" width="260" height="153"/>
   <object name="door1" gid="628" x="5952" y="1344">
    <properties>
     <property name="isActive" value="false"/>
    </properties>
   </object>
   <object name="ziel" type="winningzone" x="5712" y="1302" width="220" height="74"/>
-  <object type="solid" x="2378" y="1940" width="170" height="264"/>
-  <object type="solid" x="1739" y="2067" width="106" height="74"/>
+  <object type="solid" x="2385" y="1942" width="159" height="279"/>
+  <object type="solid" x="1746" y="2070" width="93" height="85"/>
   <object name="sw4" gid="629" x="5356" y="2331">
    <properties>
     <property name="trigger" value="mp3"/>
@@ -181,14 +189,14 @@
     <property name="target" value="tp4-1"/>
    </properties>
   </object>
-  <object type="solid" x="1547" y="1876" width="106" height="138"/>
-  <object type="solid" x="5066" y="1235" width="106" height="74"/>
-  <object type="solid" x="3146" y="2131" width="106" height="74"/>
-  <object type="solid" x="3976" y="1107" width="106" height="74"/>
-  <object type="solid" x="5706" y="658" width="172" height="204"/>
-  <object type="solid" x="5130" y="2322" width="300" height="142"/>
-  <object type="solid" x="5835" y="2387" width="170" height="75"/>
-  <object type="solid" x="5450" y="2386" width="170" height="138"/>
+  <object type="solid" x="1554" y="1967" width="93" height="61"/>
+  <object type="solid" x="5074" y="1238" width="94" height="85"/>
+  <object type="solid" x="3154" y="2134" width="221" height="86"/>
+  <object type="solid" x="3953" y="1107" width="125" height="89"/>
+  <object type="solid" x="5719" y="659" width="145" height="213"/>
+  <object type="solid" x="5138" y="2327" width="283" height="146"/>
+  <object type="solid" x="5842" y="2391" width="157" height="84"/>
+  <object type="solid" x="5457" y="2390" width="157" height="163"/>
   <object name="btn1" gid="633" x="6305" y="988">
    <properties>
     <property name="trigger" value="door1"/>
@@ -196,9 +204,9 @@
   </object>
   <object gid="630" x="4285" y="1853"/>
   <object gid="632" x="6444" y="1792"/>
-  <object type="solid" x="5259" y="626" width="169" height="173"/>
-  <object type="solid" x="2378" y="1554" width="106" height="74"/>
-  <object type="solid" x="2826" y="1940" width="106" height="74"/>
+  <object type="solid" x="5268" y="663" width="152" height="148"/>
+  <object type="solid" x="2385" y="1559" width="94" height="190"/>
+  <object type="solid" x="2833" y="1942" width="95" height="137"/>
   <object gid="636" x="2379" y="889"/>
   <object gid="635" x="2132" y="1404"/>
   <object gid="635" x="2156" y="2059"/>
@@ -211,18 +219,18 @@
   <object gid="635" x="5939" y="1991"/>
   <object gid="635" x="6476" y="1399"/>
   <object gid="635" x="6085" y="907"/>
-  <object type="solid" x="5963" y="594" width="489" height="75"/>
-  <object type="solid" x="6539" y="614" width="361" height="121"/>
-  <object type="solid" x="5451" y="619" width="233" height="114"/>
-  <object type="solid" x="4746" y="627" width="490" height="106"/>
-  <object type="solid" x="4488" y="722" width="235" height="75"/>
-  <object type="solid" x="3979" y="659" width="490" height="138"/>
-  <object type="solid" x="6732" y="1108" width="296" height="137"/>
-  <object type="solid" x="6925" y="788" width="117" height="266"/>
-  <object type="solid" x="6859" y="1554" width="221" height="203"/>
-  <object type="solid" x="1995" y="623" width="297" height="109"/>
-  <object type="solid" x="2379" y="596" width="425" height="74"/>
-  <object type="solid" x="1866" y="724" width="106" height="74"/>
+  <object type="solid" x="5976" y="597" width="574" height="82"/>
+  <object type="solid" x="6548" y="594" width="340" height="152"/>
+  <object type="solid" x="5457" y="598" width="222" height="148"/>
+  <object type="solid" x="4762" y="533" width="462" height="211"/>
+  <object type="solid" x="4465" y="721" width="252" height="86"/>
+  <object type="solid" x="3994" y="661" width="468" height="149"/>
+  <object type="solid" x="6740" y="1111" width="276" height="148"/>
+  <object type="solid" x="6938" y="788" width="140" height="323"/>
+  <object type="solid" x="6874" y="1557" width="206" height="214"/>
+  <object type="solid" x="2001" y="599" width="287" height="149"/>
+  <object type="solid" x="2386" y="528" width="414" height="156"/>
+  <object type="solid" x="1873" y="726" width="93" height="87"/>
   <object gid="635" x="1996" y="996"/>
   <object gid="635" x="1232" y="2081"/>
   <object gid="635" x="2000" y="2048"/>
@@ -234,7 +242,13 @@
   <object gid="635" x="3100" y="1247"/>
   <object gid="635" x="4999" y="935"/>
   <object gid="635" x="6691" y="916"/>
-  <object name="bottom" type="solid" x="169" y="2548" width="8039" height="647"/>
+  <object name="bottom" type="solid" x="172" y="2516" width="8039" height="647"/>
   <object name="bottomdead" type="deadzone" x="-79" y="2440" width="8023" height="991"/>
+  <object type="solid" x="2706" y="1003" width="93" height="44"/>
+  <object type="solid" x="2834" y="1318" width="93" height="48"/>
+  <object type="solid" x="3985" y="1197" width="94" height="42"/>
+  <object type="solid" x="6000" y="1558" width="61" height="81"/>
+  <object type="solid" x="7060" y="1298" width="152" height="351"/>
+  <object type="solid" x="5224" y="658" width="521" height="83"/>
  </objectgroup>
 </map>
