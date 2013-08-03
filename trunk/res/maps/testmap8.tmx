@@ -5,21 +5,39 @@
  <tileset firstgid="647" source="moving_platform.tsx"/>
  <layer name="Kachelebene 1" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <objectgroup name="Objektebene 1" width="100" height="100">
   <object type="solid" x="2684" y="3474">
-   <polyline points="0,0 250,2 250,122 462,124 462,0 646,0"/>
+   <polyline points="0,0 250,2 250,122 462,124 462,0"/>
   </object>
   <object gid="626" x="2768" y="3392"/>
   <object type="solid" x="2670" y="3472">
-   <polyline points="0,0 0,-308 1548,-308"/>
+   <polyline points="0,0 0,-308 3152,-302"/>
   </object>
   <object gid="630" x="2870" y="3473"/>
   <object gid="630" x="2804" y="3473"/>
   <object gid="630" x="2871" y="3407"/>
-  <object gid="645" x="3063" y="4349"/>
-  <object gid="633" x="2857" y="4349"/>
+  <object gid="645" x="3010" y="4338"/>
+  <object gid="633" x="2833" y="4372">
+   <properties>
+    <property name="trigger" value="door1"/>
+   </properties>
+  </object>
+  <object type="solid" x="2800" y="4367">
+   <polyline points="0,0 354,1 352,-169 1,-172 0,-1"/>
+  </object>
+  <object type="solid" x="2607" y="4114">
+   <polyline points="0,0 1511,1 1511,-447 3278,-444"/>
+  </object>
+  <object name="door1" gid="628" x="2547" y="4100"/>
+  <object gid="640" x="5080" y="3464"/>
+  <object type="solid" x="3146" y="3475">
+   <polyline points="0,0 165,0 167,189 293,189 295,336 -537,340 -537,469"/>
+  </object>
+  <object type="solid" x="2609" y="3943">
+   <polyline points="0,0 -512,-3 -510,168 -3,171"/>
+  </object>
  </objectgroup>
 </map>
