@@ -75,7 +75,6 @@ public class World {
 		}
 		CameraInfo info = new CameraInfo(5, map);
 		camera = new ThreePointCamera(info);
-		camera.setZoom(-100.00f);
 
 		// physic debug stuff
 		physicsManager.enableDebugDraw(container);
@@ -145,10 +144,10 @@ public class World {
 		camera.update(delta, container.getWidth(), container.getHeight());
 
 		if (container.getInput().isKeyDown(Input.KEY_1)) {
-			camera.zoom(0.01f);
+			camera.zoomIn(0.9f);
 		}
 		if (container.getInput().isKeyDown(Input.KEY_2)) {
-			camera.zoom(-0.01f);
+			camera.zoomOut(0.9f);
 		}
 
 		for (DynamicParticleSystem p : particleList) {
