@@ -2,8 +2,8 @@
  "astronaut": {
    "width": 50,
    "height": 110,
-   "speed": 160,
-   "jumpSpeed": 550,
+   "speed": 200,
+   "jumpSpeed": 375,
    "jumpDelay": 500,
    "density": 1,
    "friction": 0.5,
@@ -23,7 +23,7 @@
  "combined": {
    "width": 50,
    "height": 134,
-   "speed": 160,
+   "speed": 200,
    "jumpSpeed": 350,
    "jumpDelay": 500,
    "density": 1,
