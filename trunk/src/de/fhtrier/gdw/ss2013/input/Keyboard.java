@@ -30,7 +30,6 @@ public class Keyboard extends InputDevice {
         for (Map.Entry<InputAction, Integer> entry : entries) {
             boolean down;
             switch(entry.getKey()) {
-                case JUMP:
                 case ACTION:
                 case TOGGLE_ALIEN:
                 case PREV_ABILITY:
