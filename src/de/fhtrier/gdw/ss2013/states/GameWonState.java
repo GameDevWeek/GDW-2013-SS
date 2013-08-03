@@ -12,57 +12,62 @@ import de.fhtrier.gdw.ss2013.MainGame;
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.gui.utils.CenteredText;
-import de.fhtrier.gdw.ss2013.gui.RollingCounter;
+import de.fhtrier.gdw.ss2013.gui.MechanicalCounter;
+import de.fhtrier.gdw.ss2013.gui.RollerCounter;
+import de.fhtrier.gdw.ss2013.gui.ScoreCounter;
 
 public class GameWonState extends BasicGameState {
 
     private boolean RunUpdateAtLeastOneTime = false;
-	private Image winImage;
-	final RollingCounter rollingCounter = new RollingCounter();
-	private AssetLoader asset;
-	int stellen = 6;
+
+    //?
+    int stellen = 6;
 	int counter = 0;
 	int zehnerpotenz = 10;
 	int score = 123;
 	int timer = 0;
 	boolean ready = false;
-	Image digits;
+	//?
 	
+	//MechanicalCounter
+	MechanicalCounter mechanicalCounter;
 	
+	//ScoreCounter
+	ScoreCounter scoreCounter;
 	
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-		winImage = AssetLoader.getInstance().getImage("ability1");
-		digits = AssetLoader.getInstance().getImage("digits");
-		
-		//Init RollingCounter
-        Image[] rollingCounterImage = new Image[10];
-        
-        
-        int height = digits.getHeight()/10; 
-        int width = digits.getWidth();
-        for(int i=0;i<10;i++)
-        {
-            rollingCounterImage[i]=digits.getSubImage(0, i*height-1, width, height);
-        }
-                        
-        rollingCounter.init(rollingCounterImage, 0, new Vector2f(200.0f,200.0f)); 
-        
+	    //Init MechanicalCounter
+	    Image scoreCounter_digits = AssetLoader.getInstance().getImage("digits");
+	    Vector2f scoreCounter_position = new Vector2f(200.0f,200.0f);
+	    int scoreCounter_startValue = 0000;
+	    int scoreCounter_numberOfDigits = 4;
+	    float scoreCounter_countingSpeed = 2.0f;
+	    //mechanicalCounter = new MechanicalCounter(digits, position, 0000, 8)
+	    scoreCounter = new ScoreCounter( scoreCounter_digits
+	                                    ,scoreCounter_position
+	                                    ,scoreCounter_startValue
+	                                    ,scoreCounter_numberOfDigits
+	                                    ,scoreCounter_countingSpeed);
+	    
+	    scoreCounter.setDesiredValue(25);
 	}
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
 		//rollingCounter Render
-		rollingCounter.render(gc, sbg, g);
+		//mechanicalCounter.render(gc, sbg, g);
+	    scoreCounter.render(gc, sbg, g);
 	}
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
 	    if(RunUpdateAtLeastOneTime)
 	    {
-	        //rollingCounter Update
-	        rollingCounter.update(gc, sbg, delta);
-	        rollingCounter.up(0.2f);
+	        //Mechanicalcounter Update
+	        //mechanicalCounter.update(gc, sbg, delta);
+	       // mechanicalCounter.up(1.0f);
+	        scoreCounter.update(gc, sbg, delta);
 	    }
 	    else
 	    {

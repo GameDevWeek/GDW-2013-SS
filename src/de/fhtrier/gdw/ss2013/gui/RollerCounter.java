@@ -6,10 +6,10 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
 
-public class RollingCounter {
+public class RollerCounter {
     
     private Image[] image;
-    private int counterReading;
+    private int value; //the value the RollerCounter displays or will display after finishing it's animation.
     private Vector2f position;
     
     private Vector2f startDrawingPosition;
@@ -18,10 +18,13 @@ public class RollingCounter {
     private boolean movingUp; //true wenn es aufwärtes, false wennn es abwärts Zählt. 
     private float speed;
 
-    public void init(Image[] image, int counterReading, Vector2f position)
+    public void init(Image[] image, Vector2f position, int value)
     {
+        /*to-do
+         * throw error if  value>0 or value<0         *
+         */
         this.image = image;
-        this.counterReading = counterReading;
+        this.value = value;
         
         this.position = position;
         startDrawingPosition = new Vector2f();
@@ -47,7 +50,7 @@ public class RollingCounter {
     public void render(GameContainer container, StateBasedGame game, Graphics g)
     {
         g.setClip((int)position.x, (int)position.y, image[0].getWidth(), 2*image[0].getHeight());
-        draw5er(counterReading, currentDrawingPosition);
+        draw5er(value, currentDrawingPosition);
         g.setClip(0, 0, container.getWidth(), container.getHeight());
     }
     
@@ -74,14 +77,24 @@ public class RollingCounter {
             movingUp = true;
             currentDrawingPosition.x = startDrawingPosition.x;
             currentDrawingPosition.y = startDrawingPosition.y +image[0].getHeight();
-            counterReading = (counterReading + 1) % 10;
+            value = (value + 1) % 10;
             this.speed=speed;
             return true;
         }
     }
     
-    public void down()
+    public void down() //optional. Funktion ist eignetlich nicht nötig.
     {
         
+    }
+    
+    public int getValue()
+    {
+        return value;
+    }
+    
+    public boolean isMoving()
+    {
+        return moving;
     }
   }
