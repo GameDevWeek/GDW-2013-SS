@@ -39,18 +39,17 @@ public class Accelerator extends EntityCollidable implements Interactable {
     public void beginContact(Contact contact) {
         Entity other = getOtherEntity(contact);
         
-        if (!isActive && (other instanceof Astronaut || other instanceof Alien || other instanceof Box)) {
+        if (isActive && (other instanceof Astronaut || other instanceof Alien || other instanceof Box)) {
             Alien alien = World.getInstance().getAlien();
             if(other == alien.getCurrentSelectedBox()) {
                 alien.dropCurrentSelected();
             }
-            
-            float x = properties.getFloat("velocity_x", 50);
-            float y = properties.getFloat("velocity_y", -5000);
-            if(y != 0)
-                other.setVelocityY(y);
-            if(x != 0)
-                other.setVelocityY(x);
+            float x = properties.getFloat("velocity_x", 0);
+            float y = properties.getFloat("velocity_y", 0);
+//            if(y != 0)
+//                other.setVelocityY(y);
+//            if(x != 0)
+//                other.setVelocityX(x);
             
             other.getPhysicsObject().applyImpulse(x, y);
         }
@@ -72,6 +71,6 @@ public class Accelerator extends EntityCollidable implements Interactable {
 
 	@Override
 	public boolean isActive() {
-		return !isActive;
+		return isActive;
 	}
 }

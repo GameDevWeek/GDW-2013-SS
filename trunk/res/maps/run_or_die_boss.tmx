@@ -140,7 +140,11 @@
   <object type="solid" x="1936" y="4827" width="800" height="241"/>
   <object type="solid" x="2661" y="4072" width="315" height="971"/>
   <object type="solid" x="2700" y="3145" width="646" height="211"/>
-  <object gid="633" x="1695" y="3484"/>
+  <object gid="633" x="1695" y="3484">
+   <properties>
+    <property name="trigger" value="leftaccel"/>
+   </properties>
+  </object>
   <object gid="633" x="3556" y="3484">
    <properties>
     <property name="trigger" value="rightaccel"/>
@@ -155,8 +159,27 @@
   <object type="solid" x="1114" y="2224" width="370" height="294"/>
   <object type="solid" x="1198" y="2226" width="542" height="164"/>
   <object type="solid" x="974" y="2446" width="446" height="262"/>
-  <object gid="629" x="3814" y="2142"/>
-  <object gid="629" x="1436" y="2140"/>
-  <object name="rightaccel" gid="634" x="3216" y="3100"/>
+  <object gid="629" x="3814" y="2142">
+   <properties>
+    <property name="trigger" value="rightswitch"/>
+   </properties>
+  </object>
+  <object gid="629" x="1436" y="2140">
+   <properties>
+    <property name="trigger" value="leftswitch"/>
+   </properties>
+  </object>
+  <object name="rightaccel" gid="634" x="3266" y="3098">
+   <properties>
+    <property name="velocity_x" value="50"/>
+    <property name="velocity_y" value="-4000"/>
+   </properties>
+  </object>
+  <object name="leftaccel" gid="634" x="2092" y="3100">
+   <properties>
+    <property name="velocity_x" value="50"/>
+    <property name="velocity_y" value="-4000"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
