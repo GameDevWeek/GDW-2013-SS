@@ -76,7 +76,7 @@ public class OxygenFlower extends EntityCollidable {
                 && this.count < this.getMaxBubble()) {
 
             float x = this.getPosition().getX()
-                    + ((float) Math.random() * 100 - 50);
+                    + ((float) Math.random() * 150 - 75);
             float y = this.getPosition().getY() - (float) Math.random() * 30
                     - 50;
             OxygenBubble entity = World.getInstance().getEntityManager()
@@ -85,7 +85,7 @@ public class OxygenFlower extends EntityCollidable {
             ((OxygenBubble) entity).setFlower(this);
             ((OxygenBubble) entity).setOrigin(x, y);
             this.count++;
-            this.bubbleTime -= this.bubbleRespawnTimer;
+            this.bubbleTime -= this.bubbleRespawnTimer; 
         }
     }
 
