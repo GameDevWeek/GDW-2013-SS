@@ -61,7 +61,9 @@ public class CrabBoss extends AbstractBoss implements Interactable {
 
 	@Override
 	public void activate() {
-		isActive = true;
+		if (!(phase instanceof TakeDamagePhase)) {
+			setPhase(new TakeDamagePhase());
+		}
 	}
 
 	@Override
@@ -84,12 +86,7 @@ public class CrabBoss extends AbstractBoss implements Interactable {
 	public void update(GameContainer container, int delta)
 			throws SlickException {
 		super.update(container, delta);
-		if (damage == 1) {
-			World.getInstance().getEntityManager().removeEntity(this);
-		}
-		if (isActive) {
-			setPhase(new TakeDamagePhase());
-		}
+
 		recalculateCameraTargetPosition();
 	}
 
@@ -97,23 +94,21 @@ public class CrabBoss extends AbstractBoss implements Interactable {
 	public void render(GameContainer container, Graphics g)
 			throws SlickException {
 
-		float x = physicsObject.getPosition().x;
-		float y = physicsObject.getPosition().y;
-		float halfheight = physicsObject.getDimension().y;
-		float halfwidth = physicsObject.getDimension().x;
-
-		if (facingRight) {
-			// animation.draw(x - halfwidth - physicsObject_x_offset, y
-			// - halfheight, 2 * halfwidth + 2 * physicsObject_x_offset,
-			// 2 * halfheight);
-			img.draw(x - halfwidth, y - halfheight, 2 * halfwidth,
-					2 * halfheight);
+		if (phase instanceof DiePhase) {
+			phase.render(g);
 		} else {
-			// animation.draw(x + halfwidth + physicsObject_x_offset, y
-			// - halfheight, -2 * halfwidth - 2 * physicsObject_x_offset,
-			// 2 * halfheight);
-			img.draw(x + halfwidth, y - halfheight, -2 * halfwidth,
-					2 * halfheight);
+			float x = physicsObject.getPosition().x;
+			float y = physicsObject.getPosition().y;
+			float halfheight = physicsObject.getDimension().y;
+			float halfwidth = physicsObject.getDimension().x;
+
+			if (facingRight) {
+				img.draw(x - halfwidth, y - halfheight, 2 * halfwidth,
+						2 * halfheight);
+			} else {
+				img.draw(x + halfwidth, y - halfheight, -2 * halfwidth,
+						2 * halfheight);
+			}
 		}
 	}
 
@@ -192,12 +187,65 @@ public class CrabBoss extends AbstractBoss implements Interactable {
 
 	private class TakeDamagePhase extends Phase {
 
+		private static final int PHASE_DURATION = 3000;
+		private int timer;
+
 		@Override
-		void update(int delta) {
-			System.out.println("I took damage");
-			damage += 1;
+		void enter() {
+			timer = PHASE_DURATION;
 		}
 
+		@Override
+		void update(int delta) {
+			if (damage >= 3) {
+				setPhase(new DiePhase());
+			}
+			timer -= delta;
+			if (timer < 0) {
+				damage += 1;
+				setPhase(new TargetingPhase(new StepForwardPhase(), 300));
+			}
+		}
+	}
+
+	private class DiePhase extends Phase {
+
+		private static final int PHASE_DURATION = 15000;
+		private int timer;
+
+		@Override
+		void enter() {
+			timer = PHASE_DURATION;
+		}
+
+		@Override
+		void update(int delta) {
+			timer -= delta;
+			if (timer < 0) {
+				World.getInstance().getEntityManager()
+						.removeEntity(CrabBoss.this);
+			}
+		}
+
+		@Override
+		void render(Graphics g) {
+			float x = physicsObject.getPosition().x;
+			float y = physicsObject.getPosition().y;
+			float halfheight = physicsObject.getDimension().y;
+			float halfwidth = physicsObject.getDimension().x;
+
+			float offsetx = (float) Math.random() * 50 * (float) PHASE_DURATION
+					/ timer;
+			float offsety = (float) Math.random() * 50 * (float) PHASE_DURATION
+					/ timer;
+			if (facingRight) {
+				img.draw(x - halfwidth + offsetx, y - halfheight + offsety,
+						2 * halfwidth, 2 * halfheight);
+			} else {
+				img.draw(x + halfwidth + offsetx, y - halfheight + offsety, -2
+						* halfwidth, 2 * halfheight);
+			}
+		}
 	}
 
 	private class FiringEnemies extends Phase {
