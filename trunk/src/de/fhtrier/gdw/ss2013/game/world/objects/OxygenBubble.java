@@ -12,18 +12,17 @@ import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.contacts.Contact;
 import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityCollidable;
-import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.filter.Interactable;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.physix.PhysixConst;
 import de.fhtrier.gdw.ss2013.physix.PhysixShape;
-import org.newdawn.slick.SlickException;
 
 //import org.newdawn.slick.Image;
 
@@ -33,7 +32,6 @@ public class OxygenBubble extends EntityCollidable implements Interactable {
     private OxygenFlower flower;
     // private AssetLoader a = AssetLoader.getInstance();
     // private Image img = a.getImage("bubble");
-    private EntityManager man;
     private float speed = 100;
     private int timer = 0;
     private boolean isUsed = false;
@@ -42,7 +40,6 @@ public class OxygenBubble extends EntityCollidable implements Interactable {
     public OxygenBubble() {
         super(AssetLoader.getInstance().getImage("bubble"));
         this.oxygenLevel = getOxygenLevel();
-        man = World.getInstance().getEntityManager();
 
     }
     
@@ -72,24 +69,22 @@ public class OxygenBubble extends EntityCollidable implements Interactable {
         }
 
         if (e instanceof Astronaut) {
-            if (((Astronaut) e).getOxygen() + oxygenLevel < ((Astronaut) e)
+            Astronaut astro = (Astronaut) e;
+            if (astro.getOxygen() + oxygenLevel < astro
                     .getMaxOxygen()) {
-                Astronaut astro = (Astronaut) e;
                 
-                ((Astronaut) e).setOxygen(((Astronaut) e).getOxygen()
+                
+                astro.setOxygen(((Astronaut) e).getOxygen()
                         + oxygenLevel);
-                man.removeEntity(this);
+                World.getInstance().getEntityManager().removeEntity(this);
                 isUsed = true;
                 flower.decreaseBubbleCount();
-            } else {
-                ((Astronaut) e).setOxygen(((Astronaut) e).getMaxOxygen());
             }
         }
     }
 
     @Override
     public void endContact(Contact object) {
-        // TODO Auto-generated method stub
 
     }
 
@@ -135,19 +130,16 @@ public class OxygenBubble extends EntityCollidable implements Interactable {
 
     @Override
     public boolean isActive() {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public void activate() {
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public void deactivate() {
-        // TODO Auto-generated method stub
 
     }
 }

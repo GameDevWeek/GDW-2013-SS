@@ -8,33 +8,42 @@
  */
 package de.fhtrier.gdw.ss2013.game.world.objects;
 
+import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.contacts.Contact;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
-import de.fhtrier.gdw.ss2013.game.Entity;
+import de.fhtrier.gdw.ss2013.constants.SpawnerConstants;
 import de.fhtrier.gdw.ss2013.game.EntityCollidable;
-import de.fhtrier.gdw.ss2013.game.EntityManager;
-import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.world.World;
-import org.jbox2d.dynamics.BodyType;
 
 public class OxygenFlower extends EntityCollidable {
 
-    private float bubbleTime;
-    private int maxBubble;
+    private int bubbleTime;
+    private int maxBubblesOnPlant;
     private int count;
-    private World w = World.getInstance();
-    private EntityManager m;
+
+    int bubbleRespawnTimer;
 
     // needs to be without parameters!
 
     public OxygenFlower() {
         super(AssetLoader.getInstance().getImage("plant"));
-        this.maxBubble = 6; // FIXME: use a better value
+        this.maxBubblesOnPlant = 3;
         bubbleTime = 0;
-        m = w.getEntityManager();
+    }
+
+    @Override
+    protected void initialize() {
+        super.initialize();
+
+        bubbleRespawnTimer = properties.getInt("bubbleSpawnDelay",
+                SpawnerConstants.FLOWER_DEFAULT_SPAWN_DELAY);
+
+        maxBubblesOnPlant = properties.getInt("maxBubblesOnPlant",
+                SpawnerConstants.FLOWER_DEFAULT_MAX_BUBBLES);
+
     }
 
     @Override
@@ -42,37 +51,18 @@ public class OxygenFlower extends EntityCollidable {
         return true;
     }
 
-    public void createBubbles() {
-        if (count != getMaxBubble()) {
-            
-            if(count <= 5)
-                {
-                    float x = this.getPosition().getX() + ((float) Math.random() * 100-50);
-                    float y = this.getPosition().getY() - (float) Math.random() * 100-50;
-                    OxygenBubble entity = m.createEntity(OxygenBubble.class);
-                    // Bubble-Objekt
-                    ((OxygenBubble) entity).setFlower(this);
-                    ((OxygenBubble) entity).setOrigin(x,y);
-
-                }
-            // bubbleCount
-            count++;
-            bubbleTime = 0;
-        }
-    }
-
     public void setMaxBubble(int maxBubble) {
-        this.maxBubble = maxBubble;
+        this.maxBubblesOnPlant = maxBubble;
     }
 
     public int getMaxBubble() {
-        return maxBubble;
+        return maxBubblesOnPlant;
     }
 
     @Override
     public void initPhysics() {
-        createPhysics(BodyType.STATIC, origin.x, origin.y)
-                .sensor(true).asBox(initialSize.x, initialSize.y);
+        createPhysics(BodyType.STATIC, origin.x, origin.y).sensor(true).asBox(
+                initialSize.x, initialSize.y);
     }
 
     @Override
@@ -81,26 +71,34 @@ public class OxygenFlower extends EntityCollidable {
         super.update(container, delta);
 
         bubbleTime += delta;
-        if (bubbleTime >= 800) {
-            this.createBubbles();
+
+        if (bubbleTime >= bubbleRespawnTimer
+                && this.count < this.getMaxBubble()) {
+
+            float x = this.getPosition().getX()
+                    + ((float) Math.random() * 100 - 50);
+            float y = this.getPosition().getY() - (float) Math.random() * 30
+                    - 50;
+            OxygenBubble entity = World.getInstance().getEntityManager()
+                    .createEntity(OxygenBubble.class);
+            // Bubble-Objekt
+            ((OxygenBubble) entity).setFlower(this);
+            ((OxygenBubble) entity).setOrigin(x, y);
+            this.count++;
+            this.bubbleTime -= this.bubbleRespawnTimer;
         }
     }
 
     @Override
     public void beginContact(Contact contact) {
-        Entity other = getOtherEntity(contact);
-        if (other instanceof Astronaut) {
-            if (bubbleTime >= 2000) {
-                this.createBubbles();
-            }
-        }
+
     }
 
     @Override
     public void endContact(Contact object) {
     }
-    
+
     public void decreaseBubbleCount() {
-    	count--;
+        count--;
     }
 }

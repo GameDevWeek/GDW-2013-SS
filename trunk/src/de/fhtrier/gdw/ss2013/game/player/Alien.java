@@ -192,21 +192,13 @@ public final class Alien extends Entity implements AlienController {
 
     @Override
     public void setCursor(int x, int y) {
-        // screenCursor.set(x, y);
-        // Vector2f worldSpace =
-        // World.getInstance().screenToWorldPosition(screenCursor);
-        // cursor.set(worldSpace.x, worldSpace.y);
         cursor.set(Math.min(container.getWidth(), Math.max(0, x)),
                 Math.min(container.getHeight(), Math.max(0, y)));
-        // TODO Auto-generated method stub
-        // Log.debug("target direction");
-        // setZustand("animtest");
     }
 
     @Override
     public void update(GameContainer container, int delta)
             throws SlickException {
-        // TODO Auto-generated method stub
         super.update(container, delta);
 
         if (onPlayer) {

@@ -6,7 +6,6 @@ import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.contacts.Contact;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.particles.ParticleSystem;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.Entity;
@@ -78,7 +77,6 @@ public class Teleporter extends EntityCollidable implements Interactable {
             firstUpdateDone = true;
         }
         toSet.clear();
-        // TODO Auto-generated method stub
         super.update(container, delta);
         
     }
@@ -121,20 +119,17 @@ public class Teleporter extends EntityCollidable implements Interactable {
 
     @Override
     public void activate() {
-        // TODO Auto-generated method stub
         isActive = true;
     }
 
     @Override
     public void deactivate() {
         isActive = false;
-        // TODO Auto-generated method stub
 
     }
 
     @Override
     public boolean isActive() {
-        // TODO Auto-generated method stub
         return isActive;
     }
 

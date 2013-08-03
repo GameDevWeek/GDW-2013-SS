@@ -527,7 +527,6 @@ public final class Astronaut extends EntityCollidable implements
             assert (alien != null);
             if (carryAlien) {
                 alien.shoot();
-                // FIXME: if carry do other shoot
             } else {
                 alien.shoot();
             }
