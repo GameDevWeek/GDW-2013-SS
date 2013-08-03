@@ -307,6 +307,12 @@ public final class Alien extends Entity implements AlienController {
     public float getMaxDistance() {
         return maxDistance;
     }
+    
+    
+
+    public void setCurrentSelectedBox(Box currentSelectedBox) {
+        this.currentSelectedBox = currentSelectedBox;
+    }
 
     @Override
     public void initPhysics() {

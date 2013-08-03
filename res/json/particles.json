@@ -53,6 +53,10 @@
   {
    "name" : "teleporter_alien",
   "pfad" : "res/partikel/teleporter_alien.xml"
+  },
+  {
+  "name" : "teleporter_alien2",
+  "pfad" : "res/partikel/teleporter_alien2.xml"
   }
   
   ]
