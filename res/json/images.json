@@ -129,6 +129,18 @@
 {
   "name" : "scribble_kristall",
   "pfad" : "ScribbleKristall_transparent"
+},
+{
+  "name" : "Symbol_Materie_klein",
+  "pfad" : "gui/Symbol_Materie_klein"
+},
+{
+  "name" : "maus_rechts",
+  "pfad" : "gui/maus_rechts"
+},
+{
+  "name" : "Symbol_Fluegel_klein",
+  "pfad" : "gui/Symbol_Fluegel_klein"
 }
 ]
 
