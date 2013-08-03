@@ -75,9 +75,6 @@ public class MainGame extends StateBasedGame {
     }
 
     public static void changeState(int id) {
-        if (id == GAMEPLAYSTATE) {
-            instance.container.setMouseGrabbed(true);
-        }
         changeState(id, 500, 500);
     }
 
@@ -124,7 +121,6 @@ public class MainGame extends StateBasedGame {
             app.setAlwaysRender(false);
             app.setMaximumLogicUpdateInterval(0);
             app.setShowFPS(false);
-            app.setMouseGrabbed(true);
             app.start();
 
         } catch (SlickException e) {

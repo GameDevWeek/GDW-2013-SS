@@ -10,6 +10,7 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import de.fhtrier.gdw.ss2013.MainGame;
+import static de.fhtrier.gdw.ss2013.MainGame.instance;
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.cheats.Cheats;
 import de.fhtrier.gdw.ss2013.game.world.World;
@@ -173,6 +174,7 @@ public class GameplayState extends BasicGameState {
 		menuManager.activate();
 		if (music != null)
 			music.loop(1f, 1f);
+        container.setMouseGrabbed(true);
 	}
 	
 	@Override
@@ -181,6 +183,7 @@ public class GameplayState extends BasicGameState {
 		menuManager.activate();
 		if (music != null)
 			music.stop();
+        container.setMouseGrabbed(false);
 	}
 	
 	public static void hideMenu() {
