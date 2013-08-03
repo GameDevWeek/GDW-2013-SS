@@ -75,9 +75,8 @@ public abstract class GroundEnemy extends AbstractEnemy {
 			return;
 		}
 
-		playerDirection.y = 0;
-		setVelocity(playerDirection.normalise()
-				.scale(EnemyConstants.ENEMY_SPEED).copy());
+		setVelocityX(playerDirection.normalise()
+				.scale(EnemyConstants.ENEMY_SPEED).x);
 	}
 
 	private void patrol(int delta) {
