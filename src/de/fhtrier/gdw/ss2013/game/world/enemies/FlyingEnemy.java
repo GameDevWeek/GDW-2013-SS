@@ -2,6 +2,7 @@ package de.fhtrier.gdw.ss2013.game.world.enemies;
 
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Random;
 
 import org.jbox2d.dynamics.contacts.Contact;
 import org.newdawn.slick.Animation;
@@ -31,32 +32,37 @@ import org.jbox2d.dynamics.BodyType;
  */
 public abstract class FlyingEnemy extends AbstractEnemy implements EntityFilter {
     private Astronaut player;
-    private float interval;
+
     private ArrayList<Point> points;
     private float speed;
     private float rndX;
     private float rndY;
+    private float interval;
     private boolean moveAround;
     private boolean pathEnabled;
     private boolean change;
-    private int index;
     private Point currentPoint;
     private Point nextPoint;
     private int indexmod;
+    private int index;
     private SafeProperties pathProperties;
-    private float speed_mod;
-    public static boolean burningWhip = false;
+    private float[][][] rangeField;
+    private Vector2f startPosition;
+    private Vector2f endPosition;
+    Random rnd = new Random();
+    private int oldIndexX;
+    private int oldIndexY;
+    private int newIndexX;
+    private int newIndexY;
+    private float newX;
+    private float newY;
+    float range;
+    
 
     public FlyingEnemy(Animation animation) {
     	super(animation);
-    }
-
-    @Override
-    protected void initialize() {
-        super.initialize();
-        
-        this.player = World.getInstance().getAstronaut();
-        this.interval = 0f;
+    	
+        interval = 0f;
         speed = 40.0f;
         indexmod = 1;
         rndX = (float)Math.random();
@@ -64,9 +70,37 @@ public abstract class FlyingEnemy extends AbstractEnemy implements EntityFilter 
         moveAround = false;
         pathEnabled = false;
         change = false;
+        range = 300;
+    }
+
+    @Override
+    protected void initialize() {
+        super.initialize();
+        
+        player = World.getInstance().getAstronaut();
         
         if (getProperties() != null && getProperties().getBoolean("followPath", false)) {
             bindToPath();
+        } else {
+            rangeField = new float[3][3][2];
+            initRangeField();
+            startPosition = origin;
+            oldIndexX = 1;
+            oldIndexY = 1;
+            for (; ;) {
+                newIndexX = rnd.nextInt(3);
+                newIndexY = rnd.nextInt(3);         
+                if (newIndexX == oldIndexX && newIndexY == oldIndexY) {
+                    newIndexX = rnd.nextInt(3);
+                    newIndexY = rnd.nextInt(3);
+                } else {
+                    newX = rangeField[newIndexX][newIndexY][0];
+                    newY = rangeField[newIndexX][newIndexY][1];
+                    endPosition = new Vector2f((newX - range / 3) + (range / 3) * (float)Math.random(), 
+                            (newY - range / 3) + (range / 3) * (float)Math.random());
+                    break;
+                }
+            }
         }
         if (pathProperties != null) {
             speed = pathProperties.getFloat("speed", 20.0f);
@@ -83,7 +117,7 @@ public abstract class FlyingEnemy extends AbstractEnemy implements EntityFilter 
     @Override
     public void initPhysics() {
         createPhysics(BodyType.DYNAMIC, origin.x, origin.y)
-                .density(PhysixManager.DENSITY).friction(PhysixManager.FRICTION)
+                .density(500.0f).friction(PhysixManager.FRICTION)
                 .asBox(initialSize.x, initialSize.y);
         if (points != null) {
             getPhysicsObject().setPosition(points.get(index).x, points.get(index).y);
@@ -158,32 +192,46 @@ public abstract class FlyingEnemy extends AbstractEnemy implements EntityFilter 
         }
     }
     
-    // margin = 10
-    // margin = 1f
-    // disinmargin = ?
-    // 
+    public void initRangeField() {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                rangeField[i][j][0] = (origin.x - range / 2) + (i + 1) * (range / 3);
+                rangeField[i][j][1] = (origin.y + range / 2) - (j + 1) * (range / 3);
+            }
+        }
+    }
     
     public void move() {
-        float distToSpawn = getPosition().sub(origin).length();
-        float margin = 35;
-        float disinMargin = 0;
-        float speed_mod = 1f;
-        if (distToSpawn < 150) {
-            if(distToSpawn > 150 - margin)
-            {
-                disinMargin = 150 - distToSpawn;
-                speed_mod = Math.min((disinMargin/margin) + 0.1f, 1f);
+        float distToEnd = getPosition().sub(endPosition).length();
+        float distToStart = getPosition().sub(startPosition).length();
+        float margin = 30;
+        float speed_mod;
+        if (distToEnd > 1f) {
+            if (distToEnd <= margin) {
+                //speed_mod = Math.min((distToEnd / margin) + 0.1f, 1f);
+                speed_mod = distToEnd / margin;
+            } else if (distToStart <= margin && distToStart > 1f) {
+                speed_mod = distToStart / margin;
             } else {
                 speed_mod = 1f;
             }
-            setVelocity(new Vector2f(indexmod * rndX, indexmod * rndY).normalise().scale(speed*speed_mod));
+            setVelocity(new Vector2f(endPosition.copy().sub(startPosition).x, 
+                    endPosition.copy().sub(startPosition).y).normalise().scale(speed * speed_mod));
             change = false;
         } else if (!change) {
-            rndX = origin.copy().sub(getPosition()).normalise().x + (float)(Math.random()*0.2-0.1);
-            rndY = origin.copy().sub(getPosition()).normalise().y + (float)(Math.random()*0.2-0.1);
-            indexmod *= -1;
-            setVelocity(origin.copy().sub(getPosition()).normalise().scale(speed));
-            change = true;
+            newIndexX = rnd.nextInt(3);
+            newIndexY = rnd.nextInt(3);         
+            if (newIndexX == oldIndexX && newIndexY == oldIndexY) {
+                newIndexX = rnd.nextInt(3);
+                newIndexY = rnd.nextInt(3);
+            } else {
+                newX = rangeField[newIndexX][newIndexY][0];
+                newY = rangeField[newIndexX][newIndexY][1];
+                startPosition = endPosition;
+                endPosition = new Vector2f((newX - range / 3) + (range / 3) * (float)Math.random(), 
+                        (newY - range / 3) + (range / 3) * (float)Math.random());
+                change = true;
+            }
         }
     }
     
