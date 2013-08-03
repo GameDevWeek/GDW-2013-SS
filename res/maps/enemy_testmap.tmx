@@ -134,5 +134,15 @@
    </properties>
    <polyline points="0,0 384,0 384,-320 0,-320 0,0"/>
   </object>
+  <object gid="743" x="1643" y="6204"/>
+  <object gid="743" x="1111" y="6175"/>
+  <object gid="743" x="1264" y="5992"/>
+  <object gid="743" x="1226" y="6280"/>
+  <object gid="743" x="1332" y="6150"/>
+  <object gid="743" x="1554" y="6045"/>
+  <object gid="743" x="1402" y="6052"/>
+  <object gid="743" x="1727" y="6085"/>
+  <object gid="743" x="1790" y="6235"/>
+  <object gid="743" x="1191" y="6088"/>
  </objectgroup>
 </map>
