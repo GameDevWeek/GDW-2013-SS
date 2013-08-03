@@ -233,7 +233,7 @@ public final class Astronaut extends EntityCollidable implements AstronautContro
 	}
 
 	public void superjump() {
-		if (superJumpDelay <= 0 && isGrounded() && isCarryAlien()) {
+		if (superJumpDelay <= 0 && (isGrounded() || jumpDelay>0) && isCarryAlien()) {
 			jumpDelay = 0;
 			setVelocityY(-superJumpSpeed);
 			physicsObject.applyImpulse(new Vector2f(0, -superJumpSpeed));
