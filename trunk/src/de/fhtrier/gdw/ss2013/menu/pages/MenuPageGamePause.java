@@ -55,7 +55,7 @@ public class MenuPageGamePause extends MenuPage {
                 }
         );
         
-        MenuPageHighscore highscore = new MenuPageHighscore(container, game, menuManager, this, null);
+        MenuPageHighscore highscore = new MenuPageHighscore(container, game, menuManager, this, null, World.getInstance().getLevelName());
         addLeftAlignedButton("Highscore", x, y + h * 5, font, 
                 new MenuPageAction(menuManager, highscore));
         

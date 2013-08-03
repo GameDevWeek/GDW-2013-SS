@@ -1,0 +1,20 @@
+[{
+  "astronautName" : "Peter",
+  "alienName" : "Paul",
+  "score" : 300
+},
+{
+  "astronautName" : "Leo",
+  "alienName" : "Loewe",
+  "score" : 22
+},
+{
+  "astronautName" : "Andy",
+  "alienName" : "Werner",
+  "score" : 10
+},
+{
+  "astronautName" : "Wladimir",
+  "alienName" : "Vitali",
+  "score" : 55
+}]
