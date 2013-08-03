@@ -488,6 +488,12 @@ public final class Astronaut extends EntityCollidable implements AstronautContro
 		assert (alien != null);
 		alien.cursorDown(scale);
 	}
+    
+    public void teleportAlienback() {
+		if (!carryAlien) {
+            toggleAlien();
+        }
+    }
 
 	@Override
 	public void toggleAlien() {
@@ -499,7 +505,7 @@ public final class Astronaut extends EntityCollidable implements AstronautContro
 			jumpSpeed = gameData.astronaut.jumpSpeed;
 			jumpDelayTotal = gameData.astronaut.jumpDelay;
 			updateStateAnimation();
-		} else if (getPosition().distance(alien.getPosition()) <= pickupDistance) {
+		} else {
 			carryAlien = true;
 			alien.setOnPlayer(true);
 			updateStateAnimation();
