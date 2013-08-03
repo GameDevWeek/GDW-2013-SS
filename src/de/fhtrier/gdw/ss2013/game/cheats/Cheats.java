@@ -103,6 +103,14 @@ public class Cheats {
 		}
 	}
 
+	private class Kill extends Cheat {
+		@Override
+		public void start(GameContainer container, StateBasedGame game,
+				int delta, World world) {
+			world.getAstronaut().setOxygen(0);
+		}
+	}
+
 	private class MegaJump extends Cheat {
 
 		private float oldJumpSpeed = 0.0f;
@@ -129,6 +137,7 @@ public class Cheats {
 		cheats.put("full", new FullPower());
 		cheats.put("jumpjump", new MegaJump());
 		cheats.put("flash", new SpeedMode());
+		cheats.put("kill", new Kill());
 	}
 	
 	private class SpeedMode extends Cheat {
