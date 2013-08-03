@@ -26,6 +26,7 @@ public class HUD {
     private FpsCalculator fpsCalc = new FpsCalculator(100);
     private Font fpsFont;
     private AbilityDisplay[] abilityDisplay;
+    private ScoreCounter scoreCounter;
 
 	public HUD(GameContainer container, World worldinstance) throws SlickException {
 	        
@@ -97,7 +98,17 @@ public class HUD {
 		
         fpsFont = asset.getFont("quartz_40");
         
-        
+        //Init ScoreCounter
+        Image scoreCounter_digits = AssetLoader.getInstance().getImage("digits");
+        Vector2f scoreCounter_position = new Vector2f(140.0f,5.0f);
+        int scoreCounter_startValue = 0000;
+        int scoreCounter_numberOfDigits = 4;
+        float scoreCounter_countingSpeed = 2.0f;
+        scoreCounter = new ScoreCounter( scoreCounter_digits
+                                        ,scoreCounter_position
+                                        ,scoreCounter_startValue
+                                        ,scoreCounter_numberOfDigits
+                                        ,scoreCounter_countingSpeed);
 	}
 
 	public void update(GameContainer container, StateBasedGame game, int delta) {
@@ -105,6 +116,11 @@ public class HUD {
 		healthbar.update(container, game, delta);
 		abilityDisplayManager.update(container, game, delta);
 		fpsCalc.update();
+		
+		scoreCounter.update(container, game, delta);
+		scoreCounter.setDesiredValue(World.getScoreCounter().getScore());
+		
+		
 	}
 
 	public void render(GameContainer container, StateBasedGame game, Graphics g) {
@@ -112,6 +128,8 @@ public class HUD {
 		abilityDisplayManager.render(container, game, g);
 		tooltipmanager.render();
 		crosshair.render(container, game, g);
+		scoreCounter.render(container, game, g);
+		
 		
         String fps = String.format("%d fps", (int)fpsCalc.calculate());
         CenteredText.draw(container.getWidth() / 2, 30, fps, fpsFont);
