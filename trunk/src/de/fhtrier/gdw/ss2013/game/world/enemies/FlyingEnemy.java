@@ -22,6 +22,7 @@ import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.game.world.bullets.EnemyBullet;
 import de.fhtrier.gdw.ss2013.game.world.objects.FollowPath;
+import de.fhtrier.gdw.ss2013.physix.PhysixConst;
 import de.fhtrier.gdw.ss2013.physix.PhysixManager;
 import de.fhtrier.gdw.ss2013.physix.PhysixShape;
 import de.fhtrier.gdw.ss2013.sound.SoundLocator;
@@ -126,6 +127,7 @@ public abstract class FlyingEnemy extends AbstractEnemy implements EntityFilter 
     public void initPhysics() {
         createPhysics(BodyType.DYNAMIC, origin.x, origin.y).density(500.0f)
                 .friction(PhysixManager.FRICTION)
+                .category(PhysixConst.ENEMY).mask(PhysixConst.MASK_ENEMY)
                 .asBox(initialSize.x, initialSize.y);
         if (points != null) {
             getPhysicsObject().setPosition(points.get(index).x,
