@@ -6,6 +6,7 @@ import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.contacts.Contact;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.particles.ParticleSystem;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.Entity;
@@ -14,6 +15,7 @@ import de.fhtrier.gdw.ss2013.game.filter.Interactable;
 import de.fhtrier.gdw.ss2013.game.player.Alien;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.world.World;
+
 
 public class Teleporter extends EntityCollidable implements Interactable {
 
@@ -27,6 +29,8 @@ public class Teleporter extends EntityCollidable implements Interactable {
 
     public Teleporter() {
         super(AssetLoader.getInstance().getImage("door_closed"));
+        
+        
     }
 
     @Override
@@ -76,6 +80,7 @@ public class Teleporter extends EntityCollidable implements Interactable {
         toSet.clear();
         // TODO Auto-generated method stub
         super.update(container, delta);
+        
     }
 
     @Override
@@ -83,6 +88,7 @@ public class Teleporter extends EntityCollidable implements Interactable {
 
         if (isActive && target != null) {
             Entity other = getOtherEntity(contact);
+            setParticle(AssetLoader.getInstance().getParticle("teleporter_test").clone());
             if(other instanceof Alien || other instanceof Astronaut) {
                 World.getInstance().getAstronaut().teleportAlienback();
             }
@@ -100,6 +106,9 @@ public class Teleporter extends EntityCollidable implements Interactable {
     public void endContact(Contact contact) {
         if (isActive && target != null) {
             Entity other = getOtherEntity(contact);
+        
+            
+            
             if (other instanceof Astronaut || other instanceof Alien
                     || other instanceof Box) {
                 if (ignorList.contains(other)) {
