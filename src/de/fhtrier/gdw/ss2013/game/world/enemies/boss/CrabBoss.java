@@ -14,20 +14,23 @@ import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.camera.ThreePointCamera;
+import de.fhtrier.gdw.ss2013.game.filter.Interactable;
 import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.game.world.objects.Box;
 import de.fhtrier.gdw.ss2013.game.world.objects.Meteroid;
 
-public class CrabBoss extends AbstractBoss {
+public class CrabBoss extends AbstractBoss implements Interactable {
 
 	private Animation animation;
 	private float physicsObject_x_offset = 20.0f;
 	private float physicsObject_y_offset = 80.0f;
 	private boolean facingRight;
+	private Entity[] boxes = new Entity[2];
 	public int stompCount;
 	private Vector2f cameraTarget;
-
-	private int FiringStoneCount = 2;
+	private int damage = 0;
+	private int boxesFired = 0;
+	private boolean isActive;
 
 	@Override
 	protected void initialize() {
@@ -44,6 +47,7 @@ public class CrabBoss extends AbstractBoss {
 		ThreePointCamera tpCamera = World.getInstance().getTPCamera();
 		tpCamera.addDynamicTarget(cameraTarget);
 		tpCamera.setZoom(0.5f);
+		damage = 0;
 	}
 
 	private void recalculateCameraTargetPosition() {
@@ -56,6 +60,21 @@ public class CrabBoss extends AbstractBoss {
 	}
 
 	@Override
+	public void activate() {
+		isActive = true;
+	}
+
+	@Override
+	public void deactivate() {
+		isActive = false;
+	}
+
+	@Override
+	public boolean isActive() {
+		return false;
+	}
+
+	@Override
 	public void initPhysics() {
 		createPhysics(BodyType.DYNAMIC, origin.x, origin.y).density(1)
 				.friction(1).asBox(initialSize.x, initialSize.y);
@@ -64,13 +83,13 @@ public class CrabBoss extends AbstractBoss {
 	@Override
 	public void update(GameContainer container, int delta)
 			throws SlickException {
-		if (World.getInstance().getAstronaut().getOxygen() <= 0) { // disable
-																	// update on
-																	// player
-																	// dead
-			return;
-		}
 		super.update(container, delta);
+		if (damage == 1) {
+			World.getInstance().getEntityManager().removeEntity(this);
+		}
+		if (isActive) {
+			setPhase(new TakeDamagePhase());
+		}
 		recalculateCameraTargetPosition();
 	}
 
@@ -87,14 +106,14 @@ public class CrabBoss extends AbstractBoss {
 			// animation.draw(x - halfwidth - physicsObject_x_offset, y
 			// - halfheight, 2 * halfwidth + 2 * physicsObject_x_offset,
 			// 2 * halfheight);
-			img.draw(x - halfwidth, y - halfheight,
-					2 * halfwidth, 2 * halfheight);
+			img.draw(x - halfwidth, y - halfheight, 2 * halfwidth,
+					2 * halfheight);
 		} else {
-//			animation.draw(x + halfwidth + physicsObject_x_offset, y
-//					- halfheight, -2 * halfwidth - 2 * physicsObject_x_offset,
-//					2 * halfheight);
-			img.draw(x + halfwidth, y - halfheight,
-					-2 * halfwidth, 2 * halfheight);
+			// animation.draw(x + halfwidth + physicsObject_x_offset, y
+			// - halfheight, -2 * halfwidth - 2 * physicsObject_x_offset,
+			// 2 * halfheight);
+			img.draw(x + halfwidth, y - halfheight, -2 * halfwidth,
+					2 * halfheight);
 		}
 	}
 
@@ -171,6 +190,16 @@ public class CrabBoss extends AbstractBoss {
 
 	}
 
+	private class TakeDamagePhase extends Phase {
+
+		@Override
+		void update(int delta) {
+			System.out.println("I took damage");
+			damage += 1;
+		}
+
+	}
+
 	private class FiringEnemies extends Phase {
 
 		private Entity enemy;
@@ -190,9 +219,9 @@ public class CrabBoss extends AbstractBoss {
 
 			Class<? extends Entity> classId = null;
 			SafeProperties enemyProperties = new SafeProperties();
-			if (isRandomStone && FiringStoneCount > 0) {
+			if (isRandomStone && boxesFired < 2) {
 				classId = Box.class;
-				FiringStoneCount--;
+				boxesFired += 1;
 				enemyProperties.setProperty("animation", "box");
 			} else {
 				classId = Meteroid.class;
@@ -206,6 +235,9 @@ public class CrabBoss extends AbstractBoss {
 				offsetX *= -1;
 			}
 			enemy.setOrigin(getPosition().x + offsetX, getPosition().y);
+			if (enemy instanceof Box) {
+				boxes[boxesFired - 1] = enemy;
+			}
 		}
 
 		@Override
