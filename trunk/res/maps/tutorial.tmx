@@ -44,10 +44,10 @@
    </properties>
   </object>
   <object gid="635" x="4826" y="3399"/>
-  <object x="5147" y="3167">
+  <object type="solid" x="5147" y="3167">
    <polyline points="0,0 0,263 740,260"/>
   </object>
-  <object x="5902" y="3599">
+  <object type="solid" x="5902" y="3599">
    <polyline points="0,0 0,-171 -72,-172"/>
   </object>
   <object name="door2" gid="628" x="5184" y="3575"/>
@@ -59,12 +59,12 @@
     <property name="trigger" value="tr_pic_mr"/>
    </properties>
   </object>
-  <object name="tr_pic_f1" gid="641" x="3226" y="4225">
+  <object name="tr_pic_f1" gid="641" x="3253" y="4225">
    <properties>
     <property name="image" value="Symbol_Materie_klein"/>
    </properties>
   </object>
-  <object name="tr_pic_mr" gid="641" x="3226" y="4309">
+  <object name="tr_pic_mr" gid="641" x="3288" y="4307">
    <properties>
     <property name="image" value="maus_rechts"/>
    </properties>
@@ -75,7 +75,7 @@
     <property name="trigger" value="tr_pic_f1"/>
    </properties>
   </object>
-  <object name="tr_pic_f2" gid="641" x="4018" y="4208">
+  <object name="tr_pic_f2" gid="641" x="3979" y="4211">
    <properties>
     <property name="image" value="Symbol_Fluegel_klein"/>
    </properties>
@@ -86,7 +86,7 @@
     <property name="trigger" value="tr_pic_mr2"/>
    </properties>
   </object>
-  <object name="tr_pic_mr2" gid="641" x="4018" y="4292">
+  <object name="tr_pic_mr2" gid="641" x="4015" y="4292">
    <properties>
     <property name="image" value="maus_rechts"/>
    </properties>
@@ -95,6 +95,39 @@
    <properties>
     <property name="radius" value="350"/>
     <property name="trigger" value="tr_pic_f2"/>
+   </properties>
+  </object>
+  <object gid="642" x="4489" y="3701">
+   <properties>
+    <property name="radius" value="350"/>
+    <property name="trigger" value="tr_pic_ml"/>
+   </properties>
+  </object>
+  <object name="tr_pic_ml" gid="641" x="4489" y="3700">
+   <properties>
+    <property name="image" value="maus_links"/>
+   </properties>
+  </object>
+  <object gid="642" x="3057" y="4270">
+   <properties>
+    <property name="radius" value="350"/>
+    <property name="trigger" value="tr_pic_mm"/>
+   </properties>
+  </object>
+  <object name="tr_pic_mm" gid="641" x="3218" y="4307">
+   <properties>
+    <property name="image" value="maus_mitte"/>
+   </properties>
+  </object>
+  <object name="tr_pic_mm2" gid="641" x="3943" y="4291">
+   <properties>
+    <property name="image" value="maus_mitte"/>
+   </properties>
+  </object>
+  <object gid="642" x="3869" y="4243">
+   <properties>
+    <property name="radius" value="350"/>
+    <property name="trigger" value="tr_pic_mm2"/>
    </properties>
   </object>
  </objectgroup>
