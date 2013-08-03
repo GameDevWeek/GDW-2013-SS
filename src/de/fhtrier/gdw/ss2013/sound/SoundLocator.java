@@ -12,7 +12,7 @@ import de.fhtrier.gdw.ss2013.sound.services.NoSoundPlayer;
 
 public class SoundLocator {
 
-    static private SoundPlayer _service = new DefaultSoundPlayer(null);
+    static private SoundPlayer _service = new NoSoundPlayer();
 
     static private AssetLoader soundLoader;
 
