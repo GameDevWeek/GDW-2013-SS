@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
@@ -114,14 +115,32 @@ public class World {
 
     public void render(GameContainer container, Graphics g)
             throws SlickException {
-        Vector2f astronautPos = astronaut.getPosition();
+    	Vector2f astronautPos = astronaut.getPosition();
 
-        // Background image TODO: translate
-        g.drawImage(AssetLoader.getInstance().getImage("world_background"), 0,
-                0);
-        camera.pushViewMatrix(g);
+		Image img = AssetLoader.getInstance().getImage("world_background");
 
-        camera.debugdraw(g);
+		final Vector2f containerDim = new Vector2f(container.getWidth(), container.getHeight());
+		final Vector2f imageDim = new Vector2f(img.getWidth(), img.getHeight());
+		
+		Vector2f scaledImageDim = camera.screenToWorldCoordinates(imageDim);
+		Vector2f scaledContainerDim = camera.screenToWorldCoordinates(containerDim);
+		int startBackgroundIndex_X = (int) (astronautPos.x / scaledImageDim.x);
+		int startBackgroundIndex_Y = (int) (astronautPos.y / scaledImageDim.y);
+
+		int endBackgroundIndex_X = startBackgroundIndex_X + (int) ((astronautPos.x+scaledContainerDim.x) / img.getWidth()) + 2;
+		int endBackgroundIndex_Y = startBackgroundIndex_Y + (int) ((astronautPos.y+scaledContainerDim.y) / img.getHeight()) + 1;
+		
+		endBackgroundIndex_X = Math.min(endBackgroundIndex_X, 2+map.getWidth()*map.getTileWidth()/img.getWidth());
+		endBackgroundIndex_Y = Math.min(endBackgroundIndex_Y, 2+map.getHeight()*map.getTileHeight()/img.getHeight());
+
+		// Background image TODO: translate
+		camera.pushViewMatrix(g);
+		for (int j = startBackgroundIndex_Y; j < endBackgroundIndex_Y + 1; ++j) {
+			for (int i = startBackgroundIndex_X-1; i < endBackgroundIndex_X; ++i) {
+				img.draw(i * img.getWidth(), j*img.getHeight());
+			}
+		}
+		camera.debugdraw(g);
 
 //        mapRender.renderTileLayers(g, 0, 0, 0, 0, map.getWidth(),
 //                map.getHeight());
