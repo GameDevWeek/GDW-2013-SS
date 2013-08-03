@@ -48,7 +48,6 @@ public final class Astronaut extends EntityCollidable implements AstronautContro
 	private boolean invertAnimation;
 	private boolean walking;
 	private Alien alien;
-	private float pickupDistance;
 	private GameDataInfo gameData;
 	private Animation animation;
 	private int groundContacts;
@@ -90,7 +89,6 @@ public final class Astronaut extends EntityCollidable implements AstronautContro
 		speed = gameData.combined.speed;
 		jumpSpeed = gameData.combined.jumpSpeed;
 		jumpDelayTotal = gameData.combined.jumpDelay;
-		pickupDistance = gameData.astronaut.pickupDistance;
 		maxOxygen = gameData.astronaut.oxygen;
         superJumpGravityScale = gameData.combined.superJumpGravityScale;
         superJumpSpeed = gameData.combined.superJumpSpeed;
