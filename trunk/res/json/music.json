@@ -5,5 +5,9 @@
 {
  "name" : "gameplay",
  "pfad" : "res/music/menu.ogg"
+},
+{
+ "name" : "bossmap",
+ "pfad" : "res/music/bosskampf.ogg"
 }
 ]
