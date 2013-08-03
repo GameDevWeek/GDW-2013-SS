@@ -13,7 +13,9 @@ import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityCollidable;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.world.World;
+import de.fhtrier.gdw.ss2013.game.world.enemies.boss.CrabBoss;
 import de.fhtrier.gdw.ss2013.game.world.spawner.MeteoriteSpawner;
+import de.fhtrier.gdw.ss2013.physix.PhysixConst;
 import de.fhtrier.gdw.ss2013.physix.PhysixManager;
 
 /**
@@ -45,7 +47,7 @@ public class Meteroid extends EntityCollidable {
     @Override
     public void initPhysics() {
         createPhysics(BodyType.DYNAMIC, origin.x, origin.y)
-                .density(PhysixManager.DENSITY).friction(PhysixManager.FRICTION)
+                .density(PhysixManager.DENSITY).friction(PhysixManager.FRICTION).mask(PhysixConst.MASK_ENEMY).category(PhysixConst.ENEMY)
                 .asBox(initialSize.x, initialSize.y);
 		physicsObject.setGravityScale(0.5f);
     }
@@ -59,34 +61,13 @@ public class Meteroid extends EntityCollidable {
 	@Override
 	public void beginContact(Contact contact) {
 		Entity other = getOtherEntity(contact);
-		if (other instanceof Astronaut) {
-			((Astronaut) other).setOxygen(((Astronaut) other).getOxygen() - EntityConstants.METEORITE_DAMAGE);
-		}
-
-		if (!(other instanceof MeteoriteSpawner)) {
+		if (other == null) {
 			World.getInstance().getEntityManager().removeEntity(this);
 		}
-
-		// Fixture a = contact.m_fixtureA;
-		// Fixture b = contact.m_fixtureB;
-		//
-		// if (!(a.getBody().getUserData() != null && a.getBody().getUserData()
-		// != null)) {
-		// return;
-		// }
-		//
-		// PhysixObject oA = (PhysixObject) a.getBody().getUserData();
-		// PhysixObject oB = (PhysixObject) b.getBody().getUserData();
-		//
-		// if (oA.getOwner() != null ^ oB.getOwner() != null)
-		// return;
-		//
-		// if (oA.getOwner() != null) { // b is level
-		// System.out.println("b is level");
-		// }
-		// else { // a is level
-		// System.out.println("a is level");
-		// }
+		if (other instanceof Astronaut) {
+			((Astronaut) other).setOxygen(((Astronaut) other).getOxygen() - EntityConstants.METEORITE_DAMAGE);
+			World.getInstance().getEntityManager().removeEntity(this);
+		}
 	}
 
 	@Override

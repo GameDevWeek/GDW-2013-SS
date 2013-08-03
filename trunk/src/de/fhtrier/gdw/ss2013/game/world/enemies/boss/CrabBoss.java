@@ -14,6 +14,7 @@ import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.camera.ThreePointCamera;
 import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.game.world.enemies.ground.SmallGroundEnemy;
+import de.fhtrier.gdw.ss2013.game.world.objects.Meteroid;
 
 public class CrabBoss extends AbstractBoss {
 
@@ -27,7 +28,8 @@ public class CrabBoss extends AbstractBoss {
 	@Override
 	protected void initialize() {
 		animation = AssetLoader.getInstance().getAnimation("crab_boss_idle");
-		phase = new TargetingPhase(new StepForwardPhase(), 500);
+		phase = new InitialPhase();
+		phase.enter();
 		animation.setAutoUpdate(false);
 
 		setInitialSize(animation.getWidth() * scale - 2
@@ -89,15 +91,32 @@ public class CrabBoss extends AbstractBoss {
 		facingRight = newDirection;
 	}
 
+	private class InitialPhase extends Phase {
+		private static final int PHASE_DURATION = 5000;
+		private int timer = PHASE_DURATION;
+
+		@Override
+		void enter() {
+			timer = PHASE_DURATION;
+		}
+
+		@Override
+		void update(int delta) {
+			timer -= delta;
+			if (timer < 0) {
+				setPhase(new TargetingPhase(new StepForwardPhase(), 200));
+			}
+		}
+	}
+
 	private class StepForwardPhase extends Phase {
-		private static final float SPEED = 400.0f;
-		Vector2f walkingLeft = new Vector2f(-SPEED, 0.0f);
-		Vector2f walkingRight = new Vector2f(SPEED, 0.0f);
+		private static final float MAX_SPEED = 800.0f;
+		private static final int PHASE_DURATION = 2000;
 		private int timer;
 
 		@Override
 		void enter() {
-			timer = 4000;
+			timer = PHASE_DURATION;
 		}
 
 		@Override
@@ -105,13 +124,13 @@ public class CrabBoss extends AbstractBoss {
 			timer -= delta;
 			if (timer < 0) {
 				setPhase(new TargetingPhase(new FiringEnemies(
-						new Random().nextInt(5)), 500));
+						new Random().nextInt(21) + 10), 1000));
 			}
-			if (facingRight) {
-				setVelocity(walkingRight);
-			} else {
-				setVelocity(walkingLeft);
+			float speed = (float) (MAX_SPEED * Math.pow(1 - ((float) timer / PHASE_DURATION), 2.0));
+			if (!facingRight) {
+				speed *= -1;
 			}
+			setVelocityX(speed);
 		}
 	}
 
@@ -148,75 +167,83 @@ public class CrabBoss extends AbstractBoss {
 		@Override
 		void enter() {
 			enemy = World.getInstance().getEntityManager()
-					.createEntity(SmallGroundEnemy.class);
-			enemy.setOrigin(getPosition().x - 100.0f, getPosition().y - 350.0f);
+					.createEntity(Meteroid.class);
+			float offsetX = getPhysicsObject().getDimension().x;
+			if (!facingRight) {
+				offsetX *= -1;
+			}
+			enemy.setOrigin(getPosition().x + offsetX, getPosition().y);
 		}
 
 		@Override
 		void update(int delta) {
-			enemy.setVelocityY(-300.0f);
-			if (facingRight) {
-				enemy.setVelocityX(200.0f + (float) Math.random() * 450.0f);
-			} else {
-				enemy.setVelocityX(-200.0f - (float) Math.random() * 450.0f);
+			float distanceToPlayer = getPosition().distance(World.getInstance().getAstronaut().getPosition());
+			float playerSpeed = World.getInstance().getAstronaut().getVelocity().x;
+			float velocity = distanceToPlayer/5.0f + (float) Math.random() * 150.0f - 75f;
+			if (!facingRight) {
+				velocity *= -1;
 			}
+			velocity += playerSpeed/2.0f;
+
+			enemy.setVelocityX(velocity);
+			enemy.setVelocityY(-(float)Math.random() * 200 - distanceToPlayer/3.0f);
 			if (remainingFires == 0) {
-				setPhase(new TargetingPhase(new StompingPhase(), 1000));
+				setPhase(new TargetingPhase(new StepForwardPhase(), 1000));
 			} else {
 				setPhase(new TargetingPhase(new FiringEnemies(
-						remainingFires - 1), 500));
+						remainingFires - 1), 200));
 			}
 		}
 	}
 
-	private class StompingPhase extends Phase {
-
-		private int timer = 2000;
-
-		@Override
-		void enter() {
-			timer = 2000;
-			stompCount += 1;
-			setVelocityY(-800.0f);
-			if (facingRight) {
-				setVelocityX(270.0f);
-			} else {
-				setVelocityX(-270.0f);
-			}
-		}
-
-		@Override
-		void update(int delta) {
-			timer -= delta;
-			if (timer < 0) {
-				if (stompCount == 3) {
-					stompCount = 0;
-					setPhase(new TargetingPhase(new StepForwardPhase(), 500));
-				} else {
-					setPhase(new StompPausePhase());
-				}
-			}
-		}
-	}
-
-	private class StompPausePhase extends Phase {
-
-		private int timer = 1000;
-
-		@Override
-		void enter() {
-			timer = 1000;
-			recalculateDirection();
-		}
-
-		@Override
-		void update(int delta) {
-			timer -= delta;
-			if (timer < 0) {
-				setPhase(new StompingPhase());
-			}
-			recalculateDirection();
-		}
-
-	}
+	// private class StompingPhase extends Phase {
+	//
+	// private int timer = 2000;
+	//
+	// @Override
+	// void enter() {
+	// timer = 2000;
+	// stompCount += 1;
+	// setVelocityY(-800.0f);
+	// if (facingRight) {
+	// setVelocityX(270.0f);
+	// } else {
+	// setVelocityX(-270.0f);
+	// }
+	// }
+	//
+	// @Override
+	// void update(int delta) {
+	// timer -= delta;
+	// if (timer < 0) {
+	// if (stompCount == 3) {
+	// stompCount = 0;
+	// setPhase(new TargetingPhase(new StepForwardPhase(), 500));
+	// } else {
+	// setPhase(new StompPausePhase());
+	// }
+	// }
+	// }
+	// }
+	//
+	// private class StompPausePhase extends Phase {
+	//
+	// private int timer = 1000;
+	//
+	// @Override
+	// void enter() {
+	// timer = 1000;
+	// recalculateDirection();
+	// }
+	//
+	// @Override
+	// void update(int delta) {
+	// timer -= delta;
+	// if (timer < 0) {
+	// setPhase(new StompingPhase());
+	// }
+	// recalculateDirection();
+	// }
+	//
+	// }
 }
