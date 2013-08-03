@@ -11,13 +11,20 @@ import de.fhtrier.gdw.ss2013.game.world.World;
 
 import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.contacts.Contact;
+import org.newdawn.slick.Animation;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.SlickException;
 
 public class Accelerator extends EntityCollidable implements Interactable {
 
 	private boolean isActive = false;
+    private Animation animation;
 
     public Accelerator() {
-    	super(AssetLoader.getInstance().getImage("button_unpressed"));
+    	super();
+        
+        animation = AssetLoader.getInstance().getAnimation("accelerator");
     }
 
     /**
@@ -26,13 +33,19 @@ public class Accelerator extends EntityCollidable implements Interactable {
     @Override
     protected void initialize() {
         super.initialize();
-        setInitialSize(img.getWidth(), img.getHeight());
+        setInitialSize(animation.getWidth(), animation.getHeight());
     }
 
     @Override
     public void initPhysics() {
         createPhysics(BodyType.STATIC, origin.x, origin.y)
                 .sensor(true).asBox(initialSize.x, initialSize.y);
+    }
+
+    @Override
+    public void render(GameContainer gc, Graphics g) throws SlickException {
+        animation.draw(origin.x - initialSize.x / 2.0f,
+                origin.y - initialSize.y / 2.0f);
     }
 
     @Override
