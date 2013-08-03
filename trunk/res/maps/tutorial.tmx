@@ -53,5 +53,49 @@
   <object name="door2" gid="628" x="5184" y="3575"/>
   <object type="winningzone" x="5761" y="3456" width="127" height="127"/>
   <object gid="632" x="3349" y="3665"/>
+  <object gid="642" x="3059" y="4270">
+   <properties>
+    <property name="radius" value="350"/>
+    <property name="trigger" value="tr_pic_mr"/>
+   </properties>
+  </object>
+  <object name="tr_pic_f1" gid="641" x="3226" y="4225">
+   <properties>
+    <property name="image" value="Symbol_Materie_klein"/>
+   </properties>
+  </object>
+  <object name="tr_pic_mr" gid="641" x="3226" y="4309">
+   <properties>
+    <property name="image" value="maus_rechts"/>
+   </properties>
+  </object>
+  <object gid="642" x="3057" y="4269">
+   <properties>
+    <property name="radius" value="350"/>
+    <property name="trigger" value="tr_pic_f1"/>
+   </properties>
+  </object>
+  <object name="tr_pic_f2" gid="641" x="4018" y="4208">
+   <properties>
+    <property name="image" value="Symbol_Fluegel_klein"/>
+   </properties>
+  </object>
+  <object gid="642" x="3868" y="4244">
+   <properties>
+    <property name="radius" value="350"/>
+    <property name="trigger" value="tr_pic_mr2"/>
+   </properties>
+  </object>
+  <object name="tr_pic_mr2" gid="641" x="4018" y="4292">
+   <properties>
+    <property name="image" value="maus_rechts"/>
+   </properties>
+  </object>
+  <object gid="642" x="3868" y="4244">
+   <properties>
+    <property name="radius" value="350"/>
+    <property name="trigger" value="tr_pic_f2"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
