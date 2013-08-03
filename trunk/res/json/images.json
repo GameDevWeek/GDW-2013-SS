@@ -30,33 +30,17 @@
   "name" : "bubble",
   "pfad" : "entities/oxygen_bubble"
 },
-{ 
-  "name" : "healthBarFrame",
-  "pfad" : "gui/frame"
-},
-{
-  "name" : "healthBarForeground",
-  "pfad" : "gui/bar"
-},
-{
-  "name" : "healthBarBackground",
-  "pfad" : "gui/background"
-},
 {
   "name" : "healthbar",
-  "pfad" : "gui/healthbar"
+  "pfad" : "gui/Sauerstoff"
 },
 { 
   "name" : "ability1",
-  "pfad" : "gui/ability1"
+  "pfad" : "gui/SymbolMaterie"
 },
 {
   "name" : "ability2",
-  "pfad" : "gui/ability2"
-},
-{
-  "name" : "ability3",
-  "pfad" : "gui/ability3"
+  "pfad" : "gui/SymbolFliegen"
 },
 {
   "name" : "digits",
@@ -117,10 +101,6 @@
 {
   "name" : "symbion",
   "pfad" : "symbion"
-},
-{
-  "name" : "healthbar",
-  "pfad" : "gui/lebensanzeige_klein"
 },
 {
   "name" : "winning",

@@ -1,7 +1,7 @@
 /**
  * Boris, David (UI-Team)
  */
-package de.fhtrier.gdw.ss2013.gui;
+package de.fhtrier.gdw.ss2013.gui.AbilityDisplay;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -40,8 +40,8 @@ public class AbilityDisplayManager {
 	      abilityDisplay[selected-1].setActivated(true);
 	      
 	    //dynamicAbilityDisplays aktivieren und deaktivieren
-	      abilityDisplay[3+(selectedOld-1)].setActivated(false);
-          abilityDisplay[3+(selected-1)].setActivated(true);
+	      abilityDisplay[2+(selectedOld-1)].setActivated(false);
+          abilityDisplay[2+(selected-1)].setActivated(true);
 	    }
 	    
 	    for(AbilityDisplay elem : abilityDisplay)

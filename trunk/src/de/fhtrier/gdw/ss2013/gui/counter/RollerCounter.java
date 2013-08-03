@@ -1,4 +1,4 @@
-package de.fhtrier.gdw.ss2013.gui;
+package de.fhtrier.gdw.ss2013.gui.counter;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -17,19 +17,31 @@ public class RollerCounter {
     private boolean moving;
     private boolean movingUp; //true wenn es aufwärtes, false wennn es abwärts Zählt. 
     private float speed;
+    private float sizeOfWindow;
 
+    public RollerCounter()
+    {
+        
+    }
+    
+    public RollerCounter(Image[] image, Vector2f position, int value)
+    {
+        init(image, position, value); 
+    }
+    
     public void init(Image[] image, Vector2f position, int value)
     {
         /*to-do
          * throw error if  value>0 or value<0         *
          */
+       // sizeOfWindow = 0.0f;
         this.image = image;
         this.value = value;
         
         this.position = position;
         startDrawingPosition = new Vector2f();
         startDrawingPosition.x = position.x;
-        startDrawingPosition.y = position.y - 1.5f*image[0].getHeight() ;
+        startDrawingPosition.y = position.y - 2.0f*image[0].getHeight() ;
         currentDrawingPosition = startDrawingPosition.copy();
         speed = 0.0f;
     }
@@ -49,7 +61,7 @@ public class RollerCounter {
 
     public void render(GameContainer container, StateBasedGame game, Graphics g)
     {
-        g.setClip((int)position.x, (int)position.y, image[0].getWidth(), 2*image[0].getHeight());
+        g.setClip((int)position.x, (int)position.y, image[0].getWidth(), (1)*image[0].getHeight());
         draw5er(value, currentDrawingPosition);
         g.setClip(0, 0, container.getWidth(), container.getHeight());
     }
