@@ -168,7 +168,7 @@ public final class Astronaut extends EntityCollidable implements
 
     public void setDamage(float damage) {
         oxygen -= damage;
-        soundPlayer.playSound(hitSound);
+        soundPlayer.playSoundAt(hitSound, this);
     }
 
     @Override
@@ -198,7 +198,7 @@ public final class Astronaut extends EntityCollidable implements
             }
             break;
         case superjump:
-            soundPlayer.playSound(wingSound);
+            soundPlayer.playSoundAt(wingSound, this);
             if (isGrounded()) {
                 setState(PlayerState.superjump_end);
                 physicsObject.setGravityScale(1);
@@ -290,7 +290,7 @@ public final class Astronaut extends EntityCollidable implements
                 physicsObject.applyImpulse(new Vector2f(0, -jumpSpeed));
                 setState(PlayerState.jumping);
                 jumpDelay = jumpDelayTotal;
-                soundPlayer.playSound(jumpSound);
+                soundPlayer.playSoundAt(jumpSound, this);
                 // SoundLocator.getPlayer().playSound("absprung");
             }
         }
@@ -307,7 +307,7 @@ public final class Astronaut extends EntityCollidable implements
                 setState(PlayerState.superjump_start);
                 physicsObject.setGravityScale(superJumpGravityScale);
                 superJumpDelay = jumpDelayTotal;
-                soundPlayer.playSound(jumpSound);
+                soundPlayer.playSoundAt(jumpSound, this);
 
             }
         }
@@ -323,9 +323,9 @@ public final class Astronaut extends EntityCollidable implements
     private void playStepSound() {
 
         if (animation.getFrame() == stepFrame1) {
-            soundPlayer.playSound(stepSound1);
+            soundPlayer.playSoundAt(stepSound1, this);
         } else if (animation.getFrame() == stepFrame2) {
-            soundPlayer.playSound(stepSound2);
+            soundPlayer.playSoundAt(stepSound2, this);
         }
     }
 
@@ -420,7 +420,7 @@ public final class Astronaut extends EntityCollidable implements
     public void die() {
         if (!Cheats.isGodmode) {
             setState(PlayerState.dead);
-            soundPlayer.playSound(dieSound);
+            soundPlayer.playSoundAt(dieSound, this);
         }
     }
 
@@ -601,7 +601,7 @@ public final class Astronaut extends EntityCollidable implements
                         || state == PlayerState.superjump_end) {
                     return;
                 }
-                soundPlayer.playSound(dropAlienSound);
+                soundPlayer.playSoundAt(dropAlienSound, this);
                 carryAlien = false;
                 alien.setOnPlayer(false);
 

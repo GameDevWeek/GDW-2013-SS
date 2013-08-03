@@ -1,12 +1,15 @@
 package de.fhtrier.gdw.ss2013.game.world.objects;
 
+import org.jbox2d.dynamics.BodyType;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.filter.ActivatableByAstronaut;
-import org.jbox2d.dynamics.BodyType;
+import de.fhtrier.gdw.ss2013.sound.SoundLocator;
+import de.fhtrier.gdw.ss2013.sound.SoundPlayer;
 
 /**
  * Switch Class
@@ -15,9 +18,11 @@ import org.jbox2d.dynamics.BodyType;
  * 
  */
 public class Switch extends ObjectController implements ActivatableByAstronaut {
-	
-	private Image unpressedImg;
-	private Image pressedImg;
+
+    private Image unpressedImg;
+    private Image pressedImg;
+    private SoundPlayer soundPlayer;
+    private Sound switchSound;
 
     public Switch() {
         super();
@@ -29,7 +34,7 @@ public class Switch extends ObjectController implements ActivatableByAstronaut {
     public boolean isBottomPositioned() {
         return true;
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -38,12 +43,14 @@ public class Switch extends ObjectController implements ActivatableByAstronaut {
         super.initialize();
         setImage(unpressedImg);
         setInitialSize(unpressedImg.getWidth(), unpressedImg.getHeight());
+        soundPlayer = SoundLocator.getPlayer();
+        switchSound = SoundLocator.loadSound("hebel");
     }
-    
+
     @Override
     public void initPhysics() {
-        createPhysics(BodyType.STATIC, origin.x, origin.y).sensor(true)
-                .asBox(initialSize.x, initialSize.y);
+        createPhysics(BodyType.STATIC, origin.x, origin.y).sensor(true).asBox(
+                initialSize.x, initialSize.y);
     }
 
     @Override
@@ -51,12 +58,11 @@ public class Switch extends ObjectController implements ActivatableByAstronaut {
             throws SlickException {
         super.update(container, delta);
         if (!isActivated()) {
-        	setImage(unpressedImg);
+            setImage(unpressedImg);
+        } else if (isActivated()) {
+            setImage(pressedImg);
         }
-        else if (isActivated()) {
-        	setImage(pressedImg);
-        }
-        
+
     }
 
     public boolean getSwitch() {
@@ -68,11 +74,12 @@ public class Switch extends ObjectController implements ActivatableByAstronaut {
     }
 
     public void turnSwitch() {
+        soundPlayer.playSoundAt(switchSound, this);
         if (isActivated) {
             deactivate();
         } else {
             activate();
         }
     }
-    
+
 }

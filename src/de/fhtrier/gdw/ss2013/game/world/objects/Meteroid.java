@@ -6,6 +6,7 @@ import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.constants.EntityConstants;
@@ -13,64 +14,74 @@ import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityCollidable;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.world.World;
-import de.fhtrier.gdw.ss2013.game.world.enemies.boss.CrabBoss;
-import de.fhtrier.gdw.ss2013.game.world.spawner.MeteoriteSpawner;
 import de.fhtrier.gdw.ss2013.physix.PhysixConst;
 import de.fhtrier.gdw.ss2013.physix.PhysixManager;
+import de.fhtrier.gdw.ss2013.sound.SoundLocator;
+import de.fhtrier.gdw.ss2013.sound.SoundPlayer;
 
 /**
  * Meteroid class
  * 
  * @author Kevin, Georg
  * 
- * dont fix spelling mistake, is used too often byRD
+ *         dont fix spelling mistake, is used too often byRD
  */
 public class Meteroid extends EntityCollidable {
 
-	final static float DEBUG_ENTITY_HALFEXTEND = 5;
-	private Animation ani;
+    final static float DEBUG_ENTITY_HALFEXTEND = 5;
+    private Animation ani;
+    private SoundPlayer soundPlayer;
+    private Sound impactSound;
 
-	public Meteroid() {
-		super();
-		this.ani = AssetLoader.getInstance().getAnimation("meteorite");
-		setParticle(AssetLoader.getInstance().getParticle("meteorid5"));
-	}
+    public Meteroid() {
+        super();
+        this.ani = AssetLoader.getInstance().getAnimation("meteorite");
+        setParticle(AssetLoader.getInstance().getParticle("meteorid5"));
+    }
 
-	@Override
-	protected void initialize() {
-		super.initialize();
-		int width = ani.getWidth();
-		int height = ani.getHeight();
+    @Override
+    protected void initialize() {
+        super.initialize();
+        int width = ani.getWidth();
+        int height = ani.getHeight();
         setInitialSize(width, height);
-	}
+        soundPlayer = SoundLocator.getPlayer();
+        impactSound = SoundLocator.loadSound("meteorit");
+    }
 
     @Override
     public void initPhysics() {
         createPhysics(BodyType.DYNAMIC, origin.x, origin.y)
-                .density(PhysixManager.DENSITY).friction(PhysixManager.FRICTION).mask(PhysixConst.MASK_ENEMY).category(PhysixConst.ENEMY)
+                .density(PhysixManager.DENSITY)
+                .friction(PhysixManager.FRICTION).mask(PhysixConst.MASK_ENEMY)
+                .category(PhysixConst.ENEMY)
                 .asBox(initialSize.x, initialSize.y);
-		physicsObject.setGravityScale(0.5f);
+        physicsObject.setGravityScale(0.5f);
     }
 
-	@Override
-	public void render(GameContainer container, Graphics g) throws SlickException {
-		super.render(container, g);
-		ani.draw(this.getPosition().x - (ani.getWidth() / 2), this.getPosition().y - (ani.getHeight() / 2));
-	}
+    @Override
+    public void render(GameContainer container, Graphics g)
+            throws SlickException {
+        super.render(container, g);
+        ani.draw(this.getPosition().x - (ani.getWidth() / 2),
+                this.getPosition().y - (ani.getHeight() / 2));
+    }
 
-	@Override
-	public void beginContact(Contact contact) {
-		Entity other = getOtherEntity(contact);
-		if (other == null) {
-			World.getInstance().getEntityManager().removeEntity(this);
-		}
-		if (other instanceof Astronaut) {
-			((Astronaut) other).setOxygen(((Astronaut) other).getOxygen() - EntityConstants.METEORITE_DAMAGE);
-			World.getInstance().getEntityManager().removeEntity(this);
-		}
-	}
+    @Override
+    public void beginContact(Contact contact) {
+        Entity other = getOtherEntity(contact);
+        soundPlayer.playSound(impactSound);
+        if (other == null) {
+            World.getInstance().getEntityManager().removeEntity(this);
+        }
+        if (other instanceof Astronaut) {
+            ((Astronaut) other).setOxygen(((Astronaut) other).getOxygen()
+                    - EntityConstants.METEORITE_DAMAGE);
+            World.getInstance().getEntityManager().removeEntity(this);
+        }
+    }
 
-	@Override
-	public void endContact(Contact object) {
-	}
+    @Override
+    public void endContact(Contact object) {
+    }
 }

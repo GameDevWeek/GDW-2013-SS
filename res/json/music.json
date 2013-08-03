@@ -13,5 +13,13 @@
 {
  "name" : "credits",
  "pfad" : "res/music/credits.ogg"
+},
+{
+ "name" : "bossmama",
+ "pfad" : "res/music/bossmama.ogg"
+},
+{
+ "name" : "credits",
+ "pfad" : "res/music/bossmamaappear.ogg"
 }
 ]

@@ -36,15 +36,14 @@ public class DefaultSoundPlayer implements SoundPlayer {
         if (!emitterSoundPlayingMap.containsKey(emitter)) {
             emitterSoundPlayingMap.put(emitter, new HashSet<Sound>());
         }
-        if (emitterSoundPlayingMap.containsKey(emitter)) {
-            if (emitterSoundPlayingMap.get(emitter).contains(sound)) {
-                if (!sound.playing()) {
-                    return true;
-                } else
-                    return false;
-            }
-
+        if (emitterSoundPlayingMap.get(emitter).contains(sound)) {
+            if (!sound.playing()) {
+                emitterSoundPlayingMap.get(emitter).remove(sound);
+                return true;
+            } else
+                return false;
         }
+
         return true;
     }
 
@@ -94,10 +93,10 @@ public class DefaultSoundPlayer implements SoundPlayer {
                 / (MAX_DISTANCE - 50.0f);
 
         volume = Math.max(0.0f, Math.min(1.0f, volume));
-        
+
         // Calculate sound direction
-        //float soundX = (1.0f - volume) * -stepfunction(playAtDirection.x); 
-        
+        // float soundX = (1.0f - volume) * -stepfunction(playAtDirection.x);
+
         // x = -1 = LeftSpeaker ; x = 0 = Center ; x = 1 = RightSpeaker
         sound.playAt(1.0f, volume, 0.0f, 0.0f, 0.0f);
         // sound.play();
@@ -116,9 +115,9 @@ public class DefaultSoundPlayer implements SoundPlayer {
 
     }
 
-	@Override
-	public void playSound(String name) {
-		playSound(AssetLoader.getInstance().getSound(name));
-	}
+    @Override
+    public void playSound(String name) {
+        playSound(AssetLoader.getInstance().getSound(name));
+    }
 
 }

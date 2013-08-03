@@ -15,24 +15,8 @@
  "pfad" : "res/sounds/absprung.ogg"
 },
 {
- "name" : "schritt1",
- "pfad" : "res/sounds/schritt1.ogg"
-},
-{
- "name" : "schritt2",
- "pfad" : "res/sounds/schritt2.ogg"
-},
-{
  "name" : "alienschuss",
  "pfad" : "res/sounds/alienschuss.ogg"
-},
-{
- "name" : "fluegelschlag",
- "pfad" : "res/sounds/fluegelschlag.ogg"
-},
-{
- "name" : "absprung",
- "pfad" : "res/sounds/absprung.ogg"
 },
 {
  "name" : "alienabsetzen",
@@ -41,10 +25,6 @@
 {
  "name" : "aliennukeln",
  "pfad" : "res/sounds/aliennukeln.ogg"
-},
-{
- "name" : "alienschuss",
- "pfad" : "res/sounds/alienschuss.ogg"
 },
 {
  "name" : "bosstot",
@@ -105,5 +85,17 @@
 {
  "name" : "tapiralientot",
  "pfad" : "res/sounds/tapiralientot.ogg"
+},
+{
+ "name" : "hebel",
+ "pfad" : "res/sounds/hebel.ogg"
+},
+{
+ "name" : "knopfschalter",
+ "pfad" : "res/sounds/knopfschalter.ogg"
+},
+{
+ "name" : "meteorit",
+ "pfad" : "res/sounds/meteorit.ogg"
 }
 ]
