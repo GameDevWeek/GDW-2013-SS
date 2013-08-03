@@ -47,11 +47,12 @@ public class World {
     private final GameContainer container;
 
     private String levelName;
+    private boolean loadNewMap;
 
     public World(GameContainer container, StateBasedGame game) {
         this.container = container;
         instance = this;
-        levelName = DebugModeStatus.getLevelName();
+        setLevelName(DebugModeStatus.getLevelName());
         map = null;
         entityManager = new EntityManager();
         physicsManager = new PhysixManager(container);
@@ -78,8 +79,13 @@ public class World {
 
         // physic debug stuff
         physicsManager.enableDebugDraw(container);
-
-        Vector2f startpos = LevelLoader.getStartPosition();
+        
+        Vector2f startpos;
+        if (loadNewMap)
+            startpos = LevelLoader.getStartPosition();
+        else
+            startpos = getAstronaut().getOrigin();
+        
 
         astronaut = entityManager.createEntity(Astronaut.class);
         astronaut.setOrigin(startpos);
@@ -102,6 +108,8 @@ public class World {
         scoreCounter.reset();
 
         entityManager.initalUpdate();
+        
+        loadNewMap = false;
     }
 
     public void render(GameContainer container, Graphics g)
@@ -207,6 +215,7 @@ public class World {
 
     public void setLevelName(String levelName) {
         this.levelName = levelName;
+        loadNewMap = true;
     }
 
 }

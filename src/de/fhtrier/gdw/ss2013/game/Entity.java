@@ -175,6 +175,10 @@ public abstract class Entity {
     public void setOrigin(float x, float y) {
         origin.set(x, y);
     }
+    
+    public Vector2f getOrigin(){
+        return origin;
+    }
 
     public void setInitialSize(Vector2f size) {
         initialSize.set(size);
