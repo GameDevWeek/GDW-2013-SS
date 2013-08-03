@@ -102,8 +102,7 @@ public abstract class GroundEnemy extends AbstractEnemy {
 			if (Math.random() < 0.15f * (delta / 1000f)) {
 				chillTime = (int) ((Math.random() * 2000f) + 1000);
 			}
-
-			setVelocity(speed.copy());
+			setVelocityX(speed.x);
 		} else {
 			chillTime -= delta;
 			if (chillTime < 0)
