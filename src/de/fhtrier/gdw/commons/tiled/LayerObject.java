@@ -137,7 +137,7 @@ public class LayerObject {
 					}
 					properties
 							.setDefaults(set.getTileProperties(node.getGid()));
-					lowestY -= width;
+					lowestY -= height;
 				}
 			}
 		}
