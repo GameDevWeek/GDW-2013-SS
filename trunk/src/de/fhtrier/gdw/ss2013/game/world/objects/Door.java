@@ -56,13 +56,13 @@ public class Door extends EntityCollidable implements Interactable {
         doorSoundClosed = SoundLocator.loadSound("doorclosed");
         
         if (properties != null) {
-            String doorType = properties.getProperty("doorType", "")
+            String tileset = properties.getProperty("tileset", "")
                     .toLowerCase();
-            if (!doorType.isEmpty()) {
+            if (!tileset.isEmpty()) {
                 closedImg = AssetLoader.getInstance().getImage(
-                        doorType + "_door_closed");
+                        tileset + "_door_closed");
                 openImg = AssetLoader.getInstance().getImage(
-                        doorType + "_door_open");
+                        tileset + "_door_open");
             }
         }
 	}
