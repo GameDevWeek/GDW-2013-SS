@@ -179,7 +179,7 @@
    <polyline points="0,0 192,-224 512,-224"/>
   </object>
   <object gid="631" x="12128" y="812"/>
-  <object gid="626" x="10205" y="2293"/>
+  <object gid="626" x="789" y="2061"/>
   <object gid="630" x="3328" y="3648"/>
   <object gid="632" x="10314" y="2235"/>
   <object name="platform1" gid="647" x="1772" y="2177">
