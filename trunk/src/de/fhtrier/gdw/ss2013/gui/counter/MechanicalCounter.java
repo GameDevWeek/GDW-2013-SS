@@ -43,6 +43,9 @@ public class MechanicalCounter {
         position.x=position.x-n*width/2.0f;
         position.y=position.y-n*height/2.0f;
         
+        //HACK
+        position.y = position.y + 3*height;
+        
         for(int i=0;i<10;i++)
         {
             rollerCounterImage[i]=digits.getSubImage(0, i*height-1, width, height);

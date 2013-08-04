@@ -10,31 +10,24 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import de.fhtrier.gdw.ss2013.MainGame;
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
+import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.gui.counter.WinScreenCounter;
 
 public class GameWonState extends BasicGameState {
 
     private boolean runUpdateAtLeastOneTime = false;
-    
-    AssetLoader asset;
-
-    int timer = 0;
-    int i = 0;
-    float seed = 1;
-	
-	
     WinScreenCounter counter;
     
 	@Override
-	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
-	    
-	    i = 0;
-	    
+	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {	    
 	    Image digits = AssetLoader.getInstance().getImage("digits");
 	    Vector2f centerPosition = new Vector2f(gc.getWidth()/2,gc.getHeight()/2);
+	    //centerPosition = new Vector2f(0.0f,0.0f); //this line is DEV only
 
-	    int score = 1337; //500 nur zum testen
-        counter = new WinScreenCounter(digits, centerPosition,score, 4);
+	    int score = World.getScoreCounter().getScore();
+	    score = 1337; //this line is DEV only
+        
+	    counter = new WinScreenCounter(digits, centerPosition,score, 4);
         counter.start();
 	}
 
