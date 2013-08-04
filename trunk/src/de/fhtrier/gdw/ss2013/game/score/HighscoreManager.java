@@ -48,8 +48,12 @@ public class HighscoreManager {
         if (rank <= 10) {
             List<ScoreInfo> scores = getHighscoresFromMap(mapName);
             
-            if (scores.size() >= 10)
-                scores.remove(scores.size()-1);
+            if (scores == null) {
+                scores = new ArrayList<>();
+            } else {
+                if (scores.size() >= 10)
+                    scores.remove(scores.size()-1);
+            }
             
             scores.add(rank-1, scoreInfo);
         }
