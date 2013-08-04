@@ -5,14 +5,14 @@
  <tileset firstgid="647" source="moving_platform.tsx"/>
  <layer name="Kachelebene 1" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <objectgroup name="Objektebene 1" width="100" height="100">
   <object type="solid" x="2684" y="3474">
    <polyline points="0,0 250,2 250,122 462,124 462,0"/>
   </object>
-  <object gid="626" x="2768" y="3392"/>
+  <object gid="626" x="2706" y="3472"/>
   <object type="solid" x="2670" y="3472">
    <polyline points="0,0 0,-308 2476,-304"/>
   </object>
@@ -142,15 +142,48 @@
   <object type="solid" x="2607" y="4114">
    <polyline points="0,0 2207,-3 2211,-173 1507,-179 1510,-513 3295,-514"/>
   </object>
-  <object name="tr_pic_e" gid="641" x="4475" y="4204">
+  <object name="tr_pic_e" gid="641" x="4468" y="4204">
    <properties>
     <property name="image" value="bewegung_E_NEU"/>
    </properties>
   </object>
-  <object gid="642" x="4475" y="4204">
+  <object gid="642" x="4469" y="4204">
+   <properties>
+    <property name="radius" value="300"/>
+    <property name="trigger" value="tr_pic_e"/>
+   </properties>
+  </object>
+  <object gid="642" x="1536" y="4224">
    <properties>
     <property name="radius" value="350"/>
-    <property name="trigger" value="tr_pic_e"/>
+    <property name="trigger" value="tr_pic_leer"/>
+   </properties>
+  </object>
+  <object name="tr_pic_leer" gid="641" x="1537" y="4224">
+   <properties>
+    <property name="image" value="tut_leertaste"/>
+   </properties>
+  </object>
+  <object gid="642" x="4778" y="4205">
+   <properties>
+    <property name="radius" value="200"/>
+    <property name="trigger" value="tr_pic_leer2"/>
+   </properties>
+  </object>
+  <object name="tr_pic_leer2" gid="641" x="4778" y="4204">
+   <properties>
+    <property name="image" value="tut_leertaste"/>
+   </properties>
+  </object>
+  <object name="tr_pic_bew" gid="641" x="2815" y="3178">
+   <properties>
+    <property name="image" value="tut_bewegen"/>
+   </properties>
+  </object>
+  <object gid="642" x="2706" y="3323">
+   <properties>
+    <property name="radius" value="80"/>
+    <property name="trigger" value="tr_pic_bew"/>
    </properties>
   </object>
  </objectgroup>
