@@ -80,13 +80,12 @@ public class World {
 
         // physic debug stuff
         physicsManager.enableDebugDraw(container);
-        
+
         Vector2f startpos;
         if (loadNewMap)
             startpos = LevelLoader.getStartPosition();
         else
             startpos = getAstronaut().getOrigin();
-        
 
         astronaut = entityManager.createEntity(Astronaut.class);
         astronaut.setOrigin(startpos);
@@ -111,43 +110,51 @@ public class World {
             update(container, 1);
         } catch (SlickException e) {
             e.printStackTrace();
-        }        
+        }
         camera.onStart();
-        
+
         loadNewMap = false;
     }
 
     public void render(GameContainer container, Graphics g)
             throws SlickException {
-    	Vector2f astronautPos = astronaut.getPosition();
+        Vector2f astronautPos = astronaut.getPosition();
 
-		Image img = AssetLoader.getInstance().getImage("world_background");
+        Image img = AssetLoader.getInstance().getImage("world_background");
 
-		final Vector2f containerDim = new Vector2f(container.getWidth(), container.getHeight());
-		final Vector2f imageDim = new Vector2f(img.getWidth(), img.getHeight());
-		
-		Vector2f scaledImageDim = camera.screenToWorldCoordinates(imageDim);
-		Vector2f scaledContainerDim = camera.screenToWorldCoordinates(containerDim);
-		int startBackgroundIndex_X = (int) (astronautPos.x / scaledImageDim.x);
-		int startBackgroundIndex_Y = (int) (astronautPos.y / scaledImageDim.y);
+        final Vector2f containerDim = new Vector2f(container.getWidth(),
+                container.getHeight());
+        final Vector2f imageDim = new Vector2f(img.getWidth(), img.getHeight());
 
-		int endBackgroundIndex_X = startBackgroundIndex_X + (int) ((astronautPos.x+scaledContainerDim.x) / img.getWidth()) + 2;
-		int endBackgroundIndex_Y = startBackgroundIndex_Y + (int) ((astronautPos.y+scaledContainerDim.y) / img.getHeight()) + 1;
-		
-		endBackgroundIndex_X = Math.min(endBackgroundIndex_X, 2+map.getWidth()*map.getTileWidth()/img.getWidth());
-		endBackgroundIndex_Y = Math.min(endBackgroundIndex_Y, 2+map.getHeight()*map.getTileHeight()/img.getHeight());
+        int startBackgroundIndex_X = (int) (astronautPos.x / imageDim.x);
+        int startBackgroundIndex_Y = (int) (astronautPos.y / imageDim.y);
 
-		// Background image TODO: translate
-		camera.pushViewMatrix(g);
-		for (int j = startBackgroundIndex_Y; j < endBackgroundIndex_Y + 1; ++j) {
-			for (int i = startBackgroundIndex_X-1; i < endBackgroundIndex_X; ++i) {
-				img.draw(i * img.getWidth(), j*img.getHeight());
-			}
-		}
-		camera.debugdraw(g);
+        int endBackgroundIndex_X = startBackgroundIndex_X
+                + (int) ((astronautPos.x + containerDim.x) / img.getWidth())
+                + 2;
+        int endBackgroundIndex_Y = startBackgroundIndex_Y
+                + (int) ((astronautPos.y + containerDim.y) / img.getHeight())
+                + 1;
 
-//        mapRender.renderTileLayers(g, 0, 0, 0, 0, map.getWidth(),
-//                map.getHeight());
+        endBackgroundIndex_X = Math.min(endBackgroundIndex_X,
+                2 + map.getWidth() * map.getTileWidth() / img.getWidth());
+        endBackgroundIndex_Y = Math.min(endBackgroundIndex_Y,
+                2 + map.getHeight() * map.getTileHeight() / img.getHeight());
+
+        g.pushTransform();
+        g.translate(-astronautPos.x, -astronautPos.y);
+        for (int j = startBackgroundIndex_Y; j < endBackgroundIndex_Y + 1; ++j) {
+            for (int i = startBackgroundIndex_X - 1; i < endBackgroundIndex_X; ++i) {
+                img.draw(i * img.getWidth(), j * img.getHeight());
+            }
+        }
+        g.popTransform();
+        camera.pushViewMatrix(g);
+
+        camera.debugdraw(g);
+
+        // mapRender.renderTileLayers(g, 0, 0, 0, 0, map.getWidth(),
+        // map.getHeight());
 
         entityManager.render(container, g, mapRender, map);
         for (DynamicParticleSystem p : particleList) {
@@ -240,7 +247,7 @@ public class World {
         this.levelName = levelName;
         loadNewMap = true;
     }
-    
+
     public String getLevelName() {
         return this.levelName;
     }
