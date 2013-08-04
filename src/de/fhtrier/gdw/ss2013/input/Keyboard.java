@@ -36,7 +36,7 @@ public class Keyboard extends InputDevice {
             case TOGGLE_ALIEN:
             case PREV_ABILITY:
             case NEXT_ABILITY:
-                // case USE_ABILITY:
+            case USE_ABILITY:
                 down = input.isKeyPressed(entry.getValue());
                 break;
             default:
