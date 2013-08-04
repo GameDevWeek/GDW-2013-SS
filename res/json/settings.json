@@ -1,5 +1,5 @@
 {
   "volume" : 10,
-  "fullscreen" : false,
-  "lastLoadedMap" : "enemy_test"
+  "fullscreen" : true,
+  "lastLoadedMap" : "run_or_die"
 }
