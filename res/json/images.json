@@ -76,7 +76,7 @@
 },
 {
   "name" : "healthbar",
-  "pfad" : "gui/lebensanzeige_150x300"
+  "pfad" : "gui/lebensanzeige_blasen"
 },
 { 
   "name" : "ability1_static",
@@ -96,7 +96,7 @@
 },
 {
   "name" : "digits",
-  "pfad" : "gui/digits"
+  "pfad" : "gui/jabjai_zahlen_groß"
 },
 {
 	"name" : "Checkpoint",

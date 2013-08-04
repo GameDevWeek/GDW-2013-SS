@@ -4,6 +4,8 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Vector2f;
+import org.newdawn.slick.particles.ConfigurableEmitter;
+import org.newdawn.slick.particles.ConfigurableEmitter.Range;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class WinScreenCounter {
@@ -51,16 +53,16 @@ public class WinScreenCounter {
         //initializing the RollerCounters
         int tmpValue = value;
         int desiredRollerCounterValue = 0;
-        int startRollerCounterValue = 7; //some random Value 
+        int startRollerCounterValue = 0; 
         for(int i=0;i<n;i++)
         {
             //System.out.println("--------------\nrollerCounter["+i+"] ");
             desiredRollerCounterValue = tmpValue % 10;
-            startRollerCounterValue = (startRollerCounterValue + 3)%10;  //this line juste creates a more or less random value for startRollerCounterValue
+            startRollerCounterValue = 0;
             //System.out.println("tmpValue : " + tmpValue);
             //System.out.println("\trollerCounterValue: "+rollerCounterValue);
             Vector2f rollerCounterPosition = new Vector2f(position.x + (n-i-1) * width,position.y);
-            rollerCounter[i].init(rollerCounterImage, rollerCounterPosition, startRollerCounterValue, desiredRollerCounterValue, 10+i*10);
+            rollerCounter[i].init(rollerCounterImage, rollerCounterPosition, startRollerCounterValue, desiredRollerCounterValue, 5+i*5, i*500);
             
             
             tmpValue-=desiredRollerCounterValue;

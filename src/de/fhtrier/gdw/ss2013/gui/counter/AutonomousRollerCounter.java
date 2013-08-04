@@ -9,6 +9,7 @@ import org.newdawn.slick.state.StateBasedGame;
 public class AutonomousRollerCounter extends RollerCounter {
     private int redundantCycles; //indicates of often the RollerCounter will cycle before displaying its actual Value
     private int desiredValue;
+    private int startCountdown;
     private boolean started;
     
     public AutonomousRollerCounter()
@@ -16,17 +17,18 @@ public class AutonomousRollerCounter extends RollerCounter {
         
     }
     
-    public AutonomousRollerCounter(Image[] image, Vector2f position, int value, int desiredValue, int redundantCycles)
+    public AutonomousRollerCounter(Image[] image, Vector2f position, int value, int desiredValue, int redundantCycles, int startCountdown)
     {
-        init(image, position, value, desiredValue, redundantCycles);
+        init(image, position, value, desiredValue, redundantCycles, startCountdown);
     }
     
-    public void init(Image[] image, Vector2f position, int value, int desiredValue, int redundantCycles)
+    public void init(Image[] image, Vector2f position, int value, int desiredValue, int redundantCycles, int startCountdown)
     {
         started = false;
         this.desiredValue = desiredValue;
         this.redundantCycles = redundantCycles;
         super.init(image, position, value);
+        this.startCountdown = startCountdown;
     }
     
     public void update(GameContainer container, StateBasedGame game, int delta)
@@ -35,16 +37,23 @@ public class AutonomousRollerCounter extends RollerCounter {
        
        if(started)
        {
-           if(redundantCycles>0)
+           if(startCountdown<=0)
            {
-               if(this.up(0.5f))
+               if(redundantCycles>0)
                {
-                   redundantCycles--;
+                   if(this.up(0.5f))
+                   {
+                       redundantCycles--;
+                   }
+               }
+               else if (desiredValue != this.getValue())
+               {
+                   this.up(0.5f);
                }
            }
-           else if (desiredValue != this.getValue())
+           else
            {
-               this.up(0.5f);
+               startCountdown-=delta;
            }
        }
     }
