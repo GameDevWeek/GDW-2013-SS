@@ -159,7 +159,7 @@
   <object type="solid" x="2249" y="1873" width="459" height="203"/>
   <object type="solid" x="2439" y="1523" width="291" height="531"/>
   <object gid="630" x="516" y="1152"/>
-  <object name="door1" gid="628" x="752" y="1196"/>
+  <object name="door1" gid="628" x="752" y="1250"/>
   <object name="button2" gid="633" x="950" y="1162">
    <properties>
     <property name="trigger" value="door2"/>
@@ -187,14 +187,14 @@
     <property name="path" value="p1"/>
    </properties>
   </object>
-  <object name="door4" gid="628" x="1545" y="2315"/>
+  <object name="door4" gid="628" x="1541" y="2333"/>
   <object name="door5" gid="628" x="2621" y="2897"/>
   <object gid="633" x="2943" y="2320">
    <properties>
     <property name="trigger" value="door5"/>
    </properties>
   </object>
-  <object name="door3" gid="628" x="2531" y="2317"/>
+  <object name="door3" gid="628" x="2531" y="2331"/>
   <object gid="629" x="1345" y="7827">
    <properties>
     <property name="trigger" value="door4"/>
@@ -235,20 +235,20 @@
     <property name="trigger" value="secretdoor"/>
    </properties>
   </object>
-  <object name="secretdoor" gid="628" x="2932" y="4670"/>
+  <object name="secretdoor" gid="628" x="2932" y="4768"/>
   <object gid="633" x="1985" y="2439">
    <properties>
     <property name="trigger" value="second_secret_door"/>
    </properties>
   </object>
-  <object name="second_secret_door" gid="628" x="3271" y="4669"/>
+  <object name="second_secret_door" gid="628" x="3275" y="4767"/>
   <object gid="630" x="1730" y="7804"/>
   <object gid="633" x="3190" y="2456">
    <properties>
     <property name="trigger" value="secret_door_three"/>
    </properties>
   </object>
-  <object name="secret_door_three" gid="628" x="3536" y="4672"/>
+  <object name="secret_door_three" gid="628" x="3544" y="4766"/>
   <object gid="630" x="3484" y="2878"/>
   <object name="f2" type="FollowPath" x="820" y="3320">
    <properties>
@@ -269,7 +269,7 @@
     <property name="target" value="def"/>
    </properties>
   </object>
-  <object name="doo1" gid="628" x="4546" y="2827"/>
+  <object name="doo1" gid="628" x="4541" y="2875"/>
   <object name="b1" gid="633" x="4610" y="3151">
    <properties>
     <property name="trigger" value="doo1"/>
@@ -292,8 +292,8 @@
     <property name="trigger" value="doo4"/>
    </properties>
   </object>
-  <object name="doo2" gid="628" x="4740" y="2836"/>
-  <object name="doo3" gid="628" x="4931" y="2834"/>
+  <object name="doo2" gid="628" x="4739" y="2877"/>
+  <object name="doo3" gid="628" x="4930" y="2878"/>
   <object name="doo4" gid="628" x="5190" y="3158"/>
   <object type="solid" x="4117" y="2516" width="151" height="383"/>
   <object name="cin" gid="628" x="6716" y="3159"/>
@@ -333,6 +333,29 @@
   <object gid="632" x="1084" y="7829"/>
   <object type="deadzone" x="6067" y="2031">
    <polyline points="0,0 301,35 349,136 20,192 -24,15"/>
+  </object>
+  <object gid="637" x="1768" y="7268">
+   <properties>
+    <property name="path" value="cave"/>
+   </properties>
+  </object>
+  <object gid="637" x="1270" y="7410">
+   <properties>
+    <property name="path" value="cave"/>
+   </properties>
+  </object>
+  <object gid="637" x="1492" y="7124">
+   <properties>
+    <property name="path" value="cave"/>
+   </properties>
+  </object>
+  <object name="cave" type="FollowPath" x="1442" y="7220">
+   <polyline points="0,0 92,-132 146,36 220,-92 418,34 470,-74"/>
+  </object>
+  <object gid="635" x="726" y="7194">
+   <properties>
+    <property name="path" value="cave"/>
+   </properties>
   </object>
  </objectgroup>
 </map>
