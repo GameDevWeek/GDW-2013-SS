@@ -62,7 +62,7 @@ public class World {
         reset();
     }
 
-    private void reset() {
+    public void reset() {
         entityManager.reset();
         physicsManager.reset();
         particleList.clear();
@@ -107,8 +107,12 @@ public class World {
         InputManager.getInstance().setAlienController(astronaut);
 
         scoreCounter.reset();
-
-        entityManager.initalUpdate();
+        try {
+            update(container, 1);
+        } catch (SlickException e) {
+            e.printStackTrace();
+        }        
+        camera.onStart();
         
         loadNewMap = false;
     }

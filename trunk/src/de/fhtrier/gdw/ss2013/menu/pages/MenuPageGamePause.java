@@ -39,7 +39,7 @@ public class MenuPageGamePause extends MenuPage {
                 new IActionListener() {
                     @Override
                     public void onAction() {
-                        World.getInstance().shallBeReseted(true);
+                        World.getInstance().reset();
                         GameplayState.hideMenu();
                     }
                 }

@@ -28,12 +28,12 @@ public class ThreePointCamera {
 		cameraSpeed = info.cameraSpeed;
 		zoomFactor = 1f;
 	}
-
-	public void update(int deltaTime, int width, int height) {
-		screenHeight = height;
-		screenWidth = width;
-		float dt = deltaTime / 1000.f;
-
+    
+    public void onStart() {
+		cameraPosition.set(getFinalTarget());
+    }
+    
+    private Vector2f getFinalTarget() {
 		Vector2f finalTarget = new Vector2f();
 		int count = 1;
 		for (Vector2f target : targets) {
@@ -42,10 +42,17 @@ public class ThreePointCamera {
 			finalTarget.add(newTarget.scale(1f / count));
 			count += 1;
 		}
+        return finalTarget;
+    }
 
+	public void update(int deltaTime, int width, int height) {
+		screenHeight = height;
+		screenWidth = width;
+		float dt = deltaTime / 1000.f;
+
+		Vector2f finalTarget = getFinalTarget();
 		finalTarget.sub(cameraPosition).scale(dt * cameraSpeed);
 		cameraPosition.add(finalTarget);
-
 	}
 
 	public void addDynamicTarget(Vector2f target) {
