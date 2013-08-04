@@ -108,7 +108,6 @@ public final class Alien extends Entity implements AlienController {
     public void shoot() {
         if (System.currentTimeMillis() > lastShotTime
                 + PlayerConstants.SHOTDELAY) {
-            System.out.println("shoot");
             soundPlayer.playSoundAt(shootSound, this);
             Vector2f playerPos;
             if (astronaut.isCarryAlien()) {
@@ -137,8 +136,6 @@ public final class Alien extends Entity implements AlienController {
     @Override
     public void nextAbility() {
         selectedAbility = (selectedAbility % 2) + 1;
-
-        Log.debug("rotate ability");
         dropCurrentSelected(); // if current has selection
     }
 

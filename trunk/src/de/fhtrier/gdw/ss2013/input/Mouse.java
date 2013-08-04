@@ -52,12 +52,8 @@ public class Mouse extends InputDevice {
         int dWheel = org.lwjgl.input.Mouse.getDWheel();
         if (dWheel < 0) {
             doButton(Button.WHEEL_UP);
-            Log.debug("Mousewheel: " + dWheel);
-
         } else if (dWheel > 0) {
             doButton(Button.WHEEL_DOWN);
-            Log.debug("Mousewheel: " + dWheel);
-
         }
     }
 
