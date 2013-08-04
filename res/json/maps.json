@@ -59,6 +59,10 @@
   "pfad" : "res/maps/enemy_testmap.tmx"
 },
 {
+  "name" : "wintest",
+  "pfad" : "res/maps/map-wintest.tmx"
+},
+{
   "name" : "tutorial",
   "pfad" : "res/maps/tutorial.tmx"
 }]
