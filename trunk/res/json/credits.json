@@ -166,11 +166,11 @@
 		{ "style" : "name", "delay": 750, "value": "Annalena Weber" },
 		
 		{ "style" : "title", "delay": 1350, "value": "Game Design" },
-		{ "style" : "name", "delay": 850, "value": "Annalena Weber" },
 		{ "style" : "name", "delay": 750, "value": "Tobias Borns" },
 		{ "style" : "name", "delay": 750, "value": "Julia Goerke" },
 		{ "style" : "name", "delay": 750, "value": "Maxine Hammen" },
 		{ "style" : "name", "delay": 750, "value": "Julia Wolf" },
+		{ "style" : "name", "delay": 850, "value": "Annalena Weber" },
 		{ "style" : "name", "delay": 750, "value": "Yasmin Schraven" },
 		
 		{ "style" : "title", "delay": 1350, "value": "Level Design" },
@@ -190,8 +190,6 @@
 		
 		{ "style" : "title", "delay": 1350, "value": "Animation" },
 		{ "style" : "name", "delay": 850, "value": "Annalena Weber" },
-		{ "style" : "name", "delay": 750, "value": "Anton Krapp" },
-		{ "style" : "name", "delay": 750, "value": "Mira Lorenz" },
 		{ "style" : "name", "delay": 750, "value": "Maxine Hammen" },
 		
 		{ "style" : "title", "delay": 1350, "value": "Programmierung" },
