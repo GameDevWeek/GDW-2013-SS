@@ -6,11 +6,9 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.geom.Vector2f;
 
-import de.fhtrier.gdw.ss2013.constants.MathConstants;
-
 public class ThreePointCamera {
-	private final static float MIN_ZOOM = -0.5f;
-	private final static float MAX_ZOOM = 1.f;
+	private final static float MIN_ZOOM = 0.6f;
+	private final static float MAX_ZOOM = 1.6f;
 
 	private final Vector2f cameraPosition;
 	private final ArrayList<Vector2f> targets;
@@ -20,6 +18,8 @@ public class ThreePointCamera {
 	private int screenHeight;
 	private float zoomFactor;
 	private boolean initialized;
+	
+	
 
 	public ThreePointCamera(CameraInfo info) {
 		cameraPosition = new Vector2f();
@@ -44,7 +44,11 @@ public class ThreePointCamera {
 		}
         return finalTarget;
     }
-
+    
+    public Vector2f getCameraPosition() {
+        return cameraPosition.copy();
+    }
+    
 	public void update(int deltaTime, int width, int height) {
 		screenHeight = height;
 		screenWidth = width;
@@ -64,11 +68,11 @@ public class ThreePointCamera {
 	}
 
 	public void zoomOut(float factor) {
-		this.zoomFactor /= factor;
+		this.zoomFactor = Math.max(Math.min(zoomFactor/ factor,MAX_ZOOM),MIN_ZOOM);
 	}
 
 	public void zoomIn(float factor) {
-		this.zoomFactor *= factor;
+		this.zoomFactor = Math.max(Math.min(zoomFactor* factor,MAX_ZOOM),MIN_ZOOM);;
 	}
 
 	public void debugdraw(Graphics g) {
