@@ -5,5 +5,7 @@ public class SettingsInfo {
     public Integer volume;
     public Boolean fullscreen;
     public String lastLoadedMap;
+    public String lastAstronautName;
+    public String lastAlienName;
     
 }

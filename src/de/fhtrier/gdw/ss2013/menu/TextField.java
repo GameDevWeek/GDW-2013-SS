@@ -128,6 +128,8 @@ public class TextField extends Widget {
 			cursorPos = 0;
 		} else if(key == Input.KEY_ENTER) {
             this.setFocus(false);
+		} else if (key ==  Input.KEY_TAB) {
+		    // Ignore Tab
 		} else if(c != '\0') {
 			if(cursorPos == text.length())
 				text += c;
