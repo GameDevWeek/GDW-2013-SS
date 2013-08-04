@@ -3,6 +3,10 @@
   "pfad" : "res/maps/sidescroller_demo.tmx"
 },
 {
+  "name" : "swamp",
+  "pfad" : "res/maps/the_swamp.tmx"
+},
+{
   "name" : "beginner1",
   "pfad" : "res/maps/beginner1.tmx"
 },

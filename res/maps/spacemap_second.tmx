@@ -245,7 +245,7 @@
   <object gid="637" x="11974" y="1147"/>
   <object gid="640" x="13001" y="1138"/>
  </objectgroup>
- <objectgroup name="assets1" width="230" height="70">
+ <objectgroup name="assets1" width="230" height="70" visible="0">
   <object gid="632" x="7270" y="2424"/>
   <object gid="632" x="6459" y="2424"/>
   <object gid="635" x="6020" y="2102"/>
