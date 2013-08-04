@@ -8,7 +8,7 @@ public class DebugModeStatus {
     static protected boolean winMenuStatus = false;
 
 
-    static String levelName = "run_or_die";
+    static String levelName = "robomap";
 
 
     static public boolean isTest() {
