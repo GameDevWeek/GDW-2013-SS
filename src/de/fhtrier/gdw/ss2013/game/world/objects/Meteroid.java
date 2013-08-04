@@ -14,6 +14,7 @@ import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityCollidable;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.world.World;
+import de.fhtrier.gdw.ss2013.game.world.spawner.MeteoriteSpawner;
 import de.fhtrier.gdw.ss2013.physix.PhysixConst;
 import de.fhtrier.gdw.ss2013.physix.PhysixManager;
 import de.fhtrier.gdw.ss2013.sound.SoundLocator;
@@ -77,7 +78,9 @@ public class Meteroid extends EntityCollidable {
     @Override
     public void beginContact(Contact contact) {
         Entity other = getOtherEntity(contact);
-        soundPlayer.playSound(impactSound);
+        if (!(other instanceof MeteoriteSpawner)) {
+            soundPlayer.playSound(impactSound);
+        }
         if (other == null) {
             World.getInstance().getEntityManager().removeEntity(this);
         }

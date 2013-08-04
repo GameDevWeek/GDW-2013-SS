@@ -13,6 +13,7 @@ import org.jbox2d.dynamics.Fixture;
 import org.jbox2d.dynamics.contacts.Contact;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
@@ -23,6 +24,8 @@ import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.physix.PhysixConst;
 import de.fhtrier.gdw.ss2013.physix.PhysixShape;
+import de.fhtrier.gdw.ss2013.sound.SoundLocator;
+import de.fhtrier.gdw.ss2013.sound.SoundPlayer;
 
 //import org.newdawn.slick.Image;
 
@@ -36,6 +39,8 @@ public class OxygenBubble extends EntityCollidable implements Interactable {
     private int timer = 0;
     private boolean isUsed = false;
     private final Vector2f initalDirection = new Vector2f();
+    private SoundPlayer soundPlayer;
+    private Sound pickUp;
 
     public OxygenBubble() {
         super(AssetLoader.getInstance().getImage("bubble"));
@@ -48,6 +53,8 @@ public class OxygenBubble extends EntityCollidable implements Interactable {
     protected void initialize() {
         super.initialize();
         timer = (int)(Math.random()*100);
+        soundPlayer = SoundLocator.getPlayer();
+//        pickUp = SoundLocator.loadSound("")
     }
     
     @Override
