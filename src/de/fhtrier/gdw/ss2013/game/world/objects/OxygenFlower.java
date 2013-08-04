@@ -72,20 +72,21 @@ public class OxygenFlower extends EntityCollidable {
 
         bubbleTime += delta;
 
-        if (bubbleTime >= bubbleRespawnTimer
-                && this.count < this.getMaxBubble()) {
+        if (bubbleTime >= bubbleRespawnTimer) {
 
-            float x = this.getPosition().getX()
-                    + ((float) Math.random() * 150 - 75);
-            float y = this.getPosition().getY() - (float) Math.random() * 30
-                    - 50;
-            OxygenBubble entity = World.getInstance().getEntityManager()
-                    .createEntity(OxygenBubble.class);
-            // Bubble-Objekt
-            ((OxygenBubble) entity).setFlower(this);
-            ((OxygenBubble) entity).setOrigin(x, y);
-            this.count++;
-            this.bubbleTime -= this.bubbleRespawnTimer; 
+        	if(this.count < this.getMaxBubble()) {
+		            float x = this.getPosition().getX()
+		                    + ((float) Math.random() * 150 - 75);
+		            float y = this.getPosition().getY() - (float) Math.random() * 30
+		                    - 50;
+		            OxygenBubble entity = World.getInstance().getEntityManager()
+		                    .createEntity(OxygenBubble.class);
+		            // Bubble-Objekt
+		            ((OxygenBubble) entity).setFlower(this);
+		            ((OxygenBubble) entity).setOrigin(x, y);
+		            this.count++;
+	        	}
+	            this.bubbleTime -= this.bubbleRespawnTimer; 
         }
     }
 
