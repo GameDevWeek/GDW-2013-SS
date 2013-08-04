@@ -110,7 +110,7 @@ public class Teleporter extends EntityCollidable implements Interactable {
             
             
             if (other instanceof Astronaut || other instanceof Alien
-                    || other instanceof Box) {
+                    || other instanceof Entity) {
                 if (ignorList.contains(other)) {
                     ignorList.remove(other);
                 }

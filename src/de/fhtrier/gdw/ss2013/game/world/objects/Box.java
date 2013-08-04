@@ -99,7 +99,7 @@ public class Box extends EntityCollidable {
             DeadZone zone = (DeadZone) other;
             if (zone.isRemoveBox()) {
                 World.getInstance().getEntityManager().removeEntity(this);
-                World.getInstance().getAlien().setCurrentSelectedBox(null);
+                World.getInstance().getAlien().setCurrentSelected(null);
             }
         }
         if (other == null || other instanceof Button) {

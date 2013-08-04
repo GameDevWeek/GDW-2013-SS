@@ -9,39 +9,43 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 
-import de.fhtrier.gdw.commons.utils.SafeProperties;
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.camera.ThreePointCamera;
-import de.fhtrier.gdw.ss2013.game.filter.Interactable;
 import de.fhtrier.gdw.ss2013.game.world.World;
-import de.fhtrier.gdw.ss2013.game.world.objects.Box;
+import de.fhtrier.gdw.ss2013.game.world.objects.ActivatableMeteroid;
 import de.fhtrier.gdw.ss2013.game.world.objects.Meteroid;
+import org.newdawn.slick.Font;
 
-public class CrabBoss extends AbstractBoss implements Interactable {
+public class CrabBoss extends AbstractBoss {
 
+    private float SCALE = 1.3f;
 	private Animation animation;
 	private float physicsObject_x_offset = 20.0f;
 	private float physicsObject_y_offset = 80.0f;
 	private boolean facingRight;
-	private Entity[] boxes = new Entity[2];
+	private Entity[] meteroids = new Entity[2];
 	public int stompCount;
 	private Vector2f cameraTarget;
 	private int damage = 0;
-	private int boxesFired = 0;
+	private int meteroidsFired = 0;
 	private boolean isActive;
+    private Animation animation_attacking;
+    private Animation animation_walking;
+    private Font font;
 
 	@Override
 	protected void initialize() {
 		animation = AssetLoader.getInstance().getAnimation("crab_boss_idle");
-		img = AssetLoader.getInstance().getImage("boss_image");
+		animation_walking = AssetLoader.getInstance().getAnimation("crab_boss_walking");
+		animation_attacking = AssetLoader.getInstance().getAnimation("crab_boss_attacking");
 		phase = new InitialPhase();
 		phase.enter();
 		animation.setAutoUpdate(false);
+        font = AssetLoader.getInstance().getFont("verdana_24");
 
-		setInitialSize(img.getWidth() - physicsObject_x_offset, img.getHeight()
-				- physicsObject_y_offset);
+		setInitialSize(animation.getWidth() * SCALE, animation.getHeight() * SCALE);
 
 		cameraTarget = new Vector2f();
 		ThreePointCamera tpCamera = World.getInstance().getTPCamera();
@@ -60,26 +64,9 @@ public class CrabBoss extends AbstractBoss implements Interactable {
 	}
 
 	@Override
-	public void activate() {
-		if (!(phase instanceof TakeDamagePhase)) {
-			setPhase(new TakeDamagePhase());
-		}
-	}
-
-	@Override
-	public void deactivate() {
-		isActive = false;
-	}
-
-	@Override
-	public boolean isActive() {
-		return false;
-	}
-
-	@Override
 	public void initPhysics() {
-		createPhysics(BodyType.DYNAMIC, origin.x, origin.y).density(1)
-				.friction(1).asBox(initialSize.x, initialSize.y);
+		createPhysics(BodyType.DYNAMIC, origin.x, origin.y).density(500)
+				.friction(0.4f).asCircle(Math.min(initialSize.x, initialSize.y) * 0.4f );
 	}
 
 	@Override
@@ -99,19 +86,41 @@ public class CrabBoss extends AbstractBoss implements Interactable {
 		} else {
 			float x = physicsObject.getPosition().x;
 			float y = physicsObject.getPosition().y;
-			float halfheight = physicsObject.getDimension().y;
-			float halfwidth = physicsObject.getDimension().x;
+			float halfheight = SCALE * animation.getHeight()/2;
+			float halfwidth = SCALE * animation.getWidth()/2;
+            
+            Animation anim;
+            if(phase instanceof StepForwardPhase || phase instanceof TargetingPhase)
+                anim = animation_walking;
+            else if(phase instanceof FiringEnemies)
+                anim = animation_attacking;
+            else
+                anim = animation;
+            if(anim.isStopped())
+                anim.restart();
 
-			if (facingRight) {
-				img.draw(x - halfwidth, y - halfheight, 2 * halfwidth,
+			if (!facingRight) {
+				anim.draw(x - halfwidth, y - halfheight, 2 * halfwidth,
 						2 * halfheight);
 			} else {
-				img.draw(x + halfwidth, y - halfheight, -2 * halfwidth,
+				anim.draw(x + halfwidth, y - halfheight, -2 * halfwidth,
 						2 * halfheight);
 			}
+            font.drawString(x, y, phase.getClass().getSimpleName());
 		}
 	}
 
+	public void setPhase(Phase newPhase) {
+        super.setPhase(newPhase);
+        
+        animation.restart();
+        animation.stop();
+        animation_walking.restart();
+        animation_walking.stop();
+        animation_attacking.restart();
+        animation_attacking.stop();
+	}
+    
 	private void recalculateDirection() {
 		Vector2f direction = World.getInstance().getAstronaut().getPosition()
 				.sub(getPosition());
@@ -119,6 +128,11 @@ public class CrabBoss extends AbstractBoss implements Interactable {
 		boolean newDirection = direction.x >= 0;
 		facingRight = newDirection;
 	}
+
+    @Override
+    public void reduceHealth(float damage) {
+        setPhase(new TakeDamagePhase());
+    }
 
 	private class InitialPhase extends Phase {
 		private static final int PHASE_DURATION = 5000;
@@ -139,7 +153,7 @@ public class CrabBoss extends AbstractBoss implements Interactable {
 	}
 
 	private class StepForwardPhase extends Phase {
-		private static final float MAX_SPEED = 800.0f;
+		private static final float MAX_SPEED = 600.0f;
 		private static final int PHASE_DURATION = 2000;
 		private int timer;
 
@@ -153,7 +167,7 @@ public class CrabBoss extends AbstractBoss implements Interactable {
 			timer -= delta;
 			if (timer < 0) {
 				setPhase(new TargetingPhase(new FiringEnemies(
-						new Random().nextInt(21) + 10), 1000));
+						new Random().nextInt(5) + 5), 1000));
 			}
 			float speed = (float) (MAX_SPEED * Math.pow(
 					1 - ((float) timer / PHASE_DURATION), 2.0));
@@ -231,18 +245,18 @@ public class CrabBoss extends AbstractBoss implements Interactable {
 		void render(Graphics g) {
 			float x = physicsObject.getPosition().x;
 			float y = physicsObject.getPosition().y;
-			float halfheight = physicsObject.getDimension().y;
-			float halfwidth = physicsObject.getDimension().x;
+			float halfheight = SCALE * animation.getHeight()/2;
+			float halfwidth = SCALE * animation.getWidth()/2;
 
 			float offsetx = (float) Math.random() * 50 * (float) PHASE_DURATION
 					/ timer;
 			float offsety = (float) Math.random() * 50 * (float) PHASE_DURATION
 					/ timer;
-			if (facingRight) {
-				img.draw(x - halfwidth + offsetx, y - halfheight + offsety,
+			if (!facingRight) {
+				animation.draw(x - halfwidth + offsetx, y - halfheight + offsety,
 						2 * halfwidth, 2 * halfheight);
 			} else {
-				img.draw(x + halfwidth + offsetx, y - halfheight + offsety, -2
+				animation.draw(x + halfwidth + offsetx, y - halfheight + offsety, -2
 						* halfwidth, 2 * halfheight);
 			}
 		}
@@ -266,25 +280,21 @@ public class CrabBoss extends AbstractBoss implements Interactable {
 					.getEntityManager();
 
 			Class<? extends Entity> classId = null;
-			SafeProperties enemyProperties = new SafeProperties();
-			if (isRandomStone && boxesFired < 2) {
-				classId = Box.class;
-				boxesFired += 1;
-				enemyProperties.setProperty("animation", "box");
+			if (isRandomStone && meteroidsFired < 2) {
+				classId = ActivatableMeteroid.class;
+				meteroidsFired += 1;
 			} else {
 				classId = Meteroid.class;
-				enemyProperties.setProperty("animation", "rock");
 			}
 
 			enemy = entityManager.createEntity(classId);
-			enemy.setProperties(enemyProperties);
 			float offsetX = getPhysicsObject().getDimension().x;
 			if (!facingRight) {
 				offsetX *= -1;
 			}
 			enemy.setOrigin(getPosition().x + offsetX, getPosition().y);
-			if (enemy instanceof Box) {
-				boxes[boxesFired - 1] = enemy;
+			if (enemy instanceof ActivatableMeteroid) {
+				meteroids[meteroidsFired - 1] = enemy;
 			}
 		}
 

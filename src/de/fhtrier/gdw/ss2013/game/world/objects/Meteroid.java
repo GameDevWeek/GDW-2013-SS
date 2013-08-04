@@ -29,9 +29,9 @@ import de.fhtrier.gdw.ss2013.sound.SoundPlayer;
 public class Meteroid extends EntityCollidable {
 
     final static float DEBUG_ENTITY_HALFEXTEND = 5;
-    private Animation ani;
-    private SoundPlayer soundPlayer;
-    private Sound impactSound;
+    protected Animation ani;
+    protected SoundPlayer soundPlayer;
+    protected Sound impactSound;
 
     public Meteroid() {
         super();
@@ -52,10 +52,12 @@ public class Meteroid extends EntityCollidable {
     @Override
     public void initPhysics() {
         createPhysics(BodyType.DYNAMIC, origin.x, origin.y)
-                .density(PhysixManager.DENSITY)
-                .friction(PhysixManager.FRICTION).mask(PhysixConst.MASK_ENEMY)
-                .category(PhysixConst.ENEMY)
-                .asBox(initialSize.x, initialSize.y);
+                .density(PhysixManager.DENSITY).friction(PhysixManager.FRICTION)
+                .category(PhysixConst.ENEMY).mask(PhysixConst.MASK_ENEMY)
+                .fixedRotation(false)
+                .linearDamping(0.1f)
+                .angularDamping(0.8f)
+                .asCircle(initialSize.x / 2);
         physicsObject.setGravityScale(0.5f);
     }
 
@@ -63,8 +65,13 @@ public class Meteroid extends EntityCollidable {
     public void render(GameContainer container, Graphics g)
             throws SlickException {
         super.render(container, g);
-        ani.draw(this.getPosition().x - (ani.getWidth() / 2),
-                this.getPosition().y - (ani.getHeight() / 2));
+        
+        g.pushTransform();
+        g.translate(getPosition().x, getPosition().y);
+        g.rotate(0, 0, (float) (physicsObject.getAngle() / Math.PI * 180.0));
+        g.translate(-ani.getWidth() / 2.0f, -ani.getHeight() / 2.0f);
+        ani.draw();
+        g.popTransform();
     }
 
     @Override
