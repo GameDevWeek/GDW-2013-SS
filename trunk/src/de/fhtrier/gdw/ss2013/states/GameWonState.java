@@ -10,13 +10,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import de.fhtrier.gdw.ss2013.MainGame;
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
-import de.fhtrier.gdw.ss2013.game.world.World;
-import de.fhtrier.gdw.ss2013.gui.counter.AutonomousRollerCounter;
-import de.fhtrier.gdw.ss2013.gui.counter.MechanicalCounter;
-import de.fhtrier.gdw.ss2013.gui.counter.RollerCounter;
-import de.fhtrier.gdw.ss2013.gui.counter.ScoreCounter;
 import de.fhtrier.gdw.ss2013.gui.counter.WinScreenCounter;
-import de.fhtrier.gdw.ss2013.gui.utils.CenteredText;
 
 public class GameWonState extends BasicGameState {
 
@@ -67,4 +61,8 @@ public class GameWonState extends BasicGameState {
 		return MainGame.WINSTATE;
 	}
 
+    @Override
+	public void keyReleased(int key, char c) {
+        MainGame.changeState(MainGame.MAINMENUSTATE);
+    }
 }
