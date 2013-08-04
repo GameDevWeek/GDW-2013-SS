@@ -92,6 +92,11 @@
    <property name="type" value="teleporter"/>
   </properties>
  </tile>
+ <tile id="18">
+  <properties>
+   <property name="type" value="squid"/>
+  </properties>
+ </tile>
  <tile id="19">
   <properties>
    <property name="animation" value="rock"/>
