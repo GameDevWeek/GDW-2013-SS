@@ -3,6 +3,7 @@
  <tileset firstgid="1" source="tiledmap_final.tsx"/>
  <tileset firstgid="626" source="entity_tileset.tsx"/>
  <tileset firstgid="647" source="moving_platform.tsx"/>
+ <tileset firstgid="650" source="assets_1.tsx"/>
  <layer name="Tiles" width="230" height="70">
   <data encoding="base64" compression="zlib">
    eJztnW2S3DQQhvsXGeAQaFk4AyF8XYEkELgCSSDhCiQhLFcgsJNwBT6yXAJIOBDqmulyWyPZ3nV25LGfp6rLGls749rSa7VaalkEAACGciXaKtrr0d6sfC8AsCFEezvacbRv694KAGz5NNoH0T6M9mXlewGADV9F+yza50J/ORTv+6u94T7746rjWq7uyn0fY4pl8120r6N9E+3HyvdyKIRoR7Lx/20MYJ/90cp/Rnse7ayn7i/RTqPdF56RSydE+z7aY6EtDEWfZQ+irbf2NNqLaP8mx3+i/SxtXZbq+nonwjNy6ej4Up/R62jv1L2Vg+GnaE+k0dTLjrp/y0affXX/kI0u6S9B0fGlPcvRZT3QJXjUJ7MxEvHYepgu8WNBCdLMk/CMrof3d59F+7Xu7UBldHxp8yT4sQDTgPlLgOnB/CXA9AiSn798T3bXo7AWBWA/lOYv9Xxu7cqxMA4FKGFrNMf2XaX5Sz3vtYguAfoJsunnxmqkNH+p529s7aY0saEvhHlOgBK6FuxVzHMFyc9fan95Z2t3pYkNsRblcvA5KozhoTR/qf3lw609kiY2xFqUyyEIYwVo0H7R+sI07uP7Sc2DeCasRbksgmx0eUsYK8CmX7S+0LcF1av1kxoT+mv/tzZZzuNzDq0bpOkv1Xf5SHbnp0rzVn351vjGh0dpnkT1auuoVZtT0+XYeHSqF2vf59VQn885tK6vd5RYLve6dL6Um41vfFiU5kk0rmR5varbqekyyLh4tP69b7Nqtl9AXzu2/41Zl1+vdX3+c6mufaevq/ZE2vmb/lrufC43u++3YXr05Xlp/pHqdmq6HBuPttxmfe6YHs0/sLE07Rhq0bcfnuYf6fO2Kyf/EPkt2u/SznvUZxNjaZgCS88n8bo8E3QJ02Dp+SSqS7+eSf3Z/6reEQD7rasu/Twtc4cwBfz4colxdNWlX8+ELmEK+PHlUnVp8di1oEuYBn58ucT2mMZ90CVMAfVjl7zfehr3QZcwBdSPNR9uqfFY4j4wNdSPNR9uqbok7gNTw9ajLXXdWRr3Ie8boD5p3Ie8b4D6+PcP2Du6lug3wG7u31VnH0s+7++Ku341Y6ue60Pr9NXr+w69/sm4fw9AFdIco7U08cB7kp/fD0mdXNmfOx1YJ/3ttN7Q73gqyx6nwnzwYxuLB2pbtz0ktD+1fuh9V+eHTPk0Ofd8YJ2znnpDv4McDJgLOV0O1RS6BLgcfMyhlr14Rd8xt7xpAAAAAAAAAAAAAAAAAAAAAAAAGI/lY/n3r/n8LADYPyHaNWn2PfbvFjyud1sAiyZEux7thrT3MrR3bQPAfvC+q+Y83o52R9p7GWqO5P1aNwiwQIK0fdcH0R5Key9DzTs8qXR/AEskSLfvih8LsB9yvquP73jfFT8WYD8E2fVd/Wfvu+LHAuyHIG2f1cqqTeKxMFdK8/Klcm7/1PPwmrR90/Q30r1b1Xf18VbGl7AEtN+xmOYtadq1+omnshvv1P1T3x3xe2/J5v1xR9IeJ1rZjqVy19wI40uYC16Xpj3To9epXdP9U3U/b+vTLtKP6vvjSrq0sWO6fsfKXXMjjC9hLtyUxie04/Wk7DWQaiLVq+3Fv3JltdQ3LenS+6fXZLcf9XVzfacdAQ6Zu9K0azv6tq59l/qGpr+cPi5azl3zGvPXfQw21WpOnwCHjLZl/47Bx9vP5r+ut2a69PoYUy7p8lHht3IaRJcwV9L4Sdq+0/Flbs7iIuUjaWsz1Vtqvk7X36JLmAPalk1792RXp6pH34d1xV1OCue7/ianwS4d+utoE+bK/8OQ+YA=
@@ -231,5 +232,12 @@
   <object type="solid" x="12875" y="1356" width="1643" height="151"/>
   <object type="solid" x="12270" y="315" width="232" height="156"/>
   <object type="solid" x="14496" y="-688" width="720" height="7488"/>
+ </objectgroup>
+ <objectgroup name="assets1" width="230" height="70">
+  <object gid="632" x="7270" y="2424"/>
+  <object gid="632" x="6498" y="2418"/>
+  <object gid="635" x="6020" y="2102"/>
+  <object gid="636" x="5810" y="2088"/>
+  <object gid="637" x="6318" y="2078"/>
  </objectgroup>
 </map>
