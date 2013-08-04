@@ -23,8 +23,12 @@
   "pfad" : "entities/door/robodoor_open"
 },
 {
-  "name" : "teleporter",
-  "pfad" : "entities/teleporter"
+  "name" : "teleporter-active",
+  "pfad" : "entities/teleporter-active"
+},
+{
+  "name" : "teleporter-inactive",
+  "pfad" : "entities/teleporter-inactive"
 },
 {
   "name" : "plant",

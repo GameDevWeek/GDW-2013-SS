@@ -27,7 +27,7 @@ public class Teleporter extends EntityCollidable implements Interactable {
     private final ArrayList<Entity> toSet = new ArrayList<>();
 
     public Teleporter() {
-        super(AssetLoader.getInstance().getImage("teleporter"));
+        super(AssetLoader.getInstance().getImage("teleporter-inactive"));
         
         
     }
@@ -47,6 +47,8 @@ public class Teleporter extends EntityCollidable implements Interactable {
 
             isActive = properties.getBoolean("isActive", true);
         }
+        
+        img = AssetLoader.getInstance().getImage((isActive?"teleporter-active":"teleporter-inactive"));
     }
 
     @Override
@@ -122,12 +124,13 @@ public class Teleporter extends EntityCollidable implements Interactable {
     @Override
     public void activate() {
         isActive = true;
+        img = AssetLoader.getInstance().getImage("teleporter-active");
     }
 
     @Override
     public void deactivate() {
         isActive = false;
-
+        img = AssetLoader.getInstance().getImage("teleporter-inactive");
     }
 
     @Override
