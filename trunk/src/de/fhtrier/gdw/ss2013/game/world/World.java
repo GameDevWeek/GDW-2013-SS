@@ -76,7 +76,6 @@ public class World {
             map = AssetLoader.getInstance().loadMap(levelName);
             mapRender = new MapRenderer(map);
             LevelLoader.load(map, entityManager, physicsManager);
-            Log.debug("load level: "+levelName);
 
 	        GameplayState gamePlayState = (GameplayState) game.getState(MainGame.GAMEPLAYSTATE);
 	        if (gamePlayState != null)
