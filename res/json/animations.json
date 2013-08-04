@@ -202,11 +202,18 @@
   "loop" : false
 },
 {
-  "name" : "accelerator",
-  "pfad" : "entities/accelerator",
+  "name" : "accelerator_right",
+  "pfad" : "entities/accelerator_right",
   "anzBilder" : 2,
   "animSpeed" : 250,
-  "loop" : true
+  "loop" : false
+},
+{
+  "name" : "accelerator_up",
+  "pfad" : "entities/accelerator_up",
+  "anzBilder" : 2,
+  "animSpeed" : 250,
+  "loop" : false
 },
 {
   "name" : "rock",
