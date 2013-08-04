@@ -7,7 +7,7 @@ public class SpawnerConstants {
 	/**
 	 * Oxygen Flowers
 	 */
-	public final static int FLOWER_DEFAULT_SPAWN_DELAY = 1000;
+	public final static int FLOWER_DEFAULT_SPAWN_DELAY = 2500;
 	
 	public final static int FLOWER_DEFAULT_MAX_BUBBLES = 3;
 	
