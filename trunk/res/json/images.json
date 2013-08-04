@@ -181,5 +181,9 @@
 {
  "name" : "buttondown2",
   "pfad" : "entities/button/accelerator_down"
+},
+{
+ "name" : "tut_leertaste",
+  "pfad" : "gui/tut_leertaste"
 }]
 
