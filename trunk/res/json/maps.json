@@ -36,36 +36,16 @@
   "pfad" : "res/maps/run_or_die_boss2.tmx"
 },
 {
-  "name" : "beginner1",
-  "pfad" : "res/maps/beginner1.tmx"
-},
-{
   "name" : "spacemap",
   "pfad" : "res/maps/spacemap.tmx"
-},
-{
-  "name" : "bossmap",
-  "pfad" : "res/maps/bossmap.tmx"
-},
-{
-  "name" : "robomap",
-  "pfad" : "res/maps/robomap.tmx"
-},
-{
-  "name" : "featureTestMap",
-  "pfad" : "res/maps/featureTestMap.tmx"
 },
 {
   "name" : "spacemap_second",
   "pfad" : "res/maps/spacemap_second.tmx"
 },
 {
-  "name" : "enemy_test",
-  "pfad" : "res/maps/enemy_testmap.tmx"
-},
-{
-  "name" : "wintest",
-  "pfad" : "res/maps/map-wintest.tmx"
+  "name" : "robomap",
+  "pfad" : "res/maps/robomap.tmx"
 },
 {
   "name" : "tutorial",
