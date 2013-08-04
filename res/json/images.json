@@ -170,6 +170,15 @@
 {
   "name" : "maus_mitte",
   "pfad" : "gui/maus_mitte"
+},
+{
+ "name" : "buttonup1",
+  "pfad" : "entities/button/accelerator_up"
+},
+{
+ "name" : "buttondown2",
+  "pfad" : "entities/button/accelerator_down"
 }
+
 ]
 
