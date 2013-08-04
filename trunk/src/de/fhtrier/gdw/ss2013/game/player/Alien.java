@@ -157,7 +157,6 @@ public final class Alien extends Entity implements AlienController {
             switch (selectedAbility) {
             case 1:
                 // telekinese
-                // System.out.println("lsdidioga");
                 if (currentSelected == null) {
                     Vector2f cursorPos = World.getInstance()
                             .screenToWorldPosition(cursor);
