@@ -27,7 +27,7 @@ public class MenuPage {
     protected MenuPage parent;
     protected GameContainer container;
     private String type;
-    MenuManager menuManager;
+    protected MenuManager menuManager;
     protected Image bgImage;
     protected Color hoverColor = new Color(Integer.parseInt("FC771F", 16));
     protected Color standardColor = Color.white;

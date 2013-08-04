@@ -159,6 +159,10 @@ public class MenuManager {
 	public void activate() {
 		setPage(rootPage);
 	}
+	
+	public Type getType() {
+	    return this.type;
+	}
 
 	public boolean keyReleased(int key, char c) {
 		if(key == Input.KEY_ESCAPE && currentPage == rootPage)
