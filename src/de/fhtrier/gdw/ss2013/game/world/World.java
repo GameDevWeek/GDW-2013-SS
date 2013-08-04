@@ -177,8 +177,8 @@ public class World {
     public void update(GameContainer container, int delta)
             throws SlickException {
         if (shallBeReseted) {
-            reset();
             shallBeReseted = false;
+            reset();
         }
 
         physicsManager.update(delta);
