@@ -14,10 +14,12 @@ import org.newdawn.slick.state.StateBasedGame;
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.assetloader.infos.ScoreInfo;
 import de.fhtrier.gdw.ss2013.game.score.HighscoreManager;
+import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.menu.IActionListener;
 import de.fhtrier.gdw.ss2013.menu.IUpdateListener;
 import de.fhtrier.gdw.ss2013.menu.Label;
 import de.fhtrier.gdw.ss2013.menu.MenuManager;
+import de.fhtrier.gdw.ss2013.menu.MenuManager.Type;
 import de.fhtrier.gdw.ss2013.menu.MenuPage;
 import de.fhtrier.gdw.ss2013.menu.ToggleButton;
 import de.fhtrier.gdw.ss2013.menu.Widget;
@@ -30,12 +32,13 @@ public class MenuPageHighscore extends MenuPage {
     private List<Widget> alienWidgets = new ArrayList<>();
     private List<Widget> scoreWidgets = new ArrayList<>();
     private String currentMapName;
+    private Label lblLevel;
     
     public MenuPageHighscore(GameContainer container, StateBasedGame game,
-            MenuManager menuManager, MenuPage parent, String bgImage, String mapName) throws SlickException {
+            MenuManager menuManager, MenuPage parent, String bgImage) throws SlickException {
         super(container, game, menuManager, parent, null, "highscore");
         
-        this.currentMapName = mapName;
+        this.currentMapName = "";
         
         this.standardFont = AssetLoader.getInstance().getFont("jabjai_heavy");
         float hText = this.standardFont.getLineHeight() * 1.5f;
@@ -49,7 +52,7 @@ public class MenuPageHighscore extends MenuPage {
         
         float multiply = 0.6f;
         
-        if (mapName == null) {
+        if (menuManager.getType() == Type.MAINMENU) {
             Set<String> levels = AssetLoader.getInstance().getMapInfos();
             String[] lvls = levels.toArray(new String[levels.size()]);
             selectLevel = addLeftAlignedToggleButton(lvls, this.standardFont.getWidth(lvl.text) + 50, yCenter * 0.20f + hText, this.standardFont, Align.LEFT);
@@ -66,7 +69,7 @@ public class MenuPageHighscore extends MenuPage {
                 }
             });
         } else {
-            addLeftAlignedLabel(mapName, this.standardFont.getWidth(lvl.text) + 50, yCenter * 0.20f + hText, this.standardFont);
+            this.lblLevel = addLeftAlignedLabel(this.currentMapName, this.standardFont.getWidth(lvl.text) + 50, yCenter * 0.20f + hText, this.standardFont);
         }
         
         Label rankU = addLeftAlignedLabel("Rang", 25, yCenter * multiply - hText, this.standardFont);
@@ -105,11 +108,6 @@ public class MenuPageHighscore extends MenuPage {
         
     }
     
-    public MenuPageHighscore(GameContainer container, StateBasedGame game,
-            MenuManager menuManager, MenuPage parent, String bgImage) throws SlickException {
-        this(container, game, menuManager, parent, bgImage, null);
-    }
-    
     public void refreshHighscoreList() throws SlickException {
         List<ScoreInfo> scores = HighscoreManager.getHighscoresFromMap(this.currentMapName);
         
@@ -139,6 +137,14 @@ public class MenuPageHighscore extends MenuPage {
             
             Label score = (Label) scoreWidgets.get(i);
             score.text("");
+        }
+    }
+    
+    @Override
+    public void activate() {
+        if (this.menuManager.getType() == Type.INGAME) {
+            this.currentMapName = World.getInstance().getLevelName();
+            this.lblLevel.text(this.currentMapName);
         }
     }
 }
