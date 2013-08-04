@@ -105,7 +105,7 @@
 		
 		{ "name": "couple_superjump_path",
            "destinations": [
-            {"x": 200, "y": 2950, "speed": -1 },
+            {"x": 200, "y": 3150, "speed": -1 },
             {"x": 200, "y": -120, "speed": 80 }
            ]
 		},
@@ -113,7 +113,7 @@
 		
 		{ "name": "enemy_trunk_purple_path",
            "destinations": [
-            {"x": 775, "y": 3400, "speed": -1 },
+            {"x": 775, "y": 3700, "speed": -1 },
             {"x": 775, "y": -120, "speed": 80 }
            ]
 		},
@@ -121,7 +121,7 @@
 		
 		{ "name": "enemy_trunk_path",
            "destinations": [
-            {"x": 200, "y": 3900, "speed": -1 },
+            {"x": 200, "y": 4500, "speed": -1 },
             {"x": 200, "y": -120, "speed": 80 }
            ]
 		},
@@ -129,7 +129,7 @@
 		
 		{ "name": "scribble_kristall_path",
            "destinations": [
-            {"x": 500, "y": 4450, "speed": -1 },
+            {"x": 500, "y": 5300, "speed": -1 },
             {"x": 500, "y": -120, "speed": 80 }
            ]
 		}
@@ -184,6 +184,20 @@
 		{ "style" : "title", "delay": 1350, "value": "Animation" },
 		{ "style" : "name", "delay": 850, "value": "Annalena Weber" },
 		{ "style" : "name", "delay": 750, "value": "Maxine Hammen" },
+		{ "style" : "name", "delay": 750, "value": "Julia Goerke" },
+		{ "style" : "name", "delay": 750, "value": "Julia Wolf" },
+		{ "style" : "name", "delay": 750, "value": "Iris Dregnat" },
+		{ "style" : "name", "delay": 750, "value": "Sandy Panacek" },
+		{ "style" : "name", "delay": 750, "value": "Yasmin Schraven" },
+		
+		{ "style" : "title", "delay": 1350, "value": "Grafiken" },
+		{ "style" : "name", "delay": 850, "value": "Annalena Weber" },
+		{ "style" : "name", "delay": 750, "value": "Julia Goerke" },
+		{ "style" : "name", "delay": 750, "value": "Natalie Carl" },
+		{ "style" : "name", "delay": 750, "value": "Maxime Hammen" },
+		{ "style" : "name", "delay": 750, "value": "Julia Wolf" },
+		{ "style" : "name", "delay": 750, "value": "Iris Dregnat" },
+		{ "style" : "name", "delay": 750, "value": "Sandy Panacek" },
 		
 		{ "style" : "title", "delay": 1350, "value": "Programmierung" },
 		{ "style" : "name", "delay": 850, "value": "Santo Pfingsten" },
@@ -195,6 +209,7 @@
 		{ "style" : "name", "delay": 750, "value": "Benjamin Albsmeier" },
 		{ "style" : "name", "delay": 750, "value": "Janina Noell" },
 		{ "style" : "name", "delay": 750, "value": "Justin Weinberg" },
+		{ "style" : "name", "delay": 750, "value": "Anton Krapp" },
 		{ "style" : "name", "delay": 750, "value": "Valentin Kaechele" },
 		{ "style" : "name", "delay": 750, "value": "Thomas Eppers" },
 		{ "style" : "name", "delay": 750, "value": "Daniel Biskup" },
