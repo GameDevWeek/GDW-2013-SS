@@ -157,6 +157,7 @@ public class LevelLoader {
         case "solid":
             physicsManager.createSolid(0, 0).asPolygon(points);
             break;
+        case "activator":
         case "deadzone":
         case "winningzone":
             AbstractZone zone = (AbstractZone)entityManager.createEntity(type, properties);
@@ -191,6 +192,7 @@ public class LevelLoader {
         case "solid":
             physicsManager.createSolid(x, y).asBox(width, height);
             break;
+        case "activator":
         case "deadzone":
         case "winningzone":
             entity = entityManager.createEntity(type, properties);

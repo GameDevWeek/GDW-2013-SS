@@ -148,7 +148,7 @@
 {
   "name" : "flying_ememy_big",
   "pfad" : "enemies/flying/big",
-  "anzBilder" : 1,
+  "anzBilder" : 2,
   "animSpeed" : 100,
   "loop" : true
 },
@@ -217,8 +217,22 @@
 },
 {
   "name" : "crab_boss_idle",
-  "pfad" : "boss/crabbossidle",
+  "pfad" : "boss/crab_idle",
   "anzBilder" : 1,
+  "animSpeed" : 250,
+  "loop" : true
+},
+{
+  "name" : "crab_boss_walking",
+  "pfad" : "boss/crab_walking",
+  "anzBilder" : 8,
+  "animSpeed" : 250,
+  "loop" : true
+},
+{
+  "name" : "crab_boss_attacking",
+  "pfad" : "boss/crab_attacking",
+  "anzBilder" : 3,
   "animSpeed" : 250,
   "loop" : true
 }]

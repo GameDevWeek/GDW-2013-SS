@@ -18,6 +18,7 @@ import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.game.world.bullets.PlayerBullet;
+import de.fhtrier.gdw.ss2013.game.world.objects.ActivatableMeteroid;
 import de.fhtrier.gdw.ss2013.game.world.objects.Box;
 import de.fhtrier.gdw.ss2013.input.AlienController;
 import de.fhtrier.gdw.ss2013.physix.PhysixConst;
@@ -37,7 +38,7 @@ public final class Alien extends Entity implements AlienController {
     private EntityManager entityManager = World.getInstance()
             .getEntityManager();
     // telekinese values
-    private Box currentSelectedBox;
+    private Entity currentSelected;
     private float selectionRadius;
     private final Vector2f dragDirection = new Vector2f();
     private long lastShotTime;
@@ -52,7 +53,7 @@ public final class Alien extends Entity implements AlienController {
     public Alien() {
         animation = AssetLoader.getInstance().getAnimation("alien_standing");
         // Alien does NOT have different movestates! byRobin
-        currentSelectedBox = null;
+        currentSelected = null;
         selectionRadius = 50;
         lastShotTime = 0;
         selectedAbility = 1;
@@ -71,7 +72,7 @@ public final class Alien extends Entity implements AlienController {
     @Override
     protected void initialize() {
         super.initialize();
-        currentSelectedBox = null;
+        currentSelected = null;
         selectionRadius = 50;
         lastShotTime = 0;
         selectedAbility = 1;
@@ -157,18 +158,18 @@ public final class Alien extends Entity implements AlienController {
         case 1:
             // telekinese
             // System.out.println("lsdidioga");
-            if (currentSelectedBox == null) {
+            if (currentSelected == null) {
                 Vector2f cursorPos = World.getInstance().screenToWorldPosition(
                         cursor);
                 ArrayList<Entity> closestEntitiesAtPosition = entityManager
                         .getClosestEntitiesAtPosition(World.getInstance()
                                 .screenToWorldPosition(cursor), selectionRadius);
                 for (Entity e : closestEntitiesAtPosition) {
-                    if (e instanceof Box) {
-                        currentSelectedBox = (Box) e;
-                        currentSelectedBox.getPhysicsObject()
+                    if (e instanceof Box || e instanceof ActivatableMeteroid) {
+                        currentSelected = e;
+                        currentSelected.getPhysicsObject()
                                 .setLinearVelocity(
-                                        currentSelectedBox.getPosition().sub(
+                                        currentSelected.getPosition().sub(
                                                 cursorPos));
                         return;
                     }
@@ -215,16 +216,16 @@ public final class Alien extends Entity implements AlienController {
         switch (selectedAbility) {
         case 1:
             // telekinese
-            if (currentSelectedBox != null
-                    && currentSelectedBox.getPhysicsObject() != null) {
+            if (currentSelected != null
+                    && currentSelected.getPhysicsObject() != null) {
                 Vector2f screenToWorldPosition = World.getInstance()
                         .screenToWorldPosition(cursor);
                 dragDirection.x = screenToWorldPosition.x
-                        - currentSelectedBox.getPosition().x;
+                        - currentSelected.getPosition().x;
                 dragDirection.y = screenToWorldPosition.y
-                        - currentSelectedBox.getPosition().y;
-                currentSelectedBox.setVelocity(dragDirection);
-                if (currentSelectedBox.isPlayerOnBox()) {
+                        - currentSelected.getPosition().y;
+                currentSelected.setVelocity(dragDirection);
+                if (currentSelected instanceof Box && ((Box)currentSelected).isPlayerOnBox()) {
                     dropCurrentSelected();
                 }
             }
@@ -232,15 +233,15 @@ public final class Alien extends Entity implements AlienController {
     }
 
     public void dropCurrentSelected() {
-        if (currentSelectedBox != null) {
-            currentSelectedBox.getPhysicsObject().setGravityScale(1.f);
+        if (currentSelected != null) {
+            currentSelected.getPhysicsObject().setGravityScale(1.f);
 
-            currentSelectedBox = null;
+            currentSelected = null;
         }
     }
 
-    public Box getCurrentSelectedBox() {
-        return currentSelectedBox;
+    public Entity getCurrentSelected() {
+        return currentSelected;
     }
 
     @Override
@@ -248,14 +249,15 @@ public final class Alien extends Entity implements AlienController {
             throws SlickException {
         if (!onPlayer) {
             Vector2f position = getPosition();
+            Vector2f dim = physicsObject.getDimension();
 
             if (invertAnimation) {
                 animation.draw(position.x + animation.getWidth() / 2,
-                        position.y - animation.getHeight() / 2,
+                        position.y + dim.y - animation.getHeight(),
                         -animation.getWidth(), animation.getHeight());
             } else {
                 animation.draw(position.x - animation.getWidth() / 2,
-                        position.y - animation.getHeight() / 2);
+                        position.y + dim.y - animation.getHeight());
             }
         }
         super.render(container, g);
@@ -304,8 +306,8 @@ public final class Alien extends Entity implements AlienController {
         return maxDistance;
     }
 
-    public void setCurrentSelectedBox(Box currentSelectedBox) {
-        this.currentSelectedBox = currentSelectedBox;
+    public void setCurrentSelected(Entity currentSelected) {
+        this.currentSelected = currentSelected;
     }
 
     @Override
@@ -314,7 +316,7 @@ public final class Alien extends Entity implements AlienController {
         createPhysics(BodyType.DYNAMIC, origin.x, origin.y)
                 .density(info.alien.density).friction(info.alien.friction)
                 .category(PhysixConst.PLAYER).mask(PhysixConst.MASK_PLAYER)
-                .active(false).asPlayer(info.alien.width, info.alien.height);
+                .active(false).asBox(info.alien.width, info.alien.height);
 
         // World.getInstance().getPhysicsManager().ropeConnect(astronaut.getPhysicsObject(),
         // getPhysicsObject(), info.alien.maxDistance);

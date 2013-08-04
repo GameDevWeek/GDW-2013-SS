@@ -27,6 +27,10 @@
   "pfad" : "res/maps/beginner1.tmx"
 },
 {
+  "name" : "run_or_die_boss2",
+  "pfad" : "res/maps/run_or_die_boss2.tmx"
+},
+{
   "name" : "run_or_die_boss",
   "pfad" : "res/maps/run_or_die_boss.tmx"
 },

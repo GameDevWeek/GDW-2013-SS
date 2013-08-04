@@ -22,6 +22,7 @@ public class DeadZone extends AbstractZone {
 	private boolean init = false;
 
     public DeadZone() {
+        super();
     	removeBox = true;
     }
     

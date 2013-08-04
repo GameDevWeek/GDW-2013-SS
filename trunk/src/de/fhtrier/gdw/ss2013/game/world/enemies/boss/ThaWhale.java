@@ -32,6 +32,11 @@ public class ThaWhale extends AbstractBoss {
                 .asBox(250, 100);
     }
 
+    @Override
+    public void reduceHealth(float damage) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 	private class IdlePhase extends Phase {
 		private int timer = 3000;
 

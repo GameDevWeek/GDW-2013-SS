@@ -5,6 +5,7 @@ import org.jbox2d.dynamics.contacts.Contact;
 import de.fhtrier.gdw.ss2013.constants.PlayerConstants;
 import de.fhtrier.gdw.ss2013.game.Entity;
 import de.fhtrier.gdw.ss2013.game.world.enemies.AbstractEnemy;
+import de.fhtrier.gdw.ss2013.game.world.enemies.boss.AbstractBoss;
 import de.fhtrier.gdw.ss2013.physix.PhysixConst;
 
 public class PlayerBullet extends Bullet {
@@ -18,6 +19,9 @@ public class PlayerBullet extends Bullet {
         Entity other = getOtherEntity(contact);
         if (other instanceof AbstractEnemy) {
             ((AbstractEnemy) other).setHealth(((AbstractEnemy) other).getHealth() - PlayerConstants.BULLET_DAMAGE);
+            this.livetime = 0;
+        }
+        else if (other instanceof AbstractBoss) {
             this.livetime = 0;
         }
         

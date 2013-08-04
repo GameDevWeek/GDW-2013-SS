@@ -42,6 +42,8 @@ public abstract class AbstractBoss extends Entity {
 		phase.enter();
 	}
 
+    public abstract void reduceHealth(float damage);
+
 	protected abstract class Phase {
 
 		void enter() {
