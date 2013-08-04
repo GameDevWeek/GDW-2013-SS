@@ -103,6 +103,8 @@ public class EntityManager {
     public void initalUpdate() {
         internalInsert();
         internalRemove();
+        
+        sortEntityList();
     }
 
     /**
@@ -116,6 +118,7 @@ public class EntityManager {
         boolean iI_listChanged = internalInsert();
         
         if(iR_listChanged || iI_listChanged) {
+        	
             sortEntityList();
 //            System.out.println(entityList.getLast());
         }
