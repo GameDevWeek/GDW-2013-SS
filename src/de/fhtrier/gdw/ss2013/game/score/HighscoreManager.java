@@ -45,7 +45,7 @@ public class HighscoreManager {
     public static void setHighscore(String mapName, ScoreInfo scoreInfo) {
         int rank = getHighscoreRank(mapName, scoreInfo.score);
         
-        if (rank <= 10) {
+        if (rank > 0) {
             List<ScoreInfo> scores = getHighscoresFromMap(mapName);
             
             if (scores == null) {
