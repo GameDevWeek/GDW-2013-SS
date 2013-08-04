@@ -24,7 +24,6 @@ import de.fhtrier.gdw.ss2013.input.AlienController;
 import de.fhtrier.gdw.ss2013.physix.PhysixConst;
 import de.fhtrier.gdw.ss2013.sound.SoundLocator;
 import de.fhtrier.gdw.ss2013.sound.SoundPlayer;
-import org.jbox2d.dynamics.BodyType;
 
 public final class Alien extends Entity implements AlienController {
 
@@ -49,6 +48,7 @@ public final class Alien extends Entity implements AlienController {
 
     private SoundPlayer soundPlayer;
     private Sound shootSound;
+    private boolean abilityInUse = false;
 
     public Alien() {
         animation = AssetLoader.getInstance().getAnimation("alien_standing");
@@ -108,6 +108,7 @@ public final class Alien extends Entity implements AlienController {
     public void shoot() {
         if (System.currentTimeMillis() > lastShotTime
                 + PlayerConstants.SHOTDELAY) {
+            System.out.println("shoot");
             soundPlayer.playSoundAt(shootSound, this);
             Vector2f playerPos;
             if (astronaut.isCarryAlien()) {
@@ -143,7 +144,7 @@ public final class Alien extends Entity implements AlienController {
 
     @Override
     public void previousAbility() {
-        //selectedAbility = ((selectedAbility + 1) % 3) + 1;
+        // selectedAbility = ((selectedAbility + 1) % 3) + 1;
         selectedAbility = (selectedAbility % 2) + 1;
         dropCurrentSelected();
     }
@@ -154,35 +155,49 @@ public final class Alien extends Entity implements AlienController {
 
     @Override
     public void useAbility() {
-        switch (selectedAbility) {
-        case 1:
-            // telekinese
-            // System.out.println("lsdidioga");
-            if (currentSelected == null) {
-                Vector2f cursorPos = World.getInstance().screenToWorldPosition(
-                        cursor);
-                ArrayList<Entity> closestEntitiesAtPosition = entityManager
-                        .getClosestEntitiesAtPosition(World.getInstance()
-                                .screenToWorldPosition(cursor), selectionRadius);
-                for (Entity e : closestEntitiesAtPosition) {
-                    if (e instanceof Box || e instanceof ActivatableMeteroid) {
-                        currentSelected = e;
-                        currentSelected.getPhysicsObject()
-                                .setLinearVelocity(
-                                        currentSelected.getPosition().sub(
-                                                cursorPos));
-                        return;
-                    }
-                }
 
-            } else {
-                dropCurrentSelected();
+        if (!abilityInUse) {
+            switch (selectedAbility) {
+            case 1:
+                // telekinese
+                // System.out.println("lsdidioga");
+                if (currentSelected == null) {
+                    Vector2f cursorPos = World.getInstance()
+                            .screenToWorldPosition(cursor);
+                    ArrayList<Entity> closestEntitiesAtPosition = entityManager
+                            .getClosestEntitiesAtPosition(World.getInstance()
+                                    .screenToWorldPosition(cursor),
+                                    selectionRadius);
+                    for (Entity e : closestEntitiesAtPosition) {
+                        if (e instanceof Box
+                                || e instanceof ActivatableMeteroid) {
+                            currentSelected = e;
+                            currentSelected.getPhysicsObject()
+                                    .setLinearVelocity(
+                                            currentSelected.getPosition().sub(
+                                                    cursorPos));
+                            abilityInUse = true;
+                            return;
+                        }
+                    }
+
+                } else {
+                    dropCurrentSelected();
+                }
+                break;
+            case 2:
+                // großer sprung
+                astronaut.superjump();
+                break;
             }
-            break;
-        case 2:
-            // großer sprung
-            astronaut.superjump();
-            break;
+        } else {
+            switch (selectedAbility) {
+            case 1:
+                dropCurrentSelected();
+                break;
+            }
+
+            abilityInUse = false;
         }
     }
 
@@ -225,7 +240,8 @@ public final class Alien extends Entity implements AlienController {
                 dragDirection.y = screenToWorldPosition.y
                         - currentSelected.getPosition().y;
                 currentSelected.setVelocity(dragDirection);
-                if (currentSelected instanceof Box && ((Box)currentSelected).isPlayerOnBox()) {
+                if (currentSelected instanceof Box
+                        && ((Box) currentSelected).isPlayerOnBox()) {
                     dropCurrentSelected();
                 }
             }
