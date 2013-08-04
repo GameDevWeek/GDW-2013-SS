@@ -152,6 +152,9 @@ public final class Astronaut extends EntityCollidable implements
 
     public void setOxygen(float oxygen) {
         this.oxygen = oxygen;
+        if (oxygen > getMaxOxygen()) {
+        	this.oxygen = getMaxOxygen();
+        }
     }
 
     public float getMaxOxygen() {

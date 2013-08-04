@@ -105,9 +105,11 @@ public class OxygenBubble extends EntityCollidable implements Interactable {
 
 	public void useBubble () {
 		Astronaut astro = World.getInstance().getAstronaut();
-		astro.setOxygen((astro.getOxygen() + oxygenLevel));
-		isUsed = true;
-		flower.decreaseBubbleCount();
+		if (astro.getOxygen() < astro.getMaxOxygen()) {
+			astro.setOxygen((astro.getOxygen() + oxygenLevel));
+			isUsed = true;
+			flower.decreaseBubbleCount();
+		}
 	}
 
 	@Override
