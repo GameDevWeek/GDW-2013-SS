@@ -9,10 +9,8 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
-import org.newdawn.slick.util.Log;
 
 import de.fhtrier.gdw.commons.tiled.TiledMap;
-import de.fhtrier.gdw.ss2013.MainGame;
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.camera.CameraInfo;
@@ -27,13 +25,11 @@ import de.fhtrier.gdw.ss2013.renderer.MapRenderer;
 import de.fhtrier.gdw.ss2013.settings.DebugModeStatus;
 import de.fhtrier.gdw.ss2013.sound.SoundLocator;
 import de.fhtrier.gdw.ss2013.sound.services.DefaultSoundPlayer;
-import de.fhtrier.gdw.ss2013.states.GameplayState;
 
 public class World {
 
     private boolean shallBeReseted;
 
-	private StateBasedGame game;
     private TiledMap map;
     private MapRenderer mapRender;
     private ThreePointCamera camera;
@@ -56,7 +52,6 @@ public class World {
 
     public World(GameContainer container, StateBasedGame game) {
         this.container = container;
-        this.game = game;
         instance = this;
         setLevelName(DebugModeStatus.getLevelName());
         map = null;
@@ -67,6 +62,7 @@ public class World {
         reset();
     }
 
+    
     public void reset() {
         entityManager.reset();
         physicsManager.reset();
@@ -76,10 +72,6 @@ public class World {
             map = AssetLoader.getInstance().loadMap(levelName);
             mapRender = new MapRenderer(map);
             LevelLoader.load(map, entityManager, physicsManager);
-
-	        GameplayState gamePlayState = (GameplayState) game.getState(MainGame.GAMEPLAYSTATE);
-	        if (gamePlayState != null)
-	        	gamePlayState.setMusic(AssetLoader.getInstance().getMusic(map.getProperty("music", "gameplay")));
 
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -123,6 +115,7 @@ public class World {
         camera.onStart();
 
         loadNewMap = false;
+        
     }
 
     public void render(GameContainer container, Graphics g)
@@ -131,12 +124,13 @@ public class World {
 
         Image img = AssetLoader.getInstance().getImage("world_background");
 
+        final Vector2f campos = camera.getCameraPosition();
         final Vector2f containerDim = new Vector2f(container.getWidth(),
                 container.getHeight());
         final Vector2f imageDim = new Vector2f(img.getWidth(), img.getHeight());
 
-        int startBackgroundIndex_X = (int) (astronautPos.x / imageDim.x);
-        int startBackgroundIndex_Y = (int) (astronautPos.y / imageDim.y);
+        int startBackgroundIndex_X = (int) (campos.x / imageDim.x);
+        int startBackgroundIndex_Y = (int) (campos.y / imageDim.y);
 
         int endBackgroundIndex_X = startBackgroundIndex_X
                 + (int) ((astronautPos.x + containerDim.x) / img.getWidth())
@@ -151,7 +145,9 @@ public class World {
                 2 + map.getHeight() * map.getTileHeight() / img.getHeight());
 
         g.pushTransform();
-        g.translate(-astronautPos.x, -astronautPos.y);
+        g.translate(-campos.x, -campos.y);
+        
+        //FIXME: to fast scrolling
         for (int j = startBackgroundIndex_Y; j < endBackgroundIndex_Y + 1; ++j) {
             for (int i = startBackgroundIndex_X - 1; i < endBackgroundIndex_X; ++i) {
                 img.draw(i * img.getWidth(), j * img.getHeight());
@@ -189,6 +185,7 @@ public class World {
 
         entityManager.update(container, delta);
 
+        
         camera.update(delta, container.getWidth(), container.getHeight());
 
         if (container.getInput().isKeyDown(Input.KEY_1)) {
