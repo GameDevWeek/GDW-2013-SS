@@ -209,5 +209,9 @@
 {
  "name" : "tut_leertaste",
   "pfad" : "gui/tut_leertaste"
+},
+{
+ "name" : "tut_bewegen",
+  "pfad" : "gui/tut_bewegen"
 }]
 
