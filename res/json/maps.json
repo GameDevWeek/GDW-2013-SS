@@ -24,6 +24,10 @@
   "pfad" : "res/maps/testmap_3.tmx"
 },
 {
+  "name" : "In_da_face",
+  "pfad" : "res/maps/airzone_map.tmx"
+},
+{
   "name" : "run_or_die",
   "pfad" : "res/maps/run_or_die.tmx"
 },

@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="250" height="50" tilewidth="64" tileheight="64">
+ <tileset firstgid="1" source="robotileset.tsx"/>
+ <tileset firstgid="626" source="shadow_tileset.tsx"/>
+ <tileset firstgid="651" source="particle_tileset.tsx"/>
+ <tileset firstgid="660" source="entity_tileset.tsx"/>
+ <tileset firstgid="681" source="assets_1.tsx"/>
+ <tileset firstgid="699" source="moving_platform.tsx"/>
+ <layer name="Kachelebene 1" width="250" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABPBsNQAAE=
+  </data>
+ </layer>
+ <layer name="tileset" width="250" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztnTmPJEUQhbNxgAUJTFxgLVZcFsxySKzB4Y3YWWklhDi8kYaRMPgDIy2NMHBYLA4JcHDG5Sfgcnm4gIGHsAERqe5UxwSRR0RVV1V3vU8KVdaVWbuq1/EqM6vmZhiOQ4rLA7Y3Bx5fhPAExatUvk5xRHGDRct2sP8MqbtjipsDtjcHXiaNv8J0LnUNnYPIhwO2dUbx7oDtzYG3SONvL/K6hs5BpJZf76S4RHGPo255bvTtnt+V5E0fpXhssb3zvO0MXScn5XPoHJSo5ddPKX6i+NpRtzzX69vTvfwixUsGrVjP87YzdJ2clM+jduHbQY5d8O3pXn6D4k2DVqznedsZuk5O8gu5fjfoHES69otZfH1X327NidbzvO0MXScH/XCgha79YhZf39W3W3Oi9TxvO0PXyUl+AToHJbT82qXvrURX327ty7Ke521n6Do5cvwcOgcaWn7t0vdWAr69nzo58O2ghdZ5Mn3kePj2furkwLeDFlrzax85Pvp2z/w7+PYNT1HcRXF3WP3uPk1xEKBzUKZLf7s1xx8624NvXxH/v7mmuXahc1CiS3+7NccfO9vDPJlVHs9pHDoHNfqeJ1PK8WfO9mpzTXJtbmuejMXH9DFPhudx6Bx46Pv9sVKO9/r2yPcUPxfa/CPTZuk8azu8PYuPsV4DJ5fH5RI6ByWGfH/M69tbuGMLfdljU8rj0DmwIH10vLf6nh+T8Pr2OcLzuNSqpnfoHJR4LlwcpzlYb7sktvdRjnXjOxN1Wp7HU0DnoIUvKX6g+DGsnjm/Euufddwv1y3PqfF+7/u3Zsxy63Fc46XQ9AydA40p++jY38V/I/osf07xRVj9zm2jfq3celzp3HjdJe1C50Bjrj469oFb/UWN8x7ryhH7OKBzYAXfX13xAsXHFO+tlzyuiWNSvC7q+G6A64xjk9A5sDJl327hkbDR322KTyiuZPZfUc59bV3WcvJ5YZ923DaJY5PQObCyL75dy6XfZMry2HPluI+UbbV8PUQ+h28HHnb1O8v3UfxJce8ihF/W5Va4HlM994tj/lLOm0I+h28HHsb07fs2btZXuQR8O/Awpm+PuenqOp6heLZh/YPw/zH/Pst9H2ct1/r/4duBhzF9e8xNrTrn2/alT8EDfDvwMKZvj7kp6pffh9q61Pmu9in0AXw78DAF335C8Q7FaWZd6nxfxgI9wLcDD1Pw7bco3qdYZtbh2zfAtwMPU/DtVp3Dt0PnwMbYvj3ea1zX2jp8+wb4duBhzPntMTfFZ3Gua20dvn0DfDvwMLZvvxUu6lpblzqf87s38O3Aw5i5Ub5fHt+tvhr0Z/I+8/kDixB+peVvFL+H3SnHJXw78DClPq1vQ5vO5beu0rL1u3ZPks7/puU/FP+G3SnHZe0b7tA50JhSn1bSudb3xst83qvnm1Tb+k7NEHNvrd+TOaocD63Pg5gbLe9YyJyZ3kXJbY/nPR9Wfwes1kbMVVoulzqfkgcZGqtvh85BRPrkWsg+sMPC9gcpHmLLhwv1luazS51PyYMMjbW/Hd4dRK4bQ/aBHRe2J21yjebqLc1nvyHW5zyuZu1vh85B5CRcHKM+qYT0zGeF7SmP83ssV2+az649m5+Kdfh26BzY4PkzzUUrhfTMybfntkdtJh1LL66FNi9mGeDbE/DtwAP3zlxjubD49nQPpaX04lqkeTH8vlyKdfh26BzY4N45aqz2fG7x7SmPa/n8tBDy3dSlWJ/zfDj4duCBe/KW/nbNn2t+Pv4dBG2uG/fiuZDvrC3FehoLtH53rTY2WNrv3Zcbc6xdQ+1vMkHnwMK2+tsl2ly30thaSefWscDWscGW/Z592vbaNWiR0zHXLHQONGr961p/O59znfPtkqjz2m9Iug9r76par7n139Cy37NP2167Bi2O2P+RXELnoEStf11G9Mx8zvUB216b61a7j9Pzd+1dVes1t/4bWvZ79mnba9egBXQOvPwHilQM7w==
+  </data>
+ </layer>
+ <objectgroup name="Objektebene 1" width="250" height="50" opacity="0.7">
+  <object gid="660" x="214" y="2336"/>
+  <object gid="666" x="1428" y="3150"/>
+  <object gid="668" x="1286" y="3168"/>
+  <object gid="663" x="1584" y="3166">
+   <properties>
+    <property name="trigger" value="d1"/>
+   </properties>
+  </object>
+  <object name="d1" gid="662" x="1988" y="2536"/>
+  <object gid="679" x="2146" y="2522"/>
+  <object name="line1" type="FollowPath" x="1814" y="2454">
+   <properties>
+    <property name="speed" value="80"/>
+   </properties>
+   <polyline points="0,0 8,-780"/>
+  </object>
+  <object name="p1" gid="699" x="1782" y="2454">
+   <properties>
+    <property name="path" value="line1"/>
+   </properties>
+  </object>
+  <object type="solid" x="1044" y="2530" width="154" height="682"/>
+  <object type="solid" x="770" y="3158" width="1180" height="62"/>
+  <object type="solid" x="1430" y="2528" width="1112" height="448"/>
+  <object type="solid" x="1692" y="2890" width="170" height="296"/>
+  <object type="solid" x="2008" y="1690" width="432" height="646"/>
+  <object type="solid" x="2266" y="2302" width="192" height="256"/>
+  <object type="deadzone" x="792" y="3058" width="264" height="120"/>
+  <object gid="667" x="2838" y="1688">
+   <properties>
+    <property name="trigger" value="d2"/>
+   </properties>
+  </object>
+  <object name="d2" gid="662" x="2716" y="1246"/>
+  <object name="d3" gid="662" x="3620" y="1244"/>
+  <object name="d5" gid="662" x="4386" y="1240"/>
+  <object name="d6" gid="662" x="5704" y="1246"/>
+  <object gid="667" x="3320" y="1686">
+   <properties>
+    <property name="trigger" value="d3"/>
+   </properties>
+  </object>
+  <object gid="667" x="4284" y="1696">
+   <properties>
+    <property name="trigger" value="d5"/>
+   </properties>
+  </object>
+  <object gid="667" x="5578" y="1692">
+   <properties>
+    <property name="trigger" value="d6"/>
+   </properties>
+  </object>
+  <object name="d4" gid="662" x="4032" y="1694"/>
+  <object gid="663" x="4220" y="1248">
+   <properties>
+    <property name="trigger" value="d4"/>
+   </properties>
+  </object>
+  <object type="solid" x="2392" y="1688" width="4076" height="84"/>
+  <object type="solid" x="2516" y="1248" width="3894" height="74"/>
+  <object type="solid" x="3982" y="1298" width="162" height="84"/>
+  <object type="solid" x="3154" y="926" width="164" height="74"/>
+  <object type="solid" x="4950" y="924" width="152" height="72"/>
+  <object gid="666" x="3192" y="924"/>
+  <object gid="666" x="4998" y="932"/>
+  <object gid="672" x="2998" y="1130"/>
+  <object gid="672" x="3192" y="1132"/>
+  <object gid="672" x="3418" y="1130"/>
+  <object gid="670" x="3966" y="1012"/>
+  <object gid="673" x="4718" y="1070"/>
+  <object gid="670" x="5438" y="1000"/>
+  <object type="deadzone" x="3196" y="990" width="62" height="74"/>
+  <object type="solid" x="2974" y="1618" width="290" height="91"/>
+  <object type="solid" x="3222" y="1492" width="25" height="139"/>
+  <object type="solid" x="3235" y="1495" width="327" height="21"/>
+  <object type="solid" x="3544" y="1498" width="22" height="82"/>
+  <object type="solid" x="3025" y="1600" width="29" height="41"/>
+  <object type="solid" x="2708" y="192" width="90" height="802"/>
+  <object type="solid" x="3609" y="187" width="90" height="802"/>
+  <object type="solid" x="4369" y="189" width="90" height="802"/>
+  <object type="solid" x="5719" y="193" width="90" height="802"/>
+  <object type="deadzone" x="2640" y="190" width="228" height="758"/>
+  <object type="deadzone" x="3538" y="201" width="228" height="758"/>
+  <object type="deadzone" x="4300" y="209" width="228" height="758"/>
+  <object type="deadzone" x="5650" y="195" width="228" height="758"/>
+  <object gid="669" x="3166" y="652"/>
+  <object gid="669" x="4116" y="778"/>
+  <object gid="673" x="4116" y="1056"/>
+  <object gid="674" x="5256" y="1044"/>
+  <object gid="671" x="4752" y="742"/>
+  <object gid="670" x="5258" y="700"/>
+  <object type="solid" x="3222" y="1492" width="25" height="139"/>
+  <object type="solid" x="4182" y="1495" width="22" height="202"/>
+  <object type="solid" x="4182" y="1495" width="22" height="202"/>
+  <object type="solid" x="4129" y="1621" width="123" height="16"/>
+  <object type="solid" x="4193" y="1493" width="69" height="19"/>
+  <object type="solid" x="4246" y="1434" width="24" height="79"/>
+  <object type="solid" x="4246" y="1434" width="24" height="79"/>
+  <object type="solid" x="4248" y="1426" width="465" height="27"/>
+  <object type="solid" x="4370" y="1444" width="25" height="137"/>
+  <object type="solid" x="4688" y="1430" width="26" height="149"/>
+  <object type="solid" x="4504" y="1566" width="12" height="140"/>
+  <object name="port1" gid="677" x="4922" y="1602">
+   <properties>
+    <property name="target" value="port2"/>
+   </properties>
+  </object>
+  <object name="port2" gid="677" x="5388" y="1599"/>
+  <object type="solid" x="4824" y="1431" width="279" height="22"/>
+  <object type="solid" x="4822" y="1440" width="20" height="285"/>
+  <object type="solid" x="5329" y="1308" width="29" height="396"/>
+  <object type="solid" x="3736" y="1492" width="212" height="22"/>
+  <object type="solid" x="3730" y="1500" width="26" height="84"/>
+  <object type="solid" x="3926" y="1500" width="24" height="208"/>
+  <object name="port3" gid="677" x="7050" y="638">
+   <properties>
+    <property name="target" value="port4"/>
+   </properties>
+  </object>
+  <object name="port4" gid="677" x="100" y="1070"/>
+  <object name="port5" gid="677" x="1582" y="120"/>
+  <object name="port5" gid="677" x="1582" y="120">
+   <properties>
+    <property name="target" value="port2"/>
+   </properties>
+  </object>
+  <object type="solid" x="6384" y="1250" width="952" height="64"/>
+  <object type="solid" x="7264" y="2" width="78" height="1314"/>
+  <object type="solid" x="6940" y="728" width="354" height="54"/>
+  <object type="solid" x="6434" y="1262">
+   <polyline points="0,0 526,-518"/>
+  </object>
+  <object type="deadzone" x="7198" y="6" width="72" height="690"/>
+  <object gid="669" x="254" y="860"/>
+  <object gid="670" x="1470" y="642"/>
+  <object gid="670" x="844" y="490"/>
+  <object gid="671" x="188" y="142"/>
+  <object gid="672" x="594" y="1056"/>
+  <object gid="673" x="972" y="1024"/>
+  <object gid="673" x="1602" y="1010"/>
+  <object gid="669" x="882" y="120"/>
+  <object gid="670" x="1348" y="106"/>
+  <object gid="666" x="6250" y="1256"/>
+  <object gid="666" x="5764" y="1694"/>
+  <object gid="666" x="1332" y="1180"/>
+  <object gid="666" x="1024" y="794"/>
+  <object gid="666" x="378" y="538"/>
+  <object gid="666" x="1094" y="419"/>
+  <object type="solid" x="4" y="6" width="48" height="2602"/>
+  <object type="solid" x="26" y="1176" width="1808" height="74"/>
+  <object type="solid" x="1758" y="4" width="74" height="1212"/>
+  <object type="solid" x="1294" y="917" width="164" height="74"/>
+  <object type="solid" x="976" y="791" width="164" height="74"/>
+  <object type="solid" x="656" y="667" width="164" height="74"/>
+  <object type="solid" x="334" y="539" width="164" height="74"/>
+  <object type="solid" x="530" y="219" width="164" height="74"/>
+  <object type="solid" x="1039" y="413" width="164" height="74"/>
+  <object type="solid" x="1488" y="219" width="164" height="74"/>
+  <object type="solid" x="4" y="4" width="16012" height="12"/>
+  <object gid="680" x="6044" y="1192"/>
+  <object gid="666" x="3981" y="1245"/>
+  <object type="solid" x="272" y="1115" width="101" height="83"/>
+  <object name="line2" type="FollowPath" x="6616" y="1716">
+   <properties>
+    <property name="speed" value="60"/>
+   </properties>
+   <polyline points="0,0 -8,380 -476,384"/>
+  </object>
+  <object name="p2" gid="699" x="6098" y="2130">
+   <properties>
+    <property name="path" value="line2"/>
+   </properties>
+  </object>
+  <object name="line3" type="FollowPath" x="5952" y="2136">
+   <properties>
+    <property name="moveAround" value="true"/>
+    <property name="speed" value="50"/>
+   </properties>
+   <polyline points="0,0 0,-66 -40,-130 -130,-178 -236,-180 -304,-160 -350,-112 -368,-54 -372,6 -370,52 -334,104 -272,136 -174,140 -116,128 -50,100 -8,44 0,4"/>
+  </object>
+  <object name="line4" type="FollowPath" x="5378" y="2132">
+   <properties>
+    <property name="moveArround" value="true"/>
+    <property name="speed" value="50"/>
+   </properties>
+   <polyline points="0,0 -6,56 -44,104 -104,144 -218,158 -304,154 -370,122 -418,62 -436,8 -428,-58 -402,-116 -346,-160 -280,-176 -190,-174 -92,-158 -22,-122 2,-76 -2,6"/>
+  </object>
+  <object name="line6" type="FollowPath" x="4154" y="2160">
+   <properties>
+    <property name="moveAround" value="true"/>
+    <property name="speed" value="50"/>
+   </properties>
+   <polyline points="0,0 -6,56 -44,104 -104,144 -218,158 -304,154 -370,122 -418,62 -436,8 -428,-58 -402,-116 -346,-160 -280,-176 -190,-174 -92,-158 -22,-122 2,-76 -2,6"/>
+  </object>
+  <object name="p3" gid="699" x="5916" y="2144">
+   <properties>
+    <property name="path" value="line3"/>
+   </properties>
+  </object>
+  <object name="p4" gid="699" x="4906" y="2148">
+   <properties>
+    <property name="path" value="line4"/>
+   </properties>
+  </object>
+  <object name="p5" gid="699" x="4702" y="2160">
+   <properties>
+    <property name="path" value="line5"/>
+   </properties>
+  </object>
+  <object name="p6" gid="699" x="3686" y="2186">
+   <properties>
+    <property name="path" value="line6"/>
+   </properties>
+  </object>
+  <object name="line5" type="FollowPath" x="4736" y="2134">
+   <properties>
+    <property name="moveArround" value="true"/>
+    <property name="speed" value="50"/>
+   </properties>
+   <polyline points="0,0 1,-63 -17,-122 -56,-160 -138,-179 -202,-181 -293,-173 -328,-164 -370,-122 -388,-39 -388,19 -383,102 -336,145 -275,165 -195,167 -86,149 -41,115 -13,73 -2,27 0,-3"/>
+  </object>
+  <object name="line7" type="FollowPath" x="3460" y="2046">
+   <properties>
+    <property name="speed" value="60"/>
+   </properties>
+   <polyline points="0,0 2,830 186,834"/>
+  </object>
+  <object name="p7" gid="699" x="3422" y="2208">
+   <properties>
+    <property name="path" value="line7"/>
+   </properties>
+  </object>
+  <object gid="666" x="3166" y="2398"/>
+  <object gid="666" x="3834" y="2974"/>
+  <object gid="666" x="5224" y="2972"/>
+  <object gid="666" x="6330" y="2970"/>
+  <object gid="672" x="2996" y="2268"/>
+  <object gid="673" x="3014" y="2782"/>
+  <object gid="672" x="3238" y="2824"/>
+  <object gid="670" x="4294" y="2718"/>
+  <object gid="671" x="5222" y="2700"/>
+  <object gid="673" x="4768" y="2836"/>
+  <object gid="673" x="5634" y="2816"/>
+  <object type="solid" x="2848" y="1740" width="76" height="1370"/>
+  <object type="solid" x="2898" y="2386" width="414" height="78"/>
+  <object type="solid" x="2900" y="2968" width="1054" height="190"/>
+  <object type="solid" x="4180" y="2982" width="282" height="172"/>
+  <object type="solid" x="4694" y="2982" width="218" height="190"/>
+  <object type="solid" x="5144" y="2982" width="214" height="188"/>
+  <object type="solid" x="5592" y="2980" width="150" height="208"/>
+  <object type="solid" x="5976" y="2978" width="86" height="202"/>
+  <object type="solid" x="3888" y="3158" width="2612" height="38"/>
+  <object type="deadzone" x="3942" y="3078" width="2366" height="94"/>
+  <object type="winningzone" x="6716" y="2840" width="216" height="140"/>
+  <object type="winningzone" x="6716" y="2840" width="216" height="140"/>
+  <object type="solid" x="3924" y="2391" width="3076" height="73"/>
+  <object type="deadzone" x="3927" y="2367" width="3018" height="42"/>
+  <object type="solid" x="6297" y="2979" width="806" height="209"/>
+  <object type="solid" x="6942" y="1288" width="239" height="1736"/>
+  <object gid="680" x="3065" y="2262"/>
+  <object type="solid" x="42" y="2521" width="767" height="697"/>
+ </objectgroup>
+</map>
