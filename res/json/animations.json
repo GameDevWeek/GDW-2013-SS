@@ -63,9 +63,9 @@
 },
 {
   "name" : "player_couple_standing",
-  "pfad" : "player/couple/standing",
-  "anzBilder" : 1,
-  "animSpeed" : 100,
+  "pfad" : "player/couple/nuckelanimation",
+  "anzBilder" : 4,
+  "animSpeed" : 200,
   "loop" : true
 },
 {
@@ -101,6 +101,13 @@
   "pfad" : "player/couple/Todesanimation2",
   "anzBilder" : 8,
   "animSpeed" : 100,
+  "loop" : false
+},
+{
+  "name" : "alien_weinen",
+  "pfad" : "player/alien/AlienSitzendheulend",
+  "anzBilder" : 9,
+  "animSpeed" : 150,
   "loop" : false
 },
 {
@@ -240,20 +247,6 @@
   "name" : "crab_boss_attacking",
   "pfad" : "boss/crab_attacking",
   "anzBilder" : 3,
-  "animSpeed" : 250,
-  "loop" : true
-},
-{
-  "name" : "asset_lampe_sprite",
-  "pfad" : "entities/asset_lampe_sprite",
-  "anzBilder" : 11,
-  "animSpeed" : 250,
-  "loop" : true
-},
-{
-  "name" : "blumenleuchten_sprite2",
-  "pfad" : "entities/blumenleuchten_sprite2",
-  "anzBilder" : 8,
   "animSpeed" : 250,
   "loop" : true
 }]
