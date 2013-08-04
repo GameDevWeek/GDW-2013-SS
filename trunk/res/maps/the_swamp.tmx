@@ -60,22 +60,22 @@
    </properties>
    <polyline points="0,0 -344,284 -692,0 -40,0"/>
   </object>
-  <object gid="636" x="3030" y="1708">
+  <object name="gum" gid="636" x="3030" y="1708">
    <properties>
     <property name="path" value="sturzflug"/>
    </properties>
   </object>
-  <object gid="636" x="2694" y="1430">
+  <object name="dee" gid="636" x="2694" y="1430">
    <properties>
     <property name="path" value="sturzflug"/>
    </properties>
   </object>
-  <object gid="636" x="3378" y="1422">
+  <object name="pan" gid="636" x="3378" y="1422">
    <properties>
     <property name="path" value="sturzflug"/>
    </properties>
   </object>
-  <object gid="626" x="968" y="2026"/>
+  <object gid="626" x="789" y="2026"/>
   <object gid="632" x="1790" y="2048"/>
   <object gid="632" x="2396" y="2054"/>
   <object gid="632" x="3102" y="2046"/>
@@ -85,5 +85,6 @@
   <object gid="632" x="5540" y="2056"/>
   <object gid="632" x="6296" y="2052"/>
   <object gid="632" x="7258" y="2062"/>
+  <object type="solid" x="-615" y="2065" width="16208" height="3920"/>
  </objectgroup>
 </map>
