@@ -4,8 +4,8 @@
  <tileset firstgid="626" source="entity_tileset.tsx"/>
  <tileset firstgid="647" source="moving_platform.tsx"/>
  <layer name="Kachelebene 1" width="100" height="100">
-  <data encoding="base64" compression="zlib">
-   eJztW1tu21YQnb/E6Q4C2LHRZA1x1DRZQYCisoFsIYitIDswjFhCu4Q8PtKuofnoJtq0GwoJc+Cjyczl5ZuGzgEOSF2RV+QczoNDSoQgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIIgCIKYC34tuCx4UvB04mPZJVi76xLHSi4K/lTwqVlH2m12kXr+R4HNcLsmeuD6KqHHqfiaLXeUarNIj2VLPVawvjHb4O+sgDh+tqM8r2xxZGym62ct9djIzXW/Mb+Fdt8AcfxqR7mubHFkbKbrVx300Ot+Y37L2t0bxzi5qH7jSmItra/1xTF9w+YPtI1npyZ66L7KNnpgLjkDPWzu8/Tpi2P6xhh6pObL1QO3S+nRJG+qvnWxA49vKHrnP5UeKZ/QuaweS/H1aBIb2sR0PY8h6tyh/APXu+iBuQw/67Vt/adNDRBd92tnHceGqHOvjO2m0iOqg3F7/Ix5xOqh+qVYt02OjkPkcp0X690+9MA5c/SI6mDcXsfOxfdtjWmpe6zznpirWR/1bh962DjgzYcxPyfP69ha/LoXY9rngv8W/ArL/4L1nDH8nJrLrnvffarsnEtbw9i4PrUeeF9k70PUP14GxzkH/CLt9LC9lLnogfNE9dXbdqYaBa+knR62lzIXPTA/Rfcfc9bjUprroflyjvljJWn/KI/jYTtTjYIPBT/Kdi7y8o6ul/lGz3NOeqhvRP16jFc/F7xbcK/gvYI/mOO9U33/vOBBvQknxReZrx4r8fXAcY1lWNeX/vIIjvewGp9z3lccynz1wLhlayvbvzqpWK6X/rJX8bjgE4nj2n61fCC+7zyWbd+7G3zWMfvdXrCPNx8e60lgJw9j6ZHbY1EfsX5iWer0TK7jVon9iheGiKb1alfW9V09TKEH5o4uzxR/K/h7dR6eFhfmXF9J+pk39gSiZ99RD8Gbb+562J6V7bGU9+Z/SHx/rPff+rnc9s/qPCI9LuBcL+E4PLt7z5YWZp/o2kjpeBv0OHX26ZKjc/xD652S3jM97EPpeO4zF2++IfWIniHp9th38q7vnB7R/8Ex5iBHj38kr3dV3mN8qs7Re+Zi+/zYoxxLD9uDsb/zd8H7GXxRQ8WDBC32q/ELh4iDBvwiN3VqTj+37j017z7YQ0qPFazbHgxu/6Nc9zn61iMHqsX7gHrvojVwLg9l2z88DdA/vHeePLt20cPmD/wOnyWUY/a+2qvPvVo+qvOjdW/sOLHfs4rHwRx7wX5PZLv3VOcfyujZUN96nJnv6p5TRfnc5iF7zEovH2lcxxz72pk74kr8Y9DnL/Zc9FlNZPs6/+g7XjW1e0oPrQWjWn1jxst8ZGPWX3Id158a5uoRXRMa//GYU/VUpIu1wZD5o6seWqNrTRjdPym1b2Vz+eFAemBMwXhg44LuG2l0G/xD58V3GdBPdJ83QO2HaDwvqT0h3K6tDlYPe46Rve39iK2Hb4MeNjcs5MZfIv+ou6ZxPVrW9TWiuVO+F70D5h3PXPWw9/RNbGqX3ntJuIxs5/U17PWgxP9QeO9ZeTHKm2tOekT9nCbXZkoX+72uR7azfQ3PfqpB6n1sL59H7/j1oQfG/C56eP0ca7vIztjj8nwAr1/7/6Hcd0w9LfB9fj2fnNrKyx3R+4FT6YHnPSZz799y5vJyt51vId+fa5/5o0891uLn1CmYqpMiRr6FPrKU78819f7smHp4eWiId2Xbcki/9PoNY+mB+TQaHztONYk/XfeLao9UrdxVj9T71JhPo/Gp41Mq/nTdz9YUEW28XJv9PbyWbR+z9YOnh32/3xufOjal6quu++X8L8LaAOO37u/hnbFptIxqvdT43Bj1QnL3TdW8HqM5dH+CIAiCIAiCIAiCIAiCIAiCIAiCIAiCIES+AR+ATtM=
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+1bW27bVhCdv8TpDgLYsdFkDXHUNFlBgKKygWwhiK0gOzCMWEK7hDw+0q6h+egm2rQbCglz4KPJzOXlm4bOAQ5IXZFX5BzOg0NKhCAIgiAIgiAIgiAIgiAIgiAIgiAIgiAIgiAIgiAIgiAIgiAIgiAIgiAIgpgLfi24LHhS8HTiY9klWLvrEsdKLgr+VPCpWUfabXaRev5Hgc1wuyZ64Poqocep+Jotd5Rqs0iPZUs9VrC+Mdvg76yAOH62ozyvbHFkbKbrZy312MjNdb8xv4V23wBx/GpHua5scWRsputXHfTQ635jfsva3RvHOLmofuNKYi2tr/XFMX3D5g+0jWenJnrovso2emAuOQM9bO7z9OmLY/rGGHqk5svVA7dL6dEkb6q+dbEDj28oeuc/lR4pn9C5rB5L8fVoEhvaxHQ9jyHq3KH8A9e76IG5DD/rtW39p00NEF33a2cdx4aoc6+M7abSI6qDcXv8jHnE6qH6pVi3TY6OQ+RynRfr3T70wDlz9IjqYNxex87F922Naal7rPOemKtZH/VuH3rYOODNhzE/J8/r2Fr8uhdj2ueC/xb8Csv/gvWcMfycmsuue999quycS1vD2Lg+tR54X2TvQ9Q/XgbHOQf8Iu30sL2UueiB80T11dt2phoFr6SdHraXMhc9MD9F9x9z1uNSmuuh+XKO+WMlaf8oj+NhO1ONgg8FP8p2LvLyjq6X+UbPc056qG9E/XqMVz8XvFtwr+C9gj+Y471Tff+84EG9CSfFF5mvHivx9cBxjWVY15f+8giO97Aan3PeVxzKfPXAuGVrK9u/OqlYrpf+slfxuOATiePafrV8IL7vPJZt37sbfNYx+91esI83Hx7rSWAnD2PpkdtjUR+xfmJZ6vRMruNWif2KF4aIpvVqV9b1XT1MoQfmji7PFH8r+Ht1Hp4WF+ZcX0n6mTf2BKJn31EPwZtv7nrYnpXtsZT35n9IfH+s99/6udz2z+o8Ij0u4Fwv4Tg8u3vPlhZmn+jaSOl4G/Q4dfbpkqNz/EPrnZLeMz3sQ+l47jMXb74h9YieIen22Hfyru+cHtH/wTHmIEePfySvd1XeY3yqztF75mL7/NijHEsP24Oxv/N3wfsZfFFDxYMELfar8QuHiIMG/CI3dWpOP7fuPTXvPthDSo8VrNseDG7/o1z3OfrWIweqxfuAeu+iNXAuD2XbPzwN0D+8d548u3bRw+YP/A6fJZRj9r7aq8+9Wj6q86N1b+w4sd+zisfBHHvBfk9ku/dU5x/K6NlQ33qcme/qnlNF+dzmIXvMSi8faVzHHPvamTviSvxj0Ocv9lz0WU1k+zr/6DteNbV7Sg+tBaNafWPGy3xkY9Zfch3Xnxrm6hFdExr/8ZhT9VSki7XBkPmjqx5ao2tNGN0/KbVvZXP54UB6YEzBeGDjgu4baXQb/EPnxXcZ0E90nzdA7YdoPC+pPSHcrq0OVg97jpG97f2IrYdvgx42Nyzkxl8i/6i7pnE9Wtb1NaK5U74XvQPmHc9c9bD39E1sapfee0m4jGzn9TXs9aDE/1B471l5Mcqba056RP2cJtdmShf7va5HtrN9Dc9+qkHqfWwvn0fv+PWhB8b8Lnp4/Rxru8jO2OPyfACvX/v/odx3TD0t8H1+PZ+c2srLHdH7gVPpgec9JnPv33Lm8nK3nW8h359rn/mjTz3W4ufUKZiqkyJGvoU+spTvzzX1/uyYenh5aIh3ZdtySL/0+g1j6YH5NBofO041iT9d94tqj1St3FWP1PvUmE+j8anjUyr+dN3P1hQRbbxcm/09vJZtH7P1g6eHfb/fG586NqXqq6775fwvwtoA47fu7+GdsWm0jGq91PjcGPVCcvdN1bweozl0f4IgCIIgCIIgCIIgCIIgCIIgCIIgCIIgRL4BkfwC1ECcAAA=
   </data>
  </layer>
  <objectgroup name="Objektebene 1" width="100" height="100">
@@ -48,7 +48,11 @@
    <polyline points="0,0 0,-171 -72,-172"/>
   </object>
   <object name="door2" gid="628" x="5184" y="3575"/>
-  <object type="winningzone" x="5761" y="3456" width="127" height="127"/>
+  <object type="winningzone" x="5761" y="3456" width="127" height="127">
+   <properties>
+    <property name="target" value="robomap"/>
+   </properties>
+  </object>
   <object gid="632" x="3349" y="3665"/>
   <object gid="642" x="3059" y="4270">
    <properties>
