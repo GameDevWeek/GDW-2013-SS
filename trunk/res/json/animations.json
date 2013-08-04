@@ -147,7 +147,7 @@
 },
 {
   "name" : "flying_ememy_middle",
-  "pfad" : "enemies/flying/middle",
+  "pfad" : "enemies/flying/big",
   "anzBilder" : 2,
   "animSpeed" : 100,
   "loop" : true
