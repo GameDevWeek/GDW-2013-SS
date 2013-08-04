@@ -16,11 +16,15 @@
 },
 {
   "name" : "door_closed",
-  "pfad" : "entities/door/door_closed"
+  "pfad" : "entities/door/robodoor_closed"
 },
 {
   "name" : "door_open",
-  "pfad" : "entities/door/door_open"
+  "pfad" : "entities/door/robodoor_open"
+},
+{
+  "name" : "teleporter",
+  "pfad" : "entities/teleporter"
 },
 {
   "name" : "plant",
@@ -50,7 +54,6 @@
   "name" : "ability2_dynamic",
   "pfad" : "gui/Symbol_Fluegel_mittel"
 },
-
 {
   "name" : "digits",
   "pfad" : "gui/digits"
@@ -159,6 +162,7 @@
   "name" : "maus_links",
   "pfad" : "gui/maus_links"
 },
+
 {
   "name" : "maus_mitte",
   "pfad" : "gui/maus_mitte"

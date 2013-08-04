@@ -27,7 +27,7 @@ public class Teleporter extends EntityCollidable implements Interactable {
     private final ArrayList<Entity> toSet = new ArrayList<>();
 
     public Teleporter() {
-        super(AssetLoader.getInstance().getImage("door_closed"));
+        super(AssetLoader.getInstance().getImage("teleporter"));
         
         
     }
