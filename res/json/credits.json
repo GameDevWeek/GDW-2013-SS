@@ -217,7 +217,7 @@
     
     "animations" : [
 		{ "name": "astronaut_walking", "x": 0, "y": 0, "width": 220, "height": 191, "path": "astronaut_path", "angle": 0, "delay": 500, "oriented": false, "animation": true },
-		{ "name": "alien_standing", "x": 0, "y": 0, "width": 114, "height": 107, "path": "alien_path", "angle": 0, "delay": 0, "oriented": false, "animation": true },
+		{ "name": "alien_weinen_loop", "x": 0, "y": 0, "width": 114, "height": 107, "path": "alien_path", "angle": 0, "delay": 0, "oriented": false, "animation": true },
 		{ "name": "plant", "x": 0, "y": 0, "width": 92, "height": 92, "path": "plant_path", "angle": 0, "delay": 0, "oriented": false, "animation": false },
 		{ "name": "player_couple_superjump", "x": 0, "y": 0, "width": 236, "height": 191, "path": "couple_superjump_path", "angle": 0, "delay": 0, "oriented": false, "animation": true },
 		{ "name": "ground_ememy_trunk_purple", "x": 0, "y": 0, "width": 110, "height": 195, "path": "enemy_trunk_purple_path", "angle": 0, "delay": 0, "oriented": false, "animation": true },
