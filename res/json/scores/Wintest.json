@@ -11,6 +11,10 @@
   "alienName" : "238",
   "score" : 20
 }, {
+  "astronautName" : "169",
+  "alienName" : "169",
+  "score" : 15
+}, {
   "astronautName" : "105",
   "alienName" : "105",
   "score" : 10
@@ -23,17 +27,13 @@
   "alienName" : "157",
   "score" : 10
 }, {
-  "astronautName" : "105",
-  "alienName" : "105",
-  "score" : 1
+  "astronautName" : "209",
+  "alienName" : "210",
+  "score" : 10
 }, {
-  "astronautName" : "105",
-  "alienName" : "105",
-  "score" : 1
-}, {
-  "astronautName" : "105",
-  "alienName" : "105",
-  "score" : 1
+  "astronautName" : "Testonaut",
+  "alienName" : "Talien",
+  "score" : 10
 }, {
   "astronautName" : "105",
   "alienName" : "105",

@@ -42,7 +42,8 @@ public class GameWonState extends BasicGameState {
 	     
 	    	    //centerPosition = new Vector2f(0.0f,0.0f); //this line is DEV only
 	    centerPosition = new Vector2f(gc.getWidth()/2,gc.getHeight()/2 + font.getHeight(winMessage)*2);
-	    counter = new WinScreenCounter(digits, centerPosition,score, 4);               
+	    counter = new WinScreenCounter(digits, centerPosition,score, 4);    
+	 
 	    
 
         
@@ -60,14 +61,14 @@ public class GameWonState extends BasicGameState {
         rank = HighscoreManager.getHighscoreRank(World.getInstance().getLevelName(), score); //rank ist immer zwischen 1 und 10
         scoreInfo = new ScoreInfo();
         scoreInfo.score = score;
-        scoreInfo.astronautName = World.getInstance().getAstronaut().getName();
-        scoreInfo.alienName = World.getInstance().getAstronaut().getName();
+        scoreInfo.astronautName = HighscoreManager.getAstronautname();
+        scoreInfo.alienName = HighscoreManager.getAlienname();
         
         //DEV
-        System.out.print("alienName in alien\t: " + scoreInfo.alienName);
-        System.out.print("astronautName in astronaut\t: " + scoreInfo.alienName);
+        System.out.print("alienName in alien\t: " +  World.getInstance().getAstronaut().getName());
+        System.out.print("astronautName in astronaut\t: " + World.getInstance().getAlien().getName());
                 
-        System.out.print("alienName in scoreInfo\t: " + scoreInfo.alienName);
+        System.out.print("alienName in scoreInfo\t: " + scoreInfo.astronautName);
         System.out.print("astronautName in scoreInfo\t: " + scoreInfo.alienName);
         //DEV
         

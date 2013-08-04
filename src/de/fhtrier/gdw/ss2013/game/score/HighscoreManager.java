@@ -10,7 +10,10 @@ import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.assetloader.infos.ScoreInfo;
 
 public class HighscoreManager {
-
+    
+    private static String astronautName = "Unnamed";
+    private static String alienName = "Unnamed";
+    
     private HighscoreManager() {
     }
     
@@ -79,5 +82,21 @@ public class HighscoreManager {
         }
         
         return sorted;
+    }
+    
+    public static String getAstronautname(){
+        return astronautName;
+    }
+    
+    public static String getAlienname(){
+        return alienName;
+    }
+    
+    public static void setAstronautname (String name){
+        astronautName = name;
+    }
+    
+    public static void setAlienname (String name){
+        alienName = name;
     }
 }

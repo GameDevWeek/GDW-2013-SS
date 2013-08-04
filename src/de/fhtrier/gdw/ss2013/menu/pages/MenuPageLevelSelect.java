@@ -11,6 +11,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import de.fhtrier.gdw.ss2013.MainGame;
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.assetloader.infos.SettingsInfo;
+import de.fhtrier.gdw.ss2013.game.score.HighscoreManager;
 import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.menu.IActionListener;
 import de.fhtrier.gdw.ss2013.menu.Label;
@@ -26,7 +27,6 @@ public class MenuPageLevelSelect extends MenuPage {
     private TextField tfAstroName;
     private TextField tfAlienName;
     private ToggleButton tbLevelSelection;
-    private String standardNames = "Unnamed";
     private String[] levels;
     
     public MenuPageLevelSelect(GameContainer container, StateBasedGame game,
@@ -110,22 +110,18 @@ public class MenuPageLevelSelect extends MenuPage {
                 settings.lastLoadedMap = levels[tbLevelSelection.getState()];
                 
                 
-                if (astroName.trim().isEmpty()) {
-                    astroName = standardNames;
-                } else {
+                if (!astroName.trim().isEmpty()) {
                     settings.lastAstronautName = astroName;
                 }
                 
-                if (alienName.trim().isEmpty()) {
-                    alienName = standardNames;
-                } else {
+                if (!alienName.trim().isEmpty()) {
                     settings.lastAlienName = alienName;
                 }
                 
                 AssetLoader.getInstance().writeSettings(settings);
                 
-                World.getInstance().getAstronaut().setName(astroName);
-                World.getInstance().getAlien().setName(alienName);
+                HighscoreManager.setAstronautname(astroName);
+                HighscoreManager.setAlienname(alienName);
                 
                 World.getInstance().setLevelName(selectedLevel);
                 World.getInstance().reset();
