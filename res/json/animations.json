@@ -249,4 +249,25 @@
   "anzBilder" : 3,
   "animSpeed" : 250,
   "loop" : true
+},
+{
+  "name" : "asset_lampe_sprite",
+  "pfad" : "entities/asset_lampe_sprite",
+  "anzBilder" : 11,
+  "animSpeed" : 250,
+  "loop" : false
+},
+{
+  "name" : "blumenleuchten_sprite2",
+  "pfad" : "entities/blumenleuchten_sprite2",
+  "anzBilder" : 8,
+  "animSpeed" : 250,
+  "loop" : false
+},
+{
+  "name" : "kristallblume_sprite",
+  "pfad" : "entities/kristallblume_sprite",
+  "anzBilder" : 8,
+  "animSpeed" : 250,
+  "loop" : false
 }]

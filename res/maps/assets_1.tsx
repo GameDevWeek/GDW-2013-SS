@@ -69,6 +69,7 @@
  </tile>
  <tile id="15">
   <properties>
+   <property name="animation" value="kristallblume_sprite"/>
    <property name="type" value="decoration"/>
   </properties>
  </tile>

@@ -74,5 +74,6 @@
   <object type="solid" x="3913" y="3102">
    <polyline points="0,0 0,-140 107,-122 106,1 97,110"/>
   </object>
+  <object gid="671" x="3672" y="3166"/>
  </objectgroup>
 </map>
