@@ -1,0 +1,41 @@
+[ {
+  "astronautName" : "157",
+  "alienName" : "157",
+  "score" : 20
+}, {
+  "astronautName" : "165",
+  "alienName" : "165",
+  "score" : 20
+}, {
+  "astronautName" : "238",
+  "alienName" : "238",
+  "score" : 20
+}, {
+  "astronautName" : "105",
+  "alienName" : "105",
+  "score" : 10
+}, {
+  "astronautName" : "105",
+  "alienName" : "105",
+  "score" : 10
+}, {
+  "astronautName" : "157",
+  "alienName" : "157",
+  "score" : 10
+}, {
+  "astronautName" : "105",
+  "alienName" : "105",
+  "score" : 1
+}, {
+  "astronautName" : "105",
+  "alienName" : "105",
+  "score" : 1
+}, {
+  "astronautName" : "105",
+  "alienName" : "105",
+  "score" : 1
+}, {
+  "astronautName" : "105",
+  "alienName" : "105",
+  "score" : 1
+} ]
