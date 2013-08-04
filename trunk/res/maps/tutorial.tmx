@@ -6,19 +6,32 @@
  <tileset firstgid="650" source="assets_1.tsx"/>
  <tileset firstgid="668" source="swamp_tileset.tsx"/>
  <tileset firstgid="884" source="waterset.tsx"/>
+ <tileset firstgid="890" source="tiledmap_final.tsx"/>
  <layer name="hinten" width="100" height="100">
+  <properties>
+   <property name="" value=""/>
+  </properties>
   <data encoding="base64" compression="zlib">
-   eJzt2E1OwkAUAOAhbDWcyQVew8S9O3+uYYLewQV6BN1xAw1eQjcudOdUaIAyhQ4WSfD7kpdhmmbSvNc3bQkBAAAAAAAAAAAAAAAAAAAAAAAAlo12fQEsUI/NVPM2ShxrY12aua/MR4ljm1CPzWyzP45iDFpY6z/5DJOc3cS4jXES47SFdduq6756jDEMs7wPan6PQ3v9oR4hPMc46yxHTm5y81juS/PRj/GVuc4+Kurxkhivus3XyK1H6vmvNybeYrwnxhy5uUydrx7taeN9l+aK/X0YZnv9cVh8pven43A68nu9zmT8aHButR/0x+aK+/opcfw1xkGsyWFn/Rqpb0LyzOcsdT+XfdFrWI+HuZifs1rxXVe+35f7/zhxXm49Vs2pV/bCupw1eW5U16ybU29UGevk1EN/bM/1ri+ABXe7vgB+nHdDuOjWj/y9y+7kf8O6EQAAAAAAAAAAAAAAYB99A/h0XRU=
+   eJzt2E1OwkAUAOAhbDWcyQVew8S9O3+uYYLewQV6BN1xAw1eQjcudOdUaIAyhQ4WSfD7kpfHlGbSzOubFkIAAAAAAAAAAAAAAAAAAAAAAACAZaNdXwAL1GMz1XUbJY61MS/N3FfGo8SxTajHZrbZH0cxBi3M9Z98hsma3cS4jXES47SFeduq6756jDEMs3Uf1Hweh/b6Qz1CeI5x1lmOnLXJXcdyX5qPfoyvzHn2UVGPl0S+6jafI7ceqee/3ph4i/GeyDly1zJ1vnq0p433XZor9vdhmO31x2Hxmd6f5uE083u9ziR/NDi32g/6I1+5Pxf39VPi+9cYB7Emh53mc9WNWW9+zVL3c9kXvYb1eJiL+TGrFb/ryvf7cv8fJ87LrceqMfXKXli3Zk2eG9U568bUG1VynZx66I/tud71BbDgbtcXwI/zbggX3frM37vsTv43rMsAAAAAAAAAAAAAAAD76BvctF3b
   </data>
  </layer>
+ <objectgroup name="tueren" width="100" height="100">
+  <properties>
+   <property name="renderLayer" value="-1"/>
+  </properties>
+  <object name="door1" gid="628" x="2180" y="4117"/>
+  <object name="door2" gid="628" x="5227" y="3604"/>
+  <object name="door3" gid="628" x="5583" y="3605"/>
+  <object name="door4" gid="628" x="4625" y="4116"/>
+ </objectgroup>
  <layer name="Kachelebene 1" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
  <layer name="vorne" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt2M1Nw0AYBNBtDcqAA0UR2oEbLdAO8QEJoYis7WU9X3hP2gNRhGYyifPTGgAAAAAAAAAAAAAAAAAAUN370QEuSMw0S2L3xEyzJHZPzDRLYvfETLMkdk/MNEti98RMsyR2T8w0S2L3xEyzJHZPzLTW6/k8bziPR4S9Yu8evd1P5/PSeb+e277/z6cLt6Wd+87H8xZeHxU69Gas0OWaCh3skcUeWR5a3/tr4meMtSrs8Z/YI4s9stgjx13Lfw9cMm75/eDnd+ivv5NVeG1UyDhKha4VMi6/AZ4GnPRr1aLCHhUyjlKha4WMo1ToWiHjKBW6Vsg4SoWuFTKOUqHrR9v2Hem38za1Qd/3vCqfAf/C7Odhhef9keyRZe01cO/1zR5j7X087TGWPbLYI4s9stgjiz2y2COLPbLYI4s9AAAAAAAAAKCuT7bPpAk=
+   eJzt2EFOwlAUBdDuw4Fr0WXowEWp29GZW9DlSAckhKD8tt/PfXJO8kMohNzHbQvtNAEAAAAAAAAAAAAAAAAAANV9XDrACYmZRkmcPTHTKImzJ2YaJXH2xEyjJM6emGmUxNkTM42SOHtiplESZ0/MNEri7ImZlnrbrecV6/ESYc/Y2kfr7C+79dr4vpZth5/5dGJb2rpv/D7/w/FRYYbWjBVmOafCDPrI8jC1nc8Tf9OWqtDHzYJVXYU+rok+sugjiz5y3E35/0nmjGvuHxxfQ++fJ6twbFTIeLjPHN/jOLxHsn/tp8ev0cFXqNDHnPG200pXpY9rUWHWChl7qTBrhYy9VJi1QsZeKsxaIWMvFWb9nNZdI/223odO0HadN/8vT79e/Suj98MK+/0l6SPL0nPg1vObPvra+n3qoy99ZNFHFn1k0UcWfWTRRxZ9ZNFHFn0AAAAAAAAAQF3f61Wl1w==
   </data>
  </layer>
  <objectgroup name="Objektebene 1" width="100" height="100">
@@ -40,12 +53,11 @@
   <object type="solid" x="2800" y="4367">
    <polyline points="0,0 354,1 352,-169 1,-172 0,-1"/>
   </object>
-  <object name="door1" gid="628" x="2547" y="4100"/>
   <object type="solid" x="3146" y="3475">
-   <polyline points="0,0 165,0 167,189 293,189 295,336 -537,340 -537,469"/>
+   <polyline points="0,0 165,0 167,189 293,189 295,336 -537,340 -537,403"/>
   </object>
   <object type="solid" x="2609" y="3943">
-   <polyline points="0,0 -1093,-5 -1094,167 -3,171"/>
+   <polyline points="-1,-65 -1092,-73 -1094,167 -3,171"/>
   </object>
   <object gid="629" x="1537" y="4115">
    <properties>
@@ -54,12 +66,11 @@
   </object>
   <object gid="635" x="4826" y="3399"/>
   <object type="solid" x="5147" y="3167">
-   <polyline points="0,0 0,263 740,260"/>
+   <polyline points="0,0 -1,198 740,199"/>
   </object>
   <object type="solid" x="5902" y="3599">
-   <polyline points="0,0 0,-171 -72,-172"/>
+   <polyline points="0,0 0,-232 -71,-232"/>
   </object>
-  <object name="door2" gid="628" x="5184" y="3575"/>
   <object type="winningzone" x="5761" y="3456" width="127" height="127">
    <properties>
     <property name="target" value="robomap"/>
@@ -143,8 +154,6 @@
     <property name="trigger" value="tr_pic_mm2"/>
    </properties>
   </object>
-  <object name="door3" gid="628" x="5539" y="3574"/>
-  <object name="door4" gid="628" x="4619" y="4084"/>
   <object gid="633" x="4436" y="4124">
    <properties>
     <property name="trigger" value="door4"/>
@@ -156,7 +165,7 @@
    </properties>
   </object>
   <object type="solid" x="2607" y="4114">
-   <polyline points="0,0 2207,-3 2211,-173 1507,-179 1510,-513 3295,-514"/>
+   <polyline points="0,0 2207,-3 2211,-237 1507,-244 1510,-513 3295,-514"/>
   </object>
   <object name="tr_pic_e" gid="641" x="4468" y="4204">
    <properties>
