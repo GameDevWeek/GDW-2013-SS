@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.contacts.Contact;
 import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
@@ -13,14 +14,13 @@ import de.fhtrier.gdw.ss2013.game.EntityCollidable;
 import de.fhtrier.gdw.ss2013.game.filter.Interactable;
 import de.fhtrier.gdw.ss2013.game.player.Alien;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
-import de.fhtrier.gdw.ss2013.game.player.PlayerState;
 import de.fhtrier.gdw.ss2013.game.world.World;
-
 
 public class Teleporter extends EntityCollidable implements Interactable {
 
     private boolean isActive = true;
     private Teleporter target;
+    private boolean mirrored = false;
 
     private boolean firstUpdateDone = false;
 
@@ -29,8 +29,7 @@ public class Teleporter extends EntityCollidable implements Interactable {
 
     public Teleporter() {
         super(AssetLoader.getInstance().getImage("teleporter-inactive"));
-        
-        
+
     }
 
     @Override
@@ -47,9 +46,11 @@ public class Teleporter extends EntityCollidable implements Interactable {
         if (properties != null) {
 
             isActive = properties.getBoolean("isActive", true);
+            mirrored = properties.getBoolean("mirrored", true);
         }
-        
-        img = AssetLoader.getInstance().getImage((isActive?"teleporter-active":"teleporter-inactive"));
+
+        img = AssetLoader.getInstance().getImage(
+                (isActive ? "teleporter-active" : "teleporter-inactive"));
     }
 
     @Override
@@ -81,7 +82,22 @@ public class Teleporter extends EntityCollidable implements Interactable {
         }
         toSet.clear();
         super.update(container, delta);
-        
+
+    }
+
+    @Override
+    public void render(GameContainer container, Graphics g)
+            throws SlickException {
+        if (mirrored) {
+            g.drawImage(img, getPosition().x - (img.getWidth() / 2),
+                    getPosition().y - (img.getHeight() / 2), img.getWidth(), 0,
+                    0, img.getHeight());
+        } else {
+            g.drawImage(img, getPosition().x - (img.getWidth() / 2),
+                    getPosition().y - (img.getHeight() / 2), 0, 0,
+                    img.getWidth(), img.getHeight());
+        }
+        // super.render(container, g);
     }
 
     @Override
@@ -89,12 +105,13 @@ public class Teleporter extends EntityCollidable implements Interactable {
 
         if (isActive && target != null) {
             Entity other = getOtherEntity(contact);
-            setParticle(AssetLoader.getInstance().getParticle("teleporter_test").clone());
-            
-            if(other instanceof Alien || other instanceof Astronaut) {
-                
+            setParticle(AssetLoader.getInstance()
+                    .getParticle("teleporter_test").clone());
+
+            if (other instanceof Alien || other instanceof Astronaut) {
+
                 World.getInstance().getAstronaut().teleportAlienback();
-                
+
             }
             if (other instanceof Astronaut || other instanceof Box) {
                 if (!ignorList.contains(other)) {
@@ -110,9 +127,7 @@ public class Teleporter extends EntityCollidable implements Interactable {
     public void endContact(Contact contact) {
         if (isActive && target != null) {
             Entity other = getOtherEntity(contact);
-           
-            
-            
+
             if (other instanceof Astronaut || other instanceof Alien
                     || other instanceof Entity) {
                 if (ignorList.contains(other)) {
