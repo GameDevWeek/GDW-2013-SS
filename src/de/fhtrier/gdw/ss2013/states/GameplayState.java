@@ -8,6 +8,7 @@ import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.util.Log;
 
 import de.fhtrier.gdw.ss2013.MainGame;
 import static de.fhtrier.gdw.ss2013.MainGame.instance;
@@ -40,6 +41,7 @@ public class GameplayState extends BasicGameState {
     public void init(GameContainer container, StateBasedGame game)
             throws SlickException {
         this.container = container;
+        Log.debug("Gameplaystate");
         InputManager.init(container);
         inputManager = InputManager.getInstance();
         world = new World(container, game);
@@ -188,5 +190,16 @@ public class GameplayState extends BasicGameState {
 	
 	public static void hideMenu() {
 		menuOpened = false;
+	}
+
+	public void setMusic(Music music2) {
+		if (this.music != music2) {
+			if (this.music != null)
+				this.music.stop();
+			
+			this.music = music2;
+			if (music != null)
+				music.loop(1f, 1f);
+		}
 	}
 }
