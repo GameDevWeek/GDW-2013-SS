@@ -55,6 +55,18 @@
   "pfad" : "entities/teleporter-inactive"
 },
 {
+  "name" : "platform-crystal",
+  "pfad" : "entities/platform/crystal"
+},
+{
+  "name" : "platform-robo",
+  "pfad" : "entities/platform/robo"
+},
+{
+  "name" : "platform-swamp",
+  "pfad" : "entities/platform/swamp"
+},
+{
   "name" : "plant",
   "pfad" : "entities/plant"
 },
