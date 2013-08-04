@@ -56,7 +56,7 @@
   <object gid="632" x="1890" y="3082"/>
   <object type="winningzone" x="15068" y="2149" width="1052" height="982">
    <properties>
-    <property name="target" value="run_or_die_boss"/>
+    <property name="target" value="run_or_die_boss2"/>
    </properties>
   </object>
   <object gid="631" x="2966" y="2303">
