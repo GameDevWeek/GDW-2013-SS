@@ -24,8 +24,8 @@
   <object type="solid" x="4143" y="2704" width="461" height="723"/>
   <object gid="632" x="2626" y="3073">
    <properties>
-    <property name="bubbleSpawnTimer" value="500"/>
-    <property name="maxBubblesOnPlant" value="1000"/>
+    <property name="bubbleSpawnTimer" value="3000"/>
+    <property name="maxBubblesOnPlant" value="3"/>
    </properties>
   </object>
   <object type="solid" x="3952" y="498" width="193" height="2347"/>
@@ -50,5 +50,17 @@
   <object gid="631" x="2382" y="2036"/>
   <object gid="648" x="1199" y="2820"/>
   <object gid="649" x="4039" y="2962"/>
+  <object gid="632" x="3613" y="2702">
+   <properties>
+    <property name="bubbleSpawnTimer" value="4000"/>
+    <property name="maxBubblesOnPlant" value="2"/>
+   </properties>
+  </object>
+  <object gid="632" x="1562" y="2823">
+   <properties>
+    <property name="bubbleSpawnTimer" value="4000"/>
+    <property name="maxBubblesOnPlant" value="2"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
