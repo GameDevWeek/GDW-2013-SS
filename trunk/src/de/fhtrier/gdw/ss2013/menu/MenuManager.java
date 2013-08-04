@@ -8,6 +8,7 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
+import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.menu.pages.MenuPageGamePause;
 import de.fhtrier.gdw.ss2013.menu.pages.MenuPageRoot;
 import de.fhtrier.gdw.ss2013.settings.DebugModeStatus;
@@ -39,7 +40,11 @@ public class MenuManager {
 	/** The input we're responding to */
 	protected Input input;
 	protected Image foregroundBorder;
+	protected Image background;
 	protected Type type;
+	protected float backgroundX = 0;
+	protected boolean backgroundDirectionLeft = true;
+	protected float backgroundSpeed = 25.0f;
 
 	float xOffset = 0;
 	float yOffset = 0;
@@ -60,13 +65,14 @@ public class MenuManager {
 		
 		switch(type) {
 		case MAINMENU:
-			rootPage = currentPage = new MenuPageRoot(container, game, this, false);
+			rootPage = currentPage = new MenuPageRoot(container, game, this);
 			break;
 		case INGAME:
 			rootPage = currentPage = new MenuPageGamePause(container, game, this);
 			break;
 		}
 		//foregroundBorder = new Image("res/menu/fg_border.png");
+		background = AssetLoader.getInstance().getImage("background_menu");
 	}
 
 	public void render(GameContainer container, StateBasedGame game, Graphics g)
@@ -77,11 +83,13 @@ public class MenuManager {
 
 			if (this.type == Type.INGAME) {
 			    g.setColor(screenDarken);
+			    g.fillRect(0, 0, container.getWidth(), container.getHeight());
 			} else {
-			    g.setColor(Color.black);
+    			if (background.getHeight() < container.getHeight())
+    			    background.draw(backgroundX, 0, background.getWidth(), container.getHeight());
+    			else
+    			    background.draw((int) backgroundX, 0);
 			}
-			
-			g.fillRect(0, 0, container.getWidth(), container.getHeight());
 			
 			//Image i = AssetLoader.getInstance().getImage("menu_ref_image");
 			xOffset = (container.getWidth() - MenuManager.MENU_WIDTH) / 2.0f;
@@ -117,6 +125,19 @@ public class MenuManager {
 			} else {
 				lastKey = -1;
 			}
+		}
+		
+		if (backgroundDirectionLeft) {
+		    if (this.background.getWidth() + backgroundX - container.getWidth() <= 0.0f)
+                backgroundDirectionLeft = false;
+		    else
+		        backgroundX -= backgroundSpeed * delta / 1000.0f;
+		    
+		} else {
+		    if (backgroundX >= 0)
+                backgroundDirectionLeft = true;
+		    else
+		        backgroundX += backgroundSpeed * delta / 1000.0f;
 		}
 	}
 

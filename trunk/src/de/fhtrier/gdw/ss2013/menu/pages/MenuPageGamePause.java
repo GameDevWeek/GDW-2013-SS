@@ -22,7 +22,7 @@ public class MenuPageGamePause extends MenuPage {
         
         Font font = AssetLoader.getInstance().getFont("jabjai_heavy");
         
-        float x = 100;
+        float x = 25;
         float y = 200;
         float h = font.getLineHeight() * 1.5f;
                 

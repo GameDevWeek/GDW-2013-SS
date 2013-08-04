@@ -159,6 +159,10 @@
   "pfad" : "menu/logo"
 },
 {
+  "name" : "background_menu",
+  "pfad" : "menu/background"
+},
+{
   "name" : "winning",
   "pfad" : "menu/win/troll"
 },

@@ -29,7 +29,7 @@ public class MenuPage {
     private String type;
     MenuManager menuManager;
     protected Image bgImage;
-    protected Color hoverColor = new Color(Integer.parseInt("F8BB08", 16));
+    protected Color hoverColor = new Color(Integer.parseInt("FC771F", 16));
     protected Color standardColor = Color.white;
     protected Color pressedColor = Color.cyan;
     protected Font standardFont;
@@ -39,9 +39,9 @@ public class MenuPage {
 
         this.menuManager = menuManager;
         this.parent = parent;
-        if (bgImage != null) {
-            this.bgImage = AssetLoader.getInstance().getImage(bgImage);
-        }
+        //if (bgImage != null) {
+        //    this.bgImage = AssetLoader.getInstance().getImage(bgImage);
+        //}
         this.setType(type);
     }
     
