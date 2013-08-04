@@ -487,8 +487,7 @@ public final class Astronaut extends EntityCollidable implements
                                                                                     // deals
                                                                                     // damage
                 World.getInstance().getScoreCounter().addScore(5);
-                World.getInstance().getEntityManager()
-                        .removeEntity(damageDealer);
+                damageDealer.setHealth(0);
                 if (damageTaker instanceof Astronaut)
                     damageTaker.setVelocityY(-.50f
                             * ((Astronaut) damageTaker).getJumpSpeed());

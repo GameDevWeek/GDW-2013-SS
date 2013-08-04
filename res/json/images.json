@@ -47,23 +47,23 @@
   "pfad" : "entities/door/swamp_door_open"
 },
 {
-  "name" : "teleporter-active",
+  "name" : "teleporter_active",
   "pfad" : "entities/teleporter-active"
 },
 {
-  "name" : "teleporter-inactive",
+  "name" : "teleporter_inactive",
   "pfad" : "entities/teleporter-inactive"
 },
 {
-  "name" : "platform-crystal",
+  "name" : "platform_crystal",
   "pfad" : "entities/platform/crystal"
 },
 {
-  "name" : "platform-robo",
+  "name" : "platform_robo",
   "pfad" : "entities/platform/robo"
 },
 {
-  "name" : "platform-swamp",
+  "name" : "platform_swamp",
   "pfad" : "entities/platform/swamp"
 },
 {

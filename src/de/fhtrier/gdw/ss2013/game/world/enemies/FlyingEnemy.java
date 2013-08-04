@@ -13,6 +13,7 @@ import org.newdawn.slick.Sound;
 import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.commons.utils.SafeProperties;
+import de.fhtrier.gdw.ss2013.MainGame;
 import de.fhtrier.gdw.ss2013.constants.EnemyConstants;
 import de.fhtrier.gdw.ss2013.constants.PlayerConstants;
 import de.fhtrier.gdw.ss2013.game.Entity;
@@ -22,6 +23,7 @@ import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.game.world.bullets.EnemyBullet;
 import de.fhtrier.gdw.ss2013.game.world.objects.FollowPath;
+import de.fhtrier.gdw.ss2013.menu.MenuManager;
 import de.fhtrier.gdw.ss2013.physix.PhysixConst;
 import de.fhtrier.gdw.ss2013.physix.PhysixManager;
 import de.fhtrier.gdw.ss2013.physix.PhysixShape;
@@ -218,7 +220,9 @@ public abstract class FlyingEnemy extends AbstractEnemy implements EntityFilter 
     }
 
     public void move() {
-        soundPlayer.playSoundAt(wingSound, this);
+        if (MainGame.currentState == 1) {
+            soundPlayer.playSoundAt(wingSound, this);
+        }
 
         float distToEnd = getPosition().sub(endPosition).length();
         float distToStart = getPosition().sub(startPosition).length();
