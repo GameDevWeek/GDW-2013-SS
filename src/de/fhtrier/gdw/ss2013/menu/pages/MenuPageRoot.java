@@ -67,7 +67,7 @@ public class MenuPageRoot extends MenuPage {
 	                SettingsInfo settings = AssetLoader.getInstance().getSettings();
 	                AssetLoader.getInstance().writeSettings(settings);
 	                World.getInstance().setLevelName(settings.lastLoadedMap);
-	                World.getInstance().shallBeReseted(true);
+	                World.getInstance().reset();
 	                MainGame.changeState(MainGame.GAMEPLAYSTATE);
 	            }
 	        });
