@@ -100,7 +100,7 @@
 },
 {
 	"name" : "Checkpoint",
-	"pfad" : "gui/checkpoint"
+	"pfad" : "entities/checkpoint"
 },
 {
   "name" : "world_background",

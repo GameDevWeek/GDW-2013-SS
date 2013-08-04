@@ -13,6 +13,7 @@ import de.fhtrier.gdw.ss2013.game.EntityCollidable;
 import de.fhtrier.gdw.ss2013.game.filter.Interactable;
 import de.fhtrier.gdw.ss2013.game.player.Alien;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
+import de.fhtrier.gdw.ss2013.game.player.PlayerState;
 import de.fhtrier.gdw.ss2013.game.world.World;
 
 
@@ -89,6 +90,7 @@ public class Teleporter extends EntityCollidable implements Interactable {
         if (isActive && target != null) {
             Entity other = getOtherEntity(contact);
             setParticle(AssetLoader.getInstance().getParticle("teleporter_test").clone());
+            
             if(other instanceof Alien || other instanceof Astronaut) {
                 
                 World.getInstance().getAstronaut().teleportAlienback();
@@ -108,7 +110,7 @@ public class Teleporter extends EntityCollidable implements Interactable {
     public void endContact(Contact contact) {
         if (isActive && target != null) {
             Entity other = getOtherEntity(contact);
-        
+           
             
             
             if (other instanceof Astronaut || other instanceof Alien
