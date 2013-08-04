@@ -1,5 +1,5 @@
 {
   "volume" : 10,
-  "fullscreen" : true,
-  "lastLoadedMap" : "run_or_die"
+  "fullscreen" : false,
+  "lastLoadedMap" : "tutorial"
 }

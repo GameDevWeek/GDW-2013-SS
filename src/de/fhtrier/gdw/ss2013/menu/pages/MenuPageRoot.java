@@ -17,6 +17,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.assetloader.infos.ScoreInfo;
+import de.fhtrier.gdw.ss2013.assetloader.infos.SettingsInfo;
 import de.fhtrier.gdw.ss2013.game.score.HighscoreManager;
 import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.menu.Button;
@@ -60,6 +61,16 @@ public class MenuPageRoot extends MenuPage {
 		    MenuPageLevelSelect levelSelect = new MenuPageLevelSelect(container, _game, manager, this, null);
 		    addCenteredButton("Spiel starten", xCenter, yCenter + hText * (buttonCount - i--), font, 
 		            new MenuPageAction(manager, levelSelect));
+		    
+	        addCenteredButton("Los geht's!", xCenter, yCenter +hText* (buttonCount - i--), font, new IActionListener() {
+	            public void onAction () {
+	                SettingsInfo settings = AssetLoader.getInstance().getSettings();
+	                AssetLoader.getInstance().writeSettings(settings);
+	                World.getInstance().setLevelName(settings.lastLoadedMap);
+	                World.getInstance().shallBeReseted(true);
+	                MainGame.changeState(MainGame.GAMEPLAYSTATE);
+	            }
+	        });
 		    
 		    MenuPageOptions options = new MenuPageOptions(container, _game, manager, this, null);
 		    addCenteredButton("Einstellungen", xCenter, yCenter + hText * (buttonCount - i--), font, 

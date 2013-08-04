@@ -8,15 +8,20 @@
  */
 package de.fhtrier.gdw.ss2013.game.world.objects;
 
+import org.jbox2d.callbacks.DebugDraw;
 import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.contacts.Contact;
 import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.util.Log;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.constants.SpawnerConstants;
 import de.fhtrier.gdw.ss2013.game.EntityCollidable;
+import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.world.World;
+import de.fhtrier.gdw.ss2013.settings.DebugModeStatus;
 
 public class OxygenFlower extends EntityCollidable {
 
@@ -85,6 +90,11 @@ public class OxygenFlower extends EntityCollidable {
 		            ((OxygenBubble) entity).setFlower(this);
 		            ((OxygenBubble) entity).setOrigin(x, y);
 		            this.count++;
+		            Astronaut astro = World.getInstance().getAstronaut();
+						float directPickupDistance=150f;
+		            if(entity.getOrigin().distance(astro.getPosition()) <= directPickupDistance){
+							entity.useBubble();
+						}
 	        	}
 	            this.bubbleTime -= this.bubbleRespawnTimer; 
         }
@@ -92,7 +102,6 @@ public class OxygenFlower extends EntityCollidable {
 
     @Override
     public void beginContact(Contact contact) {
-
     }
 
     @Override
