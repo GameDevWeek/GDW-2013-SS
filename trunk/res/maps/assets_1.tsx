@@ -28,6 +28,7 @@
  </tile>
  <tile id="5">
   <properties>
+   <property name="animation" value="asset_lampe_sprite"/>
    <property name="type" value="decoration"/>
   </properties>
  </tile>
@@ -73,6 +74,7 @@
  </tile>
  <tile id="16">
   <properties>
+   <property name="animation" value="blumenleuchten_sprite2"/>
    <property name="type" value="decoration"/>
   </properties>
  </tile>
