@@ -71,7 +71,7 @@ public final class Astronaut extends EntityCollidable implements
     private int stepFrame2 = 4;
 
     // private long time = 0;
-    private int deadtime = 5000;
+    private int deadtime = 1000;
 
     public Astronaut() {
         AssetLoader al = AssetLoader.getInstance();
