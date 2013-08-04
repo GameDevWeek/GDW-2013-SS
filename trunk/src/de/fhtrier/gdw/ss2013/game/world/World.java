@@ -171,7 +171,7 @@ public class World {
         }
 
         g.popTransform();
-        scoreCounter.render(g);
+        //scoreCounter.render(g);
     }
 
     public void update(GameContainer container, int delta)

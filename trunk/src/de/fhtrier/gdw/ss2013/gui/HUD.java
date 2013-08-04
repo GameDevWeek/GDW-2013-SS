@@ -129,8 +129,8 @@ public class HUD {
 		//scoreCounter.render(container, game, g);
 		
 		
-        String fps = String.format("%d fps", (int)fpsCalc.calculate());
-        CenteredText.draw(container.getWidth() / 2, 30, fps, fpsFont);
+        //String fps = String.format("%d fps", (int)fpsCalc.calculate());
+        //CenteredText.draw(container.getWidth() / 2, 30, fps, fpsFont);
 	}
 
 }
