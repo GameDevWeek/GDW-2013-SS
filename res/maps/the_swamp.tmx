@@ -123,5 +123,22 @@
   <object gid="848" x="7258" y="2062"/>
   <object type="solid" x="9" y="2033" width="1176" height="2880"/>
   <object type="solid" x="-1296" y="-256" width="1584" height="3152"/>
+  <object gid="846" x="1944" y="3368"/>
+  <object gid="846" x="2040" y="3396"/>
+  <object gid="846" x="1936" y="3500"/>
+  <object gid="846" x="2032" y="3548"/>
+  <object gid="846" x="2108" y="3504"/>
+  <object gid="846" x="2196" y="3404"/>
+  <object gid="846" x="2292" y="3292"/>
+  <object gid="846" x="2400" y="3272"/>
+  <object gid="846" x="2628" y="3412"/>
+  <object gid="846" x="2648" y="3536"/>
+  <object gid="846" x="2664" y="3584"/>
+  <object gid="846" x="2256" y="3520"/>
+  <object gid="846" x="2304" y="3440"/>
+  <object gid="846" x="2328" y="3420"/>
+  <object gid="846" x="2152" y="3252"/>
+  <object gid="846" x="2552" y="3588"/>
+  <object gid="848" x="2972" y="3708"/>
  </objectgroup>
 </map>
