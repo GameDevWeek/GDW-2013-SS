@@ -21,8 +21,8 @@
    </properties>
   </object>
   <object type="solid" x="1025" y="2524" width="62" height="684"/>
-  <object type="solid" x="1353" y="2583" width="180" height="628"/>
-  <object type="solid" x="1671" y="2646" width="108" height="562"/>
+  <object type="solid" x="1345" y="2580" width="192" height="628"/>
+  <object type="solid" x="1659" y="2641" width="126" height="565"/>
   <object type="solid" x="5644" y="2455" width="5864" height="747"/>
   <object type="deadzone" x="823" y="2817" width="2126" height="134"/>
   <object gid="631" x="899" y="1606">
@@ -31,8 +31,8 @@
    </properties>
   </object>
   <object type="solid" x="79" y="2457" width="679" height="756"/>
-  <object type="solid" x="1992" y="2769" width="181" height="426"/>
-  <object type="solid" x="2305" y="2774" width="121" height="443"/>
+  <object type="solid" x="1983" y="2767" width="194" height="433"/>
+  <object type="solid" x="2305" y="2770" width="127" height="439"/>
   <object name="door" gid="628" x="4162" y="2430"/>
   <object type="solid" x="2954" y="2136" width="684" height="132"/>
   <object type="solid" x="8397" y="2387" width="173" height="121"/>
@@ -157,7 +157,7 @@
     <property name="trigger" value="welcome_tt"/>
    </properties>
   </object>
-  <object type="solid" x="2628" y="2775" width="119" height="426"/>
+  <object type="solid" x="2624" y="2772" width="129" height="429"/>
   <object name="welcome_tt" gid="641" x="310" y="2148">
    <properties>
     <property name="image" value="welcome_tt"/>
@@ -176,7 +176,7 @@
   <object type="solid" x="3979" y="1173" width="239" height="570"/>
   <object name="door3" gid="628" x="3647" y="2261"/>
   <object type="solid" x="4404" y="1364" width="855" height="73"/>
-  <object gid="646" x="3488" y="1421"/>
+  <object gid="646" x="3413" y="1417"/>
   <object gid="633" x="4757" y="1352">
    <properties>
     <property name="trigger" value="door4"/>
@@ -189,7 +189,7 @@
   <object gid="635" x="1738" y="2353"/>
   <object gid="635" x="1411" y="2162"/>
   <object type="solid" x="1767" y="2707" width="86" height="491"/>
-  <object type="solid" x="1096" y="2459" width="114" height="748"/>
+  <object type="solid" x="1096" y="2459" width="120" height="748"/>
   <object type="solid" x="751" y="2514" width="76" height="732"/>
   <object type="solid" x="5498" y="2965" width="143" height="232"/>
   <object type="solid" x="3338" y="2592" width="243" height="612"/>
@@ -229,22 +229,20 @@
    </properties>
   </object>
   <object gid="645" x="3268" y="2818"/>
-  <object gid="646" x="5560" y="2950"/>
+  <object gid="646" x="5551" y="2951"/>
   <object gid="635" x="3824" y="2840"/>
   <object gid="632" x="3818" y="2108"/>
   <object gid="631" x="4076" y="326"/>
   <object gid="631" x="4542" y="500"/>
   <object gid="631" x="5184" y="265"/>
-  <object gid="638" x="4311" y="1348"/>
+  <object gid="638" x="4443" y="1347"/>
   <object gid="638" x="4995" y="1348"/>
   <object gid="638" x="5476" y="1079"/>
   <object gid="631" x="4319" y="295"/>
   <object gid="631" x="4704" y="275"/>
   <object gid="631" x="4943" y="360"/>
-  <object gid="626" x="3332" y="1354"/>
-  <object gid="645" x="3754" y="1358"/>
-  <object gid="649" x="3490" y="1330"/>
-  <object gid="649" x="5552" y="2879"/>
+  <object gid="626" x="158" y="2397"/>
+  <object gid="645" x="3645" y="1411"/>
   <object type="solid" x="5555" y="1112" width="258" height="385"/>
   <object name="tp5" gid="643" x="5616" y="1600">
    <properties>
@@ -272,7 +270,7 @@
   <object gid="631" x="6406" y="288"/>
   <object gid="646" x="7312" y="2432"/>
   <object gid="649" x="7310" y="2364"/>
-  <object gid="632" x="4073" y="1142"/>
+  <object gid="632" x="4062" y="1170"/>
   <object type="solid" x="6149" y="461" width="187" height="48"/>
   <object type="solid" x="6209" y="2196" width="255" height="42"/>
   <object gid="632" x="6247" y="2171"/>
