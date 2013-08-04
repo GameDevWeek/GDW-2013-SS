@@ -45,13 +45,13 @@ public final class Alien extends Entity implements AlienController {
     private boolean invertAnimation;
     private Vector2f dynamicTarget = new Vector2f();
     private float maxDistance;
-
+    private int ani_timer=0;
     private SoundPlayer soundPlayer;
     private Sound shootSound;
     private boolean abilityInUse = false;
 
     public Alien() {
-        animation = AssetLoader.getInstance().getAnimation("alien_standing");
+        animation = AssetLoader.getInstance().getAnimation("alien_weinen");
         // Alien does NOT have different movestates! byRobin
         currentSelected = null;
         selectionRadius = 50;
@@ -132,6 +132,8 @@ public final class Alien extends Entity implements AlienController {
             lastShotTime = System.currentTimeMillis();
         }
     }
+    
+    
 
     @Override
     public void nextAbility() {
@@ -209,12 +211,17 @@ public final class Alien extends Entity implements AlienController {
     public void update(GameContainer container, int delta)
             throws SlickException {
         super.update(container, delta);
-
+        if(ani_timer>=4000)
+        {
+        this.animation.restart();
+        ani_timer=0;
+        }
+        ani_timer+=delta;
         if (onPlayer) {
             dynamicTarget.set(astronaut.getPosition());
         } else {
             dynamicTarget.set(this.getPosition());
-
+            
             if (astronaut.getPosition().distance(getPosition()) >= maxDistance) {
 
                 astronaut.setParticle(AssetLoader.getInstance()
@@ -262,15 +269,9 @@ public final class Alien extends Entity implements AlienController {
         if (!onPlayer) {
             Vector2f position = getPosition();
             Vector2f dim = physicsObject.getDimension();
-
-            if (invertAnimation) {
-                animation.draw(position.x + animation.getWidth() / 2,
-                        position.y + dim.y - animation.getHeight(),
-                        -animation.getWidth(), animation.getHeight());
-            } else {
                 animation.draw(position.x - animation.getWidth() / 2,
                         position.y + dim.y - animation.getHeight());
-            }
+            
         }
         super.render(container, g);
     }
