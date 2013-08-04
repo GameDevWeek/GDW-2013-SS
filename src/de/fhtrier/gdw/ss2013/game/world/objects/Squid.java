@@ -62,9 +62,7 @@ public class Squid extends Entity {
 		setVelocity(velocity);
 
 		double wanderAngleAccel =(0.5f - (random.nextFloat()));// (0.2 * Math.random() / (Math.random() * RAND_MAX) - 0.1);
-		Log.debug("Accel"+wanderAngleAccel);
 		wanderAngularVelocity += 0.05f* wanderAngleAccel;
-		Log.debug("Velocity"+wanderAngularVelocity);
 
 		// clamp
 		wanderAngularVelocity=Math.max(-MAX_WANDER_VELO, Math.min(wanderAngularVelocity, MAX_WANDER_VELO));

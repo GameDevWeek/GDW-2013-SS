@@ -84,7 +84,7 @@ public class LevelLoader {
                 continue;
             }
             if(object.getProperties() != null) {
-                object.getProperties().setProperty("renderLayer", String.valueOf(layer.getIndex()));
+                object.getProperties().setProperty("renderLayer", layer.getProperty("renderLayer", String.valueOf(layer.getIndex())));
             }
 //            object.getProperties().setProperty("renderLayer", String.valueOf());
             switch (object.getPrimitive()) {
