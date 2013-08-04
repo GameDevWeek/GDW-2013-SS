@@ -46,7 +46,7 @@ public class Teleporter extends EntityCollidable implements Interactable {
         if (properties != null) {
 
             isActive = properties.getBoolean("isActive", true);
-            mirrored = properties.getBoolean("mirrored", true);
+            mirrored = properties.getBoolean("mirrored", false);
         }
 
         img = AssetLoader.getInstance().getImage(
