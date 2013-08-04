@@ -98,10 +98,10 @@
 },
 {
   "name" : "player_couple_dead",
-  "pfad" : "player/couple/dead",
-  "anzBilder" : 1,
+  "pfad" : "player/couple/Todesanimation2",
+  "anzBilder" : 8,
   "animSpeed" : 100,
-  "loop" : true
+  "loop" : false
 },
 {
   "name" : "alien_standing",
