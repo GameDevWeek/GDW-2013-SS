@@ -15,12 +15,36 @@
   "pfad" : "entities/box"
 },
 {
+  "name" : "robo_door_closed",
+  "pfad" : "entities/door/robo_door_closed"
+},
+{
+  "name" : "robo_door_open",
+  "pfad" : "entities/door/robo_door_open"
+},
+{
+  "name" : "crystal_door_closed",
+  "pfad" : "entities/door/crystal_door_closed"
+},
+{
+  "name" : "crystal_door_open",
+  "pfad" : "entities/door/crystal_door_open"
+},
+{
+  "name" : "swamp_door_closed",
+  "pfad" : "entities/door/swamp_door_closed"
+},
+{
+  "name" : "swamp_door_open",
+  "pfad" : "entities/door/swamp_door_open"
+},
+{
   "name" : "door_closed",
-  "pfad" : "entities/door/robodoor_closed"
+  "pfad" : "entities/door/swamp_door_closed"
 },
 {
   "name" : "door_open",
-  "pfad" : "entities/door/robodoor_open"
+  "pfad" : "entities/door/swamp_door_open"
 },
 {
   "name" : "teleporter-active",
