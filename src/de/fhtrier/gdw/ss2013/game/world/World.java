@@ -156,7 +156,7 @@ public class World {
         g.popTransform();
         camera.pushViewMatrix(g);
 
-        camera.debugdraw(g);
+        //camera.debugdraw(g);
 
         // mapRender.renderTileLayers(g, 0, 0, 0, 0, map.getWidth(),
         // map.getHeight());
