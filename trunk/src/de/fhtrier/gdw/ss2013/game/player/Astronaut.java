@@ -222,7 +222,13 @@ public final class Astronaut extends EntityCollidable implements
         case dead:
             deadtime -= delta;
             if (deadtime <= 0) {
-                World.getInstance().shallBeReseted(true);
+                oxygen = maxOxygen;
+                invertAnimation = false;
+                physicsObject.setPosition(origin);
+                physicsObject.setLinearVelocity(0, 0);
+                teleportAlienback();
+                this.state = PlayerState.standing;
+                updateStateAnimation();
             }
             break;
         default:
