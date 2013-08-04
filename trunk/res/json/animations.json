@@ -111,6 +111,13 @@
   "loop" : false
 },
 {
+  "name" : "alien_weinen_loop",
+  "pfad" : "player/alien/AlienSitzendheulend",
+  "anzBilder" : 9,
+  "animSpeed" : 150,
+  "loop" : true
+},
+{
   "name" : "alien_standing",
   "pfad" : "player/alien/standing",
   "anzBilder" : 1,
