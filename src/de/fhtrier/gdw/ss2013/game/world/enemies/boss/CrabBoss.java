@@ -1,5 +1,6 @@
 package de.fhtrier.gdw.ss2013.game.world.enemies.boss;
 
+import de.fhtrier.gdw.ss2013.MainGame;
 import java.util.Random;
 
 import org.jbox2d.dynamics.BodyType;
@@ -167,7 +168,7 @@ public class CrabBoss extends AbstractBoss {
 			timer -= delta;
 			if (timer < 0) {
 				setPhase(new TargetingPhase(new FiringEnemies(
-						new Random().nextInt(5) + 5), 1000));
+						new Random().nextInt(5) + 3), 1000));
 			}
 			float speed = (float) (MAX_SPEED * Math.pow(
 					1 - ((float) timer / PHASE_DURATION), 2.0));
@@ -217,6 +218,7 @@ public class CrabBoss extends AbstractBoss {
 			timer -= delta;
 			if (timer < 0) {
 				damage += 1;
+                meteroidsFired--;
 				setPhase(new TargetingPhase(new StepForwardPhase(), 300));
 			}
 		}
@@ -238,6 +240,7 @@ public class CrabBoss extends AbstractBoss {
 			if (timer < 0) {
 				World.getInstance().getEntityManager()
 						.removeEntity(CrabBoss.this);
+                MainGame.changeState(MainGame.WINSTATE);
 			}
 		}
 
@@ -274,7 +277,7 @@ public class CrabBoss extends AbstractBoss {
 		@Override
 		void enter() {
 
-			boolean isRandomStone = Math.random() < 0.10;
+			boolean isRandomStone = Math.random() < 0.15;
 
 			EntityManager entityManager = World.getInstance()
 					.getEntityManager();
