@@ -1,5 +1,7 @@
 {
   "volume" : 10,
   "fullscreen" : false,
-  "lastLoadedMap" : "tutorial"
+  "lastLoadedMap" : "tutorial",
+  "lastAstronautName" : "sdfs",
+  "lastAlienName" : "yc"
 }
