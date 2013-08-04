@@ -113,4 +113,20 @@
 {
  "name" : "doorclosed",
  "pfad" : "res/sounds/tuerschliessen.ogg"
+},
+{
+ "name" : "accelerator",
+ "pfad" : "res/sounds/accelerator.ogg"
+},
+{
+ "name" : "checkpoint",
+ "pfad" : "res/sounds/checkpoint.ogg"
+},
+{
+ "name" : "luftbubbles",
+ "pfad" : "res/sounds/luftbubbles.ogg"
+},
+{
+ "name" : "teleporter",
+ "pfad" : "res/sounds/teleporter.ogg"
 }]

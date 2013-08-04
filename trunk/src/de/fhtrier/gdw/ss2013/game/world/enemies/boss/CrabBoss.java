@@ -8,6 +8,7 @@ import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 import org.newdawn.slick.geom.Vector2f;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
@@ -17,6 +18,9 @@ import de.fhtrier.gdw.ss2013.game.camera.ThreePointCamera;
 import de.fhtrier.gdw.ss2013.game.world.World;
 import de.fhtrier.gdw.ss2013.game.world.objects.ActivatableMeteroid;
 import de.fhtrier.gdw.ss2013.game.world.objects.Meteroid;
+import de.fhtrier.gdw.ss2013.sound.SoundLocator;
+import de.fhtrier.gdw.ss2013.sound.SoundPlayer;
+
 import org.newdawn.slick.Font;
 
 public class CrabBoss extends AbstractBoss {
@@ -35,6 +39,10 @@ public class CrabBoss extends AbstractBoss {
     private Animation animation_attacking;
     private Animation animation_walking;
     private Font font;
+    private SoundPlayer soundPlayer;
+    private Sound bossCharge;
+    private Sound bossHit;
+    private Sound bossShot;
 
 	@Override
 	protected void initialize() {
@@ -53,6 +61,11 @@ public class CrabBoss extends AbstractBoss {
 		tpCamera.addDynamicTarget(cameraTarget);
 		tpCamera.setZoom(0.5f);
 		damage = 0;
+		
+		soundPlayer = SoundLocator.getPlayer();
+		bossCharge = SoundLocator.loadSound("boss_mama_charge");
+		bossHit = SoundLocator.loadSound("boss_mama_hit");
+		bossShot = SoundLocator.loadSound("boss_mama_shot");
 	}
 
 	private void recalculateCameraTargetPosition() {

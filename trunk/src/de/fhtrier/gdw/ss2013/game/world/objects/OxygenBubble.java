@@ -53,7 +53,7 @@ public class OxygenBubble extends EntityCollidable implements Interactable {
 		super.initialize();
 		timer = (int)(Math.random() * 100);
       soundPlayer = SoundLocator.getPlayer();
-//    pickUp = SoundLocator.loadSound("")
+      pickUp = SoundLocator.loadSound("luftbubbles");
 	}
 
 	@Override
@@ -77,6 +77,7 @@ public class OxygenBubble extends EntityCollidable implements Interactable {
 			Astronaut astro = (Astronaut)e;
 			if (astro.getOxygen() + oxygenLevel < astro.getMaxOxygen()) {
 				useBubble();
+				soundPlayer.playSoundAt(pickUp, this);
 			}
 
 		}
