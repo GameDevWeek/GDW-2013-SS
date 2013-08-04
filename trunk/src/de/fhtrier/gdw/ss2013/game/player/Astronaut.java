@@ -426,6 +426,7 @@ public final class Astronaut extends EntityCollidable implements
     public void die() {
         if (!Cheats.isGodmode) {
             setState(PlayerState.dead);
+            System.out.println(animation);
             soundPlayer.playSoundAt(dieSound, this);
         }
     }
