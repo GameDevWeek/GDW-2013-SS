@@ -23,7 +23,6 @@
   <object type="solid" x="1105" y="-96" width="3302" height="601"/>
   <object type="solid" x="1285" y="2836" width="109" height="389"/>
   <object type="solid" x="1055" y="2704" width="114" height="728"/>
-  <object type="solid" x="3911" y="2962" width="106" height="257"/>
   <object type="solid" x="1287" y="3092" width="2727" height="129"/>
   <object type="solid" x="4143" y="2704" width="461" height="723"/>
   <object gid="632" x="2626" y="3073">
@@ -32,8 +31,8 @@
     <property name="maxBubblesOnPlant" value="3"/>
    </properties>
   </object>
-  <object type="solid" x="3952" y="498" width="193" height="2347"/>
-  <object name="rightaccel" gid="634" x="4078" y="2925">
+  <object type="solid" x="3952" y="498" width="192" height="2373"/>
+  <object name="rightaccel" gid="634" x="4081" y="2918">
    <properties>
     <property name="velocity_x" value="-4000"/>
     <property name="velocity_y" value="0"/>
@@ -72,5 +71,8 @@
   </object>
   <object gid="661" x="3552" y="2943"/>
   <object gid="672" x="3498" y="3093"/>
+  <object type="solid" x="3913" y="3102">
+   <polyline points="0,0 0,-140 107,-122 106,1 97,110"/>
+  </object>
  </objectgroup>
 </map>
