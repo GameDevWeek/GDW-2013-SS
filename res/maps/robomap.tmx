@@ -3,10 +3,27 @@
  <tileset firstgid="1" source="robotileset.tsx"/>
  <tileset firstgid="626" source="entity_tileset.tsx"/>
  <tileset firstgid="647" source="moving_platform.tsx"/>
- <objectgroup name="door" width="200" height="150">
-  <object name="blub" gid="628" x="1093" y="779"/>
+ <objectgroup name="layered behind" width="200" height="150">
+  <properties>
+   <property name="renderLayer" value="-1"/>
+  </properties>
+  <object name="doo4" gid="628" x="5193" y="3152"/>
+  <object name="doo3" gid="628" x="4927" y="2860"/>
+  <object name="doo2" gid="628" x="4737" y="2859"/>
+  <object name="doo1" gid="628" x="4545" y="2856"/>
+  <object name="door1" gid="628" x="734" y="1246"/>
+  <object name="door2" gid="628" x="1856" y="548"/>
+  <object name="door3" gid="628" x="2529" y="2331"/>
+  <object name="door4" gid="628" x="1531" y="2323"/>
+  <object name="door5" gid="628" x="2560" y="2924"/>
+  <object name="secretdoor" gid="628" x="3023" y="4766"/>
+  <object name="second_secret_door" gid="628" x="3361" y="4767"/>
+  <object name="secret_door_three" gid="628" x="3628" y="4763"/>
+  <object name="cin" gid="628" x="6738" y="3170"/>
+  <object name="cout" gid="628" x="6932" y="2556"/>
+  <object name="deprec" gid="628" x="6892" y="2142"/>
  </objectgroup>
- <layer name="Lava" width="200" height="150">
+ <layer name="Lava" width="200" height="150" visible="0">
   <data encoding="base64" compression="zlib">
    eJzt3FFu4jAQBuD0ib3/3dhjdK+wfalYsR57xjGBhu+TLNTihMSe36EBddsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgGe4frXfjUdg2z6/2p/GI7Btl49t+/Xx/yMAAAAAAAAAAGRdt9v3FqMG7+pzu31vMWrwri7/fG8xagAAAHB210Rzj3WdzHibg9fxmWjusa6TGW9z8Dq+76/2mnus6xnv19eal9b/U/C5xGP0PvvheJlrhbUMbnq5uG+t64oMcXatTEQ/w1ldBtcA7395V733Ub2/x+FdZP8eP1NOWvfm3IfgXqZGznQvK8rFWXKSPZczrHFHiWogm437sY7qaU8tRp/FVPcT3X87S0ay5zGTo/s8zcxH7/Ozn2L0nqpVL/fbtJ7PjmM0R6P5qMx3q15mMvJqucqO76o+M7mYzeazxjpTp5UW1eDoHDPrejRmM3PVykhv+5nn9qwJved7v6+M9d58VOt8z3bPzMgoN5njHK3rvfGJ+kT7zmRo9ZyPrj3VFq2RM/WTmYfV2ageZzTPvW2r83t0PlrzkDnHaDxGGRrVQab/bG2srvVsqxx/pt+j14mZfFT77t3PEdnI1Gr02MpGbxwqcznK56h2quvyTJ3PzvGeY8/0jfYZzW1vTcqsV7Nz3JuXTP8jc1Fts3Wzum+lLqs1OJOdPVnKvm6lFleM+YrMVo43+7pHuD/GR2+3Um/9nan/TP/v1x3laKaOovpo9Zut9Uz+V6wP1ePJjMcz8nEG1XVnRa5nMzGz70ptH3Hukeo1Y5Qd+Virt4YdVSPvbGVe5eMx5OMcMnNInXxA7NnvweHVyQcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8NP9BeZJfD0=
   </data>
@@ -21,7 +38,7 @@
    eJzt2l1O2zAAB3Dzvok9bZfgAjtAOcU0JM5QsUvwsFG4A0PqFcbKJK7QjedtB9jH4z5sNdGy4NBUKSTQ30/6q8F1TR7sxHYSAgAAAAAAADc56/sEYIBexExi3sQcxZx3aOv1Ws4I1mtd1/53MeNKm23aTb9J4+s45lXl+GJN5wRdTTv+/nmlnbcxs5idmFHMbljcV1K/z91bLjv+b7hN2zGHMY+2QriKn086tDWtHadxsl8py42FrmMTblOa33ysleXmRW3mSpeZ49OG728qg6Foe01f1o+fxczDv/XDXrg+nyq/n1TqjQMMU7p3lPtOZX89WaGs3tdTWTkmDkK7vm9+xVCdLq+ystTfP4XFmiYlrWneF5+5pDrfw2L902XtA0NTX5OUa5kfYTGXSvu1y56HWH/wEOXmZuV86mfxOcvUOakdvwzNczS4D3J7V03r+jS3erzVvm17WtxnTWv4+p5wkvr1txXbX8f48F4Kd+Fppqzt/lL5nHGVe0eTNuOj+l5KbqzCXVhl/zWtydfx3lT1OUp1vTIp2k/rGs9NGILctby8dpf9tQ9pDFnH07fc/WMoz/Q+9H0CbDz7S/C/6tx/VPs7va9uPQwL9XdQhjK3giGa930CAAAArORzzJciX3s+FxiaXzG/i/zp+VwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANs0sZidmFLMbcxQziTnP1J0X9WCTTMOi7+9Xyi4b6jaVw0NV9vk0Ri5qZVVnDeXwUB3H7IXr86k0ViaVpHrjmIMb2prcxglCz1KfH7eoNy0Cm2I75rDI1ZKU9QAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACW+QtIQKQv
   </data>
  </layer>
- <objectgroup name="Zonen" width="200" height="150">
+ <objectgroup name="Zonen" width="200" height="150" visible="0">
   <object type="solid" x="1991" y="3163" width="1705" height="1323"/>
   <object type="solid" x="8" y="3667" width="1639" height="1279"/>
   <object type="solid" x="-26" y="4767" width="13007" height="1135"/>
@@ -137,7 +154,7 @@
   <object gid="630" x="1792" y="4736"/>
   <object gid="630" x="1728" y="4736"/>
   <object gid="630" x="1664" y="4736"/>
-  <object gid="626" x="240" y="701"/>
+  <object gid="626" x="294" y="702"/>
   <object gid="630" x="1920" y="4352"/>
   <object gid="630" x="1920" y="4288"/>
   <object gid="630" x="1920" y="4224"/>
@@ -159,13 +176,11 @@
   <object type="solid" x="2249" y="1873" width="459" height="203"/>
   <object type="solid" x="2439" y="1523" width="291" height="531"/>
   <object gid="630" x="516" y="1152"/>
-  <object name="door1" gid="628" x="752" y="1250"/>
   <object name="button2" gid="633" x="950" y="1162">
    <properties>
     <property name="trigger" value="door2"/>
    </properties>
   </object>
-  <object name="door2" gid="628" x="2048" y="536"/>
   <object name="button1" gid="633" x="952" y="916">
    <properties>
     <property name="trigger" value="door1"/>
@@ -187,14 +202,11 @@
     <property name="path" value="p1"/>
    </properties>
   </object>
-  <object name="door4" gid="628" x="1541" y="2333"/>
-  <object name="door5" gid="628" x="2621" y="2897"/>
   <object gid="633" x="2943" y="2320">
    <properties>
     <property name="trigger" value="door5"/>
    </properties>
   </object>
-  <object name="door3" gid="628" x="2531" y="2331"/>
   <object gid="629" x="1345" y="7827">
    <properties>
     <property name="trigger" value="door4"/>
@@ -235,20 +247,17 @@
     <property name="trigger" value="secretdoor"/>
    </properties>
   </object>
-  <object name="secretdoor" gid="628" x="2932" y="4768"/>
   <object gid="633" x="1985" y="2439">
    <properties>
     <property name="trigger" value="second_secret_door"/>
    </properties>
   </object>
-  <object name="second_secret_door" gid="628" x="3275" y="4767"/>
   <object gid="630" x="1730" y="7804"/>
   <object gid="633" x="3190" y="2456">
    <properties>
     <property name="trigger" value="secret_door_three"/>
    </properties>
   </object>
-  <object name="secret_door_three" gid="628" x="3544" y="4766"/>
   <object gid="630" x="3484" y="2878"/>
   <object name="f2" type="FollowPath" x="820" y="3320">
    <properties>
@@ -269,7 +278,6 @@
     <property name="target" value="def"/>
    </properties>
   </object>
-  <object name="doo1" gid="628" x="4541" y="2875"/>
   <object name="b1" gid="633" x="4610" y="3151">
    <properties>
     <property name="trigger" value="doo1"/>
@@ -292,13 +300,7 @@
     <property name="trigger" value="doo4"/>
    </properties>
   </object>
-  <object name="doo2" gid="628" x="4739" y="2877"/>
-  <object name="doo3" gid="628" x="4930" y="2878"/>
-  <object name="doo4" gid="628" x="5190" y="3158"/>
   <object type="solid" x="4117" y="2516" width="151" height="383"/>
-  <object name="cin" gid="628" x="6716" y="3159"/>
-  <object name="cout" gid="628" x="6929" y="2526"/>
-  <object name="deprec" gid="628" x="6911" y="2148"/>
   <object gid="629" x="6183" y="2808">
    <properties>
     <property name="trigger" value="cin"/>
