@@ -9,8 +9,10 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.util.Log;
 
 import de.fhtrier.gdw.commons.tiled.TiledMap;
+import de.fhtrier.gdw.ss2013.MainGame;
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.EntityManager;
 import de.fhtrier.gdw.ss2013.game.camera.CameraInfo;
@@ -25,11 +27,13 @@ import de.fhtrier.gdw.ss2013.renderer.MapRenderer;
 import de.fhtrier.gdw.ss2013.settings.DebugModeStatus;
 import de.fhtrier.gdw.ss2013.sound.SoundLocator;
 import de.fhtrier.gdw.ss2013.sound.services.DefaultSoundPlayer;
+import de.fhtrier.gdw.ss2013.states.GameplayState;
 
 public class World {
 
     private boolean shallBeReseted;
 
+	private StateBasedGame game;
     private TiledMap map;
     private MapRenderer mapRender;
     private ThreePointCamera camera;
@@ -52,6 +56,7 @@ public class World {
 
     public World(GameContainer container, StateBasedGame game) {
         this.container = container;
+        this.game = game;
         instance = this;
         setLevelName(DebugModeStatus.getLevelName());
         map = null;
@@ -71,6 +76,11 @@ public class World {
             map = AssetLoader.getInstance().loadMap(levelName);
             mapRender = new MapRenderer(map);
             LevelLoader.load(map, entityManager, physicsManager);
+            Log.debug("load level: "+levelName);
+
+	        GameplayState gamePlayState = (GameplayState) game.getState(MainGame.GAMEPLAYSTATE);
+	        if (gamePlayState != null)
+	        	gamePlayState.setMusic(AssetLoader.getInstance().getMusic(map.getProperty("music", "gameplay")));
 
         } catch (Exception e) {
             throw new RuntimeException(e);
