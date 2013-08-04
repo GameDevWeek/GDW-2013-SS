@@ -105,4 +105,12 @@
 {
  "name" : "box_hit_hard",
  "pfad" : "res/sounds/box_hit_hard.wav"
+},
+{
+ "name" : "dooropen",
+ "pfad" : "res/sounds/tueroeffnen.ogg"
+},
+{
+ "name" : "doorclosed",
+ "pfad" : "res/sounds/tuerschliessen.ogg"
 }]

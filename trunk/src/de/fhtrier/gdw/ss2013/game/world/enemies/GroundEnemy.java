@@ -152,7 +152,7 @@ public abstract class GroundEnemy extends AbstractEnemy {
 					&& !(other instanceof Alien)
 					&& !(other instanceof Astronaut)) {
 				if (other instanceof DeadZone) {
-					World.getInstance().getEntityManager().removeEntity(this);
+					setHealth(0);
 					return;
 				}
 				if (other.getPosition().x < getPosition().x) {
