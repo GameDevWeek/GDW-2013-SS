@@ -40,8 +40,8 @@ public class Button extends ObjectController implements ICollisionListener {
     private Sound buttonSound;
 
     public Button() {
-        unpressedImg = AssetLoader.getInstance().getImage("button_unpressed");
-        pressedImg = AssetLoader.getInstance().getImage("button_pressed");
+        unpressedImg = AssetLoader.getInstance().getImage("buttonup1");
+        pressedImg = AssetLoader.getInstance().getImage("buttondown2");
     }
 
     @Override
