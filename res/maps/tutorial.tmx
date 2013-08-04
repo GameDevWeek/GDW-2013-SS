@@ -3,9 +3,22 @@
  <tileset firstgid="1" source="robotileset.tsx"/>
  <tileset firstgid="626" source="entity_tileset.tsx"/>
  <tileset firstgid="647" source="moving_platform.tsx"/>
+ <tileset firstgid="650" source="assets_1.tsx"/>
+ <tileset firstgid="668" source="swamp_tileset.tsx"/>
+ <tileset firstgid="884" source="waterset.tsx"/>
+ <layer name="hinten" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt2E1OwkAUAOAhbDWcyQVew8S9O3+uYYLewQV6BN1xAw1eQjcudOdUaIAyhQ4WSfD7kpdhmmbSvNc3bQkBAAAAAAAAAAAAAAAAAAAAAAAAlo12fQEsUI/NVPM2ShxrY12aua/MR4ljm1CPzWyzP45iDFpY6z/5DJOc3cS4jXES47SFdduq6756jDEMs7wPan6PQ3v9oR4hPMc46yxHTm5y81juS/PRj/GVuc4+Kurxkhivus3XyK1H6vmvNybeYrwnxhy5uUydrx7taeN9l+aK/X0YZnv9cVh8pven43A68nu9zmT8aHButR/0x+aK+/opcfw1xkGsyWFn/Rqpb0LyzOcsdT+XfdFrWI+HuZifs1rxXVe+35f7/zhxXm49Vs2pV/bCupw1eW5U16ybU29UGevk1EN/bM/1ri+ABXe7vgB+nHdDuOjWj/y9y+7kf8O6EQAAAAAAAAAAAAAAYB99A/h0XRU=
+  </data>
+ </layer>
  <layer name="Kachelebene 1" width="100" height="100">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+1bW27bVhCdv8TpDgLYsdFkDXHUNFlBgKKygWwhiK0gOzCMWEK7hDw+0q6h+egm2rQbCglz4KPJzOXlm4bOAQ5IXZFX5BzOg0NKhCAIgiAIgiAIgiAIgiAIgiAIgiAIgiAIgiAIgiAIgiAIgiAIgiAIgiAIgpgLfi24LHhS8HTiY9klWLvrEsdKLgr+VPCpWUfabXaRev5Hgc1wuyZ64Poqocep+Jotd5Rqs0iPZUs9VrC+Mdvg76yAOH62ozyvbHFkbKbrZy312MjNdb8xv4V23wBx/GpHua5scWRsputXHfTQ635jfsva3RvHOLmofuNKYi2tr/XFMX3D5g+0jWenJnrovso2emAuOQM9bO7z9OmLY/rGGHqk5svVA7dL6dEkb6q+dbEDj28oeuc/lR4pn9C5rB5L8fVoEhvaxHQ9jyHq3KH8A9e76IG5DD/rtW39p00NEF33a2cdx4aoc6+M7abSI6qDcXv8jHnE6qH6pVi3TY6OQ+RynRfr3T70wDlz9IjqYNxex87F922Naal7rPOemKtZH/VuH3rYOODNhzE/J8/r2Fr8uhdj2ueC/xb8Csv/gvWcMfycmsuue999quycS1vD2Lg+tR54X2TvQ9Q/XgbHOQf8Iu30sL2UueiB80T11dt2phoFr6SdHraXMhc9MD9F9x9z1uNSmuuh+XKO+WMlaf8oj+NhO1ONgg8FP8p2LvLyjq6X+UbPc056qG9E/XqMVz8XvFtwr+C9gj+Y471Tff+84EG9CSfFF5mvHivx9cBxjWVY15f+8giO97Aan3PeVxzKfPXAuGVrK9u/OqlYrpf+slfxuOATiePafrV8IL7vPJZt37sbfNYx+91esI83Hx7rSWAnD2PpkdtjUR+xfmJZ6vRMruNWif2KF4aIpvVqV9b1XT1MoQfmji7PFH8r+Ht1Hp4WF+ZcX0n6mTf2BKJn31EPwZtv7nrYnpXtsZT35n9IfH+s99/6udz2z+o8Ij0u4Fwv4Tg8u3vPlhZmn+jaSOl4G/Q4dfbpkqNz/EPrnZLeMz3sQ+l47jMXb74h9YieIen22Hfyru+cHtH/wTHmIEePfySvd1XeY3yqztF75mL7/NijHEsP24Oxv/N3wfsZfFFDxYMELfar8QuHiIMG/CI3dWpOP7fuPTXvPthDSo8VrNseDG7/o1z3OfrWIweqxfuAeu+iNXAuD2XbPzwN0D+8d548u3bRw+YP/A6fJZRj9r7aq8+9Wj6q86N1b+w4sd+zisfBHHvBfk9ku/dU5x/K6NlQ33qcme/qnlNF+dzmIXvMSi8faVzHHPvamTviSvxj0Ocv9lz0WU1k+zr/6DteNbV7Sg+tBaNafWPGy3xkY9Zfch3Xnxrm6hFdExr/8ZhT9VSki7XBkPmjqx5ao2tNGN0/KbVvZXP54UB6YEzBeGDjgu4baXQb/EPnxXcZ0E90nzdA7YdoPC+pPSHcrq0OVg97jpG97f2IrYdvgx42Nyzkxl8i/6i7pnE9Wtb1NaK5U74XvQPmHc9c9bD39E1sapfee0m4jGzn9TXs9aDE/1B471l5Mcqba056RP2cJtdmShf7va5HtrN9Dc9+qkHqfWwvn0fv+PWhB8b8Lnp4/Rxru8jO2OPyfACvX/v/odx3TD0t8H1+PZ+c2srLHdH7gVPpgec9JnPv33Lm8nK3nW8h359rn/mjTz3W4ufUKZiqkyJGvoU+spTvzzX1/uyYenh5aIh3ZdtySL/0+g1j6YH5NBofO041iT9d94tqj1St3FWP1PvUmE+j8anjUyr+dN3P1hQRbbxcm/09vJZtH7P1g6eHfb/fG586NqXqq6775fwvwtoA47fu7+GdsWm0jGq91PjcGPVCcvdN1bweozl0f4IgCIIgCIIgCIIgCIIgCIIgCIIgCIIgRL4BkfwC1ECcAAA=
+  <data encoding="base64" compression="zlib">
+   eJztW1uO3FQQrb9kgsQCkCaZEbAGJk0IK0BC9IyULUSZacQORhHTLVhCQj6ANZAPNsFrQ1xrXJrTlarr67dHfY50ZPdt+7Zdx/Vw2S1CEARBEARBEARBEARBEARBEARBEARBEARBEARBEARBEARBEARBEARBEARBLAXfJa4TzxMvZj6WQ4K1uy5xrOIq8cvEZ2Ydabc5ROr5nwY2w+3a6IHrm4weF+Jrtj5Qqs0iPdYd9djA+s5sg7+zAeL45YHyqrbFqbGZrl921GMnd9f9zvwW2n0HxPGbA+W2tsWpsZmu3/TQQ6/7nfkta3dvHOPkqv6NG4m1tL42FKf0DZs/0Daendroofsqu+iBueQS9LC5z9NnKE7pG1PokZuvVA/cLqdHm7yp+jbFDjy+seid/1x65HxC57J6rMXXo01s6BLT9TzGqHPH8g9c76MH5jL8rNe29Z8uNUB03W+ddRwbo869MbabS4+oDsbt8TPmEauH6pdj0zYlOo6Ry3VerHeH0APnLNEjqoNxex27Et+3Nabl7rGuBmKpZkPUu0PoYeOANx/G/JI8r2Nb8etejGm/Jv6d+A8s/w3WS8bwc24uu+599662cyltDWPj+tx64H2RvQ9R/3gRHOcS8K1008P2UpaiB84T1Vc/dDPV6Pg48aV008P2UpaiB+an6P5jqXpUeC3t9dB8ucT8sZG8f1TH8Vk3U02Ct4m/yH4u8vKOrlf5Rs9zSXqob0T9eoxXXyU+TDxKfJT4kTneB/X3Xyc+bjbhrHgvy9VjI74eOK6xDOv6yl8+h+M9qceXnPcVJ7JcPTBu2drK9q/Oa1brlb8c1TxLfCpxXDuul0/E950vZN/3Hgafdcx+dxTs482Hx3oe2MnDVHqU9ljUR6yfWFY6PZfbuFXhuOa1IaJtvdqXTX1XD3PogbmjzzPFnxJ/rs/D0+LanOtLyT/zxp5A9Ow76iF48y1dD9uzsj2W6t78N4nvj/X+Wz9X2/5en0ekxzWc62s4Ds/u3rOlldknujZyOt4HPS6cffrk6BL/0HqnovdMD/tQOl76zMWbb0w9omdIuj32nbzru6RH9F9wjCUo0eMvKetdVfcY7+pz9J652D4/9iin0sP2YOzv/Jn4SQG/aaDiSYYWx/X4tUPE4xZ8L3d1akk/t+k9Ne8+2ENOjw2s2x4Mbv+p3PY5htajBKrFm4B676I1cClPZN8/PA3QP7x3njy79tHD5g/8Dp8lVGP2vtqrz71aPqrzo3Vv7Cyz3/OaZ8EcR8F+T2W/99TkH8ro2dDQelya75qeU0X53OYhe8xKLx9pXMcc+8qZO+JG/GPQ5y/2XPRZTWT7Jv8YOl61tXtOD60Fo1p9Z8arfGRj1h9yG9efGZbqEV0TGv/xmHP1VKSLtcGY+aOvHlqja00Y3T8ptW9lc/nJSHpgTMF4YOOC7htpdB/8Q+fFdxnQT3Sf74HaD9F4XlF7QrhdVx2sHvYcI3vb+xFbD98HPWxuWMmdv0T+0XRN43q0bOprRHPnfC96B8w7nqXqYe/p29jULr33knAZ2c7ra9jrQYn/ofDes/JilDfXkvSI+jltrs2cLvZ7XY9sZ/sanv1Ug9z72F4+j97xG0IPjPl99PD6OdZ2kZ2xx+X5AF6/9v9Dpe+Yelrg+/x6PiW1lZc7ovcD59IDz3tKlt6/lczl5W4730o+PNch88eQemzFz6lzMFcnRYx8C31kLR+ea+792Sn18PLQGO/KduWYfun1G6bSA/NpND51nGoTf/ruF9UeuVq5rx6596kxn0bjc8enXPzpu5+tKSLaeLk1+3t4Jfs+ZusHTw/7fr83PndsytVXffcr+V+EtQHGb93fw4/GptEyqvVy40tj1Asp3TdX83qM5tD9CYIgCIIgCIIgCIIgCIIgCIIgCIIgCIIQ+R8+VE7h
+  </data>
+ </layer>
+ <layer name="vorne" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt2M1Nw0AYBNBtDcqAA0UR2oEbLdAO8QEJoYis7WU9X3hP2gNRhGYyifPTGgAAAAAAAAAAAAAAAAAAUN370QEuSMw0S2L3xEyzJHZPzDRLYvfETLMkdk/MNEti98RMsyR2T8w0S2L3xEyzJHZPzLTW6/k8bziPR4S9Yu8evd1P5/PSeb+e277/z6cLt6Wd+87H8xZeHxU69Gas0OWaCh3skcUeWR5a3/tr4meMtSrs8Z/YI4s9stgjx13Lfw9cMm75/eDnd+ivv5NVeG1UyDhKha4VMi6/AZ4GnPRr1aLCHhUyjlKha4WMo1ToWiHjKBW6Vsg4SoWuFTKOUqHrR9v2Hem38za1Qd/3vCqfAf/C7Odhhef9keyRZe01cO/1zR5j7X087TGWPbLYI4s9stgjiz2y2COLPbLYI4s9AAAAAAAAAKCuT7bPpAk=
   </data>
  </layer>
  <objectgroup name="Objektebene 1" width="100" height="100">
@@ -18,7 +31,6 @@
   </object>
   <object gid="630" x="2870" y="3473"/>
   <object gid="630" x="2804" y="3473"/>
-  <object gid="630" x="2871" y="3407"/>
   <object gid="645" x="3010" y="4338"/>
   <object gid="633" x="2833" y="4372">
    <properties>
@@ -159,11 +171,11 @@
   </object>
   <object gid="642" x="1536" y="4224">
    <properties>
-    <property name="radius" value="350"/>
+    <property name="radius" value="250"/>
     <property name="trigger" value="tr_pic_leer"/>
    </properties>
   </object>
-  <object name="tr_pic_leer" gid="641" x="1537" y="4224">
+  <object name="tr_pic_leer" gid="641" x="1535" y="4225">
    <properties>
     <property name="image" value="tut_leertaste"/>
    </properties>
@@ -188,6 +200,11 @@
    <properties>
     <property name="radius" value="80"/>
     <property name="trigger" value="tr_pic_bew"/>
+   </properties>
+  </object>
+  <object type="deadzone" x="2938" y="3559" width="206" height="33">
+   <properties>
+    <property name="removeBox" value="false"/>
    </properties>
   </object>
  </objectgroup>
