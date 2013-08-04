@@ -161,8 +161,8 @@
 		{ "style" : "name", "delay": 850, "value": "Santo Pfingsten" },
 		{ "style" : "name", "delay": 750, "value": "Tobias Krumholz" },
 		{ "style" : "name", "delay": 750, "value": "Robin Dick" },
-		{ "style" : "name", "delay": 750, "value": "Johannes Strack" },
 		{ "style" : "name", "delay": 750, "value": "Torsten Scholer" },
+		{ "style" : "name", "delay": 750, "value": "Johannes Strack" },
 		{ "style" : "name", "delay": 750, "value": "Annalena Weber" },
 		
 		{ "style" : "title", "delay": 1350, "value": "Game Design" },
@@ -177,6 +177,8 @@
 		{ "style" : "name", "delay": 850, "value": "Wendelin Lehr" },
 		{ "style" : "name", "delay": 750, "value": "Janina Noell" },
 		{ "style" : "name", "delay": 750, "value": "Benjamin Albsmeier" },
+		{ "style" : "name", "delay": 750, "value": "Robin Dick" },
+		{ "style" : "name", "delay": 750, "value": "Santo Pfingsten" },
 		
 		{ "style" : "title", "delay": 1350, "value": "Interface Design" },
 		{ "style" : "name", "delay": 850, "value": "Tobias Borns" },
@@ -208,7 +210,6 @@
 		{ "style" : "name", "delay": 750, "value": "David Wichter" },
 		{ "style" : "name", "delay": 750, "value": "Arnold Oberzeiser" },
 		{ "style" : "name", "delay": 750, "value": "Torsten Scholer" }
-		
     ],
     
     
