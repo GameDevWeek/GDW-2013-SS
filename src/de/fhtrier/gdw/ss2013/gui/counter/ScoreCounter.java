@@ -11,7 +11,7 @@ public class ScoreCounter extends MechanicalCounter {
     
     public ScoreCounter(Image digits, Vector2f position, int value, int numberOfDigits, float speed)
     {
-        super(digits, position, value, numberOfDigits);
+    	super(digits, position, value, numberOfDigits);
         this.speed = speed;
     }
     
