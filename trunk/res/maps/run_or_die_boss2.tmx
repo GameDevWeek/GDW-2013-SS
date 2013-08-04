@@ -29,7 +29,7 @@
    </properties>
   </object>
   <object type="solid" x="3952" y="498" width="193" height="2347"/>
-  <object name="rightaccel" gid="634" x="3934" y="2948">
+  <object name="rightaccel" gid="634" x="4078" y="2925">
    <properties>
     <property name="velocity_x" value="-4000"/>
     <property name="velocity_y" value="0"/>
@@ -48,8 +48,6 @@
   <object gid="631" x="2952" y="2110"/>
   <object gid="631" x="3080" y="2106"/>
   <object gid="631" x="2382" y="2036"/>
-  <object gid="648" x="1199" y="2820"/>
-  <object gid="649" x="4039" y="2962"/>
   <object gid="632" x="3613" y="2702">
    <properties>
     <property name="bubbleSpawnTimer" value="4000"/>
@@ -60,6 +58,12 @@
    <properties>
     <property name="bubbleSpawnTimer" value="4000"/>
     <property name="maxBubblesOnPlant" value="2"/>
+   </properties>
+  </object>
+  <object name="rightaccel" gid="634" x="1179" y="2783">
+   <properties>
+    <property name="velocity_x" value="0"/>
+    <property name="velocity_y" value="4000"/>
    </properties>
   </object>
  </objectgroup>
