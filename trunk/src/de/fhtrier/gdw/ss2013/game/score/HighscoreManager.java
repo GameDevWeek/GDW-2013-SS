@@ -56,6 +56,7 @@ public class HighscoreManager {
             }
             
             scores.add(rank-1, scoreInfo);
+            AssetLoader.getInstance().writeScore(mapName, scores);
         }
     }
     
