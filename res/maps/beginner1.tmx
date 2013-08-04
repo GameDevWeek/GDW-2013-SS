@@ -294,5 +294,6 @@
   <object gid="647" x="14206" y="1394"/>
   <object gid="647" x="14294" y="1464"/>
   <object gid="647" x="14286" y="1408"/>
+  <object type="solid" x="7373" y="473" width="167" height="131"/>
  </objectgroup>
 </map>
