@@ -166,10 +166,13 @@
   "name" : "maus_links",
   "pfad" : "gui/maus_links"
 },
-
 {
   "name" : "maus_mitte",
   "pfad" : "gui/maus_mitte"
+},
+{
+  "name" : "bewegung_E_NEU",
+  "pfad" : "gui/bewegung_E_NEU"
 },
 {
  "name" : "buttonup1",
@@ -178,7 +181,5 @@
 {
  "name" : "buttondown2",
   "pfad" : "entities/button/accelerator_down"
-}
-
-]
+}]
 
