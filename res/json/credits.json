@@ -129,17 +129,10 @@
 		
 		{ "name": "scribble_kristall_path",
            "destinations": [
-            {"x": 500, "y": 4350, "speed": -1 },
+            {"x": 500, "y": 4450, "speed": -1 },
             {"x": 500, "y": -120, "speed": 80 }
            ]
 		},
-		
-		{ "name": "mother_path",
-           "destinations": [
-            {"x": 500, "y": 4500, "speed": -1 },
-            {"x": 500, "y": -120, "speed": 80 }
-           ]
-		}
 		
 	],
     
