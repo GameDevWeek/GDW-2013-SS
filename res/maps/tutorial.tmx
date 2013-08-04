@@ -142,12 +142,12 @@
   <object type="solid" x="2607" y="4114">
    <polyline points="0,0 2207,-3 2211,-173 1507,-179 1510,-513 3295,-514"/>
   </object>
-  <object name="tr_pic_e" gid="641" x="4457" y="4204">
+  <object name="tr_pic_e" gid="641" x="4475" y="4204">
    <properties>
     <property name="image" value="bewegung_E_NEU"/>
    </properties>
   </object>
-  <object gid="642" x="4458" y="4204">
+  <object gid="642" x="4475" y="4204">
    <properties>
     <property name="radius" value="350"/>
     <property name="trigger" value="tr_pic_e"/>
