@@ -52,8 +52,16 @@
   <object type="solid" x="10509" y="3027" width="173" height="121"/>
   <object type="solid" x="11340" y="3022" width="173" height="121"/>
   <object type="solid" x="12170" y="3027" width="173" height="121"/>
-  <object gid="632" x="6082" y="2962"/>
-  <object gid="632" x="1890" y="3082"/>
+  <object gid="632" x="6082" y="2962">
+   <properties>
+    <property name="maxBubblesOnPlant" value="5"/>
+   </properties>
+  </object>
+  <object gid="632" x="1890" y="3082">
+   <properties>
+    <property name="maxBubblesOnPlant" value="3"/>
+   </properties>
+  </object>
   <object type="winningzone" x="15068" y="2149" width="1052" height="982">
    <properties>
     <property name="target" value="run_or_die_boss2"/>
@@ -115,7 +123,11 @@
   <object type="solid" x="8176" y="2400" width="109" height="190"/>
   <object type="solid" x="8242" y="2531" width="101" height="375"/>
   <object type="solid" x="6728" y="2774" width="299" height="137"/>
-  <object gid="632" x="8734" y="3094"/>
+  <object gid="632" x="8734" y="3094">
+   <properties>
+    <property name="maxBubblesOnPlant" value="5"/>
+   </properties>
+  </object>
   <object name="tt_jump" gid="641" x="7885" y="2992">
    <properties>
     <property name="image" value="jump_tt"/>
@@ -241,6 +253,11 @@
    <properties>
     <property name="delay" value="1800"/>
     <property name="startDelay" value="900"/>
+   </properties>
+  </object>
+  <object gid="632" x="12538" y="3091">
+   <properties>
+    <property name="maxBubblesOnPlant" value="3"/>
    </properties>
   </object>
  </objectgroup>
