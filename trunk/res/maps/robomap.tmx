@@ -3,6 +3,9 @@
  <tileset firstgid="1" source="robotileset.tsx"/>
  <tileset firstgid="626" source="entity_tileset.tsx"/>
  <tileset firstgid="647" source="moving_platform.tsx"/>
+ <objectgroup name="door" width="200" height="150">
+  <object name="blub" gid="628" x="1093" y="779"/>
+ </objectgroup>
  <layer name="Lava" width="200" height="150">
   <data encoding="base64" compression="zlib">
    eJzt3FFu4jAQBuD0ib3/3dhjdK+wfalYsR57xjGBhu+TLNTihMSe36EBddsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgGe4frXfjUdg2z6/2p/GI7Btl49t+/Xx/yMAAAAAAAAAAGRdt9v3FqMG7+pzu31vMWrwri7/fG8xagAAAHB210Rzj3WdzHibg9fxmWjusa6TGW9z8Dq+76/2mnus6xnv19eal9b/U/C5xGP0PvvheJlrhbUMbnq5uG+t64oMcXatTEQ/w1ldBtcA7395V733Ub2/x+FdZP8eP1NOWvfm3IfgXqZGznQvK8rFWXKSPZczrHFHiWogm437sY7qaU8tRp/FVPcT3X87S0ay5zGTo/s8zcxH7/Ozn2L0nqpVL/fbtJ7PjmM0R6P5qMx3q15mMvJqucqO76o+M7mYzeazxjpTp5UW1eDoHDPrejRmM3PVykhv+5nn9qwJved7v6+M9d58VOt8z3bPzMgoN5njHK3rvfGJ+kT7zmRo9ZyPrj3VFq2RM/WTmYfV2ageZzTPvW2r83t0PlrzkDnHaDxGGRrVQab/bG2srvVsqxx/pt+j14mZfFT77t3PEdnI1Gr02MpGbxwqcznK56h2quvyTJ3PzvGeY8/0jfYZzW1vTcqsV7Nz3JuXTP8jc1Fts3Wzum+lLqs1OJOdPVnKvm6lFleM+YrMVo43+7pHuD/GR2+3Um/9nan/TP/v1x3laKaOovpo9Zut9Uz+V6wP1ePJjMcz8nEG1XVnRa5nMzGz70ptH3Hukeo1Y5Qd+Virt4YdVSPvbGVe5eMx5OMcMnNInXxA7NnvweHVyQcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8NP9BeZJfD0=
@@ -156,13 +159,13 @@
   <object type="solid" x="2249" y="1873" width="459" height="203"/>
   <object type="solid" x="2439" y="1523" width="291" height="531"/>
   <object gid="630" x="516" y="1152"/>
-  <object name="door1" gid="628" x="752" y="1172"/>
+  <object name="door1" gid="628" x="752" y="1196"/>
   <object name="button2" gid="633" x="950" y="1162">
    <properties>
     <property name="trigger" value="door2"/>
    </properties>
   </object>
-  <object name="door2" gid="628" x="2048" y="458"/>
+  <object name="door2" gid="628" x="2048" y="536"/>
   <object name="button1" gid="633" x="952" y="916">
    <properties>
     <property name="trigger" value="door1"/>
@@ -184,15 +187,15 @@
     <property name="path" value="p1"/>
    </properties>
   </object>
-  <object name="door4" gid="628" x="1551" y="2221"/>
-  <object name="door5" gid="628" x="2692" y="2853"/>
+  <object name="door4" gid="628" x="1545" y="2315"/>
+  <object name="door5" gid="628" x="2621" y="2897"/>
   <object gid="633" x="2943" y="2320">
    <properties>
     <property name="trigger" value="door5"/>
    </properties>
   </object>
-  <object name="door3" gid="628" x="2534" y="2290"/>
-  <object gid="629" x="1805" y="1930">
+  <object name="door3" gid="628" x="2531" y="2317"/>
+  <object gid="629" x="1345" y="7827">
    <properties>
     <property name="trigger" value="door4"/>
    </properties>
@@ -211,7 +214,7 @@
   <object gid="632" x="4192" y="4740"/>
   <object gid="632" x="5620" y="4728"/>
   <object gid="632" x="6892" y="4740"/>
-  <object type="deadzone" x="7529" y="3804" width="495" height="1303"/>
+  <object type="deadzone" x="7523" y="3689" width="495" height="1303"/>
   <object name="abc" gid="643" x="1415" y="1897">
    <properties>
     <property name="target" value="area51in"/>
@@ -266,7 +269,7 @@
     <property name="target" value="def"/>
    </properties>
   </object>
-  <object name="doo1" gid="628" x="4546" y="2815"/>
+  <object name="doo1" gid="628" x="4546" y="2827"/>
   <object name="b1" gid="633" x="4610" y="3151">
    <properties>
     <property name="trigger" value="doo1"/>
@@ -289,13 +292,13 @@
     <property name="trigger" value="doo4"/>
    </properties>
   </object>
-  <object name="doo2" gid="628" x="4740" y="2821"/>
-  <object name="doo3" gid="628" x="4931" y="2819"/>
-  <object name="doo4" gid="628" x="5184" y="3140"/>
+  <object name="doo2" gid="628" x="4740" y="2836"/>
+  <object name="doo3" gid="628" x="4931" y="2834"/>
+  <object name="doo4" gid="628" x="5190" y="3158"/>
   <object type="solid" x="4117" y="2516" width="151" height="383"/>
-  <object name="cin" gid="628" x="6720" y="3105"/>
-  <object name="cout" gid="628" x="6929" y="2462"/>
-  <object name="deprec" gid="628" x="6909" y="2090"/>
+  <object name="cin" gid="628" x="6716" y="3159"/>
+  <object name="cout" gid="628" x="6929" y="2526"/>
+  <object name="deprec" gid="628" x="6911" y="2148"/>
   <object gid="629" x="6183" y="2808">
    <properties>
     <property name="trigger" value="cin"/>
@@ -322,9 +325,14 @@
   </object>
   <object type="winningzone" x="8704" y="2928" width="1952" height="708">
    <properties>
-    <property name="target" value="bossmap"/>
+    <property name="target" value="run_or_die"/>
    </properties>
   </object>
   <object type="solid" x="6052" y="2132" width="980" height="196"/>
+  <object gid="646" x="3130" y="3022"/>
+  <object gid="632" x="1084" y="7829"/>
+  <object type="deadzone" x="6067" y="2031">
+   <polyline points="0,0 301,35 349,136 20,192 -24,15"/>
+  </object>
  </objectgroup>
 </map>
