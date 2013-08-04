@@ -89,7 +89,7 @@ public class MenuPageLevelSelect extends MenuPage {
                 SettingsInfo settings = AssetLoader.getInstance().getSettings();
                 settings.lastLoadedMap = lvls[tb.getState()];
                 AssetLoader.getInstance().writeSettings(settings);
-                World.getInstance().shallBeReseted(true);
+                World.getInstance().reset();
                 MainGame.changeState(MainGame.GAMEPLAYSTATE);
             }
         });
