@@ -150,13 +150,13 @@ public class Teleporter extends EntityCollidable implements Interactable {
     @Override
     public void activate() {
         isActive = true;
-        img = AssetLoader.getInstance().getImage("teleporter-active");
+        img = AssetLoader.getInstance().getImage("teleporter_active");
     }
 
     @Override
     public void deactivate() {
         isActive = false;
-        img = AssetLoader.getInstance().getImage("teleporter-inactive");
+        img = AssetLoader.getInstance().getImage("teleporter_inactive");
     }
 
     @Override

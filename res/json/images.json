@@ -48,11 +48,11 @@
 },
 {
   "name" : "teleporter_active",
-  "pfad" : "entities/teleporter-active"
+  "pfad" : "entities/teleporter_active"
 },
 {
   "name" : "teleporter_inactive",
-  "pfad" : "entities/teleporter-inactive"
+  "pfad" : "entities/teleporter_inactive"
 },
 {
   "name" : "platform_crystal",
