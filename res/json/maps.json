@@ -8,6 +8,10 @@
   "pfad" : "res/maps/beginner1.tmx"
 },
 {
+  "name" : "beginner_hard",
+  "pfad" : "res/maps/beginner_hard.tmx"
+},
+{
   "name" : "Albsis WayUp",
   "pfad" : "res/maps/map-a2.tmx"
 },
