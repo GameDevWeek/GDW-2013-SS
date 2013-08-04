@@ -34,13 +34,12 @@
   <object type="solid" x="3869" y="5184" width="115" height="1241"/>
   <object type="solid" x="743" y="5084" width="128" height="1363"/>
   <object gid="737" x="1861" y="6270"/>
-  <object name="path1" type="FollowPath" x="1216" y="6208">
-   <polyline points="0,0 576,0"/>
-  </object>
-  <object name="mp1" gid="735" x="1185" y="6239">
+  <object gid="757" x="1280" y="6272"/>
+  <object gid="743" x="1458" y="6357"/>
+  <object name="t1" gid="754" x="2013" y="6289"/>
+  <object gid="754" x="972" y="6289">
    <properties>
-    <property name="path" value="path1"/>
-    <property name="tileset" value="swamp"/>
+    <property name="target" value="t1"/>
    </properties>
   </object>
  </objectgroup>

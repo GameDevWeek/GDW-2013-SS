@@ -8,6 +8,8 @@ import de.fhtrier.gdw.ss2013.game.filter.Interactable;
 import de.fhtrier.gdw.ss2013.game.player.Alien;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.world.World;
+import de.fhtrier.gdw.ss2013.sound.SoundLocator;
+import de.fhtrier.gdw.ss2013.sound.SoundPlayer;
 
 import org.jbox2d.dynamics.BodyType;
 import org.jbox2d.dynamics.contacts.Contact;
@@ -15,12 +17,15 @@ import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 
 public class Accelerator extends EntityCollidable {
 
     private Animation animation;
     private boolean invertAnimation;
     private boolean invertAnimationUp;
+    private SoundPlayer soundPlayer;
+    private Sound accSound;
 
     public Accelerator() {
     	super();
@@ -43,6 +48,8 @@ public class Accelerator extends EntityCollidable {
             invertAnimationUp = y > 0;
         }
         setInitialSize(animation.getWidth(), animation.getHeight());
+        soundPlayer = SoundLocator.getPlayer();
+        accSound = SoundLocator.loadSound("accelerator");
     }
 
     @Override
@@ -87,6 +94,7 @@ public class Accelerator extends EntityCollidable {
 //                other.setVelocityX(x);
 
             other.getPhysicsObject().applyImpulse(x, y);
+            soundPlayer.playSoundAt(accSound, this);
         }
     }
 

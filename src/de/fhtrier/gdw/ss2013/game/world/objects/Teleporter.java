@@ -7,6 +7,7 @@ import org.jbox2d.dynamics.contacts.Contact;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 
 import de.fhtrier.gdw.ss2013.assetloader.AssetLoader;
 import de.fhtrier.gdw.ss2013.game.Entity;
@@ -15,6 +16,8 @@ import de.fhtrier.gdw.ss2013.game.filter.Interactable;
 import de.fhtrier.gdw.ss2013.game.player.Alien;
 import de.fhtrier.gdw.ss2013.game.player.Astronaut;
 import de.fhtrier.gdw.ss2013.game.world.World;
+import de.fhtrier.gdw.ss2013.sound.SoundLocator;
+import de.fhtrier.gdw.ss2013.sound.SoundPlayer;
 
 public class Teleporter extends EntityCollidable implements Interactable {
 
@@ -26,9 +29,12 @@ public class Teleporter extends EntityCollidable implements Interactable {
 
     private final ArrayList<Entity> ignorList = new ArrayList<>();
     private final ArrayList<Entity> toSet = new ArrayList<>();
+    
+    private SoundPlayer soundpLayer;
+    private Sound teleportSound;
 
     public Teleporter() {
-        super(AssetLoader.getInstance().getImage("teleporter-inactive"));
+        super(AssetLoader.getInstance().getImage("teleporter_inactive"));
 
     }
 
@@ -50,7 +56,9 @@ public class Teleporter extends EntityCollidable implements Interactable {
         }
 
         img = AssetLoader.getInstance().getImage(
-                (isActive ? "teleporter-active" : "teleporter-inactive"));
+                (isActive ? "teleporter_active" : "teleporter_inactive"));
+        soundpLayer = SoundLocator.getPlayer();
+        teleportSound = SoundLocator.loadSound("teleporter");
     }
 
     @Override
@@ -117,6 +125,7 @@ public class Teleporter extends EntityCollidable implements Interactable {
                 if (!ignorList.contains(other)) {
                     target.ignorList.add(other);
                     toSet.add(other);
+                    soundpLayer.playSoundAt(teleportSound, this);
                     // objectA.setPosition(target.getPosition());
                 }
             }
