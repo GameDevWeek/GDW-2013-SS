@@ -215,7 +215,7 @@ public abstract class Entity {
 
     public void setParticle(DynamicParticleSystem particle) {
         this.particle = particle;
-        //beim anlegen im objekt .clone hinzufügen
+        //beim anlegen im objekt .clone hinzufÃ¼gen
     }
 
     public void setImage(Image img) {
