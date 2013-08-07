@@ -120,7 +120,7 @@ public class CrabBoss extends AbstractBoss {
 				anim.draw(x + halfwidth, y - halfheight, -2 * halfwidth,
 						2 * halfheight);
 			}
-            font.drawString(x, y, phase.getClass().getSimpleName());
+//            font.drawString(x, y, phase.getClass().getSimpleName());
 		}
 	}
 
