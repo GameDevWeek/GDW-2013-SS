@@ -4,9 +4,12 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.ArrayList;
+import java.net.URLDecoder;
 import java.util.Enumeration;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
 
 /**
  *
@@ -22,28 +25,27 @@ public class ClassUtils {
      * @throws ClassNotFoundException
      * @throws IOException
      */
-    public static Class[] findClassesInPackage(String packageName)
+    public static Set<Class> findClassesInPackage(String packageName)
             throws ClassNotFoundException, IOException {
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
         assert classLoader != null;
         String path = packageName.replace('.', '/');
         Enumeration<URL> resources = classLoader.getResources(path);
-        List<File> dirs = new ArrayList<>();
+        HashSet<Class> classes = new HashSet<>();
         while (resources.hasMoreElements()) {
             URL resource = resources.nextElement();
-            try {
-                dirs.add(new File(resource.toURI()));
-            }
-            catch (URISyntaxException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+
+            if (resource.getProtocol().equals("file")) {
+                try {
+                    findClassesInDir(new File(resource.toURI()), packageName, classes);
+                } catch (URISyntaxException e) {
+                    e.printStackTrace();
+                }
+            } else if (resource.getProtocol().equals("jar")) {
+                findClassesInJar(resource, path, classes);
             }
         }
-        ArrayList<Class> classes = new ArrayList<>();
-        for (File directory : dirs) {
-            classes.addAll(findClasses(directory, packageName));
-        }
-        return classes.toArray(new Class[classes.size()]);
+        return classes;
     }
 
     /**
@@ -53,23 +55,51 @@ public class ClassUtils {
      * @param directory The base directory
      * @param packageName The package name for classes found inside the base
      * directory
-     * @return The classes
+     * @param classes The classes
      * @throws ClassNotFoundException
      */
-    public static List<Class> findClasses(File directory, String packageName) throws ClassNotFoundException {
-        List<Class> classes = new ArrayList<>();
-        if (!directory.exists()) {
-            return classes;
-        }
-        File[] files = directory.listFiles();
-        for (File file : files) {
-            if (file.isDirectory()) {
-                assert !file.getName().contains(".");
-                classes.addAll(findClasses(file, packageName + "." + file.getName()));
-            } else if (file.getName().endsWith(".class")) {
-                classes.add(Class.forName(packageName + '.' + file.getName().substring(0, file.getName().length() - 6)));
+    private static void findClassesInDir(File directory, String packageName, HashSet<Class> classes) {
+        if (directory.exists()) {
+            File[] files = directory.listFiles();
+            for (File file : files) {
+                if (file.isDirectory()) {
+                    assert !file.getName().contains(".");
+                    findClassesInDir(file, packageName + "." + file.getName(), classes);
+                } else if (file.getName().endsWith(".class")) {
+                    try {
+                        classes.add(Class.forName(packageName + '.' + file.getName().substring(0, file.getName().length() - 6)));
+                    } catch (ClassNotFoundException ex) {
+                    }
+                }
             }
         }
-        return classes;
+    }
+
+    /**
+     * Method to find all classes in a jar file
+     * 
+     * @param jarURL the jar url
+     * @param packageName The package name for classes found inside the base
+     * directory
+     * @param classes The classes
+     */
+    private static void findClassesInJar(URL jarURL, String packageName, HashSet<Class> classes) {
+        try {
+            String jarPath = jarURL.getPath().substring(5, jarURL.getPath().indexOf("!"));
+            JarFile jar = new JarFile(URLDecoder.decode(jarPath, "UTF-8"));
+            Enumeration<JarEntry> entries = jar.entries();
+            while (entries.hasMoreElements()) {
+                String name = entries.nextElement().getName();
+                if (name.startsWith(packageName) && name.endsWith(".class")) {
+                    String className = name.substring(0, name.length() - 6).replace('/', '.');
+                    try {
+                        classes.add(Class.forName(className));
+                    } catch (ClassNotFoundException ex) {
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
